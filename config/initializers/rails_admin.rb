@@ -38,4 +38,17 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model 'User' do
+    exclude_fields :id, :created_at, :updated_at, :sign_in_count,
+                   :current_sign_in_at, :last_sign_in_at,
+                   :current_sign_in_ip,
+                   :last_sign_in_ip, :remember_created_at,
+                   :reset_password_sent_at, :confirmation_token, :confirmed_at,
+                   :confirmation_sent_at
+  
+    field :perfil, :enum do
+      enum { User::PERFIL }
+    end
+  end
 end
