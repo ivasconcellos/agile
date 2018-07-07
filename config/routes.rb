@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :admins
   devise_for :usuarios
+  
 
   get 'controle/inicial'
   get 'controle/sobre'
