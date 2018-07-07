@@ -12,6 +12,11 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <% if usuario_signed_in? %>
+      <%= link_to edit_usuario_registration_path, @id => :user_id, class: 'btn btn-default' do %>Atualizar Dados<% end %>
+      <%= link_to destroy_usuario_session_path, :method => :delete, class: 'btn btn-danger' do %>Sair<% end %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
