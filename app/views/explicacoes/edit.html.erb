@@ -1,6 +1,9 @@
-<h1>Editing Explicacao</h1>
+<div class="form-signin">
+	<h2>Atualização de Explicação</h2>
 
-<%= render 'form', explicacao: @explicacao %>
+	<%= render 'form', explicacao: @explicacao %>
 
-<%= link_to 'Show', @explicacao %> |
-<%= link_to 'Back', explicacoes_path %>
+	<div class="text-center">
+		<%= link_to 'Voltar', explicacoes_path, class: "btn btn-md btn-danger btn-block" %>
+	</div>
+</div>

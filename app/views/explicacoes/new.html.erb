@@ -1,5 +1,10 @@
-<h1>New Explicacao</h1>
+<div class="form-signin">
+	<h2>Cadastro de Explicação</h2>
 
-<%= render 'form', explicacao: @explicacao %>
+	<%= render 'form', explicacao: @explicacao %>
 
-<%= link_to 'Back', explicacoes_path %>
+	<div class="text-center">
+		<%= link_to 'Voltar', explicacoes_path, class: "btn btn-md btn-danger btn-block" %>
+	</div>
+
+</div>

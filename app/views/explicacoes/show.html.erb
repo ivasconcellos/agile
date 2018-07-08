@@ -1,24 +1,18 @@
-<p id="notice"><%= notice %></p>
+<h2>Explicação</h2>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @explicacao.nome %>
-</p>
+<ul class="list-group">
+  <li class="list-group-item"><b>Nome:</b> <%= @explicacao.nome %></li>
+  <li class="list-group-item"><b>Descrição:</b> <%= @explicacao.descricao %></li>
+  <li class="list-group-item"><b>Áudio:</b> <%= @explicacao.audio %></li>  
+  <li class="list-group-item"><b>Cadastrada em:</b> <%= @explicacao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
+  <li class="list-group-item"><b>Conteúdo:</b> <%= @explicacao.conteudo.nome %></li>      
+</ul>
 
-<p>
-  <strong>Descricao:</strong>
-  <%= @explicacao.descricao %>
-</p>
+<br>
 
-<p>
-  <strong>Audio:</strong>
-  <%= @explicacao.audio %>
-</p>
-
-<p>
-  <strong>Conteudo:</strong>
-  <%= @explicacao.conteudo %>
-</p>
-
-<%= link_to 'Edit', edit_explicacao_path(@explicacao) %> |
-<%= link_to 'Back', explicacoes_path %>
+<div class="text-center">
+  <% if can? :edit, Explicacao %>
+    <%= link_to 'Atualizar', edit_explicacao_path(@explicacao), class: "btn btn-md btn-primary" %>
+  <% end %>
+  <%= link_to 'Voltar', explicacoes_path, class: "btn btn-md btn-danger" %>
+</div>
