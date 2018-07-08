@@ -1,31 +1,40 @@
-<p id="notice"><%= notice %></p>
+<h2>Conteúdos</h2>
 
-<h1>Conteudos</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Descricao</th>
-      <th>Curso</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @conteudos.each do |conteudo| %>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
       <tr>
-        <td><%= conteudo.nome %></td>
-        <td><%= conteudo.descricao %></td>
-        <td><%= conteudo.curso %></td>
-        <td><%= link_to 'Show', conteudo %></td>
-        <td><%= link_to 'Edit', edit_conteudo_path(conteudo) %></td>
-        <td><%= link_to 'Destroy', conteudo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th class="text-center">Nome</th>
+        <th class="text-center">Descrição</th>
+        <th class="text-center">Curso</th>
+        <th colspan="3" class="text-center">Opções</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @conteudos.each do |conteudo| %>
+        <tr>
+          <td><%= conteudo.nome %></td>
+          <td><%= conteudo.descricao %></td>
+          <td class="text-center"><%= conteudo.curso.nome %></td>
+          <% if can? :show, Conteudo %>
+            <td><%= link_to 'Visualizar', conteudo %></td>
+          <% end %>
+          <% if can? :edit, Conteudo %>
+            <td><%= link_to 'Atualizar', edit_conteudo_path(conteudo) %></td>
+          <% end %>
+          <% if can? :destroy, Conteudo %>
+            <td><%= link_to 'Excluir', conteudo, method: :delete, data: { confirm: 'Deseja realmente excluir o Conteúdo?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
-<%= link_to 'New Conteudo', new_conteudo_path %>
+<% if can? :new, Conteudo %>
+  <div class="text-center">
+    <%= link_to 'Cadastrar Curso', new_conteudo_path, class: "btn btn-md btn-primary" %>
+  </div>
+<% end %>

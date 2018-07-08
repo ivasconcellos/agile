@@ -1,7 +1,7 @@
 <%= form_with(model: conteudo, local: true) do |form| %>
   <% if conteudo.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(conteudo.errors.count, "error") %> prohibited this conteudo from being saved:</h2>
+      <h2><%= pluralize(conteudo.errors.count, "erro(s)") %> prohibited this conteudo from being saved:</h2>
 
       <ul>
       <% conteudo.errors.full_messages.each do |message| %>
@@ -11,22 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :nome %>
-    <%= form.text_field :nome %>
+  <div class="form-group">
+    <label for="inputEmail">Nome*</label>
+    <%= form.text_field :nome, autofocus: true, class: "form-control" %>    
   </div>
 
-  <div class="field">
-    <%= form.label :descricao %>
-    <%= form.text_area :descricao %>
+  <div class="form-group">
+    <label for="inputEmail">Descrição</label>
+    <%= form.text_area :descricao, class: "form-control" %>    
   </div>
 
-  <div class="field">
-    <%= form.label :curso_id %>
-    <%= form.text_field :curso_id %>
+  <div class="form-group">
+    <label for="inputEmail">Curso</label>
+    <%= form.collection_select(:curso_id, Curso.where(ativo: true).order('nome'), :id, :nome, :prompt => true, class: "form-control")%>    
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Salvar", class: "btn btn-lg btn-primary btn-block" %>
   </div>
+
+  <br>
 <% end %>

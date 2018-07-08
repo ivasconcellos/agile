@@ -1,5 +1,10 @@
-<h1>New Conteudo</h1>
+<div class="form-signin">
+	<h2>Cadastro de Conteúdo</h2>
 
-<%= render 'form', conteudo: @conteudo %>
+	<%= render 'form', conteudo: @conteudo %>
 
-<%= link_to 'Back', conteudos_path %>
+	<div class="text-center">
+		<%= link_to 'Voltar', conteudos_path, class: "btn btn-md btn-danger btn-block" %>
+	</div>
+
+</div>
