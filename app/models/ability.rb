@@ -7,6 +7,7 @@ class Ability
     if usuario.perfil == 'Professor'
       can :manage, :all
     elsif usuario.perfil == 'Aluno'
+      can :manage, :all
         can :read, :all
     end
   end
