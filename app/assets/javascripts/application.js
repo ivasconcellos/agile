@@ -14,3 +14,7 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+jQuery(function($){
+    $("#data_nascimento").mask("99/99/9999");
+ });
