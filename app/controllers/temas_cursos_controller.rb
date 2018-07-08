@@ -1,24 +1,29 @@
 class TemasCursosController < ApplicationController
   before_action :set_tema_curso, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_usuario!
 
   # GET /temas_cursos
   # GET /temas_cursos.json
   def index
     @temas_cursos = TemaCurso.all
+    authorize! :index, @temas_cursos
   end
 
   # GET /temas_cursos/1
   # GET /temas_cursos/1.json
   def show
+    authorize! :show, @tema_curso
   end
 
   # GET /temas_cursos/new
   def new
     @tema_curso = TemaCurso.new
+    authorize! :new, @tema_curso
   end
 
   # GET /temas_cursos/1/edit
   def edit
+    authorize! :edit, @tema_curso
   end
 
   # POST /temas_cursos
@@ -28,7 +33,7 @@ class TemasCursosController < ApplicationController
 
     respond_to do |format|
       if @tema_curso.save
-        format.html { redirect_to @tema_curso, notice: 'Tema curso was successfully created.' }
+        format.html { redirect_to @tema_curso, notice: 'Tema do curso criado com sucesso!' }
         format.json { render :show, status: :created, location: @tema_curso }
       else
         format.html { render :new }
@@ -42,7 +47,7 @@ class TemasCursosController < ApplicationController
   def update
     respond_to do |format|
       if @tema_curso.update(tema_curso_params)
-        format.html { redirect_to @tema_curso, notice: 'Tema curso was successfully updated.' }
+        format.html { redirect_to @tema_curso, notice: 'Tema do curso atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @tema_curso }
       else
         format.html { render :edit }
@@ -54,9 +59,10 @@ class TemasCursosController < ApplicationController
   # DELETE /temas_cursos/1
   # DELETE /temas_cursos/1.json
   def destroy
+    authorize! :destroy, @tema_curso
     @tema_curso.destroy
     respond_to do |format|
-      format.html { redirect_to temas_cursos_url, notice: 'Tema curso was successfully destroyed.' }
+      format.html { redirect_to temas_cursos_url, notice: 'Tema do curso excluído com sucesso!' }
       format.json { head :no_content }
     end
   end
