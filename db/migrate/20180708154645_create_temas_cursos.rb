@@ -5,7 +5,7 @@ class CreateTemasCursos < ActiveRecord::Migration[5.2]
       t.boolean :ativo
       t.string :cor_titulo
       t.string :cor_texto
-
+      t.string :cor_fundo
       t.timestamps
     end
   end

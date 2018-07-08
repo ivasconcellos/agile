@@ -69,6 +69,6 @@ class TemasCursosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tema_curso_params
-      params.require(:tema_curso).permit(:nome, :ativo, :cor_titulo, :cor_texto)
+      params.require(:tema_curso).permit(:nome, :ativo, :cor_titulo, :cor_texto, :cor_fundo)
     end
 end
