@@ -5,7 +5,7 @@
     <%= f.email_field :email, autofocus: true, class: "form-control" %>    
   </div>
 
-   <div class="form-group">
+  <div class="form-group">
     <label for="inputEmail">Senha</label>
     <%= f.password_field :password, autocomplete: "off", class: "form-control" %>    
   </div>
@@ -14,9 +14,10 @@
     <%= f.submit "Acessar", class: "btn btn-lg btn-primary btn-block" %>
   </div>
 
-  <br>
-  <div class="text-center">
-    <%= render "usuarios/shared/links" %>
-  </div>
 <% end %>
+
+<br>
+<div class="text-center">
+  <%= render "usuarios/shared/links" %>
+</div>
 
