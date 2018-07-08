@@ -3,16 +3,15 @@ Rails.application.routes.draw do
   devise_for :admins
   devise_for :usuarios
 
-  devise_scope :usuario do
-  	
-    
 
+
+  devise_scope :usuario do
     root 'devise/sessions#new'
   end
   # root  :to =>'controle/#inicial'
   
 
-  get 'controle/inicial'
+  get 'inicial' => 'controle#inicial'
   get 'controle/sobre'
  
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
