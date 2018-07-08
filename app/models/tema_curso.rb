@@ -1,0 +1,2 @@
+class TemaCurso < ApplicationRecord
+end

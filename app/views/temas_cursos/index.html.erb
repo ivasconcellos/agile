@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Temas Cursos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Ativo</th>
+      <th>Cor titulo</th>
+      <th>Cor texto</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @temas_cursos.each do |tema_curso| %>
+      <tr>
+        <td><%= tema_curso.nome %></td>
+        <td><%= tema_curso.ativo %></td>
+        <td><%= tema_curso.cor_titulo %></td>
+        <td><%= tema_curso.cor_texto %></td>
+        <td><%= link_to 'Show', tema_curso %></td>
+        <td><%= link_to 'Edit', edit_tema_curso_path(tema_curso) %></td>
+        <td><%= link_to 'Destroy', tema_curso, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tema Curso', new_tema_curso_path %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @tema_curso.nome %>
+</p>
+
+<p>
+  <strong>Ativo:</strong>
+  <%= @tema_curso.ativo %>
+</p>
+
+<p>
+  <strong>Cor titulo:</strong>
+  <%= @tema_curso.cor_titulo %>
+</p>
+
+<p>
+  <strong>Cor texto:</strong>
+  <%= @tema_curso.cor_texto %>
+</p>
+
+<%= link_to 'Edit', edit_tema_curso_path(@tema_curso) %> |
+<%= link_to 'Back', temas_cursos_path %>
