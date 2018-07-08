@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2018_07_08_222121) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -136,4 +135,5 @@ ActiveRecord::Schema.define(version: 2018_07_08_222121) do
   add_foreign_key "materiais", "conteudos"
   add_foreign_key "usuario_curso", "cursos"
   add_foreign_key "usuario_curso", "usuarios"
+
 end

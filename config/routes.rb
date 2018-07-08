@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :usuario_curso
+  resources :materiais
   resources :conteudos
   resources :cursos
   resources :tema_cursos
