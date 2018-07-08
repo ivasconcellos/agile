@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_08_183710) do
+ActiveRecord::Schema.define(version: 2018_07_08_190213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,12 +54,24 @@ ActiveRecord::Schema.define(version: 2018_07_08_183710) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "temas_cursos", force: :cascade do |t|
-    t.string "nome"
+  create_table "cursos", force: :cascade do |t|
+    t.string "nome", null: false
+    t.text "descricao"
+    t.date "data_inicio"
+    t.date "data_termino"
+    t.boolean "ativo", default: true
+    t.bigint "tema_curso_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tema_curso_id"], name: "index_cursos_on_tema_curso_id"
+  end
+
+  create_table "tema_cursos", force: :cascade do |t|
+    t.string "nome", null: false
     t.boolean "ativo"
-    t.string "cor_titulo"
-    t.string "cor_texto"
-    t.string "cor_fundo"
+    t.string "cor_titulo", null: false
+    t.string "cor_texto", null: false
+    t.string "cor_fundo", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "imagem_file_name"
@@ -89,4 +101,5 @@ ActiveRecord::Schema.define(version: 2018_07_08_183710) do
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cursos", "tema_cursos"
 end
