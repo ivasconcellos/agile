@@ -27,6 +27,14 @@
  	color: #FFFFFF;
  }
 
+.btn-outline-success{
+  margin-right: 10px;
+}
+
+h2{
+  text-align: center;
+  font-weight: bold;
+}
 .form-signin {
   width: 100%;
   max-width: 420px;
