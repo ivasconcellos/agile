@@ -5,21 +5,25 @@ class UsuarioCursoController < ApplicationController
   # GET /usuario_curso
   # GET /usuario_curso.json
   def index
-    @usuario_curso = UsuarioCurso.all
+    @usuario_curso = UsuarioCurso.all.page(params[:page])
+    authorize! :index, @usuario_curso
   end
 
   # GET /usuario_curso/1
   # GET /usuario_curso/1.json
   def show
+    authorize! :show, @usuario_curso
   end
 
   # GET /usuario_curso/new
   def new
     @usuario_curso = UsuarioCurso.new
+    authorize! :new, @usuario_curso
   end
 
   # GET /usuario_curso/1/edit
   def edit
+    authorize! :edit, @usuario_curso
   end
 
   # POST /usuario_curso
@@ -29,7 +33,7 @@ class UsuarioCursoController < ApplicationController
 
     respond_to do |format|
       if @usuario_curso.save
-        format.html { redirect_to @usuario_curso, notice: 'Usuario curso was successfully created.' }
+        format.html { redirect_to @usuario_curso, notice: 'Usuário do Curso cadastrado com sucesso!' }
         format.json { render :show, status: :created, location: @usuario_curso }
       else
         format.html { render :new }
@@ -43,7 +47,7 @@ class UsuarioCursoController < ApplicationController
   def update
     respond_to do |format|
       if @usuario_curso.update(usuario_curso_params)
-        format.html { redirect_to @usuario_curso, notice: 'Usuario curso was successfully updated.' }
+        format.html { redirect_to @usuario_curso, notice: 'Usuário do Curso atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @usuario_curso }
       else
         format.html { render :edit }
@@ -55,9 +59,10 @@ class UsuarioCursoController < ApplicationController
   # DELETE /usuario_curso/1
   # DELETE /usuario_curso/1.json
   def destroy
+    authorize! :destroy, @usuario_curso
     @usuario_curso.destroy
     respond_to do |format|
-      format.html { redirect_to usuario_curso_index_url, notice: 'Usuario curso was successfully destroyed.' }
+      format.html { redirect_to usuario_curso_index_url, notice: 'Usuário do Curso excluído com sucesso!' }
       format.json { head :no_content }
     end
   end
@@ -70,6 +75,6 @@ class UsuarioCursoController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def usuario_curso_params
-      params.require(:usuario_curso).permit(:pefil, :nickname, :usuario, :curso)
+      params.require(:usuario_curso).permit(:perfil, :nickname, :usuario_id, :curso_id)
     end
 end
