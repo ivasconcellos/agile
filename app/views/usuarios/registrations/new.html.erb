@@ -1,49 +1,52 @@
-<h2>Sign up</h2>
+<h2>Cadastro</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :nome %><br />
-    <%= f.text_field :nome, autofocus: true %>
+  <div class="form-group">
+    <label for="inputEmail">Nome</label>
+    <%= f.text_field :nome, autofocus: true, class: "form-control" %>    
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
+  <div class="form-group">
+    <label for="inputEmail">E-mail</label>
+    <%= f.email_field :email, class: "form-control" %>    
   </div>
 
-  <div class="field">
-    <%= f.label :data_nascimento %><br />
-    <%= f.text_field :data_nascimento %>
+  <div class="form-group">
+    <label for="inputEmail">Data de nascimento</label>
+    <%= f.text_field :data_nascimento, class: "form-control", id: "data_nascimento" %>    
   </div>
 
-  <div class="field">
-    <%= f.label :sexo %><br />
-    <%= f.select :sexo,  options_for_select([["Feminino", "Feminino"], ["Masculino", "Masculino"]]) %>
+  <div class="form-group">
+    <label for="inputEmail">Sexo</label>
+    <%= f.select :sexo,  options_for_select([["Feminino", "Feminino"], ["Masculino", "Masculino"]]), class: "form-control" %>    
   </div>
 
-  <div class="field">
-    <%= f.label :perfil %><br />
-    <%= f.select :perfil,  options_for_select([["Aluno", "Aluno"], ["Professor", "Professor"]]) %>
+  <div class="form-group">
+    <label for="inputEmail">Perfil</label>
+    <%= f.select :perfil,  options_for_select([["Aluno", "Aluno"], ["Professor", "Professor"]]), class: "form-control" %>    
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
+  <div class="form-group">
+    <label for="inputEmail">Senha</label>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> caracteres no mínimo)</em>
+      <em>(<%= @minimum_password_length %> caracteres no mínimo)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>    
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  <div class="form-group">
+    <label for="inputEmail">Confirmar senha</label>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>    
   </div>
 
   <div class="actions">
-    <%= f.submit "Cadastrar" %>
+    <%= f.submit "Cadastrar", class: "btn btn-lg btn-primary btn-block" %>
   </div>
 <% end %>
 
-<%= render "usuarios/shared/links" %>
+  <br>
+  <div class="text-center">
+    <%= render "usuarios/shared/links" %>
+  </div>
