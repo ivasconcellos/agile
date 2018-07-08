@@ -56,7 +56,9 @@ ul{
 }
 
 .list-group-item{
-  color: blue;
+  color: #FFFFFF;
+  background-color: transparent;
+  border: 1px solid #1af3f3;
 }
 .form-signin {
   width: 100%;
