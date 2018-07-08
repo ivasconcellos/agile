@@ -6,7 +6,20 @@ class ApplicationController < ActionController::Base
     def configure_permitted_parameters     
     	devise_parameter_sanitizer.permit(:sign_up) do |usuarios_params|        
       		usuarios_params.permit(:nome, :data_nascimento, :email, :sexo, :perfil, :password, :password_confirmation)    
+    	end
+
+    	devise_parameter_sanitizer.permit(:account_update) do |usuarios_params|        
+      		usuarios_params.permit(:nome, :data_nascimento, :email, :sexo, :perfil, :password, :password_confirmation, :current_password)    
     	end  
     end
+
+    def after_sign_in_path_for(resource)
+	    if resource_name == :usuario
+	 		"/inicial"
+	    elsif  resource_name == :admin
+	 	 	"/administration"
+	    end
+    end
+
 
 end

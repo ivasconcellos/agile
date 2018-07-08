@@ -5,18 +5,65 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <% if usuario_signed_in? %>
-      <%= link_to edit_usuario_registration_path, @id => :user_id, class: 'btn btn-default' do %>Atualizar Dados<% end %>
-      <%= link_to destroy_usuario_session_path, :method => :delete, class: 'btn btn-danger' do %>Sair<% end %>
+   <% %w(bootstrap.min  application).each do |asset| %>
+        <%= stylesheet_link_tag asset %>
     <% end %>
 
-    <%= yield %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'bootstrap.min'  %>
+    
+  </head>
+
+  <body> 
+
+      
+    <% if usuario_signed_in? %>
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
+        <a class="navbar-brand" href="/"> AGILE</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Meus cursos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/sobre">Sobre</a>
+            </li>
+          </ul>
+          <div class="form-inline my-2 my-lg-0">
+            <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'btn btn-outline-success' do %>Atualizar Dados<% end %>
+            <%= link_to destroy_usuario_session_path, :method => :delete, class: 'btn btn-outline-danger' do %>Sair<% end %>
+          </div>
+        </div>
+      </nav>
+      <p class="login"><b>Logado como:</b> <%= current_usuario.nome %></p>
+      <% if notice %>
+        <p class="notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert"><%= alert %></p>
+      <% end %>
+      <%= yield %>
+    <% else %>
+      <div class="form-signin">  
+        <div class="text-center mb-4">
+          <%= image_tag ("coelho2.png"), class: "mb-4 img-responsive", width: "100", height: "100" %>
+          <h1 class="h3 mb-3 font-weight-bold">AGILE</h1>
+        </div>
+        <% if notice %>
+        <p class="notice"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
+        <%= yield %>
+      </div> 
+    <% end %>
+
   </body>
 </html>
