@@ -6,7 +6,7 @@ RailsAdmin.config do |config|
   config.authenticate_with do
     warden.authenticate! scope: :admin
   end
-  config.current_user_method(&:current_admin)
+  
 
   ## == Cancan ==
   # config.authorize_with :cancan
@@ -39,7 +39,7 @@ RailsAdmin.config do |config|
     # history_show
   end
 
-  config.model 'User' do
+  config.model 'Usuario' do
     exclude_fields :id, :created_at, :updated_at, :sign_in_count,
                    :current_sign_in_at, :last_sign_in_at,
                    :current_sign_in_ip,
@@ -48,7 +48,7 @@ RailsAdmin.config do |config|
                    :confirmation_sent_at
   
     field :perfil, :enum do
-      enum { User::PERFIL }
+      enum { Usuario::PERFIL }
     end
   end
 end

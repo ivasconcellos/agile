@@ -1,0 +1,48 @@
+<h2>Temas dos Cursos</h2>
+
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th class="text-center">Nome</th>
+        <th class="text-center">Ativo</th>
+        <th class="text-center">Cor do título</th>
+        <th class="text-center">Cor do texto</th>
+        <th class="text-center">Cor do fundo</th>
+        <th class="text-center">Imagem de fundo</th>
+        <th colspan="3" class="text-center">Opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @temas_cursos.each do |tema_curso| %>
+        <tr>
+          <td><%= tema_curso.nome %></td>
+          <td class="text-center"><%= tema_curso.ativo? ? 'Sim' : 'Não' %></td>
+          <td class="text-center"><%= tema_curso.cor_titulo %></td>
+          <td class="text-center"><%= tema_curso.cor_texto %></td>
+          <td class="text-center"><%= tema_curso.cor_fundo %></td>
+          <td class="text-center"><%= image_tag tema_curso.imagem.url(:thumb), width: 50, heigh: 50 %></td>
+          <% if can? :show, TemaCurso %>
+            <td><%= link_to 'Visualizar', tema_curso %></td>
+          <% end %>
+          <% if can? :edit, TemaCurso %>
+            <td><%= link_to 'Atualizar', edit_tema_curso_path(tema_curso) %></td>
+          <% end %>
+          <% if can? :destroy, TemaCurso %>
+            <td><%= link_to 'Excluir', tema_curso, method: :delete, data: { confirm: 'Deseja realmente excluir o tema do curso?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<% if can? :new, TemaCurso %>
+  <div class="text-center">
+    <%= link_to 'Cadastrar Tema de Curso', new_tema_curso_path, class: "btn btn-md btn-primary" %>
+  </div>
+<% end %>
+
+

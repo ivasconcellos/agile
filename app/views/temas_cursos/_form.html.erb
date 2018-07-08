@@ -1,0 +1,50 @@
+<%= form_with(model: tema_curso, local: true) do |form| %>
+  <% if tema_curso.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tema_curso.errors.count, "error") %> prohibited this tema_curso from being saved:</h2>
+
+      <ul>
+      <% tema_curso.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <label for="inputEmail">Nome*</label>
+    <%= form.text_field :nome, autofocus: true, class: "form-control" %>    
+  </div>
+
+  <div class="form-group">
+    <label for="inputEmail">Ativo* <%= form.check_box :ativo, class: "form-control" %></label>
+        
+  </div>
+
+  <div class="form-group">
+    <label for="inputEmail">Cor do título*</label>
+    <%= form.text_field :cor_titulo, class: "form-control" %>    
+  </div>
+
+  <div class="form-group">
+    <label for="inputEmail">Cor do texto*</label>
+    <%= form.text_field :cor_texto, class: "form-control" %>    
+  </div>
+
+  <div class="form-group">
+    <label for="inputEmail">Cor do fundo*</label>
+    <%= form.text_field :cor_fundo, class: "form-control" %>    
+  </div>
+
+  <div class="form-group">
+    <label for="inputEmail">Imagem de fundo*</label>
+    <%= form.file_field :imagem, as: :file %>    
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Salvar", class: "btn btn-lg btn-primary btn-block" %>
+  </div>
+
+  <br>
+
+<% end %>

@@ -40,6 +40,26 @@ h2{
   text-align: right;
   padding-right: 10px;
 }
+
+.nav-item > a{
+  color: #19b7ec;
+  font-weight: bold;
+}
+
+hr{
+  background-color: #215EF0;
+  margin: 0px;
+}
+
+ul{
+  width: auto;
+}
+
+.list-group-item{
+  color: #FFFFFF;
+  background-color: transparent;
+  border: 1px solid #1af3f3;
+}
 .form-signin {
   width: 100%;
   max-width: 420px;

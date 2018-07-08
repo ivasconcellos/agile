@@ -41,14 +41,43 @@
           </div>
         </div>
       </nav>
-      <p class="login"><b>Logado como:</b> <%= current_usuario.nome %></p>
-      <% if notice %>
-        <p class="notice"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert"><%= alert %></p>
-      <% end %>
-      <%= yield %>
+     
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="#"> Temas dos cursos </a>
+                <hr>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#"> Cursos </a>
+                <hr>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Gerenciamento</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group mr-2">
+                 <p class="login"><b>Logado como:</b> <%= current_usuario.nome %></p>
+              </div>
+            </div>
+          </div>
+          <% if notice %>
+            <p class="notice"><%= notice %></p>
+          <% end %>
+          <% if alert %>
+            <p class="alert"><%= alert %></p>
+          <% end %>
+          <%= yield %>
+          <br>
+       
+        </main>
+      </div>      
     <% else %>
       <div class="form-signin">  
         <div class="text-center mb-4">

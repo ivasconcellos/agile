@@ -1,5 +1,14 @@
 class ApplicationController < ActionController::Base
 
+    rescue_from CanCan::AccessDenied do |exception|
+        render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
+    end
+
+
+    def current_ability
+        @current_ability ||= Ability.new(current_usuario)
+    end
+
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
 	protected

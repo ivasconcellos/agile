@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  ativo: false
+  cor_titulo: MyString
+  cor_texto: MyString
+
+two:
+  nome: MyString
+  ativo: false
+  cor_titulo: MyString
+  cor_texto: MyString
