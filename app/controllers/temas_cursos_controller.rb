@@ -5,7 +5,7 @@ class TemasCursosController < ApplicationController
   # GET /temas_cursos
   # GET /temas_cursos.json
   def index
-    @temas_cursos = TemaCurso.all
+    @temas_cursos = TemaCurso.all.page(params[:page]).order('nome')
     authorize! :index, @temas_cursos
   end
 
@@ -75,6 +75,6 @@ class TemasCursosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tema_curso_params
-      params.require(:tema_curso).permit(:nome, :ativo, :cor_titulo, :cor_texto, :cor_fundo)
+      params.require(:tema_curso).permit(:nome, :ativo, :cor_titulo, :cor_texto, :cor_fundo, :imagem)
     end
 end
