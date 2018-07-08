@@ -1,0 +1,17 @@
+<h2>Usuário do Curso</h2>
+
+<ul class="list-group">
+  <li class="list-group-item"><b>Nome:</b> <%= @usuario_curso.usuario.nome %></li>
+  <li class="list-group-item"><b>Apelido:</b> <%= @usuario_curso.nickname %></li> 
+  <li class="list-group-item"><b>Perfil:</b> <%= @usuario_curso.perfil %></li>  
+  <li class="list-group-item"><b>Cadastro no curso:</b> <%= @usuario_curso.created_at.strftime("%d/%m/%Y") %></li> 
+  <li class="list-group-item"><b>Curso:</b> <%= @usuario_curso.curso.nome %></li>      
+</ul>
+
+<br>
+<div class="text-center">
+  <% if can? :edit, UsuarioCurso %>
+    <%= link_to 'Atualizar', edit_usuario_curso_path(@usuario_curso), class: "btn btn-md btn-primary" %>
+  <% end %>
+  <%= link_to 'Voltar', usuario_curso_index_path, class: "btn btn-md btn-danger" %>
+</div>

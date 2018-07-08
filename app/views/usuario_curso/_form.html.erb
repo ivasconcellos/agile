@@ -1,0 +1,39 @@
+<%= form_with(model: usuario_curso, local: true) do |form| %>
+  <% if usuario_curso.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(usuario_curso.errors.count, "erro(s)") %> - Usuário não pôde ser salvo no curso!</h2>
+
+      <ul>
+      <% usuario_curso.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <label for="inputEmail">Perfil*</label>
+    <%= form.select :perfil,  options_for_select([["Aluno", "Aluno"], ["Professor", "Professor"]]), class: "form-control" %>  
+  </div>
+
+  <div class="form-group">
+    <label for="inputEmail">Apelido*</label>
+    <%= form.text_field :nickname, class: "form-control" %>    
+  </div>
+
+  <div class="form-group">
+    <label for="inputEmail">Curso*</label>
+    <%= form.collection_select(:curso_id, Curso.where(ativo: true).order('nome'), :id, :nome, :prompt => true, class: "form-control")%>    
+  </div>
+
+  <div class="form-group">
+    <label for="inputEmail">Usuário*</label>
+    <%= form.collection_select(:usuario_id, Usuario.all.order('nome'), :id, :nome, :prompt => true, class: "form-control")%>    
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Salvar", class: "btn btn-lg btn-primary btn-block" %>
+  </div>
+
+  <br>
+<% end %>

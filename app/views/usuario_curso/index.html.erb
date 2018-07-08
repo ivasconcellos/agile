@@ -1,0 +1,42 @@
+<h2>Usuários do Curso</h2>
+
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th class="text-center">Nome</th>
+        <th class="text-center">Apelido</th>
+        <th class="text-center">Perfil</th>
+        <th class="text-center">Curso</th>
+        <th colspan="3" class="text-center">Opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @usuario_curso.each do |usuario_curso| %>
+        <tr>
+          <td><%= usuario_curso.usuario.nome %></td>
+          <td class="text-center"><%= usuario_curso.nickname %></td>
+          <td class="text-center"><%= usuario_curso.perfil %></td>
+          <td class="text-center"><%= usuario_curso.curso.nome %></td>
+          <% if can? :show, UsuarioCurso %>
+            <td><%= link_to 'Visualizar', usuario_curso %></td>
+          <% end %>
+          <% if can? :edit, UsuarioCurso %>
+            <td><%= link_to 'Atualizar', edit_usuario_curso_path(usuario_curso) %></td>
+          <% end %>
+          <% if can? :destroy, UsuarioCurso %>
+            <td><%= link_to 'Excluir', usuario_curso, method: :delete, data: { confirm: 'Deseja realmente excluir o Usuário do Curso?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<% if can? :new, UsuarioCurso %>
+  <div class="text-center">
+    <%= link_to 'Cadastrar Usuário no Curso', new_usuario_curso_path, class: "btn btn-md btn-primary" %>
+  </div>
+<% end %>
