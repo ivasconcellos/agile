@@ -5,7 +5,8 @@
   <li class="list-group-item"><b>Apelido:</b> <%= @usuario_curso.nickname %></li> 
   <li class="list-group-item"><b>Perfil:</b> <%= @usuario_curso.perfil %></li>  
   <li class="list-group-item"><b>Cadastro no curso:</b> <%= @usuario_curso.created_at.strftime("%d/%m/%Y") %></li> 
-  <li class="list-group-item"><b>Curso:</b> <%= @usuario_curso.curso.nome %></li>      
+  <li class="list-group-item"><b>Curso:</b> <%= @usuario_curso.curso.nome %></li>
+  <li class="list-group-item"><b>Avatar:</b> <%= image_tag @usuario_curso.avatar.url(:thumb) %></li>
 </ul>
 
 <br>
