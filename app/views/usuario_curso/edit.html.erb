@@ -1,6 +1,9 @@
-<h1>Editing Usuario Curso</h1>
+<div class="form-signin">
+	<h2>Atualização de Usuário no Curso</h2>
 
-<%= render 'form', usuario_curso: @usuario_curso %>
+	<%= render 'form', usuario_curso: @usuario_curso %>
 
-<%= link_to 'Show', @usuario_curso %> |
-<%= link_to 'Back', usuario_curso_index_path %>
+	<div class="text-center">
+		<%= link_to 'Voltar', usuario_curso_index_path, class: "btn btn-md btn-danger btn-block" %>
+	</div>
+</div>
