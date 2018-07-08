@@ -19,9 +19,15 @@
           <td><%= tema_curso.ativo %></td>
           <td><%= tema_curso.cor_titulo %></td>
           <td><%= tema_curso.cor_texto %></td>
-          <td><%= link_to 'Show', tema_curso %></td>
-          <td><%= link_to 'Edit', edit_tema_curso_path(tema_curso) %></td>
-          <td><%= link_to 'Destroy', tema_curso, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if can? :show, TemaCurso %>
+            <td><%= link_to 'Visualizar', tema_curso %></td>
+          <% end %>
+          <% if can? :edit, TemaCurso %>
+            <td><%= link_to 'Atualizar', edit_tema_curso_path(tema_curso) %></td>
+          <% end %>
+          <% if can? :destroy, TemaCurso %>
+            <td><%= link_to 'Excluir', tema_curso, method: :delete, data: { confirm: 'Deseja realmente excluir o tema do curso?' } %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
@@ -30,7 +36,10 @@
 
 <br>
 
-<div class="text-center">
-  <%= link_to 'Cadastrar Tema de Curso', new_tema_curso_path, class: "btn btn-md btn-primary" %>
-</div>
+<% if can? :new, TemaCurso %>
+  <div class="text-center">
+    <%= link_to 'Cadastrar Tema de Curso', new_tema_curso_path, class: "btn btn-md btn-primary" %>
+  </div>
+<% end %>
+
 

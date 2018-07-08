@@ -10,8 +10,10 @@
 
 <br>
 <div class="text-center">
-	<%= link_to 'Atualizar', edit_tema_curso_path(@tema_curso) %>
-	<%= link_to 'Voltar', temas_cursos_path %>
+	<% if can? :edit, TemaCurso %>
+		<%= link_to 'Atualizar', edit_tema_curso_path(@tema_curso), class: "btn btn-md btn-primary" %>
+	<% end %>
+	<%= link_to 'Voltar', temas_cursos_path, class: "btn btn-md btn-danger" %>
 </div>
 
 
