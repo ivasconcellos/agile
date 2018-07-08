@@ -31,6 +31,11 @@
     <%= form.collection_select(:usuario_id, Usuario.all.order('nome'), :id, :nome, :prompt => true, class: "form-control")%>    
   </div>
 
+  <div class="form-group">
+    <label for="inputEmail">Avatar</label>
+    <%= form.file_field :avatar, as: :file %>    
+  </div>
+
   <div class="actions">
     <%= form.submit "Salvar", class: "btn btn-lg btn-primary btn-block" %>
   </div>
