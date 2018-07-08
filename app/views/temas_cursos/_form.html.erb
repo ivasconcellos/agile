@@ -11,27 +11,37 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :nome %>
-    <%= form.text_field :nome %>
+  <div class="form-group">
+    <label for="inputEmail">Nome*</label>
+    <%= form.text_field :nome, autofocus: true, class: "form-control" %>    
   </div>
 
-  <div class="field">
-    <%= form.label :ativo %>
-    <%= form.check_box :ativo %>
+  <div class="form-group">
+    <label for="inputEmail">Ativo* <%= form.check_box :ativo, class: "form-control" %></label>
+        
   </div>
 
-  <div class="field">
-    <%= form.label :cor_titulo %>
-    <%= form.text_field :cor_titulo %>
+  <div class="form-group">
+    <label for="inputEmail">Cor do título*</label>
+    <%= form.text_field :cor_titulo, class: "form-control" %>    
   </div>
 
-  <div class="field">
-    <%= form.label :cor_texto %>
-    <%= form.text_field :cor_texto %>
+  <div class="form-group">
+    <label for="inputEmail">Cor do texto*</label>
+    <%= form.text_field :cor_texto, class: "form-control" %>    
+  </div>
+
+  <div class="form-group">
+    <label for="inputEmail">Cor do fundo*</label>
+    <%= form.text_field :cor_fundo, class: "form-control" %>    
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Salvar", class: "btn btn-lg btn-primary btn-block" %>
+  </div>
+
+  <br>
+  <div class="text-center">
+    <%= link_to 'Voltar', temas_cursos_path %>
   </div>
 <% end %>

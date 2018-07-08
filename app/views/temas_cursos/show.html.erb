@@ -1,24 +1,17 @@
-<p id="notice"><%= notice %></p>
+<h2>Tema do Curso</h2>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @tema_curso.nome %>
-</p>
+	<ul class="list-group">
+		<li class="list-group-item">Nome: <%= @tema_curso.nome %></li>
+		<li class="list-group-item">Ativo: <%= @tema_curso.ativo %></li>		
+		<li class="list-group-item">Cor do título: <%= @tema_curso.cor_titulo %></li>
+		<li class="list-group-item">Cor do texto: <%= @tema_curso.cor_texto %></li>		
+		<li class="list-group-item">Cor do fundo: <%= @tema_curso.cor_fundo %></li>			
+	</ul>
 
-<p>
-  <strong>Ativo:</strong>
-  <%= @tema_curso.ativo %>
-</p>
+<br>
+<div class="text-center">
+	<%= link_to 'Atualizar', edit_tema_curso_path(@tema_curso) %>
+	<%= link_to 'Voltar', temas_cursos_path %>
+</div>
 
-<p>
-  <strong>Cor titulo:</strong>
-  <%= @tema_curso.cor_titulo %>
-</p>
 
-<p>
-  <strong>Cor texto:</strong>
-  <%= @tema_curso.cor_texto %>
-</p>
-
-<%= link_to 'Edit', edit_tema_curso_path(@tema_curso) %> |
-<%= link_to 'Back', temas_cursos_path %>

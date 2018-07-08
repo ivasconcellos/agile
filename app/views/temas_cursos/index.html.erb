@@ -1,33 +1,36 @@
-<p id="notice"><%= notice %></p>
+<h2>Temas dos Cursos</h2>
 
-<h1>Temas Cursos</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Ativo</th>
-      <th>Cor titulo</th>
-      <th>Cor texto</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @temas_cursos.each do |tema_curso| %>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
       <tr>
-        <td><%= tema_curso.nome %></td>
-        <td><%= tema_curso.ativo %></td>
-        <td><%= tema_curso.cor_titulo %></td>
-        <td><%= tema_curso.cor_texto %></td>
-        <td><%= link_to 'Show', tema_curso %></td>
-        <td><%= link_to 'Edit', edit_tema_curso_path(tema_curso) %></td>
-        <td><%= link_to 'Destroy', tema_curso, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Nome</th>
+        <th>Ativo</th>
+        <th>Cor do título</th>
+        <th>Cor do texto</th>
+        <th>Cor do fundo</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @temas_cursos.each do |tema_curso| %>
+        <tr>
+          <td><%= tema_curso.nome %></td>
+          <td><%= tema_curso.ativo %></td>
+          <td><%= tema_curso.cor_titulo %></td>
+          <td><%= tema_curso.cor_texto %></td>
+          <td><%= link_to 'Show', tema_curso %></td>
+          <td><%= link_to 'Edit', edit_tema_curso_path(tema_curso) %></td>
+          <td><%= link_to 'Destroy', tema_curso, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
-<%= link_to 'New Tema Curso', new_tema_curso_path %>
+<div class="text-center">
+  <%= link_to 'Cadastrar Tema de Curso', new_tema_curso_path, class: "btn btn-md btn-primary" %>
+</div>
+
