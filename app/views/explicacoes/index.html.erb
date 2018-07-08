@@ -1,0 +1,43 @@
+<h2>Explicações</h2>
+
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th class="text-center">Nome</th>
+        <th class="text-center">Descrição</th>
+        <th class="text-center">Áudio</th>
+        <th class="text-center">Conteúdo</th>
+        <th colspan="3" class="text-center">Opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @explicacoes.each do |explicacao| %>
+        <tr>
+          <td><%= explicacao.nome %></td>
+          <td><%= explicacao.descricao %></td>
+          <td class="text-center"><%= explicacao.audio %></td>
+          <td class="text-center"><%= explicacao.conteudo.nome %></td>
+          <% if can? :show, Explicacao %>
+            <td><%= link_to 'Visualizar', explicacao %></td>
+          <% end %>
+          <% if can? :edit, Explicacao %>
+            <td><%= link_to 'Atualizar', edit_explicacao_path(explicacao) %></td>
+          <% end %>
+          <% if can? :destroy, Explicacao %>
+            <td><%= link_to 'Excluir', explicacao, method: :delete, data: { confirm: 'Deseja realmente excluir a Explicação?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<span> <%= will_paginate @explicacoes %></span>
+
+<br>
+
+<% if can? :new, Explicacao %>
+  <div class="text-center">
+    <%= link_to 'Cadastrar Explicação', new_explicacao_path, class: "btn btn-md btn-primary" %>
+  </div>
+<% end %>
