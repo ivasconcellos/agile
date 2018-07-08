@@ -1,24 +1,17 @@
-<p id="notice"><%= notice %></p>
+<h2>Material</h2>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @material.nome %>
-</p>
+<ul class="list-group">
+  <li class="list-group-item"><b>Nome:</b> <%= @material.nome %></li>
+  <li class="list-group-item"><b>Descrição:</b> <%= @material.descricao %></li>  
+  <li class="list-group-item"><b>Link:</b> <%= @material.link %></li>
+  <li class="list-group-item"><b>Cadastrado em:</b> <%= @material.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
+  <li class="list-group-item"><b>Conteúdo:</b> <%= @material.conteudo.nome %></li>      
+</ul>
 
-<p>
-  <strong>Descricao:</strong>
-  <%= @material.descricao %>
-</p>
-
-<p>
-  <strong>Link:</strong>
-  <%= @material.link %>
-</p>
-
-<p>
-  <strong>Conteudo:</strong>
-  <%= @material.conteudo %>
-</p>
-
-<%= link_to 'Edit', edit_material_path(@material) %> |
-<%= link_to 'Back', materiais_path %>
+<br>
+<div class="text-center">
+  <% if can? :edit, Material %>
+    <%= link_to 'Atualizar', edit_material_path(@material), class: "btn btn-md btn-primary" %>
+  <% end %>
+  <%= link_to 'Voltar', materiais_path, class: "btn btn-md btn-danger" %>
+</div>

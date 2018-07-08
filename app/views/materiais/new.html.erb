@@ -1,5 +1,10 @@
-<h1>New Material</h1>
+<div class="form-signin">
+	<h2>Cadastro de Material</h2>
 
-<%= render 'form', material: @material %>
+	<%= render 'form', material: @material %>
 
-<%= link_to 'Back', materiais_path %>
+	<div class="text-center">
+		<%= link_to 'Voltar', materiais_path, class: "btn btn-md btn-danger btn-block" %>
+	</div>
+
+</div>

@@ -1,7 +1,7 @@
 <%= form_with(model: material, local: true) do |form| %>
   <% if material.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(material.errors.count, "error") %> prohibited this material from being saved:</h2>
+      <h2><%= pluralize(material.errors.count, "erro(s)") %> - Material não pôde ser salvo!</h2>
 
       <ul>
       <% material.errors.full_messages.each do |message| %>
@@ -11,27 +11,29 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :nome %>
-    <%= form.text_field :nome %>
+  <div class="form-group">
+    <label for="inputEmail">Nome*</label>
+    <%= form.text_field :nome, autofocus: true, class: "form-control" %>    
   </div>
 
-  <div class="field">
-    <%= form.label :descricao %>
-    <%= form.text_area :descricao %>
+  <div class="form-group">
+    <label for="inputEmail">Descrição*</label>
+    <%= form.text_area :descricao, class: "form-control" %>    
   </div>
 
-  <div class="field">
-    <%= form.label :link %>
-    <%= form.text_field :link %>
+  <div class="form-group">
+    <label for="inputEmail">Link*</label>
+    <%= form.text_field :link, class: "form-control" %>    
   </div>
 
-  <div class="field">
-    <%= form.label :conteudo_id %>
-    <%= form.text_field :conteudo_id %>
+  <div class="form-group">
+    <label for="inputEmail">Conteúdo</label>
+    <%= form.collection_select(:conteudo_id, Conteudo.order('nome'), :id, :nome, :prompt => true, class: "form-control")%>    
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Salvar", class: "btn btn-lg btn-primary btn-block" %>
   </div>
+
+  <br>
 <% end %>
