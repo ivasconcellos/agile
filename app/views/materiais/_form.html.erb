@@ -1,0 +1,37 @@
+<%= form_with(model: material, local: true) do |form| %>
+  <% if material.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(material.errors.count, "error") %> prohibited this material from being saved:</h2>
+
+      <ul>
+      <% material.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descricao %>
+    <%= form.text_area :descricao %>
+  </div>
+
+  <div class="field">
+    <%= form.label :link %>
+    <%= form.text_field :link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :conteudo_id %>
+    <%= form.text_field :conteudo_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
