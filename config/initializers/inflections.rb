@@ -8,7 +8,8 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.singular /^(ox)en/i, '\1'
 #   inflect.irregular 'person', 'people'
 #   inflect.uncountable %w( fish sheep )
-	inflect.irregular 'tema_curso', 'temas_cursos'
+	inflect.irregular 'tema_curso', 'tema_cursos'
+	inflect.irregular 'curso', 'cursos'
 end
 
 # These inflection rules are supported but not enabled by default:

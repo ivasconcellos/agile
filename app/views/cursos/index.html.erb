@@ -1,0 +1,44 @@
+<h2>Cursos</h2>
+
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th class="text-center">Nome</th>
+        <th class="text-center">Data de início</th>
+        <th class="text-center">Data de término</th>
+        <th class="text-center">Ativo</th>
+        <th class="text-center">Tema</th>
+        <th colspan="3" class="text-center">Opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cursos.each do |curso| %>
+        <tr>
+          <td><%= curso.nome %></td>
+          <td class="text-center"><%= curso.data_inicio.strftime("%d/%m/%Y") %></td>
+          <td class="text-center"><%= curso.data_termino.strftime("%d/%m/%Y") %></td>
+          <td class="text-center"><%= curso.ativo? ? 'Sim' : 'Não' %></td>
+          <td class="text-center"><%= curso.tema_curso.nome %></td>
+          <% if can? :show, Curso %>
+            <td><%= link_to 'Visualizar', curso %></td>
+          <% end %>
+          <% if can? :edit, Curso %>
+            <td><%= link_to 'Atualizar', edit_curso_path(curso) %></td>
+          <% end %>
+          <% if can? :destroy, Curso %>
+            <td><%= link_to 'Excluir', curso, method: :delete, data: { confirm: 'Deseja realmente excluir o Curso?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<% if can? :new, Curso %>
+  <div class="text-center">
+    <%= link_to 'Cadastrar Curso', new_curso_path, class: "btn btn-md btn-primary" %>
+  </div>
+<% end %>

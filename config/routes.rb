@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :temas_cursos
+  resources :cursos
+  resources :tema_cursos
   devise_for :admins
   devise_for :usuarios
 
