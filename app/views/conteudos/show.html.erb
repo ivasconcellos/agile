@@ -1,0 +1,16 @@
+<h2>Curso</h2>
+
+<ul class="list-group">
+  <li class="list-group-item"><b>Nome:</b> <%= @conteudo.nome %></li>
+  <li class="list-group-item"><b>Descrição:</b> <%= @conteudo.descricao %></li>  
+  <li class="list-group-item"><b>Cadastrado em:</b> <%= @conteudo.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
+  <li class="list-group-item"><b>Tema:</b> <%= @conteudo.curso.nome %></li>      
+</ul>
+
+<br>
+<div class="text-center">
+  <% if can? :edit, Conteudo %>
+    <%= link_to 'Atualizar', edit_conteudo_path(@conteudo), class: "btn btn-md btn-primary" %>
+  <% end %>
+  <%= link_to 'Voltar', conteudos_path, class: "btn btn-md btn-danger" %>
+</div>
