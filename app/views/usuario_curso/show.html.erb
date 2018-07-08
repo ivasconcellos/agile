@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pefil:</strong>
+  <%= @usuario_curso.pefil %>
+</p>
+
+<p>
+  <strong>Nickname:</strong>
+  <%= @usuario_curso.nickname %>
+</p>
+
+<p>
+  <strong>Usuario:</strong>
+  <%= @usuario_curso.usuario %>
+</p>
+
+<p>
+  <strong>Curso:</strong>
+  <%= @usuario_curso.curso %>
+</p>
+
+<%= link_to 'Edit', edit_usuario_curso_path(@usuario_curso) %> |
+<%= link_to 'Back', usuario_curso_index_path %>

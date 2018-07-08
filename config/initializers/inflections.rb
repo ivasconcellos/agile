@@ -11,6 +11,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'tema_curso', 'tema_cursos'
 	inflect.irregular 'curso', 'cursos'
 	inflect.irregular 'conteudo', 'conteudos'
+	inflect.irregular 'usuario_curso', 'usuario_curso'
 end
 
 # These inflection rules are supported but not enabled by default:
