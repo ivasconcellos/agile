@@ -12,7 +12,7 @@ pt-BR:
     failure:
       already_authenticated: "Você já está logado."
       inactive: "Sua conta ainda não foi ativada."
-      invalid: "CPF ou senha inválidos."
+      invalid: "E-mail e/ou senha inválidos."
       locked: "Sua conta está bloqueada."
       last_attempt: "Você possui apenas uma tentativa, antes de sua conta ser bloqueada."
       not_found_in_database: "Email ou senha inválidos."
