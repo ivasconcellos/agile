@@ -1,12 +1,12 @@
-class TemasCursosController < ApplicationController
+class TemaCursosController < ApplicationController
   before_action :set_tema_curso, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_usuario!
 
   # GET /temas_cursos
   # GET /temas_cursos.json
   def index
-    @temas_cursos = TemaCurso.all.page(params[:page]).order('nome')
-    authorize! :index, @temas_cursos
+    @tema_cursos = TemaCurso.all.page(params[:page]).order('nome')
+    authorize! :index, @tema_cursos
   end
 
   # GET /temas_cursos/1
