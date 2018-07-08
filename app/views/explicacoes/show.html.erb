@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @explicacao.nome %>
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @explicacao.descricao %>
+</p>
+
+<p>
+  <strong>Audio:</strong>
+  <%= @explicacao.audio %>
+</p>
+
+<p>
+  <strong>Conteudo:</strong>
+  <%= @explicacao.conteudo %>
+</p>
+
+<%= link_to 'Edit', edit_explicacao_path(@explicacao) %> |
+<%= link_to 'Back', explicacoes_path %>

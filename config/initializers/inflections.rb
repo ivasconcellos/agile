@@ -13,6 +13,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'conteudo', 'conteudos'
 	inflect.irregular 'material', 'materiais'
 	inflect.irregular 'usuario_curso', 'usuario_curso'
+	inflect.irregular 'explicacao', 'explicacoes'
 end
 
 # These inflection rules are supported but not enabled by default:

@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Explicacoes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descricao</th>
+      <th>Audio</th>
+      <th>Conteudo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @explicacoes.each do |explicacao| %>
+      <tr>
+        <td><%= explicacao.nome %></td>
+        <td><%= explicacao.descricao %></td>
+        <td><%= explicacao.audio %></td>
+        <td><%= explicacao.conteudo %></td>
+        <td><%= link_to 'Show', explicacao %></td>
+        <td><%= link_to 'Edit', edit_explicacao_path(explicacao) %></td>
+        <td><%= link_to 'Destroy', explicacao, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Explicacao', new_explicacao_path %>
