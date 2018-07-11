@@ -3,7 +3,7 @@ class CreateMateriais < ActiveRecord::Migration[5.2]
     create_table :materiais do |t|
       t.string :nome, null: false
       t.text :descricao, null: false
-      t.string :link, null: false
+      t.string :link
       t.references :conteudo, foreign_key: true
 
       t.timestamps
