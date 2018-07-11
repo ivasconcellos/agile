@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_10_234218) do
+ActiveRecord::Schema.define(version: 2018_07_11_002459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 2018_07_10_234218) do
     t.bigint "tema_curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "proprietario_id"
+    t.index ["proprietario_id"], name: "index_cursos_on_proprietario_id"
     t.index ["tema_curso_id"], name: "index_cursos_on_tema_curso_id"
   end
 
@@ -101,7 +103,7 @@ ActiveRecord::Schema.define(version: 2018_07_10_234218) do
   create_table "materiais", force: :cascade do |t|
     t.string "nome", null: false
     t.text "descricao", null: false
-    t.string "link", null: false
+    t.string "link"
     t.bigint "conteudo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -160,6 +162,7 @@ ActiveRecord::Schema.define(version: 2018_07_10_234218) do
 
   add_foreign_key "conteudos", "cursos"
   add_foreign_key "cursos", "tema_cursos"
+  add_foreign_key "cursos", "usuarios", column: "proprietario_id"
   add_foreign_key "explicacoes", "conteudos"
   add_foreign_key "materiais", "conteudos"
   add_foreign_key "usuario_curso", "cursos"
