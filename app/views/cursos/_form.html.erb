@@ -22,6 +22,11 @@
   </div>
 
   <div class="form-group">
+    <label for="inputEmail">Código de acesso*</label>
+    <%= form.text_field :codigo_acesso, autofocus: true, class: "form-control", id: 'codigo_acesso' %>    
+  </div>
+
+  <div class="form-group">
     <label for="inputEmail">Data de início</label>
     <%= form.text_field :data_inicio, class: "form-control data" %>    
   </div>

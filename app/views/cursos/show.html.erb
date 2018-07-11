@@ -2,7 +2,8 @@
 
 <ul class="list-group">
   <li class="list-group-item"><b>Nome:</b> <%= @curso.nome %></li>
-  <li class="list-group-item"><b>Descrição:</b> <%= @curso.descricao %></li> 
+  <li class="list-group-item"><b>Descrição:</b> <%= @curso.descricao %></li>
+  <li class="list-group-item"><b>Código de acesso:</b> <%= @curso.codigo_acesso %></li> 
   <li class="list-group-item"><b>Professor principal:</b> <%= @curso.proprietario.nome %></li>
   <% if @curso.data_inicio %> 
     <li class="list-group-item"><b>Date de início:</b> <%= @curso.data_inicio.strftime("%d/%m/%Y") %></li>
