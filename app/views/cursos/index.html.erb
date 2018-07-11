@@ -16,8 +16,16 @@
       <% @cursos.each do |curso| %>
         <tr>
           <td><%= curso.nome %></td>
-          <td class="text-center"><%= curso.data_inicio.strftime("%d/%m/%Y") %></td>
-          <td class="text-center"><%= curso.data_termino.strftime("%d/%m/%Y") %></td>
+          <% if curso.data_inicio %>
+            <td class="text-center"><%= curso.data_inicio.strftime("%d/%m/%Y") %></td>
+          <% else %>
+            <td class="text-center">-</td>
+          <% end %>
+          <% if curso.data_termino %>
+            <td class="text-center"><%= curso.data_termino.strftime("%d/%m/%Y") %></td>
+          <% else %>
+            <td class="text-center">-</td>
+          <% end %>
           <td class="text-center"><%= curso.ativo? ? 'Sim' : 'Não' %></td>
           <td class="text-center"><%= curso.tema_curso.nome %></td>
           <% if can? :show, Curso %>

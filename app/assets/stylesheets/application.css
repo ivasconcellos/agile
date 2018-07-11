@@ -56,9 +56,14 @@ ul{
 }
 
 .list-group-item{
+  color: #1e1e9f;
+  border: 2px solid #1a61f3;
+}
+
+.show{
+  background-color: #1a61f3;
   color: #FFFFFF;
-  background-color: transparent;
-  border: 1px solid #1af3f3;
+  border-radius: 5px;
 }
 .form-signin {
   width: 100%;
