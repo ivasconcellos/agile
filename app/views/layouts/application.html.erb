@@ -11,13 +11,14 @@
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'bootstrap.min'  %>
-    
+
   </head>
 
-  <body> 
+  <body>
 
-      
+
     <% if usuario_signed_in? %>
+      <div class="container-fluid">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
@@ -41,40 +42,39 @@
           </div>
         </div>
       </nav>
-     
+
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
+        <nav class="col-md-12 col-lg-3">
+          <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="/tema_cursos"> Temas dos cursos </a>
+                <a class="nav-link " href="/tema_cursos"> Temas dos cursos </a>
+
                 <hr>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/cursos"> Cursos </a>
+                <a class="nav-link" href="/cursos"> Cursos </a>
                 <hr>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/conteudos"> Conteúdos </a>
+                <a class="nav-link " href="/conteudos"> Conteúdos </a>
                 <hr>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/materiais"> Materiais </a>
+                <a class="nav-link" href="/materiais"> Materiais </a>
                 <hr>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/usuario_curso"> Usuários do curso </a>
+                <a class="nav-link" href="/usuario_curso"> Usuários do curso </a>
                 <hr>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/explicacoes"> Explicações </a>
+                <a class="nav-link" href="/explicacoes"> Explicações </a>
                 <hr>
               </li>
-            </ul>
-          </div>
+          </ul>
         </nav>
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <main role="main" class="col-md-12 ml-sm-auto col-lg-9 ">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Gerenciamento</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
@@ -91,11 +91,31 @@
           <% end %>
           <%= yield %>
           <br>
-       
+
         </main>
-      </div>      
+      </div>
     <% else %>
-      <div class="form-signin">  
+    <div class="container-fluid">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
+        <a class="navbar-brand" href="/"> AGILE</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Meus cursos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/sobre">Sobre</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="form-signin">
         <div class="text-center mb-4">
           <%= image_tag ("coelho2.png"), class: "mb-4 img-responsive", width: "100", height: "100" %>
           <h1 class="h3 mb-3 font-weight-bold">AGILE</h1>
@@ -107,7 +127,9 @@
           <p class="alert"><%= alert %></p>
         <% end %>
         <%= yield %>
-      </div> 
+      </div>
+    </div>
+  </div>
     <% end %>
 
   </body>

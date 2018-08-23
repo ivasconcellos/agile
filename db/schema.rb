@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 2018_07_11_010014) do
 
   create_table "tema_cursos", force: :cascade do |t|
     t.string "nome", null: false
-    t.boolean "ativo"
+    t.boolean "ativo", default: true
     t.string "cor_titulo", null: false
     t.string "cor_texto", null: false
     t.string "cor_fundo", null: false
