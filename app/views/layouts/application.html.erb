@@ -18,16 +18,16 @@
 
 
     <% if usuario_signed_in? %>
-      <div class="container-fluid">
-
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="container-fluid col-lg-2 col-md-12 col-sm-12">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" id="logado">
         <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
         <a class="navbar-brand" href="/"> AGILE</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse bg-light" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <a class="nav-link" href="#">Meus cursos</a>
@@ -42,33 +42,34 @@
           </div>
         </div>
       </nav>
+    </div>
 
       <div class="row">
         <nav class="col-md-12 col-lg-3">
           <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link " href="/tema_cursos"> Temas dos cursos </a>
+                <a class="nav-link text-center " href="/tema_cursos"> Temas dos cursos </a>
 
                 <hr>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/cursos"> Cursos </a>
+                <a class="nav-link text-center" href="/cursos"> Cursos </a>
                 <hr>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="/conteudos"> Conteúdos </a>
+                <a class="nav-link text-center" href="/conteudos"> Conteúdos </a>
                 <hr>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/materiais"> Materiais </a>
+                <a class="nav-link text-center" href="/materiais"> Materiais </a>
                 <hr>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/usuario_curso"> Usuários do curso </a>
+                <a class="nav-link text-center" href="/usuario_curso"> Usuários do curso </a>
                 <hr>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/explicacoes"> Explicações </a>
+                <a class="nav-link text-center" href="/explicacoes"> Explicações </a>
                 <hr>
               </li>
           </ul>
@@ -93,6 +94,15 @@
           <br>
 
         </main>
+        <div class="container-fluid fixed-bottom bg-light">
+          <footer class="page-footer font-small col-lg-12 ">
+            <div class="footer-copyright text-center py-3 text-dark">
+              © 2018 Copyright:
+
+            </div>
+          </footer>
+        </div>
+
       </div>
     <% else %>
     <div class="container-fluid">
@@ -106,9 +116,6 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Meus cursos</a>
-            </li>
             <li class="nav-item">
               <a class="nav-link" href="/sobre">Sobre</a>
             </li>
@@ -128,6 +135,14 @@
         <% end %>
         <%= yield %>
       </div>
+    </div>
+    <div class="container-fluid fixed-bottom bg-light">
+      <footer class="page-footer font-small col-lg-12 ">
+        <div class="footer-copyright text-center py-3 text-dark">
+          © 2018 Copyright:
+
+        </div>
+      </footer>
     </div>
   </div>
     <% end %>

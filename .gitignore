@@ -30,4 +30,4 @@
 /config/master.key
 
 /public/ckeditor_assets/
-/.rvm
+/.rvmrc
