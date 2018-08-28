@@ -13,31 +13,34 @@
 
   <div class="form-group">
     <label for="inputEmail">Nome*</label>
-    <%= form.text_field :nome, autofocus: true, class: "form-control" %>    
+    <%= form.text_field :nome, autofocus: true, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <label for="inputEmail">Ativo* <%= form.check_box :ativo, class: "form-control" %></label>   
+    <label for="inputEmail">Ativo* <%= form.check_box :ativo, class: "form-control" %></label>
   </div>
 
   <div class="form-group">
     <label for="inputEmail">Cor do título*</label>
-    <%= form.text_field :cor_titulo, class: "form-control" %>    
+    <br>
+    <%= form.color_field :cor_titulo, class: "controle-cor" %>
   </div>
 
   <div class="form-group">
     <label for="inputEmail">Cor do texto*</label>
-    <%= form.text_field :cor_texto, class: "form-control" %>    
+    <br>
+    <%= form.color_field :cor_texto, class: "controle-cor" %>
   </div>
 
   <div class="form-group">
     <label for="inputEmail">Cor do fundo*</label>
-    <%= form.text_field :cor_fundo, class: "form-control" %>    
+    <br>
+    <%= form.color_field :cor_fundo , class: "controle-cor"%>
   </div>
 
   <div class="form-group">
     <label for="inputEmail">Imagem de fundo*</label>
-    <%= form.file_field :imagem, as: :file %>    
+    <%= form.file_field :imagem, as: :file %>
   </div>
 
   <div class="actions">
