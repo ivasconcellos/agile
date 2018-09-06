@@ -11,13 +11,23 @@
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'bootstrap.min'  %>
+    <style media="screen">
+    body{
+      background-image:  url("/home/lucas/Imagens/wallpalper.jpeg");
+      }
+    </style>
 
   </head>
 
+  <% if usuario_signed_in? %>
+<% if current_page?('/cursos')%>
   <body>
 
+<% else %>
+  <body>
+<%end%>
 
-    <% if usuario_signed_in? %>
+
   <div class="container-fluid">
     <div class="container-Fluid">
       <nav class="navbar navbar-expand-lg navbar-light bg-light" id="logado">
