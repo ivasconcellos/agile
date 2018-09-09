@@ -56,7 +56,7 @@
           <%= link_to "Temas para cursos", tema_cursos_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Descrição", cursos_path, class: "nav-link" %>
+          <%= link_to "Descrição", {controller: 'cursos', action: 'show', id: @current_usuario.curso_atual_id}, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/usuario_curso"> Usuários do curso </a>

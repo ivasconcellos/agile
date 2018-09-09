@@ -4,7 +4,8 @@ class ExplicacoesController < ApplicationController
   # GET /explicacoes
   # GET /explicacoes.json
   def index
-    @explicacoes = Explicacao.all.page(params[:page]).order('nome')
+    @explicacoes = Explicacao.joins(:conteudo).where('conteudos.curso_id = ?',
+     current_usuario.curso_atual_id).page(params[:page]).order('nome')
     authorize! :index, @explicacoes
   end
 
