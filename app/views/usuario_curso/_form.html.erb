@@ -11,33 +11,39 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <label for="inputEmail">Perfil*</label>
-    <%= form.select :perfil,  options_for_select([["Aluno", "Aluno"], ["Professor", "Professor"]]), class: "form-control" %>  
+  <%= form.hidden_field :curso_id %>
+
+  <div class="form-group row">
+    <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Perfil*</label>
+    <div class="col-md-6">
+      <%= form.select :perfil,  options_for_select([["Aluno", "Aluno"], ["Professor", "Professor"]]), class: "form-control" %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <label for="inputEmail">Apelido*</label>
-    <%= form.text_field :nickname, class: "form-control" %>    
+  <div class="form-group row">
+    <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Apelido*</label>
+    <div class="col-md-6">
+      <%= form.text_field :nickname, class: "form-control" %> 
+    </div>
   </div>
 
-  <div class="form-group">
-    <label for="inputEmail">Curso*</label>
-    <%= form.collection_select(:curso_id, Curso.where(ativo: true).order('nome'), :id, :nome, :prompt => true, class: "form-control")%>    
+  <div class="form-group row">
+    <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Usuário*</label>
+    <div class="col-md-6">
+      <%= form.collection_select(:usuario_id, Usuario.all.order('nome'), :id, :nome, :prompt => true, class: "form-control")%>
+    </div>
   </div>
 
-  <div class="form-group">
-    <label for="inputEmail">Usuário*</label>
-    <%= form.collection_select(:usuario_id, Usuario.all.order('nome'), :id, :nome, :prompt => true, class: "form-control")%>    
+  <div class="form-group row">
+    <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Avatar</label>
+    <div class="col-md-6">
+      <%= form.file_field :avatar, as: :file %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <label for="inputEmail">Avatar</label>
-    <%= form.file_field :avatar, as: :file %>    
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Salvar", class: "btn btn-lg btn-primary btn-block" %>
+  <div class="text-center">
+    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', usuario_curso_index_path, class: "btn btn-md btn-secondary" %>
   </div>
 
   <br>
