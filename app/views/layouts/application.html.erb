@@ -11,104 +11,138 @@
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'bootstrap.min'  %>
-    
+
   </head>
 
-  <body> 
+  <body>
 
-      
+
     <% if usuario_signed_in? %>
+      <div class="container-fluid">
+        <div class="container-Fluid">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light" id="logado">
+            <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
+            <a class="navbar-brand" href="/"> AGILE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
-        <a class="navbar-brand" href="/"> AGILE</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Meus cursos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/sobre">Sobre</a>
-            </li>
-          </ul>
-          <div class="form-inline my-2 my-lg-0">
-            <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'btn btn-outline-success' do %>Atualizar Dados<% end %>
-            <%= link_to destroy_usuario_session_path, :method => :delete, class: 'btn btn-outline-danger' do %>Sair<% end %>
-          </div>
+            <div class="collapse navbar-collapse bg-light" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Meus cursos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/sobre">Sobre</a>
+                </li>
+              </ul>
+              <div class="form-inline my-2 my-lg-0">
+                <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'btn btn-outline-success' do %>Atualizar Dados<% end %>
+                <%= link_to destroy_usuario_session_path, :method => :delete, class: 'btn btn-outline-danger' do %>Sair<% end %>
+              </div>
+            </div>
+          </nav>
         </div>
-      </nav>
-     
-      <div class="row">
-        <nav class="col-md-2 d-none d-md-block sidebar">
-          <div class="sidebar-sticky">
+
+        <div class="row">
+          <nav class="col-md-12 col-lg-3">
             <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link text-center " href="/tema_cursos"> Temas dos cursos </a>
+                  <hr>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-center" href="/cursos"> Cursos </a>
+                  <hr>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-center" href="/conteudos"> Conteúdos </a>
+                  <hr>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-center" href="/materiais"> Materiais </a>
+                  <hr>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-center" href="/usuario_curso"> Usuários do curso </a>
+                  <hr>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-center" href="/explicacoes"> Explicações </a>
+                  <hr>
+                </li>
+            </ul>
+          </nav>
+
+          <main role="main" class="col-md-12 ml-sm-auto col-lg-9 ">
+
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+              <h1 class="h2">Gerenciamento</h1>
+              <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group mr-2">
+                   <p class="login"><b>Logado como:</b> <%= current_usuario.nome %></p>
+                </div>
+              </div>
+            </div>
+
+            <% if notice %>
+              <p class="notice"><%= notice %></p>
+            <% end %>
+            <% if alert %>
+              <p class="alert"><%= alert %></p>
+            <% end %>
+            <%= yield %>
+            <br>
+
+          </main>
+
+        </div>
+      </div>
+ 
+    <% else %>
+
+      <div class="container-fluid">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
+          <a class="navbar-brand" href="/"> AGILE</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link active" href="/tema_cursos"> Temas dos cursos </a>
-                <hr>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="/cursos"> Cursos </a>
-                <hr>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="/conteudos"> Conteúdos </a>
-                <hr>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="/materiais"> Materiais </a>
-                <hr>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="/usuario_curso"> Usuários do curso </a>
-                <hr>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="/explicacoes"> Explicações </a>
-                <hr>
+                <a class="nav-link" href="/sobre">Sobre</a>
               </li>
             </ul>
           </div>
+
         </nav>
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Gerenciamento</h1>
-            <div class="btn-toolbar mb-2 mb-md-0">
-              <div class="btn-group mr-2">
-                 <p class="login"><b>Logado como:</b> <%= current_usuario.nome %></p>
-              </div>
-            </div>
+        <div class="form-signin">
+          <div class="text-center mb-4">
+            <%= image_tag ("coelho2.png"), class: "mb-4 img-responsive", width: "100", height: "100" %>
+            <h1 class="h3 mb-3 font-weight-bold">AGILE</h1>
           </div>
+
           <% if notice %>
-            <p class="notice"><%= notice %></p>
+          <p class="notice"><%= notice %></p>
           <% end %>
           <% if alert %>
             <p class="alert"><%= alert %></p>
           <% end %>
           <%= yield %>
-          <br>
-       
-        </main>
-      </div>      
-    <% else %>
-      <div class="form-signin">  
-        <div class="text-center mb-4">
-          <%= image_tag ("coelho2.png"), class: "mb-4 img-responsive", width: "100", height: "100" %>
-          <h1 class="h3 mb-3 font-weight-bold">AGILE</h1>
+
         </div>
-        <% if notice %>
-        <p class="notice"><%= notice %></p>
-        <% end %>
-        <% if alert %>
-          <p class="alert"><%= alert %></p>
-        <% end %>
-        <%= yield %>
-      </div> 
+
+      </div>
     <% end %>
 
+    <footer class="fixed-bottom bg-light">
+      <div class="footer-copyright text-center  text-dark ">
+        © 2018 Copyright: MPET - IFFluminense
+      </div>
+    </footer>
   </body>
 </html>
