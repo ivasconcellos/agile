@@ -46,7 +46,7 @@ h2{
   font-weight: bold;
 }
 
-hr{
+ li hr{
   background-color: #215EF0;
   margin: 0px;
 }
@@ -94,4 +94,20 @@ ul{
   border: 1px solid transparent;
   border-radius: .25rem;
   transition: all .1s ease-in-out;
+}
+
+
+  nav{
+  left: -1%;
+  width: 102.18%;
+}
+@media only screen and (max-width: 1000px) {
+    nav {
+        left: -2%;
+        width: 103.7%;
+    }
+    nav#logado{
+        left: -3.3%;
+        width: 107%;
+    }
 }
