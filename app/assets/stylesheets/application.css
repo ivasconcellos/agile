@@ -12,106 +12,47 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
 
- body{
- 	background-color: #0d277e;
- 	color: #FFFFFF;
- }
-
- label{
- 	font-weight: bold;
- }
-
- a{
- 	color: #FFFFFF;
- }
-
-.btn-outline-success{
-  margin-right: 10px;
+.navbar-expand{
+  background-color: #1b115d;
 }
 
-h2{
+.agile{
+  color: #FFFFFF;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-header{
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+  color: #24249f;
+}
+
+.alert-success{
   text-align: center;
   font-weight: bold;
 }
 
-.login{
-  text-align: right;
-  padding-right: 10px;
-}
-
-.nav-item > a{
-  color: #19b7ec;
+.alert-danger{
+  text-align: center;
   font-weight: bold;
 }
 
- li hr{
-  background-color: #215EF0;
-  margin: 0px;
-}
-
-ul{
-  width: auto;
-}
-
-.list-group-item{
-  color: #1e1e9f;
-  border: 2px solid #1a61f3;
-}
-
-.show{
-  background-color: #1a61f3;
-  color: #FFFFFF;
-  border-radius: 5px;
-}
-.form-signin {
-  width: 100%;
-  max-width: 420px;
-  padding: 15px;
-  margin: auto;
-}
-
-.form-label-group {
-  position: relative;
-  margin-bottom: 1rem;
-}
-
-.form-label-group > input,
-.form-label-group > label {
-  padding: var(--input-padding-y) var(--input-padding-x);
-}
-
-.form-label-group > label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 100%;
-  margin-bottom: 0; /* Override default `<label>` margin */
-  line-height: 1.5;
-  color: #495057;
-  border: 1px solid transparent;
-  border-radius: .25rem;
-  transition: all .1s ease-in-out;
+.btn{
+  margin-bottom: 10px;
 }
 
 
-nav{
-  left: -1%;
-  width: 102.18%;
+
+.list-group{
+  margin-bottom: 10px;
 }
-@media only screen and (max-width: 1000px) {
-    nav {
-        left: -2%;
-        width: 103.7%;
-    }
-    nav#logado{
-        left: -3.3%;
-        width: 107%;
-    }
-}
-.controle-cor{
-  width: 390px;
-  height: 45px;
+
+label{
+  color: blue;
+  font-weight: bold;
 }
