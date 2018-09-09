@@ -97,7 +97,7 @@ ul{
 }
 
 
-  nav{
+nav{
   left: -1%;
   width: 102.18%;
 }
@@ -110,4 +110,8 @@ ul{
         left: -3.3%;
         width: 107%;
     }
+}
+.controle-cor{
+  width: 390px;
+  height: 45px;
 }
