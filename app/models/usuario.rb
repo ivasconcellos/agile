@@ -5,7 +5,7 @@ class Usuario < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates_presence_of :nome, :data_nascimento, :sexo, :perfil
-  
+
   ALUNO = 'Aluno'
   PROFESSOR = 'Professor'
 

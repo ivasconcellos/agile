@@ -14,11 +14,11 @@ class ApplicationController < ActionController::Base
 	protected
     def configure_permitted_parameters     
     	devise_parameter_sanitizer.permit(:sign_up) do |usuarios_params|        
-      		usuarios_params.permit(:nome, :data_nascimento, :email, :sexo, :perfil, :password, :password_confirmation)    
+      		usuarios_params.permit(:nome, :data_nascimento, :email, :sexo, :perfil, :password, :password_confirmation, :curso_atual)    
     	end
 
     	devise_parameter_sanitizer.permit(:account_update) do |usuarios_params|        
-      		usuarios_params.permit(:nome, :data_nascimento, :email, :sexo, :perfil, :password, :password_confirmation, :current_password)    
+      		usuarios_params.permit(:nome, :data_nascimento, :email, :sexo, :perfil, :password, :password_confirmation, :current_password, :curso_atual)    
     	end  
     end
 
@@ -29,6 +29,5 @@ class ApplicationController < ActionController::Base
 	 	 	"/administration"
 	    end
     end
-
 
 end

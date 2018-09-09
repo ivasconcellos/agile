@@ -1,10 +1,12 @@
-<div class="form-signin">
-	<h2>Cadastro de Curso</h2>
+<div class="card">
+    <div class="card-header">Cadastrar Curso</div> 
 
-	<%= render 'form', curso: @curso %>
+    <div class="card-body">
+		<%= render 'form', curso: @curso %>
 
-	<div class="text-center">
-		<%= link_to 'Voltar', cursos_path, class: "btn btn-md btn-danger btn-block" %>
+		<div class="text-center">
+			<%= link_to 'Voltar', root_path, class: "btn btn-md btn-danger" %>
+		</div>
 	</div>
 
 </div>

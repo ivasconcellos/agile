@@ -1,41 +1,52 @@
-<h2>Conteúdos</h2>
+<div class="card">
+  <div class="card-header">Módulos do Curso</div>
 
-<div class="table-responsive">
-  <table class="table table-striped table-sm">
-    <thead>
-      <tr>
-        <th class="text-center">Nome</th>
-        <th class="text-center">Descrição</th>
-        <th class="text-center">Curso</th>
-        <th colspan="3" class="text-center">Opções</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @conteudos.each do |conteudo| %>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
         <tr>
-          <td><%= conteudo.nome %></td>
-          <td><%= conteudo.descricao %></td>
-          <td class="text-center"><%= conteudo.curso.nome %></td>
-          <% if can? :show, Conteudo %>
-            <td><%= link_to 'Visualizar', conteudo %></td>
-          <% end %>
-          <% if can? :edit, Conteudo %>
-            <td><%= link_to 'Atualizar', edit_conteudo_path(conteudo) %></td>
-          <% end %>
-          <% if can? :destroy, Conteudo %>
-            <td><%= link_to 'Excluir', conteudo, method: :delete, data: { confirm: 'Deseja realmente excluir o Conteúdo?' } %></td>
-          <% end %>
+          <th class="text-center">Nome</th>
+          <th class="text-center">Materias</th>
+          <th class="text-center">Explicações</th>
+          <th colspan="3" class="text-center">Opções</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-<span> <%= will_paginate @conteudos %></span>
-
-<br>
-
-<% if can? :new, Conteudo %>
-  <div class="text-center">
-    <%= link_to 'Cadastrar Curso', new_conteudo_path, class: "btn btn-md btn-primary" %>
+      </thead>
+      <tbody>
+        <% @conteudos.each do |conteudo| %>
+          <tr>
+            <td><%= conteudo.nome %></td>
+            <td>
+              <% if can? :new, Material %>
+                <%= link_to  'Inserir Material', {controller: 'materiais', action: 'new', conteudo_id: conteudo.id}, class: "btn btn-sm btn-danger" %></td>
+              <% else%> - 
+              <% end %>
+            <td>
+              <% if can? :new, Explicacao %>
+                <%= link_to  'Inserir Explicações', {controller: 'explicacoes', action: 'new', conteudo_id: conteudo.id}, class: "btn btn-sm btn-danger" %></td>
+              <% else%> - 
+              <% end %>
+            <% if can? :show, Conteudo %>
+              <td><%= link_to 'Visualizar', conteudo %></td>
+            <% end %>
+            <% if can? :edit, Conteudo %>
+              <td><%= link_to 'Atualizar', edit_conteudo_path(conteudo) %></td>
+            <% end %>
+            <% if can? :destroy, Conteudo %>
+              <td><%= link_to 'Excluir', conteudo, method: :delete, data: { confirm: 'Deseja realmente excluir o Conteúdo?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-<% end %>
+  <span> <%= will_paginate @conteudos %></span>
+
+  <br>
+
+  <% if can? :new, Conteudo %>
+    <div class="text-center">
+      <%= link_to 'Cadastrar Módulo do Curso', {controller: 'conteudos', action: 'new', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-primary" %>
+    </div>
+  <% end %>
+
+</div>

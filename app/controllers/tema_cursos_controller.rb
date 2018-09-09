@@ -7,23 +7,27 @@ class TemaCursosController < ApplicationController
   def index
     @tema_cursos = TemaCurso.all.page(params[:page]).order('nome')
     authorize! :index, @tema_cursos
+    render layout: 'neutro'
   end
 
   # GET /temas_cursos/1
   # GET /temas_cursos/1.json
   def show
     authorize! :show, @tema_curso
+    render layout: 'neutro'
   end
 
   # GET /temas_cursos/new
   def new
     @tema_curso = TemaCurso.new
     authorize! :new, @tema_curso
+    render layout: 'neutro'
   end
 
   # GET /temas_cursos/1/edit
   def edit
     authorize! :edit, @tema_curso
+    render layout: 'neutro'
   end
 
   # POST /temas_cursos

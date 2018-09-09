@@ -1,30 +1,41 @@
-<h2>Alterar senha</h2>
+<div class="col-md-4 offset-md-4 col-sm-10 offset-sm-1">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+  <div class="text-center mb-4">
+    <%= image_tag ("coelho2.png"), class: "mb-4 img-responsive", width: "100", height: "100" %>
+    <h1 class="agile">AGILE</h1>
+  </div>   
 
-  <div class="form-group">
-    <label for="inputEmail">Nova senha</label>
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> caracteres no mínimo)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>    
+  <div class="card card-login mx-auto mt-6">
+    <div class="card-header">Alterar senha</div> 
+
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <%= devise_error_messages! %>
+        <%= f.hidden_field :reset_password_token %>
+
+        <div class="card-body">
+          <div class="form-group">
+            <label for="inputEmail">Nova senha</label>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> caracteres no mínimo)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <label for="inputEmail">Confirmar senha</label>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>    
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Alterar minha senha", class: "btn btn-lg btn-primary btn-block" %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="text-center">
+        <%= render "usuarios/shared/links" %>
+      </div>
   </div>
 
-  <div class="form-group">
-    <label for="inputEmail">Confirmar senha</label>
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>    
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Alterar minha senha", class: "btn btn-lg btn-primary btn-block" %>
-  </div>
-<% end %>
-
-<br>
-<div class="text-center">
-  <%= render "usuarios/shared/links" %>
 </div>
-
 

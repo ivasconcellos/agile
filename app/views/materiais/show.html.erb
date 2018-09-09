@@ -1,17 +1,21 @@
-<h2 class="show">Material</h2>
+<div class="card">
 
-<ul class="list-group">
-  <li class="list-group-item"><b>Nome:</b> <%= @material.nome %></li>
-  <li class="list-group-item"><b>Descrição:</b><span> <%= @material.descricao.to_s.html_safe %></span></li>  
-  <li class="list-group-item"><b>Link:</b> <%= link_to @material.link, extlink(@material.link), target: "_blank", rel: "nofollow" %></li>
-  <li class="list-group-item"><b>Cadastrado em:</b> <%= @material.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
-  <li class="list-group-item"><b>Conteúdo:</b> <%= @material.conteudo.nome %></li>      
-</ul>
+  <div class="card-header">Material</div>
 
-<br>
-<div class="text-center">
-  <% if can? :edit, Material %>
-    <%= link_to 'Atualizar', edit_material_path(@material), class: "btn btn-md btn-primary" %>
-  <% end %>
-  <%= link_to 'Voltar', materiais_path, class: "btn btn-md btn-danger" %>
+	<ul class="list-group">
+	  <li class="list-group-item"><b>Nome:</b> <%= @material.nome %></li>
+	  <li class="list-group-item"><b>Descrição:</b><span> <%= @material.descricao.to_s.html_safe %></span></li>  
+	  <li class="list-group-item"><b>Link:</b> <%= link_to @material.link, extlink(@material.link), target: "_blank", rel: "nofollow" %></li>
+	  <li class="list-group-item"><b>Cadastrado em:</b> <%= @material.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
+	  <li class="list-group-item"><b>Módulo:</b> <%= link_to @material.conteudo.nome, @material.conteudo %></li>      
+	</ul>
+
+	<br>
+	<div class="text-center">
+	  <% if can? :edit, Material %>
+	    <%= link_to 'Atualizar', edit_material_path(@material), class: "btn btn-md btn-primary" %>
+	  <% end %>
+	  <%= link_to 'Voltar', materiais_path, class: "btn btn-md btn-danger" %>
+	</div>
+	
 </div>
