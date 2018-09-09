@@ -56,3 +56,32 @@ label{
   color: blue;
   font-weight: bold;
 }
+
+.breadcrumb-item{
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+a.linkcurso  {
+  color: #FFFFFF;
+  text-align: center;
+  padding-bottom: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.copyright{
+  font-style: italic;
+}
+
+.active{
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  color: #FFFFFF;
+}
+
+td{
+  text-align: center;
+}

@@ -19,10 +19,10 @@
           <tr>
             <td><%= tema_curso.nome %></td>
             <td class="text-center"><%= tema_curso.ativo? ? 'Sim' : 'Não' %></td>
-            <td class="text-center"><%= tema_curso.cor_titulo %></td>
-            <td class="text-center"><%= tema_curso.cor_texto %></td>
-            <td class="text-center"><%= tema_curso.cor_fundo %></td>
-            <td class="text-center"><%= image_tag tema_curso.imagem.url(:thumb), width: 50, heigh: 50 %></td>
+            <td class="text-center"><span style="color:<%= tema_curso.cor_titulo %>; font-size: 20px;">&#9632; </span></td>
+            <td class="text-center"><span style="color:<%= tema_curso.cor_texto %>; font-size: 20px;">&#9632; </span></td>
+            <td class="text-center"><span style="color:<%= tema_curso.cor_fundo %>;font-size: 20px">&#9632; </span></td>
+            <td class="text-center"><%= image_tag tema_curso.imagem.url(:thumb), width: 50, height: 50 %></td>
             <% if can? :show, TemaCurso %>
               <td><%= link_to 'Visualizar', tema_curso %></td>
             <% end %>

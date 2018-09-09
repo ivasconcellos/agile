@@ -1,53 +1,72 @@
-<%= form_with(model: curso, local: true) do |form| %>
-  <% if curso.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(curso.errors.count, "erro (s)") %> - Curso não pôde ser salvo!</h2>
+<div class="card-body">
+  <%= form_with(model: curso, local: true) do |form| %>
+    <% if curso.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(curso.errors.count, "erro (s)") %> - Curso não pôde ser salvo!</h2>
 
-      <ul>
-      <% curso.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% curso.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
+      <div class="col-md-6">
+        <%= form.text_field :nome, autofocus: true, class: "form-control" %>
+      </div>
     </div>
+
+    <div class="form-group row">
+      <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Descrição*</label>
+      <div class="col-md-6">
+        <%= form.text_area :descricao, class: "form-control" %> 
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputCodigoAcesso" class="col-md-2 offset-md-2 col-form-label">Código de acesso*</label>
+      <div class="col-md-2">
+        <%= form.text_field :codigo_acesso, autofocus: true, class: "form-control", id: 'codigo_acesso' %> 
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputDataInicio" class="col-md-2 offset-md-2 col-form-label">Data de início</label>
+      <div class="col-md-2">
+        <%= form.text_field :data_inicio, class: "form-control data" %> 
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputDataTermino" class="col-md-2 offset-md-2 col-form-label">Data de término</label>
+      <div class="col-md-2">
+        <%= form.text_field :data_termino, class: "form-control data" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="form-check-label col-md-2 offset-md-2" for="gridCheck1">Ativo</label>
+      <div class="col-md-2 ">
+        <div class="form-check">
+          <%= form.check_box :ativo, class: "form-check-input" %> Sim
+        </div>
+      </div>        
+    </div>
+
+    <div class="form-group row">
+      <label for="inputDataTermino" class="col-md-2 offset-md-2 col-form-label">Tema do curso</label>
+      <div class="col-md-6">
+        <%= form.collection_select(:tema_curso_id, TemaCurso.where(ativo: true).order('nome'), :id, :nome, :prompt => true, class: "form-control")%>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    </div>
+
+    <br>
   <% end %>
-
-  <div class="form-group">
-    <label for="inputEmail">Nome*</label>
-    <%= form.text_field :nome, autofocus: true, class: "form-control" %>    
-  </div>
-
-  <div class="form-group">
-    <label for="inputEmail">Descrição</label>
-    <%= form.text_area :descricao, class: "form-control" %>    
-  </div>
-
-  <div class="form-group">
-    <label for="inputEmail">Código de acesso*</label>
-    <%= form.text_field :codigo_acesso, autofocus: true, class: "form-control", id: 'codigo_acesso' %>    
-  </div>
-
-  <div class="form-group">
-    <label for="inputEmail">Data de início</label>
-    <%= form.text_field :data_inicio, class: "form-control data" %>    
-  </div>
-
-  <div class="form-group">
-    <label for="inputEmail">Data de término</label>
-    <%= form.text_field :data_termino, class: "form-control data" %>    
-  </div>
-
-  <div class="form-group">
-    <label for="inputEmail">Ativo* <%= form.check_box :ativo, class: "form-control" %></label>   
-  </div>
-
-  <div class="form-group">
-    <label for="inputEmail">Tema do curso</label>
-    <%= form.collection_select(:tema_curso_id, TemaCurso.where(ativo: true).order('nome'), :id, :nome, :prompt => true, class: "form-control")%>    
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Salvar", class: "btn btn-lg btn-primary btn-block" %>
-  </div>
-
-  <br>
-<% end %>
+</div>

@@ -1,16 +1,54 @@
-<h2 class="show">Conteúdo</h2>
+<div class="card">
 
-<ul class="list-group">
-  <li class="list-group-item"><b>Nome:</b> <%= @conteudo.nome %></li>
-  <li class="list-group-item"><b>Descrição:</b> <%= @conteudo.descricao %></li>  
-  <li class="list-group-item"><b>Cadastrado em:</b> <%= @conteudo.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
-  <li class="list-group-item"><b>Tema:</b> <%= @conteudo.curso.nome %></li>      
-</ul>
+  <div class="card-header">Módulo do Curso</div>
+  
+	<ul class="list-group">
+	  <li class="list-group-item"><b>Nome:</b> <%= @conteudo.nome %></li>
+	  <li class="list-group-item"><b>Descrição:</b> <%= @conteudo.descricao %></li>  
+	  <li class="list-group-item"><b>Cadastrado em:</b> <%= @conteudo.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
+	  <li class="list-group-item"><b>Curso:</b> <%= @conteudo.curso.nome %></li>      
+	</ul>
 
-<br>
-<div class="text-center">
-  <% if can? :edit, Conteudo %>
-    <%= link_to 'Atualizar', edit_conteudo_path(@conteudo), class: "btn btn-md btn-primary" %>
-  <% end %>
-  <%= link_to 'Voltar', conteudos_path, class: "btn btn-md btn-danger" %>
+	<br>
+	<div class="text-center">
+	  <% if can? :edit, Conteudo %>
+	    <%= link_to 'Atualizar', edit_conteudo_path(@conteudo), class: "btn btn-md btn-primary" %>
+	  <% end %>
+	  <% if can? :new, Material %>
+	  	<%= link_to  'Inserir Material', {controller: 'materiais', action: 'new', conteudo_id: @conteudo.id}, class: "btn btn-md btn-danger" %>
+	  <% end %>
+	  <% if can? :new, Explicacao %>
+	  	<%= link_to  'Inserir Explicações', {controller: 'explicacoes', action: 'new', conteudo_id: @conteudo.id}, class: "btn btn-md btn-danger" %>
+	  <% end %>
+	  <%= link_to 'Voltar', {controller: 'conteudos', action: 'index', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-secondary" %>
+	</div>
+
+	<% if not @materiais.empty? %>
+
+		<div class="card-header">Materiais do Módulo</div>
+
+		<% @materiais.each do |material| %>
+			<ul class="list-group">
+			  <li class="list-group-item"><b>Nome:</b> <%= link_to material.nome, material %></li>
+			  <li class="list-group-item"><b>Descrição:</b> <%= material.descricao.to_s.html_safe %></li>
+			  <li class="list-group-item"><b>Link:</b> <%= link_to material.link, extlink(material.link), target: "_blank", rel: "nofollow" %></li>  
+			  <li class="list-group-item"><b>Cadastrado em:</b> <%= material.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>       
+			</ul>
+		<% end %>
+	<% end %>
+
+	<% if not @explicacoes.empty? %>
+
+		<div class="card-header">Explicações do Módulo</div>
+
+		<% @explicacoes.each do |explicacao| %>
+			<ul class="list-group">
+			  <li class="list-group-item"><b>Nome:</b> <%= link_to explicacao.nome, explicacao %></li>
+			  <li class="list-group-item"><b>Descrição:</b> <%= explicacao.descricao.to_s.html_safe %></li>
+			  <li class="list-group-item"><b>Áudio:</b> <%= explicacao.audio %></li>  
+			  <li class="list-group-item"><b>Cadastrado em:</b> <%= explicacao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>       
+			</ul>
+		<% end %>
+	<% end %>
+
 </div>

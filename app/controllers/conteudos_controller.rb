@@ -4,7 +4,7 @@ class ConteudosController < ApplicationController
   # GET /conteudos
   # GET /conteudos.json
   def index
-    @conteudos = Conteudo.all.page(params[:page]).order('nome')
+    @conteudos = Conteudo.where(curso_id: current_usuario.curso_atual_id).page(params[:page]).order('nome')
     authorize! :index, @conteudos
   end
 
@@ -12,11 +12,14 @@ class ConteudosController < ApplicationController
   # GET /conteudos/1.json
   def show
     authorize! :show, @conteudo
+    @materiais = Material.where(conteudo_id: @conteudo)
+    @explicacoes = Explicacao.where(conteudo_id: @conteudo)
   end
 
   # GET /conteudos/new
   def new
     @conteudo = Conteudo.new
+    @conteudo.curso_id = params[:curso_id]
     authorize! :new, @conteudo
   end
 

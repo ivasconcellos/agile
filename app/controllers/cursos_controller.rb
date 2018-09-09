@@ -1,5 +1,5 @@
 class CursosController < ApplicationController
-  before_action :set_curso, only: [:show, :edit, :update, :destroy]
+  before_action :set_curso, only: [:edit, :update, :destroy]
   before_action :authenticate_usuario!
 
   # GET /cursos
@@ -12,6 +12,7 @@ class CursosController < ApplicationController
   # GET /cursos/1
   # GET /cursos/1.json
   def show
+    @curso = Curso.find(current_usuario.curso_atual_id)
     authorize! :show, @curso
   end
 
@@ -33,6 +34,7 @@ class CursosController < ApplicationController
     @curso.proprietario_id = current_usuario.id
     respond_to do |format|
       if @curso.save
+        UsuarioCurso.create!(perfil: 'Professor', nickname: current_usuario.nome, usuario_id: current_usuario.id, curso_id: @curso.id)
         format.html { redirect_to @curso, notice: 'Curso criado com sucesso!' }
         format.json { render :show, status: :created, location: @curso }
       else
@@ -65,6 +67,11 @@ class CursosController < ApplicationController
       format.html { redirect_to cursos_url, notice: 'Curso excluído com sucesso!' }
       format.json { head :no_content }
     end
+  end
+
+  def atualizar_curso_atual
+    current_usuario.update(curso_atual_id: params[:curso_id])
+    redirect_to :controller => "cursos", :action => "show", id: params[:curso_id]
   end
 
   private

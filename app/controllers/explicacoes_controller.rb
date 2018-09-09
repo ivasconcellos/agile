@@ -17,6 +17,7 @@ class ExplicacoesController < ApplicationController
   # GET /explicacoes/new
   def new
     @explicacao = Explicacao.new
+    @explicacao.conteudo_id = params[:conteudo_id]
     authorize! :new, @explicacao
   end
 

@@ -51,20 +51,21 @@
     <% if usuario_signed_in? %>
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
+        <li class="nav-item active">Curso</li>
         <li class="nav-item">
-          <a class="nav-link" href="/tema_cursos"> Temas dos cursos </a>
+          <%= link_to "Temas para cursos", tema_cursos_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/cursos"> Cursos </a>
-        </li>
-        <li class="nav-item">
-         <a class="nav-link" href="/conteudos"> Conteúdos </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/materiais"> Materiais </a>
+          <%= link_to "Descrição", cursos_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/usuario_curso"> Usuários do curso </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/conteudos"> Módulos </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/materiais"> Materiais </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/explicacoes"> Explicações </a>
