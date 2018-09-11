@@ -39,7 +39,7 @@ class CursosController < ApplicationController
         format.html { redirect_to @curso, notice: 'Curso criado com sucesso!' }
         format.json { render :show, status: :created, location: @curso }
       else
-        format.html { render :new }
+        format.html { render :new,  layout: 'neutro' }
         format.json { render json: @curso.errors, status: :unprocessable_entity }
       end
     end
