@@ -5,7 +5,7 @@ class Usuario < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates_presence_of :nome, :data_nascimento, :sexo, :perfil
-  belongs_to :curso_atual, class_name: "Curso"
+  belongs_to :curso_atual, class_name: "Curso", optional: true
 
   ALUNO = 'Aluno'
   PROFESSOR = 'Professor'

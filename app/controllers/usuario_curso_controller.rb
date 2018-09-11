@@ -73,23 +73,21 @@ class UsuarioCursoController < ApplicationController
       render layout: 'neutro'
     else
       @curso = Curso.where(codigo_acesso: params[:codigo_acesso]).first
-      if not @curso.blank?
-        @usuario_curso = UsuarioCurso.new(perfil: 'Aluno', nickname: current_usuario.nome, usuario_id: current_usuario.id, curso_id: @curso.id)
-        respond_to do |format|
+      respond_to do |format|
+        if not @curso.blank?
+          @usuario_curso = UsuarioCurso.new(perfil: 'Aluno', nickname: current_usuario.nome, usuario_id: current_usuario.id, curso_id: @curso.id)
           if @usuario_curso.save
-            format.html { redirect_to @usuario_curso, notice: 'Usuário do Curso cadastrado com sucesso!' }
-            format.json { render :show, status: :created, location: @usuario_curso, layout: 'neutro' }
+            format.html { redirect_to @usuario_curso, @current_usuario => current_usuario, notice: 'Usuário do Curso cadastrado com sucesso!' }
+            format.json { render :show, status: :created, location: @usuario_curso }
           else
             format.html { render :busca_curso, @current_usuario => current_usuario, layout: 'neutro' }
             format.json { render json: @usuario_curso.errors, status: :unprocessable_entity }
           end
+        else
+          format.html { redirect_to busca_curso_path, alert: 'Curso não encontrado!' }
         end
-      else
-        render layout: 'neutro'
       end
     end
-
-    
   end
 
   private
