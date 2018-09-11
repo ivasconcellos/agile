@@ -33,11 +33,6 @@
         </div>
 
         <div class="form-group">
-          <label for="inputPerfil">Perfil</label>
-          <%= f.select :perfil,  options_for_select([["Aluno", "Aluno"], ["Professor", "Professor"]]), class: "form-control" %>    
-        </div>
-
-        <div class="form-group">
           <label for="inputSenha">Senha</label>
           <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> caracteres no mínimo)</em>

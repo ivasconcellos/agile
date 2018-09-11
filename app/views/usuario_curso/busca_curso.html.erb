@@ -14,19 +14,19 @@
 <div class="card">
 
   <div class="card-header">Informe o código de acesso do curso</div>
-  <%= form_tag request.path, :method => 'get' do %>
+    <%= form_tag request.path, :method => 'get' do %>
 
-    <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-4 col-form-label">Código de acesso*</label>
-      <div class="col-md-1">
-        <%= text_field_tag :codigo_acesso, params[:codigo_acesso], :size => 5 %>
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 offset-md-4 col-form-label">Código de acesso*</label>
+        <div class="col-md-1">
+          <%= text_field_tag :codigo_acesso, params[:codigo_acesso], :size => 5 %>
+        </div>
       </div>
-    </div>
 
-    <div class="text-center">
-      <%= submit_tag 'Me increver no curso!', :class =>"btn btn-primary link" %>
-    </div>
-        
-  <% end %>
-
+      <div class="text-center">
+        <%= submit_tag 'Me increver no curso!', :class =>"btn btn-primary link" %>
+      </div>
+          
+    <% end %>
+  </div>
 </div>
