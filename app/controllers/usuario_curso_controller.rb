@@ -37,7 +37,7 @@ class UsuarioCursoController < ApplicationController
         format.html { redirect_to @usuario_curso, notice: 'Usuário do Curso cadastrado com sucesso!' }
         format.json { render :show, status: :created, location: @usuario_curso }
       else
-        format.html { render :new }
+        format.html { render :new, @current_usuario => current_usuario }
         format.json { render json: @usuario_curso.errors, status: :unprocessable_entity }
       end
     end
@@ -51,7 +51,7 @@ class UsuarioCursoController < ApplicationController
         format.html { redirect_to @usuario_curso, notice: 'Usuário do Curso atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @usuario_curso }
       else
-        format.html { render :edit }
+        format.html { render :edit, @current_usuario => current_usuario }
         format.json { render json: @usuario_curso.errors, status: :unprocessable_entity }
       end
     end

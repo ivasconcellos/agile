@@ -4,6 +4,17 @@ class ApplicationController < ActionController::Base
         render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
     end
 
+  layout :layout_by_resource
+
+  private
+
+  def layout_by_resource
+    if devise_controller?
+      "tema"
+    else
+      "application"
+    end
+  end
 
     def current_ability
         @current_ability ||= Ability.new(current_usuario)
