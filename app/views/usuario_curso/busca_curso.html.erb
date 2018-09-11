@@ -1,0 +1,40 @@
+
+<% if @usuario_curso && @usuario_curso.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <h2><%= pluralize(@usuario_curso.errors.count, "erro(s)") %> - Usuário não pôde ser cadastrado no curso!</h2>
+
+    <ul>
+    <% @usuario_curso.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if @curso.blank? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <h2>Curso não encontrado!</h2>
+  </div>
+<% end %>
+
+
+<div class="card">
+
+  <div class="card-header">Informe o código de acesso do curso</div>
+  <%= form_tag request.path, :method => 'get' do %>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-4 col-form-label">Código de acesso*</label>
+      <div class="col-md-3">
+        <%= text_field_tag :codigo_acesso, params[:codigo_acesso], :size => 15 %>
+        
+      </div>
+    </div>
+
+    <div class="text-center">
+      <%= submit_tag 'Me increver no curso!', :class =>"btn btn-info link" %>
+    </div>
+        
+  <% end %>
+
+</div>
