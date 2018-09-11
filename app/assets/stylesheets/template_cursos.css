@@ -1,0 +1,65 @@
+.navbar-expand{
+  background-color: #1b115d;
+}
+
+.agile{
+  font-weight: bold;
+  text-align: center;
+}
+
+
+.card-header{
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.alert-success{
+  text-align: center;
+  font-weight: bold;
+}
+
+.alert-danger{
+  text-align: center;
+  font-weight: bold;
+}
+
+.btn{
+  margin-bottom: 10px;
+}
+
+.list-group{
+  margin-bottom: 10px;
+}
+
+label{
+  color: blue;
+  font-weight: bold;
+}
+
+.breadcrumb-item{
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+
+.copyright{
+  font-style: italic;
+  color: #1b115d;
+}
+
+.active{
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  color: #FFFFFF;
+}
+
+td{
+  text-align: center;
+}
+
+.row{
+  margin: 10px;
+}
