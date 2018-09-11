@@ -1,6 +1,6 @@
 <%= form_with(model: material, local: true) do |form| %>
   <% if material.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(material.errors.count, "erro(s)") %> - Material não pôde ser salvo!</h2>
 
       <ul>

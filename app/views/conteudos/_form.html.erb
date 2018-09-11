@@ -1,6 +1,7 @@
+<div class="card-body">
 <%= form_with(model: conteudo, local: true) do |form| %>
   <% if conteudo.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(conteudo.errors.count, "erro(s)") %> - Conteúdo não pôde ser salvo!</h2>
 
       <ul>
@@ -30,7 +31,8 @@
 
   <div class="text-center">
     <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
-    <%= link_to 'Voltar', {controller: 'conteudos', action: 'index', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar', conteudos_path, class: "btn btn-md btn-secondary" %>
   </div>
 
 <% end %>
+</div>

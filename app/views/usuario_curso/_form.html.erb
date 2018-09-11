@@ -1,6 +1,6 @@
 <%= form_with(model: usuario_curso, local: true) do |form| %>
   <% if usuario_curso.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(usuario_curso.errors.count, "erro(s)") %> - Usuário não pôde ser salvo no curso!</h2>
 
       <ul>

@@ -18,5 +18,6 @@ Rails.application.config.assets.precompile += %w(
 	jquery.maskedinput.min.js
 	sb-admin.js
 	bootstrap.min.css	
-	sb-admin.css 
+	sb-admin.css
+	template_cursos.css
 )

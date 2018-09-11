@@ -37,7 +37,7 @@ class ExplicacoesController < ApplicationController
         format.html { redirect_to @explicacao, notice: 'Explicação criada com sucesso!' }
         format.json { render :show, status: :created, location: @explicacao }
       else
-        format.html { render :new }
+        format.html { render :new, @current_usuario => current_usuario }
         format.json { render json: @explicacao.errors, status: :unprocessable_entity }
       end
     end
@@ -51,7 +51,7 @@ class ExplicacoesController < ApplicationController
         format.html { redirect_to @explicacao, notice: 'Explicação atualizada com sucesso!' }
         format.json { render :show, status: :ok, location: @explicacao }
       else
-        format.html { render :edit }
+        format.html { render :edit, @current_usuario => current_usuario }
         format.json { render json: @explicacao.errors, status: :unprocessable_entity }
       end
     end

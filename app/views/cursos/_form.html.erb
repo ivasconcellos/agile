@@ -1,7 +1,7 @@
 <div class="card-body">
   <%= form_with(model: curso, local: true) do |form| %>
     <% if curso.errors.any? %>
-      <div id="error_explanation">
+      <div id="error_explanation" class="alert alert-danger">
         <h2><%= pluralize(curso.errors.count, "erro (s)") %> - Curso não pôde ser salvo!</h2>
 
         <ul>

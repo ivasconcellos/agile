@@ -38,7 +38,7 @@ class MateriaisController < ApplicationController
         format.html { redirect_to @material, notice: 'Material criado com sucesso!' }
         format.json { render :show, status: :created, location: @material }
       else
-        format.html { render :new }
+        format.html { render :new, @current_usuario => current_usuario }
         format.json { render json: @material.errors, status: :unprocessable_entity }
       end
     end
@@ -52,7 +52,7 @@ class MateriaisController < ApplicationController
         format.html { redirect_to @material, notice: 'Material atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @material }
       else
-        format.html { render :edit }
+        format.html { render :edit, @current_usuario => current_usuario }
         format.json { render json: @material.errors, status: :unprocessable_entity }
       end
     end

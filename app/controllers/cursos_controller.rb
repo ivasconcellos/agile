@@ -20,6 +20,7 @@ class CursosController < ApplicationController
   def new
     @curso = Curso.new
     authorize! :new, @curso
+    render layout: 'neutro'
   end
 
   # GET /cursos/1/edit
@@ -38,7 +39,7 @@ class CursosController < ApplicationController
         format.html { redirect_to @curso, notice: 'Curso criado com sucesso!' }
         format.json { render :show, status: :created, location: @curso }
       else
-        format.html { render :new }
+        format.html { render :new,  layout: 'neutro' }
         format.json { render json: @curso.errors, status: :unprocessable_entity }
       end
     end
@@ -52,7 +53,7 @@ class CursosController < ApplicationController
         format.html { redirect_to @curso, notice: 'Curso atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @curso }
       else
-        format.html { render :edit }
+        format.html { render :edit, @current_usuario => current_usuario }
         format.json { render json: @curso.errors, status: :unprocessable_entity }
       end
     end

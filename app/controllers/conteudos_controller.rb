@@ -38,7 +38,7 @@ class ConteudosController < ApplicationController
         format.html { redirect_to @conteudo, notice: 'Conteúdo criado com sucesso!' }
         format.json { render :show, status: :created, location: @conteudo }
       else
-        format.html { render :new }
+        format.html { render :new, @current_usuario => current_usuario }
         format.json { render json: @conteudo.errors, status: :unprocessable_entity }
       end
     end
@@ -52,7 +52,7 @@ class ConteudosController < ApplicationController
         format.html { redirect_to @conteudo, notice: 'Conteúdo atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @conteudo }
       else
-        format.html { render :edit }
+        format.html { render :edit, @current_usuario => current_usuario }
         format.json { render json: @conteudo.errors, status: :unprocessable_entity }
       end
     end
