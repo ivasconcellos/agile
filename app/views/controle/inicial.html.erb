@@ -18,6 +18,7 @@
 			<% if can? :new, TemaCurso %>
 				<%= link_to 'Temas de Cursos', tema_cursos_path, class: "btn btn-md btn-danger" %>
 		  	<% end %>
+		  	<%= link_to 'Me inscrever em um curso', {controller: 'usuario_curso', action: 'busca_curso'}, class: "btn btn-md btn-info" %>
 		</div>
 		<br><br>
           <!-- Icon Cards-->
