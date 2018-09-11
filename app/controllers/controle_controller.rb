@@ -5,5 +5,6 @@ class ControleController < ApplicationController
   end
 
   def sobre
+  	render layout: 'tema'
   end
 end
