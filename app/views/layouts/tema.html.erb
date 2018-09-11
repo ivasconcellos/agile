@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>AGILE</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+   <% %w(bootstrap.min sb-admin application).each do |asset| %>
+        <%= stylesheet_link_tag asset %>
+    <% end %>
+
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'jquery-3.3.1.min'  %>
+    <%= javascript_include_tag 'bootstrap.min'  %>
+    <%= javascript_include_tag 'sb-admin'  %>
+    <%= javascript_include_tag 'jquery.maskedinput.min'  %>
+
+
+  </head>
+
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand static-top">
+      <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
+      <a class="navbar-brand mr-1" href="/">AGILE</a>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-12">
+        <% if usuario_signed_in? %>
+          <li class="nav-item">
+            <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'nav-link' do %>Atualizar Dados<% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to destroy_usuario_session_path, :method => :delete, class: 'nav-link' do %>Sair<% end %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <a class="nav-link" href="/sobre">Sobre</a>
+          </li>
+        <% end %>
+      </ul>
+
+    </nav>
+
+    <div id="wrapper">
+
+    <% if usuario_signed_in? %>
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item active">Curso</li>
+        <li class="nav-item">
+          <%= link_to "Temas para cursos", tema_cursos_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/usuario_curso"> Usuários do curso </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/conteudos"> Módulos </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/materiais"> Materiais </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/explicacoes"> Explicações </a>
+        </li>
+      </ul>
+    <%end%>
+      <div id="content-wrapper">
+
+        <div class="container-fluid">
+           <% if notice %>
+            <p class="alert alert-success"><%= notice %></p>
+          <% end %>
+          <% if alert %>
+            <p class="alert alert-danger"><%= alert %></p>
+          <% end %>
+          <% if usuario_signed_in? %>
+            <div class="row"> 
+              <div class="col-md-12 col-sm-10">       
+                <%= yield %>
+              </div>
+            </div>
+          <%else%>
+            <div class="row"> 
+                <%= yield %>
+            </div>
+          <%end%>
+        </div>
+        <!-- /.container-fluid -->
+
+        <% if usuario_signed_in? %>
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © MPET - IFFluminense 2018</span>
+            </div>
+          </div>
+        </footer>
+        <%else%>
+          <footer class="fixed-bottom bg-light">
+            <div class="container">
+              <div class="copyright text-center">
+                <span>Copyright © MPET - IFFluminense 2018</span>
+              </div>
+            </div>
+          </footer>
+        <%end%>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->   
+
+  </body>
+</html>

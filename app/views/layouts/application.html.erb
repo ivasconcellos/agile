@@ -9,7 +9,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-   <% %w(bootstrap.min sb-admin application).each do |asset| %>
+   <% %w(bootstrap.min sb-admin template_cursos).each do |asset| %>
         <%= stylesheet_link_tag asset %>
     <% end %>
 
@@ -22,7 +22,7 @@
 
   </head>
 
-  <body id="page-top">
+  <body id="page-top" style=" background-image: url(<%= @current_usuario.curso_atual.tema_curso.imagem %>); background-repeat: no-repeat; background-size: cover; color: <%= @current_usuario.curso_atual.tema_curso.cor_texto %>">
 
     <nav class="navbar navbar-expand static-top">
       <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
@@ -45,18 +45,11 @@
       </ul>
 
     </nav>
-
     <div id="wrapper">
-
-    <% if usuario_signed_in? %>
-      <!-- Sidebar -->
-      <ul class="sidebar navbar-nav">
+      <ul class="sidebar navbar-nav" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
         <li class="nav-item active">Curso</li>
         <li class="nav-item">
-          <%= link_to "Temas para cursos", tema_cursos_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Descrição", {controller: 'cursos', action: 'show', id: @current_usuario.curso_atual_id}, class: "nav-link" %>
+          <%= link_to "Descrição", @current_usuario.curso_atual, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/usuario_curso"> Usuários do curso </a>
@@ -71,7 +64,7 @@
           <a class="nav-link" href="/explicacoes"> Explicações </a>
         </li>
       </ul>
-    <%end%>
+
       <div id="content-wrapper">
 
         <div class="container-fluid">
@@ -95,7 +88,6 @@
         </div>
         <!-- /.container-fluid -->
 
-        <% if usuario_signed_in? %>
         <!-- Sticky Footer -->
         <footer class="sticky-footer">
           <div class="container my-auto">
@@ -104,21 +96,15 @@
             </div>
           </div>
         </footer>
-        <%else%>
-          <footer class="fixed-bottom bg-light">
-            <div class="container">
-              <div class="copyright text-center">
-                <span>Copyright © MPET - IFFluminense 2018</span>
-              </div>
-            </div>
-          </footer>
-        <%end%>
+        
 
       </div>
       <!-- /.content-wrapper -->
 
     </div>
-    <!-- /#wrapper -->   
+    <!-- /#wrapper -->  
+
+    
 
   </body>
 </html>

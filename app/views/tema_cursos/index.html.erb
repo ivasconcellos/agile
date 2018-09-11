@@ -41,11 +41,14 @@
 
   <br>
 
-  <% if can? :new, TemaCurso %>
-    <div class="text-center">
-      <%= link_to 'Cadastrar Tema de Curso', new_tema_curso_path, class: "btn btn-md btn-primary" %>
-    </div>
-  <% end %>
+  
+  <div class="text-center">
+    <% if can? :new, TemaCurso %>
+    <%= link_to 'Cadastrar Tema de Curso', new_tema_curso_path, class: "btn btn-md btn-primary" %>
+    <% end %>
+    <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
+  </div>
+  
 </div>
 
 
