@@ -16,24 +16,40 @@
             Módulo: <%= modulo.nome %> 
           </button>
           <% if can? :edit, Conteudo %>
-              <td><%= link_to '', edit_conteudo_path(modulo), class: "fa fa-edit" %></td>
-            <% end %>
-            <% if can? :destroy, Conteudo %>
-              <td><%= link_to '', modulo, method: :delete, data: { confirm: 'Deseja realmente excluir o Conteúdo?' }, class: "fa fa-trash" %></td>
-            <% end %>
+            <%= link_to '', edit_conteudo_path(modulo), class: "fa fa-edit" %>
+          <% end %>
+          <% if can? :destroy, Conteudo %>
+            <%= link_to '', modulo, method: :delete, data: { confirm: 'Deseja realmente excluir o Conteúdo?' }, class: "fa fa-trash" %>
+          <% end %>
         </h5>
       </div>
 
       <div id="collapse<%= index.to_s %>" class="collapse" aria-labelledby="heading<%= index.to_s %>" data-parent="#accordion">
         <div class="card-body">
-          <% if modulo.descricao? %>
-          <b> Descrição:</b> <%= modulo.descricao %>
-          <% end %>
-          <ul>
-            <% @materiais.where(conteudo_id: modulo.id).each do |material| %>
-              <li><%= material.nome %></li>
-            <% end %>
-          </ul>
+          <div class="row">
+            <div class="col-xl-10 col-sm-10 col-md-10">
+              <% if modulo.descricao? %>
+                <b> Descrição:</b> <%= modulo.descricao %>
+              <% end %>
+              <ul>
+                <% @materiais.where(conteudo_id: modulo.id).each do |material| %>
+                  <li><%= material.nome %></li>
+                <% end %>
+              </ul>
+              
+            </div>           
+
+            <div class="col-xl-2 col-sm-2 col-md-2">
+              <div><%= link_to  ' Inserir Link', {controller: 'materiais', action: 'new', conteudo_id: modulo.id, tipo: 'Link'}, class: "fa fa-link" %></div>
+              <div><%= link_to  ' Inserir Arquivo', {controller: 'materiais', action: 'new', conteudo_id: modulo.id, tipo: 'Arquivo'}, class: "fa fa-file" %></div>
+              <div><%= link_to  ' Inserir Vídeo', {controller: 'materiais', action: 'new', conteudo_id: modulo.id, tipo: 'Vídeo'}, class: "fa fa-video-camera" %></div>
+              <div><%= link_to  ' Inserir Texto', {controller: 'materiais', action: 'new', conteudo_id: modulo.id, tipo: 'Texto'}, class: "fa fa-text-width" %></div>
+              <div><%= link_to  ' Inserir Imagem', {controller: 'materiais', action: 'new', conteudo_id: modulo.id, tipo: 'Imagem'}, class: "fa fa-image" %></div>
+            </div>
+
+          </div>
+
+         
         </div>
       </div>
     </div>

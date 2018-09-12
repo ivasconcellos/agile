@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_12_011109) do
+ActiveRecord::Schema.define(version: 2018_09_12_031605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,11 +105,17 @@ ActiveRecord::Schema.define(version: 2018_09_12_011109) do
 
   create_table "materiais", force: :cascade do |t|
     t.string "nome", null: false
-    t.text "descricao", null: false
+    t.text "texto"
     t.string "link"
     t.bigint "conteudo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "publico", default: true
+    t.string "arquivo_file_name"
+    t.string "arquivo_content_type"
+    t.integer "arquivo_file_size"
+    t.datetime "arquivo_updated_at"
+    t.string "tipo"
     t.index ["conteudo_id"], name: "index_materiais_on_conteudo_id"
   end
 

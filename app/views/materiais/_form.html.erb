@@ -12,6 +12,14 @@
   <% end %>
 
   <%= form.hidden_field :conteudo_id %>
+  <%= form.hidden_field :tipo %>
+
+  <div class="form-group row">
+    <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Tipo*</label>
+    <div class="col-md-6">
+      <%= material.tipo %> 
+    </div>
+  </div>
 
   <div class="form-group row">
     <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
@@ -20,19 +28,42 @@
     </div>
   </div>
 
+  <% if material.tipo == "Link" %>
   <div class="form-group row">
-    <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Link</label>
+    <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Link*</label>
     <div class="col-md-6">
       <%= form.text_field :link, class: "form-control" %>
     </div>
   </div>
+  <% end %>
 
-  <div class="form-group row">
-      <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Descrição*</label>
-      <div class="col-md-6">
-        <%= form.cktext_area :descricao, class: "form-control" %> 
+  <% if material.tipo == "Texto" %>
+    <div class="form-group row">
+        <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Texto*</label>
+        <div class="col-md-6">
+          <%= form.cktext_area :texto, class: "form-control" %> 
+        </div>
       </div>
     </div>
+  <% end %>
+
+  <% if material.tipo == "Arquivo" or material.tipo == "Vídeo" or material.tipo == "Imagem" %>
+    <div class="form-group row">
+        <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label"><%= material.tipo %>*</label>
+        <div class="col-md-6">
+          <%= form.file_field :arquivo, as: :file %> 
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group row">
+    <label class="form-check-label col-md-2 offset-md-2" for="gridCheck1">Público</label>
+    <div class="col-md-2 ">
+      <div class="form-check">
+        <%= form.check_box :publico, class: "form-check-input" %> Sim
+      </div>
+    </div>        
   </div>
 
   <div class="text-center">
