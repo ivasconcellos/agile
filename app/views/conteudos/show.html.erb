@@ -5,6 +5,7 @@
 	<ul class="list-group">
 	  <li class="list-group-item"><b>Nome:</b> <%= @conteudo.nome %></li>
 	  <li class="list-group-item"><b>Descrição:</b> <%= @conteudo.descricao %></li>  
+	  <li class="list-group-item"><b>Público:</b> <%= @conteudo.publico? ? 'Sim' : 'Não' %></li>  
 	  <li class="list-group-item"><b>Cadastrado em:</b> <%= @conteudo.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
 	  <li class="list-group-item"><b>Curso:</b> <%= @conteudo.curso.nome %></li>      
 	</ul>

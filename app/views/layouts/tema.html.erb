@@ -51,9 +51,12 @@
     <% if usuario_signed_in? %>
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
-        <li class="nav-item active">Curso</li>
+        <li class="nav-item active"><%= link_to "Curso", @current_usuario.curso_atual, class: "nav-link" %></li>
         <li class="nav-item">
           <%= link_to "Temas para cursos", tema_cursos_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Descrição", {controller: 'cursos', action: 'descricao'}, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/usuario_curso"> Usuários do curso </a>
