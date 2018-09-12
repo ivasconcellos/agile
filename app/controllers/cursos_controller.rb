@@ -13,7 +13,9 @@ class CursosController < ApplicationController
   # GET /cursos/1.json
   def show
     @curso = Curso.find(current_usuario.curso_atual_id)
-    @modulos = Conteudo.where(curso_id: current_usuario.curso_atual_id)
+    @modulos = Conteudo.where(curso_id: current_usuario.curso_atual_id, publico: true)
+    @materiais = Material.joins(:conteudo).where('conteudos.curso_id = ?',
+    current_usuario.curso_atual_id)
     authorize! :show, @curso
   end
 

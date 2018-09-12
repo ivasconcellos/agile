@@ -35,7 +35,7 @@ class ConteudosController < ApplicationController
 
     respond_to do |format|
       if @conteudo.save
-        format.html { redirect_to @conteudo, notice: 'Conteúdo criado com sucesso!' }
+        format.html { redirect_to @conteudo, notice: 'Módulo criado com sucesso!' }
         format.json { render :show, status: :created, location: @conteudo }
       else
         format.html { render :new, @current_usuario => current_usuario }
@@ -49,7 +49,7 @@ class ConteudosController < ApplicationController
   def update
     respond_to do |format|
       if @conteudo.update(conteudo_params)
-        format.html { redirect_to @conteudo, notice: 'Conteúdo atualizado com sucesso!' }
+        format.html { redirect_to @conteudo, notice: 'Módulo atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @conteudo }
       else
         format.html { render :edit, @current_usuario => current_usuario }
@@ -61,11 +61,14 @@ class ConteudosController < ApplicationController
   # DELETE /conteudos/1
   # DELETE /conteudos/1.json
   def destroy
-    authorize! :destroy, @conteudo
-    @conteudo.destroy
+    authorize! :destroy, @conteudo  
     respond_to do |format|
-      format.html { redirect_to conteudos_url, notice: 'Conteúdo excluído com sucesso!' }
-      format.json { head :no_content }
+      if @conteudo.destroy
+        format.html { redirect_to conteudos_url, notice: 'Módulo excluído com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @conteudo, :alert => "Não foi o Módulo do curso! O módulo possui recursos vinculados!"}
+      end
     end
   end
 
@@ -77,6 +80,6 @@ class ConteudosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def conteudo_params
-      params.require(:conteudo).permit(:nome, :descricao, :curso_id)
+      params.require(:conteudo).permit(:nome, :descricao, :curso_id, :publico)
     end
 end
