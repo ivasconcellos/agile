@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_12_031605) do
+ActiveRecord::Schema.define(version: 2018_09_13_232110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,14 @@ ActiveRecord::Schema.define(version: 2018_09_12_031605) do
     t.integer "arquivo_file_size"
     t.datetime "arquivo_updated_at"
     t.string "tipo"
+    t.string "imagem_file_name"
+    t.string "imagem_content_type"
+    t.integer "imagem_file_size"
+    t.datetime "imagem_updated_at"
+    t.string "video_file_name"
+    t.string "video_content_type"
+    t.integer "video_file_size"
+    t.datetime "video_updated_at"
     t.index ["conteudo_id"], name: "index_materiais_on_conteudo_id"
   end
 

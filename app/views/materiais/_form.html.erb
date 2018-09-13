@@ -47,11 +47,31 @@
     </div>
   <% end %>
 
-  <% if material.tipo == "Arquivo" or material.tipo == "Vídeo" or material.tipo == "Imagem" %>
+  <% if material.tipo == "Arquivo" %>
     <div class="form-group row">
-        <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label"><%= material.tipo %>*</label>
+        <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Arquivo*</label>
         <div class="col-md-6">
           <%= form.file_field :arquivo, as: :file %> 
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <% if material.tipo == "Vídeo" %>
+    <div class="form-group row">
+        <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Vídeo*</label>
+        <div class="col-md-6">
+          <%= form.file_field :video, as: :file %> 
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <% if material.tipo == "Imagem" %>
+    <div class="form-group row">
+        <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Imagem*</label>
+        <div class="col-md-6">
+          <%= form.file_field :imagem, as: :file %> 
         </div>
       </div>
     </div>
