@@ -19,3 +19,4 @@ class Material < ApplicationRecord
    validates_attachment_size :imagem, :less_than => 7.megabytes
    validates_attachment_size :video, :less_than => 7.megabytes
 end
+

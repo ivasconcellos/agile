@@ -31,9 +31,44 @@
               <% if modulo.descricao? %>
                 <b> Descrição:</b> <%= modulo.descricao %>
               <% end %>
-              <ul>
+              <ul class="list-unstyled">
                 <% @materiais.where(conteudo_id: modulo.id).each do |material| %>
-                  <li><%= material.nome %></li>
+
+                  <% if material.tipo == "Link" %>
+                    <li><%= link_to extlink(material.link), target: "_blank", class: "text-dark" do %>
+                          <%= fa_icon "link" %> <%= material.nome %>
+                        <% end %>
+                    </li>
+                  <% end %>
+
+                  <% if material.tipo == "Arquivo" %>
+                    <li><%= link_to material.arquivo.url do %>
+                          <i class = "fa fa-file text-dark"> <%= material.nome %></i>
+                        <% end %>
+                    </li>
+                  <% end %>
+
+                  <% if material.tipo == "Vídeo" %>
+                    <li><%= link_to material.video.url do %>
+                          <i class = "fa fa-video-camera text-dark"> <%= material.nome %></i>
+                        <% end %>
+                    </li>
+                  <% end %>
+
+                  <% if material.tipo == "Imagem" %>
+                    <li><%= link_to material.imagem.url do %>
+                          <i class = "fa fa-image text-dark"> <%= material.nome %></i>
+                        <% end %>
+                    </li>
+                  <% end %>
+
+                  <% if material.tipo == "Texto" %>
+                    <li><%= link_to material.nome do %>
+                          <i class = "fa fa-text-width text-dark"> <%= material.nome %></i>
+                        <% end %>
+                    </li>
+                  <% end %>
+
                 <% end %>
               </ul>
               

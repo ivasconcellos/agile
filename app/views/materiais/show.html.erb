@@ -5,7 +5,7 @@
 	<ul class="list-group">
 	  <li class="list-group-item"><b>Nome:</b> <%= @material.nome %></li>
 	  <li class="list-group-item"><b>Tipo:</b> <%= @material.tipo %></li>
-	  
+
 	  <% if @material.tipo == "Texto" %>
 	  	<li class="list-group-item"><b>Texto:</b><span> <%= @material.texto.to_s.html_safe %></span></li>
 	  <% end %>
@@ -18,11 +18,11 @@
 	  <% end %>
 
 	  <% if @material.tipo == "Arquivo" %>
-	  	<li class="list-group-item"><b>Arquivo:</b> <%= image_tag @material.arquivo.url(:thumb) %></li>
+	  	<li class="list-group-item"><b>Arquivo:</b> <%= link_to image_tag("documento.png", :alt => "documento", size: "50x50"), @material.arquivo.url, target: 'blank' %></li>
 	  <% end %>
 
 	  <% if @material.tipo == "Vídeo" %>
-	  	<li class="list-group-item"><b>Vídeo:</b> <%= image_tag @material.video.url(:thumb) %></li>
+	  	<li class="list-group-item"><b>Vídeo:</b> <%= link_to image_tag("video.png", :alt => "video", size: "50x50"), @material.video.url, target: 'blank' %></li>
 	  <% end %>
 
 	  <li class="list-group-item"><b>Cadastrado em:</b> <%= @material.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
