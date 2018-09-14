@@ -4,8 +4,27 @@
 
 	<ul class="list-group">
 	  <li class="list-group-item"><b>Nome:</b> <%= @material.nome %></li>
-	  <li class="list-group-item"><b>Descrição:</b><span> <%= @material.descricao.to_s.html_safe %></span></li>  
-	  <li class="list-group-item"><b>Link:</b> <%= link_to @material.link, extlink(@material.link), target: "_blank", rel: "nofollow" %></li>
+	  <li class="list-group-item"><b>Tipo:</b> <%= @material.tipo %></li>
+
+	  <% if @material.tipo == "Texto" %>
+	  	<li class="list-group-item"><b>Texto:</b><span> <%= @material.texto.to_s.html_safe %></span></li>
+	  <% end %>
+	  <% if @material.tipo == "Link" %>
+	  	<li class="list-group-item"><b>Link:</b> <%= link_to @material.link, extlink(@material.link), target: "_blank", rel: "nofollow" %></li>
+	  <% end %>
+
+	  <% if @material.tipo == "Imagem" %>
+	  	<li class="list-group-item"><b>Imagem:</b> <%= image_tag @material.imagem.url(:thumb) %></li>
+	  <% end %>
+
+	  <% if @material.tipo == "Arquivo" %>
+	  	<li class="list-group-item"><b>Arquivo:</b> <%= link_to image_tag("documento.png", :alt => "documento", size: "50x50"), @material.arquivo.url, target: 'blank' %></li>
+	  <% end %>
+
+	  <% if @material.tipo == "Vídeo" %>
+	  	<li class="list-group-item"><b>Vídeo:</b> <%= link_to image_tag("video.png", :alt => "video", size: "50x50"), @material.video.url, target: 'blank' %></li>
+	  <% end %>
+
 	  <li class="list-group-item"><b>Cadastrado em:</b> <%= @material.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
 	  <li class="list-group-item"><b>Módulo:</b> <%= link_to @material.conteudo.nome, @material.conteudo %></li>      
 	</ul>
