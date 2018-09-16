@@ -1,5 +1,5 @@
 class MateriaisController < ApplicationController
-  before_action :set_material, only: [:show, :edit, :update, :destroy]
+  before_action :set_material, only: [:show, :edit, :update, :destroy, :texto]
   before_action :authenticate_usuario!
 
   # GET /materiais
@@ -68,6 +68,11 @@ class MateriaisController < ApplicationController
       format.html { redirect_to materiais_url, notice: 'Material excluído com sucesso!' }
       format.json { head :no_content }
     end
+  end
+
+  def texto
+    @current_usuario = current_usuario
+
   end
 
   private

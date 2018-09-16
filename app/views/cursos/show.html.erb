@@ -1,93 +1,51 @@
 <div class="card">
+
   <div class="card-header"><%= @curso.nome %></div>
+  
+  <ul class="list-group">
+    <li class="list-group-item"><b>Descrição:</b> <%= @curso.descricao %></li> 
+    <li class="list-group-item"><b>Professor principal:</b> <%= @curso.proprietario.nome %></li>
+    <% if @curso.data_inicio %> 
+      <li class="list-group-item"><b>Date de início:</b> <%= @curso.data_inicio.strftime("%d/%m/%Y") %></li>
+    <% end %>
+    <% if @curso.data_termino %>
+      <li class="list-group-item"><b>Data de término:</b> <%= @curso.data_termino.strftime("%d/%m/%Y") %></li>
+    <% end %>
+    <% if @current_usuario.perfil == "Professor" %>
+      <li class="list-group-item"><b>Código de acesso:</b> <%= @curso.codigo_acesso %></li>   
+      <li class="list-group-item"><b>Ativo:</b> <%= @curso.ativo? ? 'Sim' : 'Não' %></li>
+      <li class="list-group-item"><b>Público:</b> <%= @curso.publico? ? 'Sim' : 'Não' %></li>
+      <li class="list-group-item"><b>Cadastrado em:</b> <%= @curso.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
+      <li class="list-group-item"><b>Tema:</b> <%= @curso.tema_curso.nome %></li>
+    <% end %>      
+  </ul>
 
-  <% if can? :new, Conteudo %>
-    <div class="text-center">
-      <br>
-      <%= link_to 'Cadastrar Módulo do Curso', {controller: 'conteudos', action: 'new', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-primary" %>
-    </div>
-  <% end %>
-  <div id="accordion">
-    <% @modulos.each_with_index do |modulo, index| %>
-    <div class="card">
-      <div class="card-header" id="heading<%= index.to_s %>">
-        <h5 class="mb-0">
-          <button class="btn btn-link modulo" data-toggle="collapse" data-target="#collapse<%= index.to_s %>" aria-expanded="false" aria-controls="collapse<%= index.to_s %>">
-            Módulo: <%= modulo.nome %> 
-          </button>
-          <% if can? :edit, Conteudo %>
-            <%= link_to '', edit_conteudo_path(modulo), class: "fa fa-edit" %>
-          <% end %>
-          <% if can? :destroy, Conteudo %>
-            <%= link_to '', modulo, method: :delete, data: { confirm: 'Deseja realmente excluir o Conteúdo?' }, class: "fa fa-trash" %>
-          <% end %>
-        </h5>
-      </div>
-
-      <div id="collapse<%= index.to_s %>" class="collapse" aria-labelledby="heading<%= index.to_s %>" data-parent="#accordion">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-xl-10 col-sm-10 col-md-10">
-              <% if modulo.descricao? %>
-                <b> Descrição:</b> <%= modulo.descricao %>
-              <% end %>
-              <ul class="list-unstyled">
-                <% @materiais.where(conteudo_id: modulo.id).each do |material| %>
-
-                  <% if material.tipo == "Link" %>
-                    <li><%= link_to extlink(material.link), target: "_blank", class: "text-dark" do %>
-                          <%= fa_icon "link" %> <%= material.nome %>
-                        <% end %>
-                    </li>
-                  <% end %>
-
-                  <% if material.tipo == "Arquivo" %>
-                    <li><%= link_to material.arquivo.url do %>
-                          <i class = "fa fa-file text-dark"> <%= material.nome %></i>
-                        <% end %>
-                    </li>
-                  <% end %>
-
-                  <% if material.tipo == "Vídeo" %>
-                    <li><%= link_to material.video.url do %>
-                          <i class = "fa fa-video-camera text-dark"> <%= material.nome %></i>
-                        <% end %>
-                    </li>
-                  <% end %>
-
-                  <% if material.tipo == "Imagem" %>
-                    <li><%= link_to material.imagem.url do %>
-                          <i class = "fa fa-image text-dark"> <%= material.nome %></i>
-                        <% end %>
-                    </li>
-                  <% end %>
-
-                  <% if material.tipo == "Texto" %>
-                    <li><%= link_to material.nome do %>
-                          <i class = "fa fa-text-width text-dark"> <%= material.nome %></i>
-                        <% end %>
-                    </li>
-                  <% end %>
-
-                <% end %>
-              </ul>
-              
-            </div>           
-
-            <div class="col-xl-2 col-sm-2 col-md-2">
-              <div><%= link_to  ' Inserir Link', {controller: 'materiais', action: 'new', conteudo_id: modulo.id, tipo: 'Link'}, class: "fa fa-link" %></div>
-              <div><%= link_to  ' Inserir Arquivo', {controller: 'materiais', action: 'new', conteudo_id: modulo.id, tipo: 'Arquivo'}, class: "fa fa-file" %></div>
-              <div><%= link_to  ' Inserir Vídeo', {controller: 'materiais', action: 'new', conteudo_id: modulo.id, tipo: 'Vídeo'}, class: "fa fa-video-camera" %></div>
-              <div><%= link_to  ' Inserir Texto', {controller: 'materiais', action: 'new', conteudo_id: modulo.id, tipo: 'Texto'}, class: "fa fa-text-width" %></div>
-              <div><%= link_to  ' Inserir Imagem', {controller: 'materiais', action: 'new', conteudo_id: modulo.id, tipo: 'Imagem'}, class: "fa fa-image" %></div>
-            </div>
-
-          </div>
-
-         
-        </div>
-      </div>
-    </div>
+  <br>
+  <div class="text-center">
+    <% if can? :edit, Curso %>
+      <%= link_to 'Atualizar', edit_curso_path(@curso), class: "btn btn-md btn-primary" %>
     <% end %>
   </div>
+
+  <% if @usuario.perfil == "Professor" %>
+    <div class="text-center">
+      <%= link_to 'Visualizar curso', {controller: 'cursos', action: 'descricao', id: @curso}, class: "btn btn-md btn-success" %>
+    </div>
+  <% else %>    
+    <div class="card-body">
+      <div class="row">
+        <div class="col-xl-8 col-sm-8 col-md-8 offset-2">
+            <div class="card-header">Meu progresso no curso</div>
+            <div class="progress">
+              <div class="progress-bar bg-danger" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+            </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <br>
+        <%= link_to 'Continuar curso', {controller: 'cursos', action: 'descricao', id: @curso}, class: "btn btn-md btn-success" %>
+      </div>
+    </div>
+  <% end %>
+  
 </div>

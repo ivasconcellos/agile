@@ -13,14 +13,15 @@ class CursosController < ApplicationController
   # GET /cursos/1.json
   def show
     @curso = Curso.find(current_usuario.curso_atual_id)
-    @modulos = Conteudo.where(curso_id: current_usuario.curso_atual_id, publico: true)
-    @materiais = Material.joins(:conteudo).where('conteudos.curso_id = ?',
-    current_usuario.curso_atual_id)
+    @usuario = UsuarioCurso.where(curso_id: current_usuario.curso_atual_id, usuario_id: current_usuario.id).first
     authorize! :show, @curso
   end
 
   def descricao
     @curso = Curso.find(current_usuario.curso_atual_id)
+     @modulos = Conteudo.where(curso_id: current_usuario.curso_atual_id, publico: true)
+    @materiais = Material.joins(:conteudo).where('conteudos.curso_id = ?',
+    current_usuario.curso_atual_id).order('updated_at')
     authorize! :show, @curso
   end
 
@@ -33,7 +34,7 @@ class CursosController < ApplicationController
 
   # GET /cursos/1/edit
   def edit
-    authorize! :edit, @cursos
+    authorize! :edit, @curso
   end
 
   # POST /cursos
