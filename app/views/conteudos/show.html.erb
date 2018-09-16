@@ -30,9 +30,7 @@
 
 		<% @materiais.each do |material| %>
 			<ul class="list-group">
-			  <li class="list-group-item"><b>Nome:</b> <%= link_to material.nome, material %></li>
-			  <li class="list-group-item"><b>Descrição:</b> <%= material.descricao.to_s.html_safe %></li>
-			  <li class="list-group-item"><b>Link:</b> <%= link_to material.link, extlink(material.link), target: "_blank", rel: "nofollow" %></li>  
+			  <li class="list-group-item"><b>Nome:</b> <%= link_to material.nome, material %></li> 
 			  <li class="list-group-item"><b>Cadastrado em:</b> <%= material.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>       
 			</ul>
 		<% end %>

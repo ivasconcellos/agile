@@ -34,7 +34,7 @@
 	  <% if can? :edit, Material %>
 	    <%= link_to 'Atualizar', edit_material_path(@material), class: "btn btn-md btn-primary" %>
 	  <% end %>
-	  <%= link_to 'Voltar', materiais_path, class: "btn btn-md btn-danger" %>
+	  <%= link_to 'Voltar', {controller: 'cursos', action: 'show', id: @material.conteudo.curso.id}, class: "btn btn-md btn-danger" %>
 	</div>
 	
 </div>

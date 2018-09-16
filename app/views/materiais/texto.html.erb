@@ -1,0 +1,16 @@
+<div class="card">
+
+  <div class="card-header"><%= @material.nome %></div>
+
+	<ul class="list-group">
+	  <li class="list-group-item"><span> <%= @material.texto.to_s.html_safe %></span></li>
+	</ul>
+	  <div class="text-center">
+	  	<% if can? :edit, Material %>
+	    	<%= link_to 'Atualizar', edit_material_path(@material), class: "btn btn-md btn-primary" %>
+	  	<% end %>
+	  	<%= link_to 'Voltar', :back, class: "btn btn-md btn-danger" %>
+	  </div>
+	</div>
+	
+</div>

@@ -48,20 +48,32 @@
     <div id="wrapper">
       <ul class="sidebar navbar-nav" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
         <li class="nav-item active"><%= link_to "Curso", @current_usuario.curso_atual, class: "nav-link" %></li>
+        <% if @current_usuario.perfil == "Professor" %>
+          <li class="nav-item">
+            <%= link_to "Descrição", @current_usuario.curso_atual, class: "nav-link" %>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/conteudos"> Módulos </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/materiais"> Materiais </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/explicacoes"> Explicações </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/desenvolvimento"> Notas dos alunos </a>
+          </li>
+        <% else %>       
         <li class="nav-item">
-          <%= link_to "Descrição", {controller: 'cursos', action: 'descricao'}, class: "nav-link" %>
+          <a class="nav-link" href="/desenvolvimento"> Minhas atividades </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/usuario_curso"> Usuários do curso </a>
+          <a class="nav-link" href="/desenvolvimento"> Minhas notas </a>
         </li>
+        <% end %>
         <li class="nav-item">
-          <a class="nav-link" href="/conteudos"> Módulos </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/materiais"> Materiais </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/explicacoes"> Explicações </a>
+          <a class="nav-link" href="/usuario_curso"> Participantes do curso </a>
         </li>
       </ul>
 
