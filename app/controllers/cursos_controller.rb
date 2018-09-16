@@ -33,7 +33,7 @@ class CursosController < ApplicationController
 
   # GET /cursos/1/edit
   def edit
-    authorize! :edit, @cursos
+    authorize! :edit, @curso
   end
 
   # POST /cursos
