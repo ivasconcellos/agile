@@ -7,6 +7,7 @@ class Ability
     if usuario.perfil == 'Professor'
       can :read, :all
       can :perms_without_delete, Curso
+      #can :perms_without_delete, TemaCurso
       can :manage, Conteudo
       can :manage, Explicacao
       can :manage, Material
