@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_11_010014) do
+ActiveRecord::Schema.define(version: 2018_09_22_232224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,12 @@ ActiveRecord::Schema.define(version: 2018_07_11_010014) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["conteudo_id"], name: "index_materiais_on_conteudo_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tema_cursos", force: :cascade do |t|

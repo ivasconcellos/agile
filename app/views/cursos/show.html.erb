@@ -16,8 +16,18 @@
   <li class="list-group-item"><b>Cadastrado em:</b> <%= @curso.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
   <li class="list-group-item"><b>Tema:</b> <%= @curso.tema_curso.nome %></li>
   <li class="list-group-item"><b>tema background:</b> <%= image_tag @curso.tema_curso.imagem.url(:thumb) %></li>
-  <li class="list-group-item"><b style="color: <%= @curso.tema_curso.cor_titulo %> "> tema cor titulo:</b> <%= @curso.tema_curso.cor_titulo %></li>
 </ul>
+<br>
+<div align="center" class="container">
+  <h1 class="title">Bate Papo</h1>
+  <div id="messages">
+    <%= render @messages %>
+  </div>
+
+  <form>
+    <input type="text" data-behavior="chat_speaker" placeholder=" Diga alguma coisa :) ">
+  </form>
+</div>
 
 <br>
 <div class="text-center">

@@ -12,8 +12,8 @@ class CursosController < ApplicationController
   # GET /cursos/1
   # GET /cursos/1.json
   def show
+    @messages = Message.all
     authorize! :show, @curso
-  
   end
 
   # GET /cursos/new
