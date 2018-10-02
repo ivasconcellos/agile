@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'chats/show'
   resources :explicacoes
   resources :usuario_curso
   resources :materiais
