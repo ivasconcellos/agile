@@ -1,25 +1,34 @@
 <div class="card">
 
   <div class="card-header"><%= @curso.nome %></div>
-  
+
   <ul class="list-group">
-    <li class="list-group-item"><b>Descrição:</b> <%= @curso.descricao %></li> 
+    <li class="list-group-item"><b>Descrição:</b> <%= @curso.descricao %></li>
     <li class="list-group-item"><b>Professor principal:</b> <%= @curso.proprietario.nome %></li>
-    <% if @curso.data_inicio %> 
+    <% if @curso.data_inicio %>
       <li class="list-group-item"><b>Date de início:</b> <%= @curso.data_inicio.strftime("%d/%m/%Y") %></li>
     <% end %>
     <% if @curso.data_termino %>
       <li class="list-group-item"><b>Data de término:</b> <%= @curso.data_termino.strftime("%d/%m/%Y") %></li>
     <% end %>
     <% if @current_usuario.perfil == "Professor" %>
-      <li class="list-group-item"><b>Código de acesso:</b> <%= @curso.codigo_acesso %></li>   
+      <li class="list-group-item"><b>Código de acesso:</b> <%= @curso.codigo_acesso %></li>
       <li class="list-group-item"><b>Ativo:</b> <%= @curso.ativo? ? 'Sim' : 'Não' %></li>
       <li class="list-group-item"><b>Público:</b> <%= @curso.publico? ? 'Sim' : 'Não' %></li>
-      <li class="list-group-item"><b>Cadastrado em:</b> <%= @curso.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
+      <li class="list-group-item"><b>Cadastrado em:</b> <%= @curso.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
       <li class="list-group-item"><b>Tema:</b> <%= @curso.tema_curso.nome %></li>
-    <% end %>      
+    <% end %>
   </ul>
+  <div align="center" class="container">
+      <h1 class="title">Bate Papo</h1>
+      <div id="messages">
+        <%= render @messages %>
+      </div>
 
+      <form>
+        <input type="text" data-behavior="chat_speaker" placeholder=" Diga alguma coisa :) ">
+      </form>
+  </div>
   <br>
   <div class="text-center">
     <% if can? :edit, Curso %>
@@ -31,7 +40,7 @@
     <div class="text-center">
       <%= link_to 'Visualizar curso', {controller: 'cursos', action: 'descricao', id: @curso}, class: "btn btn-md btn-success" %>
     </div>
-  <% else %>    
+  <% else %>
     <div class="card-body">
       <div class="row">
         <div class="col-xl-8 col-sm-8 col-md-8 offset-2">
@@ -47,5 +56,5 @@
       </div>
     </div>
   <% end %>
-  
+
 </div>
