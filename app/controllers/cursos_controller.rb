@@ -12,6 +12,7 @@ class CursosController < ApplicationController
   # GET /cursos/1
   # GET /cursos/1.json
   def show
+    @messages = Message.all
     @curso = Curso.find(current_usuario.curso_atual_id)
     @usuario = UsuarioCurso.where(curso_id: current_usuario.curso_atual_id, usuario_id: current_usuario.id).first
     authorize! :show, @curso

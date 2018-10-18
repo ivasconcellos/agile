@@ -13,6 +13,8 @@
 //= require rails-ujs
 //= require activestorage
 //= require ckeditor/init
+//= require jquery3
+//= require jquery_ujs
 //= require_tree .
 
 jQuery(function($){

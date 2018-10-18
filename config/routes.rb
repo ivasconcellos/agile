@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   devise_for :admins
   devise_for :usuarios
   mount ActionCable.server => '/cable'
+  mount Thredded::Engine => '/forum'
 
 
 
