@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :conteudos
   resources :cursos
   resources :tema_cursos
+  resources :forums
   devise_for :admins
   devise_for :usuarios
 
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
     root 'devise/sessions#new'
   end
   # root  :to =>'controle/#inicial'
-  
+
 
   get 'inicial' => 'controle#inicial'
   get 'sobre' => 'controle#sobre'
@@ -24,9 +25,10 @@ Rails.application.routes.draw do
   get 'busca_curso' => 'usuario_curso#busca_curso'
   get 'descricao' => 'cursos#descricao'
   get 'material_texto' => 'materiais#texto'
- 
+  get 'forum' => 'forums#index'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   mount Ckeditor::Engine => '/ckeditor'
-  
+
 end

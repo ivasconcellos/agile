@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
     <title>AGILE</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -64,7 +64,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/desenvolvimento"> Notas dos alunos </a>
           </li>
-        <% else %>       
+        <% else %>
         <li class="nav-item">
           <a class="nav-link" href="/desenvolvimento"> Minhas atividades </a>
         </li>
@@ -74,6 +74,10 @@
         <% end %>
         <li class="nav-item">
           <a class="nav-link" href="/usuario_curso"> Participantes do curso </a>
+        </li>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="/forum"> Forum </a>
         </li>
       </ul>
 
@@ -87,13 +91,13 @@
             <p class="alert alert-danger"><%= alert %></p>
           <% end %>
           <% if usuario_signed_in? %>
-            <div class="row"> 
-              <div class="col-md-12 col-sm-10">       
+            <div class="row">
+              <div class="col-md-12 col-sm-10">
                 <%= yield %>
               </div>
             </div>
           <%else%>
-            <div class="row"> 
+            <div class="row">
                 <%= yield %>
             </div>
           <%end%>
@@ -108,15 +112,15 @@
             </div>
           </div>
         </footer>
-        
+
 
       </div>
       <!-- /.content-wrapper -->
 
     </div>
-    <!-- /#wrapper -->  
+    <!-- /#wrapper -->
 
-    
+
 
   </body>
 </html>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  usuario: one
+  forum: one
+  comentario: 
+  comentario: one
+
+two:
+  usuario: two
+  forum: two
+  comentario: 
+  comentario: two
