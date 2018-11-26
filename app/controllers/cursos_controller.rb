@@ -30,6 +30,7 @@ class CursosController < ApplicationController
     @curso = Curso.new
     authorize! :new, @curso
     render layout: 'neutro'
+
   end
 
   # GET /cursos/1/edit
@@ -45,6 +46,7 @@ class CursosController < ApplicationController
     respond_to do |format|
       if @curso.save
         UsuarioCurso.create!(perfil: 'Professor', nickname: current_usuario.nome, usuario_id: current_usuario.id, curso_id: @curso.id)
+        current_usuario.update(curso_atual_id: @curso.id)
         format.html { redirect_to @curso, notice: 'Curso criado com sucesso!' }
         format.json { render :show, status: :created, location: @curso }
       else
