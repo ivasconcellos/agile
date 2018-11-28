@@ -4,8 +4,8 @@ class ForumsController < ApplicationController
 
   # GET /forums
   # GET /forums.json
-  def index
 
+  def index
     @forums = Forum.where(curso_id: current_usuario.curso_atual_id)
   end
 
@@ -17,9 +17,9 @@ class ForumsController < ApplicationController
 
   # GET /forums/new
   def new
+    
     @forum = Forum.new
     @forum.curso_id = params[:curso_id]
-    render layout: 'neutro'
   end
 
   # GET /forums/1/edit
@@ -74,6 +74,6 @@ class ForumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def forum_params
-      params.require(:forum).permit(:titulo, :descricao, :curso_id)
+      params.require(:forum).permit(:titulo, :descricao, :curso_id, :publico)
     end
 end

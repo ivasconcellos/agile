@@ -22,7 +22,7 @@
 
   </head>
 
-  <body id="page-top" style=" background-image: url(<%= @current_usuario.curso_atual.tema_curso.imagem %>); background-repeat: no-repeat; background-size: cover; color: <%= @current_usuario.curso_atual.tema_curso.cor_texto %>">
+  <body id="page-top" style=" background-image: url(<%= current_usuario.curso_atual.tema_curso.imagem %>); background-repeat: no-repeat; background-size: cover; color: <%= current_usuario.curso_atual.tema_curso.cor_texto %>">
 
     <nav class="navbar navbar-expand static-top">
       <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
@@ -46,11 +46,11 @@
 
     </nav>
     <div id="wrapper">
-      <ul class="sidebar navbar-nav" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
-        <li class="nav-item active"><%= link_to "Curso", @current_usuario.curso_atual, class: "nav-link" %></li>
-        <% if @current_usuario.perfil == "Professor" %>
+      <ul class="sidebar navbar-nav" style="background-color: <%= current_usuario.curso_atual.tema_curso.cor_fundo %>;">
+        <li class="nav-item active"><%= link_to "Curso", current_usuario.curso_atual, class: "nav-link" %></li>
+        <% if current_usuario.perfil == "Professor" %>
           <li class="nav-item">
-            <%= link_to "Descrição", @current_usuario.curso_atual, class: "nav-link" %>
+            <%= link_to "Descrição", current_usuario.curso_atual, class: "nav-link" %>
           </li>
             <li class="nav-item">
             <a class="nav-link" href="/conteudos"> Módulos </a>
