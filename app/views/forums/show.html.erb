@@ -1,19 +1,42 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
 
-<p>
-  <strong>Titulo:</strong>
-  <%= @forum.titulo %>
-</p>
+  <div class="card-header">
+    Forum
+  </div>
 
-<p>
-  <strong>Descricao:</strong>
-  <%= @forum.descricao %>
-</p>
+  <div class="nav justify-content-end">
+    <%= link_to 'Back', forums_path, class: "btn  btn-primary btn-back" %>
+    <%= link_to 'Edit', edit_forum_path(@forum), class: "btn btn-primary "%>
+  </div>
 
-<p>
-  <strong>Curso:</strong>
-  <%= @forum.curso %>
-</p>
+	  <h1 class="text-center"><%= @forum.titulo %></h1>
+    <p class="text-justify"><%= @forum.descricao %></p>
+  <div class="nav justify-content-end">
+    <%= link_to 'Back', forums_path, class: "btn  btn-primary" %>
+    <%= link_to 'Edit', edit_forum_path(@forum), class: "btn btn-primary "%>
+  </div>
+  <div class="conte-fluid">
+    <% @comentarios.each do |comentario| %>
 
-<%= link_to 'Edit', edit_forum_path(@forum) %> |
-<%= link_to 'Back', forums_path %>
+        <p class="text-justify"><%= comentario.comentario %></p>
+        <td><%= link_to 'Destroy', comentario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+    <% end %>
+
+  </div>
+  <div class="contener-fluid mx-auto">
+  <%= form_for( @comentario) do |form| %>
+    <div class="field">
+      <%= form.text_area :comentario %>
+
+    </div>
+    <%= form.hidden_field :forum_id , :value => @forum.id%>
+
+    <div class="actions d-flex justify-content-center">
+      <%= form.submit "Comentar" ,{controller: 'comentarios', action: 'new', forum_id: @forum.id}  %>
+    </div>
+
+    <% end %>
+  </div>
+
+</div>

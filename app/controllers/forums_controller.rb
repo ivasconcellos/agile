@@ -12,12 +12,14 @@ class ForumsController < ApplicationController
   # GET /forums/1
   # GET /forums/1.json
   def show
-
+    @comentarios = Comentario.where(forum_id: @forum.id)
+    @comentario = Comentario.new
+    @comentario.forum_id = params[:forum_id]
   end
 
   # GET /forums/new
   def new
-    
+
     @forum = Forum.new
     @forum.curso_id = params[:curso_id]
   end
