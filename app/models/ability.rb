@@ -13,7 +13,10 @@ class Ability
       can :manage, Material
       can :manage, UsuarioCurso
       can :manage, Forum
+      can :manage, Comentario
+      can :manage, :all
     elsif usuario.perfil == 'Aluno'
+        can :manage, Comentario
         can :read, :all
     end
   end

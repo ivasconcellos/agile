@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_06_190328) do
+ActiveRecord::Schema.define(version: 2018_12_06_193150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,18 @@ ActiveRecord::Schema.define(version: 2018_12_06_190328) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
+  create_table "comentarios", force: :cascade do |t|
+    t.bigint "usuario_id"
+    t.bigint "forum_id"
+    t.text "texto"
+    t.bigint "comentario_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comentario_id"], name: "index_comentarios_on_comentario_id"
+    t.index ["forum_id"], name: "index_comentarios_on_forum_id"
+    t.index ["usuario_id"], name: "index_comentarios_on_usuario_id"
   end
 
   create_table "conteudos", force: :cascade do |t|
@@ -188,6 +200,9 @@ ActiveRecord::Schema.define(version: 2018_12_06_190328) do
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comentarios", "comentarios"
+  add_foreign_key "comentarios", "foruns"
+  add_foreign_key "comentarios", "usuarios"
   add_foreign_key "conteudos", "cursos"
   add_foreign_key "cursos", "tema_cursos"
   add_foreign_key "cursos", "usuarios", column: "proprietario_id"
