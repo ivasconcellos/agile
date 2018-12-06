@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-header">Fóruns do Curso</div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th class="text-center">Título</th>
+          <th colspan="3" class="text-center">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @foruns.each do |forum| %>
+          <tr>
+            <td><%= forum.titulo %></td>
+            <td><%= link_to 'Visualizar', forum %></td></td>
+            <td>
+              <% if can? :edit, Forum %>
+                <%= link_to 'Atualizar', edit_forum_path(forum) %></td>
+              <% else%> - 
+              <% end %>
+            <td>
+              <% if can? :Destroy, Explicacao %>
+                <%= link_to 'Excluir', forum, method: :delete, data: { confirm: 'Deseja realmente excluir o Fórum do curso?' } %></td>
+              <% else%> - 
+              <% end %>
+            </tr>
+            
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <span> <%= will_paginate @foruns %></span>
+
+  <br>
+
+  <% if can? :new, Forum %>
+    <div class="text-center">
+      <%= link_to 'Cadastrar Fórum do Curso', {controller: 'foruns', action: 'new', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-primary" %>
+    </div>
+  <% end %>
+
+</div>
+

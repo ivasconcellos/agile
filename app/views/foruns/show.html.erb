@@ -1,0 +1,14 @@
+<div class="card">
+
+  <div class="card-header">Fórum do Curso</div>
+
+  	<ul class="list-group">
+	  <li class="list-group-item"><b>Título:</b> <%= @forum.titulo %></li>
+	  <li class="list-group-item"><b>Descrição:</b> <%= @forum.descricao %></li>  
+	  
+	</ul>
+
+</div>
+
+<%= link_to 'Edit', edit_forum_path(@forum) %> |
+

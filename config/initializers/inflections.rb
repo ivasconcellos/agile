@@ -14,6 +14,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'material', 'materiais'
 	inflect.irregular 'usuario_curso', 'usuario_curso'
 	inflect.irregular 'explicacao', 'explicacoes'
+	inflect.irregular 'forum', 'foruns'
 end
 
 # These inflection rules are supported but not enabled by default:

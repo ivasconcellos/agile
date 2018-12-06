@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_13_232110) do
+ActiveRecord::Schema.define(version: 2018_12_06_190328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,15 @@ ActiveRecord::Schema.define(version: 2018_09_13_232110) do
     t.index ["conteudo_id"], name: "index_explicacoes_on_conteudo_id"
   end
 
+  create_table "foruns", force: :cascade do |t|
+    t.string "titulo"
+    t.text "descricao"
+    t.bigint "curso_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["curso_id"], name: "index_foruns_on_curso_id"
+  end
+
   create_table "materiais", force: :cascade do |t|
     t.string "nome", null: false
     t.text "texto"
@@ -183,6 +192,7 @@ ActiveRecord::Schema.define(version: 2018_09_13_232110) do
   add_foreign_key "cursos", "tema_cursos"
   add_foreign_key "cursos", "usuarios", column: "proprietario_id"
   add_foreign_key "explicacoes", "conteudos"
+  add_foreign_key "foruns", "cursos"
   add_foreign_key "materiais", "conteudos"
   add_foreign_key "usuario_curso", "cursos"
   add_foreign_key "usuario_curso", "usuarios"
