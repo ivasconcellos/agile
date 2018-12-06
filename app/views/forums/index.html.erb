@@ -18,16 +18,13 @@
         <table>
         <tr>
 
-        <h3 class="text-center"><%= forum.titulo %></h3>
-        <p class="text-left"><%= forum.descricao %></p>
+        <h3 class="text-justify"><%= forum.titulo %></h3>
+
       </tr>
       <tr>
-        <td style="padding: 10px;"><%= link_to 'Show', forum %></td>
+        <td style="padding: 10px;"><%= link_to 'Visualizar', forum %></td>
         <td style="padding: 10px;"><%= link_to 'Edit', edit_forum_path(forum) %></td>
         <td style="padding: 10px;"><%= link_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td> <div class="text-center">
-            <%= link_to 'Comentar', {controller: 'comentarios', action: 'new', forum_id: forum.id}, class: "btn btn-md btn-primary" %>
-        </div></td>
       </tr>
     </table>
         <% end %>

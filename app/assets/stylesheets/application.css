@@ -16,7 +16,9 @@
  */
 
 
-
+.pading{
+  margin-top:  10px;
+}
 .navbar-expand{
   background-color: #1b115d;
 }

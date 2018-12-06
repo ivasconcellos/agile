@@ -16,8 +16,8 @@
     <%= link_to 'Edit', edit_forum_path(@forum), class: "btn btn-primary "%>
   </div>
   <div class="conte-fluid">
+    <h1 class="text-center">Comentarios</h1>
     <% @comentarios.each do |comentario| %>
-
         <p class="text-justify"><%= comentario.comentario %></p>
         <td><%= link_to 'Destroy', comentario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
@@ -25,18 +25,11 @@
 
   </div>
   <div class="contener-fluid mx-auto">
-  <%= form_for( @comentario) do |form| %>
-    <div class="field">
-      <%= form.text_area :comentario %>
 
-    </div>
-    <%= form.hidden_field :forum_id , :value => @forum.id%>
-
-    <div class="actions d-flex justify-content-center">
-      <%= form.submit "Comentar" ,{controller: 'comentarios', action: 'new', forum_id: @forum.id}  %>
-    </div>
-
-    <% end %>
   </div>
+    <div class="contener-fluid">
+      <%= render 'comentarios/form', comentario: Comentario.new%>
+
+    </div>
 
 </div>
