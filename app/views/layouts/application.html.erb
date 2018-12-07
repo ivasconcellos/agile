@@ -46,39 +46,58 @@
 
     </nav>
     <div id="wrapper">
-      <ul class="sidebar navbar-nav" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
-        <li class="nav-item active"><%= link_to "Curso", @current_usuario.curso_atual, class: "nav-link" %></li>
-        <% if @current_usuario.perfil == "Professor" %>
+      <nav id="sidebar" class="sidebar navbar-nav" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
+        <div class="sidebar-header">
+          <h3 class="agile">Menu</h3>
+        </div>
+
+        <ul class="list-unstyled components">            
           <li class="nav-item">
-            <%= link_to "Descrição", @current_usuario.curso_atual, class: "nav-link" %>
-          </li>
-            <li class="nav-item">
-            <a class="nav-link" href="/conteudos"> Módulos </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/materiais"> Materiais </a>
+              <%= link_to  @current_usuario.curso_atual, class: "nav-link" do %><i class="fa fa-info-circle fa-lg"> </i> Descricao<% end %>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/explicacoes"> Explicações </a>
+              <a href="#modulos" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-book fa-lg"></i> Módulos</a>
+              <ul class="collapse list-unstyled" id="modulos">
+                <% @current_usuario.curso_atual.conteudos.each_with_index do |modulo, index| %>
+                  <li>
+                      <%= link_to "Modulo #{index+1}", modulo, {class: "nav-link"} %></a>
+                  </li>
+                <% end %>
+                <li><%= link_to "Todos", conteudos_path, {class: "nav-link"} %></li>
+              </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/foruns"> Fóruns </a>
+              <a href="#atividades" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-tasks fa-lg"></i> Atividades</a>
+              <ul class="collapse list-unstyled" id="atividades">
+                  <li>
+                      <a href="#" class= "nav-link">Atividade 1</a>
+                  </li>
+                  <li>
+                      <a href="#" class= "nav-link">Atividade 2</a>
+                  </li>
+              </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/desenvolvimento"> Notas dos alunos </a>
+              <a href="#forum" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-comments fa-lg"></i> Fóruns</a>
+              <ul class="collapse list-unstyled" id="forum">
+                  <% @current_usuario.curso_atual.foruns.each_with_index do |forum, index| %>
+                    <li>
+                        <%= link_to "Fórum #{index+1}", forum, {class: "nav-link"} %></a>
+                    </li>
+                <% end %>
+                <li><%= link_to "Todos", foruns_path, {class: "nav-link"} %></li>
+              </ul>
           </li>
-        <% else %>       
-        <li class="nav-item">
-          <a class="nav-link" href="/desenvolvimento"> Minhas atividades </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/desenvolvimento"> Minhas notas </a>
-        </li>
-        <% end %>
-        <li class="nav-item">
-          <a class="nav-link" href="/usuario_curso"> Participantes do curso </a>
-        </li>
-      </ul>
+          <li class="nav-item">
+            <a class="nav-link" href="/desenvolvimento"> <i class="fa fa-graduation-cap fa-lg"></i>  Minhas notas </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/usuario_curso"> <i class="fa fa-users fa-lg"></i> Participantes do curso </a>
+          </li>  
+
+        </ul>
+
+      </nav>
 
       <div id="content-wrapper">
 

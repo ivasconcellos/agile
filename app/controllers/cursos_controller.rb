@@ -82,7 +82,7 @@ class CursosController < ApplicationController
 
   def atualizar_curso_atual
     current_usuario.update(curso_atual_id: params[:curso_id])
-    redirect_to :controller => "cursos", :action => "show", id: params[:curso_id]
+    redirect_to :controller => "cursos", :action => "descricao", id: params[:curso_id]
   end
 
   private
