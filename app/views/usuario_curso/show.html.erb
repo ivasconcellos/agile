@@ -1,6 +1,8 @@
-<div class="card">
+<div class="panel-heading">
+  <i class="fa fa-clock-o fa-fw"></i> Participante do Curso
+</div>
 
-  <div class="card-header">Usuário do Curso</div>
+<div class="panel-body">
 
   <ul class="list-group">
     <li class="list-group-item"><b>Nome:</b> <%= @usuario_curso.usuario.nome %></li>
@@ -14,9 +16,9 @@
   <br>
   <div class="text-center">
     <% if can? :edit, UsuarioCurso %>
-      <%= link_to 'Atualizar', edit_usuario_curso_path(@usuario_curso), class: "btn btn-md btn-primary" %>
+      <%= link_to 'Atualizar', edit_usuario_curso_path(@usuario_curso), class: "btn btn-md btn-success" %>
     <% end %>
-    <%= link_to 'Voltar', usuario_curso_index_path, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar', usuario_curso_index_path, class: "btn btn-md btn-info" %>
   </div>
 
 </div>

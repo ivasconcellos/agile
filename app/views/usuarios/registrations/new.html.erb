@@ -1,14 +1,14 @@
-<div class="col-md-4 offset-md-4 col-sm-10 offset-sm-1">
-
-  <div class="text-center mb-4">
+  <div class="text-center">
     <%= image_tag ("coelho2.png"), class: "mb-4 img-responsive", width: "100", height: "100" %>
     <h1 class="agile">AGILE</h1>
   </div>  
 
-  <div class="card card-login mx-auto mt-6">
-    <div class="card-header">Cadastro</div> 
+    <div class="panel-heading">
+      <i class="fa fa-clock-o fa-fw"></i> Cadastro
+    </div>
 
-    <div class="card-body">
+
+    <div class="panel-body">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= devise_error_messages! %>
 
@@ -57,4 +57,3 @@
     </div>
     
   </div>
-</div>

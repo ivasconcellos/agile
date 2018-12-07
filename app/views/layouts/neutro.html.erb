@@ -9,68 +9,84 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-   <% %w(bootstrap.min sb-admin application).each do |asset| %>
+   <% %w(bootstrap.min metisMenu sb-admin-2 font-awesome.min application).each do |asset| %>
         <%= stylesheet_link_tag asset %>
     <% end %>
 
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_include_tag 'jquery-3.3.1.min'  %>
+    <%= javascript_include_tag 'jquery.min'  %>
     <%= javascript_include_tag 'bootstrap.min'  %>
-    <%= javascript_include_tag 'sb-admin'  %>
-    <%= javascript_include_tag 'jquery.maskedinput.min'  %>
+    <%= javascript_include_tag 'metisMenu.min'  %>
+    <%= javascript_include_tag 'sb-admin-2'  %>
+    <%= javascript_include_tag 'application'  %>
 
 
   </head>
 
-  <body id="page-top">
-
-    <nav class="navbar navbar-expand static-top">
-      <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
-      <% if usuario_signed_in? %>
-      <%=link_to "AGILE", inicial_url, class: "navbar-brand mr-1" %>
-      <%end%>
-      <!-- Navbar -->
-      <ul class="navbar-nav ml-auto ml-md-12">
-	      <li class="nav-item">
-	        <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'nav-link' do %>Atualizar Dados<% end %>
-	      </li>
-	      <li class="nav-item">
-	        <%= link_to destroy_usuario_session_path, :method => :delete, class: 'nav-link' do %>Sair<% end %>
-	      </li>
-      </ul>
-
-    </nav>
+  <body>
 
     <div id="wrapper">
-      <div id="content-wrapper">
 
-        <div class="container-fluid">
-          <% if notice %>
-            <p class="alert alert-success"><%= notice %></p>
-          <% end %>
-          <% if alert %>
-            <p class="alert alert-danger"><%= alert %></p>
-          <% end %>
-			<div class="row"> 
-			  <div class="col-md-12 col-sm-10">       
-			    <%= yield %>
-			  </div>
-			</div>
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"> </span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand img-responsive" ><%= image_tag ("coelho2.png"), width: "35", height: "35" %></a>
+                <a class="navbar-brand" href="/">AGILE</a> 
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><%= link_to edit_usuario_registration_path, @id => :usuario_id, class: "fa fa-user fa-fw" do %> Configurações<% end %>
+                        </li>
+                        <li class="divider"></li>
+                        <li><%= link_to destroy_usuario_session_path, :method => :delete, class:"fa fa-sign-out fa-fw" do %>Sair<% end %>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+        </nav>
+
+ 
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                
+                <!-- /.panel -->
+                <div class="panel">
+                    <% if notice %>
+                        <p class="alert alert-success"><%= notice %></p>
+                    <% end %>
+                    <% if alert %>
+                        <p class="alert alert-danger"><%= alert %></p>
+                    <% end %>
+                    <%= yield %>
+                    
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+            <div class="push"></div>
         </div>
-        <!-- /.container-fluid -->
-		<footer class="fixed-bottom bg-light">
-		<div class="container">
-		  <div class="copyright text-center">
-		    <span>Copyright © MPET - IFFluminense 2018</span>
-		  </div>
-		</div>
-		</footer>
-
-      </div>
-      <!-- /.content-wrapper -->
+        <!-- /.row -->
+     
 
     </div>
-    <!-- /#wrapper -->   
-
+     <!-- Footer -->
+    <div class="footer">
+        <p >Copyright © MPET - IFFluminense 2018</p>
+    </div>
   </body>
 </html>

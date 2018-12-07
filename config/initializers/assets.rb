@@ -13,13 +13,15 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.precompile += %w(
-	jquery-3.3.1.min.js
+	jquery.min.js
 	bootstrap.min.js
+	metisMenu.min.js
 	jquery.maskedinput.min.js
-	sb-admin.js
+	sb-admin-2.js
+
 	bootstrap.min.css	
-	sb-admin.css
-	template_cursos.css
+	sb-admin-2.css
+	metisMenu.css
 	font-awesome.min.css
 	ckeditor/*
 )

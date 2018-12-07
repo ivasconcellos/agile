@@ -1,125 +1,162 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="pt-br">
+
+<head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <title>AGILE</title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-   <% %w(bootstrap.min sb-admin template_cursos font-awesome.min).each do |asset| %>
+   <% %w(bootstrap.min metisMenu sb-admin-2 font-awesome.min application).each do |asset| %>
         <%= stylesheet_link_tag asset %>
     <% end %>
 
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_include_tag 'jquery-3.3.1.min'  %>
+    <%= javascript_include_tag 'jquery.min'  %>
     <%= javascript_include_tag 'bootstrap.min'  %>
-    <%= javascript_include_tag 'sb-admin'  %>
-    <%= javascript_include_tag 'jquery.maskedinput.min'  %>
+    <%= javascript_include_tag 'metisMenu.min'  %>
+    <%= javascript_include_tag 'sb-admin-2'  %>
+    <%= javascript_include_tag 'application'  %>
+</head>
 
+<body>
 
-  </head>
-
-  <body id="page-top" style=" background-image: url(<%= @current_usuario.curso_atual.tema_curso.imagem %>); background-repeat: no-repeat; background-size: cover; color: <%= @current_usuario.curso_atual.tema_curso.cor_texto %>">
-
-    <nav class="navbar navbar-expand static-top">
-      <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
-      <a class="navbar-brand mr-1" href="/">AGILE</a>
-
-      <!-- Navbar -->
-      <ul class="navbar-nav ml-auto ml-md-12">
-        <% if usuario_signed_in? %>
-          <li class="nav-item">
-            <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'nav-link' do %>Atualizar Dados<% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to destroy_usuario_session_path, :method => :delete, class: 'nav-link' do %>Sair<% end %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <a class="nav-link" href="/sobre">Sobre</a>
-          </li>
-        <% end %>
-      </ul>
-
-    </nav>
     <div id="wrapper">
-      <ul class="sidebar navbar-nav" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
-        <li class="nav-item active"><%= link_to "Curso", @current_usuario.curso_atual, class: "nav-link" %></li>
-        <% if @current_usuario.perfil == "Professor" %>
-          <li class="nav-item">
-            <%= link_to "Descrição", @current_usuario.curso_atual, class: "nav-link" %>
-          </li>
-            <li class="nav-item">
-            <a class="nav-link" href="/conteudos"> Módulos </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/materiais"> Materiais </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/explicacoes"> Explicações </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/foruns"> Fóruns </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/desenvolvimento"> Notas dos alunos </a>
-          </li>
-        <% else %>       
-        <li class="nav-item">
-          <a class="nav-link" href="/desenvolvimento"> Minhas atividades </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/desenvolvimento"> Minhas notas </a>
-        </li>
-        <% end %>
-        <li class="nav-item">
-          <a class="nav-link" href="/usuario_curso"> Participantes do curso </a>
-        </li>
-      </ul>
 
-      <div id="content-wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"> </span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand img-responsive" ><%= image_tag ("coelho2.png"), width: "35", height: "35" %></a>
+                <a class="navbar-brand" href="/">AGILE</a> 
+            </div>
+            <!-- /.navbar-header -->
 
-        <div class="container-fluid">
-           <% if notice %>
-            <p class="alert alert-success"><%= notice %></p>
-          <% end %>
-          <% if alert %>
-            <p class="alert alert-danger"><%= alert %></p>
-          <% end %>
-          <% if usuario_signed_in? %>
-            <div class="row"> 
-              <div class="col-md-12 col-sm-10">       
-                <%= yield %>
-              </div>
+            <ul class="nav navbar-top-links navbar-right">
+                
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><%= link_to edit_usuario_registration_path, @id => :usuario_id, class: "fa fa-user fa-fw" do %> Configurações<% end %>
+                        </li>
+                        <li class="divider"></li>
+                        <li><%= link_to destroy_usuario_session_path, :method => :delete, class:"fa fa-sign-out fa-fw" do %>Sair<% end %>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> Menu</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Módulos<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="flot.html">Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Morris.js Charts</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Atividades<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="flot.html">Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Morris.js Charts</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Fóruns<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="flot.html">Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Morris.js Charts</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="/desenvolvimento"><i class="fa fa-table fa-fw"></i> Notas</a>
+                        </li>
+                        <li>
+                            <a href="/usuario_curso"><i class="fa fa-edit fa-fw"></i> Participantes do curso</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
             </div>
-          <%else%>
-            <div class="row"> 
-                <%= yield %>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header"><%= @current_usuario.curso_atual.nome %></h1>
+                </div>
+                <!-- /.col-lg-12 -->
             </div>
-          <%end%>
+            <!-- /.row -->
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <% if notice %>
+                            <p class="alert alert-success"><%= notice %></p>
+                        <% end %>
+                        <% if alert %>
+                            <p class="alert alert-danger"><%= alert %></p>
+                        <% end %>
+                        <%= yield %>
+                        
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+                
+            </div>
+            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
-
-        <!-- Sticky Footer -->
-        <footer class="sticky-footer">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>Copyright © MPET - IFFluminense 2018</span>
-            </div>
-          </div>
-        </footer>
-        
-
-      </div>
-      <!-- /.content-wrapper -->
-
+        <!-- /#page-wrapper -->
+        <div class="push"></div>
     </div>
-    <!-- /#wrapper -->  
+    <!-- /#wrapper -->
+    <!-- Footer -->
+    <div class="footer">
+        <p >Copyright © MPET - IFFluminense 2018</p>
+    </div>
 
-    
+</body>
 
-  </body>
 </html>

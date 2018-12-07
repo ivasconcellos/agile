@@ -1,104 +1,81 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- *= require font-awesome
- */
+.navbar-default{
+	background-color: #081157;
+}
 
+.sidebar ul li a.active{
+	background-color: #081157;
+}
 
+.navbar-brand{
+	padding: 10px 5px 5px 15px;
+	font-size: 26px;
+	line-height: unset;
+}
 
-.navbar-expand{
-  background-color: #1b115d;
+.navbar-default .navbar-brand{
+	color: #749aea;
+	font-weight: bold;
+}
+
+.nav > li > a:focus, .nav > li > a:hover{
+	background-color: #38afde;
+	color: #FFFFFF;
+}
+
+.nav > li > a{
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.sidebar ul li{
+	border-bottom: 2px solid #2b27f9;
+}
+
+.panel-heading{
+	
+}
+
+.panel-default > .panel-heading{
+	color: #FFFFFF;
+	background-color: #0164c3;
+	font-weight: bold;
+	text-align: center;
+	font-size: 20px;
+}
+
+.page-header{
+	text-align: center;
+	font-weight: bold;
+	color: #06184d;
+	margin: 20px 0 20px;
 }
 
 .agile{
-  color: #FFFFFF;
-  font-weight: bold;
-  text-align: center;
-}
-
-.card-header{
-  text-align: center;
-  font-weight: bold;
-  font-size: 22px;
-  color: #24249f;
-}
-
-.alert-success{
-  text-align: center;
-  font-weight: bold;
-}
-
-.alert-danger{
-  text-align: center;
-  font-weight: bold;
-}
-
-.btn{
-  margin-bottom: 10px;
+	font-weight: bold;
+	color: blue;
 }
 
 
-
-.list-group{
-  margin-bottom: 10px;
+.footer{
+    height: 20px; /* .push must be the same height as .footer */
+    color: #FFFFFF;
+	text-align: center;
+	float: unset;
+	background-color: #081157;
 }
 
-label{
-  color: blue;
-  font-weight: bold;
+* {
+    margin: 0;
 }
-
-.breadcrumb-item{
-  text-align: center;
-  font-weight: bold;
-  font-size: 22px;
+html, body {
+    height: 100%;
 }
-
-a.linkcurso  {
-  color: #FFFFFF;
-  padding-bottom: 5px;
-  text-decoration: none;
-  font-weight: bold;
+.wrapper {
+    min-height: 100%;
+    height: 100%;
+    margin: 0 auto -30px; /* the bottom margin is the negative value of the footer's height */
 }
-
-.copyright{
-  font-style: italic;
-}
-
-.active{
-  text-align: center;
-  font-weight: bold;
-  font-size: 30px;
-  color: #FFFFFF;
-}
-
-td{
-  text-align: center;
-}
-
-.curso{
-  text-align: center;
-  background-color: #1b115d;
-  font-size: 22px;
-}
-
-.card-footer{
-  text-align: center;
-  font-size: 18px;
-}
-
-.row{
-  margin-left: -15px;
-  margin-right: -15px;
+.footer, .push {
+    height: 30px; /* .push must be the same height as .footer */
 }
