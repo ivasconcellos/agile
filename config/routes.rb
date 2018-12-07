@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :comentarios
+  resources :foruns
   resources :explicacoes
   resources :usuario_curso
   resources :materiais

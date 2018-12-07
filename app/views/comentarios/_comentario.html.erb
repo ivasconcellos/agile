@@ -1,0 +1,25 @@
+<% if !@comentario.empty? %>
+  <div class="table-responsive">
+    <table align="center" class="table table-hover">
+      <thead>
+        <tr>
+          <th>Comentarios</th>
+          <th colspan="2">#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @comentario.each do |comentario| %>
+          <tr>
+            <td><%= comentario.texto.to_s.html_safe %></td>
+            <% if can? :edit, Comentario %>
+              <td><%= link_to  '', edit_comentario_path(comentario), class: "fa fa-pencil", remote: true %></td>
+            <% end %>
+            <% if can? :destroy, Comentario %>
+              <td><%= link_to  '', comentario, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover comentario?'}, class: "fa fa-trash", remote: true %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<div class="card">
+
+ 	<div class="card-header">Fórum do Curso</div>
+
+	<ul class="list-group">
+	  <li class="list-group-item"><b>Título:</b> <%= @forum.titulo %></li>
+	  <li class="list-group-item"><b>Descrição:</b> <%= @forum.descricao %></li>  
+	</ul>
+
+	<div id="comentario"><%= render 'comentarios/comentario', :collection => @comentarios %></div>
+
+	<div id="task-form" style="display:none;"></div>
+
+	<% if can? :new, Comentario %>
+		<div class="text-center">
+		<%= link_to "Comentar", {controller: 'comentarios', action: 'new', :forum_id => @forum.id, remote: true}, class: "btn btn-warning" %>
+		</div>
+	<% end %>
+
+</div>
+
+	
+
+<%= link_to 'Edit', edit_forum_path(@forum) %> |
+
