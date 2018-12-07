@@ -40,14 +40,8 @@ class ComentariosController < ApplicationController
   # PATCH/PUT /comentarios/1
   # PATCH/PUT /comentarios/1.json
   def update
-    respond_to do |format|
-      if @comentario.update(comentario_params)
-        format.html { redirect_to @comentario, notice: 'Comentário atualizado com sucesso!' }
-        format.json { render :show, status: :ok, location: @comentario }
-      else
-        format.html { render :edit, @current_usuario => current_usuario }
-        format.json { render json: @comentario.errors, status: :unprocessable_entity }
-      end
+    if @comentario.update(comentario_params)
+      @comentario = Comentario.where(forum_id: @comentario.forum_id)
     end
   end
 
@@ -58,8 +52,9 @@ class ComentariosController < ApplicationController
     @forum = @comentario.forum_id
     @comentario.destroy
     if @comentario.destroy
-      flash[notice] = 'Comentário atualizado com sucesso!'
+      
       @comentario = Comentario.where(forum_id: @forum)
+      flash[notice] = 'Comentário atualizado com sucesso!'
     end
   end
 
