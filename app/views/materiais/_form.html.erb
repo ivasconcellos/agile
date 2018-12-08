@@ -11,85 +11,87 @@
     </div>
   <% end %>
 
-  <%= form.hidden_field :conteudo_id %>
-  <%= form.hidden_field :tipo %>
+  <div class="card-body">
+    <%= form.hidden_field :conteudo_id %>
+    <%= form.hidden_field :tipo %>
 
-  <div class="form-group row">
-    <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Tipo*</label>
-    <div class="col-md-6">
-      <%= material.tipo %> 
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
-    <div class="col-md-6">
-      <%= form.text_field :nome, autofocus: true, class: "form-control" %>
-    </div>
-  </div>
-
-  <% if material.tipo == "Link" %>
-  <div class="form-group row">
-    <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Link*</label>
-    <div class="col-md-6">
-      <%= form.text_field :link, class: "form-control" %>
-    </div>
-  </div>
-  <% end %>
-
-  <% if material.tipo == "Texto" %>
     <div class="form-group row">
-        <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Texto*</label>
-        <div class="col-md-6">
-          <%= form.cktext_area :texto, class: "form-control" %> 
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Tipo*</label>
+      <div class="col-md-6">
+        <%= material.tipo %> 
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
+      <div class="col-md-6">
+        <%= form.text_field :nome, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <% if material.tipo == "Link" %>
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Link*</label>
+      <div class="col-md-6">
+        <%= form.text_field :link, class: "form-control" %>
+      </div>
+    </div>
+    <% end %>
+
+    <% if material.tipo == "Texto" %>
+      <div class="form-group row">
+          <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Texto*</label>
+          <div class="col-md-6">
+            <%= form.cktext_area :texto, class: "form-control" %> 
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
 
-  <% if material.tipo == "Arquivo" %>
-    <div class="form-group row">
-        <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Arquivo*</label>
-        <div class="col-md-6">
-          <%= form.file_field :arquivo, as: :file %> 
+    <% if material.tipo == "Arquivo" %>
+      <div class="form-group row">
+          <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Arquivo*</label>
+          <div class="col-md-6">
+            <%= form.file_field :arquivo, as: :file %> 
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
 
-  <% if material.tipo == "Vídeo" %>
-    <div class="form-group row">
-        <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Vídeo*</label>
-        <div class="col-md-6">
-          <%= form.file_field :video, as: :file %> 
+    <% if material.tipo == "Vídeo" %>
+      <div class="form-group row">
+          <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Vídeo*</label>
+          <div class="col-md-6">
+            <%= form.file_field :video, as: :file %> 
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
 
-  <% if material.tipo == "Imagem" %>
-    <div class="form-group row">
-        <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Imagem*</label>
-        <div class="col-md-6">
-          <%= form.file_field :imagem, as: :file %> 
+    <% if material.tipo == "Imagem" %>
+      <div class="form-group row">
+          <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Imagem*</label>
+          <div class="col-md-6">
+            <%= form.file_field :imagem, as: :file %> 
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
 
-  <div class="form-group row">
-    <label class="form-check-label col-md-2 offset-md-2" for="gridCheck1">Público</label>
-    <div class="col-md-2 ">
-      <div class="form-check">
-        <%= form.check_box :publico, class: "form-check-input" %> Sim
-      </div>
-    </div>        
+    <div class="form-group row">
+      <label class="form-check-label col-md-2 offset-md-2" for="gridCheck1">Público</label>
+      <div class="col-md-2 ">
+        <div class="form-check">
+          <%= form.check_box :publico, class: "form-check-input" %> Sim
+        </div>
+      </div>        
+    </div>
+
   </div>
 
-  <div class="text-center">
+  <div class="card-footer text-muted">
     <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
     <%= link_to 'Voltar', materiais_path, class: "btn btn-md btn-secondary" %>
   </div>
 
-  <br>
 <% end %>
