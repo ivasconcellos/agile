@@ -5,8 +5,14 @@ class MateriaisController < ApplicationController
   # GET /materiais
   # GET /materiais.json
   def index
-    @materiais = Material.joins(:conteudo).where('conteudos.curso_id = ?',
-    current_usuario.curso_atual_id).page(params[:page]).order('nome')
+    if params[:conteudo_id]
+      @materiais = Material.where('conteudo_id = ?',
+       params[:conteudo_id]).page(params[:page]).order('nome')
+    else
+      @materiais = Material.joins(:conteudo).where('conteudos.curso_id = ?',
+       current_usuario.curso_atual_id).page(params[:page]).order('nome')
+    end
+
     authorize! :index, @materiais
   end
 
