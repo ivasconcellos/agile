@@ -12,6 +12,8 @@
   text-align: center;
   font-weight: bold;
   font-size: 22px;
+  color: #FFFFFF;
+  background-color: #24249f;
 }
 
 .alert-success{
@@ -68,4 +70,10 @@ td{
   text-decoration: none;
   font-weight: bold;
   font-size: 22px;
+}
+
+.card-footer{
+  text-align: center;
+  font-size: 18px;
+  background-color: #2323ab;
 }
