@@ -6,6 +6,7 @@
       <thead>
         <tr>
           <th class="text-center">Nome</th>
+          <th class="text-center">Tipo</th>
           <th class="text-center">Módulo</th>
           <th colspan="3" class="text-center">Opções</th>
         </tr>
@@ -14,6 +15,7 @@
         <% @materiais.each do |material| %>
           <tr>
             <td><%= material.nome %></td>
+            <td><%= material.tipo %></td>
             <td class="text-center"><%= link_to material.conteudo.nome, material.conteudo %></td>
             <% if can? :show, Material %>
               <td><%= link_to 'Visualizar', material %></td>
