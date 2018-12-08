@@ -9,6 +9,7 @@
           <th class="text-center">Data de início</th>
           <th class="text-center">Data de término</th>
           <th class="text-center">Ativo</th>
+          <th class="text-center">Público</th>
           <th class="text-center">Tema</th>
           <th colspan="3" class="text-center">Opções</th>
         </tr>
@@ -28,6 +29,7 @@
               <td class="text-center">-</td>
             <% end %>
             <td class="text-center"><%= curso.ativo? ? 'Sim' : 'Não' %></td>
+            <td class="text-center"><%= curso.publico? ? 'Sim' : 'Não' %></td>
             <td class="text-center"><%= curso.tema_curso.nome %></td>
             <% if can? :show, Curso %>
               <td><%= link_to 'Visualizar', curso %></td>
@@ -48,7 +50,7 @@
   <br>
 
   <% if can? :new, Curso %>
-    <div class="text-center">
+    <div class="card-footer text-muted">
       <%= link_to 'Cadastrar Curso', new_curso_path, class: "btn btn-md btn-primary" %>
     </div>
   <% end %>

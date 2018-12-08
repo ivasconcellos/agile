@@ -1,17 +1,17 @@
-<div class="card-body">
-  <%= form_with(model: curso, local: true) do |form| %>
-    <% if curso.errors.any? %>
-      <div id="error_explanation" class="alert alert-danger">
-        <h2><%= pluralize(curso.errors.count, "erro (s)") %> - Curso não pôde ser salvo!</h2>
+<%= form_with(model: curso, local: true) do |form| %>
+  <% if curso.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(curso.errors.count, "erro (s)") %> - Curso não pôde ser salvo!</h2>
 
-        <ul>
-        <% curso.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
+      <ul>
+      <% curso.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
+  <div class="card-body">
     <div class="form-group row">
       <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
       <div class="col-md-6">
@@ -71,11 +71,10 @@
         <%= form.collection_select(:tema_curso_id, TemaCurso.where(ativo: true).order('nome'), :id, :nome, :prompt => true, class: "form-control")%>
       </div>
     </div>
+  </div>
 
-    <div class="text-center">
-      <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
-    </div>
-
-    <br>
-  <% end %>
-</div>
+  <div class="card-footer text-muted">
+    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', root_path, class: "btn btn-md btn-secondary" %>
+  </div>
+<% end %>
