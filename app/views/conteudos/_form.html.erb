@@ -1,4 +1,3 @@
-<div class="card-body">
 <%= form_with(model: conteudo, local: true) do |form| %>
   <% if conteudo.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
@@ -12,36 +11,37 @@
     </div>
   <% end %>
 
-  <%= form.hidden_field :curso_id %>
+  <div class="card-body">
+    <%= form.hidden_field :curso_id %>
 
-  <div class="form-group row">
-    <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
-    <div class="col-md-6">
-      <%= form.text_field :nome, autofocus: true, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-      <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Descrição</label>
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
       <div class="col-md-6">
-        <%= form.text_area :descricao, class: "form-control" %> 
+        <%= form.text_field :nome, autofocus: true, class: "form-control" %>
       </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Descrição</label>
+        <div class="col-md-6">
+          <%= form.text_area :descricao, class: "form-control" %> 
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="form-check-label col-md-2 offset-md-2" for="gridCheck1">Público</label>
+      <div class="col-md-2 ">
+        <div class="form-check">
+          <%= form.check_box :publico, class: "form-check-input" %> Sim
+        </div>
+      </div>        
     </div>
   </div>
 
-  <div class="form-group row">
-    <label class="form-check-label col-md-2 offset-md-2" for="gridCheck1">Público</label>
-    <div class="col-md-2 ">
-      <div class="form-check">
-        <%= form.check_box :publico, class: "form-check-input" %> Sim
-      </div>
-    </div>        
-  </div>
-
-  <div class="text-center">
+  <div class="card-footer text-muted">
     <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
     <%= link_to 'Voltar', conteudos_path, class: "btn btn-md btn-secondary" %>
   </div>
 
 <% end %>
-</div>

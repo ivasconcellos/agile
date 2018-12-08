@@ -11,7 +11,7 @@
 	</ul>
 
 	<br>
-	<div class="text-center">
+	<div class="card-footer text-muted">
 	  <% if can? :edit, Conteudo %>
 	    <%= link_to 'Atualizar', edit_conteudo_path(@conteudo), class: "btn btn-md btn-primary" %>
 	  <% end %>
