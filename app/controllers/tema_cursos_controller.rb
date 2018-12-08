@@ -40,7 +40,7 @@ class TemaCursosController < ApplicationController
         format.html { redirect_to @tema_curso, notice: 'Tema do curso criado com sucesso!' }
         format.json { render :show, status: :created, location: @tema_curso }
       else
-        format.html { render :new }
+        format.html { render :new, layout: 'neutro' }
         format.json { render json: @tema_curso.errors, status: :unprocessable_entity }
       end
     end
@@ -54,7 +54,7 @@ class TemaCursosController < ApplicationController
         format.html { redirect_to @tema_curso, notice: 'Tema do curso atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @tema_curso }
       else
-        format.html { render :edit }
+        format.html { render :edit, layout: 'neutro' }
         format.json { render json: @tema_curso.errors, status: :unprocessable_entity }
       end
     end

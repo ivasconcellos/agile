@@ -7,6 +7,7 @@ class CursosController < ApplicationController
   def index
     @cursos = Curso.all.page(params[:page]).order('nome')
     authorize! :index, @cursos
+    render layout: 'neutro'
   end
 
   # GET /cursos/1
