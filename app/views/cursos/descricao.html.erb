@@ -26,57 +26,15 @@
       <div id="collapse<%= index.to_s %>" class="collapse" aria-labelledby="heading<%= index.to_s %>" data-parent="#accordion">
         <div class="card-body">
           <div class="row">
-            <div class="col-xl-10 col-sm-10 col-md-10">
+            <div class="col-xl-9 col-sm-9 col-md-9">
               <% if modulo.descricao? %>
                 <b> Descrição:</b> <%= modulo.descricao %>
               <% end %>
-              <ul class="list-unstyled">
-                <% @materiais.where(conteudo_id: modulo.id).each do |material| %>
-                  <li>
-
-                    <% if material.tipo == "Link" %>
-                      <%= link_to extlink(material.link), target: "_blank", class: "text-dark" do %>
-                        <%= fa_icon "link" %> <%= material.nome %>
-                      <% end %>
-                    <% end %>
-
-                    <% if material.tipo == "Arquivo" %>
-                     <%= link_to material.arquivo.url do %>
-                        <i class = "fa fa-file text-dark"> <%= material.nome %></i>
-                      <% end %>
-                    <% end %>
-
-                    <% if material.tipo == "Vídeo" %>
-                      <%= link_to material.video.url do %>
-                        <i class = "fa fa-video-camera text-dark"> <%= material.nome %></i>
-                      <% end %>
-                    <% end %>
-
-                    <% if material.tipo == "Imagem" %>
-                      <%= link_to material.imagem.url do %>
-                        <i class = "fa fa-image text-dark"> <%= material.nome %></i>
-                      <% end %>
-                    <% end %>
-
-                    <% if material.tipo == "Texto" %>
-                      <%= link_to material_texto_url(id: material.id) do %>
-                        <i class = "fa fa-text-width text-dark"> <%= material.nome %></i>
-                      <% end %>
-                    <% end %>
-                    <% if can? :edit, Material %>
-                      <%= link_to '', edit_material_path(material), class: "fa fa-edit" %>
-                    <% end %>
-                    <% if can? :destroy, Material %>
-                      <%= link_to '', material, method: :delete, data: { confirm: 'Deseja realmente excluir o Material?' }, class: "fa fa-trash" %>
-                    <% end %>
-                  </li>
-                <% end %>
-              </ul>
-              
+              <%= render partial: "materiais/materiais", locals: {modulo: modulo} %>
             </div>           
 
            
-            <div class="col-xl-2 col-sm-2 col-md-2">
+            <div class="col-xl-3 col-sm-3 col-md-3">
               <% if can? :new, Material %>
                 <div><%= link_to  ' Inserir Link', {controller: 'materiais', action: 'new', conteudo_id: modulo.id, tipo: 'Link'}, class: "fa fa-link" %></div>
                 <div><%= link_to  ' Inserir Arquivo', {controller: 'materiais', action: 'new', conteudo_id: modulo.id, tipo: 'Arquivo'}, class: "fa fa-file" %></div>

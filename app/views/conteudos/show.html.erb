@@ -15,26 +15,31 @@
 	  <% if can? :edit, Conteudo %>
 	    <%= link_to 'Atualizar', edit_conteudo_path(@conteudo), class: "btn btn-md btn-primary" %>
 	  <% end %>
-	  <% if can? :new, Material %>
-	  	<%= link_to  'Inserir Material', {controller: 'materiais', action: 'new', conteudo_id: @conteudo.id}, class: "btn btn-md btn-danger" %>
-	  <% end %>
 	  <% if can? :new, Explicacao %>
 	  	<%= link_to  'Inserir Explicações', {controller: 'explicacoes', action: 'new', conteudo_id: @conteudo.id}, class: "btn btn-md btn-danger" %>
 	  <% end %>
 	  <%= link_to 'Voltar', {controller: 'conteudos', action: 'index', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-secondary" %>
 	</div>
 
-	<% if not @materiais.empty? %>
+	<br><br>
 
-		<div class="card-header">Materiais do Módulo</div>
-
-		<% @materiais.each do |material| %>
-			<ul class="list-group">
-			  <li class="list-group-item"><b>Nome:</b> <%= link_to material.nome, material %></li> 
-			  <li class="list-group-item"><b>Cadastrado em:</b> <%= material.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>       
-			</ul>
-		<% end %>
-	<% end %>
+	<div class="card-header bg-info">Materiais do Módulo</div>
+	<div class="row">
+        <div class="col-xl-9 col-sm-9 col-md-9">
+			<%= render partial: "materiais/materiais", locals: {modulo: @conteudo} %>
+		</div>
+		<div class="col-xl-3 col-sm-3 col-md-3">
+          <% if can? :new, Material %>
+            <div><%= link_to  ' Inserir Link', {controller: 'materiais', action: 'new', conteudo_id: @conteudo.id, tipo: 'Link'}, class: "fa fa-link" %></div>
+            <div><%= link_to  ' Inserir Arquivo', {controller: 'materiais', action: 'new', conteudo_id: @conteudo.id, tipo: 'Arquivo'}, class: "fa fa-file" %></div>
+            <div><%= link_to  ' Inserir Vídeo', {controller: 'materiais', action: 'new', conteudo_id: @conteudo.id, tipo: 'Vídeo'}, class: "fa fa-video-camera" %></div>
+            <div><%= link_to  ' Inserir Texto', {controller: 'materiais', action: 'new', conteudo_id: @conteudo.id, tipo: 'Texto'}, class: "fa fa-text-width" %></div>
+            <div><%= link_to  ' Inserir Imagem', {controller: 'materiais', action: 'new', conteudo_id: @conteudo.id, tipo: 'Imagem'}, class: "fa fa-image" %></div>
+          <% end %>
+        </div>
+	</div>
+		
+	
 
 	<% if not @explicacoes.empty? %>
 
