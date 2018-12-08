@@ -2,24 +2,30 @@
 
  	<div class="card-header">Fórum do Curso</div>
 
-	<ul class="list-group">
-	  <li class="list-group-item"><b>Título:</b> <%= @forum.titulo %></li>
-	  <li class="list-group-item"><b>Descrição:</b> <%= @forum.descricao %></li>  
-	</ul>
-
+ 	<div class="card-header bg-info">
+	    nome do criador do fórum
+	</div>
+	<div class="card-body">
+		<h5 class="card-title text-center"><%= @forum.titulo %></h5>
+		<p class="card-text"><%= @forum.descricao.to_s.html_safe %></p>
+	</div>
+	<div class="card-footer bg-info">
+		<% if can? :edit, Forum %>
+      		<%= link_to  '', edit_forum_path(@forum), class: "fa fa-pencil" %>
+    	<% end %>
+    	<% if can? :destroy, Forum %>
+      		<%= link_to  '', @forum, method: :delete, data: { confirm: 'Deseja realmente realmente remover o Fórum?'}, class: "fa fa-trash", remote: true %>
+    	<% end %>
+	</div>
+	
 	<div id="comentario"><%= render 'comentarios/comentario', :collection => @comentarios %></div>
 
 	<div id="task-form" style="display:none;"></div>
 
 	<% if can? :new, Comentario %>
-		<div class="text-center">
-		<%= link_to "Comentar", {controller: 'comentarios', action: 'new', :forum_id => @forum.id, remote: true}, class: "btn btn-warning" %>
+		<div class="card-footer text-muted">
+			<%= link_to "Comentar", {controller: 'comentarios', action: 'new', :forum_id => @forum.id, remote: true}, class: "btn btn-warning" %>
 		</div>
 	<% end %>
 
 </div>
-
-	
-
-<%= link_to 'Edit', edit_forum_path(@forum) %> |
-
