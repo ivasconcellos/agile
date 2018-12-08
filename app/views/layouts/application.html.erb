@@ -94,6 +94,14 @@
           <li class="nav-item">
             <a class="nav-link" href="/usuario_curso"> <i class="fa fa-users fa-lg"></i> Participantes do curso </a>
           </li>  
+          <li class="nav-item">
+              <a href="#gerenciar" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-wrench fa-lg"></i> Configurar curso</a>
+              <ul class="collapse list-unstyled" id="gerenciar">
+                <li class="nav-item"><%= link_to " Módulos", conteudos_path, {class: "fa fa-book fa-sm nav-link"} %> </li>  
+                <li class="nav-item"><%= link_to " Fóruns", foruns_path, {class: "fa fa-comments fa-sm nav-link"} %> </li>  
+                <li class="nav-item"><a class="nav-link" href="/usuario_curso"> <i class="fa fa-users fa-sm"></i> Participantes </a></li>  
+              </ul>
+          </li>
 
         </ul>
 
