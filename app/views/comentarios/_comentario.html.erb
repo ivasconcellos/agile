@@ -1,21 +1,18 @@
 <% @comentario.each do |comentario| %>
 <div id="task-form2" style="display:none;"></div>
 <div class="card">
-  <div class="card-header bg-secondary">
-    <%= comentario.usuario.nome %>
+  <div class="card-header bg-secondary text-left">
+    <%= image_tag comentario.usuario_curso.avatar.url(:thumb), class: "img-responsive img-thumbnail" %> <%= comentario.usuario_curso.nickname %>
+    <% if can? :edit, Comentario %>
+      <%= link_to  '', edit_comentario_path(comentario), class: "fa fa-pencil text-light", remote: true %>
+    <% end %>
+    <% if can? :destroy, Comentario %>
+      <%= link_to  '', comentario, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover o Comentário?'}, class: "fa fa-trash text-light", remote: true %>
+    <% end %>
   </div>
   <div class="card-body">
     <p class="card-text"><%= comentario.texto.to_s.html_safe %></p>
   </div>
   
-
-  <div class="card-footer bg-dark">
-    <% if can? :edit, Comentario %>
-      <%= link_to  '', edit_comentario_path(comentario), class: "fa fa-pencil", remote: true %>
-    <% end %>
-    <% if can? :destroy, Comentario %>
-      <%= link_to  '', comentario, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover o Comentário?'}, class: "fa fa-trash", remote: true %>
-    <% end %>
-  </div>
 </div>
 <% end %>

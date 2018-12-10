@@ -2,20 +2,18 @@
 
  	<div class="card-header">Fórum do Curso</div>
 
- 	<div class="card-header bg-info">
-	    nome do criador do fórum
+ 	<div class="card-header bg-info text-left">
+	    <%= image_tag @forum.usuario_curso.avatar.url(:thumb), class: "img-responsive img-thumbnail" %> <%= @forum.usuario_curso.nickname %>
+	    <% if can? :edit, Forum %>
+      		<%= link_to  '', edit_forum_path(@forum), class: "fa fa-pencil text-light" %>
+    	<% end %>
+    	<% if can? :destroy, Forum %>
+      		<%= link_to  '', @forum, method: :delete, data: { confirm: 'Deseja realmente realmente remover o Fórum?'}, class: "fa fa-trash text-light", remote: true %>
+    	<% end %>
 	</div>
 	<div class="card-body">
 		<h5 class="card-title text-center"><%= @forum.titulo %></h5>
 		<p class="card-text"><%= @forum.descricao.to_s.html_safe %></p>
-	</div>
-	<div class="card-footer bg-info">
-		<% if can? :edit, Forum %>
-      		<%= link_to  '', edit_forum_path(@forum), class: "fa fa-pencil" %>
-    	<% end %>
-    	<% if can? :destroy, Forum %>
-      		<%= link_to  '', @forum, method: :delete, data: { confirm: 'Deseja realmente realmente remover o Fórum?'}, class: "fa fa-trash", remote: true %>
-    	<% end %>
 	</div>
 	
 	<div id="comentario"><%= render 'comentarios/comentario', :collection => @comentarios %></div>
