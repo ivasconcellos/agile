@@ -1,5 +1,5 @@
 <% @comentario.each do |comentario| %>
-<div id="task-form2" style="display:none;"></div>
+
 <div class="card">
   <div class="card-header bg-secondary text-left">
     <%= image_tag comentario.usuario_curso.avatar.url(:thumb), class: "img-responsive img-thumbnail" %> <%= comentario.usuario_curso.nickname %>
@@ -9,8 +9,9 @@
     <% if can? :destroy, Comentario %>
       <%= link_to  '', comentario, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover o Comentário?'}, class: "fa fa-trash text-light", remote: true %>
     <% end %>
+    <div id="task-form<%= comentario.id %>" style="display:none;"></div>
   </div>
-  <div class="card-body">
+  <div class="card-body" id="<%= comentario.id %>">
     <p class="card-text"><%= comentario.texto.to_s.html_safe %></p>
   </div>
   
