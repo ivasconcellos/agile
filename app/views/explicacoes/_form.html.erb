@@ -11,33 +11,36 @@
     </div>
   <% end %>
 
-  <%= form.hidden_field :conteudo_id %>
+  <div class="card-body">
+    <%= form.hidden_field :conteudo_id %>
 
-  <div class="form-group row">
-    <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
-    <div class="col-md-6">
-      <%= form.text_field :nome, autofocus: true, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-      <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Descrição*</label>
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
       <div class="col-md-6">
-        <%= form.cktext_area :descricao, class: "form-control" %> 
+        <%= form.text_field :nome, autofocus: true, class: "form-control" %>
       </div>
     </div>
-  </div>
 
-  <div class="form-group row">
-    <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Áudio</label>
-    <div class="col-md-6">
-      <%= form.text_field :audio, class: "form-control" %>    
+    <div class="form-group row">
+        <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Descrição*</label>
+        <div class="col-md-6">
+          <%= form.cktext_area :descricao, class: "form-control" %> 
+        </div>
+      </div>
     </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Áudio</label>
+      <div class="col-md-6">
+        <%= form.text_field :audio, class: "form-control" %>    
+      </div>
+    </div>
+
   </div>
 
-  <div class="text-center">
+  <div class="card-footer text-muted">
     <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
     <%= link_to 'Voltar', explicacoes_path, class: "btn btn-md btn-secondary" %>
   </div>
-  <br>
+
 <% end %>
