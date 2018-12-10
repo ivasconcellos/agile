@@ -31,7 +31,9 @@ class ComentariosController < ApplicationController
   # POST /comentarios.json
   def create
     @comentario = Comentario.new(comentario_params)
-    @comentario.usuario_id = current_usuario.id
+    @usuario = UsuarioCurso.select(:id).where(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id).first
+    @comentario.usuario_curso_id = @usuario.id
+    
     if @comentario.save
       @comentario = Comentario.where(forum_id: @comentario.forum_id)
     end
@@ -66,6 +68,6 @@ class ComentariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comentario_params
-      params.require(:comentario).permit(:usuario_id, :forum_id, :texto, :comentario_id)
+      params.require(:comentario).permit(:usuario_curso_id, :forum_id, :texto, :comentario_id)
     end
 end
