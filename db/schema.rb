@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_06_193150) do
+ActiveRecord::Schema.define(version: 2018_12_10_191208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2018_12_06_193150) do
   end
 
   create_table "comentarios", force: :cascade do |t|
-    t.bigint "usuario_id"
+    t.bigint "usuario_curso_id"
     t.bigint "forum_id"
     t.text "texto"
     t.bigint "comentario_id"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2018_12_06_193150) do
     t.datetime "updated_at", null: false
     t.index ["comentario_id"], name: "index_comentarios_on_comentario_id"
     t.index ["forum_id"], name: "index_comentarios_on_forum_id"
-    t.index ["usuario_id"], name: "index_comentarios_on_usuario_id"
+    t.index ["usuario_curso_id"], name: "index_comentarios_on_usuario_curso_id"
   end
 
   create_table "conteudos", force: :cascade do |t|
@@ -119,9 +119,11 @@ ActiveRecord::Schema.define(version: 2018_12_06_193150) do
     t.string "titulo"
     t.text "descricao"
     t.bigint "curso_id"
+    t.bigint "usuario_curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["curso_id"], name: "index_foruns_on_curso_id"
+    t.index ["usuario_curso_id"], name: "index_foruns_on_usuario_curso_id"
   end
 
   create_table "materiais", force: :cascade do |t|
@@ -202,12 +204,13 @@ ActiveRecord::Schema.define(version: 2018_12_06_193150) do
 
   add_foreign_key "comentarios", "comentarios"
   add_foreign_key "comentarios", "foruns"
-  add_foreign_key "comentarios", "usuarios"
+  add_foreign_key "comentarios", "usuario_curso"
   add_foreign_key "conteudos", "cursos"
   add_foreign_key "cursos", "tema_cursos"
   add_foreign_key "cursos", "usuarios", column: "proprietario_id"
   add_foreign_key "explicacoes", "conteudos"
   add_foreign_key "foruns", "cursos"
+  add_foreign_key "foruns", "usuario_curso"
   add_foreign_key "materiais", "conteudos"
   add_foreign_key "usuario_curso", "cursos"
   add_foreign_key "usuario_curso", "usuarios"
