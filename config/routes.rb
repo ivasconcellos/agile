@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :avatares
   resources :comentarios
   resources :foruns
   resources :explicacoes
