@@ -1,2 +1,3 @@
-$('#task-form').html("<%= j (render 'form') %>");
-$('#task-form').slideDown(350);
+$('#task-form<%= @comentario.id %>').html("<%= j (render 'form') %>");
+$('#task-form<%= @comentario.id %>').slideDown(350);
+$('#<%= @comentario.id %>').hide();

@@ -6,7 +6,7 @@
       <thead>
         <tr>
           <th class="text-center">Nome</th>
-          <th class="text-center">Materias</th>
+          <th class="text-center">Materiais</th>
           <th class="text-center">Explicações</th>
           <th colspan="3" class="text-center">Opções</th>
         </tr>
@@ -17,7 +17,7 @@
             <td><%= conteudo.nome %></td>
             <td>
               <% if can? :new, Material %>
-                <%= link_to  'Inserir Material', {controller: 'materiais', action: 'new', conteudo_id: conteudo.id}, class: "btn btn-sm btn-danger" %></td>
+                <%= link_to  'Materiais', {controller: 'materiais', action: 'index', conteudo_id: conteudo.id}, class: "btn btn-sm btn-danger" %></td>
               <% else%> - 
               <% end %>
             <td>
@@ -44,7 +44,7 @@
   <br>
 
   <% if can? :new, Conteudo %>
-    <div class="text-center">
+    <div class="card-footer text-muted">
       <%= link_to 'Cadastrar Módulo do Curso', {controller: 'conteudos', action: 'new', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-primary" %>
     </div>
   <% end %>

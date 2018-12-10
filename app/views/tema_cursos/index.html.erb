@@ -42,11 +42,11 @@
   <br>
 
   
-  <div class="text-center">
+  <div class="card-footer text-muted">
     <% if can? :new, TemaCurso %>
-    <%= link_to 'Cadastrar Tema de Curso', new_tema_curso_path, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Cadastrar Tema de Curso', new_tema_curso_path, class: "btn btn-md btn-primary" %>
     <% end %>
-    <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar', inicial_path, class: "btn btn-md btn-secondary" %>
   </div>
   
 </div>

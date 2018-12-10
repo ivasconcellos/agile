@@ -1,17 +1,17 @@
-<div class="card-body">
-  <%= form_with(model: forum, local: true) do |form| %>
-    <% if forum.errors.any? %>
-      <div id="error_explanation" class="alert alert-danger">
-        <h2><%= pluralize(forum.errors.count, "erro(s)") %> - Fórum não pôde ser salvo!</h2>
+<%= form_with(model: forum, local: true) do |form| %>
+  <% if forum.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(forum.errors.count, "erro(s)") %> - Fórum não pôde ser salvo!</h2>
 
-        <ul>
-        <% forum.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
+      <ul>
+      <% forum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
+  <div class="card-body">
     <%= form.hidden_field :curso_id %>
 
     <div class="form-group row">
@@ -24,14 +24,14 @@
     <div class="form-group row">
       <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Descrição</label>
       <div class="col-md-6">
-        <%= form.text_area :descricao, class: "form-control" %>
+        <%= form.cktext_area :descricao, class: "form-control" %>
       </div>
     </div>
+  </div>
 
-    <div class="text-center">
-      <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
-      <%= link_to 'Voltar', foruns_path, class: "btn btn-md btn-secondary" %>
-    </div>
+  <div class="card-footer text-muted">
+    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', foruns_path, class: "btn btn-md btn-secondary" %>
+  </div>
 
-  <% end %>
-</div>
+<% end %>

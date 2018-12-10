@@ -20,13 +20,6 @@
     <% end %>      
   </ul>
 
-  <br>
-  <div class="text-center">
-    <% if can? :edit, Curso %>
-      <%= link_to 'Atualizar', edit_curso_path(@curso), class: "btn btn-md btn-primary" %>
-    <% end %>
-  </div>
-
   <% if @usuario.perfil == "Professor" %>
     <div class="text-center">
       <%= link_to 'Visualizar curso', {controller: 'cursos', action: 'descricao', id: @curso}, class: "btn btn-md btn-success" %>
@@ -41,11 +34,14 @@
             </div>
         </div>
       </div>
-      <div class="text-center">
-        <br>
-        <%= link_to 'Continuar curso', {controller: 'cursos', action: 'descricao', id: @curso}, class: "btn btn-md btn-success" %>
-      </div>
     </div>
+    <div class="card-footer text-muted">
+      <% if can? :edit, Curso %>
+        <%= link_to 'Atualizar', edit_curso_path(@curso), class: "btn btn-md btn-primary" %>
+      <% end %>
+      <%= link_to 'Continuar curso', {controller: 'cursos', action: 'descricao', id: @curso}, class: "btn btn-md btn-success" %>
+    </div>
+    
   <% end %>
   
 </div>

@@ -12,10 +12,10 @@
 
 	<br>
 
-	<div class="text-center">
+	<div class="card-footer text-muted">
 	  <% if can? :edit, Explicacao %>
 	    <%= link_to 'Atualizar', edit_explicacao_path(@explicacao), class: "btn btn-md btn-primary" %>
 	  <% end %>
-	  <%= link_to 'Voltar', explicacoes_path, class: "btn btn-md btn-danger" %>
+	  <%= link_to 'Voltar', explicacoes_path, class: "btn btn-md btn-secondary" %>
 	</div>
 </div>

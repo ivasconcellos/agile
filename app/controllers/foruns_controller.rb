@@ -32,7 +32,8 @@ class ForunsController < ApplicationController
   # POST /foruns.json
   def create
     @forum = Forum.new(forum_params)
-
+    @usuario = UsuarioCurso.select(:id).where(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id).first
+    @forum.usuario_curso_id = @usuario.id
     respond_to do |format|
       if @forum.save
         format.html { redirect_to @forum, notice: 'Fórum criado com sucesso!' }
@@ -77,6 +78,6 @@ class ForunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def forum_params
-      params.require(:forum).permit(:titulo, :descricao, :curso_id)
+      params.require(:forum).permit(:titulo, :descricao, :curso_id, :usuario_curso_id)
     end
 end
