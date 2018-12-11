@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :avatares
   resources :comentarios
   resources :foruns
   resources :explicacoes
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
   get 'busca_curso' => 'usuario_curso#busca_curso'
   get 'descricao' => 'cursos#descricao'
   get 'material_texto' => 'materiais#texto'
+  get 'meu_perfil' => 'usuario_curso#meu_perfil'
  
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

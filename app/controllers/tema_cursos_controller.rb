@@ -14,6 +14,7 @@ class TemaCursosController < ApplicationController
   # GET /temas_cursos/1.json
   def show
     authorize! :show, @tema_curso
+    @avatares = Avatar.where(tema_curso_id: @tema_curso.id)
     render layout: 'neutro'
   end
 

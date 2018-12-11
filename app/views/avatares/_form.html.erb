@@ -1,0 +1,54 @@
+<%= form_with(model: avatar, local: true) do |form| %>
+  <% if avatar.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(avatar.errors.count, "erro(s)") %> - Avatar não pôde ser salvo!</h2>
+
+      <ul>
+      <% avatar.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card-body">
+    <%= form.hidden_field :tema_curso_id %>
+    
+    <% if not avatar.tema_curso_id? %>
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Tema curso*</label>
+        <div class="col-md-6">
+          <%= form.collection_select(:tema_curso_id, TemaCurso.all.order('nome'), :id, :nome, :prompt => true, class: "form-control") %>
+        </div>
+      </div>
+    <% end %>
+  
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
+      <div class="col-md-6">
+        <%= form.text_field :nome, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Perfil*</label>
+      <div class="col-md-6">
+        <%= form.select :perfil,  options_for_select([["Aluno", "Aluno"], ["Professor", "Professor"]]), class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Imagem*</label>
+      <div class="col-md-6">
+        <%= form.file_field :imagem, as: :file %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card-footer text-muted">
+    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', avatares_path, class: "btn btn-md btn-secondary" %>
+  </div>
+
+<% end %>

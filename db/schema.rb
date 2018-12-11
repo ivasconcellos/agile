@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_10_191208) do
+ActiveRecord::Schema.define(version: 2018_12_11_011036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,19 @@ ActiveRecord::Schema.define(version: 2018_12_10_191208) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "avatares", force: :cascade do |t|
+    t.bigint "tema_curso_id"
+    t.string "nome"
+    t.string "perfil"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "imagem_file_name"
+    t.string "imagem_content_type"
+    t.integer "imagem_file_size"
+    t.datetime "imagem_updated_at"
+    t.index ["tema_curso_id"], name: "index_avatares_on_tema_curso_id"
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
@@ -171,10 +184,8 @@ ActiveRecord::Schema.define(version: 2018_12_10_191208) do
     t.bigint "curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "avatar_file_name"
-    t.string "avatar_content_type"
-    t.integer "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.bigint "avatar_id"
+    t.index ["avatar_id"], name: "index_usuario_curso_on_avatar_id"
     t.index ["curso_id"], name: "index_usuario_curso_on_curso_id"
     t.index ["usuario_id"], name: "index_usuario_curso_on_usuario_id"
   end
@@ -202,6 +213,7 @@ ActiveRecord::Schema.define(version: 2018_12_10_191208) do
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "avatares", "tema_cursos"
   add_foreign_key "comentarios", "comentarios"
   add_foreign_key "comentarios", "foruns"
   add_foreign_key "comentarios", "usuario_curso"
@@ -212,6 +224,7 @@ ActiveRecord::Schema.define(version: 2018_12_10_191208) do
   add_foreign_key "foruns", "cursos"
   add_foreign_key "foruns", "usuario_curso"
   add_foreign_key "materiais", "conteudos"
+  add_foreign_key "usuario_curso", "avatares"
   add_foreign_key "usuario_curso", "cursos"
   add_foreign_key "usuario_curso", "usuarios"
   add_foreign_key "usuarios", "cursos", column: "curso_atual_id"

@@ -13,12 +13,24 @@
 
   <%= form.hidden_field :curso_id %>
 
-  <div class="form-group row">
-    <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Perfil*</label>
-    <div class="col-md-6">
-      <%= form.select :perfil,  options_for_select([["Aluno", "Aluno"], ["Professor", "Professor"]]), class: "form-control" %>
+  
+  <% if current_usuario.curso_atual.usuario_curso.first.perfil == "Professor" %>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Perfil*</label>
+      <div class="col-md-6">
+        <%= form.select :perfil,  options_for_select([["Aluno", "Aluno"], ["Professor", "Professor"]]), class: "form-control" %>
+      </div>
     </div>
-  </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Usuário*</label>
+      <div class="col-md-6">
+        <%= form.collection_select(:usuario_id, Usuario.all.order('nome'), :id, :nome, :prompt => true, class: "form-control")%>
+      </div>
+    </div>
+    
+  <% end %>
 
   <div class="form-group row">
     <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Apelido*</label>
@@ -28,16 +40,13 @@
   </div>
 
   <div class="form-group row">
-    <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Usuário*</label>
-    <div class="col-md-6">
-      <%= form.collection_select(:usuario_id, Usuario.all.order('nome'), :id, :nome, :prompt => true, class: "form-control")%>
-    </div>
-  </div>
-
-  <div class="form-group row">
     <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Avatar</label>
     <div class="col-md-6">
-      <%= form.file_field :avatar, as: :file %>
+      <% Avatar.where(tema_curso_id: current_usuario.curso_atual.tema_curso_id).each do |avatar| %>
+        <%= form.radio_button :avatar_id, avatar.id %>
+        <%= avatar.nome %>
+        <%= image_tag avatar.imagem.url(:thumb), class: "img-responsive img-thumbnail" %>
+      <% end %>      
     </div>
   </div>
 

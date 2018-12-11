@@ -14,4 +14,5 @@ class Usuario < ApplicationRecord
     ALUNO,
     PROFESSOR
   ]
+
 end
