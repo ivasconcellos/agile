@@ -1,31 +1,43 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-header">Avatares</div>
 
-<h1>Avatares</h1>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th class="text-center">Nome</th>
+          <th class="text-center">Perfil</th>
+          <th class="text-center">Tema do Curso</th>
+          <th colspan="3" class="text-center">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @avatares.each do |avatar| %>
+          <tr>
+            <td><%= avatar.nome %></td>
+            <td class="text-center"><%= avatar.perfil %></td>
+            <td class="text-center"><%= avatar.tema_curso.nome %></td>
+            <% if can? :show, Avatar %>
+              <td><%= link_to 'Visualizar', avatar %></td>
+            <% end %>
+            <% if can? :edit, Avatar %>
+              <td><%= link_to 'Atualizar', edit_avatar_path(avatar) %></td>
+            <% end %>
+            <% if can? :destroy, Avatar %>
+              <td><%= link_to 'Excluir', avatar, method: :delete, data: { confirm: 'Deseja realmente excluir o Avatar do Tema do Curso?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  
+  <br>
 
-<table>
-  <thead>
-    <tr>
-      <th>Tema curso</th>
-      <th>Nome</th>
-      <th>Perfil</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <% if can? :new, Avatar %>
+    <div class="text-center">
+      <%= link_to 'Cadastrar Avatar no Tema do Curso', new_avatar_path, class: "btn btn-md btn-primary" %>
+    </div>
+  <% end %>
 
-  <tbody>
-    <% @avatares.each do |avatar| %>
-      <tr>
-        <td><%= avatar.tema_curso %></td>
-        <td><%= avatar.nome %></td>
-        <td><%= avatar.perfil %></td>
-        <td><%= link_to 'Show', avatar %></td>
-        <td><%= link_to 'Edit', edit_avatar_path(avatar) %></td>
-        <td><%= link_to 'Destroy', avatar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Avatar', new_avatar_path %>
+</div>

@@ -1,19 +1,21 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
 
-<p>
-  <strong>Tema curso:</strong>
-  <%= @avatar.tema_curso %>
-</p>
+  <div class="card-header">Avata do Tema do Curso</div>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @avatar.nome %>
-</p>
+  <ul class="list-group">
+    <li class="list-group-item"><%= image_tag @avatar.imagem.url(:thumb), class: "img-responsive img-thumbnail" %></li>
+    <li class="list-group-item"><b>Tema curso:</b> <%= @avatar.tema_curso.nome %></li>
+    <li class="list-group-item"><b>Nome:</b> <%= @avatar.nome %></li>
+    <li class="list-group-item"><b>Perfil:</b> <%= @avatar.perfil %></li>  
+    <li class="list-group-item"><b>Cadastrado em:</b> <%= @avatar.created_at.strftime("%d/%m/%Y") %></li>     
+  </ul>
 
-<p>
-  <strong>Perfil:</strong>
-  <%= @avatar.perfil %>
-</p>
+  <br>
+  <div class="text-center">
+    <% if can? :edit, Avatar %>
+      <%= link_to 'Atualizar', edit_avatar_path(@avatar), class: "btn btn-md btn-primary" %>
+    <% end %>
+    <%= link_to 'Voltar', avatares_path, class: "btn btn-md btn-secondary" %>
+  </div>
 
-<%= link_to 'Edit', edit_avatar_path(@avatar) %> |
-<%= link_to 'Back', avatares_path %>
+</div>

@@ -3,14 +3,12 @@
   <div class="card-header">Usuário do Curso</div>
 
   <ul class="list-group">
-    <li class="list-group-item"><%= image_tag @usuario_curso.avatar.url(:thumb) %></li>
+    <li class="list-group-item"><%= image_tag @usuario_curso.avatar.url(:thumb), class: "img-responsive img-thumbnail" %></li>
     <li class="list-group-item"><b>Nome:</b> <%= @usuario_curso.usuario.nome %></li>
     <li class="list-group-item"><b>Curso:</b> <%= @usuario_curso.curso.nome %></li>
     <li class="list-group-item"><b>Apelido neste curso:</b> <%= @usuario_curso.nickname %></li> 
     <li class="list-group-item"><b>Perfil:</b> <%= @usuario_curso.perfil %></li>  
     <li class="list-group-item"><b>Cadastro no curso:</b> <%= @usuario_curso.created_at.strftime("%d/%m/%Y") %></li> 
-    
-    
   </ul>
 
   <br>
