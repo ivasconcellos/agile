@@ -68,6 +68,11 @@ class UsuarioCursoController < ApplicationController
     end
   end
 
+  def meu_perfil
+    @usuario_curso = UsuarioCurso.where(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id).first
+    authorize! :show, @usuario_curso
+  end
+
   def busca_curso
     if not params[:codigo_acesso]
       render layout: 'neutro'

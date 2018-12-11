@@ -1,25 +1,29 @@
 class AvataresController < ApplicationController
   before_action :set_avatar, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_usuario!
-  
+
   # GET /avatares
   # GET /avatares.json
   def index
     @avatares = Avatar.all
+    authorize! :index, @avatares
   end
 
   # GET /avatares/1
   # GET /avatares/1.json
   def show
+    authorize! :show, @avatar
   end
 
   # GET /avatares/new
   def new
     @avatar = Avatar.new
+    authorize! :new, @avatar
   end
 
   # GET /avatares/1/edit
   def edit
+    authorize! :edit, @avatar
   end
 
   # POST /avatares
@@ -55,6 +59,7 @@ class AvataresController < ApplicationController
   # DELETE /avatares/1
   # DELETE /avatares/1.json
   def destroy
+    authorize! :destroy, @avatar
     @avatar.destroy
     respond_to do |format|
       format.html { redirect_to avatares_url, notice: 'Avatar excluído com sucesso!' }
