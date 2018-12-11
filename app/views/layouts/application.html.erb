@@ -53,7 +53,10 @@
 
         <ul class="list-unstyled components">            
           <li class="nav-item">
-              <%= link_to  @current_usuario.curso_atual, class: "nav-link" do %><i class="fa fa-info-circle fa-lg"> </i> Descricao<% end %>
+              <%= link_to  @current_usuario.curso_atual, class: "nav-link" do %><i class="fa fa-info-circle fa-lg"> </i> Detalhes do curso<% end %>
+          </li>
+          <li class="nav-item">
+              <%= link_to meu_perfil_path, class: "nav-link" do %><i class="fa fa-user fa-lg"> </i> Meu perfil<% end %>
           </li>
           <li class="nav-item">
               <a href="#modulos" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-book fa-lg"></i> Módulos</a>
