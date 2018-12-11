@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_10_232824) do
+ActiveRecord::Schema.define(version: 2018_12_11_011036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -184,10 +184,8 @@ ActiveRecord::Schema.define(version: 2018_12_10_232824) do
     t.bigint "curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "avatar_file_name"
-    t.string "avatar_content_type"
-    t.integer "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.bigint "avatar_id"
+    t.index ["avatar_id"], name: "index_usuario_curso_on_avatar_id"
     t.index ["curso_id"], name: "index_usuario_curso_on_curso_id"
     t.index ["usuario_id"], name: "index_usuario_curso_on_usuario_id"
   end
@@ -226,6 +224,7 @@ ActiveRecord::Schema.define(version: 2018_12_10_232824) do
   add_foreign_key "foruns", "cursos"
   add_foreign_key "foruns", "usuario_curso"
   add_foreign_key "materiais", "conteudos"
+  add_foreign_key "usuario_curso", "avatares"
   add_foreign_key "usuario_curso", "cursos"
   add_foreign_key "usuario_curso", "usuarios"
   add_foreign_key "usuarios", "cursos", column: "curso_atual_id"
