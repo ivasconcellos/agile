@@ -18,6 +18,7 @@ class AvataresController < ApplicationController
   # GET /avatares/new
   def new
     @avatar = Avatar.new
+    @avatar.tema_curso_id = params[:tema_curso_id]
     authorize! :new, @avatar
   end
 
@@ -33,10 +34,10 @@ class AvataresController < ApplicationController
 
     respond_to do |format|
       if @avatar.save
-        format.html { redirect_to @avatar, notice: 'Avatar cadastrado com sucesso!' }
+        format.html { redirect_to @avatar.tema_curso, notice: 'Avatar cadastrado com sucesso!' }
         format.json { render :show, status: :created, location: @avatar }
       else
-        format.html { render :new }
+        format.html { render :new, @current_usuario => current_usuario }
         format.json { render json: @avatar.errors, status: :unprocessable_entity }
       end
     end
@@ -47,10 +48,10 @@ class AvataresController < ApplicationController
   def update
     respond_to do |format|
       if @avatar.update(avatar_params)
-        format.html { redirect_to @avatar, notice: 'Avatar atualizado com sucesso!' }
+        format.html { redirect_to @avatar.tema_curso, notice: 'Avatar atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @avatar }
       else
-        format.html { render :edit }
+        format.html { render :edit, @current_usuario => current_usuario }
         format.json { render json: @avatar.errors, status: :unprocessable_entity }
       end
     end
@@ -60,9 +61,10 @@ class AvataresController < ApplicationController
   # DELETE /avatares/1.json
   def destroy
     authorize! :destroy, @avatar
+    @tema_curso = @avatar.tema_curso
     @avatar.destroy
     respond_to do |format|
-      format.html { redirect_to avatares_url, notice: 'Avatar excluído com sucesso!' }
+      format.html { redirect_to @tema_curso, notice: 'Avatar excluído com sucesso!' }
       format.json { head :no_content }
     end
   end
