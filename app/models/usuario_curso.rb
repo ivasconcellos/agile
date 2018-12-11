@@ -1,8 +1,7 @@
 class UsuarioCurso < ApplicationRecord
-	validates_presence_of :perfil, :nickname
+	validates_presence_of :perfil, :nickname, :avatar_id
 	belongs_to :curso
 	belongs_to :usuario
-	has_attached_file :avatar, styles: {medium: "300x300>", thumb:"50x50>"}, default_url: "missing.png"
-	validates_attachment_content_type :avatar, content_type: ["image/png", "image/jpg", "image/jpeg"], message: "Tipo de arquivo não permitido(Escolha um arquivo png ou jpg)"
+	belongs_to :avatar
 	validates_uniqueness_of :usuario_id, scope: :curso_id, message: "já está cadastrado no curso!"
 end
