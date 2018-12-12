@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_23_161633) do
+ActiveRecord::Schema.define(version: 2018_12_12_160304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -148,6 +148,17 @@ ActiveRecord::Schema.define(version: 2018_11_23_161633) do
     t.index ["conteudo_id"], name: "index_materiais_on_conteudo_id"
   end
 
+  create_table "tarefas", force: :cascade do |t|
+    t.bigint "conteudo_id"
+    t.bigint "usuario_id"
+    t.text "texto"
+    t.float "pontuacao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conteudo_id"], name: "index_tarefas_on_conteudo_id"
+    t.index ["usuario_id"], name: "index_tarefas_on_usuario_id"
+  end
+
   create_table "tema_cursos", force: :cascade do |t|
     t.string "nome", null: false
     t.boolean "ativo", default: true
@@ -209,6 +220,8 @@ ActiveRecord::Schema.define(version: 2018_11_23_161633) do
   add_foreign_key "explicacoes", "conteudos"
   add_foreign_key "forums", "cursos"
   add_foreign_key "materiais", "conteudos"
+  add_foreign_key "tarefas", "conteudos"
+  add_foreign_key "tarefas", "usuarios"
   add_foreign_key "usuario_curso", "cursos"
   add_foreign_key "usuario_curso", "usuarios"
   add_foreign_key "usuarios", "cursos", column: "curso_atual_id"

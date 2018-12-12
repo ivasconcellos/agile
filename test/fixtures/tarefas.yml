@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  conteudo: one
+  usuario: one
+  texto: MyText
+  pontuacao: 
+
+two:
+  conteudo: two
+  usuario: two
+  texto: MyText
+  pontuacao: 

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Conteudo:</strong>
+  <%= @tarefa.conteudo %>
+</p>
+
+<p>
+  <strong>Usuario:</strong>
+  <%= @tarefa.usuario %>
+</p>
+
+<p>
+  <strong>Texto:</strong>
+  <%= @tarefa.texto %>
+</p>
+
+<p>
+  <strong>Pontuacao:</strong>
+  <%= @tarefa.pontuacao %>
+</p>
+
+<%= link_to 'Edit', edit_tarefa_path(@tarefa) %> |
+<%= link_to 'Back', tarefas_path %>
