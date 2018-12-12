@@ -9,7 +9,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-   <% %w(bootstrap.min sb-admin template_cursos font-awesome.min).each do |asset| %>
+   <% %w(bootstrap.min sb-admin template_cursos fontawesome.min).each do |asset| %>
         <%= stylesheet_link_tag asset %>
     <% end %>
 
@@ -72,27 +72,27 @@
           <li class="nav-item">
               <a href="#atividades" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-tasks fa-lg"></i> Atividades</a>
               <ul class="collapse list-unstyled" id="atividades">
-                  <% @current_usuario.curso_atual.salas_chats.each_with_index do |sala_chat, index| %>
                   <li>
-                      <%= link_to "#{sala_chat.nome}",sala_chat, {class: "nav-link"} %></a>
-                  </li>
-                <% end %>
-                <li><%= link_to "Todos", salas_chats_path, {class: "nav-link"} %></li>
-              </ul>
-          </li>
-          <li class="nav-item">
-              <a href="#atividades" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-tasks fa-lg"></i> Chats</a>
-              <ul class="collapse list-unstyled" id="atividades">
-                  <li>
-                      <a href="#" class= "nav-link">Atividade 1</a>
+                    <a href="#" class= "nav-link">Atividade 1</a>
                   </li>
                   <li>
-                      <a href="#" class= "nav-link">Atividade 2</a>
+                    <a href="#" class= "nav-link">Atividade 2</a>
                   </li>
               </ul>
           </li>
           <li class="nav-item">
-              <a href="#forum" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-comments fa-lg"></i> Fóruns</a>
+            <a href="#chats" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-comments fa-lg"></i> Chats</a>
+            <ul class="collapse list-unstyled" id="chats">
+              <% @current_usuario.curso_atual.salas_chats.each_with_index do |sala_chat, index| %>
+                <li>
+                  <%= link_to "#{sala_chat.nome}",sala_chat, {class: "nav-link"} %></a>
+                </li>
+              <% end %>
+              <li><%= link_to "Todos", salas_chats_path, {class: "nav-link"} %></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+              <a href="#forum" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-newspaper-o fa-lg"></i> Fóruns</a>
               <ul class="collapse list-unstyled" id="forum">
                   <% @current_usuario.curso_atual.foruns.each_with_index do |forum, index| %>
                     <li>
