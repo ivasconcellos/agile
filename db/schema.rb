@@ -184,6 +184,10 @@ ActiveRecord::Schema.define(version: 2018_12_11_011036) do
     t.bigint "curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.bigint "avatar_id"
     t.index ["avatar_id"], name: "index_usuario_curso_on_avatar_id"
     t.index ["curso_id"], name: "index_usuario_curso_on_curso_id"
