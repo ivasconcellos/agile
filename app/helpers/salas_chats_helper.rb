@@ -1,0 +1,2 @@
+module SalasChatsHelper
+end

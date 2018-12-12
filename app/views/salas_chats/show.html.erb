@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @sala_chat.nome %>
+</p>
+
+<p>
+  <strong>Usuario:</strong>
+  <%= @sala_chat.usuario %>
+</p>
+
+<p>
+  <strong>Curso:</strong>
+  <%= @sala_chat.curso %>
+</p>
+
+<%= link_to 'Edit', edit_sala_chat_path(@sala_chat) %> |
+<%= link_to 'Back', salas_chats_path %>

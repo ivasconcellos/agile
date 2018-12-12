@@ -72,6 +72,17 @@
           <li class="nav-item">
               <a href="#atividades" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-tasks fa-lg"></i> Atividades</a>
               <ul class="collapse list-unstyled" id="atividades">
+                  <% @current_usuario.curso_atual.salas_chats.each_with_index do |sala_chat, index| %>
+                  <li>
+                      <%= link_to "#{sala_chat.nome}",sala_chat, {class: "nav-link"} %></a>
+                  </li>
+                <% end %>
+                <li><%= link_to "Todos", salas_chats_path, {class: "nav-link"} %></li>
+              </ul>
+          </li>
+          <li class="nav-item">
+              <a href="#atividades" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-tasks fa-lg"></i> Chats</a>
+              <ul class="collapse list-unstyled" id="atividades">
                   <li>
                       <a href="#" class= "nav-link">Atividade 1</a>
                   </li>

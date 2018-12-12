@@ -16,6 +16,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'explicacao', 'explicacoes'
 	inflect.irregular 'forum', 'foruns'
 	inflect.irregular 'avatar', 'avatares'
+	inflect.irregular 'sala_chat', 'salas_chats'
 end
 
 # These inflection rules are supported but not enabled by default:

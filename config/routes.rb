@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :salas_chats
   resources :avatares
   resources :comentarios
   resources :foruns
