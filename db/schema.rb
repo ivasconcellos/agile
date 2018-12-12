@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_12_182033) do
+ActiveRecord::Schema.define(version: 2018_12_12_182034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -167,6 +167,7 @@ ActiveRecord::Schema.define(version: 2018_12_12_182033) do
     t.string "nome"
     t.bigint "usuario_curso_id"
     t.bigint "curso_id"
+    t.boolean "ativo", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["curso_id"], name: "index_salas_chats_on_curso_id"

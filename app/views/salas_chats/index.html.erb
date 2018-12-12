@@ -1,31 +1,39 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-header">Salas de chat</div>
 
-<h1>Salas Chats</h1>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th class="text-center">Nome</th>
+          <th colspan="3" class="text-center">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @salas_chats.each do |sala_chat| %>
+          <tr>
+            <td><%= sala_chat.nome %></td>
+            <% if can? :show, SalaChat %>
+              <td><%= link_to 'Visualizar', sala_chat %></td>
+            <% end %>
+            <% if can? :edit, SalaChat %>
+              <td><%= link_to 'Atualizar', edit_sala_chat_path(sala_chat) %></td>
+            <% end %>
+            <% if can? :destroy, SalaChat %>
+              <td><%= link_to 'Excluir', sala_chat, method: :delete, data: { confirm: 'Deseja realmente excluir a Sala de Chat?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <span> <%= will_paginate @salas_chats %></span>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Usuario</th>
-      <th>Curso</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <br>
+  <% if can? :new, SalaChat %>
+    <div class="card-footer text-muted">
+      <%= link_to 'Cadastrar Sala do Chat', {controller: 'salas_chats', action: 'new', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-primary" %>
+    </div>
+  <% end %>
+</div>
 
-  <tbody>
-    <% @salas_chats.each do |sala_chat| %>
-      <tr>
-        <td><%= sala_chat.nome %></td>
-        <td><%= sala_chat.usuario %></td>
-        <td><%= sala_chat.curso %></td>
-        <td><%= link_to 'Show', sala_chat %></td>
-        <td><%= link_to 'Edit', edit_sala_chat_path(sala_chat) %></td>
-        <td><%= link_to 'Destroy', sala_chat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Sala Chat', new_sala_chat_path %>

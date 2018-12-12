@@ -4,6 +4,7 @@ class CreateSalasChats < ActiveRecord::Migration[5.2]
       t.string :nome
       t.references :usuario_curso, foreign_key: true
       t.references :curso, foreign_key: true
+      t.boolean :ativo, default: true
 
       t.timestamps
     end

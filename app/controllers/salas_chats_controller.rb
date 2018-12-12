@@ -5,7 +5,7 @@ class SalasChatsController < ApplicationController
   # GET /salas_chats
   # GET /salas_chats.json
   def index
-    @salas_chats = SalaChat.all
+    @salas_chats = SalaChat.all.page(params[:page])
     authorize! :index, @salas_chats
   end
 
@@ -18,6 +18,7 @@ class SalasChatsController < ApplicationController
   # GET /salas_chats/new
   def new
     @sala_chat = SalaChat.new
+    @sala_chat.material_id = params[:material_id]
     authorize! :new, @sala_chat
   end
 
@@ -30,7 +31,8 @@ class SalasChatsController < ApplicationController
   # POST /salas_chats.json
   def create
     @sala_chat = SalaChat.new(sala_chat_params)
-
+    @usuario = UsuarioCurso.select(:id).where(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id).first
+    @sala_chat.usuario_curso_id = @usuario.id
     respond_to do |format|
       if @sala_chat.save
         format.html { redirect_to @sala_chat, notice: 'Sala de chat cadastrada com sucesso!' }
@@ -75,6 +77,6 @@ class SalasChatsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sala_chat_params
-      params.require(:sala_chat).permit(:nome, :usuario_id, :curso_id)
+      params.require(:sala_chat).permit(:nome, :usuario_curso_id, :curso_id, :ativo)
     end
 end
