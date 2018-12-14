@@ -14,6 +14,7 @@
 //= require activestorage
 //= require ckeditor/init
 //= require_tree .
+//= require cable
 
 jQuery(function($){
     $("#data_nascimento").mask("99/99/9999");

@@ -13,6 +13,8 @@ class SalasChatsController < ApplicationController
   # GET /salas_chats/1.json
   def show
     authorize! :show, @sala_chat
+    @sala_chat = SalaChat.includes(:mensagens_chats).find_by(id: params[:id])
+    @mensagem_chat = MensagemChat.new
   end
 
   # GET /salas_chats/new

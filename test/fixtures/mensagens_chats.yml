@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  texto: MyText
+  usuario_curso: one
+  sala_chat: one
+
+two:
+  texto: MyText
+  usuario_curso: two
+  sala_chat: two

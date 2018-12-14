@@ -17,4 +17,22 @@
     <%= link_to 'Voltar', salas_chats_path, class: "btn btn-md btn-secondary" %>
   </div>
 
+
+
+<div id="mensagens" data-sala-chat-id="<%= @sala_chat.id %>">
+  <%= render @sala_chat.mensagens_chats %>
+</div>
+
+<%= form_for @mensagem_chat, url: "#" do |f| %>
+  <%= hidden_field_tag 'sala_chat_id', @sala_chat.id %>
+  <div class="form-group">
+    <%= f.label :texto %>
+    <%= f.text_area :texto, class: 'form-control' %>
+    <small class="text-muted">De 2 a 1000 caracters</small>
+  </div>
+
+  <%= f.submit "Enviar", class: 'btn btn-primary btn-lg' %>
+<% end %>
+
+
 </div>

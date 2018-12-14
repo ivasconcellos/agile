@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_12_182034) do
+ActiveRecord::Schema.define(version: 2018_12_14_191822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,6 +163,16 @@ ActiveRecord::Schema.define(version: 2018_12_12_182034) do
     t.index ["conteudo_id"], name: "index_materiais_on_conteudo_id"
   end
 
+  create_table "mensagens_chats", force: :cascade do |t|
+    t.text "texto"
+    t.bigint "usuario_curso_id"
+    t.bigint "sala_chat_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sala_chat_id"], name: "index_mensagens_chats_on_sala_chat_id"
+    t.index ["usuario_curso_id"], name: "index_mensagens_chats_on_usuario_curso_id"
+  end
+
   create_table "salas_chats", force: :cascade do |t|
     t.string "nome"
     t.bigint "usuario_curso_id"
@@ -239,6 +249,8 @@ ActiveRecord::Schema.define(version: 2018_12_12_182034) do
   add_foreign_key "foruns", "cursos"
   add_foreign_key "foruns", "usuario_curso"
   add_foreign_key "materiais", "conteudos"
+  add_foreign_key "mensagens_chats", "salas_chats"
+  add_foreign_key "mensagens_chats", "usuario_curso"
   add_foreign_key "salas_chats", "cursos"
   add_foreign_key "salas_chats", "usuario_curso"
   add_foreign_key "usuario_curso", "avatares"
