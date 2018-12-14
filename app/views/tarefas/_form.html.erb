@@ -1,3 +1,5 @@
+<div class="card-body">
+
 <%= form_with(model: tarefa, local: true) do |form| %>
   <% if tarefa.errors.any? %>
     <div id="error_explanation">
@@ -10,28 +12,28 @@
       </ul>
     </div>
   <% end %>
+<%= form.hidden_field :conteudo_id %>
+<%= form.hidden_field :usuario_id %>
 
-  <div class="field">
-    <%= form.label :conteudo_id %>
-    <%= form.text_field :conteudo_id %>
+
+  <div class="form-group row">
+      <label for="inputTexto" class="col-md-2 offset-md-2 col-form-label">Texto*</label>
+      <div class="col-md-6">
+      <%= form.text_area :texto, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :usuario_id %>
-    <%= form.text_field :usuario_id %>
+  <div class="form-group row">
+      <label for="inputPontuacao" class="col-md-2 offset-md-2 col-form-label">Pontuação*</label>
+      <div class="col-md-6">
+      <%= form.text_field :pontuacao, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :texto %>
-    <%= form.text_area :texto %>
-  </div>
 
-  <div class="field">
-    <%= form.label :pontuacao %>
-    <%= form.text_field :pontuacao %>
+  <div class="text-center">
+    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', conteudos_path, class: "btn btn-md btn-secondary" %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+</div>
 <% end %>
