@@ -1,19 +1,20 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
 
-<p>
-  <strong>Nome:</strong>
-  <%= @sala_chat.nome %>
-</p>
+  <div class="card-header">Sala de Chat</div>
 
-<p>
-  <strong>Usuario:</strong>
-  <%= @sala_chat.usuario %>
-</p>
+  <ul class="list-group">
+    <li class="list-group-item"><b>Nome:</b><%= @sala_chat.nome %></li>
+    <li class="list-group-item"><b>Curso:</b> <%= @sala_chat.curso.nome %></li>
+    <li class="list-group-item"><b>Responsável:</b> <%= @sala_chat.usuario_curso.nickname %></li> 
+    <li class="list-group-item"><b>Cadastrado em:</b> <%= @sala_chat.created_at.strftime("%d/%m/%Y") %></li>     
+  </ul>
 
-<p>
-  <strong>Curso:</strong>
-  <%= @sala_chat.curso %>
-</p>
+  <br>
+  <div class="text-center">
+    <% if can? :edit, SalaChat %>
+      <%= link_to 'Atualizar', edit_sala_chat_path(@sala_chat), class: "btn btn-md btn-primary" %>
+    <% end %>
+    <%= link_to 'Voltar', salas_chats_path, class: "btn btn-md btn-secondary" %>
+  </div>
 
-<%= link_to 'Edit', edit_sala_chat_path(@sala_chat) %> |
-<%= link_to 'Back', salas_chats_path %>
+</div>

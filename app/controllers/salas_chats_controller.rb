@@ -5,7 +5,7 @@ class SalasChatsController < ApplicationController
   # GET /salas_chats
   # GET /salas_chats.json
   def index
-    @salas_chats = SalaChat.all.page(params[:page])
+    @salas_chats = SalaChat.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
     authorize! :index, @salas_chats
   end
 
@@ -18,7 +18,7 @@ class SalasChatsController < ApplicationController
   # GET /salas_chats/new
   def new
     @sala_chat = SalaChat.new
-    @sala_chat.material_id = params[:material_id]
+    @sala_chat.curso_id = params[:curso_id]
     authorize! :new, @sala_chat
   end
 
