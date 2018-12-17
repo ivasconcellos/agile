@@ -4,7 +4,7 @@ class TarefasController < ApplicationController
   # GET /tarefas
   # GET /tarefas.json
   def index
-    @tarefas = Tarefa.all
+    @tarefas = Tarefa.joins(:usuario_curso).where('usuario_curso.curso_id= ?', current_usuario.curso_atual_id)
   end
 
   # GET /tarefas/1
@@ -15,6 +15,10 @@ class TarefasController < ApplicationController
   # GET /tarefas/new
   def new
     @tarefa = Tarefa.new
+    @tarefa.conteudo_id = params[:conteudo_id]
+    @usuario_curso_id = UsuarioCurso.find_by(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual.id).id
+    # @tarefa.usuario_curso_id = uc.id
+
   end
 
   # GET /tarefas/1/edit
@@ -29,7 +33,7 @@ class TarefasController < ApplicationController
     respond_to do |format|
       if @tarefa.save
         format.html { redirect_to @tarefa, notice: 'Tarefa was successfully created.' }
-        format.json { render :show, status: :created, location: @tarefa }
+        format.json { render :index, status: :created, location: @tarefa }
       else
         format.html { render :new }
         format.json { render json: @tarefa.errors, status: :unprocessable_entity }
@@ -69,6 +73,6 @@ class TarefasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tarefa_params
-      params.require(:tarefa).permit(:conteudo_id, :usuario_id, :texto, :pontuacao)
+      params.require(:tarefa).permit(:conteudo_id, :usuario_curso_id, :texto, :pontuacao)
     end
 end

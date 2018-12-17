@@ -150,13 +150,13 @@ ActiveRecord::Schema.define(version: 2018_12_12_160304) do
 
   create_table "tarefas", force: :cascade do |t|
     t.bigint "conteudo_id"
-    t.bigint "usuario_id"
+    t.bigint "usuario_curso_id"
     t.text "texto"
     t.float "pontuacao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["conteudo_id"], name: "index_tarefas_on_conteudo_id"
-    t.index ["usuario_id"], name: "index_tarefas_on_usuario_id"
+    t.index ["usuario_curso_id"], name: "index_tarefas_on_usuario_curso_id"
   end
 
   create_table "tema_cursos", force: :cascade do |t|
@@ -221,7 +221,7 @@ ActiveRecord::Schema.define(version: 2018_12_12_160304) do
   add_foreign_key "forums", "cursos"
   add_foreign_key "materiais", "conteudos"
   add_foreign_key "tarefas", "conteudos"
-  add_foreign_key "tarefas", "usuarios"
+  add_foreign_key "tarefas", "usuario_curso"
   add_foreign_key "usuario_curso", "cursos"
   add_foreign_key "usuario_curso", "usuarios"
   add_foreign_key "usuarios", "cursos", column: "curso_atual_id"
