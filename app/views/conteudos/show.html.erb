@@ -1,13 +1,13 @@
 <div class="card">
 
   <div class="card-header">Módulo do Curso</div>
-  
+
 	<ul class="list-group">
 	  <li class="list-group-item"><b>Nome:</b> <%= @conteudo.nome %></li>
-	  <li class="list-group-item"><b>Descrição:</b> <%= @conteudo.descricao %></li>  
-	  <li class="list-group-item"><b>Público:</b> <%= @conteudo.publico? ? 'Sim' : 'Não' %></li>  
-	  <li class="list-group-item"><b>Cadastrado em:</b> <%= @conteudo.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
-	  <li class="list-group-item"><b>Curso:</b> <%= @conteudo.curso.nome %></li>      
+	  <li class="list-group-item"><b>Descrição:</b> <%= @conteudo.descricao %></li>
+	  <li class="list-group-item"><b>Público:</b> <%= @conteudo.publico? ? 'Sim' : 'Não' %></li>
+	  <li class="list-group-item"><b>Cadastrado em:</b> <%= @conteudo.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
+	  <li class="list-group-item"><b>Curso:</b> <%= @conteudo.curso.nome %></li>
 	</ul>
 
 	<br>
@@ -18,6 +18,9 @@
 	  <% if can? :new, Explicacao %>
 	  	<%= link_to  'Inserir Explicações', {controller: 'explicacoes', action: 'new', conteudo_id: @conteudo.id}, class: "btn btn-md btn-danger" %>
 	  <% end %>
+    <% if can? :new, Tarefa %>
+      <%= link_to  'Inserir Tarefas', {controller: 'tarefas', action: 'new', conteudo_id: @conteudo.id}, class: "btn btn-md btn-danger" %>
+    <%end%>
 	  <%= link_to 'Voltar', {controller: 'conteudos', action: 'index', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-secondary" %>
 	</div>
 
@@ -38,8 +41,8 @@
           <% end %>
         </div>
 	</div>
-		
-	
+
+
 
 	<% if not @explicacoes.empty? %>
 
@@ -49,8 +52,8 @@
 			<ul class="list-group">
 			  <li class="list-group-item"><b>Nome:</b> <%= link_to explicacao.nome, explicacao %></li>
 			  <li class="list-group-item"><b>Descrição:</b> <%= explicacao.descricao.to_s.html_safe %></li>
-			  <li class="list-group-item"><b>Áudio:</b> <%= explicacao.audio %></li>  
-			  <li class="list-group-item"><b>Cadastrado em:</b> <%= explicacao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>       
+			  <li class="list-group-item"><b>Áudio:</b> <%= explicacao.audio %></li>
+			  <li class="list-group-item"><b>Cadastrado em:</b> <%= explicacao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
 			</ul>
 		<% end %>
 	<% end %>

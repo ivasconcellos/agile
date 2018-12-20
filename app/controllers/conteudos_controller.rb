@@ -7,13 +7,14 @@ class ConteudosController < ApplicationController
     @conteudos = Conteudo.where(curso_id: current_usuario.curso_atual_id).page(params[:page]).order('nome')
     authorize! :index, @conteudos
   end
-  
+
   # GET /conteudos/1
   # GET /conteudos/1.json
   def show
     authorize! :show, @conteudo
     @materiais = Material.where(conteudo_id: @conteudo)
     @explicacoes = Explicacao.where(conteudo_id: @conteudo)
+    @tarefas = Tarefa.where(conteudo_id: @conteudo)
   end
 
   # GET /conteudos/new
@@ -61,7 +62,7 @@ class ConteudosController < ApplicationController
   # DELETE /conteudos/1
   # DELETE /conteudos/1.json
   def destroy
-    authorize! :destroy, @conteudo  
+    authorize! :destroy, @conteudo
     respond_to do |format|
       if @conteudo.destroy
         format.html { redirect_to conteudos_url, notice: 'Módulo excluído com sucesso!' }

@@ -8,6 +8,7 @@
           <th class="text-center">Nome</th>
           <th class="text-center">Materiais</th>
           <th class="text-center">Explicações</th>
+          <th class="text-center">Tarefas</th>
           <th colspan="3" class="text-center">Opções</th>
         </tr>
       </thead>
@@ -18,13 +19,20 @@
             <td>
               <% if can? :new, Material %>
                 <%= link_to  'Materiais', {controller: 'materiais', action: 'index', conteudo_id: conteudo.id}, class: "btn btn-sm btn-danger" %></td>
-              <% else%> - 
+              <% else%> -
               <% end %>
             <td>
               <% if can? :new, Explicacao %>
                 <%= link_to  'Inserir Explicações', {controller: 'explicacoes', action: 'new', conteudo_id: conteudo.id}, class: "btn btn-sm btn-danger" %></td>
-              <% else%> - 
+              <% else%> -
               <% end %>
+              <td>
+                <% if can? :new, Tarefa %>
+                  <%= link_to  'Inserir Tarefas', {controller: 'tarefas', action: 'new', conteudo_id: conteudo.id}, class: "btn btn-sm btn-danger" %>
+              </td>
+                <% else%>
+                -
+                <% end %>
             <% if can? :show, Conteudo %>
               <td><%= link_to 'Visualizar', conteudo %></td>
             <% end %>

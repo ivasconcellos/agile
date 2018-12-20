@@ -1,0 +1,20 @@
+<div class="card">
+
+<div class="card-header">Tarefa</div>
+<ul class="list-group">
+   <li class="list-group-item"><b>Conteudo:</b> <%= @tarefa.conteudo.nome %></li>
+   <li class="list-group-item"><b>Textp:</b> <%= @tarefa.texto %></li>
+   <li class="list-group-item"><b>Pontuação:</b> <%= @tarefa.pontuacao %></li>
+
+</ul>
+
+
+
+<div class="card-footer text-muted">
+  <% if can? :edit, Tarefa %>
+    <%= link_to 'Atualizar', edit_tarefa_path(@tarefa), class: "btn btn-md btn-primary" %>
+  <% end %>
+  <%= link_to 'Voltar', tarefas_path, class: "btn btn-md btn-secondary" %>
+</div>
+
+</div>

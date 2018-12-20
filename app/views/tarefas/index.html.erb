@@ -1,0 +1,38 @@
+<div class="card">
+
+<p id="notice"><%= notice %></p>
+
+<div class="card-header">Tarefas </div>
+<div class="table-responsive">
+
+<table class="table table-striped table-sm">
+  <thead>
+    <tr>
+      <th>Conteudo</th>
+      <th>Texto</th>
+      <th>Pontuacao</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tarefas.each do |tarefa| %>
+      <tr>
+        <td><%= tarefa.conteudo.nome %></td>
+        <td><%= tarefa.texto %></td>
+        <td><%= tarefa.pontuacao %></td>
+        <td><%= link_to 'Show', tarefa %></td>
+        <td><%= link_to 'Edit', edit_tarefa_path(tarefa) %></td>
+        <td><%= link_to 'Destroy', tarefa, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<br>
+<!-- <div class="text-center">
+
+<%# <%= link_to 'New Tarefa', {controller: 'tarefas', action: 'new', usuario_id: @current_usuario}, class: "btn btn-md btn-primary" %> %>
+</div> -->
+</div>

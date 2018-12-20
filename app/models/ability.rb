@@ -14,6 +14,7 @@ class Ability
       can :manage, UsuarioCurso
       can :manage, Forum
       can :manage, Comentario
+      can :manage, Tarefa
       can :manage, :all
     elsif usuario.perfil == 'Aluno'
         can :manage, Comentario

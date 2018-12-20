@@ -9,7 +9,7 @@
             <li class="breadcrumb-item text-center">Meus Cursos</li>
           </ol>
 
-          
+
 		<div class="text-center">
 			<% if can? :new, Curso %>
 				<br>
@@ -22,7 +22,7 @@
 		</div>
 		<br><br>
           <!-- Icon Cards-->
-          
+
           <div class="row">
           	<% @cursos.each do |curso| %>
             <div class="col-xl-3 col-sm-6 mb-3">
@@ -41,7 +41,7 @@
           <ol class="breadcrumb">
             <li class="breadcrumb-item text-center">Buscar Cursos Públicos</li>
           </ol>
-          
+
 		  <%= form_tag request.path, :method => 'get' do %>
 		    <div class="form-row">
 			    <div class="form-group col-md-5 offset-2">
@@ -58,17 +58,17 @@
 		      <%= submit_tag 'Buscar', :class =>"btn btn-primary link" %>
 		    </div>
 		  <% end %>
-		  
+
 		  <% if not @cursos_publicos.empty? %>
 		  	<div class="row">
-	          	<% @cursos.each do |curso| %>
+	          	<% @cursos_publicos.each do |curso| %>
 		            <div class="col-xl-3 col-sm-6 mb-3">
 		              <div class="card text-white curso o-hidden h-100">
 		                <div class="card-body">
-		                  <div><%= curso.curso.nome %></div>
+		                  <div><%= curso.nome %></div>
 		                </div>
 		                <div class="card-footer bg-primary text-white">
-		                  <%= link_to 'Visualizar', {controller: 'cursos', action: 'atualizar_curso_atual', curso_id: curso.curso.id}, class: 'linkcurso' %>
+		                  <%= link_to 'Visualizar', {controller: 'cursos', action: 'atualizar_curso_atual', curso_id: curso.id}, class: 'linkcurso' %>
 		                </div>
 		              </div>
 		            </div>
