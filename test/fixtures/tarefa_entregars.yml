@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tarefa: one
+  usuario_curso: one
+  comentario: MyText
+
+two:
+  tarefa: two
+  usuario_curso: two
+  comentario: MyText

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tarefa Entregars</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tarefa</th>
+      <th>Usuario curso</th>
+      <th>Comentario</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tarefa_entregars.each do |tarefa_entregar| %>
+      <tr>
+        <td><%= tarefa_entregar.tarefa %></td>
+        <td><%= tarefa_entregar.usuario_curso %></td>
+        <td><%= tarefa_entregar.comentario %></td>
+        <td><%= link_to 'Show', tarefa_entregar %></td>
+        <td><%= link_to 'Edit', edit_tarefa_entregar_path(tarefa_entregar) %></td>
+        <td><%= link_to 'Destroy', tarefa_entregar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tarefa Entregar', new_tarefa_entregar_path %>

@@ -14,7 +14,7 @@
   <% if can? :edit, Tarefa %>
     <%= link_to 'Atualizar', edit_tarefa_path(@tarefa), class: "btn btn-md btn-primary" %>
   <% end %>
-  <%= link_to  'Enviar Tarefa', {controller: 'tarefa_alunos', action: 'new', tarefa_id: @tarefa.id}, class: "btn btn-md btn-danger" %>
+  <%= link_to  'Enviar Tarefa', {controller: 'tarefa_entregars', action: 'new', tarefa_id: @tarefa.id}, class: "btn btn-md btn-danger" %>
   <%= link_to 'Voltar', tarefas_path, class: "btn btn-md btn-secondary" %>
 </div>
 
