@@ -1,0 +1,28 @@
+<div class="card">
+
+<p id="notice"><%= notice %></p>
+<div class="card-header">Tarefas Entregues</div>
+
+<ul class="list-group">
+   <li class="list-group-item"><b>Terefa:</b>   <%= @tarefa_aluno.tarefa.conteudo.nome %></li>
+   <li class="list-group-item"><b>Nome:</b> <%= @tarefa_aluno.usuario_curso.usuario.nome %></li>
+   <li class="list-group-item"><b>Nota:</b> <%= @tarefa_aluno.nota %></li>
+   <li class="list-group-item"><b>Comentario:</b> <%= @tarefa_aluno.comentario %></li>
+</ul>
+
+
+
+
+
+
+
+
+<div class="card-footer text-muted">
+  <% if can? :edit, Tarefa %>
+    <%= link_to 'Atualizar', edit_tarefa_aluno_path(@tarefa_aluno), class: "btn btn-md btn-primary" %>
+  <% end %>
+  <%= link_to 'Voltar', tarefas_path, class: "btn btn-md btn-secondary" %>
+</div>
+
+
+</div>

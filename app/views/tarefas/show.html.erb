@@ -3,7 +3,7 @@
 <div class="card-header">Tarefa</div>
 <ul class="list-group">
    <li class="list-group-item"><b>Conteudo:</b> <%= @tarefa.conteudo.nome %></li>
-   <li class="list-group-item"><b>Textp:</b> <%= @tarefa.texto %></li>
+   <li class="list-group-item"><b>Texto:</b> <%= @tarefa.texto %></li>
    <li class="list-group-item"><b>Pontuação:</b> <%= @tarefa.pontuacao %></li>
 
 </ul>
@@ -14,6 +14,7 @@
   <% if can? :edit, Tarefa %>
     <%= link_to 'Atualizar', edit_tarefa_path(@tarefa), class: "btn btn-md btn-primary" %>
   <% end %>
+  <%= link_to  'Enviar Tarefa', {controller: 'tarefa_alunos', action: 'new', tarefa_id: @tarefa.id}, class: "btn btn-md btn-danger" %>
   <%= link_to 'Voltar', tarefas_path, class: "btn btn-md btn-secondary" %>
 </div>
 

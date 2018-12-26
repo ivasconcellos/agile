@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :tarefa_alunos
   resources :tarefas
   resources :avatares
   resources :comentarios
