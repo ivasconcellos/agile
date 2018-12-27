@@ -44,6 +44,7 @@ class CursosController < ApplicationController
     respond_to do |format|
       if @curso.save
         UsuarioCurso.create!(perfil: 'Professor', nickname: @curso.proprietario.nome, usuario_id: @curso.proprietario_id, curso_id: @curso.id)
+        current_usuario.update(curso_atual_id: @curso.id)
         format.html { redirect_to @curso, notice: 'Curso criado com sucesso!' }
         format.json { render :show, status: :created, location: @curso }
       else
