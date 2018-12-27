@@ -4,39 +4,38 @@
 
         <div class="container-fluid">
 
-          <!-- Breadcrumbs-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item text-center">Meus Cursos</li>
-          </ol>
+        	<div class="text-center">
+				<% if can? :new, Curso %>
+					<br>
+					<%= link_to 'Cadastrar Novo Curso', new_curso_path, class: "btn btn-md btn-success" %>
+				<% end %>
+				<% if can? :new, TemaCurso %>
+					<%= link_to 'Temas de Cursos', tema_cursos_path, class: "btn btn-md btn-danger" %>
+			  	<% end %>
+			  	<%= link_to 'Me inscrever em um curso', {controller: 'usuario_curso', action: 'busca_curso'}, class: "btn btn-md btn-info" %>
+			</div>
+			<br>
+			<!-- Breadcrumbs-->
+			<ol class="breadcrumb">
+			<li class="breadcrumb-item text-center">Meus Cursos</li>
+			</ol>
+		
+			<!-- Icon Cards-->
 
-          
-		<div class="text-center">
-			<% if can? :new, Curso %>
-				<br>
-				<%= link_to 'Cadastrar Novo Curso', new_curso_path, class: "btn btn-md btn-success" %>
-			<% end %>
-			<% if can? :new, TemaCurso %>
-				<%= link_to 'Temas de Cursos', tema_cursos_path, class: "btn btn-md btn-danger" %>
-		  	<% end %>
-		  	<%= link_to 'Me inscrever em um curso', {controller: 'usuario_curso', action: 'busca_curso'}, class: "btn btn-md btn-info" %>
-		</div>
-		<br><br>
-          <!-- Icon Cards-->
-          
-          <div class="row">
-          	<% @cursos.each do |curso| %>
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card text-white curso o-hidden h-100">
-                <div class="card-body">
-                  <div><%= curso.curso.nome %></div>
-                </div>
-                <div class="card-footer bg-primary text-white">
-                  <%= link_to 'Visualizar', {controller: 'cursos', action: 'atualizar_curso_atual', curso_id: curso.curso.id}, class: 'linkcurso' %>
-                </div>
-              </div>
-            </div>
-             <% end %>
-          </div>
+			<div class="row">
+				<% @meuscursos.each do |curso| %>
+					<div class="col-xl-3 col-sm-6 mb-3">
+						<div class="card text-white curso o-hidden h-100">
+							<div class="card-body">
+								<div><%= curso.curso.nome %></div>
+							</div>
+							<div class="card-footer bg-primary text-white">
+								<%= link_to 'Visualizar', {controller: 'cursos', action: 'atualizar_curso_atual', curso_id: curso.curso.id}, class: 'linkcurso' %>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
 
           <ol class="breadcrumb">
             <li class="breadcrumb-item text-center">Buscar Cursos Públicos</li>

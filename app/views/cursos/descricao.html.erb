@@ -6,6 +6,7 @@
       <%= link_to 'Cadastrar Módulo do Curso', {controller: 'conteudos', action: 'new', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-primary" %>
     </div>
   <% end %>
+
   <div id="accordion">
     <% @modulos.each_with_index do |modulo, index| %>
     <div class="card">
@@ -33,7 +34,6 @@
               <%= render partial: "materiais/materiais", locals: {modulo: modulo} %>
             </div>           
 
-           
             <div class="col-xl-3 col-sm-3 col-md-3">
               <% if can? :new, Material %>
                 <div><%= link_to  ' Inserir Link', {controller: 'materiais', action: 'new', conteudo_id: modulo.id, tipo: 'Link'}, class: "fa fa-link" %></div>
@@ -44,9 +44,7 @@
               <% end %>
             </div>
             
-
           </div>
-
          
         </div>
       </div>

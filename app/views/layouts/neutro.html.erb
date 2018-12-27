@@ -26,9 +26,7 @@
 
     <nav class="navbar navbar-expand static-top">
       <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
-      <% if usuario_signed_in? %>
-      <%=link_to "AGILE", inicial_url, class: "navbar-brand mr-1" %>
-      <%end%>
+      <%=link_to "AGILE", root_url, class: "navbar-brand mr-1" %>
       <!-- Navbar -->
       <ul class="navbar-nav ml-auto ml-md-12">
         <% if usuario_signed_in? %>

@@ -11,7 +11,7 @@
     <% if @curso.data_termino %>
       <li class="list-group-item"><b>Data de término:</b> <%= @curso.data_termino.strftime("%d/%m/%Y") %></li>
     <% end %>
-    <% if @current_usuario.perfil == "Professor" %>
+    <% if can? :edit, Curso %>
       <li class="list-group-item"><b>Código de acesso:</b> <%= @curso.codigo_acesso %></li>   
       <li class="list-group-item"><b>Ativo:</b> <%= @curso.ativo? ? 'Sim' : 'Não' %></li>
       <li class="list-group-item"><b>Público:</b> <%= @curso.publico? ? 'Sim' : 'Não' %></li>
@@ -20,11 +20,7 @@
     <% end %>      
   </ul>
 
-  <% if @usuario.perfil == "Professor" %>
-    <div class="text-center">
-      <%= link_to 'Visualizar curso', {controller: 'cursos', action: 'descricao', id: @curso}, class: "btn btn-md btn-success" %>
-    </div>
-  <% else %>    
+  <% if @perfil.perfil == "Aluno" %>  
     <div class="card-body">
       <div class="row">
         <div class="col-xl-8 col-sm-8 col-md-8 offset-2">
@@ -35,13 +31,14 @@
         </div>
       </div>
     </div>
-    <div class="card-footer text-muted">
-      <% if can? :edit, Curso %>
-        <%= link_to 'Atualizar', edit_curso_path(@curso), class: "btn btn-md btn-primary" %>
-      <% end %>
-      <%= link_to 'Continuar curso', {controller: 'cursos', action: 'descricao', id: @curso}, class: "btn btn-md btn-success" %>
-    </div>
-    
   <% end %>
+
+  <div class="card-footer text-muted">
+    <% if can? :edit, Curso %>
+      <%= link_to 'Atualizar', edit_curso_path(@curso), class: "btn btn-md btn-primary" %>
+    <% end %>
+
+    <%= link_to 'Continuar curso', {controller: 'cursos', action: 'descricao', id: @curso}, class: "btn btn-md btn-success" %>
+  </div>
   
 </div>
