@@ -13,7 +13,7 @@ class MateriaisController < ApplicationController
        current_usuario.curso_atual_id).page(params[:page]).order('nome')
     end
 
-    authorize! :index, @materiais
+    authorize! :read, Material
   end
 
   # GET /materiais/1

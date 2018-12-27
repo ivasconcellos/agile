@@ -13,14 +13,13 @@ class CursosController < ApplicationController
   # GET /cursos/1
   # GET /cursos/1.json
   def show
-    @curso = Curso.find(current_usuario.curso_atual_id)
-    @usuario = UsuarioCurso.where(curso_id: current_usuario.curso_atual_id, usuario_id: current_usuario.id).first
     authorize! :show, @curso
+    render layout: 'neutro'
   end
 
   def descricao
     @curso = Curso.find(current_usuario.curso_atual_id)
-     @modulos = Conteudo.where(curso_id: current_usuario.curso_atual_id, publico: true)
+    @modulos = Conteudo.where(curso_id: current_usuario.curso_atual_id, publico: true)
     @materiais = Material.joins(:conteudo).where('conteudos.curso_id = ?',
     current_usuario.curso_atual_id).order('updated_at')
     authorize! :show, @curso
@@ -42,11 +41,9 @@ class CursosController < ApplicationController
   # POST /cursos.json
   def create
     @curso = Curso.new(curso_params)
-    @curso.proprietario_id = current_usuario.id
     respond_to do |format|
       if @curso.save
-        current_usuario.update(curso_atual_id: params[:curso_id])
-        UsuarioCurso.create!(perfil: 'Professor', nickname: current_usuario.nome, usuario_id: current_usuario.id, curso_id: @curso.id)
+        UsuarioCurso.create!(perfil: 'Professor', nickname: @curso.proprietario.nome, usuario_id: @curso.proprietario_id, curso_id: @curso.id)
         format.html { redirect_to @curso, notice: 'Curso criado com sucesso!' }
         format.json { render :show, status: :created, location: @curso }
       else

@@ -5,7 +5,7 @@ class ConteudosController < ApplicationController
   # GET /conteudos.json
   def index
     @conteudos = Conteudo.where(curso_id: current_usuario.curso_atual_id).page(params[:page]).order('nome')
-    authorize! :index, @conteudos
+    authorize! :read, Conteudo
   end
   
   # GET /conteudos/1

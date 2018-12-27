@@ -12,7 +12,7 @@ class UsuarioCursoController < ApplicationController
   # GET /usuario_curso/1
   # GET /usuario_curso/1.json
   def show
-    authorize! :show, @usuario_curso
+    authorize! :show, UsuarioCurso
   end
 
   # GET /usuario_curso/new
