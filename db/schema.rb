@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_27_171853) do
+ActiveRecord::Schema.define(version: 2018_12_27_233517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,6 +163,15 @@ ActiveRecord::Schema.define(version: 2018_12_27_171853) do
     t.index ["conteudo_id"], name: "index_materiais_on_conteudo_id"
   end
 
+  create_table "modulos", force: :cascade do |t|
+    t.string "nome"
+    t.text "descricao"
+    t.bigint "curso_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["curso_id"], name: "index_modulos_on_curso_id"
+  end
+
   create_table "tema_cursos", force: :cascade do |t|
     t.string "nome", null: false
     t.boolean "ativo", default: true
@@ -193,7 +202,7 @@ ActiveRecord::Schema.define(version: 2018_12_27_171853) do
   create_table "usuarios", force: :cascade do |t|
     t.string "nome", default: "", null: false
     t.string "email", default: "", null: false
-    t.string "perfil", default: "Aluno", null: false
+    t.string "perfil", default: "Usuário comum", null: false
     t.date "data_nascimento", null: false
     t.string "sexo", null: false
     t.string "encrypted_password", default: "", null: false
@@ -225,6 +234,7 @@ ActiveRecord::Schema.define(version: 2018_12_27_171853) do
   add_foreign_key "foruns", "cursos"
   add_foreign_key "foruns", "usuario_curso"
   add_foreign_key "materiais", "conteudos"
+  add_foreign_key "modulos", "cursos"
   add_foreign_key "usuario_curso", "avatares"
   add_foreign_key "usuario_curso", "cursos"
   add_foreign_key "usuario_curso", "usuarios"

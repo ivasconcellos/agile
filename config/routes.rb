@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :modulos
   resources :avatares, :except => :index
   resources :comentarios
   resources :foruns
