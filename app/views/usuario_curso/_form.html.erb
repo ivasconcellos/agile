@@ -19,7 +19,7 @@
     <div class="form-group row">
       <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Perfil*</label>
       <div class="col-md-6">
-        <%= form.select :perfil,  options_for_select([["Aluno", "Aluno"], ["Professor", "Professor"]]), class: "form-control" %>
+        <%= form.select :perfil,  options_for_select([["Aluno", "Aluno"], ["Professor", "Professor"]], form.object.perfil), class: "form-control" %>
       </div>
     </div>
 

@@ -1,0 +1,32 @@
+<%= form_with(model: modulo, local: true) do |form| %>
+  <% if modulo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(modulo.errors.count, "error") %> prohibited this modulo from being saved:</h2>
+
+      <ul>
+      <% modulo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descricao %>
+    <%= form.text_area :descricao %>
+  </div>
+
+  <div class="field">
+    <%= form.label :curso_id %>
+    <%= form.text_field :curso_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
