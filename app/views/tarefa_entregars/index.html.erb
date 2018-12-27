@@ -1,31 +1,41 @@
+<div class="card">
+
 <p id="notice"><%= notice %></p>
 
-<h1>Tarefa Entregars</h1>
-
-<table>
+<div class="card-header">
+Tarefa Entregues
+</div>
+<div class="table-responsive">
+<table class="table table-striped table-sm">
   <thead>
     <tr>
-      <th>Tarefa</th>
-      <th>Usuario curso</th>
-      <th>Comentario</th>
-      <th colspan="3"></th>
+      <th class="text-center">Tarefa</th>
+      <th class="text-center" >Nome</th>
+      <th class="text-center">Comentario</th>
+      <th class="text-center">arquivo</th>
+      <th colspan="4" class="text-center">opções</th>
     </tr>
   </thead>
 
   <tbody>
+  
     <% @tarefa_entregars.each do |tarefa_entregar| %>
+
       <tr>
-        <td><%= tarefa_entregar.tarefa %></td>
-        <td><%= tarefa_entregar.usuario_curso %></td>
+        <td><%= tarefa_entregar.tarefa.conteudo.nome %></td>
+        <td><%= tarefa_entregar.usuario_curso.usuario.nome %></td>
         <td><%= tarefa_entregar.comentario %></td>
+        <td><%= link_to image_tag("documento.png", :alt => "documento", size: "25x25"), tarefa_entregar.arquivo.url, target: 'blank' %></td>
+        <td> <%= link_to  'Enviar nota', {controller: 'tarefa_alunos', action: 'new', tarefa_id: tarefa_entregar.tarefa_id, usuario_curso_id: tarefa_entregar.usuario_curso_id}, class: "btn btn-sm btn-danger"  %></td>
         <td><%= link_to 'Show', tarefa_entregar %></td>
         <td><%= link_to 'Edit', edit_tarefa_entregar_path(tarefa_entregar) %></td>
         <td><%= link_to 'Destroy', tarefa_entregar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
-
-<%= link_to 'New Tarefa Entregar', new_tarefa_entregar_path %>
+</div>

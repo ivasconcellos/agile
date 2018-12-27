@@ -18,7 +18,9 @@ class TarefaAlunosController < ApplicationController
   def new
     @tarefa_aluno = TarefaAluno.new
     @tarefa_aluno.tarefa_id = params[:tarefa_id]
+    @tarefa_aluno.usuario_curso_id = params[:usuario_curso_id]
     @usuario_curso_id = UsuarioCurso.find_by(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual.id).id
+
   end
 
   # GET /tarefa_alunos/1/edit
