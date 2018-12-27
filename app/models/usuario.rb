@@ -7,12 +7,12 @@ class Usuario < ApplicationRecord
   validates_presence_of :nome, :data_nascimento, :sexo, :perfil
   belongs_to :curso_atual, class_name: "Curso", optional: true
 
-  ALUNO = 'Aluno'
-  PROFESSOR = 'Professor'
+  USUARIO_COMUM = 'Usuário'
+  GESTOR_DO_SISTEMA = 'Gestor'
 
   PERFIL = [
-    ALUNO,
-    PROFESSOR
+    USUARIO_COMUM,
+    GESTOR_DO_SISTEMA
   ]
 
 end

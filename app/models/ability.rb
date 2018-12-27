@@ -4,7 +4,7 @@ class Ability
   def initialize(usuario)
     alias_action :create, :read, :update, to: :perms_without_delete
     usuario ||= Usuario.new # guest user (not logged in)
-    if usuario.perfil == 'Professor'
+    if usuario.perfil == 'Gestor'
       can :read, :all
       can :perms_without_delete, Curso
       #can :perms_without_delete, TemaCurso
@@ -15,7 +15,7 @@ class Ability
       can :manage, Forum
       can :manage, Comentario
       can :manage, :all
-    elsif usuario.perfil == 'Aluno'
+    elsif usuario.perfil == 'Usuário'
         can :manage, Comentario
         can :read, :all
     end
