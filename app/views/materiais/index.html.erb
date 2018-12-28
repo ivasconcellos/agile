@@ -16,7 +16,7 @@
           <tr>
             <td><%= material.nome %></td>
             <td><%= material.tipo %></td>
-            <td class="text-center"><%= link_to material.conteudo.nome, material.conteudo %></td>
+            <td class="text-center"><%= link_to material.modulo.nome, material.modulo %></td>
             <% if can? :show, Material %>
               <td><%= link_to 'Visualizar', material %></td>
             <% end %>
@@ -35,6 +35,6 @@
 
   <br>
   <div class="card-footer text-muted">
-    <%= link_to 'Voltar', {controller: 'conteudos', action: 'index'}, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar', {controller: 'modulos', action: 'index'}, class: "btn btn-md btn-secondary" %>
   </div>
 </div>

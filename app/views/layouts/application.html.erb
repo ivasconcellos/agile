@@ -61,7 +61,7 @@
           <li class="nav-item">
               <a href="#modulos" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-book fa-lg"></i> Módulos</a>
               <ul class="collapse list-unstyled" id="modulos">
-                <% @current_usuario.curso_atual.conteudos.each_with_index do |modulo, index| %>
+                <% @current_usuario.curso_atual.modulos.each_with_index do |modulo, index| %>
                   <% if modulo.publico %>
                     <li>
                       <%= link_to "Modulo #{index+1}", modulo, {class: "nav-link"} %></a>
@@ -101,7 +101,7 @@
           <li class="nav-item">
               <a href="#gerenciar" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-wrench fa-lg"></i> Configurar curso</a>
               <ul class="collapse list-unstyled" id="gerenciar">
-                <li class="nav-item"><%= link_to " Módulos", conteudos_path, {class: "fa fa-book fa-sm nav-link"} %> </li>
+                <li class="nav-item"><%= link_to " Módulos", modulos_path, {class: "fa fa-book fa-sm nav-link"} %> </li>
                 <li class="nav-item"><%= link_to " Materiais", materiais_path, {class: "fa fa-file-text fa-sm nav-link"} %> </li>  
                 <li class="nav-item"><%= link_to " Fóruns", foruns_path, {class: "fa fa-comments fa-sm nav-link"} %> </li>  
                 <li class="nav-item"><a class="nav-link" href="/usuario_curso"> <i class="fa fa-users fa-sm"></i> Participantes </a></li>  

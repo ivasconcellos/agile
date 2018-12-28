@@ -14,7 +14,7 @@
         <% @explicacoes.each do |explicacao| %>
           <tr>
             <td><%= explicacao.nome %></td>
-            <td class="text-center"><%= link_to explicacao.conteudo.nome, explicacao.conteudo %></td>
+            <td class="text-center"><%= link_to explicacao.modulo.nome, explicacao.modulo %></td>
             <% if can? :show, Explicacao %>
               <td><%= link_to 'Visualizar', explicacao %></td>
             <% end %>

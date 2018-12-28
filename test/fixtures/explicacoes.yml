@@ -4,10 +4,10 @@ one:
   nome: MyString
   descricao: MyText
   audio: MyString
-  conteudo: one
+  modulo: one
 
 two:
   nome: MyString
   descricao: MyText
   audio: MyString
-  conteudo: two
+  modulo: two

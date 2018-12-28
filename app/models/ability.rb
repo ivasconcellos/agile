@@ -13,7 +13,7 @@ class Ability
         usuario_curso = UsuarioCurso.where(usuario_id: usuario.id, curso_id: usuario.curso_atual.id).first
         if usuario_curso.perfil == 'Professor'
           can :manage, Curso
-          can :manage, Conteudo
+          can :manage, Modulo
           can :manage, Explicacao
           can :manage, Material
           can :manage, UsuarioCurso

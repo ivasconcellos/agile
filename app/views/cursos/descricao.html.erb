@@ -1,9 +1,9 @@
 <div class="card">
 
-   <% if can? :new, Conteudo %>
+   <% if can? :new, Modulo %>
     <div class="text-center">
       <br>
-      <%= link_to 'Cadastrar Módulo do Curso', {controller: 'conteudos', action: 'new', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Cadastrar Módulo do Curso', {controller: 'modulos', action: 'new', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-primary" %>
     </div>
   <% end %>
 
@@ -15,10 +15,10 @@
           <button class="btn btn-link modulo" data-toggle="collapse" data-target="#collapse<%= index.to_s %>" aria-expanded="false" aria-controls="collapse<%= index.to_s %>">
             Módulo: <%= modulo.nome %> 
           </button>
-          <% if can? :edit, Conteudo %>
-            <%= link_to '', edit_conteudo_path(modulo), class: "fa fa-edit" %>
+          <% if can? :edit, Modulo %>
+            <%= link_to '', edit_modulo_path(modulo), class: "fa fa-edit" %>
           <% end %>
-          <% if can? :destroy, Conteudo %>
+          <% if can? :destroy, Modulo %>
             <%= link_to '', modulo, method: :delete, data: { confirm: 'Deseja realmente excluir o Conteúdo?' }, class: "fa fa-trash" %>
           <% end %>
         </h5>
@@ -36,11 +36,11 @@
 
             <div class="col-xl-3 col-sm-3 col-md-3">
               <% if can? :new, Material %>
-                <div><%= link_to  ' Inserir Link', {controller: 'materiais', action: 'new', conteudo_id: modulo.id, tipo: 'Link'}, class: "fa fa-link" %></div>
-                <div><%= link_to  ' Inserir Arquivo', {controller: 'materiais', action: 'new', conteudo_id: modulo.id, tipo: 'Arquivo'}, class: "fa fa-file" %></div>
-                <div><%= link_to  ' Inserir Vídeo', {controller: 'materiais', action: 'new', conteudo_id: modulo.id, tipo: 'Vídeo'}, class: "fa fa-video-camera" %></div>
-                <div><%= link_to  ' Inserir Texto', {controller: 'materiais', action: 'new', conteudo_id: modulo.id, tipo: 'Texto'}, class: "fa fa-text-width" %></div>
-                <div><%= link_to  ' Inserir Imagem', {controller: 'materiais', action: 'new', conteudo_id: modulo.id, tipo: 'Imagem'}, class: "fa fa-image" %></div>
+                <div><%= link_to  ' Inserir Link', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Link'}, class: "fa fa-link" %></div>
+                <div><%= link_to  ' Inserir Arquivo', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Arquivo'}, class: "fa fa-file" %></div>
+                <div><%= link_to  ' Inserir Vídeo', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Vídeo'}, class: "fa fa-video-camera" %></div>
+                <div><%= link_to  ' Inserir Texto', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Texto'}, class: "fa fa-text-width" %></div>
+                <div><%= link_to  ' Inserir Imagem', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Imagem'}, class: "fa fa-image" %></div>
               <% end %>
             </div>
             

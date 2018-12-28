@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :explicacoes
   resources :usuario_curso
   resources :materiais
-  resources :conteudos
   resources :cursos
   resources :tema_cursos
   devise_for :admins

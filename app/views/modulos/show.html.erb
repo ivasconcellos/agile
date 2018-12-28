@@ -1,19 +1,56 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
 
-<p>
-  <strong>Nome:</strong>
-  <%= @modulo.nome %>
-</p>
+  <div class="card-header">Módulo do Curso</div>
+  
+	<ul class="list-group">
+	  <li class="list-group-item"><b>Nome:</b> <%= @modulo.nome %></li>
+	  <li class="list-group-item"><b>Descrição:</b> <%= @modulo.descricao %></li>  
+	  <li class="list-group-item"><b>Público:</b> <%= @modulo.publico? ? 'Sim' : 'Não' %></li>  
+	  <li class="list-group-item"><b>Cadastrado em:</b> <%= @modulo.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
+	  <li class="list-group-item"><b>Curso:</b> <%= @modulo.curso.nome %></li>      
+	</ul>
 
-<p>
-  <strong>Descricao:</strong>
-  <%= @modulo.descricao %>
-</p>
+	<br>
+	<div class="card-footer text-muted">
+	  <% if can? :edit, Modulo %>
+	    <%= link_to 'Atualizar', edit_modulo_path(@modulo), class: "btn btn-md btn-primary" %>
+	  <% end %>
+	  <% if can? :new, Explicacao %>
+	  	<%= link_to  'Inserir Explicações', {controller: 'explicacoes', action: 'new', modulo_id: @modulo.id}, class: "btn btn-md btn-danger" %>
+	  <% end %>
+	  <%= link_to 'Voltar', {controller: 'modulos', action: 'index', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-secondary" %>
+	</div>
 
-<p>
-  <strong>Curso:</strong>
-  <%= @modulo.curso %>
-</p>
+	<br><br>
 
-<%= link_to 'Edit', edit_modulo_path(@modulo) %> |
-<%= link_to 'Back', modulos_path %>
+	<div class="card-header bg-info">Materiais do Módulo</div>
+	<div class="row">
+        <div class="col-xl-9 col-sm-9 col-md-9">
+			<%= render partial: "materiais/materiais", locals: {modulo: @modulo} %>
+		</div>
+		<div class="col-xl-3 col-sm-3 col-md-3">
+          <% if can? :new, Material %>
+            <div><%= link_to  ' Inserir Link', {controller: 'materiais', action: 'new', modulo_id: @modulo.id, tipo: 'Link'}, class: "fa fa-link" %></div>
+            <div><%= link_to  ' Inserir Arquivo', {controller: 'materiais', action: 'new', modulo_id: @modulo.id, tipo: 'Arquivo'}, class: "fa fa-file" %></div>
+            <div><%= link_to  ' Inserir Vídeo', {controller: 'materiais', action: 'new', modulo_id: @modulo.id, tipo: 'Vídeo'}, class: "fa fa-video-camera" %></div>
+            <div><%= link_to  ' Inserir Texto', {controller: 'materiais', action: 'new', modulo_id: @modulo.id, tipo: 'Texto'}, class: "fa fa-text-width" %></div>
+            <div><%= link_to  ' Inserir Imagem', {controller: 'materiais', action: 'new', modulo_id: @modulo.id, tipo: 'Imagem'}, class: "fa fa-image" %></div>
+          <% end %>
+        </div>
+	</div>
+		
+	<% if not @explicacoes.empty? %>
+
+		<div class="card-header">Explicações do Módulo</div>
+
+		<% @explicacoes.each do |explicacao| %>
+			<ul class="list-group">
+			  <li class="list-group-item"><b>Nome:</b> <%= link_to explicacao.nome, explicacao %></li>
+			  <li class="list-group-item"><b>Descrição:</b> <%= explicacao.descricao.to_s.html_safe %></li>
+			  <li class="list-group-item"><b>Áudio:</b> <%= explicacao.audio %></li>  
+			  <li class="list-group-item"><b>Cadastrado em:</b> <%= explicacao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>       
+			</ul>
+		<% end %>
+	<% end %>
+
+</div>
