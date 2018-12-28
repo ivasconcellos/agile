@@ -23,6 +23,10 @@ class Ability
           can :manage, Avatar
         elsif usuario_curso.perfil == 'Aluno'
           can :manage, Comentario
+          can :read, Modulo
+          can :read, Curso
+          can :read, Forum
+          can :manage, Comentario
           can :perms_read_and_update, UsuarioCurso
         end
       end
