@@ -1,27 +1,27 @@
 class CursosController < ApplicationController
-  before_action :set_curso, only: [:show, :edit, :update, :destroy]
+  before_action :set_curso, only: [:show, :descricao, :edit, :update, :destroy]
   before_action :authenticate_usuario!
 
   # GET /cursos
   # GET /cursos.json
   def index
     @cursos = Curso.all.page(params[:page]).order('nome')
-    authorize! :index, @cursos
+    authorize! :index, Curso
     render layout: 'neutro'
   end
 
   # GET /cursos/1
   # GET /cursos/1.json
   def show
-    authorize! :show, @curso
-    render layout: 'neutro'
-  end
-
-  def descricao
     @curso = Curso.find(current_usuario.curso_atual_id)
     @modulos = Modulo.where(curso_id: current_usuario.curso_atual_id, publico: true)
     @materiais = Material.joins(:modulo).where('modulos.curso_id = ?',
     current_usuario.curso_atual_id).order('updated_at')
+    authorize! :show, @curso
+    
+  end
+
+  def descricao
     authorize! :show, @curso
   end
 
@@ -81,7 +81,7 @@ class CursosController < ApplicationController
 
   def atualizar_curso_atual
     current_usuario.update(curso_atual_id: params[:curso_id])
-    redirect_to :controller => "cursos", :action => "descricao", id: params[:curso_id]
+    redirect_to :controller => "cursos", :action => "show", id: params[:curso_id]
   end
 
   private

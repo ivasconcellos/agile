@@ -6,7 +6,7 @@ class ComentariosController < ApplicationController
   # GET /comentarios.json
   def index
     @comentarios = Comentario.all
-    authorize! :index, @comentarios
+    authorize! :index, Comentario
   end
 
   # GET /comentarios/1

@@ -6,7 +6,7 @@ class ExplicacoesController < ApplicationController
   def index
     @explicacoes = Explicacao.joins(:modulo).where('modulos.curso_id = ?',
     current_usuario.curso_atual_id).page(params[:page]).order('nome')
-    authorize! :index, @explicacoes
+    authorize! :index, Explicacao
   end
 
   # GET /explicacoes/1
