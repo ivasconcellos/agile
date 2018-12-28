@@ -47,9 +47,10 @@
     </nav>
     <div id="wrapper">
       <nav id="sidebar" class="sidebar navbar-nav" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
+        
         <div class="sidebar-header">
           <%if @perfil.avatar %>
-            <p class="list-group-item text-center"><%= image_tag @perfil.avatar.imagem.url(:thumb), class: "img-responsive img-thumbnail" %></p>
+            <p class="list-group-item text-center"><%= image_tag @perfil.avatar.imagem.url(:medium), class: "img-responsive img-thumbnail" %></p>
             <p class="list-group-item text-center"> <%= @perfil.nickname %></p>
           <% end %>
         </div>
