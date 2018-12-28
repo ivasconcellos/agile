@@ -1,26 +1,29 @@
 <div class="card">
 
-  <div class="card-header">Módulo do Curso</div>
+  <div class="card-header"><%= @modulo.nome %>
+  	<% if can? :edit, Modulo %>
+    <%= link_to '', edit_modulo_path(@modulo), class: "fa fa-edit" %>
+  <% end %>
+  <% if can? :destroy, Modulo %>
+    <%= link_to '', @modulo, method: :delete, data: { confirm: 'Deseja realmente excluir o Conteúdo?' }, class: "fa fa-trash" %>
+  <% end %>
+  </div>
   
 	<ul class="list-group">
-	  <li class="list-group-item"><b>Nome:</b> <%= @modulo.nome %></li>
-	  <li class="list-group-item"><b>Descrição:</b> <%= @modulo.descricao %></li>  
-	  <li class="list-group-item"><b>Público:</b> <%= @modulo.publico? ? 'Sim' : 'Não' %></li>  
-	  <li class="list-group-item"><b>Cadastrado em:</b> <%= @modulo.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
-	  <li class="list-group-item"><b>Curso:</b> <%= @modulo.curso.nome %></li>      
+	  <li class="list-group-item"><b>Descrição:</b> <%= @modulo.descricao %></li>
+	  <% if can? :edit, Modulo %>
+		<li class="list-group-item"><b>Público:</b> <%= @modulo.publico? ? 'Sim' : 'Não' %></li>  
+		<li class="list-group-item"><b>Cadastrado em:</b> <%= @modulo.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
+		<li class="list-group-item"><b>Curso:</b> <%= @modulo.curso.nome %></li>      
+	  <% end %>
 	</ul>
 
 	<br>
-	<div class="card-footer text-muted">
-	  <% if can? :edit, Modulo %>
-	    <%= link_to 'Atualizar', edit_modulo_path(@modulo), class: "btn btn-md btn-primary" %>
-	  <% end %>
-	  <% if can? :new, Explicacao %>
-	  	<%= link_to  'Inserir Explicações', {controller: 'explicacoes', action: 'new', modulo_id: @modulo.id}, class: "btn btn-md btn-danger" %>
-	  <% end %>
-	  <%= link_to 'Voltar', {controller: 'modulos', action: 'index', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-secondary" %>
-	</div>
-
+	<% if can? :new, Explicacao %>
+		<div class="card-footer text-muted">
+		  	<%= link_to  'Inserir Explicações', {controller: 'explicacoes', action: 'new', modulo_id: @modulo.id}, class: "btn btn-md btn-danger" %> 
+		</div>
+	<% end %>
 	<br><br>
 
 	<div class="card-header bg-info">Materiais do Módulo</div>
