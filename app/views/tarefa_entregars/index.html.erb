@@ -18,8 +18,25 @@ Tarefa Entregues
   </thead>
 
   <tbody>
-  
+     <%  x = @tarefa_entregars.first %>
+      <% x = x.tarefa_id %>
+
     <% @tarefa_entregars.each do |tarefa_entregar| %>
+
+
+        <%  if tarefa_entregar.tarefa_id  != x then %>
+         <% x = tarefa_entregar.tarefa_id %>
+      <tr>
+        <td> -- </td>
+        <td> -- </td>
+        <td> -- </td>
+        <td> -- </td>
+        <td> -- </td>
+        <td> -- </td>
+        <td> -- </td>
+        <td> -- </td>
+      </tr>
+        <%end%>
 
       <tr>
         <td><%= tarefa_entregar.tarefa.conteudo.nome %></td>
