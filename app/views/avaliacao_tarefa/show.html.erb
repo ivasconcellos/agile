@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tarefa aluno:</strong>
+  <%= @avaliacao_tarefa.tarefa_aluno %>
+</p>
+
+<p>
+  <strong>Nota:</strong>
+  <%= @avaliacao_tarefa.nota %>
+</p>
+
+<p>
+  <strong>Comentario:</strong>
+  <%= @avaliacao_tarefa.comentario %>
+</p>
+
+<p>
+  <strong>Usuario curso:</strong>
+  <%= @avaliacao_tarefa.usuario_curso %>
+</p>
+
+<%= link_to 'Edit', edit_avaliacao_tarefa_path(@avaliacao_tarefa) %> |
+<%= link_to 'Back', avaliacao_tarefa_index_path %>

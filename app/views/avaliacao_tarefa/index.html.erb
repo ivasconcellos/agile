@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Avaliacao Tarefa</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tarefa aluno</th>
+      <th>Nota</th>
+      <th>Comentario</th>
+      <th>Usuario curso</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @avaliacao_tarefa.each do |avaliacao_tarefa| %>
+      <tr>
+        <td><%= avaliacao_tarefa.tarefa_aluno %></td>
+        <td><%= avaliacao_tarefa.nota %></td>
+        <td><%= avaliacao_tarefa.comentario %></td>
+        <td><%= avaliacao_tarefa.usuario_curso %></td>
+        <td><%= link_to 'Show', avaliacao_tarefa %></td>
+        <td><%= link_to 'Edit', edit_avaliacao_tarefa_path(avaliacao_tarefa) %></td>
+        <td><%= link_to 'Destroy', avaliacao_tarefa, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Avaliacao Tarefa', new_avaliacao_tarefa_path %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :avaliacao_tarefa
   resources :tarefa_alunos
   resources :tarefas
   resources :modulos
