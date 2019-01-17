@@ -1,13 +1,13 @@
 <div class="card">
 
-  <div class="card-header"><%= @modulo.nome %>
-  	<% if can? :edit, Modulo %>
-    <%= link_to '', edit_modulo_path(@modulo), class: "fa fa-edit" %>
-  <% end %>
-  <% if can? :destroy, Modulo %>
-    <%= link_to '', @modulo, method: :delete, data: { confirm: 'Deseja realmente excluir o Conteúdo?' }, class: "fa fa-trash" %>
-  <% end %>
-  </div>
+	<div class="card-header"><%= @modulo.nome %>
+		<% if can? :edit, Modulo %>
+			<%= link_to '', edit_modulo_path(@modulo), class: "fa fa-edit" %>
+		<% end %>
+		<% if can? :destroy, Modulo %>
+			<%= link_to '', @modulo, method: :delete, data: { confirm: 'Deseja realmente excluir o Conteúdo?' }, class: "fa fa-trash" %>
+		<% end %>
+	</div>
   
 	<ul class="list-group">
 	  <li class="list-group-item"><b>Descrição:</b> <%= @modulo.descricao %></li>
@@ -43,6 +43,20 @@
             <div><%= link_to  ' Inserir Vídeo', {controller: 'materiais', action: 'new', modulo_id: @modulo.id, tipo: 'Vídeo'}, class: "fa fa-video-camera" %></div>
             <div><%= link_to  ' Inserir Texto', {controller: 'materiais', action: 'new', modulo_id: @modulo.id, tipo: 'Texto'}, class: "fa fa-text-width" %></div>
             <div><%= link_to  ' Inserir Imagem', {controller: 'materiais', action: 'new', modulo_id: @modulo.id, tipo: 'Imagem'}, class: "fa fa-image" %></div>
+          <% end %>
+        </div>
+	</div>
+
+	<div class="card-header bg-info">Tarefas do Módulo</div>
+	<div class="row">
+        <div class="col-xl-9 col-sm-9 col-md-9">
+			<% @tarefas.each do |tarefa| %>
+    			<%= link_to tarefa.descricao, tarefa, class: "fa fa-tasks text-dark" %>
+    		<% end %>
+		</div>
+		<div class="col-xl-3 col-sm-3 col-md-3">
+          <% if can? :new, Tarefa %>
+            <div><%= link_to  'Inserir Tarefa', {controller: 'tarefas', action: 'new', modulo_id: @modulo.id, tipo: 'Link'}, class: "fa fa-tasks" %></div>
           <% end %>
         </div>
 	</div>

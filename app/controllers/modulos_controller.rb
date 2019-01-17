@@ -14,6 +14,7 @@ class ModulosController < ApplicationController
   def show
     @materiais = Material.where(modulo_id: @modulo)
     @explicacoes = Explicacao.where(modulo_id: @modulo)
+    @tarefas = Tarefa.where(modulo_id: @modulo)
     authorize! :show, @modulo
   end
 

@@ -1,44 +1,36 @@
 <div class="card">
 
-<p id="notice"><%= notice %></p>
+  <div class="card-header">Tarefas Entregues</div>
 
-<div class="card-header">
-Tarefas Entregues
-</div>
+  <div class="table-responsive">
 
-<div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th class="text-center">Tarefa</th>
+          <th class="text-center">Aluno</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tarefa_alunos.each do |tarefa_aluno| %>
+          <tr>
+            <td><%= tarefa_aluno.tarefa.descricao %></td>
+            <td><%= tarefa_aluno.usuario_curso.nickname %></td>
+            <% if can? :show, TarefaAluno %>
+              <td><%= link_to 'Visualizar', tarefa_aluno %></td>
+            <% end %>
+            <% if can? :edit, TarefaAluno %>
+              <td><%= link_to 'Atualizar', edit_tarefa_aluno_path(tarefa_aluno) %></td>
+            <% end %>
+            <% if can? :destroy, TarefaAluno %>
+              <td><%= link_to 'Excluir', tarefa_aluno, method: :delete, data: { confirm: 'Deseja realmente excluir a Tarefa enviada?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <span> <%= will_paginate @tarefa_alunos %></span>
 
-<table class="table table-striped table-sm">
-  <thead>
-    <tr>
-      <th>Tarefa</th>
-      <th>Nome</th>
-      <th>Nota</th>
-      <th>Comentario</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tarefa_alunos.each do |tarefa_aluno| %>
-      <tr>
-        <td><%= tarefa_aluno.tarefa.conteudo.nome %></td>
-        <td><%= tarefa_aluno.usuario_curso.usuario.nome %></td>
-        <td><%= tarefa_aluno.nota %></td>
-        <td><%= tarefa_aluno.comentario %></td>
-        <td><%= link_to 'Show', tarefa_aluno %></td>
-        <td><%= link_to 'Edit', edit_tarefa_aluno_path(tarefa_aluno) %></td>
-        <td><%= link_to 'Destroy', tarefa_aluno, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
-
-<br>
-<!-- <div class="text-center">
-
-<%# <%= link_to 'New Tarefa Aluno', new_tarefa_aluno_path %> %>
-</div>
--->
 </div>

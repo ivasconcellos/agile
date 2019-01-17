@@ -1,9 +1,7 @@
-<div class="card_body">
-
 <%= form_with(model: tarefa_aluno, local: true) do |form| %>
   <% if tarefa_aluno.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(tarefa_aluno.errors.count, "error") %> prohibited this tarefa_aluno from being saved:</h2>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(tarefa_aluno.errors.count, "erro(s)") %> Tarefa não pôde ser enviada!</h2>
 
       <ul>
       <% tarefa_aluno.errors.full_messages.each do |message| %>
@@ -12,27 +10,31 @@
       </ul>
     </div>
   <% end %>
-<%= form.hidden_field :tarefa_id %>
-<%= hidden_field_tag 'tarefa_aluno[usuario_curso_id]', @usuario_curso_id %>
 
+  <%= form.hidden_field :tarefa_id %>
+  <%= form.hidden_field :usuario_curso_id %>
 
-  <div class="form-group row">
-      <label for="inputTexto" class="col-md-2 offset-md-2 col-form-label">Nota*</label>
+  <div class="card_body">
+    <div class="form-group row">
+      <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Descrição da tarefa</label>
       <div class="col-md-6">
-      <%= form.text_field :nota, class: "form-control" %>
+        <%= @tarefa_aluno.tarefa.descricao %> 
+      </div>
+    </div>
+  
+    <div class="form-group row">
+      <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Arquivo*</label>
+      <div class="col-md-6">
+        <%= form.file_field :arquivo, as: :file %> 
+      </div>
+    </div>
     </div>
   </div>
 
-  <div class="form-group row">
-      <label for="inputTexto" class="col-md-2 offset-md-2 col-form-label">Comentario*</label>
-      <div class="col-md-6">
-      <%= form.text_area :comentario, class: "form-control" %>
-    </div>
+  <div class="card-footer text-muted">
+    <%= form.submit "Enviar", class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
   </div>
-
-  <div class="text-center">
-    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
-    <%= link_to 'Voltar', conteudos_path, class: "btn btn-md btn-secondary" %>
-  </div>
+  
 <% end %>
-</div>
+
