@@ -1,0 +1,22 @@
+<div class="card">
+
+<div class="card-header">Tarefa</div>
+<ul class="list-group">
+   <li class="list-group-item"><b>Conteudo:</b> <%= @tarefa.modulo.nome %></li>
+   <li class="list-group-item"><b>Texto:</b> <%= @tarefa.descricao %></li>
+   <li class="list-group-item"><b>Pontuação:</b> <%= @tarefa.pontuacao %></li>
+   <li class="list-group-item"><b>Público:</b> <%= @tarefa.publico? ? 'Sim' : 'Não' %></li>
+   <li class="list-group-item"><b>Criada por:</b> <%= @tarefa.usuario_curso.nickname %></li>
+   <li class="list-group-item"><b>Criada em:</b> <%= @tarefa.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
+</ul>
+
+
+
+<div class="card-footer text-muted">
+  <% if can? :edit, Tarefa %>
+    <%= link_to 'Atualizar', edit_tarefa_path(@tarefa), class: "btn btn-md btn-primary" %>
+  <% end %>
+  <%= link_to 'Voltar', tarefas_path, class: "btn btn-md btn-secondary" %>
+</div>
+
+</div>

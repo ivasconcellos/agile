@@ -19,11 +19,16 @@
 	</ul>
 
 	<br>
-	<% if can? :new, Explicacao %>
-		<div class="card-footer text-muted">
-		  	<%= link_to  'Inserir Explicações', {controller: 'explicacoes', action: 'new', modulo_id: @modulo.id}, class: "btn btn-md btn-danger" %> 
-		</div>
-	<% end %>
+	
+	<div class="card-footer text-muted">
+		<% if can? :new, Explicacao %>
+	  		<%= link_to  'Inserir Explicações', {controller: 'explicacoes', action: 'new', modulo_id: @modulo.id}, class: "btn btn-md btn-danger" %>
+	  	<% end %>
+	  	<% if can? :new, Tarefa %>
+	  		<%= link_to  'Inserir Tarefas', {controller: 'tarefas', action: 'new', modulo_id: @modulo.id}, class: "btn btn-md btn-danger" %>
+	  	<% end %>
+	</div>
+	
 	<br><br>
 
 	<div class="card-header bg-info">Materiais do Módulo</div>

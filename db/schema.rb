@@ -163,6 +163,18 @@ ActiveRecord::Schema.define(version: 2018_12_27_171853) do
     t.index ["curso_id"], name: "index_modulos_on_curso_id"
   end
 
+  create_table "tarefas", force: :cascade do |t|
+    t.bigint "modulo_id"
+    t.bigint "usuario_curso_id"
+    t.text "descricao"
+    t.float "pontuacao"
+    t.boolean "publico", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["modulo_id"], name: "index_tarefas_on_modulo_id"
+    t.index ["usuario_curso_id"], name: "index_tarefas_on_usuario_curso_id"
+  end
+
   create_table "tema_cursos", force: :cascade do |t|
     t.string "nome", null: false
     t.boolean "ativo", default: true
@@ -225,6 +237,8 @@ ActiveRecord::Schema.define(version: 2018_12_27_171853) do
   add_foreign_key "foruns", "usuario_curso"
   add_foreign_key "materiais", "modulos"
   add_foreign_key "modulos", "cursos"
+  add_foreign_key "tarefas", "modulos"
+  add_foreign_key "tarefas", "usuario_curso"
   add_foreign_key "usuario_curso", "avatares"
   add_foreign_key "usuario_curso", "cursos"
   add_foreign_key "usuario_curso", "usuarios"
