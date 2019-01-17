@@ -6,13 +6,13 @@ class UsuarioCursoController < ApplicationController
   # GET /usuario_curso.json
   def index
     @usuario_curso = UsuarioCurso.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
-    authorize! :index, @usuario_curso
+    authorize! :index, UsuarioCurso
   end
 
   # GET /usuario_curso/1
   # GET /usuario_curso/1.json
   def show
-    authorize! :show, @usuario_curso
+    authorize! :show, UsuarioCurso
   end
 
   # GET /usuario_curso/new

@@ -16,9 +16,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
-    def current_ability
-        @current_ability ||= Ability.new(current_usuario)
-    end
+  
+  before_action :perfil, if: :authenticate_usuario!
+  def perfil
+    @perfil = UsuarioCurso.where(usuario_id: current_usuario, curso_id: current_usuario.curso_atual).first
+  end  
+
+  def current_ability
+    @current_ability ||= Ability.new(current_usuario)
+  end
 
 	before_action :configure_permitted_parameters, if: :devise_controller?
 

@@ -4,7 +4,7 @@ class CreateExplicacoes < ActiveRecord::Migration[5.2]
       t.string :nome, null: false
       t.text :descricao
       t.string :audio
-      t.references :conteudo, foreign_key: true
+      t.references :modulo, foreign_key: true
 
       t.timestamps
     end

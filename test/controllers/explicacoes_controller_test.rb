@@ -17,7 +17,7 @@ class ExplicacoesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create explicacao" do
     assert_difference('Explicacao.count') do
-      post explicacoes_url, params: { explicacao: { audio: @explicacao.audio, conteudo_id: @explicacao.conteudo_id, descricao: @explicacao.descricao, nome: @explicacao.nome } }
+      post explicacoes_url, params: { explicacao: { audio: @explicacao.audio, modulo_id: @explicacao.modulo_id, descricao: @explicacao.descricao, nome: @explicacao.nome } }
     end
 
     assert_redirected_to explicacao_url(Explicacao.last)
@@ -34,7 +34,7 @@ class ExplicacoesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update explicacao" do
-    patch explicacao_url(@explicacao), params: { explicacao: { audio: @explicacao.audio, conteudo_id: @explicacao.conteudo_id, descricao: @explicacao.descricao, nome: @explicacao.nome } }
+    patch explicacao_url(@explicacao), params: { explicacao: { audio: @explicacao.audio, modulo_id: @explicacao.modulo_id, descricao: @explicacao.descricao, nome: @explicacao.nome } }
     assert_redirected_to explicacao_url(@explicacao)
   end
 

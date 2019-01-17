@@ -15,7 +15,7 @@
     <% if can? :edit, Avatar %>
       <%= link_to 'Atualizar', edit_avatar_path(@avatar), class: "btn btn-md btn-primary" %>
     <% end %>
-    <%= link_to 'Voltar', avatares_path, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar',  @avatar.tema_curso, class: "btn btn-md btn-secondary" %>
   </div>
 
 </div>

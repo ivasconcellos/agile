@@ -2,17 +2,11 @@ class AvataresController < ApplicationController
   before_action :set_avatar, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_usuario!
 
-  # GET /avatares
-  # GET /avatares.json
-  def index
-    @avatares = Avatar.all
-    authorize! :index, @avatares
-  end
-
   # GET /avatares/1
   # GET /avatares/1.json
   def show
     authorize! :show, @avatar
+    render layout: 'neutro'
   end
 
   # GET /avatares/new
@@ -20,11 +14,13 @@ class AvataresController < ApplicationController
     @avatar = Avatar.new
     @avatar.tema_curso_id = params[:tema_curso_id]
     authorize! :new, @avatar
+    render layout: 'neutro'
   end
 
   # GET /avatares/1/edit
   def edit
     authorize! :edit, @avatar
+    render layout: 'neutro'
   end
 
   # POST /avatares

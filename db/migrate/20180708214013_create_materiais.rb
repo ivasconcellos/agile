@@ -4,7 +4,9 @@ class CreateMateriais < ActiveRecord::Migration[5.2]
       t.string :nome, null: false
       t.text :texto
       t.string :link
-      t.references :conteudo, foreign_key: true
+      t.string :tipo
+      t.boolean :publico, default: true
+      t.references :modulo, foreign_key: true
 
       t.timestamps
     end

@@ -19,7 +19,7 @@
     <div class="form-group row">
       <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Perfil*</label>
       <div class="col-md-6">
-        <%= form.select :perfil,  options_for_select([["Aluno", "Aluno"], ["Professor", "Professor"]]), class: "form-control" %>
+        <%= form.select :perfil,  options_for_select([["Aluno", "Aluno"], ["Professor", "Professor"]], form.object.perfil), class: "form-control" %>
       </div>
     </div>
 
@@ -42,7 +42,7 @@
   <div class="form-group row">
     <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Avatar</label>
     <div class="col-md-6">
-      <% Avatar.where(tema_curso_id: current_usuario.curso_atual.tema_curso_id).each do |avatar| %>
+      <% Avatar.where(tema_curso_id: current_usuario.curso_atual.tema_curso_id, perfil: @perfil.perfil).each do |avatar| %>
         <%= form.radio_button :avatar_id, avatar.id %>
         <%= avatar.nome %>
         <%= image_tag avatar.imagem.url(:thumb), class: "img-responsive img-thumbnail" %>

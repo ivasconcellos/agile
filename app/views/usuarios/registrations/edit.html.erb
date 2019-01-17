@@ -23,7 +23,7 @@
       <div class="form-group row">
         <label for="inputDataNascimento" class="col-md-2 offset-md-2 col-form-label">Data de nascimento</label>
         <div class="col-md-6">
-          <%= f.text_field :data_nascimento, class: "form-control", id: "data_nascimento" %>
+          <%= f.text_field :data_nascimento, class: "form-control", id: "data_nascimento", value: @usuario.data_nascimento.strftime("%d/%m/%Y") %>
         </div>
       </div>
 

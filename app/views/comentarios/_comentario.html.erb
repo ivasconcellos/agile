@@ -2,7 +2,7 @@
 
 <div class="card">
   <div class="card-header bg-secondary text-left">
-    <%= image_tag comentario.usuario_curso.avatar.url(:thumb), class: "img-responsive img-thumbnail" %> <%= comentario.usuario_curso.nickname %>
+    <%= image_tag comentario.usuario_curso.avatar.imagem.url(:thumb), class: "img-responsive img-thumbnail" %> <%= comentario.usuario_curso.nickname %>
     <% if can? :edit, Comentario %>
       <%= link_to  '', edit_comentario_path(comentario), class: "fa fa-pencil text-light", remote: true %>
     <% end %>
@@ -11,8 +11,9 @@
     <% end %>
     <div id="task-form<%= comentario.id %>" style="display:none;"></div>
   </div>
-  <div class="card-body" id="<%= comentario.id %>">
-    <p class="card-text"><%= comentario.texto.to_s.html_safe %></p>
+  <div class="card-body bg-dark" id="<%= comentario.id %>">
+    <p class="card-text text-secondary"><b>Última atualização:</b> <%= comentario.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></p>
+    <p class="card-text"> <%= comentario.texto.to_s.html_safe %></p>
   </div>
   
 </div>

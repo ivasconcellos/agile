@@ -47,26 +47,36 @@
     </nav>
     <div id="wrapper">
       <nav id="sidebar" class="sidebar navbar-nav" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
+        
         <div class="sidebar-header">
-          <h3 class="agile">Menu</h3>
+          <%if @perfil.avatar %>
+            <p class="list-group-item text-center"><%= image_tag @perfil.avatar.imagem.url(:medium), class: "img-responsive img-thumbnail" %></p>
+            <p class="list-group-item text-center"> <%= @perfil.nickname %></p>
+          <% end %>
         </div>
 
-        <ul class="list-unstyled components">            
+
+        <ul class="list-unstyled components"> 
           <li class="nav-item">
-              <%= link_to  @current_usuario.curso_atual, class: "nav-link" do %><i class="fa fa-info-circle fa-lg"> </i> Detalhes do curso<% end %>
+            <br>
+            <h3 class="agile"><%= link_to @current_usuario.curso_atual, class: "nav-link text-center" do %><i class="fa fa-university fa-lg"> </i> Curso<% end %></h3>
+          </li>           
+          <li class="nav-item">
+            <%= link_to  descricao_path(id: @current_usuario.curso_atual), class: "nav-link" do %><i class="fa fa-info-circle fa-lg"> </i> Detalhes do curso<% end %>
           </li>
           <li class="nav-item">
-              <%= link_to meu_perfil_path, class: "nav-link" do %><i class="fa fa-user fa-lg"> </i> Meu perfil<% end %>
+            <%= link_to meu_perfil_path, class: "nav-link" do %><i class="fa fa-user fa-lg"> </i> Meu perfil<% end %>
           </li>
           <li class="nav-item">
               <a href="#modulos" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-book fa-lg"></i> Módulos</a>
               <ul class="collapse list-unstyled" id="modulos">
-                <% @current_usuario.curso_atual.conteudos.each_with_index do |modulo, index| %>
-                  <li>
+                <% @current_usuario.curso_atual.modulos.each_with_index do |modulo, index| %>
+                  <% if modulo.publico %>
+                    <li>
                       <%= link_to "Modulo #{index+1}", modulo, {class: "nav-link"} %></a>
-                  </li>
+                    </li>
+                  <% end%>
                 <% end %>
-                <li><%= link_to "Todos", conteudos_path, {class: "nav-link"} %></li>
               </ul>
           </li>
           <li class="nav-item">
@@ -100,7 +110,7 @@
           <li class="nav-item">
               <a href="#gerenciar" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-wrench fa-lg"></i> Configurar curso</a>
               <ul class="collapse list-unstyled" id="gerenciar">
-                <li class="nav-item"><%= link_to " Módulos", conteudos_path, {class: "fa fa-book fa-sm nav-link"} %> </li>
+                <li class="nav-item"><%= link_to " Módulos", modulos_path, {class: "fa fa-book fa-sm nav-link"} %> </li>
                 <li class="nav-item"><%= link_to " Materiais", materiais_path, {class: "fa fa-file-text fa-sm nav-link"} %> </li>  
                 <li class="nav-item"><%= link_to " Fóruns", foruns_path, {class: "fa fa-comments fa-sm nav-link"} %> </li>  
                 <li class="nav-item"><a class="nav-link" href="/usuario_curso"> <i class="fa fa-users fa-sm"></i> Participantes </a></li>  
