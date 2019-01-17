@@ -36,14 +36,14 @@
     <div class="form-group row">
       <label for="inputDataInicio" class="col-md-2 offset-md-2 col-form-label">Data de início</label>
       <div class="col-md-2">
-        <%= form.text_field :data_inicio, value: @curso.data_inicio.strftime("%d/%m/%Y"), class: "form-control data" %> 
+        <%= form.text_field :data_inicio, value: @curso.data_inicio.try(:strftime,"%d/%m/%Y"), class: "form-control data" %> 
       </div>
     </div>
 
     <div class="form-group row">
       <label for="inputDataTermino" class="col-md-2 offset-md-2 col-form-label">Data de término</label>
       <div class="col-md-2">
-        <%= form.text_field :data_termino, value: @curso.data_termino.strftime("%d/%m/%Y"), class: "form-control data" %>
+        <%= form.text_field :data_termino, value: @curso.data_termino.try(:strftime,"%d/%m/%Y"), class: "form-control data" %>
       </div>
     </div>
 
@@ -82,6 +82,6 @@
 
   <div class="card-footer text-muted">
     <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
-    <%= link_to 'Voltar', root_path, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
   </div>
 <% end %>
