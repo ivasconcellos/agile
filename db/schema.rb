@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_19_171815) do
-
+ActiveRecord::Schema.define(version: 2018_12_27_171853) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -92,28 +91,18 @@ ActiveRecord::Schema.define(version: 2018_12_19_171815) do
     t.index ["usuario_curso_id"], name: "index_comentarios_on_usuario_curso_id"
   end
 
-  create_table "conteudos", force: :cascade do |t|
-    t.string "nome", null: false
-    t.text "descricao"
-    t.bigint "curso_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "publico", default: true
-    t.index ["curso_id"], name: "index_conteudos_on_curso_id"
-  end
-
   create_table "cursos", force: :cascade do |t|
     t.string "nome", null: false
     t.text "descricao"
     t.date "data_inicio"
     t.date "data_termino"
+    t.string "codigo_acesso", limit: 8, null: false
     t.boolean "ativo", default: true
+    t.boolean "publico", default: false
     t.bigint "tema_curso_id"
+    t.bigint "proprietario_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "proprietario_id"
-    t.string "codigo_acesso", limit: 8, null: false
-    t.boolean "publico", default: false
     t.index ["proprietario_id"], name: "index_cursos_on_proprietario_id"
     t.index ["tema_curso_id"], name: "index_cursos_on_tema_curso_id"
   end
@@ -122,10 +111,10 @@ ActiveRecord::Schema.define(version: 2018_12_19_171815) do
     t.string "nome", null: false
     t.text "descricao"
     t.string "audio"
-    t.bigint "conteudo_id"
+    t.bigint "modulo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["conteudo_id"], name: "index_explicacoes_on_conteudo_id"
+    t.index ["modulo_id"], name: "index_explicacoes_on_modulo_id"
   end
 
   create_table "foruns", force: :cascade do |t|
@@ -143,15 +132,15 @@ ActiveRecord::Schema.define(version: 2018_12_19_171815) do
     t.string "nome", null: false
     t.text "texto"
     t.string "link"
-    t.bigint "conteudo_id"
+    t.string "tipo"
+    t.boolean "publico", default: true
+    t.bigint "modulo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "publico", default: true
     t.string "arquivo_file_name"
     t.string "arquivo_content_type"
     t.integer "arquivo_file_size"
     t.datetime "arquivo_updated_at"
-    t.string "tipo"
     t.string "imagem_file_name"
     t.string "imagem_content_type"
     t.integer "imagem_file_size"
@@ -160,17 +149,27 @@ ActiveRecord::Schema.define(version: 2018_12_19_171815) do
     t.string "video_content_type"
     t.integer "video_file_size"
     t.datetime "video_updated_at"
-    t.index ["conteudo_id"], name: "index_materiais_on_conteudo_id"
+    t.index ["modulo_id"], name: "index_materiais_on_modulo_id"
+  end
+
+  create_table "modulos", force: :cascade do |t|
+    t.string "nome"
+    t.text "descricao"
+    t.boolean "publico", default: true
+    t.bigint "curso_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["curso_id"], name: "index_modulos_on_curso_id"
   end
 
   create_table "tarefas", force: :cascade do |t|
-    t.bigint "conteudo_id"
+    t.bigint "modulo_id"
     t.bigint "usuario_curso_id"
     t.text "texto"
     t.float "pontuacao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["conteudo_id"], name: "index_tarefas_on_conteudo_id"
+    t.index ["modulo_id"], name: "index_tarefas_on_modulo_id"
     t.index ["usuario_curso_id"], name: "index_tarefas_on_usuario_curso_id"
   end
 
@@ -204,7 +203,7 @@ ActiveRecord::Schema.define(version: 2018_12_19_171815) do
   create_table "usuarios", force: :cascade do |t|
     t.string "nome", default: "", null: false
     t.string "email", default: "", null: false
-    t.string "perfil", default: "Aluno", null: false
+    t.string "perfil", default: "Usuário comum", null: false
     t.date "data_nascimento", null: false
     t.string "sexo", null: false
     t.string "encrypted_password", default: "", null: false
@@ -219,6 +218,7 @@ ActiveRecord::Schema.define(version: 2018_12_19_171815) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "curso_atual_id"
+    t.boolean "ativo", default: true
     t.index ["curso_atual_id"], name: "index_usuarios_on_curso_atual_id"
     t.index ["email"], name: "index_usuarios_on_email", unique: true
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
@@ -228,14 +228,14 @@ ActiveRecord::Schema.define(version: 2018_12_19_171815) do
   add_foreign_key "comentarios", "comentarios"
   add_foreign_key "comentarios", "foruns"
   add_foreign_key "comentarios", "usuario_curso"
-  add_foreign_key "conteudos", "cursos"
   add_foreign_key "cursos", "tema_cursos"
   add_foreign_key "cursos", "usuarios", column: "proprietario_id"
-  add_foreign_key "explicacoes", "conteudos"
+  add_foreign_key "explicacoes", "modulos"
   add_foreign_key "foruns", "cursos"
   add_foreign_key "foruns", "usuario_curso"
-  add_foreign_key "materiais", "conteudos"
-  add_foreign_key "tarefas", "conteudos"
+  add_foreign_key "materiais", "modulos"
+  add_foreign_key "modulos", "cursos"
+  add_foreign_key "tarefas", "modulos"
   add_foreign_key "tarefas", "usuario_curso"
   add_foreign_key "usuario_curso", "avatares"
   add_foreign_key "usuario_curso", "cursos"

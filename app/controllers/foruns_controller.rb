@@ -6,7 +6,7 @@ class ForunsController < ApplicationController
   # GET /foruns.json
   def index
     @foruns = Forum.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
-    authorize! :index, @foruns
+    authorize! :index, Forum
   end
 
   # GET /foruns/1

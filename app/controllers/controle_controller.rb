@@ -8,7 +8,7 @@ class ControleController < ApplicationController
   		@cursos_publicos = @cursos_publicos.where(codigo_aceso: params[:codigo_aceso]).order('updated_at')
   	end
 
-  	@cursos = UsuarioCurso.where(usuario_id: current_usuario).order('updated_at')
+  	@meuscursos = UsuarioCurso.where(usuario_id: current_usuario).order('updated_at')
   	render layout: 'neutro'
   end
 

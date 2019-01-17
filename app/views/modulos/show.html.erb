@@ -1,0 +1,59 @@
+<div class="card">
+
+  <div class="card-header"><%= @modulo.nome %>
+  	<% if can? :edit, Modulo %>
+    <%= link_to '', edit_modulo_path(@modulo), class: "fa fa-edit" %>
+  <% end %>
+  <% if can? :destroy, Modulo %>
+    <%= link_to '', @modulo, method: :delete, data: { confirm: 'Deseja realmente excluir o Conteúdo?' }, class: "fa fa-trash" %>
+  <% end %>
+  </div>
+  
+	<ul class="list-group">
+	  <li class="list-group-item"><b>Descrição:</b> <%= @modulo.descricao %></li>
+	  <% if can? :edit, Modulo %>
+		<li class="list-group-item"><b>Público:</b> <%= @modulo.publico? ? 'Sim' : 'Não' %></li>  
+		<li class="list-group-item"><b>Cadastrado em:</b> <%= @modulo.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
+		<li class="list-group-item"><b>Curso:</b> <%= @modulo.curso.nome %></li>      
+	  <% end %>
+	</ul>
+
+	<br>
+	<% if can? :new, Explicacao %>
+		<div class="card-footer text-muted">
+		  	<%= link_to  'Inserir Explicações', {controller: 'explicacoes', action: 'new', modulo_id: @modulo.id}, class: "btn btn-md btn-danger" %> 
+		</div>
+	<% end %>
+	<br><br>
+
+	<div class="card-header bg-info">Materiais do Módulo</div>
+	<div class="row">
+        <div class="col-xl-9 col-sm-9 col-md-9">
+			<%= render partial: "materiais/materiais", locals: {modulo: @modulo} %>
+		</div>
+		<div class="col-xl-3 col-sm-3 col-md-3">
+          <% if can? :new, Material %>
+            <div><%= link_to  ' Inserir Link', {controller: 'materiais', action: 'new', modulo_id: @modulo.id, tipo: 'Link'}, class: "fa fa-link" %></div>
+            <div><%= link_to  ' Inserir Arquivo', {controller: 'materiais', action: 'new', modulo_id: @modulo.id, tipo: 'Arquivo'}, class: "fa fa-file" %></div>
+            <div><%= link_to  ' Inserir Vídeo', {controller: 'materiais', action: 'new', modulo_id: @modulo.id, tipo: 'Vídeo'}, class: "fa fa-video-camera" %></div>
+            <div><%= link_to  ' Inserir Texto', {controller: 'materiais', action: 'new', modulo_id: @modulo.id, tipo: 'Texto'}, class: "fa fa-text-width" %></div>
+            <div><%= link_to  ' Inserir Imagem', {controller: 'materiais', action: 'new', modulo_id: @modulo.id, tipo: 'Imagem'}, class: "fa fa-image" %></div>
+          <% end %>
+        </div>
+	</div>
+		
+	<% if not @explicacoes.empty? %>
+
+		<div class="card-header">Explicações do Módulo</div>
+
+		<% @explicacoes.each do |explicacao| %>
+			<ul class="list-group">
+			  <li class="list-group-item"><b>Nome:</b> <%= link_to explicacao.nome, explicacao %></li>
+			  <li class="list-group-item"><b>Descrição:</b> <%= explicacao.descricao.to_s.html_safe %></li>
+			  <li class="list-group-item"><b>Áudio:</b> <%= explicacao.audio %></li>  
+			  <li class="list-group-item"><b>Cadastrado em:</b> <%= explicacao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>       
+			</ul>
+		<% end %>
+	<% end %>
+
+</div>

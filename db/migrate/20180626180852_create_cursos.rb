@@ -5,8 +5,11 @@ class CreateCursos < ActiveRecord::Migration[5.2]
       t.text :descricao
       t.date :data_inicio
       t.date :data_termino
+      t.string :codigo_acesso, limit: 8, null: false
       t.boolean :ativo, default: true
+      t.boolean :publico, default: false
       t.references :tema_curso, foreign_key: true
+      t.references :proprietario, index: true, foreign_key: { to_table: :usuarios }
 
       t.timestamps
     end

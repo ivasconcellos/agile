@@ -4,9 +4,9 @@ class ExplicacoesController < ApplicationController
   # GET /explicacoes
   # GET /explicacoes.json
   def index
-    @explicacoes = Explicacao.joins(:conteudo).where('conteudos.curso_id = ?',
+    @explicacoes = Explicacao.joins(:modulo).where('modulos.curso_id = ?',
     current_usuario.curso_atual_id).page(params[:page]).order('nome')
-    authorize! :index, @explicacoes
+    authorize! :index, Explicacao
   end
 
   # GET /explicacoes/1
@@ -18,7 +18,7 @@ class ExplicacoesController < ApplicationController
   # GET /explicacoes/new
   def new
     @explicacao = Explicacao.new
-    @explicacao.conteudo_id = params[:conteudo_id]
+    @explicacao.modulo_id = params[:modulo_id]
     authorize! :new, @explicacao
   end
 
@@ -76,6 +76,6 @@ class ExplicacoesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def explicacao_params
-      params.require(:explicacao).permit(:nome, :descricao, :audio, :conteudo_id)
+      params.require(:explicacao).permit(:nome, :descricao, :audio, :modulo_id)
     end
 end

@@ -1,12 +1,12 @@
 class CursosController < ApplicationController
-  before_action :set_curso, only: [:show, :edit, :update, :destroy]
+  before_action :set_curso, only: [:show, :descricao, :edit, :update, :destroy]
   before_action :authenticate_usuario!
 
   # GET /cursos
   # GET /cursos.json
   def index
     @cursos = Curso.all.page(params[:page]).order('nome')
-    authorize! :index, @cursos
+    authorize! :index, Curso
     render layout: 'neutro'
   end
 
@@ -14,15 +14,14 @@ class CursosController < ApplicationController
   # GET /cursos/1.json
   def show
     @curso = Curso.find(current_usuario.curso_atual_id)
-    @usuario = UsuarioCurso.where(curso_id: current_usuario.curso_atual_id, usuario_id: current_usuario.id).first
+    @modulos = Modulo.where(curso_id: current_usuario.curso_atual_id, publico: true)
+    @materiais = Material.joins(:modulo).where('modulos.curso_id = ?',
+    current_usuario.curso_atual_id).order('updated_at')
     authorize! :show, @curso
+    
   end
 
   def descricao
-    @curso = Curso.find(current_usuario.curso_atual_id)
-     @modulos = Conteudo.where(curso_id: current_usuario.curso_atual_id, publico: true)
-    @materiais = Material.joins(:conteudo).where('conteudos.curso_id = ?',
-    current_usuario.curso_atual_id).order('updated_at')
     authorize! :show, @curso
   end
 
@@ -42,11 +41,10 @@ class CursosController < ApplicationController
   # POST /cursos.json
   def create
     @curso = Curso.new(curso_params)
-    @curso.proprietario_id = current_usuario.id
     respond_to do |format|
       if @curso.save
-        current_usuario.update(curso_atual_id: params[:curso_id])
-        UsuarioCurso.create!(perfil: 'Professor', nickname: current_usuario.nome, usuario_id: current_usuario.id, curso_id: @curso.id)
+        UsuarioCurso.create!(perfil: 'Professor', nickname: @curso.proprietario.nome, usuario_id: @curso.proprietario_id, curso_id: @curso.id)
+        current_usuario.update(curso_atual_id: @curso.id)
         format.html { redirect_to @curso, notice: 'Curso criado com sucesso!' }
         format.json { render :show, status: :created, location: @curso }
       else
@@ -83,7 +81,7 @@ class CursosController < ApplicationController
 
   def atualizar_curso_atual
     current_usuario.update(curso_atual_id: params[:curso_id])
-    redirect_to :controller => "cursos", :action => "descricao", id: params[:curso_id]
+    redirect_to :controller => "cursos", :action => "show", id: params[:curso_id]
   end
 
   private

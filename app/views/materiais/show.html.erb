@@ -26,7 +26,7 @@
 	  <% end %>
 
 	  <li class="list-group-item"><b>Cadastrado em:</b> <%= @material.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
-	  <li class="list-group-item"><b>Módulo:</b> <%= link_to @material.conteudo.nome, @material.conteudo %></li>      
+	  <li class="list-group-item"><b>Módulo:</b> <%= link_to @material.modulo.nome, @material.modulo %></li>      
 	</ul>
 
 	<br>
