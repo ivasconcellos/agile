@@ -6,7 +6,7 @@ class TemaCursosController < ApplicationController
   # GET /temas_cursos.json
   def index
     @tema_cursos = TemaCurso.all.page(params[:page]).order('nome')
-    authorize! :index, @tema_cursos
+    authorize! :read, TemaCurso
     render layout: 'neutro'
   end
 

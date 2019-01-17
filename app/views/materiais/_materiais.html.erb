@@ -1,5 +1,5 @@
 <ul class="list-unstyled">
-  <% @materiais.where(conteudo_id: modulo.id).each do |material| %>
+  <% @materiais.where(modulo_id: modulo.id).each do |material| %>
     <li>
 
       <% if material.tipo == "Link" %>

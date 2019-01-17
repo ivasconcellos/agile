@@ -1,10 +1,10 @@
 class TarefaAlunosController < ApplicationController
   before_action :set_tarefa_aluno, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_usuario!
+  
   # GET /tarefa_alunos
   # GET /tarefa_alunos.json
   def index
-
     @tarefa_alunos = TarefaAluno.joins(:usuario_curso).where('usuario_curso.curso_id= ?', current_usuario.curso_atual_id)
   end
 
@@ -76,6 +76,6 @@ class TarefaAlunosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tarefa_aluno_params
-      params.require(:tarefa_aluno).permit(:tarefa_id, :usuario_curso, :usuario_curso_id, :nota, :comentario)
+      params.require(:tarefa_aluno).permit(:tarefa_id, :usuario_curso_id)
     end
 end

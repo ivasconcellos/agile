@@ -15,7 +15,7 @@ class ExplicacoesTest < ApplicationSystemTestCase
     click_on "New Explicacao"
 
     fill_in "Audio", with: @explicacao.audio
-    fill_in "Conteudo", with: @explicacao.conteudo_id
+    fill_in "modulo", with: @explicacao.modulo_id
     fill_in "Descricao", with: @explicacao.descricao
     fill_in "Nome", with: @explicacao.nome
     click_on "Create Explicacao"
@@ -29,7 +29,7 @@ class ExplicacoesTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Audio", with: @explicacao.audio
-    fill_in "Conteudo", with: @explicacao.conteudo_id
+    fill_in "modulo", with: @explicacao.modulo_id
     fill_in "Descricao", with: @explicacao.descricao
     fill_in "Nome", with: @explicacao.nome
     click_on "Update Explicacao"

@@ -14,7 +14,7 @@ class MateriaisTest < ApplicationSystemTestCase
     visit materiais_url
     click_on "New Material"
 
-    fill_in "Conteudo", with: @material.conteudo_id
+    fill_in "modulo", with: @material.modulo_id
     fill_in "Descricao", with: @material.descricao
     fill_in "Link", with: @material.link
     fill_in "Nome", with: @material.nome
@@ -28,7 +28,7 @@ class MateriaisTest < ApplicationSystemTestCase
     visit materiais_url
     click_on "Edit", match: :first
 
-    fill_in "Conteudo", with: @material.conteudo_id
+    fill_in "modulo", with: @material.modulo_id
     fill_in "Descricao", with: @material.descricao
     fill_in "Link", with: @material.link
     fill_in "Nome", with: @material.nome
