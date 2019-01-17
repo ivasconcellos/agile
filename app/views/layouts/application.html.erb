@@ -80,23 +80,12 @@
               </ul>
           </li>
           <li class="nav-item">
-              <a href="#atividades" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-tasks fa-lg"></i> Atividades</a>
-              <ul class="collapse list-unstyled" id="atividades">
-                  <li>
-                      <a href="#" class= "nav-link">Atividade 1</a>
-                  </li>
-                  <li>
-                      <a href="#" class= "nav-link">Atividade 2</a>
-                  </li>
-              </ul>
-          </li>
-          <li class="nav-item">
               <a href="#forum" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-comments fa-lg"></i> Fóruns</a>
               <ul class="collapse list-unstyled" id="forum">
-                  <% @current_usuario.curso_atual.foruns.each_with_index do |forum, index| %>
-                    <li>
-                        <%= link_to "Fórum #{index+1}", forum, {class: "nav-link"} %></a>
-                    </li>
+                <% @current_usuario.curso_atual.foruns.each_with_index do |forum, index| %>
+                  <li>
+                      <%= link_to "Fórum #{index+1}", forum, {class: "nav-link"} %></a>
+                  </li>
                 <% end %>
                 <li><%= link_to "Todos", foruns_path, {class: "nav-link"} %></li>
               </ul>
@@ -112,6 +101,7 @@
               <ul class="collapse list-unstyled" id="gerenciar">
                 <li class="nav-item"><%= link_to " Módulos", modulos_path, {class: "fa fa-book fa-sm nav-link"} %> </li>
                 <li class="nav-item"><%= link_to " Materiais", materiais_path, {class: "fa fa-file-text fa-sm nav-link"} %> </li>  
+                <li class="nav-item"><%= link_to " Tarefas", tarefas_path, {class: "fa fa-tasks fa-sm fa-sm nav-link"} %> </li>  
                 <li class="nav-item"><%= link_to " Fóruns", foruns_path, {class: "fa fa-comments fa-sm nav-link"} %> </li>  
                 <li class="nav-item"><a class="nav-link" href="/usuario_curso"> <i class="fa fa-users fa-sm"></i> Participantes </a></li>  
               </ul>

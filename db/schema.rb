@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2018_12_27_171853) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -165,8 +166,9 @@ ActiveRecord::Schema.define(version: 2018_12_27_171853) do
   create_table "tarefas", force: :cascade do |t|
     t.bigint "modulo_id"
     t.bigint "usuario_curso_id"
-    t.text "texto"
+    t.text "descricao"
     t.float "pontuacao"
+    t.boolean "publico", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["modulo_id"], name: "index_tarefas_on_modulo_id"
