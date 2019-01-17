@@ -7,9 +7,10 @@
       <thead>
         <tr>
           <th class="text-center">Módulo</th>
-          <th class="text-center">Descrição</th>
+          <th class="text-center">Nome</th>
           <th class="text-center">Pontuação</th>
           <th class="text-center">Público</th>
+          <th class="text-center">Enviar</th>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -17,9 +18,10 @@
         <% @tarefas.each do |tarefa| %>
           <tr>
             <td><%= tarefa.modulo.nome %></td>
-            <td><%= tarefa.descricao %></td>
+            <td><%= tarefa.nome %></td>
             <td><%= tarefa.pontuacao %></td>
             <td><%= tarefa.publico? ? 'Sim' : 'Não' %></td>
+            <td><%= link_to 'Enviar Tarefa', {controller: 'tarefa_alunos', action: 'new', tarefa_id: tarefa.id}, class: "btn btn-sm btn-danger"  %></td>
             <% if can? :show, Tarefa %>
               <td><%= link_to 'Visualizar', tarefa %></td>
             <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_27_171853) do
+ActiveRecord::Schema.define(version: 2019_01_17_190504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,9 +163,23 @@ ActiveRecord::Schema.define(version: 2018_12_27_171853) do
     t.index ["curso_id"], name: "index_modulos_on_curso_id"
   end
 
+  create_table "tarefa_alunos", force: :cascade do |t|
+    t.bigint "tarefa_id"
+    t.bigint "usuario_curso_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "arquivo_file_name"
+    t.string "arquivo_content_type"
+    t.integer "arquivo_file_size"
+    t.datetime "arquivo_updated_at"
+    t.index ["tarefa_id"], name: "index_tarefa_alunos_on_tarefa_id"
+    t.index ["usuario_curso_id"], name: "index_tarefa_alunos_on_usuario_curso_id"
+  end
+
   create_table "tarefas", force: :cascade do |t|
     t.bigint "modulo_id"
     t.bigint "usuario_curso_id"
+    t.text "nome"
     t.text "descricao"
     t.float "pontuacao"
     t.boolean "publico", default: true
@@ -237,6 +251,8 @@ ActiveRecord::Schema.define(version: 2018_12_27_171853) do
   add_foreign_key "foruns", "usuario_curso"
   add_foreign_key "materiais", "modulos"
   add_foreign_key "modulos", "cursos"
+  add_foreign_key "tarefa_alunos", "tarefas"
+  add_foreign_key "tarefa_alunos", "usuario_curso"
   add_foreign_key "tarefas", "modulos"
   add_foreign_key "tarefas", "usuario_curso"
   add_foreign_key "usuario_curso", "avatares"
