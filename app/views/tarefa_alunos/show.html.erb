@@ -9,6 +9,7 @@
 	   <li class="list-group-item"><b>Arquivo:</b> <%= link_to image_tag("documento.png", :alt => "documento", size: "50x50"), @tarefa_aluno.arquivo.url, target: 'blank' %></li>
 	   <li class="list-group-item"><b>Enviada por:</b> <%= @tarefa_aluno.usuario_curso.nickname %></li>
        <li class="list-group-item"><b>Última atualização:</b> <%= @tarefa_aluno.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
+        <li class="list-group-item"><b>Avaliada:</b> <%= @tarefa_aluno.avaliada? ? 'Sim' : 'Não' %></li>
 	</ul>
 
 	<div class="card-footer text-muted">

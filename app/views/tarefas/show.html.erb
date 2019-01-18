@@ -10,17 +10,23 @@
      <li class="list-group-item"><b>Público:</b> <%= @tarefa.publico? ? 'Sim' : 'Não' %></li>
      <li class="list-group-item"><b>Criada por:</b> <%= @tarefa.usuario_curso.nickname %></li>
      <li class="list-group-item"><b>Criada em:</b> <%= @tarefa.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
+     <% if @tarefa_aluno %>
+      <li class="list-group-item"><b>Visualizar envio:</b> <%= link_to 'Tarefa enviada', @tarefa_aluno %></li>
+     <% end %>
   </ul>
 
   <div class="card-footer text-muted">
     <% if can? :edit, Tarefa %>
-      <%= link_to 'Atualizar', edit_tarefa_path(@tarefa), class: "btn btn-md btn-primary" %>
+      <%= link_to 'Atualizar Tarefa', edit_tarefa_path(@tarefa), class: "btn btn-md btn-primary" %>
     <% end %>
     <% if @perfil.perfil == 'Aluno' %>
       <%= link_to 'Enviar Tarefa', {controller: 'tarefa_alunos', action: 'new', tarefa_id: @tarefa.id}, class: "btn btn-md btn-warning" %>
     <% end %>
+    <% if @tarefa_aluno %>
+      <%= link_to 'Atualizar Envio', edit_tarefa_aluno_path(@tarefa_aluno), class: "btn btn-md btn-danger" %>
+    <% end %>
     <% if can? :new, AvaliacaoTarefa %>
-      <%= link_to 'Visualizar respostas', visualizar_respostas_path(id: @tarefa.id), class: "btn btn-md btn-warning" %>
+      <%= link_to 'Visualizar Respostas', visualizar_respostas_path(id: @tarefa.id), class: "btn btn-md btn-warning" %>
     <% end %>
     <%= link_to 'Voltar', tarefas_path, class: "btn btn-md btn-secondary" %>
   </div>
