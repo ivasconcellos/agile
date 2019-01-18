@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :avaliacao_tarefa
   resources :tarefa_alunos
   resources :tarefas
   resources :modulos
@@ -30,6 +31,7 @@ Rails.application.routes.draw do
   get 'descricao' => 'cursos#descricao'
   get 'material_texto' => 'materiais#texto'
   get 'meu_perfil' => 'usuario_curso#meu_perfil'
+  get 'visualizar_respostas' => 'tarefas#visualizar_respostas'
  
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

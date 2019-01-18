@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tarefa_aluno: one
+  nota: 1.5
+  comentario: MyText
+  usuario_curso: one
+
+two:
+  tarefa_aluno: two
+  nota: 1.5
+  comentario: MyText
+  usuario_curso: two

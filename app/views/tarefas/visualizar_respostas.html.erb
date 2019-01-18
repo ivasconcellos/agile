@@ -1,0 +1,66 @@
+<div class="card">
+
+  <div class="card-header"><%= @tarefa.nome %></div>
+
+  <div class="table-responsive">
+
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th class="text-center">Aluno</th>
+          <th class="text-center">Arquivo</th>
+          <th class="text-center">Nota máxima</th>
+          <th class="text-center">Nota do aluno</th>
+          <th class="text-center" colspan="2">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tarefas_alunos.each do |tarefa_aluno| %>
+          <tr>
+            <td><%= tarefa_aluno.usuario_curso.nickname %></td>
+            <td><%= link_to "Arquivo", tarefa_aluno.arquivo.url, target: 'blank' %></td>
+            <td><%= tarefa_aluno.tarefa.pontuacao %></td>
+            <% if tarefa_aluno.avaliacao_tarefa %>
+              <td><%= tarefa_aluno.avaliacao_tarefa.nota %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            <% if can? :show, TarefaAluno %>
+              <td><%= link_to 'Visualizar', tarefa_aluno %></td>
+            <% end %>
+            <% if tarefa_aluno.avaliacao_tarefa %>
+              <td><%= link_to 'Editar Avaliação',  edit_avaliacao_tarefa_path(tarefa_aluno.avaliacao_tarefa), class: "btn btn-sm btn-danger" %></td>
+            <% else %>
+              <td><%= link_to 'Avaliar Tarefa', {controller: 'avaliacao_tarefa', action: 'new', tarefa_aluno_id: tarefa_aluno.id}, class: "btn btn-sm btn-danger" %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <% if not @alunos_sem_envio.empty? %>
+    <div class="alert alert-danger">Alunos que não enviaram a tarefa</div>
+
+    <div class="table-responsive">
+
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th class="text-center">Nome</th>
+            <th class="text-center">Nota</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @alunos_sem_envio.each do |tarefa_aluno| %>
+            <tr>
+              <td><%= tarefa_aluno.nickname %></td>
+              <td>-</td>            
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+
+</div>

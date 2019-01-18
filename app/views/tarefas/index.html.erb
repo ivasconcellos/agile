@@ -10,18 +10,25 @@
           <th class="text-center">Nome</th>
           <th class="text-center">Pontuação</th>
           <th class="text-center">Público</th>
-          <th class="text-center">Enviar</th>
-          <th colspan="3"></th>
+          <% if @perfil.perfil == 'Aluno' %>
+            <th class="text-center">Enviar</th>
+          <% end %>
+          <th class="text-center" colspan="4">Opções</th>
         </tr>
       </thead>
       <tbody>
         <% @tarefas.each do |tarefa| %>
           <tr>
-            <td><%= tarefa.modulo.nome %></td>
+            <td><%= link_to tarefa.modulo.nome, tarefa.modulo %></td>
             <td><%= tarefa.nome %></td>
             <td><%= tarefa.pontuacao %></td>
             <td><%= tarefa.publico? ? 'Sim' : 'Não' %></td>
-            <td><%= link_to 'Enviar Tarefa', {controller: 'tarefa_alunos', action: 'new', tarefa_id: tarefa.id}, class: "btn btn-sm btn-danger"  %></td>
+            <% if @perfil.perfil == 'Aluno' %>
+              <td><%= link_to 'Enviar Tarefa', {controller: 'tarefa_alunos', action: 'new', tarefa_id: tarefa.id}, class: "btn btn-sm btn-danger"  %></td>
+            <% end %>
+            <% if can? :new, AvaliacaoTarefa %>
+              <td><%= link_to 'Respostas', visualizar_respostas_path(id: tarefa.id) %></td>
+            <% end %>
             <% if can? :show, Tarefa %>
               <td><%= link_to 'Visualizar', tarefa %></td>
             <% end %>

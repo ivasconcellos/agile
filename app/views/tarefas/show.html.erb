@@ -16,7 +16,12 @@
     <% if can? :edit, Tarefa %>
       <%= link_to 'Atualizar', edit_tarefa_path(@tarefa), class: "btn btn-md btn-primary" %>
     <% end %>
-    <%= link_to 'Enviar Tarefa', {controller: 'tarefa_alunos', action: 'new', tarefa_id: @tarefa.id}, class: "btn btn-md btn-warning" %>
+    <% if @perfil.perfil == 'Aluno' %>
+      <%= link_to 'Enviar Tarefa', {controller: 'tarefa_alunos', action: 'new', tarefa_id: @tarefa.id}, class: "btn btn-md btn-warning" %>
+    <% end %>
+    <% if can? :new, AvaliacaoTarefa %>
+      <%= link_to 'Visualizar respostas', visualizar_respostas_path(id: @tarefa.id), class: "btn btn-md btn-warning" %>
+    <% end %>
     <%= link_to 'Voltar', tarefas_path, class: "btn btn-md btn-secondary" %>
   </div>
 

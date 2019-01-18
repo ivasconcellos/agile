@@ -47,19 +47,21 @@
         </div>
 	</div>
 
-	<div class="card-header bg-info">Tarefas do Módulo</div>
-	<div class="row">
-        <div class="col-xl-9 col-sm-9 col-md-9">
-			<% @tarefas.each do |tarefa| %>
-    			<%= link_to tarefa.descricao, tarefa, class: "fa fa-tasks text-dark" %>
-    		<% end %>
+	<% if not @tarefas.empty? %>
+		<div class="card-header bg-info">Tarefas do Módulo</div>
+		<div class="row">
+	        <div class="col-xl-9 col-sm-9 col-md-9">
+				<% @tarefas.each do |tarefa| %>
+	    			<%= link_to tarefa.descricao, tarefa, class: "fa fa-tasks text-dark" %>
+	    		<% end %>
+			</div>
+			<div class="col-xl-3 col-sm-3 col-md-3">
+	          <% if can? :new, Tarefa %>
+	            <div><%= link_to  'Inserir Tarefa', {controller: 'tarefas', action: 'new', modulo_id: @modulo.id, tipo: 'Link'}, class: "fa fa-tasks" %></div>
+	          <% end %>
+	        </div>
 		</div>
-		<div class="col-xl-3 col-sm-3 col-md-3">
-          <% if can? :new, Tarefa %>
-            <div><%= link_to  'Inserir Tarefa', {controller: 'tarefas', action: 'new', modulo_id: @modulo.id, tipo: 'Link'}, class: "fa fa-tasks" %></div>
-          <% end %>
-        </div>
-	</div>
+	<% end %>
 		
 	<% if not @explicacoes.empty? %>
 

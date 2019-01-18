@@ -1,5 +1,5 @@
 class TarefasController < ApplicationController
-  before_action :set_tarefa, only: [:show, :edit, :update, :destroy]
+  before_action :set_tarefa, only: [:show, :edit, :update, :destroy, :visualizar_respostas]
   before_action :authenticate_usuario!
   # GET /tarefas
   # GET /tarefas.json
@@ -68,6 +68,13 @@ class TarefasController < ApplicationController
       format.html { redirect_to tarefas_url, notice: 'Tarefa excluída com sucesso!' }
       format.json { head :no_content }
     end
+  end
+
+  def visualizar_respostas
+    @tarefas_alunos = TarefaAluno.where(tarefa_id: @tarefa)
+    @alunos_sem_envio = UsuarioCurso.joins(:tarefa_aluno).where.not("usuario_curso.perfil = ? and 
+      tarefa_alunos.tarefa_id = ?", "Professor", @tarefa)
+    authorize! :new, Tarefa
   end
 
   private
