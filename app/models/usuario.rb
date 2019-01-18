@@ -6,6 +6,7 @@ class Usuario < ApplicationRecord
 
   validates_presence_of :nome, :data_nascimento, :sexo, :perfil
   belongs_to :curso_atual, class_name: "Curso", optional: true
+  has_many :usuario_curso
 
   USUARIO_COMUM = 'Usuário'
   GESTOR_DO_SISTEMA = 'Gestor'
