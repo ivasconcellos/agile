@@ -21,13 +21,17 @@ class Ability
           can :manage, Comentario
           can :manage, TemaCurso
           can :manage, Avatar
+          can :manage, Tarefa
+          can :manage, AvaliacaoTarefa
         elsif usuario_curso.perfil == 'Aluno'
           can :manage, Comentario
           can :read, Modulo
           can :read, Curso
           can :read, Forum
           can :manage, Comentario
+          can :manage, Avatar
           can :perms_read_and_update, UsuarioCurso
+          can :perms_read_and_update, TarefaAluno
         end
       end
 
