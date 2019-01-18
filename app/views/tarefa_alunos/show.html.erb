@@ -3,7 +3,8 @@
 	<div class="card-header">Tarefa Entregue</div>
 
 	<ul class="list-group">
-	   <li class="list-group-item"><b>Tarefa:</b> <%= @tarefa_aluno.tarefa.descricao %></li>
+	   <li class="list-group-item"><b>Nome da tarefa:</b> <%= @tarefa_aluno.tarefa.nome %></li>
+	   <li class="list-group-item"><b>Descrição da tarefa:</b> <%= @tarefa_aluno.tarefa.descricao %></li>
 	   <li class="list-group-item"><b>Aluno:</b> <%= @tarefa_aluno.usuario_curso.nickname %></li>
 	   <li class="list-group-item"><b>Arquivo:</b> <%= link_to image_tag("documento.png", :alt => "documento", size: "50x50"), @tarefa_aluno.arquivo.url, target: 'blank' %></li>
 	   <li class="list-group-item"><b>Enviada por:</b> <%= @tarefa_aluno.usuario_curso.nickname %></li>
@@ -14,7 +15,10 @@
 	  <% if can? :edit, TarefaAluno %>
 	    <%= link_to 'Atualizar', edit_tarefa_aluno_path(@tarefa_aluno), class: "btn btn-md btn-primary" %>
 	  <% end %>
-	  <%= link_to 'Voltar', tarefas_path, class: "btn btn-md btn-secondary" %>
+	  <% if can? :new, AvaliacaoTarefa %>
+	    <%= link_to 'Avaliar Tarefa', {controller: 'avaliacao_tarefa', action: 'new', tarefa_aluno_id: @tarefa_aluno.id}, class: "btn btn-md btn-danger" %>
+	  <% end %>
+	  <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
 	</div>
 
 
