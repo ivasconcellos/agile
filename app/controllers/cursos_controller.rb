@@ -86,6 +86,11 @@ class CursosController < ApplicationController
     redirect_to :controller => "cursos", :action => "show", id: params[:curso_id]
   end
 
+  def notas
+    @tarefas = Tarefa.joins(:modulo).where('modulos.curso_id = ?',
+       current_usuario.curso_atual_id)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_curso

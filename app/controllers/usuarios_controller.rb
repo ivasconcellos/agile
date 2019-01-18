@@ -7,4 +7,8 @@ class UsuariosController < ApplicationController
        current_usuario.curso_atual_id)
 	end
 
+	def notas_aluno
+		@aluno = UsuarioCurso.find_by('usuario_curso.id = ? and curso_id = ?',
+       params[:aluno_id], params[:curso_id])
+	end
 end

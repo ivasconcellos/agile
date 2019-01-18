@@ -1,0 +1,33 @@
+<div class="card">
+
+  <div class="card-header">Notas do Aluno </div>
+
+  <% @aluno.curso.modulos.each do |modulo| %>
+    <h5 class="p-3 mb-2 bg-info text-white text-center"><b>Módulo:</b> <%= link_to modulo.nome, modulo, class: "text-light" %></h5>
+    	
+		<div class="table-responsive">
+	      <table class="table table-striped table-sm">
+	        <thead>
+	          <tr>
+	            <th class="text-center">Tarefa</th> 
+	            <th class="text-center">Pontuação máxima</th>
+	            <th class="text-center">Minha nota</th>
+	             <th class="text-center">Avaliada</th>        
+	          </tr>
+	        </thead>
+	        <tbody>
+	          <% modulo.tarefas.each do |tarefa| %>
+	            <tr>
+	              <td><%= tarefa.nome %></td>
+	              <td><%= tarefa.pontuacao %></td>
+	              <td><%= minha_nota(tarefa.id, @perfil.id) %></td>
+	              <td><%= avaliada(tarefa.id, @perfil.id) %></td>
+	            </tr>
+	          <% end %>
+	        </tbody>
+	      </table>
+	    </div>   
+   
+  <% end %>
+
+</div>
