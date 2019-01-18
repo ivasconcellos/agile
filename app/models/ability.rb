@@ -22,6 +22,7 @@ class Ability
           can :manage, TemaCurso
           can :manage, Avatar
           can :manage, Tarefa
+          can :read, TarefaAluno
           can :manage, AvaliacaoTarefa
         elsif usuario_curso.perfil == 'Aluno'
           can :manage, Comentario
@@ -31,7 +32,8 @@ class Ability
           can :manage, Comentario
           can :manage, Avatar
           can :perms_read_and_update, UsuarioCurso
-          can :perms_read_and_update, TarefaAluno
+          can :read, Tarefa
+          can :perms_without_delete, TarefaAluno
         end
       end
 
