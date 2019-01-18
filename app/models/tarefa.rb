@@ -6,6 +6,6 @@ class Tarefa < ApplicationRecord
   self.per_page = 10
 
   validates_presence_of :nome, :descricao, :pontuacao
-  validates_inclusion_of :pontuacao, :in => 1..100, message: " - A pontuação deve ser entre 1 e 100"
+  validates_inclusion_of :pontuacao, :in => 0..100, message: " - A pontuação deve ser entre 1 e 100"
 
 end
