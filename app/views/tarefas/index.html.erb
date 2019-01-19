@@ -23,7 +23,7 @@
             <td><%= tarefa.nome %></td>
             <td><%= tarefa.pontuacao %></td>
             <td><%= tarefa.publico? ? 'Sim' : 'Não' %></td>
-            <% if @perfil.perfil == 'Aluno' %>
+            <% if @perfil.perfil == 'Aluno' and no_prazo(tarefa) %>
               <td><%= link_to 'Enviar Tarefa', {controller: 'tarefa_alunos', action: 'new', tarefa_id: tarefa.id}, class: "btn btn-sm btn-danger"  %></td>
             <% end %>
             <% if can? :new, AvaliacaoTarefa %>
