@@ -1,0 +1,29 @@
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th class="text-center">Tarefa</th> 
+            <th class="text-center">Pontuação máxima</th>
+            <th class="text-center">Minha nota</th>
+             <th class="text-center">Avaliada</th>        
+          </tr>
+        </thead>
+        <tbody>
+          <% TarefaAluno.joins(:modulo).where("modulos.id = ?", modulo.id).each do |tarefa| %>
+            <tr>
+              <td><%= tarefa.nome %></td>
+              <td><%= tarefa.pontuacao %></td>
+              <td><%= minha_nota(tarefa.id, @perfil.id) %></td>
+              <td><%= avaliada(tarefa.id, @perfil.id) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+        
+        
+      

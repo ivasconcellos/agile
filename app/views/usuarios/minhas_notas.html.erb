@@ -1,0 +1,10 @@
+<div class="card">
+
+  <div class="card-header">Minhas notas </div>
+
+  <% @modulos.each do |modulo| %>
+    <h5 class="p-3 mb-2 bg-info text-white text-center"><b>Módulo:</b> <%= modulo.nome %></h5>
+    <%= render partial: "tarefas/tarefas", locals: {modulo: modulo} %>
+  <% end %>
+
+</div>

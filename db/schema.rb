@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_17_200120) do
+ActiveRecord::Schema.define(version: 2019_01_18_163632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -183,6 +183,7 @@ ActiveRecord::Schema.define(version: 2019_01_17_200120) do
     t.string "arquivo_content_type"
     t.integer "arquivo_file_size"
     t.datetime "arquivo_updated_at"
+    t.boolean "avaliada", default: false
     t.index ["tarefa_id"], name: "index_tarefa_alunos_on_tarefa_id"
     t.index ["usuario_curso_id"], name: "index_tarefa_alunos_on_usuario_curso_id"
   end

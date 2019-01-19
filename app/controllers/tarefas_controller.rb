@@ -13,6 +13,7 @@ class TarefasController < ApplicationController
   # GET /tarefas/1.json
   def show
     authorize! :show, Tarefa
+    @tarefa_aluno = TarefaAluno.find_by(tarefa_id: @tarefa.id, usuario_curso_id: @perfil.id)
   end
 
   # GET /tarefas/new

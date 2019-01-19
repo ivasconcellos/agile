@@ -35,6 +35,8 @@ class AvaliacaoTarefaController < ApplicationController
 
     respond_to do |format|
       if @avaliacao_tarefa.save
+        @avaliacao_tarefa.tarefa_aluno.avaliada = true
+        @avaliacao_tarefa.tarefa_aluno.save!
         format.html { redirect_to @avaliacao_tarefa, notice: 'Avaliação da tarefa cadastrada com sucesso!' }
         format.json { render :show, status: :created, location: @avaliacao_tarefa }
       else
