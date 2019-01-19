@@ -5,7 +5,7 @@ module AvaliacaoTarefaHelper
 		if @avaliacao
 			return @avaliacao.nota
 		else
-			return "0.0"
+			return "-"
 		end
 	end
 end

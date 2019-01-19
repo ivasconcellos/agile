@@ -2,7 +2,7 @@ module TarefaAlunosHelper
 	def avaliada(tarefa, usuario)
 		@tarefa = TarefaAluno.find_by("tarefa_id = ? and usuario_curso_id = ?", tarefa, usuario)
 		if @tarefa
-			return @tarefa.avaliada
+			return "Sim"
 		else
 			return "Não"
 		end
