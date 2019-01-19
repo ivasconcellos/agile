@@ -41,9 +41,23 @@
     </div>
 
     <div class="form-group row">
-        <label for="inputPontuacao" class="col-md-2 offset-md-2 col-form-label">Pontuação*</label>
-        <div class="col-md-6">
+      <label for="inputPontuacao" class="col-md-2 offset-md-2 col-form-label">Pontuação*</label>
+      <div class="col-md-6">
         <%= form.number_field :pontuacao, step: :any, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputPontuacao" class="col-md-2 offset-md-2 col-form-label">Data limite</label>
+      <div class="col-md-6">
+        <%= form.date_field :data_limite, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputPontuacao" class="col-md-2 offset-md-2 col-form-label">Hora limite</label>
+      <div class="col-md-6">
+        <%= form.time_field :hora_limite, class: "form-control" %>
       </div>
     </div>
 
