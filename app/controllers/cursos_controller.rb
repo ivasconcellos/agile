@@ -20,7 +20,7 @@ class CursosController < ApplicationController
     @tarefas = Tarefa.joins(:modulo).where('modulos.curso_id = ? and tarefas.publico = ?',
     current_usuario.curso_atual_id, true).order('updated_at')
     authorize! :show, @curso
-    
+
   end
 
   def descricao
@@ -30,6 +30,11 @@ class CursosController < ApplicationController
   # GET /cursos/new
   def new
     @curso = Curso.new
+    char = (?0..?z).grep(/\w/)
+    begin
+        str = char.shuffle.take(8).join
+    end while Curso.where('codigo_acesso = ?' , str)
+    @curso.codigo_acesso = str
     authorize! :new, @curso
     render layout: 'neutro'
   end

@@ -73,7 +73,7 @@ class TarefasController < ApplicationController
 
   def visualizar_respostas
     @tarefas_alunos = TarefaAluno.where(tarefa_id: @tarefa)
-    @alunos_sem_envio = UsuarioCurso.joins(:tarefa_aluno).where.not("usuario_curso.perfil = ? and 
+    @alunos_sem_envio = UsuarioCurso.joins(:tarefa_aluno).where.not("usuario_curso.perfil = ? and
       tarefa_alunos.tarefa_id = ?", "Professor", @tarefa)
     authorize! :new, Tarefa
   end
