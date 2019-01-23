@@ -30,11 +30,7 @@ class CursosController < ApplicationController
   # GET /cursos/new
   def new
     @curso = Curso.new
-     char = (?0..?z).grep(/\w/)
-    begin
-        str = char.shuffle.take(8).join
-    end while Curso.exists?( :codigo_acesso => str)
-    @curso.codigo_acesso = str
+    @curso.codigo_acesso = SecureRandom.urlsafe_base64 6
     authorize! :new, @curso
     render layout: 'neutro'
   end

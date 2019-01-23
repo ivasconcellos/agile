@@ -60,14 +60,14 @@
 		  
 		  <% if not @cursos_publicos.empty? %>
 		  	<div class="row">
-	          	<% @cursos.each do |curso| %>
+	          	<% @cursos_publicos.each do |curso| %>
 		            <div class="col-xl-3 col-sm-6 mb-3">
 		              <div class="card text-white curso o-hidden h-100">
 		                <div class="card-body">
-		                  <div><%= curso.curso.nome %></div>
+		                  <div><%= curso.nome %></div>
 		                </div>
 		                <div class="card-footer bg-primary text-white">
-		                  <%= link_to 'Visualizar', {controller: 'cursos', action: 'atualizar_curso_atual', curso_id: curso.curso.id}, class: 'linkcurso' %>
+		                  <%= link_to 'Visualizar', {controller: 'cursos', action: 'atualizar_curso_atual', curso_id: curso.id}, class: 'linkcurso' %>
 		                </div>
 		              </div>
 		            </div>
