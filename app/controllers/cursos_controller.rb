@@ -20,7 +20,7 @@ class CursosController < ApplicationController
     @tarefas = Tarefa.joins(:modulo).where('modulos.curso_id = ? and tarefas.publico = ?',
     current_usuario.curso_atual_id, true).order('updated_at')
     authorize! :show, @curso
-    
+
   end
 
   def descricao
@@ -30,6 +30,7 @@ class CursosController < ApplicationController
   # GET /cursos/new
   def new
     @curso = Curso.new
+    @curso.codigo_acesso = SecureRandom.urlsafe_base64 6
     authorize! :new, @curso
     render layout: 'neutro'
   end

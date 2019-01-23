@@ -18,5 +18,4 @@
 jQuery(function($){
     $("#data_nascimento").mask("99/99/9999");
     $(".data").mask("99/99/9999");
-    $("#codigo_acesso").mask("99999999");
  });
