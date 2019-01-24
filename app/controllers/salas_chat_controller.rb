@@ -32,12 +32,17 @@ class SalasChatController < ApplicationController
   # POST /sala_chat
   # POST /sala_chat.json
   def create
-    @sala_chat = current_usuario.salas_chat.build(sala_chat_params)
-    if @sala_chat.save
-      flash[:success] = 'Chat criado com sucesso!'
-      redirect_to salas_chat_path (@sala_chat)
-    else
-      render 'new'
+    @sala_chat = SalaChat.new(sala_chat_params)
+    @usuario = UsuarioCurso.select(:id).where(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id).first
+    @sala_chat.usuario_curso_id = @usuario.id
+    respond_to do |format|
+      if @sala_chat.save
+        format.html { redirect_to @sala_chat, notice: 'Sala de chat criada com sucesso!' }
+        format.json { render :show, status: :created, location: @sala_chat }
+      else
+        format.html { render :new, @current_usuario => current_usuario }
+        format.json { render json: @sala_chat.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -74,6 +79,6 @@ class SalasChatController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sala_chat_params
-      params.require(:sala_chat).permit(:nome, :curso_id, :ativo)
+      params.require(:sala_chat).permit(:nome, :curso_id, :ativo, :usuario_curso_id)
     end
 end
