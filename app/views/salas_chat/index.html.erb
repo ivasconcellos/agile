@@ -1,7 +1,43 @@
-<h1>Chat rooms</h1>
+<div class="card">
+  <div class="card-header">Chats do Curso</div>
 
-<p class="lead"><%= link_to 'New chat room', new_sala_chat_path, class: 'btn btn-primary' %></p>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th class="text-center">Nome</th>
+          <th colspan="3" class="text-center">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @salas_chat.each do |sala_chat| %>
+          <tr>
+            <td><%= sala_chat.nome %></td>
+            <td><%= link_to 'Visualizar', sala_chat %></td></td>
+            <td>
+              <% if can? :edit, SalaChat %>
+                <%= link_to 'Atualizar', edit_sala_chat_path(sala_chat) %></td>
+              <% else%> - 
+              <% end %>
+            <td>
+              <% if can? :Destroy, SalaChat %>
+                <%= link_to 'Excluir', sala_chat, method: :delete, data: { confirm: 'Deseja realmente excluir a sala de Chat do curso?' } %></td>
+              <% else%> - 
+              <% end %>
+            </tr>
+            
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<ul>
-  <%= render @salas_chat %>
-</ul>
+  <br>
+
+  <% if can? :new, SalaChat %>
+    <div class="card-footer text-muted">
+      <%= link_to 'Cadastrar Fórum do Curso', new_sala_chat_path, class: "btn btn-md btn-primary" %>
+    </div>
+  <% end %>
+
+</div>

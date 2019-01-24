@@ -1,6 +1,7 @@
 class SalasChatController < ApplicationController
   before_action :set_sala_chat, only: [:edit, :update, :destroy]
-
+  before_action :authenticate_usuario!
+  
   # GET /sala_chat
   # GET /sala_chat.json
   def index

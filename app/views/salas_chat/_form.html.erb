@@ -1,7 +1,7 @@
 <%= form_with(model: sala_chat, local: true) do |form| %>
   <% if sala_chat.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(sala_chat.errors.count, "error") %> prohibited this sala_chat from being saved:</h2>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(sala_chat.errors.count, "erro(s)") %> - Sala de Chat não pôde ser salvo!</h2>
 
       <ul>
       <% sala_chat.errors.full_messages.each do |message| %>
@@ -11,12 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :nome %>
-    <%= form.text_field :nome %>
+
+  <div class="card-body">
+    <%= form.hidden_field :curso_id %>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
+      <div class="col-md-6">
+        <%= form.text_field :nome, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="card-footer text-muted">
+    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
   </div>
+  
 <% end %>
