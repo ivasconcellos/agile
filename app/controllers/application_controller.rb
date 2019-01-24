@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-
+  before_action :authenticate_usuario!
     rescue_from CanCan::AccessDenied do |exception|
         render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
     end

@@ -104,3 +104,11 @@ td{
   margin-left: -15px;
   margin-right: -15px;
 }
+
+#mensagens {
+  max-height: 450px;
+  overflow-y: auto;
+  .avatar {
+    margin: 0.5rem;
+  }
+}

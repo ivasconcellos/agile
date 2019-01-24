@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :sala_chat
+  resources :chat_rooms, only: [:new, :create, :show, :index]
   resources :avaliacao_tarefa
   resources :tarefa_alunos
   resources :tarefas

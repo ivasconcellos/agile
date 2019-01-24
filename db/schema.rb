@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_24_000528) do
+ActiveRecord::Schema.define(version: 2019_01_24_163031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,14 @@ ActiveRecord::Schema.define(version: 2019_01_24_000528) do
     t.integer "imagem_file_size"
     t.datetime "imagem_updated_at"
     t.index ["tema_curso_id"], name: "index_avatares_on_tema_curso_id"
+  end
+
+  create_table "chat_rooms", force: :cascade do |t|
+    t.string "title"
+    t.bigint "usuario_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["usuario_id"], name: "index_chat_rooms_on_usuario_id"
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
@@ -166,11 +174,11 @@ ActiveRecord::Schema.define(version: 2019_01_24_000528) do
 
   create_table "mensagens", force: :cascade do |t|
     t.string "texto"
-    t.bigint "sala_chat_id"
+    t.bigint "chat_room_id"
     t.bigint "usuario_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["sala_chat_id"], name: "index_mensagens_on_sala_chat_id"
+    t.index ["chat_room_id"], name: "index_mensagens_on_chat_room_id"
     t.index ["usuario_id"], name: "index_mensagens_on_usuario_id"
   end
 
@@ -275,6 +283,7 @@ ActiveRecord::Schema.define(version: 2019_01_24_000528) do
   add_foreign_key "avaliacao_tarefa", "tarefa_alunos"
   add_foreign_key "avaliacao_tarefa", "usuario_curso"
   add_foreign_key "avatares", "tema_cursos"
+  add_foreign_key "chat_rooms", "usuarios"
   add_foreign_key "comentarios", "comentarios"
   add_foreign_key "comentarios", "foruns"
   add_foreign_key "comentarios", "usuario_curso"
@@ -284,7 +293,7 @@ ActiveRecord::Schema.define(version: 2019_01_24_000528) do
   add_foreign_key "foruns", "cursos"
   add_foreign_key "foruns", "usuario_curso"
   add_foreign_key "materiais", "modulos"
-  add_foreign_key "mensagens", "sala_chat"
+  add_foreign_key "mensagens", "chat_rooms"
   add_foreign_key "mensagens", "usuarios"
   add_foreign_key "modulos", "cursos"
   add_foreign_key "sala_chat", "usuarios"

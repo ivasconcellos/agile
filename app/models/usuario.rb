@@ -10,6 +10,8 @@ class Usuario < ApplicationRecord
 
   has_many :sala_chat, dependent: :destroy
   has_many :mensagens, dependent: :destroy
+  has_many :chat_rooms, dependent: :destroy
+
 
   USUARIO_COMUM = 'Usuário'
   GESTOR_DO_SISTEMA = 'Gestor'
