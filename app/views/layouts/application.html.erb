@@ -1,155 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>AGILE</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>CableChat</title>
+  <%= csrf_meta_tags %>
 
-   <% %w(bootstrap.min sb-admin template_cursos font-awesome.min).each do |asset| %>
-        <%= stylesheet_link_tag asset %>
-    <% end %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_include_tag 'jquery-3.3.1.min'  %>
-    <%= javascript_include_tag 'bootstrap.min'  %>
-    <%= javascript_include_tag 'sb-admin'  %>
-    <%= javascript_include_tag 'jquery.maskedinput.min'  %>
+<body>
 
+<nav class="navbar navbar-dark bg-inverse">
+  <%= link_to 'CableChat', root_path, class: 'navbar-brand' %>
 
-  </head>
+  </nav>
 
-  <body id="page-top" style=" background-image: url(<%= @current_usuario.curso_atual.tema_curso.imagem %>); background-repeat: no-repeat; background-size: cover; color: <%= @current_usuario.curso_atual.tema_curso.cor_texto %>">
+<div class="container">
+  <%= yield %>
+</div>
 
-    <nav class="navbar navbar-expand static-top">
-      <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
-      <a class="navbar-brand mr-1" href="/">AGILE</a>
-
-      <!-- Navbar -->
-      <ul class="navbar-nav ml-auto ml-md-12">
-        <% if usuario_signed_in? %>
-          <li class="nav-item">
-            <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'nav-link' do %>Atualizar Dados<% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to destroy_usuario_session_path, :method => :delete, class: 'nav-link' do %>Sair<% end %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <a class="nav-link" href="/sobre">Sobre</a>
-          </li>
-        <% end %>
-      </ul>
-
-    </nav>
-    <div id="wrapper">
-      <nav id="sidebar" class="sidebar navbar-nav" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
-        
-        <div class="sidebar-header">
-          <%if @perfil.avatar %>
-            <p class="list-group-item text-center"><%= image_tag @perfil.avatar.imagem.url(:medium), class: "img-responsive img-thumbnail" %></p>
-            <p class="list-group-item text-center"> <%= @perfil.nickname %></p>
-          <% end %>
-        </div>
-
-
-        <ul class="list-unstyled components"> 
-          <li class="nav-item">
-            <br>
-            <h3 class="agile"><%= link_to @current_usuario.curso_atual, class: "nav-link text-center" do %><i class="fa fa-university fa-lg"> </i> Curso<% end %></h3>
-          </li>           
-          <li class="nav-item">
-            <%= link_to  descricao_path(id: @current_usuario.curso_atual), class: "nav-link" do %><i class="fa fa-info-circle fa-lg"> </i> Detalhes do curso<% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to meu_perfil_path, class: "nav-link" do %><i class="fa fa-user fa-lg"> </i> Meu perfil<% end %>
-          </li>
-          <li class="nav-item">
-              <a href="#modulos" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-book fa-lg"></i> Módulos</a>
-              <ul class="collapse list-unstyled" id="modulos">
-                <% @current_usuario.curso_atual.modulos.each_with_index do |modulo, index| %>
-                  <% if modulo.publico %>
-                    <li>
-                      <%= link_to "Modulo #{index+1}", modulo, {class: "nav-link"} %></a>
-                    </li>
-                  <% end%>
-                <% end %>
-              </ul>
-          </li>
-          <li class="nav-item">
-              <a href="#forum" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-comments fa-lg"></i> Fóruns</a>
-              <ul class="collapse list-unstyled" id="forum">
-                <% @current_usuario.curso_atual.foruns.each_with_index do |forum, index| %>
-                  <li>
-                      <%= link_to "Fórum #{index+1}", forum, {class: "nav-link"} %></a>
-                  </li>
-                <% end %>
-                <li><%= link_to "Todos", foruns_path, {class: "nav-link"} %></li>
-              </ul>
-          </li>
-          <li class="nav-item"><%= link_to "Minhas notas", minhas_notas_path, {class: "fa fa-graduation-cap fa-sm nav-link"} %> </li>  
-          <li class="nav-item">
-            <a class="nav-link" href="/usuario_curso"> <i class="fa fa-users fa-lg"></i> Participantes</a>
-          </li>  
-          <li class="nav-item">
-              <a href="#gerenciar" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-wrench fa-lg"></i> Configurar curso</a>
-              <ul class="collapse list-unstyled" id="gerenciar">
-                <li class="nav-item"><%= link_to " Módulos", modulos_path, {class: "fa fa-book fa-sm nav-link"} %> </li>
-                <li class="nav-item"><%= link_to " Materiais", materiais_path, {class: "fa fa-file-text fa-sm nav-link"} %> </li>  
-                <li class="nav-item"><%= link_to " Tarefas", tarefas_path, {class: "fa fa-tasks fa-sm fa-sm nav-link"} %> </li>  
-                <li class="nav-item"><%= link_to " Fóruns", foruns_path, {class: "fa fa-comments fa-sm nav-link"} %> </li>  
-                <li class="nav-item"><a class="nav-link" href="/usuario_curso"> <i class="fa fa-users fa-sm"></i> Participantes </a></li>  
-                <li class="nav-item"><a class="nav-link" href="/notas"> <i class="fa fa-graduation-cap fa-sm"></i> Notas da turma </a></li>  
-              </ul>
-          </li>
-
-        </ul>
-
-      </nav>
-
-      <div id="content-wrapper">
-
-        <div class="container-fluid">
-           <% if notice %>
-            <p class="alert alert-success"><%= notice %></p>
-          <% end %>
-          <% if alert %>
-            <p class="alert alert-danger"><%= alert %></p>
-          <% end %>
-          <% if usuario_signed_in? %>
-            <div class="row"> 
-              <div class="col-md-12 col-sm-10">       
-                <%= yield %>
-              </div>
-            </div>
-          <%else%>
-            <div class="row"> 
-                <%= yield %>
-            </div>
-          <%end%>
-        </div>
-        <!-- /.container-fluid -->
-
-        <!-- Sticky Footer -->
-        <footer class="sticky-footer">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>Copyright © MPET - IFFluminense 2018</span>
-            </div>
-          </div>
-        </footer>
-        
-
-      </div>
-      <!-- /.content-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->  
-
-    
-
-  </body>
+<footer>
+  <div class="container">
+    <p class="text-muted">Isadora</p>
+  </div>
+</footer>
+</body>
 </html>

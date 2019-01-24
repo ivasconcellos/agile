@@ -8,6 +8,9 @@ class Usuario < ApplicationRecord
   belongs_to :curso_atual, class_name: "Curso", optional: true
   has_many :usuario_curso
 
+  has_many :sala_chat, dependent: :destroy
+  has_many :mensagens, dependent: :destroy
+
   USUARIO_COMUM = 'Usuário'
   GESTOR_DO_SISTEMA = 'Gestor'
 
