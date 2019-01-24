@@ -8,6 +8,8 @@ class SalasChatChannel < ApplicationCable::Channel
   end
 
   def send_mensagem(data)
-    current_user.mensagens.create!(texto: data['mensagem'], sala_chat_id: data['sala_chat_id'])
+  	usuario_curso = UsuarioCurso.select(:id).where(usuario_id: current_user.id, curso_id: current_user.curso_atual_id).first
+  	usuario_curso.mensagens.create!(texto: data['mensagem'], sala_chat_id: data['sala_chat_id'])
+    
   end
 end

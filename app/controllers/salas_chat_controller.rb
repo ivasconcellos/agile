@@ -37,7 +37,7 @@ class SalasChatController < ApplicationController
     @sala_chat.usuario_curso_id = @usuario.id
     respond_to do |format|
       if @sala_chat.save
-        format.html { redirect_to @sala_chat, notice: 'Sala de chat criada com sucesso!' }
+        format.html { redirect_to @sala_chat, notice: 'Sala de chat cadastrada com sucesso!' }
         format.json { render :show, status: :created, location: @sala_chat }
       else
         format.html { render :new, @current_usuario => current_usuario }
@@ -51,7 +51,7 @@ class SalasChatController < ApplicationController
   def update
     respond_to do |format|
       if @sala_chat.update(sala_chat_params)
-        format.html { redirect_to @sala_chat, notice: 'Sala chat was successfully updated.' }
+        format.html { redirect_to @sala_chat, notice: 'Sala de chat atualizada com sucesso!' }
         format.json { render :show, status: :ok, location: @sala_chat }
       else
         format.html { render :edit }
@@ -66,7 +66,7 @@ class SalasChatController < ApplicationController
     authorize! :destroy, SalaChat
     @sala_chat.destroy
     respond_to do |format|
-      format.html { redirect_to sala_chat_index_url, notice: 'Sala chat was successfully destroyed.' }
+      format.html { redirect_to sala_chat_index_url, notice: 'Sala de chat excluída com sucesso!' }
       format.json { head :no_content }
     end
   end
