@@ -78,14 +78,6 @@ ActiveRecord::Schema.define(version: 2019_01_24_163031) do
     t.index ["tema_curso_id"], name: "index_avatares_on_tema_curso_id"
   end
 
-  create_table "chat_rooms", force: :cascade do |t|
-    t.string "title"
-    t.bigint "usuario_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["usuario_id"], name: "index_chat_rooms_on_usuario_id"
-  end
-
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
     t.string "data_content_type"
@@ -174,11 +166,11 @@ ActiveRecord::Schema.define(version: 2019_01_24_163031) do
 
   create_table "mensagens", force: :cascade do |t|
     t.string "texto"
-    t.bigint "chat_room_id"
+    t.bigint "sala_chat_id"
     t.bigint "usuario_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["chat_room_id"], name: "index_mensagens_on_chat_room_id"
+    t.index ["sala_chat_id"], name: "index_mensagens_on_sala_chat_id"
     t.index ["usuario_id"], name: "index_mensagens_on_usuario_id"
   end
 
@@ -192,12 +184,12 @@ ActiveRecord::Schema.define(version: 2019_01_24_163031) do
     t.index ["curso_id"], name: "index_modulos_on_curso_id"
   end
 
-  create_table "sala_chat", force: :cascade do |t|
+  create_table "salas_chat", force: :cascade do |t|
     t.string "nome"
     t.bigint "usuario_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["usuario_id"], name: "index_sala_chat_on_usuario_id"
+    t.index ["usuario_id"], name: "index_salas_chat_on_usuario_id"
   end
 
   create_table "tarefa_alunos", force: :cascade do |t|
@@ -283,7 +275,6 @@ ActiveRecord::Schema.define(version: 2019_01_24_163031) do
   add_foreign_key "avaliacao_tarefa", "tarefa_alunos"
   add_foreign_key "avaliacao_tarefa", "usuario_curso"
   add_foreign_key "avatares", "tema_cursos"
-  add_foreign_key "chat_rooms", "usuarios"
   add_foreign_key "comentarios", "comentarios"
   add_foreign_key "comentarios", "foruns"
   add_foreign_key "comentarios", "usuario_curso"
@@ -293,10 +284,10 @@ ActiveRecord::Schema.define(version: 2019_01_24_163031) do
   add_foreign_key "foruns", "cursos"
   add_foreign_key "foruns", "usuario_curso"
   add_foreign_key "materiais", "modulos"
-  add_foreign_key "mensagens", "chat_rooms"
+  add_foreign_key "mensagens", "salas_chat"
   add_foreign_key "mensagens", "usuarios"
   add_foreign_key "modulos", "cursos"
-  add_foreign_key "sala_chat", "usuarios"
+  add_foreign_key "salas_chat", "usuarios"
   add_foreign_key "tarefa_alunos", "tarefas"
   add_foreign_key "tarefa_alunos", "usuario_curso"
   add_foreign_key "tarefas", "modulos"

@@ -1,5 +1,5 @@
 class Mensagem < ApplicationRecord
-  belongs_to :chat_room
+  belongs_to :sala_chat
   belongs_to :usuario
 
   validates :texto, presence: true, length: {minimum: 2, maximum: 1000}

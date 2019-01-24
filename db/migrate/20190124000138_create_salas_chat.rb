@@ -1,6 +1,6 @@
-class CreateSalaChat < ActiveRecord::Migration[5.2]
+class CreateSalasChat < ActiveRecord::Migration[5.2]
   def change
-    create_table :sala_chat do |t|
+    create_table :salas_chat do |t|
       t.string :nome
       t.references :usuario, foreign_key: true
 

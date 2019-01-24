@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :sala_chat
-  resources :chat_rooms, only: [:new, :create, :show, :index]
+  resources :salas_chat
   resources :avaliacao_tarefa
   resources :tarefa_alunos
   resources :tarefas
@@ -16,8 +15,6 @@ Rails.application.routes.draw do
   resources :tema_cursos
   devise_for :admins
   devise_for :usuarios
-
-
 
   devise_scope :usuario do
     root 'devise/sessions#new'

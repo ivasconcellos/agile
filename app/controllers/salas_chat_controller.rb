@@ -1,10 +1,10 @@
-class SalaChatController < ApplicationController
+class SalasChatController < ApplicationController
   before_action :set_sala_chat, only: [:edit, :update, :destroy]
 
   # GET /sala_chat
   # GET /sala_chat.json
   def index
-    @sala_chat = SalaChat.all
+    @salas_chat = SalaChat.all
   end
 
   # GET /sala_chat/1
@@ -26,10 +26,10 @@ class SalaChatController < ApplicationController
   # POST /sala_chat
   # POST /sala_chat.json
   def create
-    @sala_chat = current_usuario.sala_chat.build(sala_chat_params)
+    @sala_chat = current_usuario.salas_chat.build(sala_chat_params)
     if @sala_chat.save
       flash[:success] = 'Chat criado com sucesso!'
-      redirect_to sala_chat_path (@sala_chat)
+      redirect_to salas_chat_path (@sala_chat)
     else
       render 'new'
     end
