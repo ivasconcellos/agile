@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :salas_chat
   resources :avaliacao_tarefa
   resources :tarefa_alunos
   resources :tarefas
@@ -14,8 +15,6 @@ Rails.application.routes.draw do
   resources :tema_cursos
   devise_for :admins
   devise_for :usuarios
-
-
 
   devise_scope :usuario do
     root 'devise/sessions#new'
@@ -39,5 +38,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   mount Ckeditor::Engine => '/ckeditor'
+
+  mount ActionCable.server => '/cable'
   
 end
