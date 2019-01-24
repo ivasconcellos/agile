@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_24_163031) do
+ActiveRecord::Schema.define(version: 2019_01_24_000531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -186,9 +186,12 @@ ActiveRecord::Schema.define(version: 2019_01_24_163031) do
 
   create_table "salas_chat", force: :cascade do |t|
     t.string "nome"
+    t.bigint "curso_id"
     t.bigint "usuario_id"
+    t.boolean "ativo", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["curso_id"], name: "index_salas_chat_on_curso_id"
     t.index ["usuario_id"], name: "index_salas_chat_on_usuario_id"
   end
 
@@ -287,6 +290,7 @@ ActiveRecord::Schema.define(version: 2019_01_24_163031) do
   add_foreign_key "mensagens", "salas_chat"
   add_foreign_key "mensagens", "usuarios"
   add_foreign_key "modulos", "cursos"
+  add_foreign_key "salas_chat", "cursos"
   add_foreign_key "salas_chat", "usuarios"
   add_foreign_key "tarefa_alunos", "tarefas"
   add_foreign_key "tarefa_alunos", "usuario_curso"

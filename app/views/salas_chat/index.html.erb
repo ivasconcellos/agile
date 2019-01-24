@@ -36,7 +36,7 @@
 
   <% if can? :new, SalaChat %>
     <div class="card-footer text-muted">
-      <%= link_to 'Cadastrar Fórum do Curso', new_sala_chat_path, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Cadastrar Sala de chat', {controller: 'salas_chat', action: 'new', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-primary" %>
     </div>
   <% end %>
 

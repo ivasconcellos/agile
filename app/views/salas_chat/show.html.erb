@@ -2,22 +2,24 @@
 
  	<div class="card-header">Chat: <%= @sala_chat.nome %></div>
 
- 	<div id="mensagens" data-sala-chat-id="<%= @sala_chat.id %>">
+ 	<div class="card-header bg-info text-left" id="mensagens" data-sala-chat-id="<%= @sala_chat.id %>">
   		<%= render @sala_chat.mensagens %>
 	</div>
 
 	
 	<%= form_for @mensagem, url: '#' do |f| %>
 	  <%= hidden_field_tag 'sala_chat_id', @sala_chat.id %>
-	  <div class="card-body">
+	  <div class="card-body bg-secondary">
 		  <div class="form-group row">
-		  	 <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Texto*</label>
-		    <%= f.text_area :texto, class: 'form-control' %>
+		    <%= f.text_area :texto, placeholder: 'Digite sua mensagem...', class: 'form-control' %>
 		    <small class="text-muted">De 2 a 1000 caracteres!</small>
 		  </div>
-	  </div>
 
-	  <%= f.submit "Enviar", class: 'btn btn-primary btn-lg' %>
+		  <div class="text-center">
+		  	<%= f.submit "Enviar", class: 'btn btn-primary' %>
+		  </div>
+	  </div>
+	  
 	<% end %>
 
 </div>

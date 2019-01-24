@@ -5,7 +5,8 @@ class SalasChatController < ApplicationController
   # GET /sala_chat
   # GET /sala_chat.json
   def index
-    @salas_chat = SalaChat.all
+    @salas_chat = SalaChat.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
+    authorize! :index, SalaChat
   end
 
   # GET /sala_chat/1
@@ -13,15 +14,19 @@ class SalasChatController < ApplicationController
   def show
     @sala_chat = SalaChat.includes(:mensagens).find_by(id: params[:id])
     @mensagem = Mensagem.new
+    authorize! :show, SalaChat
   end
 
   # GET /sala_chat/new
   def new
     @sala_chat = SalaChat.new
+    @sala_chat.curso_id = params[:curso_id]
+    authorize! :new, SalaChat
   end
 
   # GET /sala_chat/1/edit
   def edit
+    authorize! :edit, SalaChat
   end
 
   # POST /sala_chat
@@ -53,6 +58,7 @@ class SalasChatController < ApplicationController
   # DELETE /sala_chat/1
   # DELETE /sala_chat/1.json
   def destroy
+    authorize! :destroy, SalaChat
     @sala_chat.destroy
     respond_to do |format|
       format.html { redirect_to sala_chat_index_url, notice: 'Sala chat was successfully destroyed.' }
@@ -68,6 +74,6 @@ class SalasChatController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sala_chat_params
-      params.require(:sala_chat).permit(:nome)
+      params.require(:sala_chat).permit(:nome, :curso_id, :ativo)
     end
 end
