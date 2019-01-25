@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :badges
   resources :salas_chat
   resources :avaliacao_tarefa
   resources :tarefa_alunos

@@ -75,3 +75,6 @@ gem 'ckeditor'
 gem 'rails-i18n'
 
 gem 'redis'
+
+gem 'image_processing'
+
