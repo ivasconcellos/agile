@@ -1,0 +1,46 @@
+<%= form_with(model: badge, local: true) do |form| %>
+  <% if badge.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(badge.errors.count, "erro(s)") %> - Badge não pôde ser salva!</h2>
+
+      <ul>
+      <% badge.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card-body">
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
+      <div class="col-md-6">
+        <%= form.text_field :nome, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Imagem*</label>
+      <div class="col-md-6">
+        <%= form.file_field :imagem, required: true %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="form-check-label col-md-2 offset-md-2" for="gridCheck1">Ativo</label>
+      <div class="col-md-2 ">
+        <div class="form-check">
+          <%= form.check_box :ativo, class: "form-check-input" %> Sim
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card-footer text-muted">
+    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', badges_path, class: "btn btn-md btn-secondary" %>
+  </div>
+
+<% end %>

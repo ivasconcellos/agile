@@ -12,6 +12,9 @@
 				<% if can? :new, TemaCurso %>
 					<%= link_to 'Temas de Cursos', tema_cursos_path, class: "btn btn-md btn-danger" %>
 			  	<% end %>
+			  	<% if can? :new, Badge %>
+					<%= link_to 'Badge', badges_path, class: "btn btn-md btn-secondary" %>
+			  	<% end %>
 			  	<%= link_to 'Me inscrever em um curso', {controller: 'usuario_curso', action: 'busca_curso'}, class: "btn btn-md btn-info" %>
 			</div>
 			<br>
