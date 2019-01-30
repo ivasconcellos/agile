@@ -20,6 +20,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'sala_chat', 'salas_chat'
 	inflect.irregular 'mensagem', 'mensagens'
 	inflect.irregular 'badge', 'badges'
+	inflect.irregular 'missao', 'missoes'
 end
 
 # These inflection rules are supported but not enabled by default:

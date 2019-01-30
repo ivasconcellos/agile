@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Missoes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Curso</th>
+      <th>Usuario curso</th>
+      <th>Nome</th>
+      <th>Descricao</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @missoes.each do |missao| %>
+      <tr>
+        <td><%= missao.curso %></td>
+        <td><%= missao.usuario_curso %></td>
+        <td><%= missao.nome %></td>
+        <td><%= missao.descricao %></td>
+        <td><%= link_to 'Show', missao %></td>
+        <td><%= link_to 'Edit', edit_missao_path(missao) %></td>
+        <td><%= link_to 'Destroy', missao, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Missao', new_missao_path %>

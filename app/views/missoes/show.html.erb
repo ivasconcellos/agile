@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Curso:</strong>
+  <%= @missao.curso %>
+</p>
+
+<p>
+  <strong>Usuario curso:</strong>
+  <%= @missao.usuario_curso %>
+</p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @missao.nome %>
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @missao.descricao %>
+</p>
+
+<%= link_to 'Edit', edit_missao_path(@missao) %> |
+<%= link_to 'Back', missoes_path %>
