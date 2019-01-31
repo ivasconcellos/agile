@@ -7,6 +7,13 @@
     </div>
   <% end %>
 
+  <% if @usuario_curso.empty? %>
+    <div class="text-center">
+      <br>
+      <%= link_to 'Me inscrever neste Curso', {controller: 'usuario_curso', action: 'inscricao_curso'}, class: "btn btn-md btn-success" %>
+    </div>
+  <% end %>
+
   <div id="accordion">
     <% @modulos.each_with_index do |modulo, index| %>
     <div class="card">

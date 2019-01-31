@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get 'desenvolvimento' => 'controle#desenvolvimento'
   get 'curso_atual' => 'cursos#atualizar_curso_atual'
   get 'busca_curso' => 'usuario_curso#busca_curso'
+  get 'inscricao_curso' => 'usuario_curso#inscricao_curso'
   get 'descricao' => 'cursos#descricao'
   get 'material_texto' => 'materiais#texto'
   get 'meu_perfil' => 'usuario_curso#meu_perfil'

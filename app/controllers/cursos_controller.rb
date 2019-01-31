@@ -19,8 +19,8 @@ class CursosController < ApplicationController
     current_usuario.curso_atual_id).order('updated_at')
     @tarefas = Tarefa.joins(:modulo).where('modulos.curso_id = ? and tarefas.publico = ?',
     current_usuario.curso_atual_id, true).order('updated_at')
+    @usuario_curso = UsuarioCurso.where(curso_id: @curso.id, usuario_id: current_usuario.id)
     authorize! :show, @curso
-
   end
 
   def descricao

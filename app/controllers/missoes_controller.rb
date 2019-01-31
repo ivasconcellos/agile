@@ -39,7 +39,7 @@ class MissoesController < ApplicationController
         format.html { redirect_to @missao, notice: 'Missão cadastrada com sucesso!' }
         format.json { render :show, status: :created, location: @missao }
       else
-        format.html { render :new }
+        format.html { render :new, @current_usuario => current_usuario }
         format.json { render json: @missao.errors, status: :unprocessable_entity }
       end
     end
@@ -53,7 +53,7 @@ class MissoesController < ApplicationController
         format.html { redirect_to @missao, notice: 'Missão atualizada com sucesso!' }
         format.json { render :show, status: :ok, location: @missao }
       else
-        format.html { render :edit }
+        format.html { render :edit, @current_usuario => current_usuario }
         format.json { render json: @missao.errors, status: :unprocessable_entity }
       end
     end
