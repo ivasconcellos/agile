@@ -5,6 +5,7 @@ class CreateMissoes < ActiveRecord::Migration[5.2]
       t.references :usuario_curso, foreign_key: true
       t.string :nome
       t.text :descricao
+      t.boolean :ativo, default: true
 
       t.timestamps
     end
