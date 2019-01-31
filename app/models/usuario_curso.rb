@@ -4,7 +4,7 @@ class UsuarioCurso < ApplicationRecord
 	belongs_to :usuario
 	belongs_to :avatar, optional: true
 	has_many :tarefa_aluno
-	has_one :usuario
+	belongs_to :usuario
 	has_many :salas_chat, dependent: :destroy
 	has_many :mensagens, dependent: :destroy
 	

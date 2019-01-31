@@ -11,7 +11,7 @@ class Ability
 
       if usuario.curso_atual
         usuario_curso = UsuarioCurso.where(usuario_id: usuario.id, curso_id: usuario.curso_atual.id).first
-        if usuario_curso.perfil == 'Professor'
+        if !usuario_curso.nil? and usuario_curso.perfil == 'Professor'
           can :manage, Curso
           can :manage, Modulo
           can :manage, Explicacao
@@ -24,7 +24,7 @@ class Ability
           can :manage, Tarefa
           can :read, TarefaAluno
           can :manage, AvaliacaoTarefa
-        elsif usuario_curso.perfil == 'Aluno'
+        elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
           can :manage, Comentario
           can :read, Modulo
           can :read, Curso
@@ -34,6 +34,8 @@ class Ability
           can :perms_read_and_update, UsuarioCurso
           can :read, Tarefa
           can :perms_without_delete, TarefaAluno
+        else
+          can :read, Curso
         end
       end
 

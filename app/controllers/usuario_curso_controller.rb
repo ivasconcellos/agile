@@ -95,6 +95,18 @@ class UsuarioCursoController < ApplicationController
     end
   end
 
+  def inscricao_curso
+    @usuario_curso = UsuarioCurso.new(perfil: 'Aluno', nickname: current_usuario.nome, usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id)
+    if @usuario_curso.save
+      flash[:notice] = 'Usuário do Curso cadastrado com sucesso!'
+      redirect_to :controller => "cursos", :action => "show", id: current_usuario.curso_atual_id
+    else
+      format.html { render :busca_curso, @current_usuario => current_usuario, layout: 'neutro' }
+      format.json { render json: @usuario_curso.errors, status: :unprocessable_entity }
+    end
+    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_usuario_curso
