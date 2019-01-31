@@ -1,0 +1,23 @@
+<div class="card">
+
+  <div class="card-header">Missão</div>
+  
+  <ul class="list-group">
+     <li class="list-group-item"><b>Nome:</b> <%= @missao.nome %></li>
+     <li class="list-group-item"><b>Descrição:</b> <%= @missao.descricao %></li>
+     <% if @missao.imagem.attached? %>
+      <li class="list-group-item"><b>Imagem:</b> <%= image_tag @missao.imagem.variant(resize: "100x100") %></li>
+     <% end %>
+     <li class="list-group-item"><b>Ativa:</b> <%= @missao.ativo? ? 'Sim' : 'Não' %></li>
+     <li class="list-group-item"><b>Criada por:</b> <%= @missao.usuario_curso.nickname %></li>
+     <li class="list-group-item"><b>Criada em:</b> <%= @missao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
+  </ul>
+
+  <div class="card-footer text-muted">
+    <% if can? :edit, Missao %>
+      <%= link_to 'Atualizar Missão', edit_missao_path(@missao), class: "btn btn-md btn-primary" %>
+    <% end %>
+    <%= link_to 'Voltar', missoes_path, class: "btn btn-md btn-secondary" %>
+  </div>
+
+</div>

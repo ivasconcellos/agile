@@ -1,0 +1,54 @@
+<%= form_with(model: missao, local: true) do |form| %>
+  <% if missao.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(missao.errors.count, "erro(s)") %> Missão não pôde ser salva!</h2>
+
+      <ul>
+      <% missao.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :curso_id %>
+  <%= form.hidden_field :usuario_curso_id %>
+  <div class="card-body">
+
+    <div class="form-group row">
+      <label for="inputTexto" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
+      <div class="col-md-6">
+        <%= form.text_field :nome, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputTexto" class="col-md-2 offset-md-2 col-form-label">Descrição*</label>
+      <div class="col-md-6">
+        <%= form.text_area :descricao, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Imagem</label>
+      <div class="col-md-6">
+        <%= form.file_field :imagem %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="form-check-label col-md-2 offset-md-2" for="gridCheck1">Ativo</label>
+      <div class="col-md-2 ">
+        <div class="form-check">
+          <%= form.check_box :ativo, class: "form-check-input" %> Sim
+        </div>
+      </div>        
+    </div>
+
+  </div>
+
+  <div class="card-footer text-muted">
+    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
+  </div>
+<% end %>
