@@ -1,0 +1,27 @@
+<%= form_with(model: nivel, local: true) do |form| %>
+  <% if nivel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(nivel.errors.count, "error") %> prohibited this nivel from being saved:</h2>
+
+      <ul>
+      <% nivel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pontos_requeridos %>
+    <%= form.number_field :pontos_requeridos %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

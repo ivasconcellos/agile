@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @nivel.nome %>
+</p>
+
+<p>
+  <strong>Pontos requeridos:</strong>
+  <%= @nivel.pontos_requeridos %>
+</p>
+
+<%= link_to 'Edit', edit_nivel_path(@nivel) %> |
+<%= link_to 'Back', niveis_path %>

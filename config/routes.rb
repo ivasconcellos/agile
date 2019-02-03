@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :niveis
   resources :missoes
   resources :badges
   resources :salas_chat
