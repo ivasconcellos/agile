@@ -1,29 +1,47 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-header">Níveis</div>
 
-<h1>Niveis</h1>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th class="text-center">Nome</th>
+          <th>Pontos requeridos</th>
+          <th colspan="3" class="text-center">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @niveis.each do |nivel| %>
+          <tr>
+            <td><%= nivel.nome %></td>
+            <td><%= nivel.pontos_requeridos %></td>
+            <td><%= link_to 'Visualizar', nivel %></td></td>
+            <td>
+              <% if can? :edit, Nivel %>
+                <%= link_to 'Atualizar', edit_nivel_path(nivel) %></td>
+              <% else%> - 
+              <% end %>
+            <td>
+              <% if can? :Destroy, Nivel %>
+                <%= link_to 'Excluir', nivel, method: :delete, data: { confirm: 'Deseja realmente excluir o Nível?' } %></td>
+              <% else%> - 
+              <% end %>
+            </tr>
+            
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <span> <%= will_paginate @niveis %></span>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Pontos requeridos</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <br>
 
-  <tbody>
-    <% @niveis.each do |nivel| %>
-      <tr>
-        <td><%= nivel.nome %></td>
-        <td><%= nivel.pontos_requeridos %></td>
-        <td><%= link_to 'Show', nivel %></td>
-        <td><%= link_to 'Edit', edit_nivel_path(nivel) %></td>
-        <td><%= link_to 'Destroy', nivel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <% if can? :new, Nivel %>
+    <div class="card-footer text-muted">
+      <%= link_to 'Cadastrar Nível', new_nivel_path, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Voltar', inicial_path, class: "btn btn-md btn-secondary" %>
+    </div>
+  <% end %>
 
-<br>
-
-<%= link_to 'New Nivel', new_nivel_path %>
+</div>

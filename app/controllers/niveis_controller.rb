@@ -5,7 +5,7 @@ class NiveisController < ApplicationController
   # GET /niveis
   # GET /niveis.json
   def index
-    @niveis = Nivel.all
+    @niveis = Nivel.page(params[:page])
     render layout: 'neutro'
     authorize! :read, Nivel
   end

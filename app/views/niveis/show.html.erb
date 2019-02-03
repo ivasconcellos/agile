@@ -1,14 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
 
-<p>
-  <strong>Nome:</strong>
-  <%= @nivel.nome %>
-</p>
+  <div class="card-header">Nível</div>
 
-<p>
-  <strong>Pontos requeridos:</strong>
-  <%= @nivel.pontos_requeridos %>
-</p>
+	<ul class="list-group">
+	  <li class="list-group-item"><b>Nome:</b> <%= @nivel.nome %></li>
+	  <% if @nivel.imagem.attached? %>
+	  	<li class="list-group-item"><b>Imagem:</b> <%= image_tag @nivel.imagem.variant(resize: "100x100") %></li>
+	  <% end %>
+	  <li class="list-group-item"><b>Pontos requeridos:</b> <%= @nivel.pontos_requeridos %></li>
+	  <li class="list-group-item"><b>Cadastrada em:</b> <%= @nivel.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>     
+	</ul>
 
-<%= link_to 'Edit', edit_nivel_path(@nivel) %> |
-<%= link_to 'Back', niveis_path %>
+	<br>
+
+	<div class="card-footer text-muted">
+	  <% if can? :edit, Nivel %>
+	    <%= link_to 'Atualizar', edit_nivel_path(@nivel), class: "btn btn-md btn-primary" %>
+	  <% end %>
+	  <%= link_to 'Voltar', niveis_path, class: "btn btn-md btn-secondary" %>
+	</div>
+</div>
