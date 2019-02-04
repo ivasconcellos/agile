@@ -1,0 +1,44 @@
+<%= form_with(model: nivel, local: true) do |form| %>
+  <% if nivel.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(nivel.errors.count, "erro(s)") %> - Nível não pôde ser salvo!</h2>
+
+      <ul>
+      <% nivel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card-body">
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
+      <div class="col-md-6">
+        <%= form.text_field :nome, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Pontos requeridos*</label>
+      <div class="col-md-6">
+        <%= form.number_field :pontos_requeridos, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Imagem*</label>
+      <div class="col-md-6">
+        <%= form.file_field :imagem, required: true %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card-footer text-muted">
+    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', niveis_path, class: "btn btn-md btn-secondary" %>
+  </div>
+
+<% end %>
