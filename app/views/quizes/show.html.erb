@@ -22,6 +22,9 @@
     <% if can? :edit, Quiz %>
       <%= link_to 'Atualizar', edit_quiz_path(@quiz), class: "btn btn-md btn-primary" %>
     <% end %>
+    <% if can? :new, PerguntaQuiz %>
+      <%= link_to 'Cadastrar Pergunta', {controller: 'perguntas_quiz', action: 'new', quiz_id: @quiz.id}, class: "btn btn-md btn-success" %>
+    <% end %>
     <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
   </div>
 </div>

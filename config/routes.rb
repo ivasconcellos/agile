@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :perguntas_quiz
   resources :quizes
   resources :niveis
   resources :missoes

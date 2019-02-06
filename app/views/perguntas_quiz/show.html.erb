@@ -1,0 +1,18 @@
+<div class="card">
+
+  <div class="card-header">Pergunta do Quiz</div>
+
+  <ul class="list-group">
+    <li class="list-group-item"><b>Nome:</b> <%= @pergunta_quiz.descricao %></li>
+    <li class="list-group-item"><b>Cadastrada em:</b> <%= @pergunta_quiz.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>     
+  </ul>
+
+  <br>
+
+  <div class="card-footer text-muted">
+    <% if can? :edit, PerguntaQuiz %>
+      <%= link_to 'Atualizar', edit_pergunta_quiz_path(@pergunta_quiz), class: "btn btn-md btn-primary" %>
+    <% end %>
+    <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
+  </div>
+</div>
