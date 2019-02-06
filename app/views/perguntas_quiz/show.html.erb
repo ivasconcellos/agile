@@ -1,14 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
 
-<p>
-  <strong>Quiz:</strong>
-  <%= @pergunta_quiz.quiz %>
-</p>
+  <div class="card-header">Pergunta do Quiz</div>
 
-<p>
-  <strong>Descricao:</strong>
-  <%= @pergunta_quiz.descricao %>
-</p>
+  <ul class="list-group">
+    <li class="list-group-item"><b>Nome:</b> <%= @pergunta_quiz.descricao %></li>
+    <li class="list-group-item"><b>Cadastrada em:</b> <%= @pergunta_quiz.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>     
+  </ul>
 
-<%= link_to 'Edit', edit_pergunta_quiz_path(@pergunta_quiz) %> |
-<%= link_to 'Back', perguntas_quiz_path %>
+  <br>
+
+  <div class="card-footer text-muted">
+    <% if can? :edit, PerguntaQuiz %>
+      <%= link_to 'Atualizar', edit_pergunta_quiz_path(@pergunta_quiz), class: "btn btn-md btn-primary" %>
+    <% end %>
+    <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
+  </div>
+</div>

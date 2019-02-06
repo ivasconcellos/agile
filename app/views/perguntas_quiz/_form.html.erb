@@ -1,7 +1,7 @@
 <%= form_with(model: pergunta_quiz, local: true) do |form| %>
   <% if pergunta_quiz.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(pergunta_quiz.errors.count, "error") %> prohibited this pergunta_quiz from being saved:</h2>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(pergunta_quiz.errors.count, "erro(s)") %> - Pergunta do Quiz não pôde ser salva!</h2>
 
       <ul>
       <% pergunta_quiz.errors.full_messages.each do |message| %>
@@ -11,17 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :quiz_id %>
-    <%= form.text_field :quiz_id %>
+  <%= form.hidden_field :quiz_id %>
+
+  <div class="card-body">
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Descrição*</label>
+      <div class="col-md-6">
+        <%= form.text_area :descricao, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :descricao %>
-    <%= form.text_area :descricao %>
+  <div class="card-footer text-muted">
+    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', perguntas_quiz_path, class: "btn btn-md btn-secondary" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
