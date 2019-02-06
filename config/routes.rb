@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :quizes
   resources :niveis
   resources :missoes
   resources :badges

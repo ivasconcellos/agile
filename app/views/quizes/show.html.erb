@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Curso:</strong>
+  <%= @quiz.curso %>
+</p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @quiz.nome %>
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @quiz.descricao %>
+</p>
+
+<p>
+  <strong>Max tentativas:</strong>
+  <%= @quiz.max_tentativas %>
+</p>
+
+<p>
+  <strong>Usuario curso:</strong>
+  <%= @quiz.usuario_curso %>
+</p>
+
+<p>
+  <strong>Data inicio:</strong>
+  <%= @quiz.data_inicio %>
+</p>
+
+<p>
+  <strong>Data termino:</strong>
+  <%= @quiz.data_termino %>
+</p>
+
+<%= link_to 'Edit', edit_quiz_path(@quiz) %> |
+<%= link_to 'Back', quizes_path %>
