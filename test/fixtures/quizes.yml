@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  curso: one
+  nome: MyString
+  descricao: MyText
+  max_tentativas: 1
+  usuario_curso: one
+  data_inicio: 2019-02-05
+  data_termino: 2019-02-05
+
+two:
+  curso: two
+  nome: MyString
+  descricao: MyText
+  max_tentativas: 1
+  usuario_curso: two
+  data_inicio: 2019-02-05
+  data_termino: 2019-02-05

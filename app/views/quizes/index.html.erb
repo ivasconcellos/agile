@@ -1,0 +1,41 @@
+<div class="card">
+
+  <div class="card-header">Quizes</div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th class="text-center">Nome</th>
+          <th class="text-center">Máximo de tentativas</th>
+          <th class="text-center" colspan="4">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @quizes.each do |quiz| %>
+          <tr>
+            <td><%= quiz.nome %></td>
+            <td><%= quiz.max_tentativas %></td>
+            <% if can? :show, Quiz %>
+              <td><%= link_to 'Visualizar', quiz %></td>
+            <% end %>
+            <% if can? :edit, Quiz %>
+              <td><%= link_to 'Atualizar', edit_quiz_path(quiz) %></td>
+            <% end %>
+            <% if can? :destroy, Quiz %>
+              <td><%= link_to 'Excluir', quiz, method: :delete, data: { confirm: 'Deseja realmente excluir o Quiz?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <span> <%= will_paginate @quizes %></span>
+
+  <br>
+  <% if can? :new, Quiz %>
+    <div class="card-footer text-muted">
+      <%= link_to 'Cadastrar Quiz', {controller: 'quizes', action: 'new', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-primary" %>
+    </div>
+  <% end %>
+</div>

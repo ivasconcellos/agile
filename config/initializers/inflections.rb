@@ -22,6 +22,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'badge', 'badges'
 	inflect.irregular 'missao', 'missoes'
 	inflect.irregular 'nivel', 'niveis'
+	inflect.irregular 'quiz', 'quizes'
 end
 
 # These inflection rules are supported but not enabled by default:
