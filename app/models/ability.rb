@@ -24,6 +24,7 @@ class Ability
           can :manage, Tarefa
           can :read, TarefaAluno
           can :manage, AvaliacaoTarefa
+          can :manage, Quiz
         elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
           can :manage, Comentario
           can :read, Modulo
@@ -34,6 +35,7 @@ class Ability
           can :perms_read_and_update, UsuarioCurso
           can :read, Tarefa
           can :perms_without_delete, TarefaAluno
+          can :read, Quiz
         else
           can :read, Curso
         end

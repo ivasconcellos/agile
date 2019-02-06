@@ -1,39 +1,27 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
 
-<p>
-  <strong>Curso:</strong>
-  <%= @quiz.curso %>
-</p>
+  <div class="card-header">Quiz</div>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @quiz.nome %>
-</p>
+  <ul class="list-group">
+    <li class="list-group-item"><b>Nome:</b> <%= @quiz.nome %></li>
+    <li class="list-group-item"><b>Descrição:</b> <%= @quiz.descricao %></li>
+    <li class="list-group-item"><b>Máximo de tentativas:</b> <%= @quiz.max_tentativas %></li>
+    <% if @quiz.data_inicio %>
+      <li class="list-group-item"><b>Data de início:</b> <%= @quiz.data_inicio.strftime("%d/%m/%Y") %></li>
+    <% end %>
+    <% if @quiz.data_termino %>
+      <li class="list-group-item"><b>Data de término:</b> <%= @quiz.data_termino.strftime("%d/%m/%Y") %></li>
+    <% end %>
+    <li class="list-group-item"><b>Cadastrado por:</b> <%= @quiz.usuario_curso.nickname %></li>
+    <li class="list-group-item"><b>Cadastrada em:</b> <%= @quiz.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>     
+  </ul>
 
-<p>
-  <strong>Descricao:</strong>
-  <%= @quiz.descricao %>
-</p>
+  <br>
 
-<p>
-  <strong>Max tentativas:</strong>
-  <%= @quiz.max_tentativas %>
-</p>
-
-<p>
-  <strong>Usuario curso:</strong>
-  <%= @quiz.usuario_curso %>
-</p>
-
-<p>
-  <strong>Data inicio:</strong>
-  <%= @quiz.data_inicio %>
-</p>
-
-<p>
-  <strong>Data termino:</strong>
-  <%= @quiz.data_termino %>
-</p>
-
-<%= link_to 'Edit', edit_quiz_path(@quiz) %> |
-<%= link_to 'Back', quizes_path %>
+  <div class="card-footer text-muted">
+    <% if can? :edit, Quiz %>
+      <%= link_to 'Atualizar', edit_quiz_path(@quiz), class: "btn btn-md btn-primary" %>
+    <% end %>
+    <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
+  </div>
+</div>

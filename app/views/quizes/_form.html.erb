@@ -1,7 +1,7 @@
 <%= form_with(model: quiz, local: true) do |form| %>
   <% if quiz.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(quiz.errors.count, "error") %> prohibited this quiz from being saved:</h2>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(quiz.errors.count, "erro(s)") %> - Quiz não pôde ser salvo!</h2>
 
       <ul>
       <% quiz.errors.full_messages.each do |message| %>
@@ -11,42 +11,49 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :curso_id %>
-    <%= form.text_field :curso_id %>
+  <%= form.hidden_field :curso_id %>
+
+  <div class="card-body">
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
+      <div class="col-md-6">
+        <%= form.text_field :nome, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Descrição*</label>
+      <div class="col-md-6">
+        <%= form.text_area :descricao, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Máximo de tentativas*</label>
+      <div class="col-md-6">
+        <%= form.number_field :max_tentativas, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Data de início*</label>
+      <div class="col-md-6">
+        <%= form.text_field :data_inicio, value: @quiz.data_inicio.try(:strftime,"%d/%m/%Y"), class: "form-control data" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Data de término*</label>
+      <div class="col-md-6">
+        <%= form.text_field :data_termino, value: @quiz.data_termino.try(:strftime,"%d/%m/%Y"), class: "form-control data" %>
+      </div>
+    </div>
+
   </div>
 
-  <div class="field">
-    <%= form.label :nome %>
-    <%= form.text_field :nome %>
-  </div>
-
-  <div class="field">
-    <%= form.label :descricao %>
-    <%= form.text_area :descricao %>
-  </div>
-
-  <div class="field">
-    <%= form.label :max_tentativas %>
-    <%= form.number_field :max_tentativas %>
-  </div>
-
-  <div class="field">
-    <%= form.label :usuario_curso_id %>
-    <%= form.text_field :usuario_curso_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :data_inicio %>
-    <%= form.date_select :data_inicio %>
-  </div>
-
-  <div class="field">
-    <%= form.label :data_termino %>
-    <%= form.date_select :data_termino %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="card-footer text-muted">
+    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', quizes_path, class: "btn btn-md btn-secondary" %>
   </div>
 <% end %>

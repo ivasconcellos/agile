@@ -1,39 +1,41 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
 
-<h1>Quizes</h1>
+  <div class="card-header">Quizes</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Curso</th>
-      <th>Nome</th>
-      <th>Descricao</th>
-      <th>Max tentativas</th>
-      <th>Usuario curso</th>
-      <th>Data inicio</th>
-      <th>Data termino</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th class="text-center">Nome</th>
+          <th class="text-center">Máximo de tentativas</th>
+          <th class="text-center" colspan="4">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @quizes.each do |quiz| %>
+          <tr>
+            <td><%= quiz.nome %></td>
+            <td><%= quiz.max_tentativas %></td>
+            <% if can? :show, Quiz %>
+              <td><%= link_to 'Visualizar', quiz %></td>
+            <% end %>
+            <% if can? :edit, Quiz %>
+              <td><%= link_to 'Atualizar', edit_quiz_path(quiz) %></td>
+            <% end %>
+            <% if can? :destroy, Quiz %>
+              <td><%= link_to 'Excluir', quiz, method: :delete, data: { confirm: 'Deseja realmente excluir o Quiz?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <span> <%= will_paginate @quizes %></span>
 
-  <tbody>
-    <% @quizes.each do |quiz| %>
-      <tr>
-        <td><%= quiz.curso %></td>
-        <td><%= quiz.nome %></td>
-        <td><%= quiz.descricao %></td>
-        <td><%= quiz.max_tentativas %></td>
-        <td><%= quiz.usuario_curso %></td>
-        <td><%= quiz.data_inicio %></td>
-        <td><%= quiz.data_termino %></td>
-        <td><%= link_to 'Show', quiz %></td>
-        <td><%= link_to 'Edit', edit_quiz_path(quiz) %></td>
-        <td><%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Quiz', new_quiz_path %>
+  <br>
+  <% if can? :new, Quiz %>
+    <div class="card-footer text-muted">
+      <%= link_to 'Cadastrar Quiz', {controller: 'quizes', action: 'new', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-primary" %>
+    </div>
+  <% end %>
+</div>

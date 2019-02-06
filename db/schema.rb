@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_03_232816) do
+ActiveRecord::Schema.define(version: 2019_02_06_000541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -210,6 +210,20 @@ ActiveRecord::Schema.define(version: 2019_02_03_232816) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "quizes", force: :cascade do |t|
+    t.bigint "curso_id"
+    t.string "nome"
+    t.text "descricao"
+    t.integer "max_tentativas"
+    t.bigint "usuario_curso_id"
+    t.date "data_inicio"
+    t.date "data_termino"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["curso_id"], name: "index_quizes_on_curso_id"
+    t.index ["usuario_curso_id"], name: "index_quizes_on_usuario_curso_id"
+  end
+
   create_table "salas_chat", force: :cascade do |t|
     t.string "nome"
     t.bigint "curso_id"
@@ -318,6 +332,8 @@ ActiveRecord::Schema.define(version: 2019_02_03_232816) do
   add_foreign_key "missoes", "cursos"
   add_foreign_key "missoes", "usuario_curso"
   add_foreign_key "modulos", "cursos"
+  add_foreign_key "quizes", "cursos"
+  add_foreign_key "quizes", "usuario_curso"
   add_foreign_key "salas_chat", "cursos"
   add_foreign_key "salas_chat", "usuario_curso"
   add_foreign_key "tarefa_alunos", "tarefas"
