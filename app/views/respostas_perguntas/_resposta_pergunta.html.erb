@@ -5,13 +5,16 @@
       <thead>
         <tr>
           <th>Descrição</th>
-          <th>#</th>
+          <th colspan="2">#</th>
         </tr>
       </thead>
       <tbody>
         <% @respostas_perguntas.each do |resposta_pergunta| %>
           <tr>
             <td><%= resposta_pergunta.descricao %></td>
+            <% if can? :edit, RespostaPergunta %>
+              <td><%= link_to  'Atualizar', edit_resposta_pergunta_path(resposta_pergunta),  remote: true %></td>
+            <% end %>
             <% if can? :destroy, RespostaPergunta %>
               <td><%= link_to  'Excluir', resposta_pergunta, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover a Resposta da Pergunta?'}, class: "glyphicon glyphicon-trash", remote: true %></td>
             <% end %>

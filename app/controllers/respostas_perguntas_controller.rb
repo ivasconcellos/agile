@@ -31,14 +31,8 @@ class RespostasPerguntasController < ApplicationController
   # PATCH/PUT /respostas_perguntas/1
   # PATCH/PUT /respostas_perguntas/1.json
   def update
-    respond_to do |format|
-      if @resposta_pergunta.update(resposta_pergunta_params)
-        format.html { redirect_to @resposta_pergunta, notice: 'Resposta pergunta was successfully updated.' }
-        format.json { render :show, status: :ok, location: @resposta_pergunta }
-      else
-        format.html { render :edit }
-        format.json { render json: @resposta_pergunta.errors, status: :unprocessable_entity }
-      end
+    if @resposta_pergunta.update(resposta_pergunta_params)
+      @respostas_perguntas = RespostaPergunta.where(pergunta_quiz_id: @resposta_pergunta.pergunta_quiz_id)
     end
   end
 
