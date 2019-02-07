@@ -2,6 +2,12 @@ class RespostasPerguntasController < ApplicationController
   before_action :set_resposta_pergunta, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_usuario!
 
+  # GET /respostas_perguntas/1
+  # GET /respostas_perguntas/1.json
+  def show
+    authorize! :show, RespostaPergunta
+  end
+
   # GET /respostas_perguntas/new
   def new
     @resposta_pergunta = RespostaPergunta.new

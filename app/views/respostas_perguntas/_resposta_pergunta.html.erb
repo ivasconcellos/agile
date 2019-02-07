@@ -5,6 +5,7 @@
       <thead>
         <tr>
           <th>Descrição</th>
+          <th>Correta</th>
           <th colspan="2">#</th>
         </tr>
       </thead>
@@ -12,6 +13,10 @@
         <% @respostas_perguntas.each do |resposta_pergunta| %>
           <tr>
             <td><%= resposta_pergunta.descricao %></td>
+            <td><%= resposta_pergunta.correta? ? 'Sim' : 'Não' %></td>
+             <% if can? :show, RespostaPergunta %>
+              <td><%= link_to  'Visualizar', resposta_pergunta %></td>
+            <% end %>
             <% if can? :edit, RespostaPergunta %>
               <td><%= link_to  'Atualizar', edit_resposta_pergunta_path(resposta_pergunta),  remote: true %></td>
             <% end %>
