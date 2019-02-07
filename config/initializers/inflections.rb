@@ -23,6 +23,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'missao', 'missoes'
 	inflect.irregular 'nivel', 'niveis'
 	inflect.irregular 'quiz', 'quizes'
+	inflect.irregular 'pergunta_quiz', 'perguntas_quiz'
 end
 
 # These inflection rules are supported but not enabled by default:
