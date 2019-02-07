@@ -15,4 +15,17 @@
     <% end %>
     <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
   </div>
+
+  <div id="resposta_pergunta"><%= render 'respostas_perguntas/resposta_pergunta', :collection => @respostas_perguntas %></div>
+
+  <div id="task-form" style="display:none;"></div>
+
+  <% if can? :new, RespostaPergunta %>
+    <div class="text-center">
+      <%= link_to " Adicionar Resposta", {controller: 'respostas_perguntas', action: 'new', :pergunta_quiz_id => @pergunta_quiz.id, remote: true}, class: "btn btn-warning" %>
+    </div>
+  <% end %>
+
+  <br><br>
+
 </div>

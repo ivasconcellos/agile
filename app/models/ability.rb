@@ -8,7 +8,6 @@ class Ability
     if usuario.perfil == 'Gestor'
       can :manage, :all
     else
-
       if usuario.curso_atual
         usuario_curso = UsuarioCurso.where(usuario_id: usuario.id, curso_id: usuario.curso_atual.id).first
         if !usuario_curso.nil? and usuario_curso.perfil == 'Professor'

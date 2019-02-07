@@ -1,0 +1,31 @@
+  <h3 class="panel-title">Respostas</h3>
+
+  <div class="table-responsive">
+    <table align="center" class="table table-hover">
+      <thead>
+        <tr>
+          <th>Descrição</th>
+          <th>Correta</th>
+          <th colspan="2">#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @respostas_perguntas.each do |resposta_pergunta| %>
+          <tr>
+            <td><%= resposta_pergunta.descricao %></td>
+            <td><%= resposta_pergunta.correta? ? 'Sim' : 'Não' %></td>
+             <% if can? :show, RespostaPergunta %>
+              <td><%= link_to  'Visualizar', resposta_pergunta %></td>
+            <% end %>
+            <% if can? :edit, RespostaPergunta %>
+              <td><%= link_to  'Atualizar', edit_resposta_pergunta_path(resposta_pergunta),  remote: true %></td>
+            <% end %>
+            <% if can? :destroy, RespostaPergunta %>
+              <td><%= link_to  'Excluir', resposta_pergunta, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover a Resposta da Pergunta?'}, class: "glyphicon glyphicon-trash", remote: true %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+

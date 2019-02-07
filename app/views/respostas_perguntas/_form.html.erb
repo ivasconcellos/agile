@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-header">Cadastrar Resposta</div> 
+
+  <%= form_with(model: @resposta_pergunta, remote: true) do |form| %>
+    <% if @resposta_pergunta.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <h2><%= pluralize(@resposta_pergunta.errors.count, "erro(s)") %> - Resposta da pergunta não pôde ser salva!</h2>
+
+        <ul>
+        <% resposta_pergunta.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form.hidden_field :pergunta_quiz_id %>
+
+    <div class="card-body">
+
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Descrição*</label>
+        <div class="col-md-6">
+          <%= form.text_area :descricao, autofocus: true, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Comentário</label>
+        <div class="col-md-6">
+          <%= form.text_area :comentario, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="form-check-label col-md-2 offset-md-2" for="gridCheck1">Correta</label>
+        <div class="col-md-2 ">
+          <div class="form-check">
+            <%= form.check_box :correta, class: "form-check-input" %> Sim
+          </div>
+        </div>        
+      </div>
+
+    </div>
+
+    <div class="card-footer text-muted">
+      <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    </div>
+  <% end %>
+</div>
