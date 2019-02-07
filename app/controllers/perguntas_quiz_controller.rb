@@ -5,7 +5,7 @@ class PerguntasQuizController < ApplicationController
   # GET /perguntas_quiz
   # GET /perguntas_quiz.json
   def index
-    @perguntas_quiz = PerguntaQuiz.all
+    @perguntas_quiz = PerguntaQuiz.page(params[:page])
     authorize! :read, PerguntaQuiz
   end
 
@@ -13,6 +13,7 @@ class PerguntasQuizController < ApplicationController
   # GET /perguntas_quiz/1.json
   def show
     authorize! :show, PerguntaQuiz
+    @respostas_perguntas = RespostaPergunta.where(pergunta_quiz_id: @pergunta_quiz)
   end
 
   # GET /perguntas_quiz/new

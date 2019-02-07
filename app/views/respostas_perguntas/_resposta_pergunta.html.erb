@@ -1,0 +1,23 @@
+  <h3 class="panel-title">Respostas</h3>
+
+  <div class="table-responsive">
+    <table align="center" class="table table-hover">
+      <thead>
+        <tr>
+          <th>Descrição</th>
+          <th>#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @respostas_perguntas.each do |resposta_pergunta| %>
+          <tr>
+            <td><%= resposta_pergunta.descricao %></td>
+            <% if can? :destroy, RespostaPergunta %>
+              <td><%= link_to  'Excluir', resposta_pergunta, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover a Resposta da Pergunta?'}, class: "glyphicon glyphicon-trash", remote: true %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+

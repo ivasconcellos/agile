@@ -52,34 +52,8 @@
 
   </div>
 
-   <div class="field">
-    <ul>
-      <%= f.fields_for :questions do |builder| %>
-          <%= render "question_fields", :f => builder %>
-      <% end %>
-    </ul>
-    <br/ >
-    <%= link_to_add_field "Add a new Question", f, :questions %>
-  </div>
-
-  <br/ >
-
-  <div class="field">
-    <%= f.submit %>
+  <div class="card-footer text-muted">
+    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', quizes_path, class: "btn btn-md btn-secondary" %>
   </div>
 <% end %>
-<script type="text/javascript">
-  // remove attachment field
-  function removeField(link) {
-    $(link).prev("input[type=hidden]").val("true");
-    tag = $(link).closest("li")
-    tag.hide("fade in").addClass("deleted");
-  }
-  // add attachment field
-  function addField(link, association, content) {
-    var new_id = new Date().getTime();
-    var regexp = new RegExp("new_" + association, "g");
-    var html = $(content.replace(regexp, new_id)).hide();
-    html.appendTo($(link).closest("div.field").find("ul").first()).slideDown("slow");
-  }
-</script>

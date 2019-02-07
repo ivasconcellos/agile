@@ -24,6 +24,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'nivel', 'niveis'
 	inflect.irregular 'quiz', 'quizes'
 	inflect.irregular 'pergunta_quiz', 'perguntas_quiz'
+	inflect.irregular 'resposta_pergunta', 'respostas_perguntas'
 end
 
 # These inflection rules are supported but not enabled by default:

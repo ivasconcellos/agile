@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pergunta: one
+  descricao: MyText
+  comentario: MyText
+  correta: false
+
+two:
+  pergunta: two
+  descricao: MyText
+  comentario: MyText
+  correta: false
