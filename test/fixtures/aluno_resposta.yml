@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  aluno_curso: one
+  respostas_perguntas: one
+  correta: false
+
+two:
+  aluno_curso: two
+  respostas_perguntas: two
+  correta: false
