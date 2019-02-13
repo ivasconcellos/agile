@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Aluno curso:</strong>
+  <%= @aluno_respostum.aluno_curso %>
+</p>
+
+<p>
+  <strong>Respostas perguntas:</strong>
+  <%= @aluno_respostum.respostas_perguntas %>
+</p>
+
+<p>
+  <strong>Correta:</strong>
+  <%= @aluno_respostum.correta %>
+</p>
+
+<%= link_to 'Edit', edit_aluno_respostum_path(@aluno_respostum) %> |
+<%= link_to 'Back', aluno_resposta_path %>

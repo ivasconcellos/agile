@@ -1,0 +1,32 @@
+<%= form_with(model: aluno_respostum, local: true) do |form| %>
+  <% if aluno_respostum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(aluno_respostum.errors.count, "error") %> prohibited this aluno_respostum from being saved:</h2>
+
+      <ul>
+      <% aluno_respostum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :aluno_curso_id %>
+    <%= form.text_field :aluno_curso_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :respostas_perguntas_id %>
+    <%= form.text_field :respostas_perguntas_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :correta %>
+    <%= form.check_box :correta %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
