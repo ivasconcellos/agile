@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_13_011824) do
+ActiveRecord::Schema.define(version: 2019_02_13_012252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,16 @@ ActiveRecord::Schema.define(version: 2019_02_13_011824) do
     t.datetime "updated_at", null: false
     t.index ["respostas_perguntas_id"], name: "index_aluno_resposta_on_respostas_perguntas_id"
     t.index ["usuario_curso_id"], name: "index_aluno_resposta_on_usuario_curso_id"
+  end
+
+  create_table "aluno_respostas", force: :cascade do |t|
+    t.bigint "usuario_curso_id"
+    t.bigint "respostas_perguntas_id"
+    t.boolean "correta", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["respostas_perguntas_id"], name: "index_aluno_respostas_on_respostas_perguntas_id"
+    t.index ["usuario_curso_id"], name: "index_aluno_respostas_on_usuario_curso_id"
   end
 
   create_table "avaliacao_tarefa", force: :cascade do |t|
@@ -345,6 +355,8 @@ ActiveRecord::Schema.define(version: 2019_02_13_011824) do
 
   add_foreign_key "aluno_resposta", "respostas_perguntas", column: "respostas_perguntas_id"
   add_foreign_key "aluno_resposta", "usuario_curso"
+  add_foreign_key "aluno_respostas", "respostas_perguntas", column: "respostas_perguntas_id"
+  add_foreign_key "aluno_respostas", "usuario_curso"
   add_foreign_key "avaliacao_tarefa", "tarefa_alunos"
   add_foreign_key "avaliacao_tarefa", "usuario_curso"
   add_foreign_key "avatares", "tema_cursos"
