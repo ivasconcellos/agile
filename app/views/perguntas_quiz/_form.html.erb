@@ -1,10 +1,11 @@
-<%= form_with(model: pergunta_quiz, local: true) do |form| %>
-  <% if pergunta_quiz.errors.any? %>
+<div class="card-header">Pergunta do Quiz</div> 
+<%= form_with(model: @pergunta_quiz, remote: true) do |form| %>
+  <% if @pergunta_quiz.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(pergunta_quiz.errors.count, "erro(s)") %> - Pergunta do Quiz não pôde ser salva!</h2>
+      <h2><%= pluralize(@pergunta_quiz.errors.count, "erro(s)") %> - Pergunta do Quiz não pôde ser salva!</h2>
 
       <ul>
-      <% pergunta_quiz.errors.full_messages.each do |message| %>
+      <% @pergunta_quiz.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

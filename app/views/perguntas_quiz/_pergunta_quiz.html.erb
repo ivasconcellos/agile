@@ -1,0 +1,29 @@
+  <h3 class="panel-title">Perguntas</h3>
+
+  <div class="table-responsive">
+    <table align="center" class="table table-hover">
+      <thead>
+        <tr>
+          <th>Descrição</th>
+          <th colspan="2">#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @perguntas_quizes.each do |pergunta_quiz| %>
+          <tr>
+            <td><%= pergunta_quiz.descricao %></td>
+             <% if can? :show, PerguntaQuiz %>
+              <td><%= link_to  'Visualizar', pergunta_quiz %></td>
+            <% end %>
+            <% if can? :edit, PerguntaQuiz %>
+              <td><%= link_to  'Atualizar', edit_pergunta_quiz_path(pergunta_quiz),  remote: true %></td>
+            <% end %>
+            <% if can? :destroy, PerguntaQuiz %>
+              <td><%= link_to 'Excluir', pergunta_quiz, method: :delete, data: { confirm: 'Deseja realmente excluir a Pergunta do Quiz?' }, remote: true %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+

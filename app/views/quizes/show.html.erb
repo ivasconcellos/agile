@@ -18,12 +18,17 @@
 
   <br>
 
+  <div id="pergunta_quiz"><%= render 'perguntas_quiz/pergunta_quiz', :collection => @perguntas_quizes %></div>
+
+  <div id="pergunta-form" style="display:none;"></div>
+
+
   <div class="card-footer text-muted">
     <% if can? :edit, Quiz %>
       <%= link_to 'Atualizar', edit_quiz_path(@quiz), class: "btn btn-md btn-primary" %>
     <% end %>
     <% if can? :new, PerguntaQuiz %>
-      <%= link_to 'Cadastrar Pergunta', {controller: 'perguntas_quiz', action: 'new', quiz_id: @quiz.id}, class: "btn btn-md btn-success" %>
+      <%= link_to 'Cadastrar Pergunta', {controller: 'perguntas_quiz', action: 'new', quiz_id: @quiz.id, remote: true}, class: "btn btn-md btn-success" %>
     <% end %>
     <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
   </div>
