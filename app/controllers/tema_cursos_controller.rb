@@ -15,6 +15,7 @@ class TemaCursosController < ApplicationController
   def show
     authorize! :show, @tema_curso
     @avatares = Avatar.where(tema_curso_id: @tema_curso.id)
+    @artefatos = Artefato.where(tema_curso_id: @tema_curso.id)
     render layout: 'neutro'
   end
 

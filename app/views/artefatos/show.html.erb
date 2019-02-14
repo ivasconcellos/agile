@@ -1,0 +1,21 @@
+<div class="card">
+
+  <div class="card-header">Artefato do Tema do Curso</div>
+
+  <ul class="list-group">
+    <li class="list-group-item"><%= image_tag @artefato.imagem.variant(resize: "100x100"), class: "img-responsive img-thumbnail" %></li>
+    <li class="list-group-item"><b>Tema curso:</b> <%= @artefato.tema_curso.nome %></li>
+    <li class="list-group-item"><b>Nome:</b> <%= @artefato.nome %></li>
+    <li class="list-group-item"><b>Ativo:</b> <%= @artefato.ativo? ? 'Sim' : 'Não' %></li>  
+    <li class="list-group-item"><b>Cadastrado em:</b> <%= @artefato.created_at.strftime("%d/%m/%Y") %></li>     
+  </ul>
+
+  <br>
+  <div class="text-center">
+    <% if can? :edit, Artefato %>
+      <%= link_to 'Atualizar', edit_artefato_path(@artefato), class: "btn btn-md btn-primary" %>
+    <% end %>
+    <%= link_to 'Voltar',  @artefato.tema_curso, class: "btn btn-md btn-secondary" %>
+  </div>
+
+</div>
