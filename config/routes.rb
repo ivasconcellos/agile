@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :grupos_cursos
   resources :artefatos
   resources :grupos
   resources :respostas_perguntas

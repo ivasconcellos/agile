@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_14_132400) do
+ActiveRecord::Schema.define(version: 2019_02_14_174809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,26 +52,6 @@ ActiveRecord::Schema.define(version: 2019_02_14_132400) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-  end
-
-  create_table "aluno_resposta", force: :cascade do |t|
-    t.bigint "usuario_curso_id"
-    t.bigint "respostas_perguntas_id"
-    t.boolean "correta", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["respostas_perguntas_id"], name: "index_aluno_resposta_on_respostas_perguntas_id"
-    t.index ["usuario_curso_id"], name: "index_aluno_resposta_on_usuario_curso_id"
-  end
-
-  create_table "aluno_respostas", force: :cascade do |t|
-    t.bigint "usuario_curso_id"
-    t.bigint "respostas_perguntas_id"
-    t.boolean "correta", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["respostas_perguntas_id"], name: "index_aluno_respostas_on_respostas_perguntas_id"
-    t.index ["usuario_curso_id"], name: "index_aluno_respostas_on_usuario_curso_id"
   end
 
   create_table "artefatos", force: :cascade do |t|
@@ -127,18 +107,6 @@ ActiveRecord::Schema.define(version: 2019_02_14_132400) do
     t.index ["type"], name: "index_ckeditor_assets_on_type"
   end
 
-  create_table "comentarios", force: :cascade do |t|
-    t.bigint "usuario_curso_id"
-    t.bigint "forum_id"
-    t.text "texto"
-    t.bigint "comentario_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["comentario_id"], name: "index_comentarios_on_comentario_id"
-    t.index ["forum_id"], name: "index_comentarios_on_forum_id"
-    t.index ["usuario_curso_id"], name: "index_comentarios_on_usuario_curso_id"
-  end
-
   create_table "cursos", force: :cascade do |t|
     t.string "nome", null: false
     t.text "descricao"
@@ -181,6 +149,16 @@ ActiveRecord::Schema.define(version: 2019_02_14_132400) do
     t.boolean "ativo", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "grupos_cursos", force: :cascade do |t|
+    t.bigint "grupo_id"
+    t.bigint "curso_id"
+    t.string "nome_curso"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["curso_id"], name: "index_grupos_cursos_on_curso_id"
+    t.index ["grupo_id"], name: "index_grupos_cursos_on_grupo_id"
   end
 
   create_table "materiais", force: :cascade do |t|
@@ -369,21 +347,16 @@ ActiveRecord::Schema.define(version: 2019_02_14_132400) do
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "aluno_resposta", "respostas_perguntas", column: "respostas_perguntas_id"
-  add_foreign_key "aluno_resposta", "usuario_curso"
-  add_foreign_key "aluno_respostas", "respostas_perguntas", column: "respostas_perguntas_id"
-  add_foreign_key "aluno_respostas", "usuario_curso"
   add_foreign_key "avaliacao_tarefa", "tarefa_alunos"
   add_foreign_key "avaliacao_tarefa", "usuario_curso"
   add_foreign_key "avatares", "tema_cursos"
-  add_foreign_key "comentarios", "comentarios"
-  add_foreign_key "comentarios", "foruns"
-  add_foreign_key "comentarios", "usuario_curso"
   add_foreign_key "cursos", "tema_cursos"
   add_foreign_key "cursos", "usuarios", column: "proprietario_id"
   add_foreign_key "explicacoes", "modulos"
   add_foreign_key "foruns", "cursos"
   add_foreign_key "foruns", "usuario_curso"
+  add_foreign_key "grupos_cursos", "cursos"
+  add_foreign_key "grupos_cursos", "grupos"
   add_foreign_key "materiais", "modulos"
   add_foreign_key "mensagens", "salas_chat"
   add_foreign_key "mensagens", "usuario_curso"

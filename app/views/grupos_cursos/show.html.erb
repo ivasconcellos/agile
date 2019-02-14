@@ -1,0 +1,19 @@
+<div class="card">
+
+  <div class="card-header">Grupo do Curso</div>
+
+	<ul class="list-group">
+	  <li class="list-group-item"><b>Nome:</b> <%= @grupo_curso.nome_curso %></li>
+	  <li class="list-group-item"><b>Imagem do grupo:</b> <%= image_tag @grupo_curso.grupo.imagem.variant(resize: "100x100") %></li>
+	  <li class="list-group-item"><b>Cadastrado em:</b> <%= @grupo_curso.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>     
+	</ul>
+
+	<br>
+
+	<div class="card-footer text-muted">
+	  <% if can? :edit, GrupoCurso %>
+	    <%= link_to 'Atualizar', edit_grupo_curso_path(@grupo_curso), class: "btn btn-md btn-primary" %>
+	  <% end %>
+	  <%= link_to 'Voltar', grupos_cursos_path, class: "btn btn-md btn-secondary" %>
+	</div>
+</div>
