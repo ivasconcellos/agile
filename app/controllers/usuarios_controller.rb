@@ -1,6 +1,6 @@
 class UsuariosController < ApplicationController
 
-	before_action :authenticate_usuario!
+	before_action :authenticate_usuario!, :except => [:termo_compromisso]
 
 	def minhas_notas
 		@modulos = Modulo.where('modulos.curso_id = ?',
@@ -10,5 +10,14 @@ class UsuariosController < ApplicationController
 	def notas_aluno
 		@aluno = UsuarioCurso.find_by('usuario_curso.id = ? and curso_id = ?',
        params[:aluno_id], params[:curso_id])
+	end
+
+	def termo_compromisso
+		render layout: 'tema'
+		respond_to do |format|
+    		format.html
+    		format.js
+  		end
+
 	end
 end
