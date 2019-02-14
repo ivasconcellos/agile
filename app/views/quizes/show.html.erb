@@ -33,26 +33,5 @@
     <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
   </div>
 
-  <% if !@perguntas.empty? %>
-
-    <br><br>
-    <div class="card-header">Perguntas do Quiz</div>
-
-    <div class="table-responsive">
-      <table class="table table-striped table-sm">
-        <tbody>
-          <% @perguntas.each_with_index do |pergunta_quiz, index| %>
-            <tr>
-              <td class="text-left"><%= index +1 %>) <%= link_to pergunta_quiz.descricao, pergunta_quiz %>
-                <% pergunta_quiz.respostas_perguntas.each_with_index do |opcao_pergunta, index| %>
-                  <%= opcao_pergunta.descricao %>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  <% end %>
-
+  
 </div>

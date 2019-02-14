@@ -1,29 +1,36 @@
-  <h3 class="panel-title">Perguntas</h3>
+<% @perguntas_quizes.each_with_index do |pergunta_quiz, index| %>
 
-  <div class="table-responsive">
-    <table align="center" class="table table-hover">
-      <thead>
-        <tr>
-          <th>Descrição</th>
-          <th colspan="2">#</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @perguntas_quizes.each do |pergunta_quiz| %>
-          <tr>
-            <td><%= pergunta_quiz.descricao %></td>
-             <% if can? :show, PerguntaQuiz %>
-              <td><%= link_to  'Visualizar', pergunta_quiz %></td>
-            <% end %>
-            <% if can? :edit, PerguntaQuiz %>
-              <td><%= link_to  'Atualizar', edit_pergunta_quiz_path(pergunta_quiz),  remote: true %></td>
-            <% end %>
-            <% if can? :destroy, PerguntaQuiz %>
-              <td><%= link_to 'Excluir', pergunta_quiz, method: :delete, data: { confirm: 'Deseja realmente excluir a Pergunta do Quiz?' }, remote: true %></td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+<div class="card">
+  <div class="card-header2 bg-primary text-left">
+    <p>
+      <b><%= index+1 %>º Pergunta: </b>
+      <% if can? :edit, PerguntaQuiz %>
+        <%= link_to  '', edit_pergunta_quiz_path(pergunta_quiz), class: "fa fa-pencil text-light", remote: true %>
+      <% end %>
+      <% if can? :destroy, PerguntaQuiz %>
+        <%= link_to  '', pergunta_quiz, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover A pergunta?'}, class: "fa fa-trash text-light", remote: true %>
+      <% end %>
+    </p>
+
+     <%= pergunta_quiz.descricao.to_s.html_safe %>
+    
+    <div id="pergunta-form<%= pergunta_quiz.id %>" style="display:none;"></div>
   </div>
+
+  <div class="card-body bg-dark" id="<%= pergunta_quiz.id %>">
+    <p class="card-text">
+      <div id="resposta_pergunta"><% @respostas_perguntas = RespostaPergunta.where(pergunta_quiz_id: pergunta_quiz.id).order('created_at') %><%= render 'respostas_perguntas/resposta_pergunta', :collection => @respostas_perguntas %></div>
+
+      <div id="task-form" style="display:none;"></div>
+      <br>
+      <% if can? :new, RespostaPergunta %>
+        <div class="text-center">
+          <%= link_to " Adicionar Resposta", {controller: 'respostas_perguntas', action: 'new', :pergunta_quiz_id => pergunta_quiz.id, remote: true}, class: "btn btn-danger" %>
+        </div>
+      <% end %>
+    </p>
+  </div>
+  
+</div>
+<% end %>
 
