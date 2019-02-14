@@ -13,19 +13,18 @@
         <% @badges.each do |badge| %>
           <tr>
             <td><%= badge.nome %></td>
-            <td><%= link_to 'Visualizar', badge %></td></td>
+            <td><%= link_to 'Visualizar', badge %></td>
             <td>
               <% if can? :edit, Badge %>
-                <%= link_to 'Atualizar', edit_badge_path(badge) %></td>
+                <%= link_to 'Atualizar', edit_badge_path(badge) %>
               <% else%> - 
               <% end %>
             <td>
               <% if can? :Destroy, Badge %>
-                <%= link_to 'Excluir', badge, method: :delete, data: { confirm: 'Deseja realmente excluir a Badge?' } %></td>
+                <%= link_to 'Excluir', badge, method: :delete, data: { confirm: 'Deseja realmente excluir a Badge?' } %>
               <% else%> - 
               <% end %>
-            </tr>
-            
+            </td>
           </tr>
         <% end %>
       </tbody>
