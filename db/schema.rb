@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2019_02_14_132400) do
 
   create_table "artefatos", force: :cascade do |t|
     t.string "nome"
-    t.string "ativo", default: "t"
+    t.boolean "ativo", default: true
     t.bigint "tema_curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
