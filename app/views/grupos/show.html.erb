@@ -1,0 +1,20 @@
+<div class="card">
+
+  <div class="card-header">Grupo</div>
+
+	<ul class="list-group">
+	  <li class="list-group-item"><b>Nome:</b> <%= @grupo.nome %></li>
+	  <li class="list-group-item"><b>Imagem:</b> <%= image_tag @grupo.imagem.variant(resize: "100x100") %></li>
+	  <li class="list-group-item"><b>Ativo:</b> <%= @grupo.ativo? ? 'Sim' : 'Não' %></li>
+	  <li class="list-group-item"><b>Cadastrado em:</b> <%= @grupo.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>     
+	</ul>
+
+	<br>
+
+	<div class="card-footer text-muted">
+	  <% if can? :edit, Grupo %>
+	    <%= link_to 'Atualizar', edit_grupo_path(@grupo), class: "btn btn-md btn-primary" %>
+	  <% end %>
+	  <%= link_to 'Voltar', grupos_path, class: "btn btn-md btn-secondary" %>
+	</div>
+</div>
