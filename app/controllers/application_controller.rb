@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   
-  before_action :authenticate_usuario!
+  before_action :perfil, if: :authenticate_usuario!
   def perfil
     @perfil = UsuarioCurso.where(usuario_id: current_usuario, curso_id: current_usuario.curso_atual).first
   end  

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_14_193017) do
+ActiveRecord::Schema.define(version: 2019_02_14_235920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2019_02_14_193017) do
 
   create_table "artefatos", force: :cascade do |t|
     t.string "nome"
-    t.boolean "ativo", default: true
+    t.string "ativo", default: "t"
     t.bigint "tema_curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -350,8 +350,10 @@ ActiveRecord::Schema.define(version: 2019_02_14_193017) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "avatar_id"
+    t.bigint "grupo_curso_id"
     t.index ["avatar_id"], name: "index_usuario_curso_on_avatar_id"
     t.index ["curso_id"], name: "index_usuario_curso_on_curso_id"
+    t.index ["grupo_curso_id"], name: "index_usuario_curso_on_grupo_curso_id"
     t.index ["usuario_id"], name: "index_usuario_curso_on_usuario_id"
   end
 
@@ -415,6 +417,7 @@ ActiveRecord::Schema.define(version: 2019_02_14_193017) do
   add_foreign_key "tarefas", "usuario_curso"
   add_foreign_key "usuario_curso", "avatares"
   add_foreign_key "usuario_curso", "cursos"
+  add_foreign_key "usuario_curso", "grupos_cursos"
   add_foreign_key "usuario_curso", "usuarios"
   add_foreign_key "usuarios", "cursos", column: "curso_atual_id"
 end

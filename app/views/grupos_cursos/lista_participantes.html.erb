@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-header">
+    <p>Equipe <%= @usuario.grupo_curso.nome_curso %></p>
+    <p><%= image_tag @usuario.grupo_curso.grupo.imagem.variant(resize: "400x400"), class: 'img-thumbnail' %></p></div>
+  <div class="container-fluid">
+    <div class="row">
+      <% @lista_participantes.each do |participante| %>
+        <div class="col-xl-3 col-sm-6 mb-3">
+          <div class="card text-white o-hidden h-200 curso">
+            <div class="card-body">
+              <%= image_tag participante.avatar.imagem.url(:medium) %>
+            </div>
+            <div class="card-footer bg-primary text-white">
+              
+              <div><%= participante.nickname %></div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,10 @@
     <li class="list-group-item"><b>Curso:</b> <%= @usuario_curso.curso.nome %></li>
     <li class="list-group-item"><b>Apelido neste curso:</b> <%= @usuario_curso.nickname %></li> 
     <li class="list-group-item"><b>Avatar:</b> <%= @usuario_curso.avatar.nome %></li>
+    <%if @usuario_curso.grupo_curso %>
+      <li class="list-group-item"><b>Equipe:</b> <%= @usuario_curso.grupo_curso.nome_curso %></li>
+      <li class="list-group-item"><b>Imagem da Equipe:</b> <%= image_tag @usuario_curso.grupo_curso.grupo.imagem.variant(resize: "100x100") %></li>
+    <% end %>
     <li class="list-group-item"><b>Perfil:</b> <%= @usuario_curso.perfil %></li>  
     <li class="list-group-item"><b>Cadastro no curso:</b> <%= @usuario_curso.created_at.strftime("%d/%m/%Y") %></li> 
   </ul>
