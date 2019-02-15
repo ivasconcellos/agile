@@ -1,10 +1,10 @@
-<%= form_with(model: email, local: true) do |form| %>
-  <% if email.errors.any? %>
+<%= form_with(model: conversa, local: true) do |form| %>
+  <% if conversa.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(email.errors.count, "erro(s)") %> - E-mail não pôde ser enviado!</h2>
+      <h2><%= pluralize(conversa.errors.count, "erro(s)") %> - Mensagem não pôde ser enviado!</h2>
 
       <ul>
-      <% email.errors.full_messages.each do |message| %>
+      <% conversa.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -14,6 +14,7 @@
 
   <div class="card-body">
     <%= form.hidden_field :destinatario_id %>
+    <%= form.hidden_field :conversa_id %>
 
     <div class="form-group row">
       <label for="inputNome" class="col-md-2 col-form-label">Assunto*</label>
@@ -30,6 +31,6 @@
 
   <div class="card-footer text-muted">
     <%= form.submit "Enviar", class: "btn btn-md btn-primary" %>
-    <%= link_to 'Voltar', emails_path, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar', conversas_path, class: "btn btn-md btn-secondary" %>
   </div>
 <% end %>

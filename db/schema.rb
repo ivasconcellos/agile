@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_15_003952) do
+ActiveRecord::Schema.define(version: 2019_02_15_003953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,29 +54,9 @@ ActiveRecord::Schema.define(version: 2019_02_15_003952) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "aluno_resposta", force: :cascade do |t|
-    t.bigint "usuario_curso_id"
-    t.bigint "respostas_perguntas_id"
-    t.boolean "correta", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["respostas_perguntas_id"], name: "index_aluno_resposta_on_respostas_perguntas_id"
-    t.index ["usuario_curso_id"], name: "index_aluno_resposta_on_usuario_curso_id"
-  end
-
-  create_table "aluno_respostas", force: :cascade do |t|
-    t.bigint "usuario_curso_id"
-    t.bigint "respostas_perguntas_id"
-    t.boolean "correta", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["respostas_perguntas_id"], name: "index_aluno_respostas_on_respostas_perguntas_id"
-    t.index ["usuario_curso_id"], name: "index_aluno_respostas_on_usuario_curso_id"
-  end
-
   create_table "artefatos", force: :cascade do |t|
     t.string "nome"
-    t.string "ativo", default: "t"
+    t.boolean "ativo", default: true
     t.bigint "tema_curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -127,16 +107,18 @@ ActiveRecord::Schema.define(version: 2019_02_15_003952) do
     t.index ["type"], name: "index_ckeditor_assets_on_type"
   end
 
-  create_table "comentarios", force: :cascade do |t|
+  create_table "conversas", force: :cascade do |t|
     t.bigint "usuario_curso_id"
-    t.bigint "forum_id"
-    t.text "texto"
-    t.bigint "comentario_id"
+    t.string "assunto"
+    t.text "mensagem"
+    t.bigint "destinatario_id"
+    t.boolean "lido", default: false
+    t.bigint "conversa_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["comentario_id"], name: "index_comentarios_on_comentario_id"
-    t.index ["forum_id"], name: "index_comentarios_on_forum_id"
-    t.index ["usuario_curso_id"], name: "index_comentarios_on_usuario_curso_id"
+    t.index ["conversa_id"], name: "index_conversas_on_conversa_id"
+    t.index ["destinatario_id"], name: "index_conversas_on_destinatario_id"
+    t.index ["usuario_curso_id"], name: "index_conversas_on_usuario_curso_id"
   end
 
   create_table "cursos", force: :cascade do |t|
@@ -153,17 +135,6 @@ ActiveRecord::Schema.define(version: 2019_02_15_003952) do
     t.datetime "updated_at", null: false
     t.index ["proprietario_id"], name: "index_cursos_on_proprietario_id"
     t.index ["tema_curso_id"], name: "index_cursos_on_tema_curso_id"
-  end
-
-  create_table "emails", force: :cascade do |t|
-    t.bigint "usuario_curso_id"
-    t.string "assunto"
-    t.text "mensagem"
-    t.bigint "destinatario_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["destinatario_id"], name: "index_emails_on_destinatario_id"
-    t.index ["usuario_curso_id"], name: "index_emails_on_usuario_curso_id"
   end
 
   create_table "explicacoes", force: :cascade do |t|
@@ -393,20 +364,14 @@ ActiveRecord::Schema.define(version: 2019_02_15_003952) do
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "aluno_resposta", "respostas_perguntas", column: "respostas_perguntas_id"
-  add_foreign_key "aluno_resposta", "usuario_curso"
-  add_foreign_key "aluno_respostas", "respostas_perguntas", column: "respostas_perguntas_id"
-  add_foreign_key "aluno_respostas", "usuario_curso"
   add_foreign_key "avaliacao_tarefa", "tarefa_alunos"
   add_foreign_key "avaliacao_tarefa", "usuario_curso"
   add_foreign_key "avatares", "tema_cursos"
-  add_foreign_key "comentarios", "comentarios"
-  add_foreign_key "comentarios", "foruns"
-  add_foreign_key "comentarios", "usuario_curso"
+  add_foreign_key "conversas", "conversas"
+  add_foreign_key "conversas", "usuario_curso"
+  add_foreign_key "conversas", "usuario_curso", column: "destinatario_id"
   add_foreign_key "cursos", "tema_cursos"
   add_foreign_key "cursos", "usuarios", column: "proprietario_id"
-  add_foreign_key "emails", "usuario_curso"
-  add_foreign_key "emails", "usuario_curso", column: "destinatario_id"
   add_foreign_key "explicacoes", "modulos"
   add_foreign_key "foruns", "cursos"
   add_foreign_key "foruns", "usuario_curso"

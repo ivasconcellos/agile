@@ -13,10 +13,10 @@
         <% @professores.each do |professor| %>
           <tr>
             <td><%= professor.nickname %></td>
-            <td><%= link_to 'Enviar Mensagem (e-mail)', {controller: 'emails', action: 'new', professor_id: professor.id} %></td>
+            <td><%= link_to 'Enviar Mensagem', {controller: 'conversas', action: 'new', professor_id: professor.id} %></td>
             <td>
-              <% if can? :show, Email %>
-                <%= link_to 'Ver mensagens enviadas', {controller: 'emails', action: 'emails_professor', professor_id: professor.id} %>
+              <% if can? :show, Conversa %>
+                <%= link_to 'Ver mensagens enviadas', {controller: 'conversas', action: 'conversas_professor', professor_id: professor.id} %>
               <% end %>
             </td>
           </tr>
