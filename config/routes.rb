@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   get 'notas' => 'cursos#notas'
   get 'termo_compromisso' => 'usuarios#termo_compromisso'
   get 'equipe' => 'grupos_cursos#lista_participantes'
+  get 'emails_professor' => 'emails#emails_professor'
  
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -1,31 +1,28 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-header">Professores do Curso</div>
 
-<h1>Emails</h1>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th class="text-center">Nome</th>
+          <th colspan="2" class="text-center">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @professores.each do |professor| %>
+          <tr>
+            <td><%= professor.nickname %></td>
+            <td><%= link_to 'Enviar Mensagem (e-mail)', {controller: 'emails', action: 'new', professor_id: professor.id} %></td>
+            <td>
+              <% if can? :show, Email %>
+                <%= link_to 'Ver mensagens enviadas', {controller: 'emails', action: 'emails_professor', professor_id: professor.id} %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Usuario curso</th>
-      <th>Mensagem</th>
-      <th>Destinatario</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @emails.each do |email| %>
-      <tr>
-        <td><%= email.usuario_curso %></td>
-        <td><%= email.mensagem %></td>
-        <td><%= email.destinatario %></td>
-        <td><%= link_to 'Show', email %></td>
-        <td><%= link_to 'Edit', edit_email_path(email) %></td>
-        <td><%= link_to 'Destroy', email, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Email', new_email_path %>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_15_003950) do
+ActiveRecord::Schema.define(version: 2019_02_15_003952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -157,11 +157,12 @@ ActiveRecord::Schema.define(version: 2019_02_15_003950) do
 
   create_table "emails", force: :cascade do |t|
     t.bigint "usuario_curso_id"
+    t.string "assunto"
     t.text "mensagem"
-    t.bigint "destinatario_id_id"
+    t.bigint "destinatario_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["destinatario_id_id"], name: "index_emails_on_destinatario_id_id"
+    t.index ["destinatario_id"], name: "index_emails_on_destinatario_id"
     t.index ["usuario_curso_id"], name: "index_emails_on_usuario_curso_id"
   end
 
@@ -405,7 +406,7 @@ ActiveRecord::Schema.define(version: 2019_02_15_003950) do
   add_foreign_key "cursos", "tema_cursos"
   add_foreign_key "cursos", "usuarios", column: "proprietario_id"
   add_foreign_key "emails", "usuario_curso"
-  add_foreign_key "emails", "usuario_curso", column: "destinatario_id_id"
+  add_foreign_key "emails", "usuario_curso", column: "destinatario_id"
   add_foreign_key "explicacoes", "modulos"
   add_foreign_key "foruns", "cursos"
   add_foreign_key "foruns", "usuario_curso"
