@@ -68,6 +68,11 @@ class GruposCursosController < ApplicationController
     end
   end
 
+  def lista_participantes
+    @usuario = UsuarioCurso.find_by(curso_id: current_usuario.curso_atual, usuario_id: current_usuario.id)
+    @lista_participantes = UsuarioCurso.where(grupo_curso_id: @usuario.grupo_curso_id).page(params[:page]).order('nickname')
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_grupo_curso
