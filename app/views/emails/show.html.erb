@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Usuario curso:</strong>
+  <%= @email.usuario_curso %>
+</p>
+
+<p>
+  <strong>Mensagem:</strong>
+  <%= @email.mensagem %>
+</p>
+
+<p>
+  <strong>Destinatario:</strong>
+  <%= @email.destinatario %>
+</p>
+
+<%= link_to 'Edit', edit_email_path(@email) %> |
+<%= link_to 'Back', emails_path %>
