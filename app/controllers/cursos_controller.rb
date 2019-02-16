@@ -7,7 +7,7 @@ class CursosController < ApplicationController
   def index
     @cursos = Curso.all.page(params[:page]).order('nome')
     authorize! :index, Curso
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /cursos/1
@@ -32,12 +32,13 @@ class CursosController < ApplicationController
     @curso = Curso.new
     @curso.codigo_acesso = SecureRandom.urlsafe_base64 6
     authorize! :new, @curso
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /cursos/1/edit
   def edit
     authorize! :edit, @curso
+    render layout: 'gestor'
   end
 
   # POST /cursos
@@ -51,7 +52,7 @@ class CursosController < ApplicationController
         format.html { redirect_to @curso, notice: 'Curso criado com sucesso!' }
         format.json { render :show, status: :created, location: @curso }
       else
-        format.html { render :new,  layout: 'neutro' }
+        format.html { render :new,  layout: 'gestor' }
         format.json { render json: @curso.errors, status: :unprocessable_entity }
       end
     end
@@ -65,7 +66,7 @@ class CursosController < ApplicationController
         format.html { redirect_to @curso, notice: 'Curso atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @curso }
       else
-        format.html { render :edit, @current_usuario => current_usuario }
+        format.html { render :edit, layout: 'gestor' }
         format.json { render json: @curso.errors, status: :unprocessable_entity }
       end
     end

@@ -21,4 +21,10 @@ class ControleController < ApplicationController
   def desenvolvimento
     render layout: 'neutro'
   end
+
+  def controle_gestor
+    render layout: 'gestor'
+    authorize! :controle_gestor,:controle
+  end
+
 end

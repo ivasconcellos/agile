@@ -7,7 +7,7 @@ class TemaCursosController < ApplicationController
   def index
     @tema_cursos = TemaCurso.all.page(params[:page]).order('nome')
     authorize! :read, TemaCurso
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /temas_cursos/1
@@ -16,20 +16,20 @@ class TemaCursosController < ApplicationController
     authorize! :show, @tema_curso
     @avatares = Avatar.where(tema_curso_id: @tema_curso.id)
     @artefatos = Artefato.where(tema_curso_id: @tema_curso.id)
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /temas_cursos/new
   def new
     @tema_curso = TemaCurso.new
     authorize! :new, @tema_curso
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /temas_cursos/1/edit
   def edit
     authorize! :edit, @tema_curso
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # POST /temas_cursos
@@ -42,7 +42,7 @@ class TemaCursosController < ApplicationController
         format.html { redirect_to @tema_curso, notice: 'Tema do curso criado com sucesso!' }
         format.json { render :show, status: :created, location: @tema_curso }
       else
-        format.html { render :new, layout: 'neutro' }
+        format.html { render :new, layout: 'gestor' }
         format.json { render json: @tema_curso.errors, status: :unprocessable_entity }
       end
     end
@@ -56,7 +56,7 @@ class TemaCursosController < ApplicationController
         format.html { redirect_to @tema_curso, notice: 'Tema do curso atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @tema_curso }
       else
-        format.html { render :edit, layout: 'neutro' }
+        format.html { render :edit, layout: 'gestor' }
         format.json { render json: @tema_curso.errors, status: :unprocessable_entity }
       end
     end
