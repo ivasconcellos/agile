@@ -5,7 +5,8 @@ class NiveisController < ApplicationController
   # GET /niveis
   # GET /niveis.json
   def index
-    @niveis = Nivel.page(params[:page])
+    @q = Nivel.ransack(params[:q])
+    @niveis = @q.result.paginate(page: params[:page]).order('nome')
     render layout: 'gestor'
     authorize! :read, Nivel
   end

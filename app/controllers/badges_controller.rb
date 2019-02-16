@@ -5,7 +5,8 @@ class BadgesController < ApplicationController
   # GET /badges
   # GET /badges.json
   def index
-    @badges = Badge.page(params[:page]).order('nome')
+    @q = Badge.ransack(params[:q])
+    @badges = @q.result.paginate(page: params[:page]).order('nome')
     authorize! :index, Badge
     render layout: 'gestor'
   end

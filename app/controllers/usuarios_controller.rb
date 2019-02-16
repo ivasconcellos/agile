@@ -3,16 +3,20 @@ class UsuariosController < ApplicationController
 	before_action :authenticate_usuario!, :except => [:termo_compromisso]
 
 	def index
-    	@usuarios = Usuario.page(params[:page]).order('nome')
+		@q = Usuario.ransack(params[:q])
+    	@usuarios = @q.result.paginate(page: params[:page]).order('nome')
     	authorize! :index, Usuario
+    	render layout: 'gestor'
 	end
 
 	def edit
 		authorize! :edit, Usuario
+		render layout: 'gestor'
 	end
 
 	def show
 		authorize! :show, Usuario
+		render layout: 'gestor'
 	end 
 
 	def update

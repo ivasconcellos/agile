@@ -108,3 +108,9 @@ td{
 .conversa{
   font-size: 16px;
 }
+
+.borda { 
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  padding: 0px;
+}

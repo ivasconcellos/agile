@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   devise_scope :usuario do
     root 'usuarios/sessions#new'
   end
+
   # root  :to =>'controle/#inicial'
   
 
