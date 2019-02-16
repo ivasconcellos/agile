@@ -78,3 +78,5 @@ gem 'redis'
 
 gem 'image_processing'
 
+gem 'ransack'
+
