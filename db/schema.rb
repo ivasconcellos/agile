@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_14_235920) do
+ActiveRecord::Schema.define(version: 2019_02_15_003953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,6 +137,20 @@ ActiveRecord::Schema.define(version: 2019_02_14_235920) do
     t.index ["comentario_id"], name: "index_comentarios_on_comentario_id"
     t.index ["forum_id"], name: "index_comentarios_on_forum_id"
     t.index ["usuario_curso_id"], name: "index_comentarios_on_usuario_curso_id"
+  end
+
+  create_table "conversas", force: :cascade do |t|
+    t.bigint "usuario_curso_id"
+    t.string "assunto"
+    t.text "mensagem"
+    t.bigint "destinatario_id"
+    t.boolean "lido", default: false
+    t.bigint "conversa_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversa_id"], name: "index_conversas_on_conversa_id"
+    t.index ["destinatario_id"], name: "index_conversas_on_destinatario_id"
+    t.index ["usuario_curso_id"], name: "index_conversas_on_usuario_curso_id"
   end
 
   create_table "cursos", force: :cascade do |t|
@@ -392,6 +406,9 @@ ActiveRecord::Schema.define(version: 2019_02_14_235920) do
   add_foreign_key "comentarios", "comentarios"
   add_foreign_key "comentarios", "foruns"
   add_foreign_key "comentarios", "usuario_curso"
+  add_foreign_key "conversas", "conversas"
+  add_foreign_key "conversas", "usuario_curso"
+  add_foreign_key "conversas", "usuario_curso", column: "destinatario_id"
   add_foreign_key "cursos", "tema_cursos"
   add_foreign_key "cursos", "usuarios", column: "proprietario_id"
   add_foreign_key "explicacoes", "modulos"

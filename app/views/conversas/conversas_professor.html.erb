@@ -1,0 +1,24 @@
+<div class="card">
+	<div class="card-header">Mensagens</div>
+
+	<% @conversas.each do |conversa| %>
+
+		<div class="card">
+
+		<div class="card-header conversa bg-primary text-left">Assunto: <%= conversa.assunto %></div>
+		 	<div class="card-header bg-white text-left">
+		 	   <p class="text-secondary conversa">De: <%= conversa.usuario_curso.nickname %></p>
+		 	   <p class="text-secondary conversa">Para: <%= conversa.destinatario.nickname %></p>
+			   <p class="text-dark conversa">Mensagem: <%= conversa.mensagem.to_s.html_safe %></p>
+			</div>
+			<div class="card-body bg-dark">
+				<p class="card-text text-light"><b>Enviada:</b> <%= conversa.created_at.strftime("%d/%m/%Y - %H:%M:%S") %> 
+					<% if can? :new, Conversa %>
+						<%= link_to "Responder", {controller: 'conversas', action: 'new', conversa_id: conversa.id, destinatario_id: conversa.usuario_curso.id }, class: "btn btn-danger btn-sm float-right" %>
+					<% end %>
+				</p>
+			</div>
+			
+		</div>
+	<% end %>
+</div>
