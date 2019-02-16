@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   
   resources :usuarios, :only => [:index, :edit, :update, :show]
   devise_for :usuarios, :path_prefix => 'my', controllers: {
+    sessions: 'usuarios/sessions',
     registrations: 'usuarios/registrations',
   }
 
