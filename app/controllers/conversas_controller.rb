@@ -7,13 +7,15 @@ class ConversasController < ApplicationController
   end
 
   def conversas_professor
-    @conversas = Conversa.where(usuario_curso_id: current_usuario.id, destinatario_id: params[:professor_id])
+    @conversas = Conversa.where(usuario_curso_id: current_usuario.id,
+     destinatario_id: params[:professor_id]).or(Conversa.where(
+      usuario_curso_id: params[:professor_id], destinatario_id: current_usuario.id)).order('created_at')
     authorize! :show, Conversa
   end
 
   def new
     @conversa = Conversa.new
-    @conversa.destinatario_id = params[:professor_id]
+    @conversa.destinatario_id = params[:destinatario_id]
     @conversa.conversa_id = params[:conversa_id]
     authorize! :new, Conversa
   end

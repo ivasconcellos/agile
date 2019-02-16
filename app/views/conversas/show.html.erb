@@ -9,4 +9,9 @@
     <li class="list-group-item"><b>Enviado em:</b> <%= @conversa.created_at.strftime("%d/%m/%Y") %></li>     
   </ul>
 
+  <br>
+  <div class="text-center text-muted">
+    <%= link_to 'Voltar',  conversas_path, class: "btn btn-md btn-secondary" %>
+  </div>
+
 </div>
