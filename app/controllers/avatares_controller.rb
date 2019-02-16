@@ -6,7 +6,7 @@ class AvataresController < ApplicationController
   # GET /avatares/1.json
   def show
     authorize! :show, @avatar
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /avatares/new
@@ -14,13 +14,13 @@ class AvataresController < ApplicationController
     @avatar = Avatar.new
     @avatar.tema_curso_id = params[:tema_curso_id]
     authorize! :new, @avatar
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /avatares/1/edit
   def edit
     authorize! :edit, @avatar
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # POST /avatares

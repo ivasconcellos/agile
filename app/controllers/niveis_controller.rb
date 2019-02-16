@@ -6,27 +6,27 @@ class NiveisController < ApplicationController
   # GET /niveis.json
   def index
     @niveis = Nivel.page(params[:page])
-    render layout: 'neutro'
+    render layout: 'gestor'
     authorize! :read, Nivel
   end
 
   # GET /niveis/1
   # GET /niveis/1.json
   def show
-    render layout: 'neutro'
+    render layout: 'gestor'
     authorize! :show, Nivel
   end
 
   # GET /niveis/new
   def new
     @nivel = Nivel.new
-    render layout: 'neutro'
+    render layout: 'gestor'
     authorize! :new, Nivel
   end
 
   # GET /niveis/1/edit
   def edit
-    render layout: 'neutro'
+    render layout: 'gestor'
     authorize! :edit, Nivel
   end
 

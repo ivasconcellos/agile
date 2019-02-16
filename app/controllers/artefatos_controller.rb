@@ -7,14 +7,14 @@ class ArtefatosController < ApplicationController
   def index
     @artefatos = Artefato.page(params[:page]).order('nome')
     authorize! :index, Artefato
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /artefatos/1
   # GET /artefatos/1.json
   def show
     authorize! :show, Artefato
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /artefatos/new
@@ -22,13 +22,13 @@ class ArtefatosController < ApplicationController
     @artefato = Artefato.new
     @artefato.tema_curso_id = params[:tema_curso_id]
     authorize! :new, Artefato
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /artefatos/1/edit
   def edit
     authorize! :edit, Artefato
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # POST /artefatos

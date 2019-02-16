@@ -7,7 +7,7 @@ class CursosController < ApplicationController
   def index
     @cursos = Curso.all.page(params[:page]).order('nome')
     authorize! :index, Curso
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /cursos/1
@@ -32,7 +32,7 @@ class CursosController < ApplicationController
     @curso = Curso.new
     @curso.codigo_acesso = SecureRandom.urlsafe_base64 6
     authorize! :new, @curso
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /cursos/1/edit

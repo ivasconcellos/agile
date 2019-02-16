@@ -7,27 +7,27 @@ class GruposController < ApplicationController
   def index
     @grupos = Grupo.page(params[:page]).order('nome')
     authorize! :index, Grupo
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /grupos/1
   # GET /grupos/1.json
   def show
     authorize! :show, Grupo
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /grupos/new
   def new
     @grupo = Grupo.new
     authorize! :new, Grupo
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /grupos/1/edit
   def edit
     authorize! :edit, Grupo
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # POST /grupos

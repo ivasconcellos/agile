@@ -7,27 +7,27 @@ class BadgesController < ApplicationController
   def index
     @badges = Badge.page(params[:page]).order('nome')
     authorize! :index, Badge
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /badges/1
   # GET /badges/1.json
   def show
     authorize! :show, Badge
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /badges/new
   def new
     @badge = Badge.new
     authorize! :new, Badge
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /badges/1/edit
   def edit
     authorize! :edit, Badge
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # POST /badges
