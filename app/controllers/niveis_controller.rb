@@ -40,7 +40,7 @@ class NiveisController < ApplicationController
         format.html { redirect_to @nivel, notice: 'Nível cadastrado com sucesso!' }
         format.json { render :show, status: :created, location: @nivel }
       else
-        format.html { render :new, @current_usuario => current_usuario }
+        format.html { render :new, layout: 'gestor' }
         format.json { render json: @nivel.errors, status: :unprocessable_entity }
       end
     end
@@ -54,7 +54,7 @@ class NiveisController < ApplicationController
         format.html { redirect_to @nivel, notice: 'Nível atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @nivel }
       else
-        format.html { render :edit, @current_usuario => current_usuario }
+        format.html { render :edit, layout: 'gestor' }
         format.json { render json: @nivel.errors, status: :unprocessable_entity }
       end
     end

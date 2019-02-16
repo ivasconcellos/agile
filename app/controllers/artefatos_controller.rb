@@ -41,7 +41,7 @@ class ArtefatosController < ApplicationController
         format.html { redirect_to @artefato, notice: 'Artefato cadastrado com sucesso!' }
         format.json { render :show, status: :created, location: @artefato }
       else
-        format.html { render :new, @current_usuario => current_usuario }
+        format.html { render :new, layout: 'gestor' }
         format.json { render json: @artefato.errors, status: :unprocessable_entity }
       end
     end
@@ -55,7 +55,7 @@ class ArtefatosController < ApplicationController
         format.html { redirect_to @artefato, notice: 'Artefato atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @artefato }
       else
-        format.html { render :edit, @current_usuario => current_usuario }
+        format.html { render :edit, layout: 'gestor' }
         format.json { render json: @artefato.errors, status: :unprocessable_entity }
       end
     end

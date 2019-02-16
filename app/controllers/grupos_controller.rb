@@ -40,7 +40,7 @@ class GruposController < ApplicationController
         format.html { redirect_to @grupo, notice: 'Grupo cadastrado com sucesso!' }
         format.json { render :show, status: :created, location: @grupo }
       else
-        format.html { render :new, @current_usuario => current_usuario }
+        format.html { render :new, layout: 'gestor' }
         format.json { render json: @grupo.errors, status: :unprocessable_entity }
       end
     end
@@ -54,7 +54,7 @@ class GruposController < ApplicationController
         format.html { redirect_to @grupo, notice: 'Grupo atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @grupo }
       else
-        format.html { render :edit, @current_usuario => current_usuario }
+        format.html { render :edit, layout: 'gestor' }
         format.json { render json: @grupo.errors, status: :unprocessable_entity }
       end
     end

@@ -33,7 +33,7 @@ class AvataresController < ApplicationController
         format.html { redirect_to @avatar.tema_curso, notice: 'Avatar cadastrado com sucesso!' }
         format.json { render :show, status: :created, location: @avatar }
       else
-        format.html { render :new, @current_usuario => current_usuario }
+        format.html { render :new, layout: 'gestor' }
         format.json { render json: @avatar.errors, status: :unprocessable_entity }
       end
     end
@@ -47,7 +47,7 @@ class AvataresController < ApplicationController
         format.html { redirect_to @avatar.tema_curso, notice: 'Avatar atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @avatar }
       else
-        format.html { render :edit, @current_usuario => current_usuario }
+        format.html { render :edit, layout: 'gestor' }
         format.json { render json: @avatar.errors, status: :unprocessable_entity }
       end
     end
