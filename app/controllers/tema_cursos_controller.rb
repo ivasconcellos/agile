@@ -5,7 +5,8 @@ class TemaCursosController < ApplicationController
   # GET /temas_cursos
   # GET /temas_cursos.json
   def index
-    @tema_cursos = TemaCurso.all.page(params[:page]).order('nome')
+    @q = TemaCurso.ransack(params[:q])
+    @tema_cursos = @q.result.paginate(page: params[:page]).order('nome')
     authorize! :read, TemaCurso
     render layout: 'gestor'
   end

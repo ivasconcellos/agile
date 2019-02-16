@@ -5,7 +5,8 @@ class GruposController < ApplicationController
   # GET /grupos
   # GET /grupos.json
   def index
-    @grupos = Grupo.page(params[:page]).order('nome')
+    @q = Grupo.ransack(params[:q])
+    @grupos = @q.result.paginate(page: params[:page]).order('nome')
     authorize! :index, Grupo
     render layout: 'gestor'
   end
