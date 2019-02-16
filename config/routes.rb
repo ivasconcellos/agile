@@ -23,11 +23,16 @@ Rails.application.routes.draw do
   resources :materiais
   resources :cursos
   resources :tema_cursos
-  devise_for :admins
-  devise_for :usuarios
+  devise_for :admins, :skip => [:registrations]
+  
+  resources :usuarios, :only => [:index, :edit, :update, :show]
+  devise_for :usuarios, :path_prefix => 'my', controllers: {
+    sessions: 'usuarios/sessions',
+    registrations: 'usuarios/registrations',
+  }
 
   devise_scope :usuario do
-    root 'devise/sessions#new'
+    root 'usuarios/sessions#new'
   end
   # root  :to =>'controle/#inicial'
   

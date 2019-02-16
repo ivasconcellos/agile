@@ -1,0 +1,74 @@
+<%= form_with(model: usuario, local: true) do |form| %>
+  <% if usuario.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(usuario.errors.count, "erro(s)") %> - Uusário não pôde ser salvo!</h2>
+
+      <ul>
+      <% usuario.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="card-body">
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
+      <div class="col-md-6">
+        <%= form.text_field :nome, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+    
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">E-mail*</label>
+      <div class="col-md-6">
+        <%= form.email_field :email, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Data de nascimento*</label>
+      <div class="col-md-6">
+        <%= form.text_field :data_nascimento, class: "form-control", id: "data_nascimento", value: @usuario.data_nascimento.try(:strftime,"%d/%m/%Y") %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Sexo*</label>
+      <div class="col-md-6">
+        <%= form.select :sexo, options_for_select([["Feminino", "Feminino"], ["Masculino", "Masculino"]], form.object.sexo), class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Perfil*</label>
+      <div class="col-md-6">
+        <%= form.select :perfil, options_for_select([["Gestor", "Gestor"], ["Usuário comum", "Usuário comum"]], form.object.perfil), class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="form-check-label col-md-2 offset-md-2" for="gridCheck1">Ativo</label>
+      <div class="col-md-2 ">
+        <div class="form-check">
+          <%= form.check_box :ativo, class: "form-check-input" %> Sim
+        </div>
+      </div>        
+    </div>
+
+    <div class="form-group row">
+      <label class="form-check-label col-md-2 offset-md-2" for="gridCheck1">Termo de Compromisso*</label>
+      <div class="col-md-2 ">
+        <div class="form-check">
+          <%= form.check_box :termo_compromisso, class: "form-check-input" %> Sim
+        </div>
+      </div>        
+    </div>
+  </div>
+  
+  <div class="card-footer text-muted">
+    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', usuarios_path, class: "btn btn-md btn-secondary" %>
+  </div>
+
+<% end %>

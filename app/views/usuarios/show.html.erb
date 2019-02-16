@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-header">Usuário</div> 
+
+    <div class="row">
+    	<div class="col-md-8 offset-md-2">
+			<ul class="list-group">
+				<li class="list-group-item"><b>Nome:</b> <%= @usuario.nome %></li>
+				<li class="list-group-item"><b>E-mail:</b> <%= @usuario.email %></li>
+				<li class="list-group-item"><b>Data de nascimento:</b> <%= @usuario.data_nascimento.strftime("%d/%m/%Y") %></li>
+				<li class="list-group-item"><b>Sexo:</b> <%= @usuario.sexo %></li>
+				<li class="list-group-item"><b>Perfil:</b> <%= @usuario.perfil %></li>
+				<li class="list-group-item"><b>Ativo:</b> <%= @usuario.ativo? ? 'Sim' : 'Não' %></li>
+				<li class="list-group-item"><b>Termo de compromisso:</b> <%= @usuario.termo_compromisso? ? 'Sim' : 'Não' %></li>
+				<li class="list-group-item"><b>Cadastrado em:</b> <%= @usuario.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>				
+			</ul>
+		</div>
+	</div>
+
+	<div class="card-footer text-muted">
+		<% if can? :edit, Usuario %>
+			<%= link_to 'Atualizar', edit_usuario_path(@usuario), class: "btn btn-md btn-primary " %>
+		<% end %>
+		<%= link_to 'Voltar', usuarios_path, class: "btn btn-md btn-secondary" %>
+	</div>
+
+</div>
