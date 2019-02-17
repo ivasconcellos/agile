@@ -5,7 +5,7 @@
   <ul class="list-group">
      <li class="list-group-item"><b>Módulo:</b> <%= @tarefa.modulo.nome %></li>
      <li class="list-group-item"><b>Nome:</b> <%= @tarefa.nome %></li>
-     <li class="list-group-item"><b>Descrição:</b> <%= @tarefa.descricao %></li>
+     <li class="list-group-item"><b>Descrição:</b> <%= @tarefa.descricao.to_s.html_safe %></li>
      <li class="list-group-item"><b>Pontuação:</b> <%= @tarefa.pontuacao %></li>
      <% if  @tarefa.data_limite %>
       <li class="list-group-item"><b>Data limite:</b> <%= @tarefa.data_limite.strftime("%d/%m/%Y") %></li>
