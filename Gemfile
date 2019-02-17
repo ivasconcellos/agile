@@ -80,3 +80,5 @@ gem 'image_processing'
 
 gem 'ransack'
 
+gem 'bootstrap-datepicker-rails'
+
