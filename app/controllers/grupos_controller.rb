@@ -5,9 +5,9 @@ class GruposController < ApplicationController
   # GET /grupos
   # GET /grupos.json
   def index
+    authorize! :index, Grupo
     @q = Grupo.ransack(params[:q])
     @grupos = @q.result.paginate(page: params[:page]).order('nome')
-    authorize! :index, Grupo
     render layout: 'gestor'
   end
 
@@ -20,8 +20,8 @@ class GruposController < ApplicationController
 
   # GET /grupos/new
   def new
-    @grupo = Grupo.new
     authorize! :new, Grupo
+    @grupo = Grupo.new
     render layout: 'gestor'
   end
 

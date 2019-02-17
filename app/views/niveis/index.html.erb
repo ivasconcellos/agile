@@ -5,7 +5,7 @@
     <div class="card-body">
 
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-9">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Nome</span>
@@ -28,39 +28,39 @@
     </div>
   <% end %>
 
-  <div class="table-responsive">
-    <table class="table table-striped table-sm">
-      <thead>
-        <tr>
-          <th class="text-center">Nome</th>
-          <th class="text-center">Pontos requeridos</th>
-          <th colspan="3" class="text-center">Opções</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @niveis.each do |nivel| %>
+  <% if !@niveis.empty? %>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
           <tr>
-            <td><%= nivel.nome %></td>
-            <td><%= nivel.pontos_requeridos %></td>
-            <td><%= link_to 'Visualizar', nivel %></td></td>
-            <td>
-              <% if can? :edit, Nivel %>
-                <%= link_to 'Atualizar', edit_nivel_path(nivel) %></td>
-              <% else%> - 
-              <% end %>
-            <td>
-              <% if can? :Destroy, Nivel %>
-                <%= link_to 'Excluir', nivel, method: :delete, data: { confirm: 'Deseja realmente excluir o Nível?' } %></td>
-              <% else%> - 
-              <% end %>
-            </tr>
-            
+            <th class="text-center">Nome</th>
+            <th class="text-center">Pontos requeridos</th>
+            <th colspan="3" class="text-center">Opções</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-  <span> <%= will_paginate @niveis %></span>
+        </thead>
+        <tbody>
+          <% @niveis.each do |nivel| %>
+            <tr>
+              <td><%= nivel.nome %></td>
+              <td><%= nivel.pontos_requeridos %></td>
+              <td><%= link_to 'Visualizar', nivel %></td></td>
+              <td>
+                <% if can? :edit, Nivel %>
+                  <%= link_to 'Atualizar', edit_nivel_path(nivel) %>
+                <% end %>
+              </td>
+              <td>
+                <% if can? :Destroy, Nivel %>
+                  <%= link_to 'Excluir', nivel, method: :delete, data: { confirm: 'Deseja realmente excluir o Nível?' } %>
+                <% end %>
+              </td>              
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <span> <%= will_paginate @niveis %></span>
+  <% end %>
 
   <br>
 

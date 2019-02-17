@@ -1,38 +1,71 @@
 <div class="card">
   <div class="card-header">Artefatos</div>
 
-  <div class="table-responsive">
-    <table class="table table-striped table-sm">
-      <thead>
-        <tr>
-          <th class="text-center">Nome</th>
-          <th class="text-center">Ativo</th>
-          <th colspan="3" class="text-center">Opções</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @artefatos.each do |artefato| %>
+  <%= search_form_for @q do |f| %>
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col-lg-9">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Nome</span>
+            </div>
+            <%= f.search_field :nome_cont, :class => 'form-control'  %>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Ativo</span>
+            </div>
+            <span class="input-group-text borda">
+              <%= f.select :ativo_eq,   [['Sim', true], ['Não', false]], :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
+            </span>
+          </div>
+        </div>
+      </div>     
+    </div>
+    
+    <div class="text-center">
+      <button class="btn btn-primary link search-btn" ><% submit_tag "" %>Pesquisar</button>
+    </div>
+  <% end %>
+
+  <% if !@artefatos.empty? %>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
           <tr>
-            <td><%= artefato.nome %></td>
-            <td><%= artefato.ativo? ? 'Sim' : 'Não' %></td>
-            <td><%= link_to 'Visualizar', artefato %></td>
-            <td>
-              <% if can? :edit, Artefato %>
-                <%= link_to 'Atualizar', edit_artefato_path(artefato) %>
-              <% else%> - 
-              <% end %>
-            <td>
-              <% if can? :Destroy, Artefato %>
-                <%= link_to 'Excluir', artefato, method: :delete, data: { confirm: 'Deseja realmente excluir o Artefato?' } %>
-              <% else%> - 
-              <% end %>
-            </td>
+            <th class="text-center">Nome</th>
+            <th class="text-center">Ativo</th>
+            <th colspan="3" class="text-center">Opções</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-  <span> <%= will_paginate @artefatos %></span>
+        </thead>
+        <tbody>
+          <% @artefatos.each do |artefato| %>
+            <tr>
+              <td><%= artefato.nome %></td>
+              <td><%= artefato.ativo? ? 'Sim' : 'Não' %></td>
+              <td><%= link_to 'Visualizar', artefato %></td>
+              <td>
+                <% if can? :edit, Artefato %>
+                  <%= link_to 'Atualizar', edit_artefato_path(artefato) %>
+                <% else%> - 
+                <% end %>
+              <td>
+                <% if can? :Destroy, Artefato %>
+                  <%= link_to 'Excluir', artefato, method: :delete, data: { confirm: 'Deseja realmente excluir o Artefato?' } %>
+                <% else%> - 
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <span> <%= will_paginate @artefatos %></span>
+  <% end %>
 
   <br>
 

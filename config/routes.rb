@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :tarefa_alunos
   resources :tarefas
   resources :modulos
-  resources :avatares, :except => :index
+  resources :avatares
   resources :comentarios
   resources :foruns
   resources :explicacoes

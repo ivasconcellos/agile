@@ -3,9 +3,9 @@ class UsuariosController < ApplicationController
 	before_action :authenticate_usuario!, :except => [:termo_compromisso]
 
 	def index
+		authorize! :index, Usuario
 		@q = Usuario.ransack(params[:q])
     	@usuarios = @q.result.paginate(page: params[:page]).order('nome')
-    	authorize! :index, Usuario
     	render layout: 'gestor'
 	end
 
@@ -31,16 +31,6 @@ class UsuariosController < ApplicationController
 	    end
 	end 
 
-	private 
-
-	def set_usuario
-    	@usuario = Usuario.find(params[:id])
-    end
-
-    def usuario_params
-    	params.require(:usuario).permit(:nome, :email, :perfil, :data_nascimento, :sexo, :ativo, :termo_compromisso, :password, :password_confirmation, :updated_at, )
-    end
-
 	def minhas_notas
 		@modulos = Modulo.where('modulos.curso_id = ?',
        current_usuario.curso_atual_id)
@@ -58,5 +48,15 @@ class UsuariosController < ApplicationController
     		format.js
   		end
 	end
+
+	private 
+
+	def set_usuario
+    	@usuario = Usuario.find(params[:id])
+    end
+
+    def usuario_params
+    	params.require(:usuario).permit(:nome, :email, :perfil, :data_nascimento, :sexo, :ativo, :termo_compromisso, :password, :password_confirmation, :updated_at, )
+    end
 
 end

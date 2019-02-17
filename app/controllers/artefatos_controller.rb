@@ -5,7 +5,8 @@ class ArtefatosController < ApplicationController
   # GET /artefatos
   # GET /artefatos.json
   def index
-    @artefatos = Artefato.page(params[:page]).order('nome')
+    @q = Artefato.ransack(params[:q])
+    @artefatos = @q.result.paginate(page: params[:page]).order('nome')
     authorize! :index, Artefato
     render layout: 'gestor'
   end
@@ -19,9 +20,9 @@ class ArtefatosController < ApplicationController
 
   # GET /artefatos/new
   def new
+    authorize! :new, Artefato
     @artefato = Artefato.new
     @artefato.tema_curso_id = params[:tema_curso_id]
-    authorize! :new, Artefato
     render layout: 'gestor'
   end
 

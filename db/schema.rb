@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_15_003953) do
+ActiveRecord::Schema.define(version: 2019_02_17_020816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2019_02_15_003953) do
     t.string "imagem_content_type"
     t.integer "imagem_file_size"
     t.datetime "imagem_updated_at"
+    t.boolean "ativo", default: true
     t.index ["tema_curso_id"], name: "index_avatares_on_tema_curso_id"
   end
 
