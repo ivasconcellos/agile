@@ -7,6 +7,7 @@ class SalasChatController < ApplicationController
   def index
     @salas_chat = SalaChat.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
     authorize! :index, SalaChat
+    render layout: 'professor'
   end
 
   # GET /sala_chat/1

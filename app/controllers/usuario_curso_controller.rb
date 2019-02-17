@@ -7,6 +7,7 @@ class UsuarioCursoController < ApplicationController
   def index
     @usuario_curso = UsuarioCurso.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
     authorize! :index, UsuarioCurso
+    render layout: 'professor'
   end
 
   # GET /usuario_curso/1

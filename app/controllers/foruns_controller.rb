@@ -7,6 +7,7 @@ class ForunsController < ApplicationController
   def index
     @foruns = Forum.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
     authorize! :index, Forum
+    render layout: 'professor'
   end
 
   # GET /foruns/1

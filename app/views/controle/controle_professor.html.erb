@@ -1,0 +1,19 @@
+<div class="card">
+
+  <div class="card-header">Gerenciamento do Curso</div>
+  
+  <ul class="list-group">
+    <li class="list-group-item"><b>Curso:</b> <%= current_usuario.curso_atual.nome %></li> 
+    <li class="list-group-item"><b>Descrição:</b> <%= current_usuario.curso_atual.descricao %></li> 
+  </ul>
+
+  <br>
+  <div class="alert alert-danger" role="alert">
+    Em caso de dúvidas, consulte o Manual do Professor
+  </div>
+  
+  <div class="card-footer text-muted">
+    <%= link_to 'Voltar', inicial_path, class: "btn btn-md btn-secondary" %>
+  </div>
+
+</div>

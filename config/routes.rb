@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   get 'inicial' => 'controle#inicial'
   get 'sobre' => 'controle#sobre'
   get 'controle_gestor' => 'controle#controle_gestor'
+  get 'controle_professor' => 'controle#controle_professor'
   get 'desenvolvimento' => 'controle#desenvolvimento'
   get 'curso_atual' => 'cursos#atualizar_curso_atual'
   get 'busca_curso' => 'usuario_curso#busca_curso'
