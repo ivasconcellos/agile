@@ -25,6 +25,10 @@ class CursosController < ApplicationController
 
   def descricao
     authorize! :show, @curso
+    @usuario_curso = UsuarioCurso.find_by(curso_id: @curso.id, usuario_id: current_usuario.id)
+    if @usuario_curso.perfil == "Professor"
+      render layout: 'professor'
+    end
   end
 
   # GET /cursos/new
@@ -91,6 +95,7 @@ class CursosController < ApplicationController
   def notas
     @tarefas = Tarefa.joins(:modulo).where('modulos.curso_id = ?',
        current_usuario.curso_atual_id)
+    render layout: 'professor'
   end
 
   private

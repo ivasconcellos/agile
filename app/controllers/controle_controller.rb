@@ -27,4 +27,9 @@ class ControleController < ApplicationController
     authorize! :controle_gestor,:controle
   end
 
+  def controle_professor
+    render layout: 'professor'
+    authorize! :controle_professor,:controle
+  end
+
 end

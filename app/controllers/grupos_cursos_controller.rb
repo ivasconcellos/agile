@@ -7,6 +7,7 @@ class GruposCursosController < ApplicationController
   def index
     @grupos_cursos = GrupoCurso.page(params[:page]).order('nome_curso')
     authorize! :index, GrupoCurso
+    render layout: 'professor'
   end
 
   # GET /grupos_cursos/1
