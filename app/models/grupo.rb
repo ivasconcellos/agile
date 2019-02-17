@@ -1,4 +1,6 @@
 class Grupo < ApplicationRecord
+  has_many :grupos_cursos
+  
   has_one_attached :imagem
   validates :imagem, attached: true
 

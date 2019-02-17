@@ -4,5 +4,6 @@ class GrupoCurso < ApplicationRecord
   has_many :usuarios_cursos
 
   validates_presence_of :nome_curso
+  
   self.per_page = 10
 end

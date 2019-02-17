@@ -24,6 +24,9 @@ class Ability
           can :read, TarefaAluno
           can :manage, AvaliacaoTarefa
           can :manage, Quiz
+          can :read, Grupo
+          can :manage, GrupoCurso
+          can :manage, Missao
           can :controle_professor,:controle
         elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
           can :manage, Comentario
