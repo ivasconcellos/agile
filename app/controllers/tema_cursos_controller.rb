@@ -7,14 +7,14 @@ class TemaCursosController < ApplicationController
   def index
     @q = TemaCurso.ransack(params[:q])
     @tema_cursos = @q.result.paginate(page: params[:page]).order('nome')
-    authorize! :read, TemaCurso
+    authorize! :index, TemaCurso
     render layout: 'gestor'
   end
 
   # GET /temas_cursos/1
   # GET /temas_cursos/1.json
   def show
-    authorize! :show, @tema_curso
+    authorize! :show, TemaCurso
     @avatares = Avatar.where(tema_curso_id: @tema_curso.id)
     @artefatos = Artefato.where(tema_curso_id: @tema_curso.id)
     render layout: 'gestor'
@@ -22,14 +22,14 @@ class TemaCursosController < ApplicationController
 
   # GET /temas_cursos/new
   def new
+    authorize! :new, TemaCurso
     @tema_curso = TemaCurso.new
-    authorize! :new, @tema_curso
     render layout: 'gestor'
   end
 
   # GET /temas_cursos/1/edit
   def edit
-    authorize! :edit, @tema_curso
+    authorize! :edit, TemaCurso
     render layout: 'gestor'
   end
 
@@ -66,7 +66,7 @@ class TemaCursosController < ApplicationController
   # DELETE /temas_cursos/1
   # DELETE /temas_cursos/1.json
   def destroy
-    authorize! :destroy, @tema_curso
+    authorize! :destroy, TemaCurso
     @tema_curso.destroy
     respond_to do |format|
       format.html { redirect_to temas_cursos_url, notice: 'Tema do curso excluído com sucesso!' }

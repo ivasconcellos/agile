@@ -13,54 +13,54 @@
 
   <%= form.hidden_field :curso_id %>
 
+  <div class="card-body">  
+    <% if current_usuario.curso_atual.usuario_curso.first.perfil == "Professor" %>
+
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Perfil*</label>
+        <div class="col-md-6">
+          <%= form.select :perfil,  options_for_select([["Aluno", "Aluno"], ["Professor", "Professor"]], form.object.perfil), class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Usuário*</label>
+        <div class="col-md-6">
+          <%= form.collection_select(:usuario_id, Usuario.all.order('nome'), :id, :nome, :prompt => true, class: "form-control")%>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Equipe do usuário</label>
+        <div class="col-md-6">
+          <%= form.collection_select(:grupo_curso_id, GrupoCurso.where(curso_id: current_usuario.curso_atual).order('nome_curso'), :id, :nome_curso, :prompt => true, class: "form-control")%>
+        </div>
+      </div>
+      
+    <% end %>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Apelido*</label>
+      <div class="col-md-6">
+        <%= form.text_field :nickname, class: "form-control" %> 
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Avatar</label>
+      <div class="col-md-6">
+        <% Avatar.where(tema_curso_id: current_usuario.curso_atual.tema_curso_id, perfil: @perfil.perfil).each do |avatar| %>
+          <%= form.radio_button :avatar_id, avatar.id %>
+          <%= avatar.nome %>
+          <%= image_tag avatar.imagem.url(:thumb), class: "img-responsive img-thumbnail" %>
+        <% end %>      
+      </div>
+    </div>
+
+  </div>
   
-  <% if current_usuario.curso_atual.usuario_curso.first.perfil == "Professor" %>
-
-    <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Perfil*</label>
-      <div class="col-md-6">
-        <%= form.select :perfil,  options_for_select([["Aluno", "Aluno"], ["Professor", "Professor"]], form.object.perfil), class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Usuário*</label>
-      <div class="col-md-6">
-        <%= form.collection_select(:usuario_id, Usuario.all.order('nome'), :id, :nome, :prompt => true, class: "form-control")%>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Equipe do usuário</label>
-      <div class="col-md-6">
-        <%= form.collection_select(:grupo_curso_id, GrupoCurso.where(curso_id: current_usuario.curso_atual).order('nome_curso'), :id, :nome_curso, :prompt => true, class: "form-control")%>
-      </div>
-    </div>
-    
-  <% end %>
-
-  <div class="form-group row">
-    <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Apelido*</label>
-    <div class="col-md-6">
-      <%= form.text_field :nickname, class: "form-control" %> 
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Avatar</label>
-    <div class="col-md-6">
-      <% Avatar.where(tema_curso_id: current_usuario.curso_atual.tema_curso_id, perfil: @perfil.perfil).each do |avatar| %>
-        <%= form.radio_button :avatar_id, avatar.id %>
-        <%= avatar.nome %>
-        <%= image_tag avatar.imagem.url(:thumb), class: "img-responsive img-thumbnail" %>
-      <% end %>      
-    </div>
-  </div>
-
-  <div class="text-center">
+  <div class="card-footer text-muted">
     <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
     <%= link_to 'Voltar', usuario_curso_index_path, class: "btn btn-md btn-secondary" %>
   </div>
-
-  <br>
 <% end %>

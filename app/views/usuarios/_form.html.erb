@@ -1,8 +1,7 @@
 <%= form_with(model: usuario, local: true) do |form| %>
   <% if usuario.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(usuario.errors.count, "erro(s)") %> - Uusário não pôde ser salvo!</h2>
-
+      <h2><%= pluralize(usuario.errors.count, "erro(s)") %> - Usuário não pôde ser salvo!</h2>
       <ul>
       <% usuario.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,6 +9,7 @@
       </ul>
     </div>
   <% end %>
+
   <div class="card-body">
 
     <div class="form-group row">
@@ -29,7 +29,7 @@
     <div class="form-group row">
       <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Data de nascimento*</label>
       <div class="col-md-6">
-        <%= form.text_field :data_nascimento, class: "form-control", id: "data_nascimento", value: @usuario.data_nascimento.try(:strftime,"%d/%m/%Y") %>
+        <%= form.date_field :data_nascimento, class: "form-control", value: @usuario.data_nascimento.strftime('%Y-%m-%d') %>
       </div>
     </div>
 

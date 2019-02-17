@@ -5,7 +5,7 @@
     <div class="card-body">
 
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-9">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Nome</span>
@@ -26,41 +26,42 @@
         </div>
       </div>     
     </div>
+    
     <div class="text-center">
       <button class="btn btn-primary link search-btn" ><% submit_tag "" %>Pesquisar</button>
     </div>
   <% end %>
 
-  <div class="table-responsive">
-    <table class="table table-striped table-sm">
-      <thead>
-        <tr>
-          <th class="text-center">Nome</th>
-          <th colspan="3" class="text-center">Opções</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @badges.each do |badge| %>
+  <% if !@badges.empty? %>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
           <tr>
-            <td><%= badge.nome %></td>
-            <td><%= link_to 'Visualizar', badge %></td>
-            <td>
-              <% if can? :edit, Badge %>
-                <%= link_to 'Atualizar', edit_badge_path(badge) %>
-              <% else%> - 
-              <% end %>
-            <td>
-              <% if can? :Destroy, Badge %>
-                <%= link_to 'Excluir', badge, method: :delete, data: { confirm: 'Deseja realmente excluir a Badge?' } %>
-              <% else%> - 
-              <% end %>
-            </td>
+            <th class="text-center">Nome</th>
+            <th colspan="3" class="text-center">Opções</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-  <span> <%= will_paginate @badges %></span>
+        </thead>
+        <tbody>
+          <% @badges.each do |badge| %>
+            <tr>
+              <td><%= badge.nome %></td>
+              <td><%= link_to 'Visualizar', badge %></td>
+              <td>
+                <% if can? :edit, Badge %>
+                  <%= link_to 'Atualizar', edit_badge_path(badge) %>
+                <% end %>
+              <td>
+                <% if can? :Destroy, Badge %>
+                  <%= link_to 'Excluir', badge, method: :delete, data: { confirm: 'Deseja realmente excluir a Badge?' } %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <span> <%= will_paginate @badges %></span>
+  <% end %>
 
   <br>
 

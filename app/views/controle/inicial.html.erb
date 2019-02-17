@@ -5,9 +5,10 @@
         <div class="container-fluid">
 
         	<div class="text-center">
-			  	<%= link_to 'Me inscrever em um curso', {controller: 'usuario_curso', action: 'busca_curso'}, class: "btn btn-md btn-info" %>
-			  	<% if current_usuario.perfil == 'Gestor' %>
+        		<% if current_usuario.perfil == 'Gestor' %>
 			  		<%= link_to 'Gerenciamento do AGILE', controle_gestor_path, class: "btn btn-md btn-danger" %>
+			  	<% else %>
+			  		<%= link_to 'Me inscrever em um curso', {controller: 'usuario_curso', action: 'busca_curso'}, class: "btn btn-md btn-info" %>
 			  	<% end %>
 			</div>
 			<br>

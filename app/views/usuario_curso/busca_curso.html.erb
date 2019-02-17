@@ -1,4 +1,3 @@
-
 <% if @usuario_curso && @usuario_curso.errors.any? %>
   <div id="error_explanation" class="alert alert-danger">
     <p><%= pluralize(@usuario_curso.errors.count, "erro(s)") %> - Usuário não pôde ser cadastrado no curso!</p>
@@ -25,9 +24,12 @@
 
       <div class="text-center">
         <%= submit_tag 'Me increver no curso!', :class =>"btn btn-primary link" %>
-        <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
       </div>
           
     <% end %>
+    
+    <div class="card-footer text-muted">
+      <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
+    </div>
   </div>
 </div>

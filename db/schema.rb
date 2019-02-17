@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_15_003953) do
+ActiveRecord::Schema.define(version: 2019_02_17_020816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,29 +54,9 @@ ActiveRecord::Schema.define(version: 2019_02_15_003953) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "aluno_resposta", force: :cascade do |t|
-    t.bigint "usuario_curso_id"
-    t.bigint "respostas_perguntas_id"
-    t.boolean "correta", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["respostas_perguntas_id"], name: "index_aluno_resposta_on_respostas_perguntas_id"
-    t.index ["usuario_curso_id"], name: "index_aluno_resposta_on_usuario_curso_id"
-  end
-
-  create_table "aluno_respostas", force: :cascade do |t|
-    t.bigint "usuario_curso_id"
-    t.bigint "respostas_perguntas_id"
-    t.boolean "correta", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["respostas_perguntas_id"], name: "index_aluno_respostas_on_respostas_perguntas_id"
-    t.index ["usuario_curso_id"], name: "index_aluno_respostas_on_usuario_curso_id"
-  end
-
   create_table "artefatos", force: :cascade do |t|
     t.string "nome"
-    t.string "ativo", default: "t"
+    t.boolean "ativo", default: true
     t.bigint "tema_curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -104,6 +84,7 @@ ActiveRecord::Schema.define(version: 2019_02_15_003953) do
     t.string "imagem_content_type"
     t.integer "imagem_file_size"
     t.datetime "imagem_updated_at"
+    t.boolean "ativo", default: true
     t.index ["tema_curso_id"], name: "index_avatares_on_tema_curso_id"
   end
 
@@ -396,10 +377,6 @@ ActiveRecord::Schema.define(version: 2019_02_15_003953) do
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "aluno_resposta", "respostas_perguntas", column: "respostas_perguntas_id"
-  add_foreign_key "aluno_resposta", "usuario_curso"
-  add_foreign_key "aluno_respostas", "respostas_perguntas", column: "respostas_perguntas_id"
-  add_foreign_key "aluno_respostas", "usuario_curso"
   add_foreign_key "avaliacao_tarefa", "tarefa_alunos"
   add_foreign_key "avaliacao_tarefa", "usuario_curso"
   add_foreign_key "avatares", "tema_cursos"

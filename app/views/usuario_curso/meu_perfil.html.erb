@@ -20,7 +20,7 @@
   </ul>
 
   <br>
-  <div class="text-center">
+  <div class="card-footer text-muted">
     <% if can? :edit, UsuarioCurso %>
       <%= link_to 'Atualizar', edit_usuario_curso_path(@usuario_curso), class: "btn btn-md btn-primary" %>
     <% end %>

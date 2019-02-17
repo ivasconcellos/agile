@@ -93,7 +93,7 @@
 			<%= link_to 'Adicionar Avatar', {controller: "avatares", action: "new", tema_curso_id: @tema_curso.id}, class: "btn btn-md btn-success" %>
 		<% end %>
 		<% if can? :new, Artefato %>
-			<%= link_to 'Adicionar Artefato', {controller: "artefatos", action: "new", tema_curso_id: @tema_curso.id}, class: "btn btn-md btn-success" %>
+			<%= link_to 'Adicionar Artefato', {controller: "artefatos", action: "new", tema_curso_id: @tema_curso.id}, class: "btn btn-md btn-warning" %>
 		<% end %>
 		<%= link_to 'Voltar', tema_cursos_path, class: "btn btn-md btn-secondary" %>
 	</div>

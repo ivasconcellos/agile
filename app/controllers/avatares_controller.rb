@@ -2,24 +2,31 @@ class AvataresController < ApplicationController
   before_action :set_avatar, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_usuario!
 
+  def index
+    @q = Avatar.ransack(params[:q])
+    @avatares = @q.result.paginate(page: params[:page]).order('nome')
+    render layout: 'gestor'
+    authorize! :index, Avatar
+  end
+
   # GET /avatares/1
   # GET /avatares/1.json
   def show
-    authorize! :show, @avatar
+    authorize! :show, Avatar
     render layout: 'gestor'
   end
 
   # GET /avatares/new
   def new
+    authorize! :new, Avatar
     @avatar = Avatar.new
     @avatar.tema_curso_id = params[:tema_curso_id]
-    authorize! :new, @avatar
     render layout: 'gestor'
   end
 
   # GET /avatares/1/edit
   def edit
-    authorize! :edit, @avatar
+    authorize! :edit, Avatar
     render layout: 'gestor'
   end
 
@@ -56,7 +63,7 @@ class AvataresController < ApplicationController
   # DELETE /avatares/1
   # DELETE /avatares/1.json
   def destroy
-    authorize! :destroy, @avatar
+    authorize! :destroy, Avatar
     @tema_curso = @avatar.tema_curso
     @avatar.destroy
     respond_to do |format|
@@ -73,6 +80,6 @@ class AvataresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def avatar_params
-      params.require(:avatar).permit(:tema_curso_id, :nome, :perfil, :imagem)
+      params.require(:avatar).permit(:tema_curso_id, :nome, :perfil, :ativo, :imagem)
     end
 end

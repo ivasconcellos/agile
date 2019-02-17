@@ -1,11 +1,11 @@
 <div class="card">
-  <div class="card-header">Grupos</div>
+  <div class="card-header">Avatares</div>
 
   <%= search_form_for @q do |f| %>
     <div class="card-body">
 
       <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-6">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Nome</span>
@@ -14,7 +14,18 @@
           </div>
         </div>
 
-        <div class="col-lg-3">
+        <div class="col-lg-4">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Tema do Curso</span>
+            </div>
+            <span class="input-group-text borda">
+              <%= f.select :tema_curso_id_eq,  options_from_collection_for_select(TemaCurso.all, "id", "nome", params[:tema_curso_id]), :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
+            </span>
+          </div>
+        </div>
+
+        <div class="col-lg-2">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Ativo</span>
@@ -26,37 +37,36 @@
         </div>
       </div>     
     </div>
+    
     <div class="text-center">
       <button class="btn btn-primary link search-btn" ><% submit_tag "" %>Pesquisar</button>
     </div>
   <% end %>
 
-  <% if !@grupos.empty? %>
+  <% if !@avatares.empty? %>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
         <thead>
           <tr>
             <th class="text-center">Nome</th>
-            <th class="text-center">Ativo</th>
+            <th class="text-center">Tema do Curso</th>
             <th colspan="3" class="text-center">Opções</th>
           </tr>
         </thead>
         <tbody>
-          <% @grupos.each do |grupo| %>
+          <% @avatares.each do |avatar| %>
             <tr>
-              <td><%= grupo.nome %></td>
-              <td><%= grupo.ativo? ? 'Sim' : 'Não' %></td>
-              <% if can? :show, Grupo %>
-                <td><%= link_to 'Visualizar', grupo %></td>
-              <% end %>
+              <td><%= avatar.nome %></td>
+              <td><%= avatar.tema_curso.nome %></td>
+              <td><%= link_to 'Visualizar', avatar %></td>
               <td>
-                <% if can? :edit, Grupo %>
-                  <%= link_to 'Atualizar', edit_grupo_path(grupo) %>
+                <% if can? :edit, Avatar %>
+                  <%= link_to 'Atualizar', edit_avatar_path(avatar) %>
                 <% else%> - 
                 <% end %>
               <td>
-                <% if can? :Destroy, Grupo %>
-                  <%= link_to 'Excluir', grupo, method: :delete, data: { confirm: 'Deseja realmente excluir o Grupo?' } %>
+                <% if can? :Destroy, Avatar %>
+                  <%= link_to 'Excluir', avatar, method: :delete, data: { confirm: 'Deseja realmente excluir o Avatar?' } %>
                 <% else%> - 
                 <% end %>
               </td>
@@ -65,16 +75,13 @@
         </tbody>
       </table>
     </div>
-    <span> <%= will_paginate @grupos %></span>
+    <span> <%= will_paginate @avatares %></span>
   <% end %>
 
   <br>
 
-  <% if can? :new, Grupo %>
-    <div class="card-footer text-muted">
-      <%= link_to 'Cadastrar Grupo', new_grupo_path, class: "btn btn-md btn-primary" %>
-      <%= link_to 'Voltar', controle_gestor_path, class: "btn btn-md btn-secondary" %>
-    </div>
-  <% end %>
+  <div class="card-footer text-muted">
+    <%= link_to 'Voltar', controle_gestor_path, class: "btn btn-md btn-secondary" %>
+  </div>
 
 </div>

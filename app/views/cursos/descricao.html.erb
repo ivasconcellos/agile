@@ -3,10 +3,10 @@
   <div class="card-header"><%= @curso.nome %></div>
   
   <ul class="list-group">
-    <li class="list-group-item"><b>Descrição:</b> <%= @curso.descricao %></li> 
-    <li class="list-group-item"><b>Professor principal:</b> <%= @curso.proprietario.nome %></li>
+    <li class="list-group-item"><b>Descrição:</b> <%= @curso.descricao.to_s.html_safe %></li> 
+    <li class="list-group-item"><b>Professor(a) principal:</b> <%= @curso.proprietario.nome %></li>
     <% if @curso.data_inicio %> 
-      <li class="list-group-item"><b>Date de início:</b> <%= @curso.data_inicio.strftime("%d/%m/%Y") %></li>
+      <li class="list-group-item"><b>Data de início:</b> <%= @curso.data_inicio.strftime("%d/%m/%Y") %></li>
     <% end %>
     <% if @curso.data_termino %>
       <li class="list-group-item"><b>Data de término:</b> <%= @curso.data_termino.strftime("%d/%m/%Y") %></li>
@@ -36,6 +36,7 @@
   <div class="card-footer text-muted">
     <% if can? :edit, Curso %>
       <%= link_to 'Atualizar', edit_curso_path(@curso), class: "btn btn-md btn-primary" %>
+      <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
     <% end %>
   </div>
   

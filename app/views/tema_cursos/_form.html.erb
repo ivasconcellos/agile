@@ -1,7 +1,7 @@
 <%= form_with(model: tema_curso, local: true) do |form| %>
   <% if tema_curso.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(tema_curso.errors.count, "erro(s)") %> - Tema do curso não pôde ser salvo!</h2>
+      <h2><%= pluralize(tema_curso.errors.count, "erro(s)") %> - Tema do Curso não pôde ser salvo!</h2>
 
       <ul>
       <% tema_curso.errors.full_messages.each do |message| %>
@@ -10,6 +10,7 @@
       </ul>
     </div>
   <% end %>
+  
   <div class="card-body">
 
     <div class="form-group row">

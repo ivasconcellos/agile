@@ -7,8 +7,8 @@ class BadgesController < ApplicationController
   def index
     @q = Badge.ransack(params[:q])
     @badges = @q.result.paginate(page: params[:page]).order('nome')
-    authorize! :index, Badge
     render layout: 'gestor'
+    authorize! :index, Badge
   end
 
   # GET /badges/1
@@ -20,8 +20,8 @@ class BadgesController < ApplicationController
 
   # GET /badges/new
   def new
-    @badge = Badge.new
     authorize! :new, Badge
+    @badge = Badge.new
     render layout: 'gestor'
   end
 
