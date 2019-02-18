@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :conversas
   resources :grupos_cursos
   resources :artefatos
   resources :grupos
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
   resources :tarefa_alunos
   resources :tarefas
   resources :modulos
-  resources :avatares, :except => :index
+  resources :avatares
   resources :comentarios
   resources :foruns
   resources :explicacoes
@@ -22,17 +23,25 @@ Rails.application.routes.draw do
   resources :materiais
   resources :cursos
   resources :tema_cursos
-  devise_for :admins
-  devise_for :usuarios
+  devise_for :admins, :skip => [:registrations]
+  
+  resources :usuarios, :only => [:index, :edit, :update, :show]
+  devise_for :usuarios, :path_prefix => 'my', controllers: {
+    sessions: 'usuarios/sessions',
+    registrations: 'usuarios/registrations',
+  }
 
   devise_scope :usuario do
-    root 'devise/sessions#new'
+    root 'usuarios/sessions#new'
   end
+
   # root  :to =>'controle/#inicial'
   
 
   get 'inicial' => 'controle#inicial'
   get 'sobre' => 'controle#sobre'
+  get 'controle_gestor' => 'controle#controle_gestor'
+  get 'controle_professor' => 'controle#controle_professor'
   get 'desenvolvimento' => 'controle#desenvolvimento'
   get 'curso_atual' => 'cursos#atualizar_curso_atual'
   get 'busca_curso' => 'usuario_curso#busca_curso'
@@ -46,6 +55,7 @@ Rails.application.routes.draw do
   get 'notas' => 'cursos#notas'
   get 'termo_compromisso' => 'usuarios#termo_compromisso'
   get 'equipe' => 'grupos_cursos#lista_participantes'
+  get 'conversas_professor' => 'conversas#conversas_professor'
  
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

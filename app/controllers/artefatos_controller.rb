@@ -5,30 +5,31 @@ class ArtefatosController < ApplicationController
   # GET /artefatos
   # GET /artefatos.json
   def index
-    @artefatos = Artefato.page(params[:page]).order('nome')
+    @q = Artefato.ransack(params[:q])
+    @artefatos = @q.result.paginate(page: params[:page]).order('nome')
     authorize! :index, Artefato
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /artefatos/1
   # GET /artefatos/1.json
   def show
     authorize! :show, Artefato
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /artefatos/new
   def new
+    authorize! :new, Artefato
     @artefato = Artefato.new
     @artefato.tema_curso_id = params[:tema_curso_id]
-    authorize! :new, Artefato
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /artefatos/1/edit
   def edit
     authorize! :edit, Artefato
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # POST /artefatos
@@ -41,7 +42,7 @@ class ArtefatosController < ApplicationController
         format.html { redirect_to @artefato, notice: 'Artefato cadastrado com sucesso!' }
         format.json { render :show, status: :created, location: @artefato }
       else
-        format.html { render :new, @current_usuario => current_usuario }
+        format.html { render :new, layout: 'gestor' }
         format.json { render json: @artefato.errors, status: :unprocessable_entity }
       end
     end
@@ -55,7 +56,7 @@ class ArtefatosController < ApplicationController
         format.html { redirect_to @artefato, notice: 'Artefato atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @artefato }
       else
-        format.html { render :edit, @current_usuario => current_usuario }
+        format.html { render :edit, layout: 'gestor' }
         format.json { render json: @artefato.errors, status: :unprocessable_entity }
       end
     end

@@ -8,6 +8,7 @@ class UsuarioCurso < ApplicationRecord
 	has_many :salas_chat, dependent: :destroy
 	has_many :mensagens, dependent: :destroy
 	belongs_to :grupo_curso, optional: true
+	belongs_to :nivel, optional: true
 	
 	validates_uniqueness_of :usuario_id, scope: :curso_id, message: "já está cadastrado no curso!"
 end

@@ -24,6 +24,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_storage_validations (0.6.1)
+      rails (>= 5.2.0)
     activejob (5.2.0)
       activesupport (= 5.2.0)
       globalid (>= 0.3.6)
@@ -62,6 +64,8 @@ GEM
       msgpack (~> 1.0)
     bootsnap (1.3.0-java)
       msgpack (~> 1.0)
+    bootstrap-datepicker-rails (1.8.0.1)
+      railties (>= 3.0)
     builder (3.2.3)
     byebug (10.0.2)
     cancancan (2.2.0)
@@ -235,6 +239,11 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (12.3.1)
+    ransack (2.1.1)
+      actionpack (>= 5.0)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      i18n
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -313,9 +322,11 @@ PLATFORMS
   x86-mswin32
 
 DEPENDENCIES
+  active_storage_validations
   better_errors
   binding_of_caller
   bootsnap (>= 1.1.0)
+  bootstrap-datepicker-rails
   byebug
   cancancan (~> 2.0)
   capybara (>= 2.15, < 4.0)
@@ -332,6 +343,7 @@ DEPENDENCIES
   rails (~> 5.2.0)
   rails-i18n
   rails_admin
+  ransack
   redis
   sass-rails (~> 5.0)
   selenium-webdriver

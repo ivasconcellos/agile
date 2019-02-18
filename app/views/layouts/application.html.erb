@@ -107,22 +107,15 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/equipe"> <i class="fa fa-users fa-lg"></i> Equipe</a>
-          </li>  
-          <li class="nav-item">
-              <a href="#gerenciar" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-wrench fa-lg"></i> Configurar curso</a>
-              <ul class="collapse list-unstyled" id="gerenciar">
-                <li class="nav-item"><%= link_to " Módulos", modulos_path, {class: "fa fa-book fa-sm nav-link"} %> </li>
-                <li class="nav-item"><%= link_to " Materiais", materiais_path, {class: "fa fa-file-text fa-sm nav-link"} %> </li>  
-                <li class="nav-item"><%= link_to " Tarefas", tarefas_path, {class: "fa fa-tasks fa-sm fa-sm nav-link"} %> </li>  
-                <li class="nav-item"><%= link_to " Fóruns", foruns_path, {class: "fa fa-comments fa-sm nav-link"} %> </li>  
-                <li class="nav-item"><%= link_to " Missões", missoes_path, {class: "fa fa-comments fa-bullseye nav-link"} %> </li>
-                <li class="nav-item"><%= link_to " Quiz", quizes_path, {class: "fa fa-comments fa-bullseye nav-link"} %> </li>
-                <li class="nav-item"><a class="nav-link" href="/usuario_curso"> <i class="fa fa-users fa-sm"></i> Participantes </a></li>  
-                <li class="nav-item"><a class="nav-link" href="/grupos_cursos"> <i class="fa fa-users fa-lg"></i> Grupos</a></li>  
-                <li class="nav-item"><a class="nav-link" href="/notas"> <i class="fa fa-graduation-cap fa-sm"></i> Notas da turma </a></li>  
-              </ul>
           </li>
-
+          <li class="nav-item">
+            <a class="nav-link" href="/conversas"> <i class="fa fa-users fa-lg"></i> Professor(es)</a>
+          </li>
+          <% if @perfil.perfil == 'Professor' %>
+            <li class="nav-item">
+              <a class="nav-link" href="/controle_professor"> <i class="fa fa-wrench fa-lg"></i> Gerenciar curso</a>
+            </li>
+          <% end %>
         </ul>
 
       </nav>

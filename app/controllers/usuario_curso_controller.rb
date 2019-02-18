@@ -7,6 +7,7 @@ class UsuarioCursoController < ApplicationController
   def index
     @usuario_curso = UsuarioCurso.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
     authorize! :index, UsuarioCurso
+    render layout: 'professor'
   end
 
   # GET /usuario_curso/1
@@ -17,14 +18,14 @@ class UsuarioCursoController < ApplicationController
 
   # GET /usuario_curso/new
   def new
+    authorize! :new, UsuarioCurso
     @usuario_curso = UsuarioCurso.new
     @usuario_curso.curso_id = params[:curso_id]
-    authorize! :new, @usuario_curso
   end
 
   # GET /usuario_curso/1/edit
   def edit
-    authorize! :edit, @usuario_curso
+    authorize! :edit, UsuarioCurso
   end
 
   # POST /usuario_curso
@@ -60,7 +61,7 @@ class UsuarioCursoController < ApplicationController
   # DELETE /usuario_curso/1
   # DELETE /usuario_curso/1.json
   def destroy
-    authorize! :destroy, @usuario_curso
+    authorize! :destroy, UsuarioCurso
     @usuario_curso.destroy
     respond_to do |format|
       format.html { redirect_to usuario_curso_index_url, notice: 'Usuário do Curso excluído com sucesso!' }
@@ -70,7 +71,7 @@ class UsuarioCursoController < ApplicationController
 
   def meu_perfil
     @usuario_curso = UsuarioCurso.where(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id).first
-    authorize! :show, @usuario_curso
+    authorize! :show, UsuarioCurso
   end
 
   def busca_curso
@@ -115,6 +116,6 @@ class UsuarioCursoController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def usuario_curso_params
-      params.require(:usuario_curso).permit(:perfil, :nickname, :usuario_id, :curso_id, :avatar_id, :grupo_curso_id)
+      params.require(:usuario_curso).permit(:perfil, :nickname, :usuario_id, :curso_id, :avatar_id, :grupo_curso_id, :nivel_id)
     end
 end

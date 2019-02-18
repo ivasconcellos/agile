@@ -1,6 +1,8 @@
 class Grupo < ApplicationRecord
-
   has_one_attached :imagem
-  validates_presence_of :nome, :imagem
+  validates :imagem, attached: true
+
+  validates_presence_of :nome
+
   self.per_page = 10
 end

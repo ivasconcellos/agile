@@ -11,7 +11,7 @@ class Ability
       if usuario.curso_atual
         usuario_curso = UsuarioCurso.where(usuario_id: usuario.id, curso_id: usuario.curso_atual.id).first
         if !usuario_curso.nil? and usuario_curso.perfil == 'Professor'
-          can :manage, Curso
+          can :perms_read_and_update, Curso
           can :manage, Modulo
           can :manage, Explicacao
           can :manage, Material
@@ -24,6 +24,7 @@ class Ability
           can :read, TarefaAluno
           can :manage, AvaliacaoTarefa
           can :manage, Quiz
+          can :controle_professor,:controle
         elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
           can :manage, Comentario
           can :read, Modulo

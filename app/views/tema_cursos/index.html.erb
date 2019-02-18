@@ -1,52 +1,83 @@
 <div class="card">
   <div class="card-header">Temas dos Cursos</div> 
 
-  <div class="table-responsive">
-    <table class="table table-striped table-sm">
-      <thead>
-        <tr>
-          <th class="text-center">Nome</th>
-          <th class="text-center">Ativo</th>
-          <th class="text-center">Cor do título</th>
-          <th class="text-center">Cor do texto</th>
-          <th class="text-center">Cor do fundo</th>
-          <th class="text-center">Imagem de fundo</th>
-          <th colspan="3" class="text-center">Opções</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @tema_cursos.each do |tema_curso| %>
+  <%= search_form_for @q do |f| %>
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col-lg-9">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Nome</span>
+            </div>
+            <%= f.search_field :nome_cont, :class => 'form-control'  %>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Ativo</span>
+            </div>
+            <span class="input-group-text borda">
+              <%= f.select :ativo_eq,   [['Sim', true], ['Não', false]], :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
+            </span>
+          </div>
+        </div>
+      </div>     
+    </div>
+    <div class="text-center">
+      <button class="btn btn-primary link search-btn" ><% submit_tag "" %>Pesquisar</button>
+    </div>
+  <% end %>
+
+  <% if !@tema_cursos.empty? %>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
           <tr>
-            <td><%= tema_curso.nome %></td>
-            <td class="text-center"><%= tema_curso.ativo? ? 'Sim' : 'Não' %></td>
-            <td class="text-center"><span style="color:<%= tema_curso.cor_titulo %>; font-size: 20px;">&#9632; </span></td>
-            <td class="text-center"><span style="color:<%= tema_curso.cor_texto %>; font-size: 20px;">&#9632; </span></td>
-            <td class="text-center"><span style="color:<%= tema_curso.cor_fundo %>;font-size: 20px">&#9632; </span></td>
-            <td class="text-center"><%= image_tag tema_curso.imagem.url(:thumb), width: 50, height: 50 %></td>
-            <% if can? :show, TemaCurso %>
-              <td><%= link_to 'Visualizar', tema_curso %></td>
-            <% end %>
-            <% if can? :edit, TemaCurso %>
-              <td><%= link_to 'Atualizar', edit_tema_curso_path(tema_curso) %></td>
-            <% end %>
-            <% if can? :destroy, TemaCurso %>
-              <td><%= link_to 'Excluir', tema_curso, method: :delete, data: { confirm: 'Deseja realmente excluir o tema do curso?' } %></td>
-            <% end %>
+            <th class="text-center">Nome</th>
+            <th class="text-center">Ativo</th>
+            <th class="text-center">Cor do título</th>
+            <th class="text-center">Cor do texto</th>
+            <th class="text-center">Cor do fundo</th>
+            <th class="text-center">Imagem de fundo</th>
+            <th colspan="3" class="text-center">Opções</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-  <span> <%= will_paginate @tema_cursos %></span>
+        </thead>
+        <tbody>
+          <% @tema_cursos.each do |tema_curso| %>
+            <tr>
+              <td><%= tema_curso.nome %></td>
+              <td class="text-center"><%= tema_curso.ativo? ? 'Sim' : 'Não' %></td>
+              <td class="text-center"><span style="color:<%= tema_curso.cor_titulo %>; font-size: 20px;">&#9632; </span></td>
+              <td class="text-center"><span style="color:<%= tema_curso.cor_texto %>; font-size: 20px;">&#9632; </span></td>
+              <td class="text-center"><span style="color:<%= tema_curso.cor_fundo %>;font-size: 20px">&#9632; </span></td>
+              <td class="text-center"><%= image_tag tema_curso.imagem.url(:thumb), width: 50, height: 50 %></td>
+              <% if can? :show, TemaCurso %>
+                <td><%= link_to 'Visualizar', tema_curso %></td>
+              <% end %>
+              <% if can? :edit, TemaCurso %>
+                <td><%= link_to 'Atualizar', edit_tema_curso_path(tema_curso) %></td>
+              <% end %>
+              <% if can? :destroy, TemaCurso %>
+                <td><%= link_to 'Excluir', tema_curso, method: :delete, data: { confirm: 'Deseja realmente excluir o Tema dos Cursos?' } %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <span> <%= will_paginate @tema_cursos %></span>
+  <% end %>
 
   <br>
-
   
   <div class="card-footer text-muted">
     <% if can? :new, TemaCurso %>
       <%= link_to 'Cadastrar Tema de Curso', new_tema_curso_path, class: "btn btn-md btn-primary" %>
     <% end %>
-    <%= link_to 'Voltar', inicial_path, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar', controle_gestor_path, class: "btn btn-md btn-secondary" %>
   </div>
   
 </div>

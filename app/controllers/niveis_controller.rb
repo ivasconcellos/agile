@@ -5,29 +5,30 @@ class NiveisController < ApplicationController
   # GET /niveis
   # GET /niveis.json
   def index
-    @niveis = Nivel.page(params[:page])
-    render layout: 'neutro'
+    @q = Nivel.ransack(params[:q])
+    @niveis = @q.result.paginate(page: params[:page]).order('nome')
+    render layout: 'gestor'
     authorize! :read, Nivel
   end
 
   # GET /niveis/1
   # GET /niveis/1.json
   def show
-    render layout: 'neutro'
     authorize! :show, Nivel
+    render layout: 'gestor'
   end
 
   # GET /niveis/new
   def new
-    @nivel = Nivel.new
-    render layout: 'neutro'
     authorize! :new, Nivel
+    @nivel = Nivel.new
+    render layout: 'gestor'
   end
 
   # GET /niveis/1/edit
   def edit
-    render layout: 'neutro'
     authorize! :edit, Nivel
+    render layout: 'gestor'
   end
 
   # POST /niveis
@@ -40,7 +41,7 @@ class NiveisController < ApplicationController
         format.html { redirect_to @nivel, notice: 'Nível cadastrado com sucesso!' }
         format.json { render :show, status: :created, location: @nivel }
       else
-        format.html { render :new, @current_usuario => current_usuario }
+        format.html { render :new, layout: 'gestor' }
         format.json { render json: @nivel.errors, status: :unprocessable_entity }
       end
     end
@@ -54,7 +55,7 @@ class NiveisController < ApplicationController
         format.html { redirect_to @nivel, notice: 'Nível atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @nivel }
       else
-        format.html { render :edit, @current_usuario => current_usuario }
+        format.html { render :edit, layout: 'gestor' }
         format.json { render json: @nivel.errors, status: :unprocessable_entity }
       end
     end

@@ -7,6 +7,7 @@ class QuizesController < ApplicationController
   def index
     @quizes = Quiz.page(params[:page])
     authorize! :read, Quiz
+    render layout: 'professor'
   end
 
   # GET /quizes/1

@@ -5,29 +5,30 @@ class GruposController < ApplicationController
   # GET /grupos
   # GET /grupos.json
   def index
-    @grupos = Grupo.page(params[:page]).order('nome')
     authorize! :index, Grupo
-    render layout: 'neutro'
+    @q = Grupo.ransack(params[:q])
+    @grupos = @q.result.paginate(page: params[:page]).order('nome')
+    render layout: 'gestor'
   end
 
   # GET /grupos/1
   # GET /grupos/1.json
   def show
     authorize! :show, Grupo
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /grupos/new
   def new
-    @grupo = Grupo.new
     authorize! :new, Grupo
-    render layout: 'neutro'
+    @grupo = Grupo.new
+    render layout: 'gestor'
   end
 
   # GET /grupos/1/edit
   def edit
     authorize! :edit, Grupo
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # POST /grupos
@@ -40,7 +41,7 @@ class GruposController < ApplicationController
         format.html { redirect_to @grupo, notice: 'Grupo cadastrado com sucesso!' }
         format.json { render :show, status: :created, location: @grupo }
       else
-        format.html { render :new, @current_usuario => current_usuario }
+        format.html { render :new, layout: 'gestor' }
         format.json { render json: @grupo.errors, status: :unprocessable_entity }
       end
     end
@@ -54,7 +55,7 @@ class GruposController < ApplicationController
         format.html { redirect_to @grupo, notice: 'Grupo atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @grupo }
       else
-        format.html { render :edit, @current_usuario => current_usuario }
+        format.html { render :edit, layout: 'gestor' }
         format.json { render json: @grupo.errors, status: :unprocessable_entity }
       end
     end

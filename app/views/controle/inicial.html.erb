@@ -5,23 +5,11 @@
         <div class="container-fluid">
 
         	<div class="text-center">
-				<% if can? :new, Curso %>
-					<br>
-					<%= link_to 'Cadastrar Novo Curso', new_curso_path, class: "btn btn-md btn-success" %>
-				<% end %>
-				<% if can? :new, TemaCurso %>
-					<%= link_to 'Temas de Cursos', tema_cursos_path, class: "btn btn-md btn-danger" %>
+        		<% if current_usuario.perfil == 'Gestor' %>
+			  		<%= link_to 'Gerenciamento do AGILE', controle_gestor_path, class: "btn btn-md btn-danger" %>
+			  	<% else %>
+			  		<%= link_to 'Me inscrever em um curso', {controller: 'usuario_curso', action: 'busca_curso'}, class: "btn btn-md btn-info" %>
 			  	<% end %>
-			  	<% if can? :new, Badge %>
-					<%= link_to 'Badge', badges_path, class: "btn btn-md btn-secondary" %>
-			  	<% end %>
-			  	<% if can? :new, Nivel %>
-					<%= link_to 'Nível', niveis_path, class: "btn btn-md btn-secondary" %>
-			  	<% end %>
-			  	<% if can? :new, Grupo %>
-					<%= link_to 'Grupo', grupos_path, class: "btn btn-md btn-secondary" %>
-			  	<% end %>
-			  	<%= link_to 'Me inscrever em um curso', {controller: 'usuario_curso', action: 'busca_curso'}, class: "btn btn-md btn-info" %>
 			</div>
 			<br>
 			<!-- Breadcrumbs-->

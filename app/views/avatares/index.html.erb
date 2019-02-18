@@ -1,0 +1,87 @@
+<div class="card">
+  <div class="card-header">Avatares</div>
+
+  <%= search_form_for @q do |f| %>
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Nome</span>
+            </div>
+            <%= f.search_field :nome_cont, :class => 'form-control'  %>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Tema do Curso</span>
+            </div>
+            <span class="input-group-text borda">
+              <%= f.select :tema_curso_id_eq,  options_from_collection_for_select(TemaCurso.all, "id", "nome", params[:tema_curso_id]), :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
+            </span>
+          </div>
+        </div>
+
+        <div class="col-lg-2">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Ativo</span>
+            </div>
+            <span class="input-group-text borda">
+              <%= f.select :ativo_eq,   [['Sim', true], ['Não', false]], :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
+            </span>
+          </div>
+        </div>
+      </div>     
+    </div>
+    
+    <div class="text-center">
+      <button class="btn btn-primary link search-btn" ><% submit_tag "" %>Pesquisar</button>
+    </div>
+  <% end %>
+
+  <% if !@avatares.empty? %>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th class="text-center">Nome</th>
+            <th class="text-center">Tema do Curso</th>
+            <th colspan="3" class="text-center">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @avatares.each do |avatar| %>
+            <tr>
+              <td><%= avatar.nome %></td>
+              <td><%= avatar.tema_curso.nome %></td>
+              <td><%= link_to 'Visualizar', avatar %></td>
+              <td>
+                <% if can? :edit, Avatar %>
+                  <%= link_to 'Atualizar', edit_avatar_path(avatar) %>
+                <% else%> - 
+                <% end %>
+              <td>
+                <% if can? :Destroy, Avatar %>
+                  <%= link_to 'Excluir', avatar, method: :delete, data: { confirm: 'Deseja realmente excluir o Avatar?' } %>
+                <% else%> - 
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <span> <%= will_paginate @avatares %></span>
+  <% end %>
+
+  <br>
+
+  <div class="card-footer text-muted">
+    <%= link_to 'Voltar', controle_gestor_path, class: "btn btn-md btn-secondary" %>
+  </div>
+
+</div>

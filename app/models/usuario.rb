@@ -8,6 +8,8 @@ class Usuario < ApplicationRecord
   belongs_to :curso_atual, class_name: "Curso", optional: true
   has_many :usuario_curso
 
+  self.per_page = 10
+  
   USUARIO_COMUM = 'Usuário'
   GESTOR_DO_SISTEMA = 'Gestor'
 

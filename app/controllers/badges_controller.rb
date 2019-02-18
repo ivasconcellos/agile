@@ -5,29 +5,30 @@ class BadgesController < ApplicationController
   # GET /badges
   # GET /badges.json
   def index
-    @badges = Badge.page(params[:page]).order('nome')
+    @q = Badge.ransack(params[:q])
+    @badges = @q.result.paginate(page: params[:page]).order('nome')
+    render layout: 'gestor'
     authorize! :index, Badge
-    render layout: 'neutro'
   end
 
   # GET /badges/1
   # GET /badges/1.json
   def show
     authorize! :show, Badge
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /badges/new
   def new
-    @badge = Badge.new
     authorize! :new, Badge
-    render layout: 'neutro'
+    @badge = Badge.new
+    render layout: 'gestor'
   end
 
   # GET /badges/1/edit
   def edit
     authorize! :edit, Badge
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # POST /badges
@@ -40,7 +41,7 @@ class BadgesController < ApplicationController
         format.html { redirect_to @badge, notice: 'Badge cadastrada com sucesso!' }
         format.json { render :show, status: :created, location: @badge }
       else
-        format.html { render :new, @current_usuario => current_usuario }
+        format.html { render :new, layout: 'gestor' }
         format.json { render json: @badge.errors, status: :unprocessable_entity }
       end
     end
@@ -54,7 +55,7 @@ class BadgesController < ApplicationController
         format.html { redirect_to @badge, notice: 'Badge atualizada com sucesso!' }
         format.json { render :show, status: :ok, location: @badge }
       else
-        format.html { render :edit, @current_usuario => current_usuario }
+        format.html { render :edit, layout: 'gestor' }
         format.json { render json: @badge.errors, status: :unprocessable_entity }
       end
     end

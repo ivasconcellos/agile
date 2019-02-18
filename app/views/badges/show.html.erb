@@ -5,7 +5,7 @@
 	<ul class="list-group">
 	  <li class="list-group-item"><b>Nome:</b> <%= @badge.nome %></li>
 	  <li class="list-group-item"><b>Imagem:</b> <%= image_tag @badge.imagem.variant(resize: "100x100") %></li>
-	  <li class="list-group-item"><b>Ativo:</b> <%= @badge.ativo? ? 'Sim' : 'Não' %></li>
+	  <li class="list-group-item"><b>Ativa:</b> <%= @badge.ativo? ? 'Sim' : 'Não' %></li>
 	  <li class="list-group-item"><b>Cadastrada em:</b> <%= @badge.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>     
 	</ul>
 

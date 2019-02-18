@@ -2,25 +2,32 @@ class AvataresController < ApplicationController
   before_action :set_avatar, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_usuario!
 
+  def index
+    @q = Avatar.ransack(params[:q])
+    @avatares = @q.result.paginate(page: params[:page]).order('nome')
+    render layout: 'gestor'
+    authorize! :index, Avatar
+  end
+
   # GET /avatares/1
   # GET /avatares/1.json
   def show
-    authorize! :show, @avatar
-    render layout: 'neutro'
+    authorize! :show, Avatar
+    render layout: 'gestor'
   end
 
   # GET /avatares/new
   def new
+    authorize! :new, Avatar
     @avatar = Avatar.new
     @avatar.tema_curso_id = params[:tema_curso_id]
-    authorize! :new, @avatar
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /avatares/1/edit
   def edit
-    authorize! :edit, @avatar
-    render layout: 'neutro'
+    authorize! :edit, Avatar
+    render layout: 'gestor'
   end
 
   # POST /avatares
@@ -33,7 +40,7 @@ class AvataresController < ApplicationController
         format.html { redirect_to @avatar.tema_curso, notice: 'Avatar cadastrado com sucesso!' }
         format.json { render :show, status: :created, location: @avatar }
       else
-        format.html { render :new, @current_usuario => current_usuario }
+        format.html { render :new, layout: 'gestor' }
         format.json { render json: @avatar.errors, status: :unprocessable_entity }
       end
     end
@@ -47,7 +54,7 @@ class AvataresController < ApplicationController
         format.html { redirect_to @avatar.tema_curso, notice: 'Avatar atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @avatar }
       else
-        format.html { render :edit, @current_usuario => current_usuario }
+        format.html { render :edit, layout: 'gestor' }
         format.json { render json: @avatar.errors, status: :unprocessable_entity }
       end
     end
@@ -56,7 +63,7 @@ class AvataresController < ApplicationController
   # DELETE /avatares/1
   # DELETE /avatares/1.json
   def destroy
-    authorize! :destroy, @avatar
+    authorize! :destroy, Avatar
     @tema_curso = @avatar.tema_curso
     @avatar.destroy
     respond_to do |format|
@@ -73,6 +80,6 @@ class AvataresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def avatar_params
-      params.require(:avatar).permit(:tema_curso_id, :nome, :perfil, :imagem)
+      params.require(:avatar).permit(:tema_curso_id, :nome, :perfil, :ativo, :imagem)
     end
 end

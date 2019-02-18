@@ -5,9 +5,10 @@ class CursosController < ApplicationController
   # GET /cursos
   # GET /cursos.json
   def index
-    @cursos = Curso.all.page(params[:page]).order('nome')
     authorize! :index, Curso
-    render layout: 'neutro'
+    @q = Curso.ransack(params[:q])
+    @cursos = @q.result.paginate(page: params[:page]).order('nome')
+    render layout: 'gestor'
   end
 
   # GET /cursos/1
@@ -20,24 +21,29 @@ class CursosController < ApplicationController
     @tarefas = Tarefa.joins(:modulo).where('modulos.curso_id = ? and tarefas.publico = ?',
     current_usuario.curso_atual_id, true).order('updated_at')
     @usuario_curso = UsuarioCurso.where(curso_id: @curso.id, usuario_id: current_usuario.id)
-    authorize! :show, @curso
+    authorize! :show, Curso
   end
 
   def descricao
-    authorize! :show, @curso
+    authorize! :show, Curso
+    @usuario_curso = UsuarioCurso.find_by(curso_id: @curso.id, usuario_id: current_usuario.id)
+    if @usuario_curso.perfil == "Professor"
+      render layout: 'professor'
+    end
   end
 
   # GET /cursos/new
   def new
+    authorize! :new, Curso
     @curso = Curso.new
     @curso.codigo_acesso = SecureRandom.urlsafe_base64 6
-    authorize! :new, @curso
-    render layout: 'neutro'
+    render layout: 'gestor'
   end
 
   # GET /cursos/1/edit
   def edit
-    authorize! :edit, @curso
+    authorize! :edit, Curso
+    render layout: 'gestor'
   end
 
   # POST /cursos
@@ -48,10 +54,10 @@ class CursosController < ApplicationController
       if @curso.save
         UsuarioCurso.create!(perfil: 'Professor', nickname: @curso.proprietario.nome, usuario_id: @curso.proprietario_id, curso_id: @curso.id)
         current_usuario.update(curso_atual_id: @curso.id)
-        format.html { redirect_to @curso, notice: 'Curso criado com sucesso!' }
-        format.json { render :show, status: :created, location: @curso }
+        format.html { redirect_to cursos_path, notice: 'Curso criado com sucesso!' }
+        format.json { render :show, status: :created, location: cursos_path }
       else
-        format.html { render :new,  layout: 'neutro' }
+        format.html { render :new,  layout: 'gestor' }
         format.json { render json: @curso.errors, status: :unprocessable_entity }
       end
     end
@@ -62,10 +68,10 @@ class CursosController < ApplicationController
   def update
     respond_to do |format|
       if @curso.update(curso_params)
-        format.html { redirect_to @curso, notice: 'Curso atualizado com sucesso!' }
-        format.json { render :show, status: :ok, location: @curso }
+        format.html { redirect_to cursos_path, notice: 'Curso atualizado com sucesso!' }
+        format.json { render :show, status: :ok, location: cursos_path }
       else
-        format.html { render :edit, @current_usuario => current_usuario }
+        format.html { render :edit, layout: 'gestor' }
         format.json { render json: @curso.errors, status: :unprocessable_entity }
       end
     end
@@ -74,7 +80,7 @@ class CursosController < ApplicationController
   # DELETE /cursos/1
   # DELETE /cursos/1.json
   def destroy
-    authorize! :destroy, @curso
+    authorize! :destroy, Curso
     @curso.destroy
     respond_to do |format|
       format.html { redirect_to cursos_url, notice: 'Curso excluído com sucesso!' }
@@ -90,6 +96,7 @@ class CursosController < ApplicationController
   def notas
     @tarefas = Tarefa.joins(:modulo).where('modulos.curso_id = ?',
        current_usuario.curso_atual_id)
+    render layout: 'professor'
   end
 
   private

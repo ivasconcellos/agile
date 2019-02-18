@@ -14,13 +14,16 @@
     <% if @usuario_curso.avatar %>
       <li class="list-group-item"><b>Avatar:</b> <%= @usuario_curso.avatar.nome %></li>
     <% end %>
+    <%if @usuario_curso.nivel %>
+      <li class="list-group-item"><b>Nível:</b> <%= @usuario_curso.nivel.nome %></li>
+    <% end %>
     <li class="list-group-item"><b>Perfil:</b> <%= @usuario_curso.perfil %></li>  
     <li class="list-group-item"><b>Cadastro no curso:</b> <%= @usuario_curso.created_at.strftime("%d/%m/%Y") %></li> 
 
   </ul>
 
   <br>
-  <div class="text-center">
+  <div class="card-footer text-muted">
     <% if can? :edit, UsuarioCurso %>
       <%= link_to 'Atualizar', edit_usuario_curso_path(@usuario_curso), class: "btn btn-md btn-primary" %>
     <% end %>

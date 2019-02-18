@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_14_235920) do
+ActiveRecord::Schema.define(version: 2019_02_17_032111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2019_02_14_235920) do
     t.string "imagem_content_type"
     t.integer "imagem_file_size"
     t.datetime "imagem_updated_at"
+    t.boolean "ativo", default: true
     t.index ["tema_curso_id"], name: "index_avatares_on_tema_curso_id"
   end
 
@@ -107,6 +108,35 @@ ActiveRecord::Schema.define(version: 2019_02_14_235920) do
     t.index ["type"], name: "index_ckeditor_assets_on_type"
   end
 
+<<<<<<< HEAD
+=======
+  create_table "comentarios", force: :cascade do |t|
+    t.bigint "usuario_curso_id"
+    t.bigint "forum_id"
+    t.text "texto"
+    t.bigint "comentario_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comentario_id"], name: "index_comentarios_on_comentario_id"
+    t.index ["forum_id"], name: "index_comentarios_on_forum_id"
+    t.index ["usuario_curso_id"], name: "index_comentarios_on_usuario_curso_id"
+  end
+
+  create_table "conversas", force: :cascade do |t|
+    t.bigint "usuario_curso_id"
+    t.string "assunto"
+    t.text "mensagem"
+    t.bigint "destinatario_id"
+    t.boolean "lido", default: false
+    t.bigint "conversa_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversa_id"], name: "index_conversas_on_conversa_id"
+    t.index ["destinatario_id"], name: "index_conversas_on_destinatario_id"
+    t.index ["usuario_curso_id"], name: "index_conversas_on_usuario_curso_id"
+  end
+
+>>>>>>> 5003a337a8c2691889cca530fd99af568e19c63d
   create_table "cursos", force: :cascade do |t|
     t.string "nome", null: false
     t.text "descricao"
@@ -319,9 +349,11 @@ ActiveRecord::Schema.define(version: 2019_02_14_235920) do
     t.datetime "updated_at", null: false
     t.bigint "avatar_id"
     t.bigint "grupo_curso_id"
+    t.bigint "nivel_id"
     t.index ["avatar_id"], name: "index_usuario_curso_on_avatar_id"
     t.index ["curso_id"], name: "index_usuario_curso_on_curso_id"
     t.index ["grupo_curso_id"], name: "index_usuario_curso_on_grupo_curso_id"
+    t.index ["nivel_id"], name: "index_usuario_curso_on_nivel_id"
     t.index ["usuario_id"], name: "index_usuario_curso_on_usuario_id"
   end
 
@@ -353,6 +385,15 @@ ActiveRecord::Schema.define(version: 2019_02_14_235920) do
   add_foreign_key "avaliacao_tarefa", "tarefa_alunos"
   add_foreign_key "avaliacao_tarefa", "usuario_curso"
   add_foreign_key "avatares", "tema_cursos"
+<<<<<<< HEAD
+=======
+  add_foreign_key "comentarios", "comentarios"
+  add_foreign_key "comentarios", "foruns"
+  add_foreign_key "comentarios", "usuario_curso"
+  add_foreign_key "conversas", "conversas"
+  add_foreign_key "conversas", "usuario_curso"
+  add_foreign_key "conversas", "usuario_curso", column: "destinatario_id"
+>>>>>>> 5003a337a8c2691889cca530fd99af568e19c63d
   add_foreign_key "cursos", "tema_cursos"
   add_foreign_key "cursos", "usuarios", column: "proprietario_id"
   add_foreign_key "explicacoes", "modulos"
@@ -379,6 +420,7 @@ ActiveRecord::Schema.define(version: 2019_02_14_235920) do
   add_foreign_key "usuario_curso", "avatares"
   add_foreign_key "usuario_curso", "cursos"
   add_foreign_key "usuario_curso", "grupos_cursos"
+  add_foreign_key "usuario_curso", "niveis"
   add_foreign_key "usuario_curso", "usuarios"
   add_foreign_key "usuarios", "cursos", column: "curso_atual_id"
 end
