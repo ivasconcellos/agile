@@ -1,13 +1,12 @@
 class ApplicationMailer < ActionMailer::Base
-  #default from: 'from@example.com'
+  default from: 'noreply@iff.edu.br'
   layout 'mailer'
 
   def mensagens_professor(email)
-    @subject = email.assunto
+    @subject = 'AGILE: ' + email.assunto
     @email = email.destinatario.usuario.email
-    @from = email.usuario_curso.usuario.email
     @mensagem = email.mensagem
-    mail to: @email, subject: @subject, from: @from
+    mail to: @email, subject: @subject
   end
 
 end

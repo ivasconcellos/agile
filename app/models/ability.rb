@@ -29,6 +29,7 @@ class Ability
           can :manage, Missao
           can :controle_professor,:controle
           can :manage, SalaChat
+          can :manage, Conversa
         elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
           can :manage, Comentario
           can :read, Modulo
@@ -40,6 +41,7 @@ class Ability
           can :read, Tarefa
           can :perms_without_delete, TarefaAluno
           can :read, Quiz
+          can :manage, Conversa
         else
           can :read, Curso
         end

@@ -1,7 +1,7 @@
 <%= form_with(model: conversa, local: true) do |form| %>
   <% if conversa.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(conversa.errors.count, "erro(s)") %> - Mensagem não pôde ser enviado!</h2>
+      <h2><%= pluralize(conversa.errors.count, "erro(s)") %> - Mensagem não pôde ser enviada!</h2>
 
       <ul>
       <% conversa.errors.full_messages.each do |message| %>
@@ -28,6 +28,7 @@
         <%= form.cktext_area :mensagem, class: "form-control" %>
       </div>
     </div>
+  </div>
 
   <div class="card-footer text-muted">
     <%= form.submit "Enviar", class: "btn btn-md btn-primary" %>

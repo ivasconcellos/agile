@@ -31,7 +31,7 @@ class ConversasController < ApplicationController
     respond_to do |format|
       if @conversa.save
         ApplicationMailer.mensagens_professor(@conversa).deliver
-        format.html { redirect_to @conversa, notice: 'E-mail enviado com sucesso!' }
+        format.html { redirect_to @conversa, notice: 'Mensagem enviada com sucesso!' }
         format.json { render :show, status: :created, location: @conversa }
       else
         format.html { render :new, @current_usuario => current_usuario }
