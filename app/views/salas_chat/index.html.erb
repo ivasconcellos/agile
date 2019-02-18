@@ -1,37 +1,39 @@
 <div class="card">
   <div class="card-header">Chats do Curso</div>
 
-  <div class="table-responsive">
-    <table class="table table-striped table-sm">
-      <thead>
-        <tr>
-          <th class="text-center">Nome</th>
-          <th colspan="3" class="text-center">Opções</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @salas_chat.each do |sala_chat| %>
+  <% if !@salas_chat.empty? %>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
           <tr>
-            <td><%= sala_chat.nome %></td>
-            <td><%= link_to 'Visualizar', sala_chat %></td></td>
-            <td>
-              <% if can? :edit, SalaChat %>
-                <%= link_to 'Atualizar', edit_sala_chat_path(sala_chat) %></td>
-              <% else%> - 
-              <% end %>
-            <td>
-              <% if can? :Destroy, SalaChat %>
-                <%= link_to 'Excluir', sala_chat, method: :delete, data: { confirm: 'Deseja realmente excluir a sala de Chat do curso?' } %></td>
-              <% else%> - 
-              <% end %>
-            </tr>
-            
+            <th class="text-center">Nome</th>
+            <th colspan="3" class="text-center">Opções</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-  <span> <%= will_paginate @salas_chat %></span>
+        </thead>
+        <tbody>
+          <% @salas_chat.each do |sala_chat| %>
+            <tr>
+              <td><%= sala_chat.nome %></td>
+              <td><%= link_to 'Visualizar', sala_chat %></td></td>
+              <td>
+                <% if can? :edit, SalaChat %>
+                  <%= link_to 'Atualizar', edit_sala_chat_path(sala_chat) %></td>
+                <% else%> - 
+                <% end %>
+              <td>
+                <% if can? :Destroy, SalaChat %>
+                  <%= link_to 'Excluir', sala_chat, method: :delete, data: { confirm: 'Deseja realmente excluir a sala de Chat?' } %></td>
+                <% else%> - 
+                <% end %>
+              </tr>
+              
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <span> <%= will_paginate @salas_chat %></span>
+  <% end %>
 
   <br>
 
