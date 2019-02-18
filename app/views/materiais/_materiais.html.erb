@@ -3,25 +3,25 @@
     <li>
 
       <% if material.tipo == "Link" %>
-        <%= link_to extlink(material.link), target: "_blank", class: "text-dark" do %>
+        <%= link_to extlink(material.texto), target: "_blank", class: "text-dark" do %>
           <%= fa_icon "link" %> <%= material.nome %>
         <% end %>
       <% end %>
 
       <% if material.tipo == "Arquivo" %>
-       <%= link_to material.arquivo.url do %>
+       <%= link_to url_for(material.arquivo), target: '_blank' do %>
           <i class = "fa fa-file text-dark"> <%= material.nome %></i>
         <% end %>
       <% end %>
 
       <% if material.tipo == "Vídeo" %>
-        <%= link_to material.video.url do %>
+        <%= link_to url_for(material.arquivo), target: '_blank' do %>
           <i class = "fa fa-video-camera text-dark"> <%= material.nome %></i>
         <% end %>
       <% end %>
 
       <% if material.tipo == "Imagem" %>
-        <%= link_to material.imagem.url do %>
+        <%= link_to url_for(material.arquivo), target: '_blank' do %>
           <i class = "fa fa-image text-dark"> <%= material.nome %></i>
         <% end %>
       <% end %>

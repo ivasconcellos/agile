@@ -108,6 +108,18 @@ ActiveRecord::Schema.define(version: 2019_02_17_032111) do
     t.index ["type"], name: "index_ckeditor_assets_on_type"
   end
 
+  create_table "comentarios", force: :cascade do |t|
+    t.bigint "usuario_curso_id"
+    t.bigint "forum_id"
+    t.text "texto"
+    t.bigint "comentario_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comentario_id"], name: "index_comentarios_on_comentario_id"
+    t.index ["forum_id"], name: "index_comentarios_on_forum_id"
+    t.index ["usuario_curso_id"], name: "index_comentarios_on_usuario_curso_id"
+  end
+
   create_table "conversas", force: :cascade do |t|
     t.bigint "usuario_curso_id"
     t.string "assunto"
@@ -179,24 +191,11 @@ ActiveRecord::Schema.define(version: 2019_02_17_032111) do
   create_table "materiais", force: :cascade do |t|
     t.string "nome", null: false
     t.text "texto"
-    t.string "link"
     t.string "tipo"
     t.boolean "publico", default: true
     t.bigint "modulo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "arquivo_file_name"
-    t.string "arquivo_content_type"
-    t.integer "arquivo_file_size"
-    t.datetime "arquivo_updated_at"
-    t.string "imagem_file_name"
-    t.string "imagem_content_type"
-    t.integer "imagem_file_size"
-    t.datetime "imagem_updated_at"
-    t.string "video_file_name"
-    t.string "video_content_type"
-    t.integer "video_file_size"
-    t.datetime "video_updated_at"
     t.index ["modulo_id"], name: "index_materiais_on_modulo_id"
   end
 
@@ -370,6 +369,9 @@ ActiveRecord::Schema.define(version: 2019_02_17_032111) do
   add_foreign_key "avaliacao_tarefa", "tarefa_alunos"
   add_foreign_key "avaliacao_tarefa", "usuario_curso"
   add_foreign_key "avatares", "tema_cursos"
+  add_foreign_key "comentarios", "comentarios"
+  add_foreign_key "comentarios", "foruns"
+  add_foreign_key "comentarios", "usuario_curso"
   add_foreign_key "conversas", "conversas"
   add_foreign_key "conversas", "usuario_curso"
   add_foreign_key "conversas", "usuario_curso", column: "destinatario_id"

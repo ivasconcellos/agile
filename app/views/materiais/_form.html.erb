@@ -33,7 +33,7 @@
     <div class="form-group row">
       <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Link*</label>
       <div class="col-md-6">
-        <%= form.text_field :link, class: "form-control" %>
+        <%= form.text_field :texto, class: "form-control" %>
       </div>
     </div>
     <% end %>
@@ -62,7 +62,7 @@
       <div class="form-group row">
           <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Vídeo*</label>
           <div class="col-md-6">
-            <%= form.file_field :video, as: :file %> 
+            <%= form.file_field :arquivo, as: :file %> 
           </div>
         </div>
       </div>
@@ -72,7 +72,7 @@
       <div class="form-group row">
           <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Imagem*</label>
           <div class="col-md-6">
-            <%= form.file_field :imagem, as: :file %> 
+            <%= form.file_field :arquivo, as: :file %> 
           </div>
         </div>
       </div>
