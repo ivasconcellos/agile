@@ -11,6 +11,7 @@ class UsuarioCurso < ApplicationRecord
 	belongs_to :nivel, optional: true
 	has_many :missoes
 	has_many :foruns
+	has_many :comentarios
 	
 	validates_uniqueness_of :usuario_id, scope: :curso_id, message: "já está cadastrado no curso!"
 end
