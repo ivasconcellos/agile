@@ -108,18 +108,6 @@ ActiveRecord::Schema.define(version: 2019_02_17_032111) do
     t.index ["type"], name: "index_ckeditor_assets_on_type"
   end
 
-  create_table "comentarios", force: :cascade do |t|
-    t.bigint "usuario_curso_id"
-    t.bigint "forum_id"
-    t.text "texto"
-    t.bigint "comentario_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["comentario_id"], name: "index_comentarios_on_comentario_id"
-    t.index ["forum_id"], name: "index_comentarios_on_forum_id"
-    t.index ["usuario_curso_id"], name: "index_comentarios_on_usuario_curso_id"
-  end
-
   create_table "conversas", force: :cascade do |t|
     t.bigint "usuario_curso_id"
     t.string "assunto"
@@ -382,9 +370,6 @@ ActiveRecord::Schema.define(version: 2019_02_17_032111) do
   add_foreign_key "avaliacao_tarefa", "tarefa_alunos"
   add_foreign_key "avaliacao_tarefa", "usuario_curso"
   add_foreign_key "avatares", "tema_cursos"
-  add_foreign_key "comentarios", "comentarios"
-  add_foreign_key "comentarios", "foruns"
-  add_foreign_key "comentarios", "usuario_curso"
   add_foreign_key "conversas", "conversas"
   add_foreign_key "conversas", "usuario_curso"
   add_foreign_key "conversas", "usuario_curso", column: "destinatario_id"

@@ -1,6 +1,6 @@
 <div class="card">
 
-  <div class="card-header">Tarefa</div>
+  <div class="card-header">Missão - Tarefa</div>
   
   <ul class="list-group">
      <li class="list-group-item"><b>Módulo:</b> <%= @tarefa.modulo.nome %></li>
@@ -17,7 +17,7 @@
      <li class="list-group-item"><b>Criada por:</b> <%= @tarefa.usuario_curso.nickname %></li>
      <li class="list-group-item"><b>Criada em:</b> <%= @tarefa.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
      <% if @tarefa_aluno %>
-      <li class="list-group-item"><b>Visualizar envio:</b> <%= link_to 'Tarefa enviada', @tarefa_aluno %></li>
+      <li class="list-group-item"><b>Visualizar envio:</b> <%= link_to 'Missão realizada (Tarefa enviada)', @tarefa_aluno %></li>
      <% end %>
   </ul>
 
