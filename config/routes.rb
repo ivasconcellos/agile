@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :conversas
+  resources :conversas, except: [:edit]
   resources :grupos_cursos
   resources :artefatos
   resources :grupos

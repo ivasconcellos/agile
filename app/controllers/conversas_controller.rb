@@ -3,14 +3,8 @@ class ConversasController < ApplicationController
 
   def index
     @professores = UsuarioCurso.where(perfil: 'Professor', curso_id: current_usuario.curso_atual)
+    @alunos = UsuarioCurso.where(perfil: 'Aluno', curso_id: current_usuario.curso_atual)
     authorize! :index, Conversa
-  end
-
-  def conversas_professor
-    @conversas = Conversa.where(usuario_curso_id: current_usuario.id,
-     destinatario_id: params[:professor_id]).or(Conversa.where(
-      usuario_curso_id: params[:professor_id], destinatario_id: current_usuario.id)).order('created_at')
-    authorize! :show, Conversa
   end
 
   def new
@@ -40,6 +34,13 @@ class ConversasController < ApplicationController
     end
   end
 
+  def conversas_professor
+    @conversas = Conversa.where(usuario_curso_id: current_usuario.id,
+     destinatario_id: params[:professor_id]).or(Conversa.where(
+      usuario_curso_id: params[:professor_id], destinatario_id: current_usuario.id)).order('created_at')
+    authorize! :show, Conversa
+  end
+    
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def conversa_params
