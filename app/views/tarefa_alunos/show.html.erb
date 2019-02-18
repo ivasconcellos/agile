@@ -1,13 +1,12 @@
 <div class="card">
 
-	<div class="card-header">Tarefa Entregue</div>
+	<div class="card-header">Missão (Tarefa) Entregue</div>
 
 	<ul class="list-group">
-	   <li class="list-group-item"><b>Nome da tarefa:</b> <%= @tarefa_aluno.tarefa.nome %></li>
-	   <li class="list-group-item"><b>Descrição da tarefa:</b> <%= @tarefa_aluno.tarefa.descricao %></li>
-	   <li class="list-group-item"><b>Aluno:</b> <%= @tarefa_aluno.usuario_curso.nickname %></li>
+	   <li class="list-group-item"><b>Nome da missão:</b> <%= @tarefa_aluno.tarefa.nome %></li>
+	   <li class="list-group-item"><b>Descrição da missão:</b> <%= @tarefa_aluno.tarefa.descricao.to_s.html_safe %></li>
+	   <li class="list-group-item"><b>Aluno (nickname):</b> <%= @tarefa_aluno.usuario_curso.nickname %></li>
 	   <li class="list-group-item"><b>Arquivo:</b> <%= link_to image_tag("documento.png", :alt => "documento", size: "50x50"), @tarefa_aluno.arquivo.url, target: 'blank' %></li>
-	   <li class="list-group-item"><b>Enviada por:</b> <%= @tarefa_aluno.usuario_curso.nickname %></li>
        <li class="list-group-item"><b>Última atualização:</b> <%= @tarefa_aluno.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
         <li class="list-group-item"><b>Avaliada:</b> <%= @tarefa_aluno.avaliada? ? 'Sim' : 'Não' %></li>
 	</ul>

@@ -1,24 +1,37 @@
 <div class="card">
 
- 	<div class="card-header">Chat: <%= @sala_chat.nome %></div>
+ 	<div class="card-header">
+ 		Chat: <%= @sala_chat.nome %>
+ 		<% if can? :edit, SalaChat %>
+			<%= link_to  '', edit_sala_chat_path(@sala_chat), class: "fa fa-pencil text-light" %>
+		<% end %>
+		<% if can? :destroy, SalaChat %>
+			<%= link_to  '', @sala_chat, method: :delete, data: { confirm: 'Deseja realmente realmente remover a Sala de Chat?'}, class: "fa fa-trash text-light", remote: true %>
+		<% end %>
+ 	</div>
  	<div class="card-header bg-info text-left" id="mensagens" data-sala-chat-id="<%= @sala_chat.id %>">
   		<%= render @sala_chat.mensagens %>
 	</div>
 
-	
-	<%= form_for @mensagem, url: '#' do |f| %>
-	  <%= hidden_field_tag 'sala_chat_id', @sala_chat.id %>
-	  <div class="card-body bg-secondary">
-		  <div class="form-group row">
-		    <%= f.text_area :texto, placeholder: 'Digite sua mensagem...', class: 'form-control' %>
-		    <small class="text-muted">De 2 a 1000 caracteres!</small>
-		  </div>
+	<% if @sala_chat.ativo %>
+		<%= form_for @mensagem, url: '#' do |f| %>
+		  	<%= hidden_field_tag 'sala_chat_id', @sala_chat.id %>
+		  	<div class="card-body bg-secondary">
+				<div class="form-group row">
+					<%= f.text_area :texto, placeholder: 'Digite sua mensagem...', class: 'form-control' %>
+					<small class="text-muted">De 2 a 1000 caracteres!</small>
+				</div>
 
-		  <div class="text-center">
-		  	<%= f.submit "Enviar", class: 'btn btn-primary' %>
-		  </div>
-	  </div>
-	  
+				<div class="text-center">
+					<%= f.submit "Enviar", class: 'btn btn-primary' %>
+				</div>
+		  	</div>
+		<% end %>
+	<% else %>
+		
+		<div class="alert alert-danger" role="alert">
+		    Este Chat já não está mais ativo. Em caso de dúvidas, entre em contato com o Professor do Curso.
+		</div>
 	<% end %>
 
 </div>

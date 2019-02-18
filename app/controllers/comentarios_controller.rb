@@ -2,29 +2,16 @@ class ComentariosController < ApplicationController
   before_action :set_comentario, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_usuario!
 
-  # GET /comentarios
-  # GET /comentarios.json
-  def index
-    @comentarios = Comentario.all
-    authorize! :index, Comentario
-  end
-
-  # GET /comentarios/1
-  # GET /comentarios/1.json
-  def show
-    authorize! :show, @comentario
-  end
-
   # GET /comentarios/new
   def new
-    authorize! :new, @comentario
+    authorize! :new, Comentario
     @comentario = Comentario.new
     @comentario.forum_id = params[:forum_id]
   end
 
   # GET /comentarios/1/edit
   def edit
-    authorize! :edit, @comentario
+    authorize! :edit, Comentario
   end
 
   # POST /comentarios
@@ -50,13 +37,11 @@ class ComentariosController < ApplicationController
   # DELETE /comentarios/1
   # DELETE /comentarios/1.json
   def destroy
-    authorize! :destroy, @comentario
+    authorize! :destroy, Comentario
     @forum = @comentario.forum_id
     @comentario.destroy
     if @comentario.destroy
-      
       @comentario = Comentario.where(forum_id: @forum)
-      flash[notice] = 'Comentário atualizado com sucesso!'
     end
   end
 

@@ -191,24 +191,11 @@ ActiveRecord::Schema.define(version: 2019_02_17_032111) do
   create_table "materiais", force: :cascade do |t|
     t.string "nome", null: false
     t.text "texto"
-    t.string "link"
     t.string "tipo"
     t.boolean "publico", default: true
     t.bigint "modulo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "arquivo_file_name"
-    t.string "arquivo_content_type"
-    t.integer "arquivo_file_size"
-    t.datetime "arquivo_updated_at"
-    t.string "imagem_file_name"
-    t.string "imagem_content_type"
-    t.integer "imagem_file_size"
-    t.datetime "imagem_updated_at"
-    t.string "video_file_name"
-    t.string "video_content_type"
-    t.integer "video_file_size"
-    t.datetime "video_updated_at"
     t.index ["modulo_id"], name: "index_materiais_on_modulo_id"
   end
 

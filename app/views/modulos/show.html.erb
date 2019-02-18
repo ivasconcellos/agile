@@ -10,7 +10,9 @@
 	</div>
   
 	<ul class="list-group">
-	  <li class="list-group-item"><b>Descrição:</b> <%= @modulo.descricao %></li>
+	  <% if @modulo.descricao? %>
+	  	<li class="list-group-item"><b>Descrição:</b> <%= @modulo.descricao %></li>
+	  <% end %>
 	  <% if can? :edit, Modulo %>
 		<li class="list-group-item"><b>Público:</b> <%= @modulo.publico? ? 'Sim' : 'Não' %></li>  
 		<li class="list-group-item"><b>Cadastrado em:</b> <%= @modulo.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
@@ -53,7 +55,7 @@
 	        <div class="col-xl-9 col-sm-9 col-md-9">
 				<% @tarefas.each do |tarefa| %>
 					<ul class="list-unstyled">
-		    			<li><%= link_to tarefa.descricao, tarefa, class: "fa fa-tasks text-dark" %></li>
+		    			<li><%= link_to tarefa.nome, tarefa, class: "fa fa-tasks text-dark" %></li>
 		    		</ul>
 	    		<% end %>
 			</div>

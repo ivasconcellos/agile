@@ -50,9 +50,9 @@
       <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Avatar</label>
       <div class="col-md-6">
         <% Avatar.where(tema_curso_id: current_usuario.curso_atual.tema_curso_id, perfil: @perfil.perfil).each do |avatar| %>
-          <%= form.radio_button :avatar_id, avatar.id %>
-          <%= avatar.nome %>
-          <%= image_tag avatar.imagem.url(:thumb), class: "img-responsive img-thumbnail" %>
+          <p><%= image_tag avatar.imagem.url(:medium), class: "img-responsive img-thumbnail" %></p>
+          <p><%= form.radio_button :avatar_id, avatar.id %>
+             <%= avatar.nome %></p>
         <% end %>      
       </div>
     </div>

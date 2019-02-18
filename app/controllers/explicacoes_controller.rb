@@ -4,27 +4,30 @@ class ExplicacoesController < ApplicationController
   # GET /explicacoes
   # GET /explicacoes.json
   def index
+    authorize! :index, Explicacao
     @explicacoes = Explicacao.joins(:modulo).where('modulos.curso_id = ?',
     current_usuario.curso_atual_id).page(params[:page]).order('nome')
-    authorize! :index, Explicacao
+    render layout: 'professor'
   end
 
   # GET /explicacoes/1
   # GET /explicacoes/1.json
   def show
-    authorize! :show, @explicacao
+    authorize! :show, Explicacao
   end
 
   # GET /explicacoes/new
   def new
+    authorize! :new, Explicacao
     @explicacao = Explicacao.new
     @explicacao.modulo_id = params[:modulo_id]
-    authorize! :new, @explicacao
+    render layout: 'professor'
   end
 
   # GET /explicacoes/1/edit
   def edit
-    authorize! :edit, @explicacao
+    authorize! :edit, Explicacao
+    render layout: 'professor'
   end
 
   # POST /explicacoes
@@ -60,7 +63,7 @@ class ExplicacoesController < ApplicationController
   # DELETE /explicacoes/1
   # DELETE /explicacoes/1.json
   def destroy
-    authorize! :destroy, @explicacao
+    authorize! :destroy, Explicacao
     @explicacao.destroy
     respond_to do |format|
       format.html { redirect_to explicacoes_url, notice: 'Explicação excluída com sucesso!' }
@@ -76,6 +79,6 @@ class ExplicacoesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def explicacao_params
-      params.require(:explicacao).permit(:nome, :descricao, :audio, :modulo_id)
+      params.require(:explicacao).permit(:nome, :descricao, :modulo_id)
     end
 end

@@ -2,18 +2,45 @@
 
  	<div class="card-header">Fórum: <%= @forum.titulo %></div>
 
- 	<div class="card-header bg-info text-left">
-	    <%= image_tag @forum.usuario_curso.avatar.imagem.url(:thumb), class: "img-responsive img-thumbnail" %> Criado por: <%= @forum.usuario_curso.nickname %>
-	    <% if can? :edit, Forum %>
-      		<%= link_to  '', edit_forum_path(@forum), class: "fa fa-pencil text-light" %>
-    	<% end %>
-    	<% if can? :destroy, Forum %>
-      		<%= link_to  '', @forum, method: :delete, data: { confirm: 'Deseja realmente realmente remover o Fórum?'}, class: "fa fa-trash text-light", remote: true %>
-    	<% end %>
-	</div>
-	<div class="card-body bg-dark">
-		<p class="card-text"><b>Última atualização:</b> <%= @forum.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></p>
-		<p class="card-text"><%= @forum.descricao.to_s.html_safe %></p>
+ 	<div class="card-header">
+	    <div class="row">
+	    	<div class="col-xl-12 col-sm-12 mb-3">
+				<div class="card text-white o-hidden h-100 curso">
+					<div class="row">
+						<div class="col-xl-2 col-sm-2 mb-3">
+							<div class="card-body text-center">
+								<div>
+									<%if @forum.usuario_curso.avatar %>
+										<%= image_tag @forum.usuario_curso.avatar.imagem.url(:medium), class: "img-responsive img-thumbnail" %>
+									<% else %>
+										<%= image_tag "missing.png", class: "img-responsive img-thumbnail" %>
+									<% end %>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-10 col-sm-10 mb-3">
+							<div class="card-body text-left">
+								<div>
+									<%= @forum.descricao.to_s.html_safe %>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer card-footer-size bg-primary">
+						<p class="card-text">Criado por:          
+					  	<%= @forum.usuario_curso.nickname %>
+						<% if can? :edit, Forum %>
+							<%= link_to  '', edit_forum_path(@forum), class: "fa fa-pencil text-light" %>
+						<% end %>
+						<% if can? :destroy, Forum %>
+							<%= link_to  '', @forum, method: :delete, data: { confirm: 'Deseja realmente realmente remover o Fórum?'}, class: "fa fa-trash text-light", remote: true %>
+						<% end %></p>
+						<p class="card-text"><b>Última atualização:</b> <%= @forum.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></p>
+					</div>
+				</div>
+			</div>
+			
+    	</div>
 	</div>
 	
 	<div id="comentario"><%= render 'comentarios/comentario', :collection => @comentarios %></div>

@@ -20,14 +20,16 @@ class SalasChatController < ApplicationController
 
   # GET /sala_chat/new
   def new
+    authorize! :new, SalaChat
     @sala_chat = SalaChat.new
     @sala_chat.curso_id = params[:curso_id]
-    authorize! :new, SalaChat
+    render layout: 'professor'
   end
 
   # GET /sala_chat/1/edit
   def edit
     authorize! :edit, SalaChat
+    authorize! :new, SalaChat
   end
 
   # POST /sala_chat

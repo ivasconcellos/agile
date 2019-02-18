@@ -114,3 +114,10 @@ td{
   border-bottom-left-radius: 0px;
   padding: 0px;
 }
+
+.card-footer-size{
+  font-size: 14px;
+  color: #FFFFFF;
+  text-align: justify;
+  padding: 5px 5px 5px 20px;
+}
