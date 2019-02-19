@@ -1,38 +1,40 @@
 <div class="card">
   <div class="card-header">Grupos do Curso</div>
 
-  <div class="table-responsive">
-    <table class="table table-striped table-sm">
-      <thead>
-        <tr>
-          <th class="text-center">Nome</th>
-          <th colspan="3" class="text-center">Opções</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @grupos_cursos.each do |grupo_curso| %>
+  <% if !@grupos_cursos.empty? %>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
           <tr>
-            <td><%= grupo_curso.nome_curso %></td>
-            <% if can? :show, GrupoCurso %>
-              <td><%= link_to 'Visualizar', grupo_curso %></td>
-            <% end %>
-            <td>
-              <% if can? :edit, GrupoCurso %>
-                <%= link_to 'Atualizar', edit_grupo_curso_path(grupo_curso) %>
-              <% else%> - 
-              <% end %>
-            <td>
-              <% if can? :Destroy, GrupoCurso %>
-                <%= link_to 'Excluir', grupo_curso, method: :delete, data: { confirm: 'Deseja realmente excluir o Grupo do Curso?' } %>
-              <% else%> - 
-              <% end %>
-            </td>
+            <th class="text-center">Nome</th>
+            <th colspan="3" class="text-center">Opções</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-  <span> <%= will_paginate @grupos_cursos %></span>
+        </thead>
+        <tbody>
+          <% @grupos_cursos.each do |grupo_curso| %>
+            <tr>
+              <td><%= grupo_curso.nome_curso %></td>
+              <% if can? :show, GrupoCurso %>
+                <td><%= link_to 'Visualizar', grupo_curso %></td>
+              <% end %>
+              <td>
+                <% if can? :edit, GrupoCurso %>
+                  <%= link_to 'Atualizar', edit_grupo_curso_path(grupo_curso) %>
+                <% else%> - 
+                <% end %>
+              <td>
+                <% if can? :Destroy, GrupoCurso %>
+                  <%= link_to 'Excluir', grupo_curso, method: :delete, data: { confirm: 'Deseja realmente excluir o Grupo do Curso?' } %>
+                <% else%> - 
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <span> <%= will_paginate @grupos_cursos %></span>
+  <% end %>
 
   <br>
 

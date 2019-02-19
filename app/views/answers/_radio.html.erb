@@ -1,0 +1,12 @@
+<%= render partial: "answers/errors", locals: {answer: answer} %>
+
+<li><b><%= @contador +=1 %>- <%= answer.question.pergunta %><% if answer.question.rules[:presence] == "1" %>*<% end %></b></li>
+
+<%- answer.question.options.each do |option| %>
+	<li>
+		<%= f.label "resposta_#{option}", option do %>
+			<%= f.radio_button :resposta, option %>
+			<%= option %>
+		<% end %>
+	</li>
+<% end %>

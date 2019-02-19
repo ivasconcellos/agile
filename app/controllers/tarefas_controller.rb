@@ -4,9 +4,9 @@ class TarefasController < ApplicationController
   # GET /tarefas
   # GET /tarefas.json
   def index
+    authorize! :index, Tarefa
     @tarefas = Tarefa.joins(:modulo).where('modulos.curso_id = ?',
        current_usuario.curso_atual_id).page(params[:page])
-    authorize! :read, Tarefa
     render layout: 'professor'
   end
 
@@ -19,15 +19,17 @@ class TarefasController < ApplicationController
 
   # GET /tarefas/new
   def new
+    authorize! :new, Tarefa
     @tarefa = Tarefa.new
     @tarefa.modulo_id = params[:modulo_id]
     @tarefa.usuario_curso_id = UsuarioCurso.find_by(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual.id).id
-    authorize! :new, Tarefa
+    render layout: 'professor'
   end
 
   # GET /tarefas/1/edit
   def edit
     authorize! :edit, Tarefa
+    render layout: 'professor'
   end
 
   # POST /tarefas

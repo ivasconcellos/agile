@@ -54,6 +54,26 @@ ActiveRecord::Schema.define(version: 2019_02_17_032111) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "answer_groups", force: :cascade do |t|
+    t.bigint "question_group_id"
+    t.string "usuario_curso_type"
+    t.bigint "usuario_curso_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_group_id"], name: "index_answer_groups_on_question_group_id"
+    t.index ["usuario_curso_type", "usuario_curso_id"], name: "index_answer_groups_on_usuario_curso_type_and_usuario_curso_id"
+  end
+
+  create_table "answers", force: :cascade do |t|
+    t.bigint "answer_group_id"
+    t.bigint "question_id"
+    t.text "resposta"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_group_id"], name: "index_answers_on_answer_group_id"
+    t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
   create_table "artefatos", force: :cascade do |t|
     t.string "nome"
     t.boolean "ativo", default: true
@@ -194,24 +214,11 @@ ActiveRecord::Schema.define(version: 2019_02_17_032111) do
   create_table "materiais", force: :cascade do |t|
     t.string "nome", null: false
     t.text "texto"
-    t.string "link"
     t.string "tipo"
     t.boolean "publico", default: true
     t.bigint "modulo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "arquivo_file_name"
-    t.string "arquivo_content_type"
-    t.integer "arquivo_file_size"
-    t.datetime "arquivo_updated_at"
-    t.string "imagem_file_name"
-    t.string "imagem_content_type"
-    t.integer "imagem_file_size"
-    t.datetime "imagem_updated_at"
-    t.string "video_file_name"
-    t.string "video_content_type"
-    t.integer "video_file_size"
-    t.datetime "video_updated_at"
     t.index ["modulo_id"], name: "index_materiais_on_modulo_id"
   end
 
@@ -260,6 +267,28 @@ ActiveRecord::Schema.define(version: 2019_02_17_032111) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quiz_id"], name: "index_perguntas_quiz_on_quiz_id"
+  end
+
+  create_table "question_groups", force: :cascade do |t|
+    t.string "titulo"
+    t.text "descricao"
+    t.text "objetivo"
+    t.bigint "usuario_curso_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["usuario_curso_id"], name: "index_question_groups_on_usuario_curso_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "tipo"
+    t.string "pergunta"
+    t.integer "position"
+    t.text "respostas"
+    t.text "validation_rules"
+    t.bigint "question_group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_group_id"], name: "index_questions_on_question_group_id"
   end
 
   create_table "quizes", force: :cascade do |t|

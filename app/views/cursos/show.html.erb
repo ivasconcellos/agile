@@ -56,7 +56,7 @@
 
             <div class="col-xl-9 col-sm-9 col-md-9">
               <% @tarefas.each do |tarefa| %>
-                <%= link_to tarefa.descricao, tarefa, class: "fa fa-tasks text-dark" %>
+                <%= link_to tarefa.nome, tarefa, class: "fa fa-tasks text-dark" %>
               <% end %>
             </div>
 

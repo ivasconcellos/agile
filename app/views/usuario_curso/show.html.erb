@@ -1,27 +1,74 @@
 <div class="card">
 
-  <div class="card-header">Usuário do Curso</div>
+  <div class="card-header">Meu Perfil</div>
 
-  <ul class="list-group">
-    <%if @usuario_curso.avatar %>
-      <li class="list-group-item"><%= image_tag @usuario_curso.avatar.imagem.url(:thumb), class: "img-responsive img-thumbnail" %></li>
-      <li class="list-group-item"><b>Avatar:</b> <%= @usuario_curso.avatar.nome %></li>
-    <% else %>
-      <li class="list-group-item"><%= image_tag "missing.png", class: "img-responsive img-thumbnail" %></li>
-    <% end %>
-    <li class="list-group-item"><b>Nome:</b> <%= @usuario_curso.usuario.nome %></li>
-    <li class="list-group-item"><b>Curso:</b> <%= @usuario_curso.curso.nome %></li>
-    <li class="list-group-item"><b>Apelido neste curso:</b> <%= @usuario_curso.nickname %></li> 
-    <%if @usuario_curso.grupo_curso %>
-      <li class="list-group-item"><b>Equipe:</b> <%= @usuario_curso.grupo_curso.nome_curso %></li>
-      <li class="list-group-item"><b>Imagem da Equipe:</b> <%= image_tag @usuario_curso.grupo_curso.grupo.imagem.variant(resize: "100x100") %></li>
-    <% end %>
-    <%if @usuario_curso.nivel %>
-      <li class="list-group-item"><b>Nível:</b> <%= @usuario_curso.nivel.nome %></li>
-    <% end %>
-    <li class="list-group-item"><b>Perfil:</b> <%= @usuario_curso.perfil %></li>  
-    <li class="list-group-item"><b>Cadastro no curso:</b> <%= @usuario_curso.created_at.strftime("%d/%m/%Y") %></li> 
-  </ul>
+  <div class="card-body">
+
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="input-group mb-3">
+          <%if @usuario_curso.avatar %>
+            <%= image_tag @usuario_curso.avatar.imagem.url(:medium), class: "img-responsive img-thumbnail" %>
+          <% else %>
+            <%= image_tag "missing.png", class: "img-responsive img-thumbnail" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="input-group mb-3">
+          <label>Nome: </label>          
+          <%= @usuario_curso.usuario.nome %>
+        </div>
+
+        <div class="input-group mb-3">
+          <label>Nickname (apelido): </label>          
+          <%= @usuario_curso.nickname %>
+        </div>
+
+        <%if @usuario_curso.nivel %>
+          <div class="input-group mb-3">
+            <label>Nível: </label>          
+            <%= @usuario_curso.nivel.nome %>
+          </div>
+        <% end %>
+
+        <div class="input-group mb-3">
+          <label>Perfil: </label>          
+          <%= @usuario_curso.perfil %>
+        </div>
+
+        <div class="input-group mb-3">
+          <label>Cadastro no curso: </label>          
+          <%= @usuario_curso.created_at.strftime("%d/%m/%Y") %>
+        </div>
+    
+      </div>
+
+    </div>
+  </div>
+
+  <% if @usuario_curso.grupo_curso %>
+
+    <div class="card-header">Equipe</div>
+
+    <div class="card-body">
+
+      <div class="row">
+
+        <div class="col-lg-12">
+          <div class="input-group mb-2">
+            <%= image_tag @usuario_curso.grupo_curso.grupo.imagem.variant(resize: "200x200"), class: "img-responsive img-thumbnail" %>
+          </div>
+          <div class="input-group">
+            <label>Nome da Equipe: </label>          
+            <%= @usuario_curso.grupo_curso.nome_curso %>
+          </div>
+        </div> 
+
+      </div>
+    </div>
+  <% end %>
 
   <br>
   <div class="card-footer text-muted">

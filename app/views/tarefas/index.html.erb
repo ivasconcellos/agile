@@ -1,6 +1,6 @@
 <div class="card">
 
-  <div class="card-header">Tarefas </div>
+  <div class="card-header">Missões - Tarefa </div>
 
   <div class="table-responsive">
     <table class="table table-striped table-sm">
@@ -8,8 +8,6 @@
         <tr>
           <th class="text-center">Módulo</th>
           <th class="text-center">Nome</th>
-          <th class="text-center">Pontuação</th>
-          <th class="text-center">Público</th>
           <% if @perfil.perfil == 'Aluno' %>
             <th class="text-center">Enviar</th>
           <% end %>
@@ -21,8 +19,6 @@
           <tr>
             <td><%= link_to tarefa.modulo.nome, tarefa.modulo %></td>
             <td><%= tarefa.nome %></td>
-            <td><%= tarefa.pontuacao %></td>
-            <td><%= tarefa.publico? ? 'Sim' : 'Não' %></td>
             <% if @perfil.perfil == 'Aluno' and no_prazo(tarefa) %>
               <td><%= link_to 'Enviar Tarefa', {controller: 'tarefa_alunos', action: 'new', tarefa_id: tarefa.id}, class: "btn btn-sm btn-danger"  %></td>
             <% end %>

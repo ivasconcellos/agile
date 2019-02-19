@@ -1,18 +1,20 @@
-<div class="card-body">
-  <%= form_with(model: @comentario, remote: true) do |form| %>
+<div class="card">
+  <div class="card-body">
+    <%= form_with(model: @comentario, remote: true) do |form| %>
 
-    <%= form.hidden_field :forum_id %>
-    <%= form.hidden_field :usuario_curso_id %>
+      <%= form.hidden_field :forum_id %>
+      <%= form.hidden_field :usuario_curso_id %>
 
-    <div class="form-group row">
-      <div class="col-md-12">
-        <%= form.cktext_area :texto, class: "form-control" %>
+      <div class="form-group row">
+        <div class="col-md-12">
+          <%= form.cktext_area :texto, class: "form-control" %>
+        </div>
       </div>
-    </div>
 
-    <div class="text-center">
-      <%= form.submit "Salvar comentário", class: "btn btn-md btn-primary" %>
-    </div>
+      <div class="text-center">
+        <%= form.submit "Salvar comentário", class: "btn btn-md btn-success" %>
+      </div>
 
-  <% end %>
+    <% end %>
+  </div>
 </div>

@@ -13,7 +13,7 @@
 			</div>
 			<div class="card-body bg-dark">
 				<p class="card-text text-light"><b>Enviada:</b> <%= conversa.created_at.strftime("%d/%m/%Y - %H:%M:%S") %> 
-					<% if can? :new, Conversa %>
+					<% if can? :new, Conversa and @perfil.id == conversa.destinatario_id %>
 						<%= link_to "Responder", {controller: 'conversas', action: 'new', conversa_id: conversa.id, destinatario_id: conversa.usuario_curso.id }, class: "btn btn-danger btn-sm float-right" %>
 					<% end %>
 				</p>

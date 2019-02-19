@@ -4,7 +4,7 @@
   
   <ul class="list-group">
      <li class="list-group-item"><b>Nome:</b> <%= @missao.nome %></li>
-     <li class="list-group-item"><b>Descrição:</b> <%= @missao.descricao %></li>
+     <li class="list-group-item"><b>Descrição:</b> <%= @missao.descricao.to_s.html_safe %></li>
      <% if @missao.imagem.attached? %>
       <li class="list-group-item"><b>Imagem:</b> <%= image_tag @missao.imagem.variant(resize: "100x100") %></li>
      <% end %>

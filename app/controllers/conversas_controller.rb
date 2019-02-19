@@ -3,14 +3,8 @@ class ConversasController < ApplicationController
 
   def index
     @professores = UsuarioCurso.where(perfil: 'Professor', curso_id: current_usuario.curso_atual)
+    @alunos = UsuarioCurso.where(perfil: 'Aluno', curso_id: current_usuario.curso_atual)
     authorize! :index, Conversa
-  end
-
-  def conversas_professor
-    @conversas = Conversa.where(usuario_curso_id: current_usuario.id,
-     destinatario_id: params[:professor_id]).or(Conversa.where(
-      usuario_curso_id: params[:professor_id], destinatario_id: current_usuario.id)).order('created_at')
-    authorize! :show, Conversa
   end
 
   def new
@@ -31,7 +25,7 @@ class ConversasController < ApplicationController
     respond_to do |format|
       if @conversa.save
         ApplicationMailer.mensagens_professor(@conversa).deliver
-        format.html { redirect_to @conversa, notice: 'E-mail enviado com sucesso!' }
+        format.html { redirect_to @conversa, notice: 'Mensagem enviada com sucesso!' }
         format.json { render :show, status: :created, location: @conversa }
       else
         format.html { render :new, @current_usuario => current_usuario }
@@ -40,6 +34,13 @@ class ConversasController < ApplicationController
     end
   end
 
+  def conversas_professor
+    @conversas = Conversa.where(usuario_curso_id: current_usuario.id,
+     destinatario_id: params[:professor_id]).or(Conversa.where(
+      usuario_curso_id: params[:professor_id], destinatario_id: current_usuario.id)).order('created_at')
+    authorize! :show, Conversa
+  end
+    
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def conversa_params
