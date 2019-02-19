@@ -1,0 +1,8 @@
+	<tr>
+		<td><b><br><%= @contador +=1 %>- <%= answer.question.pergunta %><% if answer.question.rules[:presence] == "1" %>*<% end %></b></td>
+	</tr>
+	<tr>
+		<td><%= f.text_field :resposta,   :size => 10 %> (formato: dd/mm/aaaa) </td>
+	</tr>
+
+

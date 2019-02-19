@@ -1,0 +1,19 @@
+
+	<tr>
+		<td><b><br><%= @contador +=1 %>- <%= answer.question.pergunta %><% if answer.question.rules[:presence] == "1" %>*<% end %></b></td>
+	</tr>
+	<%= f.fields_for :resposta do |af| %>
+		<%- answer.question.options.each do |option| %>
+		<tr>
+			<td>
+			<%= af.label option do %>
+				<%= af.check_box nil, { id: nil, checked: checkbox_checked?(answer, option) }, option %>
+				<%= option %>
+			<% end %>
+			
+			</td>
+		</tr>
+		<% end %>
+	<% end %>
+	
+

@@ -1,0 +1,48 @@
+<%= form_for @question_group do |form| %>
+
+	<% if question_group.errors.any? %>
+	    <div id="error_explanation" class="alert alert-danger">
+	      <h2><%= pluralize(question_group.errors.count, "erro(s)") %> - Pesquisa não pôde ser salva!</h2>
+
+	      <ul>
+	      <% question_group.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	<% end %>
+ 
+	<%= form.hidden_field :usuario_curso_id %>
+
+	<div class="card-body">
+
+	    <div class="form-group row">
+	      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Título*</label>
+	      <div class="col-md-6">
+	        <%= form.text_field :titulo, autofocus: true, class: "form-control" %>
+	      </div>
+	    </div>
+
+	    <div class="form-group row">
+	      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Descrição</label>
+	      <div class="col-md-6">
+	        <%= form.text_area :descricao, class: "form-control" %>
+	      </div>
+	    </div>
+
+	    <div class="form-group row">
+	      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Objetivo</label>
+	      <div class="col-md-6">
+	        <%= form.text_area :objetivo, class: "form-control" %>
+	      </div>
+	    </div>
+
+	</div>
+
+	<div class="card-footer text-muted">
+	    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+	    <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
+	</div>
+  
+
+<% end %>

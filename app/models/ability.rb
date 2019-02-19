@@ -30,6 +30,8 @@ class Ability
           can :controle_professor,:controle
           can :manage, SalaChat
           can :manage, Conversa
+          can :manage, QuestionGroup
+          can :manage, Question
         elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
           can :manage, Comentario
           can :read, Modulo
