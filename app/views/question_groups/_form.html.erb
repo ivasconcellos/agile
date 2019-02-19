@@ -1,17 +1,16 @@
 <%= form_for @question_group do |form| %>
 
-	<center>
-		<% if @question_group.errors.any? %>
-		<div id="error_explanation">
-		  <h2><%= pluralize(@question_group.errors.count, "erro") %> - Não foi possível realizar a operação!</h2>
-		  <ul>
-		  <% @question_group.errors.full_messages.each do |message| %>
-		    <li><%= message %></li>
-		  <% end %>
-		  </ul>
-		</div>
-		<% end %>
-	</center>
+	<% if question_group.errors.any? %>
+	    <div id="error_explanation" class="alert alert-danger">
+	      <h2><%= pluralize(question_group.errors.count, "erro(s)") %> - Nível não pôde ser salvo!</h2>
+
+	      <ul>
+	      <% question_group.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	<% end %>
  
 	<%= form.hidden_field :usuario_id %>
 

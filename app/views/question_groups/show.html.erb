@@ -11,7 +11,9 @@
 	<br>
 
 	<div class="card-footer text-muted">
-		<%= link_to 'Atualizar', {:controller => 'question_groups', :action => 'edit', :id => @question_group.id, :usuario_id => @question_group.usuario_id}, class: "btn btn-md btn-primary" %>
+		<% if can? :edit, QuestionGroup %>
+			<%= link_to 'Atualizar', {:controller => 'question_groups', :action => 'edit', :id => @question_group.id, :usuario_id => @question_group.usuario_id}, class: "btn btn-md btn-primary" %>
+		<% end %>
 		<%= link_to 'Voltar', {:controller => 'question_groups', :action => 'index', :usuario_id => @question_group.usuario_id}, class: "btn btn-md btn-secondary" %>
 	</div>
 </div>
