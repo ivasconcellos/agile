@@ -1,0 +1,10 @@
+<%= render partial: "answers/errors", locals: {answer: answer} %>
+
+	<tr>
+		<td><b><%= @contador +=1 %>- <%= answer.question.pergunta %><% if answer.question.rules[:presence] == "1" %>*<% end %></b></td>
+	</tr>
+	<tr>
+		<td><%= f.select :resposta, answer.question.options, include_blank: true %> </td>
+	</tr>
+
+

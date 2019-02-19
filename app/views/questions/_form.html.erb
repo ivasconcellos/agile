@@ -1,0 +1,61 @@
+<%= form_for [@question_group, question] do |f| %>
+
+	<center>
+		<% if question.errors.any? %>
+		  <div id="error_explanation">
+		    <h2><%= pluralize(question.errors.count, "erro") %> - Não foi possível realizar a operação!</h2>
+
+		    <ul>
+		    <% question.errors.full_messages.each do |msg| %>
+		      <li><%= msg %></li>
+		    <% end %>
+		    </ul>
+		  </div>
+		<% end %>
+	</center>
+
+	<%= f.hidden_field :question_group_id %>
+
+	
+	<div class="table-responsive">
+	<table align="center" class="table table-condensed">
+		<tr>
+	  		<td>Tipo*:</td>
+			<td class="td"><%= f.select :tipo, QuestionForm::QUESTION_TYPES  %></td>
+		</tr>
+		<tr>
+			<td>Pergunta*:</td>
+			<td class="td"><%= f.text_field :pergunta, :size => 38 %></td>
+		</tr>
+		<tr>
+			<td>Respostas (Checkbox, Radio, Select):</td>
+			<td class="td"><%= f.text_area :respostas, :cols => 36, :rows => 3 %></td>
+		</tr>
+		<tr>
+			<td>Resposta obrigatória:</td>
+			<td class="td"><%= f.check_box :answer_presence %> Sim</td>
+		</tr>
+		<tr>
+			<td>Tamanho mínimo da resposta:</td>
+			<td class="td"><%= f.text_field  :answer_minimum_length, :size => 7 %></td>
+		</tr>
+		<tr>
+			<td>Tamanho máximo da resposta:</td>
+			<td class="td"><%= f.text_field  :answer_maximum_length, :size => 7 %></td>
+		</tr>
+		<tr>
+			<td>Resposta maior ou igual a:</td>
+			<td class="td"><%= f.text_field  :answer_greater_than_or_equal_to, :size => 7 %></td>
+		</tr>
+		<tr>
+			<td>Resposta menor ou igual a:</td>
+			<td class="td"><%= f.text_field  :answer_less_than_or_equal_to, :size => 7 %></td>
+		</tr>
+		<tr>
+		    <td colspan="2"><center><button class="btn btn-danger link" ><% f.submit "" %>Salvar</button></center>
+   			</td>
+		</tr>
+	</table>
+</div>
+
+<% end %>

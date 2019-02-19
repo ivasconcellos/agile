@@ -1,0 +1,44 @@
+<div class="row">
+		
+<div class="col-md-9">
+<p id="notice"><%= notice %></p>
+	<header class="section_tit">
+			<h3>Resultado do Questionário</h3>
+	</header>
+<div class="table-responsive">
+	<table align="center" class="table table-hover">
+	<%- @question_group_results.each do |result| %>
+			<thead>
+				<tr>
+				  <th colspan ="2"><%= result.question.pergunta %></th>
+				</tr>
+			</thead>
+			<thead>
+				<tr>
+				  <td>Resposta</td>
+				  <td><center>Quantidade</center></td>
+				</tr>
+			</thead>
+			<tbody>
+			<% if result.results.is_a?(Hash) %>
+		        <%- result.results.each do |option, count| %>
+		          <tr>
+		            <td class="td"><%= option %></td>
+		            <td class="td"><center><%= count %></center></td>
+		          </tr>
+		        <% end %>
+			<% end %> 
+				 <tr>
+		            <th colspan ="2"><br><br></th>
+		          </tr>
+		      </tbody>
+	<% end %>
+	</table>
+</div>
+	<center>
+	<br> <br>
+		<%= link_to 'Voltar', :back %>
+	</center>
+
+</div>
+</div>

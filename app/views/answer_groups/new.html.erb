@@ -1,0 +1,29 @@
+<%= form_for([@question_group, @answer_group_builder]) do |f| %>
+<header class="section_tit">
+			<h3>Questionário</h3>
+</header>
+
+<% @contador = 0 %>
+<div class="table-responsive">
+	<table align="center" class="table table-condensed">
+		<%- @answer_group_builder.answers.each do |answer| %>
+    		<%= f.fields_for("#{answer.question.id}", answer) do |answer_form| %>
+				
+			  		<%= render_answer_form_helper(answer, answer_form) %>
+				
+				
+    		<% end %>
+		<% end %>
+		<tr>
+			<td colspan="2"><center><button class="btn btn-danger link" ><% f.submit "" %>Salvar</button></center>
+		   	</td>
+		</tr>
+	</table>
+</div>
+
+<% end %>
+
+<br>
+	<center>
+		<%= link_to 'Voltar', :controller => 'question_groups', :action => 'index', :usuario_id => @question_group.usuario_id %>
+	</center>

@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="card-header">Questionários</div>
+
+ 
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th class="text-center">Nome</th>
+            <th colspan="7" class="text-center">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @question_groups.each do |grupo_de_questoes| %>
+            <tr>
+              <td><%= grupo_de_questoes.titulo %></td>
+              <td><%= link_to grupo_de_questoes.titulo, :controller => 'questions', :action =>  'index', :usuario_id => current_usuario.id, :question_group_id => grupo_de_questoes.id  %></td>
+              <td><%= link_to "Responder", new_question_group_answer_group_path(grupo_de_questoes) %> </td>
+              <td><%= link_to "resultado", :controller => 'question_groups', :action => 'results', :id => grupo_de_questoes.id, :usuario_id => grupo_de_questoes.usuario_id  %></td>
+              <td><%= link_to "Detalhar", :controller => 'question_groups', :action => 'show', :id => grupo_de_questoes.id, :usuario_id => grupo_de_questoes.usuario_id %></td>
+              <td><%= link_to "Atualizar", :controller => 'question_groups', :action => 'edit', :id => grupo_de_questoes.id, :usuario_id => grupo_de_questoes.usuario_id %>          
+              </td>
+              <td>
+                <%= link_to "Excluir", grupo_de_questoes, method: :delete, data: { confirm: 'Deseja realmente excluir o Questionário?' } %>
+              </td>              
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    
+  
+
+  <br>
+    <div class="card-footer text-muted">
+      <%= link_to 'Cadastrar', {:controller => 'question_groups', :action => 'new', :usuario_id => current_usuario.id}, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Voltar', controle_gestor_path, class: "btn btn-md btn-secondary" %>
+    </div>
+
+
+</div>
+
+

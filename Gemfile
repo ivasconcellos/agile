@@ -84,3 +84,4 @@ gem 'bootstrap-datepicker-rails'
 
 gem 'active_storage_validations'
 
+gem 'rapidfire'

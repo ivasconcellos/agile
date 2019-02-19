@@ -1,0 +1,18 @@
+<div class="card">
+
+  <div class="card-header">Questionário</div>
+
+	<ul class="list-group">
+	  <li class="list-group-item"><b>Título:</b> <%= @question_group.titulo %></li>
+	  <li class="list-group-item"><b>Descrição: <%= @question_group.descricao %></b> </li>
+	  <li class="list-group-item"><b>Objetivo:</b> <%= @question_group.objetivo %></li>
+	</ul>
+
+	<br>
+
+	<div class="card-footer text-muted">
+		<%= link_to 'Atualizar', {:controller => 'question_groups', :action => 'edit', :id => @question_group.id, :usuario_id => @question_group.usuario_id}, class: "btn btn-md btn-primary" %>
+		<%= link_to 'Voltar', {:controller => 'question_groups', :action => 'index', :usuario_id => @question_group.usuario_id}, class: "btn btn-md btn-secondary" %>
+	</div>
+</div>
+      

@@ -63,4 +63,13 @@ Rails.application.routes.draw do
 
   mount ActionCable.server => '/cable'
   
+  mount Rapidfire::Engine => "/rapidfire"
+  
+  resources :question_groups do
+    get 'results', on: :member
+
+    resources :questions
+    resources :answer_groups, only: [:new, :create, :show]
+  end
+  resources :questions
 end

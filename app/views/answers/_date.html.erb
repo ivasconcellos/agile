@@ -1,0 +1,17 @@
+<%= render partial: "answers/errors", locals: {answer: answer} %>
+<script>
+
+function ValidaData(data){
+	exp = /\d{2}\/\d{2}\/\d{4}/
+	if(!exp.test(data.value))
+		alert('Data Invalida!');			
+}
+</script>
+	<tr>
+		<td><b><%= @contador +=1 %>- <%= answer.question.pergunta %><% if answer.question.rules[:presence] == "1" %>*<% end %></b></td>
+	</tr>
+	<tr>
+		<td><%= f.text_field :resposta, :id => 'data',  :onBlur => "ValidaData(data);", :size => 10 %> (formato: dd/mm/aaaa) </td>
+	</tr>
+
+
