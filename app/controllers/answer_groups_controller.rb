@@ -1,8 +1,8 @@
 class AnswerGroupsController < ApplicationController
-
 	before_action :find_question_group!
-
+	before_action :authenticate_usuario!
 	respond_to :html, :js, :pdf
+	
     def new
       @answer_group_builder = AnswerGroupBuilder.new(answer_group_params)    
     end
@@ -14,6 +14,7 @@ class AnswerGroupsController < ApplicationController
 			format.pdf {render pdf: "canvas-list-report"}
 		end 
 	end 
+
     def create
       @answer_group_builder = AnswerGroupBuilder.new(answer_group_params)
 		respond_to do |format|

@@ -1,7 +1,7 @@
 class QuestionGroupsController < ApplicationController
 	before_action :set_question_group, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_usuario!
-	respond_to :json, only: :results
+	respond_to :html, only: :results
 
 	def index
 		@question_groups = QuestionGroup.all

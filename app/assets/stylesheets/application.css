@@ -121,3 +121,8 @@ td{
   text-align: justify;
   padding: 5px 5px 5px 20px;
 }
+
+.list-unstyled{
+  padding-left: 30px;
+  padding-top: 10px;
+}

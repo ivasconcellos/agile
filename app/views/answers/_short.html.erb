@@ -1,8 +1,4 @@
 <%= render partial: "answers/errors", locals: {answer: answer} %>
 
-	<tr>
-		<td><b><%= @contador +=1 %>-<%= answer.question.pergunta %><% if answer.question.rules[:presence] == "1" %>*<% end %></b></td>
-	</tr>
-	<tr>
-		<td><%= f.number_field :resposta %> </td>
-	</tr>
+<li><b><%= @contador +=1 %>-<%= answer.question.pergunta %><% if answer.question.rules[:presence] == "1" %>*<% end %></b></li>
+<li><%= f.number_field :resposta %> </li>

@@ -7,11 +7,8 @@ function ValidaData(data){
 		alert('Data Invalida!');			
 }
 </script>
-	<tr>
-		<td><b><%= @contador +=1 %>- <%= answer.question.pergunta %><% if answer.question.rules[:presence] == "1" %>*<% end %></b></td>
-	</tr>
-	<tr>
-		<td><%= f.text_field :resposta, :id => 'data',  :onBlur => "ValidaData(data);", :size => 10 %> (formato: dd/mm/aaaa) </td>
-	</tr>
+
+<li><b><%= @contador +=1 %>- <%= answer.question.pergunta %><% if answer.question.rules[:presence] == "1" %>*<% end %></b></li>
+<li><%= f.text_field :resposta, :id => 'data',  :onBlur => "ValidaData(data);", :size => 10 %> (formato: dd/mm/aaaa) </li>
 
 

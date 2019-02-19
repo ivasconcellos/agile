@@ -1,29 +1,21 @@
-<%= form_for([@question_group, @answer_group_builder]) do |f| %>
-<header class="section_tit">
-			<h3>Questionário</h3>
-</header>
+<div class="card">
 
-<% @contador = 0 %>
-<div class="table-responsive">
-	<table align="center" class="table table-condensed">
+	<%= form_for([@question_group, @answer_group_builder]) do |f| %>
+	<div class="card-header">Responder questionário</div>
+
+		<% @contador = 0 %>
+	
 		<%- @answer_group_builder.answers.each do |answer| %>
-    		<%= f.fields_for("#{answer.question.id}", answer) do |answer_form| %>
-				
-			  		<%= render_answer_form_helper(answer, answer_form) %>
-				
-				
-    		<% end %>
+	    	<%= f.fields_for("#{answer.question.id}", answer) do |answer_form| %>
+	    	<ul class="list-unstyled">
+				<%= render_answer_form_helper(answer, answer_form) %>
+			</ul>
+	    	<% end %>
 		<% end %>
-		<tr>
-			<td colspan="2"><center><button class="btn btn-danger link" ><% f.submit "" %>Salvar</button></center>
-		   	</td>
-		</tr>
-	</table>
+
+		<div class="card-footer text-muted">
+			<%= f.submit "Salvar", class: "btn btn-md btn-primary" %>
+			<%= link_to 'Voltar', {:controller => 'question_groups', :action => 'index', :usuario_id => @question_group.usuario_id}, class: "btn btn-md btn-secondary" %>
+		</div>
+	<% end %>
 </div>
-
-<% end %>
-
-<br>
-	<center>
-		<%= link_to 'Voltar', :controller => 'question_groups', :action => 'index', :usuario_id => @question_group.usuario_id %>
-	</center>
