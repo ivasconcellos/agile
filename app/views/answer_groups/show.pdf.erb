@@ -1,17 +1,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <%= form_for([@question_group, @answer_group_builder]) do |f| %>
 
-			<center><h3><%= @answer_group_builder.question_group.titulo %></h3></center>
+<center><h3><%= @answer_group_builder.question_group.titulo %></h3></center>
 
 
 <% @contador = 0 %>
 	<table align="left">
 		<%- @answer_group_builder.answers.each do |answer| %>
     		<%= f.fields_for("#{answer.question.id}", answer) do |answer_form| %>
-				
-			  		<%= render_answer_form_helper(answer, answer_form) %>
-					<br>
-				
+				<%= render_answer_form_helper(answer, answer_form) %>
+				<br>
     		<% end %>
 		<% end %>
 		<tr>

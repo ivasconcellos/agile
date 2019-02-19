@@ -7,7 +7,7 @@
 	
 		<%- @answer_group_builder.answers.each do |answer| %>
 	    	<%= f.fields_for("#{answer.question.id}", answer) do |answer_form| %>
-	    	<ul class="list-unstyled">
+	    	<ul class="list-unstyled question">
 				<%= render_answer_form_helper(answer, answer_form) %>
 			</ul>
 	    	<% end %>
@@ -15,7 +15,7 @@
 
 		<div class="card-footer text-muted">
 			<%= f.submit "Salvar", class: "btn btn-md btn-primary" %>
-			<%= link_to 'Voltar', {:controller => 'question_groups', :action => 'index', :usuario_id => @question_group.usuario_id}, class: "btn btn-md btn-secondary" %>
+			<%= link_to 'Voltar', {:controller => 'question_groups', :action => 'index', :usuario_curso_id => @question_group.usuario_curso_id}, class: "btn btn-md btn-secondary" %>
 		</div>
 	<% end %>
 </div>

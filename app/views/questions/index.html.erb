@@ -31,7 +31,7 @@
       <% if can? :new, Question %>
         <%= link_to 'Cadastrar Pergunta', new_question_group_question_path(@question_group), class: "btn btn-md btn-primary" %>
       <% end %>
-      <%= link_to 'Voltar', {:controller => 'question_groups', :action => 'index', :id => @question_group.id, :usuario_id => current_usuario.id}, class: "btn btn-md btn-secondary" %>
+      <%= link_to 'Voltar', {:controller => 'question_groups', :action => 'index', :id => @question_group.id, :usuario_curso_id => @perfil.id}, class: "btn btn-md btn-secondary" %>
     </div>
 
 </div>

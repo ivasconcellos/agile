@@ -15,7 +15,7 @@ class QuestionGroupsController < ApplicationController
 	def new
 		authorize! :new, QuestionGroup
 		@question_group = QuestionGroup.new
-		@question_group.usuario_id = params[:usuario_id]		
+		@question_group.usuario_curso_id = params[:usuario_curso_id]		
 	end
 
 	def edit
@@ -26,7 +26,7 @@ class QuestionGroupsController < ApplicationController
 		@question_group = QuestionGroup.new(question_group_params)
 		respond_to do |format|
 			if @question_group.save
-				format.html { redirect_to @question_group, notice: 'Questionário cadastrado com sucesso!'}
+				format.html { redirect_to @question_group, notice: 'Pesquisa cadastrada com sucesso!'}
         		format.json { render :show, status: :created, location: @question_group }
 				else
 				format.html { render action: "new" }
@@ -38,7 +38,7 @@ class QuestionGroupsController < ApplicationController
 	def update
 	    respond_to do |format|
 	      if @question_group.update(question_group_params)
-	        format.html { redirect_to @question_group, notice: 'Questionário atualizado com sucesso!'}
+	        format.html { redirect_to @question_group, notice: 'Pesquisa atualizada com sucesso!'}
 	        format.json { render :show, status: :created, location: @question_group }
 	      else
 	        format.html { render action: "edit" }
@@ -51,7 +51,7 @@ class QuestionGroupsController < ApplicationController
 		authorize! :destroy, QuestionGroup
 		@question_group.destroy
 		respond_to do |format|
-      		format.html { redirect_to question_groups_url, notice: 'Questionário excluído com sucesso!' }
+      		format.html { redirect_to question_groups_url, notice: 'Pesquisa excluída com sucesso!' }
       		format.json { head :no_content }
     	end
 	end
@@ -70,6 +70,6 @@ class QuestionGroupsController < ApplicationController
 	    end
 
 		def question_group_params
-			params.require(:question_group).permit(:titulo, :descricao, :objetivo, :usuario_id)
+			params.require(:question_group).permit(:titulo, :descricao, :objetivo, :usuario_curso_id)
 		end
 end

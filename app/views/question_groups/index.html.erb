@@ -13,17 +13,17 @@
           <% @question_groups.each do |grupo_de_questoes| %>
             <tr>
               <td><%= grupo_de_questoes.titulo %></td>
-              <td><%= link_to "Perguntas", :controller => 'questions', :action =>  'index', :usuario_id => current_usuario.id, :question_group_id => grupo_de_questoes.id  %></td>
+              <td><%= link_to "Perguntas", :controller => 'questions', :action =>  'index', :usuario_curso_id => @perfil.id, :question_group_id => grupo_de_questoes.id  %></td>
               <td><%= link_to "Responder", new_question_group_answer_group_path(grupo_de_questoes) %> </td>
-              <td><%= link_to "Resultado", :controller => 'question_groups', :action => 'results', :id => grupo_de_questoes.id, :usuario_id => grupo_de_questoes.usuario_id  %></td>
+              <td><%= link_to "Resultado", :controller => 'question_groups', :action => 'results', :id => grupo_de_questoes.id, :usuario_curso_id => grupo_de_questoes.usuario_curso_id  %></td>
               <% if can? :show, QuestionGroup %>
-                <td><%= link_to "Visualizar", :controller => 'question_groups', :action => 'show', :id => grupo_de_questoes.id, :usuario_id => grupo_de_questoes.usuario_id %></td>
+                <td><%= link_to "Visualizar", :controller => 'question_groups', :action => 'show', :id => grupo_de_questoes.id, :usuario_curso_id => grupo_de_questoes.usuario_curso_id %></td>
               <% end %>
               <% if can? :edit, QuestionGroup %>
-                <td><%= link_to "Atualizar", :controller => 'question_groups', :action => 'edit', :id => grupo_de_questoes.id, :usuario_id => grupo_de_questoes.usuario_id %></td>
+                <td><%= link_to "Atualizar", :controller => 'question_groups', :action => 'edit', :id => grupo_de_questoes.id, :usuario_curso_id => grupo_de_questoes.usuario_curso_id %></td>
               <% end %>
               <% if can? :destroy, QuestionGroup %>
-                <td><%= link_to "Excluir", grupo_de_questoes, method: :delete, data: { confirm: 'Deseja realmente excluir o Questionário?' } %></td>
+                <td><%= link_to "Excluir", grupo_de_questoes, method: :delete, data: { confirm: 'Deseja realmente excluir a Pesquisa?' } %></td>
               <% end %>              
             </tr>
           <% end %>
@@ -35,7 +35,7 @@
 
   <div class="card-footer text-muted">
     <% if can? :new, QuestionGroup %>
-      <%= link_to 'Cadastrar', {:controller => 'question_groups', :action => 'new', :usuario_id => current_usuario.id}, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Cadastrar', {:controller => 'question_groups', :action => 'new', :usuario_curso_id => @perfil.id}, class: "btn btn-md btn-primary" %>
     <% end %>
     <%= link_to 'Voltar', controle_gestor_path, class: "btn btn-md btn-secondary" %>
   </div>

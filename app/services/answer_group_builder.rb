@@ -1,5 +1,5 @@
   class AnswerGroupBuilder < BaseService
-    attr_accessor :usuario, :question_group, :questions, :answers, :params
+    attr_accessor :usuario_curso, :question_group, :questions, :answers, :params
 
     def initialize(params = {})
       super(params)
@@ -43,7 +43,7 @@
 
     private
     def build_answer_group
-      @answer_group = AnswerGroup.new(usuario: usuario, question_group: question_group)
+      @answer_group = AnswerGroup.new(usuario_curso: usuario_curso, question_group: question_group)
       @answers = @question_group.questions.collect do |question|
         @answer_group.answers.build(question_id: question.id)
       end

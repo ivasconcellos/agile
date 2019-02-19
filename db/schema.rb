@@ -56,12 +56,12 @@ ActiveRecord::Schema.define(version: 2019_02_17_032111) do
 
   create_table "answer_groups", force: :cascade do |t|
     t.bigint "question_group_id"
-    t.string "usuario_type"
-    t.bigint "usuario_id"
+    t.string "usuario_curso_type"
+    t.bigint "usuario_curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_group_id"], name: "index_answer_groups_on_question_group_id"
-    t.index ["usuario_type", "usuario_id"], name: "index_answer_groups_on_usuario_type_and_usuario_id"
+    t.index ["usuario_curso_type", "usuario_curso_id"], name: "index_answer_groups_on_usuario_curso_type_and_usuario_curso_id"
   end
 
   create_table "answers", force: :cascade do |t|
@@ -270,10 +270,10 @@ ActiveRecord::Schema.define(version: 2019_02_17_032111) do
     t.string "titulo"
     t.text "descricao"
     t.text "objetivo"
-    t.bigint "usuario_id"
+    t.bigint "usuario_curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["usuario_id"], name: "index_question_groups_on_usuario_id"
+    t.index ["usuario_curso_id"], name: "index_question_groups_on_usuario_curso_id"
   end
 
   create_table "questions", force: :cascade do |t|

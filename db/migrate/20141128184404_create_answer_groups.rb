@@ -3,7 +3,7 @@ class CreateAnswerGroups < ActiveRecord::Migration[5.2]
     create_table :answer_groups do |t|
 
       t.references :question_group
-      t.references :usuario, polymorphic: true
+      t.references :usuario_curso, polymorphic: true
 
       t.timestamps
     end

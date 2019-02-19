@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
 		@question = QuestionForm.new(form_params)
 		respond_to do |format|
 			if @question.save and !@question.pergunta.empty?
-				format.html {redirect_to(:controller => 'questions', :action => 'index', :usuario_id => @question.question_group.usuario_id)}
+				format.html {redirect_to(:controller => 'questions', :action => 'index', :usuario_curso_id => @question.question_group.usuario_curso_id)}
 				flash[:notice] = ('Pergunta cadastrada com sucesso!')
 				format.json { render json: @question, status: :created, location: @question }
 			else
@@ -41,7 +41,7 @@ class QuestionsController < ApplicationController
 		@question = QuestionForm.new(form_params)
 		respond_to do |format|
 			if @question.save
-				format.html {redirect_to(:controller => 'questions', :action => 'index', :usuario_id => @question.question_group.usuario_id)}
+				format.html {redirect_to(:controller => 'questions', :action => 'index', :usuario_curso_id => @question.question_group.usuario_curso_id)}
 				flash[:notice] = ('Pergunta atualizada com sucesso!')
 				format.json { render json: @question, status: :created, location: @question }
 			else

@@ -4,7 +4,7 @@ class CreateQuestionGroups < ActiveRecord::Migration[5.2]
 		t.string  :titulo
 		t.text :descricao
 		t.text :objetivo
-		t.belongs_to :usuario
+		t.belongs_to :usuario_curso
       t.timestamps
     end
   end

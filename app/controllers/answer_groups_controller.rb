@@ -19,8 +19,8 @@ class AnswerGroupsController < ApplicationController
       @answer_group_builder = AnswerGroupBuilder.new(answer_group_params)
 		respond_to do |format|
 		  if @answer_group_builder.save
-		    format.html {redirect_to(:controller => 'question_groups', :action => 'index', :usuario_id => @question_group.usuario_id)}
-			flash[:notice] = ('Questionário respondido com sucesso!')
+		    format.html {redirect_to(:controller => 'question_groups', :action => 'index', :usuario_curso_id => @question_group.usuario_curso_id)}
+			flash[:notice] = ('Pesquisa respondida com sucesso!')
 		  else
 		    format.html { render :new }
         	format.json { render json: @answer_group_builder.errors, status: :unprocessable_entity }
@@ -35,7 +35,7 @@ class AnswerGroupsController < ApplicationController
 
     def answer_group_params
       answer_params = { params: params[:answer_group] }
-      answer_params.merge(usuario: current_usuario, question_group: @question_group)
+      answer_params.merge(usuario_curso: @perfil, question_group: @question_group)
     end
   
 end

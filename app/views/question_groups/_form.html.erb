@@ -2,7 +2,7 @@
 
 	<% if question_group.errors.any? %>
 	    <div id="error_explanation" class="alert alert-danger">
-	      <h2><%= pluralize(question_group.errors.count, "erro(s)") %> - Nível não pôde ser salvo!</h2>
+	      <h2><%= pluralize(question_group.errors.count, "erro(s)") %> - Pesquisa não pôde ser salva!</h2>
 
 	      <ul>
 	      <% question_group.errors.full_messages.each do |message| %>
@@ -12,7 +12,7 @@
 	    </div>
 	<% end %>
  
-	<%= form.hidden_field :usuario_id %>
+	<%= form.hidden_field :usuario_curso_id %>
 
 	<div class="card-body">
 
