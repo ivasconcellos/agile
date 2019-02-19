@@ -73,9 +73,9 @@ class GruposCursosController < ApplicationController
   end
 
   def lista_participantes
-    authorize! :show, GrupoCurso
     @usuario = UsuarioCurso.find_by(curso_id: current_usuario.curso_atual, usuario_id: current_usuario.id)
     @lista_participantes = UsuarioCurso.where(grupo_curso_id: @usuario.grupo_curso_id).page(params[:page]).order('nickname')
+    authorize! :lista_participantes, :grupo
   end
 
   private
