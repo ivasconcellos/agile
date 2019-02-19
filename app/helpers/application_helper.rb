@@ -5,8 +5,9 @@ module ApplicationHelper
 	end
 
 	def checkbox_checked?(answer, option)
-		answers_delimiter = Rapidfire.answers_delimiter
-		answers = answer.resposta.to_s.split(answers_delimiter)
-		answers.include?(option)
-	end
+        answers_delimiter = Rapidfire.answers_delimiter
+        answers = answer.resposta.to_s.split(answers_delimiter)
+        answers.include?(option)
+    end
+	
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_17_032111) do
+ActiveRecord::Schema.define(version: 2019_02_19_200025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,8 +128,6 @@ ActiveRecord::Schema.define(version: 2019_02_17_032111) do
     t.index ["type"], name: "index_ckeditor_assets_on_type"
   end
 
-<<<<<<< HEAD
-=======
   create_table "comentarios", force: :cascade do |t|
     t.bigint "usuario_curso_id"
     t.bigint "forum_id"
@@ -156,7 +154,6 @@ ActiveRecord::Schema.define(version: 2019_02_17_032111) do
     t.index ["usuario_curso_id"], name: "index_conversas_on_usuario_curso_id"
   end
 
->>>>>>> 5003a337a8c2691889cca530fd99af568e19c63d
   create_table "cursos", force: :cascade do |t|
     t.string "nome", null: false
     t.text "descricao"
@@ -305,6 +302,48 @@ ActiveRecord::Schema.define(version: 2019_02_17_032111) do
     t.index ["usuario_curso_id"], name: "index_quizes_on_usuario_curso_id"
   end
 
+  create_table "rapidfire_answers", force: :cascade do |t|
+    t.bigint "attempt_id"
+    t.bigint "question_id"
+    t.text "answer_text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attempt_id"], name: "index_rapidfire_answers_on_attempt_id"
+    t.index ["question_id"], name: "index_rapidfire_answers_on_question_id"
+  end
+
+  create_table "rapidfire_attempts", force: :cascade do |t|
+    t.bigint "survey_id"
+    t.string "user_type"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_id"], name: "index_rapidfire_attempts_on_survey_id"
+    t.index ["user_id", "user_type"], name: "index_rapidfire_attempts_on_user_id_and_user_type"
+    t.index ["user_type", "user_id"], name: "index_rapidfire_attempts_on_user_type_and_user_id"
+  end
+
+  create_table "rapidfire_questions", force: :cascade do |t|
+    t.bigint "survey_id"
+    t.string "type"
+    t.string "question_text"
+    t.string "default_text"
+    t.string "placeholder"
+    t.integer "position"
+    t.text "answer_options"
+    t.text "validation_rules"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_id"], name: "index_rapidfire_questions_on_survey_id"
+  end
+
+  create_table "rapidfire_surveys", force: :cascade do |t|
+    t.string "name"
+    t.text "introduction"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "respostas_perguntas", force: :cascade do |t|
     t.bigint "pergunta_quiz_id"
     t.text "descricao"
@@ -414,15 +453,12 @@ ActiveRecord::Schema.define(version: 2019_02_17_032111) do
   add_foreign_key "avaliacao_tarefa", "tarefa_alunos"
   add_foreign_key "avaliacao_tarefa", "usuario_curso"
   add_foreign_key "avatares", "tema_cursos"
-<<<<<<< HEAD
-=======
   add_foreign_key "comentarios", "comentarios"
   add_foreign_key "comentarios", "foruns"
   add_foreign_key "comentarios", "usuario_curso"
   add_foreign_key "conversas", "conversas"
   add_foreign_key "conversas", "usuario_curso"
   add_foreign_key "conversas", "usuario_curso", column: "destinatario_id"
->>>>>>> 5003a337a8c2691889cca530fd99af568e19c63d
   add_foreign_key "cursos", "tema_cursos"
   add_foreign_key "cursos", "usuarios", column: "proprietario_id"
   add_foreign_key "explicacoes", "modulos"
