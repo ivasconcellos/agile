@@ -1,17 +1,18 @@
 class QuestionsController < ApplicationController
-
-	respond_to :html, :js
+	before_action :authenticate_usuario!
 	before_action :find_question_group!
 	before_action :find_question!, :only => [:edit, :update, :destroy]
 	
 	def index
 		@questions = @question_group.questions
+		authorize! :index, Question
 	end
 
 	def new
 		@question = QuestionForm.new(:question_group => @question_group)
 		@question.question_group_id = params[:question_group_id]
 		@question.tipo = params[:tipo]
+		authorize! :new, Question
 	end
 
 	def create
@@ -32,6 +33,7 @@ class QuestionsController < ApplicationController
 
 	def edit
 		@question = QuestionForm.new(:question => @question)
+		authorize! :edit, Question
 	end
 
 	def update
@@ -39,7 +41,7 @@ class QuestionsController < ApplicationController
 		@question = QuestionForm.new(form_params)
 		respond_to do |format|
 			if @question.save
-				format.html {redirect_to(:controller => 'questions', :action => 'index', :empresa_id => @question.question_group.empresa_id)}
+				format.html {redirect_to(:controller => 'questions', :action => 'index', :usuario_id => @question.question_group.usuario_id)}
 				flash[:notice] = ('Pergunta atualizada com sucesso!')
 				format.json { render json: @question, status: :created, location: @question }
 			else
@@ -50,8 +52,8 @@ class QuestionsController < ApplicationController
 	end
 
 	def destroy
+		authorize! :destroy, Question
 		@grupo = @question.question_group_id
-		@empresa = @question.question_group.empresa_id
 		@question.destroy
 		respond_to do |format|
       		format.html { redirect_to :controller => 'questions', :action => 'index', :question_group_id => @grupo, :empresa_id => @empresa }
@@ -73,6 +75,5 @@ class QuestionsController < ApplicationController
 	def index_location
 		question_group_questions_url(@question_group)
 	end
-
 
 end
