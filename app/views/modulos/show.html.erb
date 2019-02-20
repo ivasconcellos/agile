@@ -74,9 +74,7 @@
 		<% @explicacoes.each do |explicacao| %>
 			<ul class="list-group">
 			  <li class="list-group-item"><b>Nome:</b> <%= link_to explicacao.nome, explicacao %></li>
-			  <li class="list-group-item"><b>Descrição:</b> <%= explicacao.descricao.to_s.html_safe %></li>
-			  <li class="list-group-item"><b>Áudio:</b> <%= explicacao.audio %></li>  
-			  <li class="list-group-item"><b>Cadastrado em:</b> <%= explicacao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>       
+			  <li class="list-group-item"><b>Descrição:</b> <%= explicacao.descricao.to_s.html_safe %></li>     
 			</ul>
 		<% end %>
 	<% end %>

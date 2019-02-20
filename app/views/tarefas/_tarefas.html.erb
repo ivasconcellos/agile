@@ -9,12 +9,12 @@
           </tr>
         </thead>
         <tbody>
-          <% TarefaAluno.joins(:modulo).where("modulos.id = ?", modulo.id).each do |tarefa| %>
+          <% TarefaAluno.joins(:tarefa).where("tarefas.modulo_id = ?", modulo.id).each do |tarefa| %>
             <tr>
-              <td><%= tarefa.nome %></td>
-              <td><%= tarefa.pontuacao %></td>
+              <td><%= tarefa.tarefa.nome %></td>
+              <td><%= tarefa.tarefa.pontuacao %></td>
               <td><%= minha_nota(tarefa.id, @perfil.id) %></td>
-              <td><%= avaliada(tarefa.id, @perfil.id) %></td>
+              <td><%= tarefa.avaliada? ? 'Sim' : 'Não' %></td>
             </tr>
           <% end %>
         </tbody>

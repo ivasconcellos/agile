@@ -101,13 +101,18 @@
                 <li><%= link_to "Todos", salas_chat_path, {class: "nav-link"} %></li>
               </ul>
           </li>
-          <li class="nav-item"><%= link_to "Minhas notas", minhas_notas_path, {class: "fa fa-graduation-cap fa-sm nav-link"} %> </li>  
+          <% if @perfil and @perfil.perfil == 'Aluno' %>
+            <li class="nav-item"><%= link_to "Minhas notas", minhas_notas_path, {class: "fa fa-graduation-cap fa-sm nav-link"} %> </li>
+          <% end %>  
           <li class="nav-item">
             <a class="nav-link" href="/usuario_curso"> <i class="fa fa-user-circle fa-lg"></i> Participantes</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/equipe"> <i class="fa fa-users fa-lg"></i> Minha equipe</a>
-          </li>
+          
+          <% if @perfil and @perfil.perfil == 'Aluno' %>
+            <li class="nav-item">
+              <a class="nav-link" href="/equipe"> <i class="fa fa-users fa-lg"></i> Minha equipe</a>
+            </li>
+          <% end %>
           <li class="nav-item">
             <a class="nav-link" href="/conversas"> <i class="fa fa-question-circle fa-lg"></i> Fale com o Professor</a>
           </li>
