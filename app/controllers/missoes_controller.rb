@@ -7,7 +7,9 @@ class MissoesController < ApplicationController
   def index
     authorize! :index, Missao
     @missoes = Missao.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
-    render layout: 'professor'
+    if @perfil.perfil == 'Professor'
+      render layout: 'professor'
+    end
   end
 
   # GET /missoes/1
