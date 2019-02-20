@@ -128,6 +128,12 @@
           <li class="nav-item">
             <a class="nav-link" href="/conversas"> <i class="fa fa-question-circle fa-lg"></i> Fale com o Professor</a>
           </li>
+          <li class="nav-item">
+            <%= link_to " Comunicados", desenvolvimento_path, {class: "fa fa-envelope fa-sm nav-link"} %>
+          </li>  
+          <li class="nav-item">
+            <%= link_to " Eventos", desenvolvimento_path, {class: "fa fa-calendar fa-sm nav-link"} %>
+          </li> 
           <% if @perfil and @perfil.perfil == 'Professor' %>
             <li class="nav-item">
               <a class="nav-link" href="/controle_professor"> <i class="fa fa-wrench fa-lg"></i> Gerenciar curso</a>

@@ -173,7 +173,6 @@ ActiveRecord::Schema.define(version: 2019_02_19_200025) do
   create_table "explicacoes", force: :cascade do |t|
     t.string "nome", null: false
     t.text "descricao"
-    t.string "audio"
     t.bigint "modulo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
