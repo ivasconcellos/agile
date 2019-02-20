@@ -35,7 +35,7 @@ class Ability
         elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
           can :manage, Comentario
           can :read, Modulo
-          can :read, Curso
+          can :show, Curso
           can :read, Forum
           can :manage, Comentario
           can :manage, Avatar
@@ -44,6 +44,10 @@ class Ability
           can :perms_without_delete, TarefaAluno
           can :read, Quiz
           can :manage, Conversa
+          can :read, SalaChat
+          can :lista_participantes, :grupo
+          can :read, Missao
+          can :read, Explicacao
         else
           can :read, Curso
         end

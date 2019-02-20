@@ -27,7 +27,7 @@ class CursosController < ApplicationController
   def descricao
     authorize! :show, Curso
     @usuario_curso = UsuarioCurso.find_by(curso_id: @curso.id, usuario_id: current_usuario.id)
-    if @usuario_curso.perfil == "Professor"
+    if @usuario_curso and @usuario_curso.perfil == "Professor"
       render layout: 'professor'
     end
   end

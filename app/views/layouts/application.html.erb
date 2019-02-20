@@ -111,7 +111,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/conversas"> <i class="fa fa-question-circle fa-lg"></i> Fale com o Professor</a>
           </li>
-          <% if @perfil.perfil == 'Professor' %>
+          <% if @perfil and @perfil.perfil == 'Professor' %>
             <li class="nav-item">
               <a class="nav-link" href="/controle_professor"> <i class="fa fa-wrench fa-lg"></i> Gerenciar curso</a>
             </li>
