@@ -5,12 +5,8 @@
   <ul class="list-group">
     <li class="list-group-item"><b>Descrição:</b> <%= @curso.descricao.to_s.html_safe %></li> 
     <li class="list-group-item"><b>Professor(a) principal:</b> <%= @curso.proprietario.nome %></li>
-    <% if @curso.data_inicio %> 
-      <li class="list-group-item"><b>Data de início:</b> <%= @curso.data_inicio.strftime("%d/%m/%Y") %></li>
-    <% end %>
-    <% if @curso.data_termino %>
-      <li class="list-group-item"><b>Data de término:</b> <%= @curso.data_termino.strftime("%d/%m/%Y") %></li>
-    <% end %>
+    <li class="list-group-item"><b>Início do curso:</b> <%= @curso.data_hora_inicio %></li>
+    <li class="list-group-item"><b>Término do curso:</b> <%= @curso.data_hora_termino %></li>
     <% if can? :edit, Curso %>
       <li class="list-group-item"><b>Código de acesso:</b> <%= @curso.codigo_acesso %></li>   
       <li class="list-group-item"><b>Ativo:</b> <%= @curso.ativo? ? 'Sim' : 'Não' %></li>

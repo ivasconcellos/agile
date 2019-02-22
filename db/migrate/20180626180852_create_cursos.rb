@@ -4,7 +4,9 @@ class CreateCursos < ActiveRecord::Migration[5.2]
       t.string :nome, null: false
       t.text :descricao
       t.date :data_inicio
+      t.time :hora_inicio
       t.date :data_termino
+      t.time :hora_termino
       t.string :codigo_acesso, limit: 8, null: false
       t.boolean :ativo, default: true
       t.boolean :publico, default: false

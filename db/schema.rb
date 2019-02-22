@@ -172,7 +172,9 @@ ActiveRecord::Schema.define(version: 2019_02_22_125443) do
     t.string "nome", null: false
     t.text "descricao"
     t.date "data_inicio"
+    t.time "hora_inicio"
     t.date "data_termino"
+    t.time "hora_termino"
     t.string "codigo_acesso", limit: 8, null: false
     t.boolean "ativo", default: true
     t.boolean "publico", default: false
@@ -319,7 +321,9 @@ ActiveRecord::Schema.define(version: 2019_02_22_125443) do
     t.integer "max_tentativas"
     t.bigint "usuario_curso_id"
     t.date "data_inicio"
+    t.time "hora_inicio"
     t.date "data_termino"
+    t.time "hora_termino"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["curso_id"], name: "index_quizes_on_curso_id"
@@ -410,8 +414,10 @@ ActiveRecord::Schema.define(version: 2019_02_22_125443) do
     t.text "nome"
     t.text "descricao"
     t.float "pontuacao"
-    t.date "data_limite"
-    t.time "hora_limite"
+    t.date "data_inicio"
+    t.time "hora_inicio"
+    t.date "data_termino"
+    t.time "hora_termino"
     t.boolean "publico", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
