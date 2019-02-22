@@ -22,7 +22,7 @@
 
   </head>
   <% if @perfil %>
-    <body id="page-top" style=" background-image: url(<%= @current_usuario.curso_atual.tema_curso.imagem %>); background-repeat: no-repeat; background-size: cover; color: <%= @current_usuario.curso_atual.tema_curso.cor_texto %>">
+    <body id="page-top" style=" background-image: url(<%= rails_blob_url(@current_usuario.curso_atual.tema_curso.imagem) %>); background-repeat: no-repeat; background-size: cover; color: <%= @current_usuario.curso_atual.tema_curso.cor_texto %>">
   <% else %>
     <body>
   <% end %>
@@ -65,16 +65,27 @@
 
         <ul class="list-unstyled components">  
 
+          <% if current_usuario.perfil == 'Gestor' %>
+            <%= render 'controle/gestor' %>
+          <% end %>
+
+          <% if current_usuario.perfil != 'Gestor' and !@perfil %>
+
+            <li class="nav-item">
+              <br>
+              <h3 class="agile"><%= link_to @current_usuario.curso_atual, class: "nav-link text-center" do %><i class="fa fa-university fa-lg"> </i> Curso<% end %></h3>
+            </li>
+            <li class="nav-item">
+              <%= link_to " Detalhes do curso", descricao_path(id: @current_usuario.curso_atual), {class: "fa fa-info-circle fa-sm nav-link"} %>
+            </li>
+          <% end %>
+
           <% if @perfil and @perfil.perfil == 'Aluno' %>
             <%= render 'controle/aluno' %>
           <% end %>
 
           <% if @perfil and @perfil.perfil == 'Professor' %>
             <%= render 'controle/professor' %>
-          <% end %>
-
-          <% if current_usuario.perfil == 'Gestor' %>
-            <%= render 'controle/gestor' %>
           <% end %>
 
         </ul>

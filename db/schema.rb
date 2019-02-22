@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_19_200025) do
+ActiveRecord::Schema.define(version: 2019_02_22_020403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,15 @@ ActiveRecord::Schema.define(version: 2019_02_19_200025) do
     t.boolean "ativo", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "badges_alunos", force: :cascade do |t|
+    t.bigint "usuario_curso_id"
+    t.bigint "badges_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["badges_id"], name: "index_badges_alunos_on_badges_id"
+    t.index ["usuario_curso_id"], name: "index_badges_alunos_on_usuario_curso_id"
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
@@ -445,6 +454,8 @@ ActiveRecord::Schema.define(version: 2019_02_19_200025) do
   add_foreign_key "avaliacao_tarefa", "tarefa_alunos"
   add_foreign_key "avaliacao_tarefa", "usuario_curso"
   add_foreign_key "avatares", "grupos"
+  add_foreign_key "badges_alunos", "badges", column: "badges_id"
+  add_foreign_key "badges_alunos", "usuario_curso"
   add_foreign_key "comentarios", "comentarios"
   add_foreign_key "comentarios", "foruns"
   add_foreign_key "comentarios", "usuario_curso"
