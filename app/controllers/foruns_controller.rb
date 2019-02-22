@@ -7,7 +7,6 @@ class ForunsController < ApplicationController
   def index
     authorize! :index, Forum
     @foruns = Forum.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
-    render layout: 'professor'
   end
 
   # GET /foruns/1
@@ -22,13 +21,11 @@ class ForunsController < ApplicationController
     authorize! :new, Forum
     @forum = Forum.new
     @forum.curso_id = params[:curso_id]
-    render layout: 'professor'
   end
 
   # GET /foruns/1/edit
   def edit
     authorize! :edit, Forum
-    render layout: 'professor'
   end
 
   # POST /foruns

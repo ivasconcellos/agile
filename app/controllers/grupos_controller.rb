@@ -8,27 +8,23 @@ class GruposController < ApplicationController
     authorize! :index, Grupo
     @q = Grupo.ransack(params[:q])
     @grupos = @q.result.paginate(page: params[:page]).order('nome')
-    render layout: 'gestor'
   end
 
   # GET /grupos/1
   # GET /grupos/1.json
   def show
     authorize! :show, Grupo
-    render layout: 'gestor'
   end
 
   # GET /grupos/new
   def new
     authorize! :new, Grupo
     @grupo = Grupo.new
-    render layout: 'gestor'
   end
 
   # GET /grupos/1/edit
   def edit
     authorize! :edit, Grupo
-    render layout: 'gestor'
   end
 
   # POST /grupos
@@ -41,7 +37,7 @@ class GruposController < ApplicationController
         format.html { redirect_to @grupo, notice: 'Grupo cadastrado com sucesso!' }
         format.json { render :show, status: :created, location: @grupo }
       else
-        format.html { render :new, layout: 'gestor' }
+        format.html { render :new }
         format.json { render json: @grupo.errors, status: :unprocessable_entity }
       end
     end
@@ -55,7 +51,7 @@ class GruposController < ApplicationController
         format.html { redirect_to @grupo, notice: 'Grupo atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @grupo }
       else
-        format.html { render :edit, layout: 'gestor' }
+        format.html { render :edit }
         format.json { render json: @grupo.errors, status: :unprocessable_entity }
       end
     end

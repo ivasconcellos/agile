@@ -23,13 +23,13 @@
             </tr>
           <% end %>
         <% else %>
-          <% @alunos.each do |alunos| %>
+          <% @alunos.each do |aluno| %>
             <tr>
-              <td><%= professor.nickname %></td>
-              <td><%= link_to 'Enviar Mensagem', {controller: 'conversas', action: 'new', destinatario_id: professor.id} %></td>
+              <td><%= aluno.nickname %></td>
+              <td><%= link_to 'Enviar Mensagem', {controller: 'conversas', action: 'new', destinatario_id: aluno.id} %></td>
               <td>
                 <% if can? :show, Conversa %>
-                  <%= link_to 'Ver mensagens enviadas/recebidas', {controller: 'conversas', action: 'conversas_professor', professor_id: professor.id} %>
+                  <%= link_to 'Ver mensagens enviadas/recebidas', {controller: 'conversas', action: 'conversas_professor', professor_id: aluno.id} %>
                 <% end %>
               </td>
             </tr>

@@ -1,0 +1,68 @@
+<li class="nav-item">
+  <br>
+  <h3 class="agile"><%= link_to @current_usuario.curso_atual, class: "nav-link text-center" do %><i class="fa fa-university fa-lg"> </i> Curso<% end %></h3>
+</li>
+
+<li class="nav-item">
+  <%= link_to " Detalhes do curso", descricao_path(id: @current_usuario.curso_atual), {class: "fa fa-info-circle fa-sm nav-link"} %>
+</li>
+
+<li class="nav-item">
+  <%= link_to " Meu perfil", meu_perfil_path, {class: "fa fa-user fa-sm nav-link"} %>
+</li>
+
+<li class="nav-item">
+  <%= link_to " Módulos", modulos_path, {class: "fa fa-book fa-sm nav-link"} %>
+</li>
+
+<li class="nav-item">
+  <%= link_to " Materiais", materiais_path, {class: "fa fa-file-text fa-sm nav-link"} %> 
+</li>
+
+<li class="nav-item">
+  <%= link_to " Tarefas", tarefas_path, {class: "fa fa-tasks fa-sm fa-sm nav-link"} %>
+</li>  
+
+<li class="nav-item">
+  <%= link_to " Fóruns", foruns_path, {class: "fa fa-clipboard fa-sm nav-link"} %>
+</li>
+
+<li class="nav-item">
+  <%= link_to " Chats", salas_chat_path, {class: "fa fa-comments fa-sm nav-link"} %>
+</li>
+
+<li class="nav-item">
+  <%= link_to " Quiz", quizes_path, {class: "fa fa-check-square fa-sm nav-link"} %>
+</li> 
+
+<li class="nav-item">
+  <%= link_to " Missões", missoes_path, {class: "fa fa-bullseye fa-sm nav-link"} %>
+</li>
+
+<li class="nav-item">
+  <%= link_to " Explicações", explicacoes_path, {class: "fa fa-plus-square fa-sm nav-link"} %>
+</li>
+
+<li class="nav-item">
+  <%= link_to " Pesquisas", question_groups_path, {class: "fa fa-search fa-sm nav-link"} %>
+</li>
+
+<li class="nav-item">
+  <%= link_to " Mensagens", conversas_path, {class: "fa fa-commenting fa-sm nav-link"} %>
+</li>       
+
+<li class="nav-item">
+  <%= link_to " Comunicados", desenvolvimento_path, {class: "fa fa-envelope fa-sm nav-link"} %>
+</li>  
+
+<li class="nav-item">
+  <%= link_to " Eventos", desenvolvimento_path, {class: "fa fa-calendar fa-sm nav-link"} %>
+</li> 
+
+<li class="nav-item"><a class="nav-link" href="/grupos_cursos"> <i class="fa fa-user-circle fa-lg"></i> Grupos</a></li>  
+
+<li class="nav-item">
+  <a class="nav-link" href="/usuario_curso"> <i class="fa fa-users fa-sm"></i> Participantes </a>
+</li>  
+
+<li class="nav-item"><a class="nav-link" href="/notas"> <i class="fa fa-graduation-cap fa-sm"></i> Notas da turma </a></li>  

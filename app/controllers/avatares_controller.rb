@@ -5,7 +5,6 @@ class AvataresController < ApplicationController
   def index
     @q = Avatar.ransack(params[:q])
     @avatares = @q.result.paginate(page: params[:page]).order('nome')
-    render layout: 'gestor'
     authorize! :index, Avatar
   end
 
@@ -13,7 +12,6 @@ class AvataresController < ApplicationController
   # GET /avatares/1.json
   def show
     authorize! :show, Avatar
-    render layout: 'gestor'
   end
 
   # GET /avatares/new
@@ -21,13 +19,11 @@ class AvataresController < ApplicationController
     authorize! :new, Avatar
     @avatar = Avatar.new
     @avatar.tema_curso_id = params[:tema_curso_id]
-    render layout: 'gestor'
   end
 
   # GET /avatares/1/edit
   def edit
     authorize! :edit, Avatar
-    render layout: 'gestor'
   end
 
   # POST /avatares
@@ -40,7 +36,7 @@ class AvataresController < ApplicationController
         format.html { redirect_to @avatar.tema_curso, notice: 'Avatar cadastrado com sucesso!' }
         format.json { render :show, status: :created, location: @avatar }
       else
-        format.html { render :new, layout: 'gestor' }
+        format.html { render :new }
         format.json { render json: @avatar.errors, status: :unprocessable_entity }
       end
     end
@@ -54,7 +50,7 @@ class AvataresController < ApplicationController
         format.html { redirect_to @avatar.tema_curso, notice: 'Avatar atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @avatar }
       else
-        format.html { render :edit, layout: 'gestor' }
+        format.html { render :edit }
         format.json { render json: @avatar.errors, status: :unprocessable_entity }
       end
     end
