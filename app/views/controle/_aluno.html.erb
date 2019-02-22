@@ -1,0 +1,85 @@
+<li class="nav-item">
+  <br>
+  <h3 class="agile"><%= link_to @current_usuario.curso_atual, class: "nav-link text-center" do %><i class="fa fa-university fa-lg"> </i> Curso<% end %></h3>
+</li>
+
+<li class="nav-item">
+  <%= link_to " Meu perfil", meu_perfil_path, {class: "fa fa-user fa-sm nav-link"} %>
+</li>
+
+<li class="nav-item">
+    <a href="#modulos" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-book fa-lg"></i> Módulos</a>
+    <ul class="collapse list-unstyled" id="modulos">
+      <% @current_usuario.curso_atual.modulos.each_with_index do |modulo, index| %>
+        <% if modulo.publico %>
+          <li>
+            <%= link_to "Modulo #{index+1}", modulo, {class: "nav-link"} %></a>
+          </li>
+        <% end%>
+      <% end %>
+    </ul>
+</li>
+
+<li class="nav-item">
+    <a href="#forum" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-clipboard fa-lg"></i> Fóruns</a>
+    <ul class="collapse list-unstyled" id="forum">
+      <% @current_usuario.curso_atual.foruns.each_with_index do |forum, index| %>
+        <li>
+            <%= link_to "Fórum #{index+1}", forum, {class: "nav-link"} %></a>
+        </li>
+      <% end %>
+      <li><%= link_to "Todos", foruns_path, {class: "nav-link"} %></li>
+    </ul>
+</li>
+
+<li class="nav-item">
+    <a href="#chat" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-comments fa-lg"></i> Chats</a>
+    <ul class="collapse list-unstyled" id="chat">
+      <% @current_usuario.curso_atual.salas_chat.each do |chat| %>
+        <li>
+            <%= link_to chat.nome, chat, {class: "nav-link"} %></a>
+        </li>
+      <% end %>
+      <li><%= link_to "Todos", salas_chat_path, {class: "nav-link"} %></li>
+    </ul>
+</li>
+
+<li class="nav-item">
+  <%= link_to " Missões", missoes_path, {class: "fa fa-bullseye fa-sm nav-link"} %>
+</li>
+
+<li class="nav-item">
+  <%= link_to " Quiz", quizes_path, {class: "fa fa-check-square fa-sm nav-link"} %>
+</li> 
+
+<li class="nav-item">
+  <%= link_to " Explicações", explicacoes_path, {class: "fa fa-plus-square fa-sm nav-link"} %>
+</li>
+
+<li class="nav-item">
+  <%= link_to " Pesquisas", question_groups_path, {class: "fa fa-search fa-sm nav-link"} %>
+</li>
+
+<li class="nav-item">
+  <%= link_to " Minhas notas", minhas_notas_path, {class: "fa fa-graduation-cap fa-sm nav-link"} %>
+</li>
+
+<li class="nav-item">
+  <%= link_to " Participantes", {controller: 'usuario_curso', action: 'index'}, class: "fa fa-user-circle fa-sm nav-link" %>
+</li>
+
+<li class="nav-item">
+  <%= link_to " Equipe", equipe_path, {class: "fa fa-users fa-sm nav-link"} %>
+</li>
+
+<li class="nav-item">
+  <%= link_to " Fale com o Professor", conversas_path, {class: "fa fa-question-circle fa-sm nav-link"} %>
+</li>
+
+<li class="nav-item">
+  <%= link_to " Comunicados", desenvolvimento_path, {class: "fa fa-envelope fa-sm nav-link"} %>
+</li>  
+
+<li class="nav-item">
+  <%= link_to " Eventos", desenvolvimento_path, {class: "fa fa-calendar fa-sm nav-link"} %>
+</li>

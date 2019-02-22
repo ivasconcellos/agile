@@ -1,6 +1,10 @@
 <div class="card">
-  <div class="card-header bg-primary text-left">
-    <%= image_tag mensagem.usuario_curso.avatar.imagem.url(:thumb), class: "img-responsive img-thumbnail" %> <%= mensagem.usuario_curso.nickname %> <%= mensagem.created_at.strftime("%d/%m/%Y - %H:%M:%S") %>
-  </div>
-    <p class="card-text text-secondary"> <%= mensagem.texto %></p>
+    
+  <div class="card text-white o-hidden h-100 curso">    
+    <div class="card-footer card-footer-size bg-primary">
+      <p class="card-text"><b><%= mensagem.usuario_curso.nickname %> 
+      	<%= mensagem.created_at.strftime("%d/%m/%Y - %H:%M:%S") %> diz:</b> <%= mensagem.texto %></p>              
+    </div>
+  </div>	
+	
 </div>

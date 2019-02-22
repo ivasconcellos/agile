@@ -14,6 +14,10 @@
     </div>
   <% end %>
 
+  <div class="alert alert-success" role="alert">
+    Bem-vindo ao curso!
+  </div>
+
   <div id="accordion">
     <% @modulos.each_with_index do |modulo, index| %>
     <div class="card">
@@ -56,7 +60,7 @@
 
             <div class="col-xl-9 col-sm-9 col-md-9">
               <% @tarefas.each do |tarefa| %>
-                <%= link_to tarefa.descricao, tarefa, class: "fa fa-tasks text-dark" %>
+                <%= link_to tarefa.nome, tarefa, class: "fa fa-tasks text-dark" %>
               <% end %>
             </div>
 

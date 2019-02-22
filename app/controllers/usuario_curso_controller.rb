@@ -7,7 +7,6 @@ class UsuarioCursoController < ApplicationController
   def index
     @usuario_curso = UsuarioCurso.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
     authorize! :index, UsuarioCurso
-    render layout: 'professor'
   end
 
   # GET /usuario_curso/1
@@ -71,6 +70,7 @@ class UsuarioCursoController < ApplicationController
 
   def meu_perfil
     @usuario_curso = UsuarioCurso.where(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id).first
+    @badges = BadgeAluno.where(usuario_curso_id: @usuario_curso.id) 
     authorize! :show, UsuarioCurso
   end
 

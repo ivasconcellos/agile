@@ -1,25 +1,38 @@
-<h2>Área de administração</h2>
+<div class="col-md-4 offset-md-4 col-sm-10 offset-sm-1">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="text-center mb-4">
+    <%= image_tag ("coelho2.png"), class: "mb-4 img-responsive", width: "100", height: "100" %>
+    <h1 class="agile">AGILE</h1>
+  </div>   
 
-  <div class="form-group">
-    <label for="inputEmail">E-mail</label>
-    <%= f.email_field :email, autofocus: true, class: "form-control" %>    
+  <div class="card card-login mx-auto mt-6">
+    <div class="card-header">Área de Administração</div> 
+          
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="inputEmail">E-mail</label>
+            <%= f.email_field :email, autofocus: true, class: "form-control" %>    
+          </div>
+
+          <div class="form-group">
+            <label for="inputpassword">Senha</label>
+            <%= f.password_field :password, autocomplete: "off", class: "form-control" %> 
+          </div>
+
+          <div class="text-center">
+            <%= f.submit "Acessar", class: "btn btn-lg btn-primary btn-block" %>
+          </div>
+        </div>
+      <% end %>
+
+      <br>
+      
+      <div class="text-center">
+        <%= render "admins/shared/links" %>
+      </div>
+    </div>
   </div>
 
 
-  <div class="form-group">
-    <label for="inputEmail">Senha</label>
-    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>    
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Acessar", class: "btn btn-lg btn-primary btn-block" %>
-  </div>
-
-<% end %>
-
-<br>
-<div class="text-center">
 </div>
-

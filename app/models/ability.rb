@@ -25,11 +25,20 @@ class Ability
           can :manage, AvaliacaoTarefa
           can :manage, Quiz
           can :manage, Evento
+          can :read, Grupo
+          can :manage, GrupoCurso
+          can :manage, Missao
           can :controle_professor,:controle
+          can :manage, SalaChat
+          can :manage, Conversa
+          can :manage, QuestionGroup
+          can :manage, Question
+          can :manage, PerguntaQuiz
+          can :manage, RespostaPergunta
         elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
           can :manage, Comentario
           can :read, Modulo
-          can :read, Curso
+          can :show, Curso
           can :read, Forum
           can :manage, Comentario
           can :manage, Avatar
@@ -37,6 +46,11 @@ class Ability
           can :read, Tarefa
           can :perms_without_delete, TarefaAluno
           can :read, Quiz
+          can :manage, Conversa
+          can :read, SalaChat
+          can :lista_participantes, :grupo
+          can :read, Missao
+          can :read, Explicacao
         else
           can :read, Curso
         end

@@ -5,32 +5,29 @@ class ModulosController < ApplicationController
   # GET /modulos
   # GET /modulos.json
   def index
+    authorize! :index, Modulo
     @modulos = Modulo.where(curso_id: current_usuario.curso_atual_id).page(params[:page]).order('nome')
-    authorize! :read, Modulo
-    render layout: 'professor'
   end
 
   # GET /modulos/1
   # GET /modulos/1.json
   def show
+    authorize! :show, Modulo
     @materiais = Material.where(modulo_id: @modulo)
     @explicacoes = Explicacao.where(modulo_id: @modulo)
     @tarefas = Tarefa.where(modulo_id: @modulo)
-    authorize! :show, @modulo
   end
 
   # GET /modulos/new
   def new
+    authorize! :new, Modulo
     @modulo = Modulo.new
     @modulo.curso_id = params[:curso_id]
-    authorize! :new, @modulo
-    render layout: 'professor'
   end
 
   # GET /modulos/1/edit
   def edit
-    authorize! :edit, @modulo
-    render layout: 'professor'
+    authorize! :edit, Modulo
   end
 
   # POST /modulos
@@ -66,7 +63,7 @@ class ModulosController < ApplicationController
   # DELETE /modulos/1
   # DELETE /modulos/1.json
   def destroy
-    authorize! :destroy, @modulo
+    authorize! :destroy, Modulo
     @modulo.destroy
     respond_to do |format|
       format.html { redirect_to modulos_url, notice: 'Módulo excluído com sucesso!' }

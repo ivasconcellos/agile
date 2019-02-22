@@ -18,7 +18,11 @@
     <div class="form-group row">
       <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Grupo*</label>
       <div class="col-md-6">
-        <%= form.collection_select(:grupo_id, Grupo.all.order('nome'), :id, :nome, :prompt => true, class: "form-control")%>
+        <% Grupo.where(ativo: true).each do |grupo| %>
+          <p><%= image_tag grupo.imagem.variant(resize: "200x200"), class: "img-responsive img-thumbnail" %></p>
+          <p><%= form.radio_button :grupo_id, grupo.id %>
+          <%= grupo.nome %></p>
+        <% end %>      
       </div>
     </div>
 

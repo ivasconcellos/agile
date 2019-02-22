@@ -5,6 +5,7 @@ class MateriaisController < ApplicationController
   # GET /materiais
   # GET /materiais.json
   def index
+    authorize! :index, Material
     if params[:modulo_id]
       @materiais = Material.where('modulo_id = ?',
        params[:modulo_id]).page(params[:page]).order('nome')
@@ -12,14 +13,12 @@ class MateriaisController < ApplicationController
       @materiais = Material.joins(:modulo).where('modulos.curso_id = ?',
        current_usuario.curso_atual_id).page(params[:page]).order('nome')
     end
-    render layout: 'professor'
-    authorize! :read, Material
   end
 
   # GET /materiais/1
   # GET /materiais/1.json
   def show
-    authorize! :show, @material
+    authorize! :show, Material
   end
 
   # GET /materiais/new
@@ -27,12 +26,12 @@ class MateriaisController < ApplicationController
     @material = Material.new
     @material.modulo_id = params[:modulo_id]
     @material.tipo = params[:tipo]
-    authorize! :new, @material
+    authorize! :new, Material
   end
 
   # GET /materiais/1/edit
   def edit
-    authorize! :edit, @material
+    authorize! :edit, Material
   end
 
   # POST /materiais
@@ -68,7 +67,7 @@ class MateriaisController < ApplicationController
   # DELETE /materiais/1
   # DELETE /materiais/1.json
   def destroy
-    authorize! :destroy, @material
+    authorize! :destroy, Material
     @material.destroy
     respond_to do |format|
       format.html { redirect_to materiais_url, notice: 'Material excluído com sucesso!' }
@@ -84,6 +83,6 @@ class MateriaisController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def material_params
-      params.require(:material).permit(:nome, :texto, :link, :modulo_id, :publico, :arquivo, :tipo, :imagem, :video)
+      params.require(:material).permit(:nome, :texto, :modulo_id, :publico, :arquivo, :tipo)
     end
 end

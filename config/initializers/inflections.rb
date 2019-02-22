@@ -26,6 +26,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'pergunta_quiz', 'perguntas_quiz'
 	inflect.irregular 'resposta_pergunta', 'respostas_perguntas'
 	inflect.irregular 'grupo_curso', 'grupos_cursos'
+	inflect.irregular 'badge_aluno', 'badges_alunos'
 end
 
 # These inflection rules are supported but not enabled by default:

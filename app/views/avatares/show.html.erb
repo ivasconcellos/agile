@@ -1,22 +1,52 @@
 <div class="card">
 
-  <div class="card-header">Avatar do Tema do Curso</div>
+  <div class="card-header">Avatar</div>
 
-  <ul class="list-group">
-    <li class="list-group-item"><%= image_tag @avatar.imagem.url(:thumb), class: "img-responsive img-thumbnail" %></li>
-    <li class="list-group-item"><b>Tema do curso:</b> <%= @avatar.tema_curso.nome %></li>
-    <li class="list-group-item"><b>Nome:</b> <%= @avatar.nome %></li>
-    <li class="list-group-item"><b>Perfil:</b> <%= @avatar.perfil %></li>
-    <li class="list-group-item"><b>Ativo:</b> <%= @avatar.ativo? ? 'Sim' : 'Não' %></li>  
-    <li class="list-group-item"><b>Cadastrado em:</b> <%= @avatar.created_at.strftime("%d/%m/%Y") %></li>     
-  </ul>
+  <div class="card-body">
+
+      <div class="row">
+          <div class="col-lg-3">
+            <div class="input-group mb-3">
+              <%= image_tag @avatar.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail" %>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="input-group mb-3">
+              <p> <label>Nome: </label>          
+              <%= @avatar.nome %></p>
+            </div>
+
+            <div class="input-group mb-3">
+              <p> <label>Grupo: </label>          
+              <%= @avatar.grupo.nome %></p>
+            </div>
+
+            <div class="input-group mb-3">
+              <p> <label>Perfil: </label>          
+              <%= @avatar.perfil %></p>
+            </div>
+
+            <div class="input-group mb-3">
+              <p><label>Ativo: </label>          
+              <%= @avatar.ativo? ? 'Sim' : 'Não' %></p>
+            </div>
+            
+            <div class="input-group mb-3">
+                <p><label>Cadastrado em: </label>          
+              <%= @avatar.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></p>
+            </div>
+        </div>
+      </div>
+
+  </div>
 
   <br>
   <div class="card-footer text-muted">
     <% if can? :edit, Avatar %>
       <%= link_to 'Atualizar', edit_avatar_path(@avatar), class: "btn btn-md btn-primary" %>
     <% end %>
-    <%= link_to 'Voltar',  @avatar.tema_curso, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar',  @avatar.grupo, class: "btn btn-md btn-secondary" %>
   </div>
 
 </div>

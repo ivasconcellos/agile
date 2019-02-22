@@ -6,6 +6,8 @@ class CreateTarefas < ActiveRecord::Migration[5.2]
       t.text :nome
       t.text :descricao
       t.float :pontuacao
+      t.date :data_limite
+      t.time :hora_limite
       t.boolean :publico, default: true
 
       t.timestamps

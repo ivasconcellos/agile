@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-header">Perguntas</div>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th class="text-center">Nome</th>
+            <th colspan="3" class="text-center">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @questions.each do |questao| %>
+            <tr>
+              <td><%= questao.pergunta %></td>
+              <% if can? :edit, Question %>
+                <td><%= link_to "Atualzar", [:edit, questao.question_group, questao]%></td>
+              <% end %>
+              <% if can? :destroy, Question %>
+                <td><%= link_to "Excluir", [questao.question_group, questao], method: :delete, data: { confirm: 'Deseja realmente excluir a Pergunta?' } %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <br>
+
+    <div class="card-footer text-muted">
+      <% if can? :new, Question %>
+        <%= link_to 'Cadastrar Pergunta', new_question_group_question_path(@question_group), class: "btn btn-md btn-primary" %>
+      <% end %>
+      <%= link_to 'Voltar', {:controller => 'question_groups', :action => 'index', :id => @question_group.id, :usuario_curso_id => @perfil.id}, class: "btn btn-md btn-secondary" %>
+    </div>
+
+</div>

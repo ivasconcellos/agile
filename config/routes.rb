@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
+
   resources :eventos
-  resources :conversas
+  resources :badges_alunos, except: [:show, :edit, :destroy]
+  resources :conversas, except: [:edit]
   resources :grupos_cursos
   resources :artefatos
   resources :grupos
@@ -17,7 +19,7 @@ Rails.application.routes.draw do
   resources :tarefas
   resources :modulos
   resources :avatares
-  resources :comentarios
+  resources :comentarios, except: [:index, :show]
   resources :foruns
   resources :explicacoes
   resources :usuario_curso
@@ -64,4 +66,13 @@ Rails.application.routes.draw do
 
   mount ActionCable.server => '/cable'
   
+  mount Rapidfire::Engine => "/rapidfire"
+  
+  resources :question_groups do
+    get 'results', on: :member
+
+    resources :questions
+    resources :answer_groups, only: [:new, :create, :show]
+  end
+  resources :questions
 end

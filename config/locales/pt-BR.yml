@@ -105,6 +105,7 @@ pt-BR:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      content_type_invalid: 'Formato de arquivo inválido: %{content_type}'     
       accepted: deve ser aceito
       blank: não pode ficar em branco
       present: deve ficar em branco
@@ -226,12 +227,6 @@ pt-BR:
     attributes:
       user:
         current_password: "Senha atual"
-
-
-  errors:
-    messages:
-      in_between: "deve ter entre %{min} e %{max}"
-      spoofed_media_type: "tem uma extensão que não corresponde ao seu conteúdo"
 
   number:
     human:

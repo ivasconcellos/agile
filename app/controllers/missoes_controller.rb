@@ -5,9 +5,8 @@ class MissoesController < ApplicationController
   # GET /missoes
   # GET /missoes.json
   def index
+    authorize! :index, Missao
     @missoes = Missao.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
-    authorize! :read, Missao
-    render layout: 'professor'
   end
 
   # GET /missoes/1
@@ -18,11 +17,11 @@ class MissoesController < ApplicationController
 
   # GET /missoes/new
   def new
+    authorize! :new, Missao
     @missao = Missao.new
     @usuario_curso = UsuarioCurso.find_by(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual.id)
     @missao.usuario_curso_id = @usuario_curso.id
     @missao.curso_id = @usuario_curso.curso.id
-    authorize! :new, Missao
   end
 
   # GET /missoes/1/edit

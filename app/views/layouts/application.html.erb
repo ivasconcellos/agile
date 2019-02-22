@@ -21,8 +21,11 @@
 
 
   </head>
-
-  <body id="page-top" style=" background-image: url(<%= @current_usuario.curso_atual.tema_curso.imagem %>); background-repeat: no-repeat; background-size: cover; color: <%= @current_usuario.curso_atual.tema_curso.cor_texto %>">
+  <% if @perfil %>
+    <body id="page-top" style=" background-image: url(<%= rails_blob_url(@current_usuario.curso_atual.tema_curso.imagem) %>); background-repeat: no-repeat; background-size: cover; color: <%= @current_usuario.curso_atual.tema_curso.cor_texto %>">
+  <% else %>
+    <body>
+  <% end %>
 
     <nav class="navbar navbar-expand static-top">
       <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
@@ -46,7 +49,11 @@
 
     </nav>
     <div id="wrapper">
-      <nav id="sidebar" class="sidebar navbar-nav" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
+      <% if @perfil %>
+        <nav id="sidebar" class="sidebar navbar-nav" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
+      <% else %>
+        <nav id="sidebar" class="sidebar navbar-nav">
+      <% end %>
         
         <div class="sidebar-header">
           <%if @perfil and @perfil.avatar %>
@@ -55,70 +62,30 @@
           <% end %>
         </div>
 
+        <ul class="list-unstyled components">  
 
-        <ul class="list-unstyled components"> 
-          <li class="nav-item">
-            <br>
-            <h3 class="agile"><%= link_to @current_usuario.curso_atual, class: "nav-link text-center" do %><i class="fa fa-university fa-lg"> </i> Curso<% end %></h3>
-          </li>           
-          <li class="nav-item">
-            <%= link_to  descricao_path(id: @current_usuario.curso_atual), class: "nav-link" do %><i class="fa fa-info-circle fa-lg"> </i> Detalhes do curso<% end %>
-          </li>
-          <li class="nav-item">
-              <%= link_to  eventos_path, class: "nav-link" do %><i class="fa fa-calendar fa-lg"> </i> Eventos<% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to meu_perfil_path, class: "nav-link" do %><i class="fa fa-user fa-lg"> </i> Meu perfil<% end %>
-          </li>
-          <li class="nav-item">
-              <a href="#modulos" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-book fa-lg"></i> Módulos</a>
-              <ul class="collapse list-unstyled" id="modulos">
-                <% @current_usuario.curso_atual.modulos.each_with_index do |modulo, index| %>
-                  <% if modulo.publico %>
-                    <li>
-                      <%= link_to "Modulo #{index+1}", modulo, {class: "nav-link"} %></a>
-                    </li>
-                  <% end%>
-                <% end %>
-              </ul>
-          </li>
-          <li class="nav-item">
-              <a href="#forum" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-clipboard fa-lg"></i> Fóruns</a>
-              <ul class="collapse list-unstyled" id="forum">
-                <% @current_usuario.curso_atual.foruns.each_with_index do |forum, index| %>
-                  <li>
-                      <%= link_to "Fórum #{index+1}", forum, {class: "nav-link"} %></a>
-                  </li>
-                <% end %>
-                <li><%= link_to "Todos", foruns_path, {class: "nav-link"} %></li>
-              </ul>
-          </li>
-          <li class="nav-item">
-              <a href="#chat" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-comments fa-lg"></i> Chats</a>
-              <ul class="collapse list-unstyled" id="chat">
-                <% @current_usuario.curso_atual.salas_chat.each do |chat| %>
-                  <li>
-                      <%= link_to chat.nome, chat, {class: "nav-link"} %></a>
-                  </li>
-                <% end %>
-                <li><%= link_to "Todos", salas_chat_path, {class: "nav-link"} %></li>
-              </ul>
-          </li>
-          <li class="nav-item"><%= link_to "Minhas notas", minhas_notas_path, {class: "fa fa-graduation-cap fa-sm nav-link"} %> </li>  
-          <li class="nav-item">
-            <a class="nav-link" href="/usuario_curso"> <i class="fa fa-users fa-lg"></i> Participantes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/equipe"> <i class="fa fa-users fa-lg"></i> Equipe</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/conversas"> <i class="fa fa-users fa-lg"></i> Professor(es)</a>
-          </li>
-          <% if @perfil.perfil == 'Professor' %>
+          <% if current_usuario.perfil == 'Gestor' %>
+            <%= render 'controle/gestor' %>
+          <% end %>
+
+          <% if current_usuario.perfil != 'Gestor' and !@perfil %>
             <li class="nav-item">
-              <a class="nav-link" href="/controle_professor"> <i class="fa fa-wrench fa-lg"></i> Gerenciar curso</a>
+              <br>
+              <h3 class="agile"><%= link_to @current_usuario.curso_atual, class: "nav-link text-center" do %><i class="fa fa-university fa-lg"> </i> Curso<% end %></h3>
+            </li>
+            <li class="nav-item">
+              <%= link_to " Detalhes do curso", descricao_path(id: @current_usuario.curso_atual), {class: "fa fa-info-circle fa-sm nav-link"} %>
             </li>
           <% end %>
+
+          <% if @perfil and @perfil.perfil == 'Aluno' %>
+            <%= render 'controle/aluno' %>
+          <% end %>
+
+          <% if @perfil and @perfil.perfil == 'Professor' %>
+            <%= render 'controle/professor' %>
+          <% end %>
+
         </ul>
 
       </nav>

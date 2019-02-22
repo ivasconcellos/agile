@@ -1,0 +1,84 @@
+<%= form_for [@question_group, question] do |f| %>
+	
+	<% if question.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(question.errors.count, "erro(s)") %> - Pergunta não pôde ser salva!</h2>
+
+      <ul>
+      <% question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<%= f.hidden_field :question_group_id %>
+
+	<div class="card-body">
+
+	    <div class="form-group row">
+	      <label for="inputNome" class="col-md-3 offset-md-2 col-form-label">Tipo*</label>
+	      <div class="col-md-6">
+	        <%= f.select :tipo, QuestionForm::QUESTION_TYPES, class: "form-control" %>
+	      </div>
+	    </div>
+
+	    <div class="form-group row">
+	      <label for="inputNome" class="col-md-3 offset-md-2 col-form-label">Pergunta*</label>
+	      <div class="col-md-6">
+	        <%= f.text_field :pergunta, class: "form-control" %>
+	      </div>
+	    </div>
+
+	    <div class="form-group row">
+	      <label for="inputNome" class="col-md-3 offset-md-2 col-form-label">Respostas*</label>
+	      <div class="col-md-6">
+	        <%= f.text_area :respostas, placeholder: "Uma opção por linha", class: "form-control" %>
+	      </div>
+	    </div>
+
+	    <div class="form-group row">
+	      <label class="form-check-label col-md-3 offset-md-2" for="gridCheck1">Resposta obrigatória?</label>
+	      <div class="col-md-2 ">
+	        <div class="form-check">
+	          <%= f.check_box :answer_presence %> Sim
+	        </div>
+	      </div>        
+	    </div>
+
+	    <div class="form-group row">
+	      <label for="inputNome" class="col-md-3 offset-md-2 col-form-label">Tamanho mínimo</label>
+	      <div class="col-md-6">
+	        <%= f.text_field  :answer_minimum_length, :size => 7, class: "form-control" %>
+	      </div>
+	    </div>
+
+	    <div class="form-group row">
+	      <label for="inputNome" class="col-md-3 offset-md-2 col-form-label">Tamanho máximo</label>
+	      <div class="col-md-6">
+	        <%= f.text_field  :answer_maximum_length, :size => 7, class: "form-control" %>
+	      </div>
+	    </div>
+
+	    <div class="form-group row">
+	      <label for="inputNome" class="col-md-3 offset-md-2 col-form-label">Resposta maior ou igual a:</label>
+	      <div class="col-md-6">
+	        <%= f.text_field  :answer_greater_than_or_equal_to, :size => 7, class: "form-control" %>
+	      </div>
+	    </div>
+
+	    <div class="form-group row">
+	      <label for="inputNome" class="col-md-3 offset-md-2 col-form-label">Resposta menor ou igual a:</label>
+	      <div class="col-md-6">
+	        <%= f.text_field  :answer_less_than_or_equal_to, :size => 7, class: "form-control" %>
+	      </div>
+	    </div>
+
+	</div>
+
+	<div class="card-footer text-muted">
+	    <%= f.submit "Salvar", class: "btn btn-md btn-primary" %>
+	    <%= link_to 'Voltar', {controller: "question_groups", action: 'index', question_group_id: @question.question_group_id}, class: "btn btn-md btn-secondary" %>
+	</div>
+
+<% end %>

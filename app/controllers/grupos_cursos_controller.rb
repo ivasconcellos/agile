@@ -5,9 +5,9 @@ class GruposCursosController < ApplicationController
   # GET /grupos_cursos
   # GET /grupos_cursos.json
   def index
-    @grupos_cursos = GrupoCurso.page(params[:page]).order('nome_curso')
     authorize! :index, GrupoCurso
-    render layout: 'professor'
+    @grupos_cursos = GrupoCurso.where(curso_id: current_usuario.curso_atual.id
+      ).page(params[:page]).order('nome_curso')
   end
 
   # GET /grupos_cursos/1
@@ -18,9 +18,9 @@ class GruposCursosController < ApplicationController
 
   # GET /grupos_cursos/new
   def new
+    authorize! :new, GrupoCurso
     @grupo_curso = GrupoCurso.new
     @grupo_curso.curso_id = current_usuario.curso_atual.id
-    authorize! :new, GrupoCurso
   end
 
   # GET /grupos_cursos/1/edit
@@ -72,6 +72,7 @@ class GruposCursosController < ApplicationController
   def lista_participantes
     @usuario = UsuarioCurso.find_by(curso_id: current_usuario.curso_atual, usuario_id: current_usuario.id)
     @lista_participantes = UsuarioCurso.where(grupo_curso_id: @usuario.grupo_curso_id).page(params[:page]).order('nickname')
+    authorize! :lista_participantes, :grupo
   end
 
   private

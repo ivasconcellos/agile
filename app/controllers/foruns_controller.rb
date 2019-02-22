@@ -5,28 +5,27 @@ class ForunsController < ApplicationController
   # GET /foruns
   # GET /foruns.json
   def index
-    @foruns = Forum.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
     authorize! :index, Forum
-    render layout: 'professor'
+    @foruns = Forum.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
   end
 
   # GET /foruns/1
   # GET /foruns/1.json
   def show
-    authorize! :show, @forum
+    authorize! :show, Forum
     @comentario = Comentario.where(forum_id: @forum)
   end
 
   # GET /foruns/new
   def new
+    authorize! :new, Forum
     @forum = Forum.new
     @forum.curso_id = params[:curso_id]
-    authorize! :new, @forum
   end
 
   # GET /foruns/1/edit
   def edit
-    authorize! :edit, @forum
+    authorize! :edit, Forum
   end
 
   # POST /foruns
@@ -63,7 +62,7 @@ class ForunsController < ApplicationController
   # DELETE /foruns/1
   # DELETE /foruns/1.json
   def destroy
-    authorize! :destroy, @forum
+    authorize! :destroy, Forum
     @forum.destroy
     respond_to do |format|
       format.html { redirect_to foruns_url, notice: 'Fórum excluído com sucesso!' }
