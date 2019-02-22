@@ -14,6 +14,7 @@ class GruposController < ApplicationController
   # GET /grupos/1.json
   def show
     authorize! :show, Grupo
+    @avatares = Avatar.where(grupo_id: @grupo.id)
   end
 
   # GET /grupos/new

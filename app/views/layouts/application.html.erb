@@ -21,8 +21,11 @@
 
 
   </head>
-
-  <body id="page-top" style=" background-image: url(<%= @current_usuario.curso_atual.tema_curso.imagem %>); background-repeat: no-repeat; background-size: cover; color: <%= @current_usuario.curso_atual.tema_curso.cor_texto %>">
+  <% if @perfil %>
+    <body id="page-top" style=" background-image: url(<%= @current_usuario.curso_atual.tema_curso.imagem %>); background-repeat: no-repeat; background-size: cover; color: <%= @current_usuario.curso_atual.tema_curso.cor_texto %>">
+  <% else %>
+    <body>
+  <% end %>
 
     <nav class="navbar navbar-expand static-top">
       <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
@@ -46,7 +49,11 @@
 
     </nav>
     <div id="wrapper">
-      <nav id="sidebar" class="sidebar navbar-nav" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
+      <% if @perfil %>
+        <nav id="sidebar" class="sidebar navbar-nav" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
+      <% else %>
+        <nav id="sidebar" class="sidebar navbar-nav">
+      <% end %>
         
         <div class="sidebar-header">
           <%if @perfil and @perfil.avatar %>
