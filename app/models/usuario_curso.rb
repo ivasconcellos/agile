@@ -13,6 +13,7 @@ class UsuarioCurso < ApplicationRecord
 	has_many :foruns, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :comentarios, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :conversas, :dependent => :destroy, :dependent => :restrict_with_error
+	has_many :badges_alunos, :dependent => :destroy, :dependent => :restrict_with_error
 	
 	validates_uniqueness_of :usuario_id, scope: :curso_id, message: "já está cadastrado no curso!"
 end

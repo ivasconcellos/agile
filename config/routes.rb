@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :badges_alunos, except: [:show, :edit, :destroy]
   resources :conversas, except: [:edit]
   resources :grupos_cursos
   resources :artefatos
