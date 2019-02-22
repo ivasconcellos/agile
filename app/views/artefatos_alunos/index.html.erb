@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Artefatos Alunos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Usuario curso</th>
+      <th>Artefatos</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @artefatos_alunos.each do |artefato_aluno| %>
+      <tr>
+        <td><%= artefato_aluno.usuario_curso %></td>
+        <td><%= artefato_aluno.artefatos %></td>
+        <td><%= link_to 'Show', artefato_aluno %></td>
+        <td><%= link_to 'Edit', edit_artefato_aluno_path(artefato_aluno) %></td>
+        <td><%= link_to 'Destroy', artefato_aluno, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Artefato Aluno', new_artefato_aluno_path %>
