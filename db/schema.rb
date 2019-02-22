@@ -92,17 +92,6 @@ ActiveRecord::Schema.define(version: 2019_02_22_125443) do
     t.index ["usuario_curso_id"], name: "index_artefatos_alunos_on_usuario_curso_id"
   end
 
-  create_table "avaliacao_tarefa", force: :cascade do |t|
-    t.bigint "tarefa_aluno_id"
-    t.float "nota"
-    t.text "comentario"
-    t.bigint "usuario_curso_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["tarefa_aluno_id"], name: "index_avaliacao_tarefa_on_tarefa_aluno_id"
-    t.index ["usuario_curso_id"], name: "index_avaliacao_tarefa_on_usuario_curso_id"
-  end
-
   create_table "avatares", force: :cascade do |t|
     t.bigint "grupo_id"
     t.string "nome"
@@ -256,14 +245,16 @@ ActiveRecord::Schema.define(version: 2019_02_22_125443) do
   end
 
   create_table "missoes", force: :cascade do |t|
-    t.bigint "curso_id"
+    t.bigint "modulo_id"
     t.bigint "usuario_curso_id"
     t.string "nome"
     t.text "descricao"
     t.boolean "ativo", default: true
+    t.string "tipo"
+    t.float "pontuacao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["curso_id"], name: "index_missoes_on_curso_id"
+    t.index ["modulo_id"], name: "index_missoes_on_modulo_id"
     t.index ["usuario_curso_id"], name: "index_missoes_on_usuario_curso_id"
   end
 
@@ -393,27 +384,11 @@ ActiveRecord::Schema.define(version: 2019_02_22_125443) do
     t.index ["usuario_curso_id"], name: "index_salas_chat_on_usuario_curso_id"
   end
 
-  create_table "tarefa_alunos", force: :cascade do |t|
-    t.bigint "tarefa_id"
-    t.bigint "usuario_curso_id"
-    t.boolean "avaliada", default: false
-    t.boolean "boolean", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "arquivo_file_name"
-    t.string "arquivo_content_type"
-    t.integer "arquivo_file_size"
-    t.datetime "arquivo_updated_at"
-    t.index ["tarefa_id"], name: "index_tarefa_alunos_on_tarefa_id"
-    t.index ["usuario_curso_id"], name: "index_tarefa_alunos_on_usuario_curso_id"
-  end
-
   create_table "tarefas", force: :cascade do |t|
-    t.bigint "modulo_id"
+    t.bigint "missao_id"
     t.bigint "usuario_curso_id"
     t.text "nome"
     t.text "descricao"
-    t.float "pontuacao"
     t.date "data_inicio"
     t.time "hora_inicio"
     t.date "data_termino"
@@ -421,7 +396,7 @@ ActiveRecord::Schema.define(version: 2019_02_22_125443) do
     t.boolean "publico", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["modulo_id"], name: "index_tarefas_on_modulo_id"
+    t.index ["missao_id"], name: "index_tarefas_on_missao_id"
     t.index ["usuario_curso_id"], name: "index_tarefas_on_usuario_curso_id"
   end
 
@@ -479,8 +454,6 @@ ActiveRecord::Schema.define(version: 2019_02_22_125443) do
 
   add_foreign_key "artefatos_alunos", "artefatos", column: "artefatos_id"
   add_foreign_key "artefatos_alunos", "usuario_curso"
-  add_foreign_key "avaliacao_tarefa", "tarefa_alunos"
-  add_foreign_key "avaliacao_tarefa", "usuario_curso"
   add_foreign_key "avatares", "grupos"
   add_foreign_key "badges_alunos", "badges"
   add_foreign_key "badges_alunos", "usuario_curso"
@@ -501,7 +474,7 @@ ActiveRecord::Schema.define(version: 2019_02_22_125443) do
   add_foreign_key "materiais", "modulos"
   add_foreign_key "mensagens", "salas_chat"
   add_foreign_key "mensagens", "usuario_curso"
-  add_foreign_key "missoes", "cursos"
+  add_foreign_key "missoes", "modulos"
   add_foreign_key "missoes", "usuario_curso"
   add_foreign_key "modulos", "cursos"
   add_foreign_key "perguntas_quiz", "quizes"
@@ -510,9 +483,7 @@ ActiveRecord::Schema.define(version: 2019_02_22_125443) do
   add_foreign_key "respostas_perguntas", "perguntas_quiz"
   add_foreign_key "salas_chat", "cursos"
   add_foreign_key "salas_chat", "usuario_curso"
-  add_foreign_key "tarefa_alunos", "tarefas"
-  add_foreign_key "tarefa_alunos", "usuario_curso"
-  add_foreign_key "tarefas", "modulos"
+  add_foreign_key "tarefas", "missoes"
   add_foreign_key "tarefas", "usuario_curso"
   add_foreign_key "usuario_curso", "avatares"
   add_foreign_key "usuario_curso", "cursos"

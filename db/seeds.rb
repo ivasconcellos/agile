@@ -13,7 +13,7 @@ Missao.create! curso_id: 1, usuario_curso_id: 1, nome: "Primeira missão", descr
 Usuario.create! nome: 'Gestor', email: 'gestor@iff.edu.br', perfil: 'Gestor', data_nascimento: '01/01/2000', sexo: 'Masculino', ativo: true, termo_compromisso: true, password: '12345678'
 Usuario.create! nome: 'Professor', email: 'professor@iff.edu.br', perfil: 'Usuario comum', data_nascimento: '01/02/2000', sexo: 'Masculino', ativo: true, termo_compromisso: true, password: '12345678'
 Usuario.create! nome: 'Aluno', email: 'aluno@iff.edu.br', perfil: 'Usuario comum', data_nascimento: '01/03/2000', sexo: 'Masculino', ativo: true, termo_compromisso: true, password: '12345678'
-#@tema_curso = TemaCurso.new nome: 'Padrão', ativo: true, cor_titulo: '#000000', cor_texto: '#000000', cor_fundo: '#3AB5DF'
+#@tema_curso = TemaCurso.new nome: 'Padrão', ativo: true, cor_titulo: '#1C2AD2', cor_texto: '#2E40EB', cor_fundo: '#1D50E3'
 #@tema_curso.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
 #@tema_curso.save!
 #Curso.create! nome: 'Curso de Lógica de Programação', descricao: 'Descrição do curso.', data_inicio: '01/01/2019', hora_inicio: '08:00:00', data_termino: '01/01/2020', hora_termino: '23:59:59', codigo_acesso: '12345678', ativo: true, publico: true, tema_curso_id: 1, proprietario_id: 2

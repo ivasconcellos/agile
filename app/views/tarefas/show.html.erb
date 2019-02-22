@@ -6,7 +6,7 @@
      <li class="list-group-item"><b>Módulo:</b> <%= @tarefa.modulo.nome %></li>
      <li class="list-group-item"><b>Nome:</b> <%= @tarefa.nome %></li>
      <li class="list-group-item"><b>Descrição:</b> <%= @tarefa.descricao.to_s.html_safe %></li>
-    <li class="list-group-item"><b>Pontuação:</b> <%= @tarefa.pontuacao %></li>
+    <li class="list-group-item"><b>Pontuação:</b> <%= @tarefa.missao.pontuacao %></li>
     <li class="list-group-item"><b>Início da tarefa:</b> <%= @tarefa.data_hora_inicio %></li>
     <li class="list-group-item"><b>Término da tarefa:</b> <%= @tarefa.data_hora_termino %></li>
      <li class="list-group-item"><b>Público:</b> <%= @tarefa.publico? ? 'Sim' : 'Não' %></li>

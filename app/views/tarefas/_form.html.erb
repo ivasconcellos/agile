@@ -11,17 +11,17 @@
     </div>
   <% end %>
 
-  <%= form.hidden_field :modulo_id %>
+  <%= form.hidden_field :missao_id %>
   <%= form.hidden_field :usuario_curso_id %>
 
   <div class="card-body">
 
-    <% if not @tarefa.modulo_id %>
+    <% if not @tarefa.missao_id %>
 
       <div class="form-group row">
-        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Módulo*</label>
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Missão*</label>
         <div class="col-md-6">
-          <%= form.collection_select(:modulo_id, Modulo.where(curso_id: current_usuario.curso_atual).order('nome'), :id, :nome, :prompt => true, class: "form-control") %>
+          <%= form.collection_select(:missao_id, Missao.joins(:modulo).where('modulos.curso_id = ?', current_usuario.curso_atual).order('nome'), :id, :nome, :prompt => true, class: "form-control") %>
         </div>
       </div>
     <% end %>
@@ -37,13 +37,6 @@
         <label for="inputTexto" class="col-md-2 offset-md-2 col-form-label">Descrição*</label>
         <div class="col-md-6">
         <%= form.cktext_area :descricao, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="inputPontuacao" class="col-md-2 offset-md-2 col-form-label">Pontuação*</label>
-      <div class="col-md-6">
-        <%= form.number_field :pontuacao, step: :any, class: "form-control" %>
       </div>
     </div>
 
