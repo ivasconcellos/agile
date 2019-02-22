@@ -7,9 +7,6 @@ class MissoesController < ApplicationController
   def index
     authorize! :index, Missao
     @missoes = Missao.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
-    if @perfil.perfil == 'Professor'
-      render layout: 'professor'
-    end
   end
 
   # GET /missoes/1
@@ -25,13 +22,11 @@ class MissoesController < ApplicationController
     @usuario_curso = UsuarioCurso.find_by(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual.id)
     @missao.usuario_curso_id = @usuario_curso.id
     @missao.curso_id = @usuario_curso.curso.id
-    render layout: 'professor'
   end
 
   # GET /missoes/1/edit
   def edit
     authorize! :edit, Missao
-    render layout: 'professor'
   end
 
   # POST /missoes

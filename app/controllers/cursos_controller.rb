@@ -8,7 +8,6 @@ class CursosController < ApplicationController
     authorize! :index, Curso
     @q = Curso.ransack(params[:q])
     @cursos = @q.result.paginate(page: params[:page]).order('nome')
-    render layout: 'gestor'
   end
 
   # GET /cursos/1
@@ -27,9 +26,6 @@ class CursosController < ApplicationController
   def descricao
     authorize! :show, Curso
     @usuario_curso = UsuarioCurso.find_by(curso_id: @curso.id, usuario_id: current_usuario.id)
-    if @usuario_curso and @usuario_curso.perfil == "Professor"
-      render layout: 'professor'
-    end
   end
 
   # GET /cursos/new
@@ -37,13 +33,11 @@ class CursosController < ApplicationController
     authorize! :new, Curso
     @curso = Curso.new
     @curso.codigo_acesso = SecureRandom.urlsafe_base64 6
-    render layout: 'gestor'
   end
 
   # GET /cursos/1/edit
   def edit
     authorize! :edit, Curso
-    render layout: 'gestor'
   end
 
   # POST /cursos
@@ -57,7 +51,7 @@ class CursosController < ApplicationController
         format.html { redirect_to cursos_path, notice: 'Curso criado com sucesso!' }
         format.json { render :show, status: :created, location: cursos_path }
       else
-        format.html { render :new,  layout: 'gestor' }
+        format.html { render :new}
         format.json { render json: @curso.errors, status: :unprocessable_entity }
       end
     end
@@ -71,7 +65,7 @@ class CursosController < ApplicationController
         format.html { redirect_to cursos_path, notice: 'Curso atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: cursos_path }
       else
-        format.html { render :edit, layout: 'gestor' }
+        format.html { render :edit}
         format.json { render json: @curso.errors, status: :unprocessable_entity }
       end
     end
@@ -96,7 +90,6 @@ class CursosController < ApplicationController
   def notas
     @tarefas = Tarefa.joins(:modulo).where('modulos.curso_id = ?',
        current_usuario.curso_atual_id)
-    render layout: 'professor'
   end
 
   private
@@ -107,7 +100,7 @@ class CursosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def curso_params
-      params.require(:curso).permit(:nome, :descricao, :data_inicio, :data_termino, :ativo,
+      params.require(:curso).permit(:nome, :descricao, :data_inicio, :hora_inicio, :data_termino, :hora_termino, :ativo,
        :tema_curso_id, :proprietario_id, :codigo_acesso, :publico)
     end
 end

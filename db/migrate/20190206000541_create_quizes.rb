@@ -7,7 +7,9 @@ class CreateQuizes < ActiveRecord::Migration[5.2]
       t.integer :max_tentativas
       t.references :usuario_curso, foreign_key: true
       t.date :data_inicio
+      t.time :hora_inicio
       t.date :data_termino
+      t.time :hora_termino
 
       t.timestamps
     end

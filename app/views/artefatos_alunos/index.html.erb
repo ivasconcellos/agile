@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-header">Artefatos dos Alunos</div>
+
+  <% if !@artefatos_alunos.empty? %>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th class="text-center">Aluno</th>
+            <th class="text-center">Artefato</th>
+            <th class="text-center">Imagem</th>
+            <th colspan="3" class="text-center">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @artefatos_alunos.each do |artefato_aluno| %>
+            <tr>
+              <td><%= artefato_aluno.aluno.nickname %></td>
+              <td><%= artefato_aluno.badge.nome %></td>
+              <td><%= image_tag artefato_aluno.artefato.imagem.variant(resize: "100x100") %></td>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <span> <%= will_paginate @artefatos_alunos %></span>
+  <% end %>
+
+  <br>
+
+  <div class="card-footer text-muted">
+    <%= link_to 'Voltar', controle_gestor_path, class: "btn btn-md btn-secondary" %>
+  </div>
+
+</div>

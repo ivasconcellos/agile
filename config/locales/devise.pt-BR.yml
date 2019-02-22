@@ -11,7 +11,7 @@ pt-BR:
       send_paranoid_instructions: "Caso seu endereço de e-mail já exista em nosso banco de dados, você receberá um email com instruções sobre como ativar sua conta."
     failure:
       already_authenticated: "Você já está logado."
-      inactive: "Sua conta ainda não foi ativada."
+      inactive: "Sua conta está ativa. Por favor, contate o administrador do sistema."
       invalid: "E-mail e/ou senha inválidos."
       locked: "Sua conta está bloqueada."
       last_attempt: "Você possui apenas uma tentativa, antes de sua conta ser bloqueada."

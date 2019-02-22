@@ -7,7 +7,6 @@ class QuizesController < ApplicationController
   def index
     @quizes = Quiz.page(params[:page])
     authorize! :read, Quiz
-    render layout: 'professor'
   end
 
   # GET /quizes/1
@@ -79,6 +78,6 @@ class QuizesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_params
-      params.require(:quiz).permit(:curso_id, :nome, :descricao, :max_tentativas, :usuario_curso_id, :data_inicio, :data_termino)
+      params.require(:quiz).permit(:curso_id, :nome, :descricao, :max_tentativas, :usuario_curso_id, :data_inicio, :hora_inicio, :data_termino, :hora_termino)
     end
 end

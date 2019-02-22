@@ -17,10 +17,10 @@
         <div class="col-lg-4">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">Tema do Curso</span>
+              <span class="input-group-text" id="basic-addon1">Grupo</span>
             </div>
             <span class="input-group-text borda">
-              <%= f.select :tema_curso_id_eq,  options_from_collection_for_select(TemaCurso.all, "id", "nome", params[:tema_curso_id]), :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
+              <%= f.select :grupo_id_eq,  options_from_collection_for_select(Grupo.all, "id", "nome", params[:grupo_id]), :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
             </span>
           </div>
         </div>
@@ -49,7 +49,7 @@
         <thead>
           <tr>
             <th class="text-center">Nome</th>
-            <th class="text-center">Tema do Curso</th>
+            <th class="text-center">Grupo</th>
             <th colspan="3" class="text-center">Opções</th>
           </tr>
         </thead>
@@ -57,7 +57,7 @@
           <% @avatares.each do |avatar| %>
             <tr>
               <td><%= avatar.nome %></td>
-              <td><%= avatar.tema_curso.nome %></td>
+              <td><%= avatar.grupo.nome %></td>
               <td><%= link_to 'Visualizar', avatar %></td>
               <td>
                 <% if can? :edit, Avatar %>

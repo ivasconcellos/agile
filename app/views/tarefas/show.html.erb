@@ -6,13 +6,9 @@
      <li class="list-group-item"><b>Módulo:</b> <%= @tarefa.modulo.nome %></li>
      <li class="list-group-item"><b>Nome:</b> <%= @tarefa.nome %></li>
      <li class="list-group-item"><b>Descrição:</b> <%= @tarefa.descricao.to_s.html_safe %></li>
-     <li class="list-group-item"><b>Pontuação:</b> <%= @tarefa.pontuacao %></li>
-     <% if  @tarefa.data_limite %>
-      <li class="list-group-item"><b>Data limite:</b> <%= @tarefa.data_limite.strftime("%d/%m/%Y") %></li>
-    <% end %>
-    <% if  @tarefa.hora_limite %>
-      <li class="list-group-item"><b>Hora limite:</b> <%= @tarefa.hora_limite.strftime("%H:%M:%S") %></li>
-    <% end %>
+    <li class="list-group-item"><b>Pontuação:</b> <%= @tarefa.pontuacao %></li>
+    <li class="list-group-item"><b>Início da tarefa:</b> <%= @tarefa.data_hora_inicio %></li>
+    <li class="list-group-item"><b>Término da tarefa:</b> <%= @tarefa.data_hora_termino %></li>
      <li class="list-group-item"><b>Público:</b> <%= @tarefa.publico? ? 'Sim' : 'Não' %></li>
      <li class="list-group-item"><b>Criada por:</b> <%= @tarefa.usuario_curso.nickname %></li>
      <li class="list-group-item"><b>Criada em:</b> <%= @tarefa.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>

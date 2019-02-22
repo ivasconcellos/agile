@@ -7,7 +7,6 @@ class BadgesController < ApplicationController
   def index
     @q = Badge.ransack(params[:q])
     @badges = @q.result.paginate(page: params[:page]).order('nome')
-    render layout: 'gestor'
     authorize! :index, Badge
   end
 
@@ -15,20 +14,17 @@ class BadgesController < ApplicationController
   # GET /badges/1.json
   def show
     authorize! :show, Badge
-    render layout: 'gestor'
   end
 
   # GET /badges/new
   def new
     authorize! :new, Badge
     @badge = Badge.new
-    render layout: 'gestor'
   end
 
   # GET /badges/1/edit
   def edit
     authorize! :edit, Badge
-    render layout: 'gestor'
   end
 
   # POST /badges
@@ -41,7 +37,7 @@ class BadgesController < ApplicationController
         format.html { redirect_to @badge, notice: 'Badge cadastrada com sucesso!' }
         format.json { render :show, status: :created, location: @badge }
       else
-        format.html { render :new, layout: 'gestor' }
+        format.html { render :new }
         format.json { render json: @badge.errors, status: :unprocessable_entity }
       end
     end
@@ -55,7 +51,7 @@ class BadgesController < ApplicationController
         format.html { redirect_to @badge, notice: 'Badge atualizada com sucesso!' }
         format.json { render :show, status: :ok, location: @badge }
       else
-        format.html { render :edit, layout: 'gestor' }
+        format.html { render :edit }
         format.json { render json: @badge.errors, status: :unprocessable_entity }
       end
     end

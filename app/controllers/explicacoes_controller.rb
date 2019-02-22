@@ -7,7 +7,6 @@ class ExplicacoesController < ApplicationController
     authorize! :index, Explicacao
     @explicacoes = Explicacao.joins(:modulo).where('modulos.curso_id = ?',
     current_usuario.curso_atual_id).page(params[:page]).order('nome')
-    render layout: 'professor'
   end
 
   # GET /explicacoes/1
@@ -21,13 +20,11 @@ class ExplicacoesController < ApplicationController
     authorize! :new, Explicacao
     @explicacao = Explicacao.new
     @explicacao.modulo_id = params[:modulo_id]
-    render layout: 'professor'
   end
 
   # GET /explicacoes/1/edit
   def edit
     authorize! :edit, Explicacao
-    render layout: 'professor'
   end
 
   # POST /explicacoes

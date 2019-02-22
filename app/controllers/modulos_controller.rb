@@ -7,7 +7,6 @@ class ModulosController < ApplicationController
   def index
     authorize! :index, Modulo
     @modulos = Modulo.where(curso_id: current_usuario.curso_atual_id).page(params[:page]).order('nome')
-    render layout: 'professor'
   end
 
   # GET /modulos/1
@@ -24,13 +23,11 @@ class ModulosController < ApplicationController
     authorize! :new, Modulo
     @modulo = Modulo.new
     @modulo.curso_id = params[:curso_id]
-    render layout: 'professor'
   end
 
   # GET /modulos/1/edit
   def edit
     authorize! :edit, Modulo
-    render layout: 'professor'
   end
 
   # POST /modulos

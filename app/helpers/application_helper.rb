@@ -9,5 +9,17 @@ module ApplicationHelper
         answers = answer.resposta.to_s.split(answers_delimiter)
         answers.include?(option)
     end
-	
+
+    def no_prazo(objeto)
+		
+		data_hora_inicio = (objeto.data_inicio.to_s + " " +  objeto.hora_inicio.to_s).to_datetime
+		data_hora_termino = (objeto.data_termino.to_s + " " +  objeto.hora_termino.to_s).to_datetime
+		if DateTime.now >= data_hora_inicio and data_hora_termino >= DateTime.now
+			return true
+    	else
+    		return false
+    	end
+	    
+	end
+
 end

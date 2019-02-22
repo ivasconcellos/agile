@@ -1,0 +1,47 @@
+<div class="card">
+  <div class="card-header">Eventos do curso</div>
+
+  <% if !@eventos.empty? %>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th class="text-center">Nome</th>
+            <th class="text-center">Data</th>
+            <th class="text-center">Hora</th>
+            <th colspan="3" class="text-center">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @eventos.each do |evento| %>
+            <tr>
+              <td><%= evento.nome %></td>
+              <td><%= evento.data.strftime("%d/%m/%Y") %></td>
+              <td><%= evento.hora.strftime("%H:%M:%S") %></td>
+              <% if can? :show, Evento %>
+                <td><%= link_to 'Visualizar', Evento %></td>
+              <% end %>
+              <% if can? :edit, Evento %>
+               <td><%= link_to 'Atualizar', edit_evento_path(evento) %></td>
+              <% end %>
+              <% if can? :destroy, Evento %>
+                <td><%= link_to 'Excluir', evento, method: :delete, data: { confirm: 'Deseja realmente excluir o Evento do curso?' } %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <span> <%= will_paginate @eventos %></span>
+  <% end %>
+
+  <br>
+
+  <% if can? :new, Evento %>
+    <div class="card-footer text-muted">
+      <%= link_to 'Cadastrar Evento do Curso', {controller: 'eventos', action: 'new'}, class: "btn btn-md btn-primary" %>
+    </div>
+  <% end %>
+
+</div>
+
