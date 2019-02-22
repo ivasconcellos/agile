@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :eventos
   resources :conversas
   resources :grupos_cursos
   resources :artefatos

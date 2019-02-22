@@ -1,0 +1,20 @@
+<div class="card">
+
+    <div class="card-header">Evento</div>
+  
+    <ul class="list-group">
+      <li class="list-group-item"><b>Data:</b> <%= @evento.data %></li>
+      <li class="list-group-item"><b>Descrição:</b> <%= @evento.descricao %></li>
+      <li class="list-group-item"><b>Áudio:</b> <%= @evento.alerta_eventos %></li>     
+    </ul>
+  
+    <br>
+  
+    <div class="card-footer text-muted">
+      <% if can? :edit, Evento %>
+        <%= link_to 'Atualizar', edit_evento_path(@evento), class: "btn btn-md btn-primary" %>
+      <% end %>
+      <%= link_to 'Voltar', eventos_path, class: "btn btn-md btn-secondary" %>
+    </div>
+  </div>
+  

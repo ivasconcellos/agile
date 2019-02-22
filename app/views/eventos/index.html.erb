@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="card-header">Eventos do curso</div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th class="text-center">Data</th>
+          <th class="text-center">Descrição</th>
+          <th class="text-center">Alerta de eventos</th>
+          <th colspan="3" class="text-center">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @eventos.each do |evento| %>
+          <tr>
+            <td><%= evento.data.strftime("%d-%m-%Y") %></td>
+            <td><%= evento.descricao %></td>
+            <td><%= evento.alerta_eventos %></td>
+            <td><%= link_to 'Visualizar', evento %></td>
+            <% if can? :edit, evento %>
+            <td><%= link_to 'Editar', edit_evento_path(evento) %></td>
+            <% else%> - 
+            <% end %>
+            <% if can? :destroy, Evento %>
+            <td><%= link_to 'Excluir', evento, method: :delete, data: { confirm: 'Deseja realmente excluir o Evento do curso?' } %></td>
+            <% else%> - 
+            <% end %>
+            </tr>
+            
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <br>
+
+  <% if can? :new, Evento %>
+    <div class="card-footer text-muted">
+      <%= link_to 'Cadastrar Evento do Curso', {controller: 'eventos', action: 'new'}, class: "btn btn-md btn-primary" %>
+    </div>
+  <% end %>
+
+</div>
+

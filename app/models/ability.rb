@@ -24,6 +24,7 @@ class Ability
           can :read, TarefaAluno
           can :manage, AvaliacaoTarefa
           can :manage, Quiz
+          can :manage, Evento
           can :controle_professor,:controle
         elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
           can :manage, Comentario
@@ -42,7 +43,7 @@ class Ability
       end
 
     end
-   
+
 
     
     
