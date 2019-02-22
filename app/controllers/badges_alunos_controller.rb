@@ -20,7 +20,7 @@ class BadgesAlunosController < ApplicationController
 
     respond_to do |format|
       if @badge_aluno.save
-        format.html { redirect_to @badge_aluno, notice: 'Parabéns! Você recebeu uma Badge!' }
+        format.html { redirect_to @badge_aluno, notice: 'Parabéns! Você recebeu uma nova Badge!' }
         format.json { render :show, status: :created, location: @badge_aluno }
       else
         format.html { render :new }
