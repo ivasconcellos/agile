@@ -6,12 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Admin.create! nome: 'admin', email: 'admin@iff.edu.br', password: '12345678'
-<<<<<<< HEAD
 Modulo.create! nome: 'Módulo 1', descricao: "Primeiro módulo do curso", publico: true, curso_id: 1
 Forum.create! titulo: 'Fórum teste', descricao: 'Criação de fórum de teste', curso_id: 1, usuario_curso_id: 1
 SalaChat.create! nome: 'Sala de teste', curso_id: 1, usuario_curso_id: 1, ativo: true
 Missao.create! curso_id: 1, usuario_curso_id: 1, nome: "Primeira missão", descricao: "Faça X coisas.", ativo:true
-=======
 Usuario.create! nome: 'Gestor', email: 'gestor@iff.edu.br', perfil: 'Gestor', data_nascimento: '01/01/2000', sexo: 'Masculino', ativo: true, termo_compromisso: true, password: '12345678'
 Usuario.create! nome: 'Professor', email: 'professor@iff.edu.br', perfil: 'Usuario comum', data_nascimento: '01/02/2000', sexo: 'Masculino', ativo: true, termo_compromisso: true, password: '12345678'
 Usuario.create! nome: 'Aluno', email: 'aluno@iff.edu.br', perfil: 'Usuario comum', data_nascimento: '01/03/2000', sexo: 'Masculino', ativo: true, termo_compromisso: true, password: '12345678'
@@ -23,7 +21,7 @@ Usuario.create! nome: 'Aluno', email: 'aluno@iff.edu.br', perfil: 'Usuario comum
 #Forum.create! titulo: 'Fórum teste', descricao: 'Criação de fórum de teste', curso_id: 1, usuario_curso_id: 1
 #SalaChat.create! nome: 'Sala de teste', curso_id: 1, usuario_curso_id: 1, ativo: true
 #Missao.create! curso_id: 1, usuario_curso_id: 1, nome: "Primeira missão", descricao: "Faça X coisas.", ativo:true
->>>>>>> f4a06a8626e0630684dcd1f6569c0afd5b91541a
+
 #Níveis
 #@nivel1 = Nivel.create! nome: 'Nível 1', pontos_requeridos: 50
 #@nivel1.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
