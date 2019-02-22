@@ -51,6 +51,7 @@ class Ability
           can :lista_participantes, :grupo
           can :read, Missao
           can :read, Explicacao
+          can :read, Evento
         else
           can :read, Curso
         end

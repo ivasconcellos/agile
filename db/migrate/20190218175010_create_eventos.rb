@@ -2,10 +2,10 @@ class CreateEventos < ActiveRecord::Migration[5.2]
   def change
     create_table :eventos do |t|
       t.date :data
-      t.string :descricao
-      t.string :alerta_eventos
+      t.time :hora
+      t.string :nome
+      t.text :descricao
       t.references :usuario_curso, foreign_key: true
-
       t.timestamps
     end
   end

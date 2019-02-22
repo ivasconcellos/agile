@@ -1,24 +1,30 @@
 class EventosController < ApplicationController
   before_action :set_evento, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_usuario!
 
   # GET /eventos
   # GET /eventos.json
   def index
-    @eventos = Evento.all
+    authorize! :index, Evento
+    @eventos = Evento.where(usuario_curso_id: @perfil.id).page(params[:page]).order('data desc')
   end
 
   # GET /eventos/1
   # GET /eventos/1.json
   def show
+    authorize! :show, Evento
   end
 
   # GET /eventos/new
   def new
+    authorize! :new, Evento
     @evento = Evento.new
+    @evento.usuario_curso_id = @perfil.id
   end
 
   # GET /eventos/1/edit
   def edit
+    authorize! :edit, Evento
   end
 
   # POST /eventos
@@ -28,7 +34,7 @@ class EventosController < ApplicationController
 
     respond_to do |format|
       if @evento.save
-        format.html { redirect_to @evento, notice: 'Evento was successfully created.' }
+        format.html { redirect_to @evento, notice: 'Evento cadastrado com sucesso!' }
         format.json { render :show, status: :created, location: @evento }
       else
         format.html { render :new }
@@ -42,7 +48,7 @@ class EventosController < ApplicationController
   def update
     respond_to do |format|
       if @evento.update(evento_params)
-        format.html { redirect_to @evento, notice: 'Evento was successfully updated.' }
+        format.html { redirect_to @evento, notice: 'Evento atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @evento }
       else
         format.html { render :edit }
@@ -54,9 +60,10 @@ class EventosController < ApplicationController
   # DELETE /eventos/1
   # DELETE /eventos/1.json
   def destroy
+    authorize! :destroy, Evento
     @evento.destroy
     respond_to do |format|
-      format.html { redirect_to eventos_url, notice: 'Evento was successfully destroyed.' }
+      format.html { redirect_to eventos_url, notice: 'Evento excluído com sucesso!' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +76,6 @@ class EventosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def evento_params
-      params.require(:evento).permit(:data, :descricao, :alerta_eventos)
+      params.require(:evento).permit(:nome, :descricao, :data, :hora, :usuario_curso_id)
     end
 end

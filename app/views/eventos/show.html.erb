@@ -1,20 +1,23 @@
 <div class="card">
 
-    <div class="card-header">Evento</div>
+  <div class="card-header">Evento</div>
   
-    <ul class="list-group">
-      <li class="list-group-item"><b>Data:</b> <%= @evento.data %></li>
-      <li class="list-group-item"><b>Descrição:</b> <%= @evento.descricao %></li>
-      <li class="list-group-item"><b>Áudio:</b> <%= @evento.alerta_eventos %></li>     
-    </ul>
+  <ul class="list-group">
+    <li class="list-group-item"><b>Nome:</b> <%= @evento.nome %></li>
+    <li class="list-group-item"><b>Descrição:</b> <%= @evento.descricao.to_s.html_safe %></li>
+    <li class="list-group-item"><b>Data:</b> <%= @evento.data.strftime("%d/%m/%Y") %></li>
+    <li class="list-group-item"><b>Hora:</b> <%= @evento.hora.strftime("%H:%M:%S") %></li>
+    <li class="list-group-item"><b>Responsável:</b> <%= @evento.usuario_curso.nickname %></li>
+    <li class="list-group-item"><b>Cadastrado em:</b> <%= @evento.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
+  </ul>
   
-    <br>
+  <br>
   
-    <div class="card-footer text-muted">
-      <% if can? :edit, Evento %>
-        <%= link_to 'Atualizar', edit_evento_path(@evento), class: "btn btn-md btn-primary" %>
-      <% end %>
-      <%= link_to 'Voltar', eventos_path, class: "btn btn-md btn-secondary" %>
-    </div>
+  <div class="card-footer text-muted">
+    <% if can? :edit, Evento %>
+      <%= link_to 'Atualizar', edit_evento_path(@evento), class: "btn btn-md btn-primary" %>
+    <% end %>
+    <%= link_to 'Voltar', eventos_path, class: "btn btn-md btn-secondary" %>
   </div>
+</div>
   
