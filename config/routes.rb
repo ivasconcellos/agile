@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+  resources :eventos
   resources :badges_alunos, except: [:show, :edit, :destroy]
   resources :conversas, except: [:edit]
   resources :grupos_cursos

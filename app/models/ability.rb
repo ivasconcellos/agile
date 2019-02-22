@@ -24,6 +24,7 @@ class Ability
           can :read, TarefaAluno
           can :manage, AvaliacaoTarefa
           can :manage, Quiz
+          can :manage, Evento
           can :read, Grupo
           can :manage, GrupoCurso
           can :manage, Missao
@@ -50,13 +51,14 @@ class Ability
           can :lista_participantes, :grupo
           can :read, Missao
           can :read, Explicacao
+          can :read, Evento
         else
           can :read, Curso
         end
       end
 
     end
-   
+
 
     
     

@@ -175,6 +175,17 @@ ActiveRecord::Schema.define(version: 2019_02_22_020403) do
     t.index ["tema_curso_id"], name: "index_cursos_on_tema_curso_id"
   end
 
+  create_table "eventos", force: :cascade do |t|
+    t.date "data"
+    t.time "hora"
+    t.string "nome"
+    t.text "descricao"
+    t.bigint "usuario_curso_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["usuario_curso_id"], name: "index_eventos_on_usuario_curso_id"
+  end
+
   create_table "explicacoes", force: :cascade do |t|
     t.string "nome", null: false
     t.text "descricao"
@@ -464,6 +475,7 @@ ActiveRecord::Schema.define(version: 2019_02_22_020403) do
   add_foreign_key "conversas", "usuario_curso", column: "destinatario_id"
   add_foreign_key "cursos", "tema_cursos"
   add_foreign_key "cursos", "usuarios", column: "proprietario_id"
+  add_foreign_key "eventos", "usuario_curso"
   add_foreign_key "explicacoes", "modulos"
   add_foreign_key "foruns", "cursos"
   add_foreign_key "foruns", "usuario_curso"

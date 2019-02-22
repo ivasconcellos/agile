@@ -62,7 +62,6 @@
           <% end %>
         </div>
 
-
         <ul class="list-unstyled components">  
 
           <% if current_usuario.perfil == 'Gestor' %>
@@ -70,7 +69,6 @@
           <% end %>
 
           <% if current_usuario.perfil != 'Gestor' and !@perfil %>
-
             <li class="nav-item">
               <br>
               <h3 class="agile"><%= link_to @current_usuario.curso_atual, class: "nav-link text-center" do %><i class="fa fa-university fa-lg"> </i> Curso<% end %></h3>
