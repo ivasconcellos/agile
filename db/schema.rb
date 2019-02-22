@@ -95,17 +95,13 @@ ActiveRecord::Schema.define(version: 2019_02_19_200025) do
   end
 
   create_table "avatares", force: :cascade do |t|
-    t.bigint "tema_curso_id"
+    t.bigint "grupo_id"
     t.string "nome"
     t.string "perfil"
+    t.boolean "ativo", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "imagem_file_name"
-    t.string "imagem_content_type"
-    t.integer "imagem_file_size"
-    t.datetime "imagem_updated_at"
-    t.boolean "ativo", default: true
-    t.index ["tema_curso_id"], name: "index_avatares_on_tema_curso_id"
+    t.index ["grupo_id"], name: "index_avatares_on_grupo_id"
   end
 
   create_table "badges", force: :cascade do |t|
@@ -367,13 +363,14 @@ ActiveRecord::Schema.define(version: 2019_02_19_200025) do
   create_table "tarefa_alunos", force: :cascade do |t|
     t.bigint "tarefa_id"
     t.bigint "usuario_curso_id"
+    t.boolean "avaliada", default: false
+    t.boolean "boolean", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "arquivo_file_name"
     t.string "arquivo_content_type"
     t.integer "arquivo_file_size"
     t.datetime "arquivo_updated_at"
-    t.boolean "avaliada", default: false
     t.index ["tarefa_id"], name: "index_tarefa_alunos_on_tarefa_id"
     t.index ["usuario_curso_id"], name: "index_tarefa_alunos_on_usuario_curso_id"
   end
@@ -384,11 +381,11 @@ ActiveRecord::Schema.define(version: 2019_02_19_200025) do
     t.text "nome"
     t.text "descricao"
     t.float "pontuacao"
+    t.date "data_limite"
+    t.time "hora_limite"
     t.boolean "publico", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "data_limite"
-    t.time "hora_limite"
     t.index ["modulo_id"], name: "index_tarefas_on_modulo_id"
     t.index ["usuario_curso_id"], name: "index_tarefas_on_usuario_curso_id"
   end
@@ -401,10 +398,6 @@ ActiveRecord::Schema.define(version: 2019_02_19_200025) do
     t.string "cor_fundo", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "imagem_file_name"
-    t.string "imagem_content_type"
-    t.integer "imagem_file_size"
-    t.datetime "imagem_updated_at"
   end
 
   create_table "usuario_curso", force: :cascade do |t|
@@ -431,6 +424,8 @@ ActiveRecord::Schema.define(version: 2019_02_19_200025) do
     t.date "data_nascimento", null: false
     t.string "sexo", null: false
     t.string "encrypted_password", default: "", null: false
+    t.boolean "ativo", default: true
+    t.boolean "termo_compromisso", default: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -442,8 +437,6 @@ ActiveRecord::Schema.define(version: 2019_02_19_200025) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "curso_atual_id"
-    t.boolean "ativo", default: true
-    t.boolean "termo_compromisso", default: false
     t.index ["curso_atual_id"], name: "index_usuarios_on_curso_atual_id"
     t.index ["email"], name: "index_usuarios_on_email", unique: true
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
@@ -451,7 +444,7 @@ ActiveRecord::Schema.define(version: 2019_02_19_200025) do
 
   add_foreign_key "avaliacao_tarefa", "tarefa_alunos"
   add_foreign_key "avaliacao_tarefa", "usuario_curso"
-  add_foreign_key "avatares", "tema_cursos"
+  add_foreign_key "avatares", "grupos"
   add_foreign_key "comentarios", "comentarios"
   add_foreign_key "comentarios", "foruns"
   add_foreign_key "comentarios", "usuario_curso"
