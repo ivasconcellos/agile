@@ -50,6 +50,8 @@
 
   <% if !@badges.empty? %>
 
+    <div class="card-header">Badges</div>
+
     <div class="card-body">
 
       <div class="row">
@@ -57,6 +59,24 @@
           <div class="col-lg-3">
             <div class="input-group mb-3">
               <%= image_tag badge.badge.imagem.url(:medium), class: "img-responsive img-thumbnail" %>
+            </div>
+          </div>
+        <% end %>
+      </div>    
+    
+  <% end %>
+
+  <% if !@artefatos.empty? %>
+
+    <div class="card-header">Artefatos</div>
+
+    <div class="card-body">
+
+      <div class="row">
+        <% @artefatos.each do |artefato| %>
+          <div class="col-lg-3">
+            <div class="input-group mb-3">
+              <%= image_tag artefato.artefato.imagem.url(:medium), class: "img-responsive img-thumbnail" %>
             </div>
           </div>
         <% end %>

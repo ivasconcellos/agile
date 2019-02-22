@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-
-  resources :artefatos_alunos
+  resources :artefatos_alunos, except: [:show, :edit, :destroy]
   resources :eventos
   resources :badges_alunos, except: [:show, :edit, :destroy]
   resources :conversas, except: [:edit]

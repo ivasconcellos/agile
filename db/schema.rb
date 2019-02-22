@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_22_020403) do
+ActiveRecord::Schema.define(version: 2019_02_22_125443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,15 @@ ActiveRecord::Schema.define(version: 2019_02_22_020403) do
     t.index ["tema_curso_id"], name: "index_artefatos_on_tema_curso_id"
   end
 
+  create_table "artefatos_alunos", force: :cascade do |t|
+    t.bigint "usuario_curso_id"
+    t.bigint "artefatos_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artefatos_id"], name: "index_artefatos_alunos_on_artefatos_id"
+    t.index ["usuario_curso_id"], name: "index_artefatos_alunos_on_usuario_curso_id"
+  end
+
   create_table "avaliacao_tarefa", force: :cascade do |t|
     t.bigint "tarefa_aluno_id"
     t.float "nota"
@@ -113,10 +122,10 @@ ActiveRecord::Schema.define(version: 2019_02_22_020403) do
 
   create_table "badges_alunos", force: :cascade do |t|
     t.bigint "usuario_curso_id"
-    t.bigint "badges_id"
+    t.bigint "badge_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["badges_id"], name: "index_badges_alunos_on_badges_id"
+    t.index ["badge_id"], name: "index_badges_alunos_on_badge_id"
     t.index ["usuario_curso_id"], name: "index_badges_alunos_on_usuario_curso_id"
   end
 
@@ -462,10 +471,12 @@ ActiveRecord::Schema.define(version: 2019_02_22_020403) do
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "artefatos_alunos", "artefatos", column: "artefatos_id"
+  add_foreign_key "artefatos_alunos", "usuario_curso"
   add_foreign_key "avaliacao_tarefa", "tarefa_alunos"
   add_foreign_key "avaliacao_tarefa", "usuario_curso"
   add_foreign_key "avatares", "grupos"
-  add_foreign_key "badges_alunos", "badges", column: "badges_id"
+  add_foreign_key "badges_alunos", "badges"
   add_foreign_key "badges_alunos", "usuario_curso"
   add_foreign_key "comentarios", "comentarios"
   add_foreign_key "comentarios", "foruns"
