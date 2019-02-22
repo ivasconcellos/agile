@@ -1,29 +1,36 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-header">Badges dos Alunos</div>
 
-<h1>Badges Alunos</h1>
+  <% if !@badges_alunos.empty? %>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th class="text-center">Aluno</th>
+            <th class="text-center">Badge</th>
+            <th class="text-center">Imagem</th>
+            <th colspan="3" class="text-center">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @badges_alunos.each do |badge_aluno| %>
+            <tr>
+              <td><%= badge_aluno.aluno.nickname %></td>
+              <td><%= badge_aluno.badge.nome %></td>
+              <td><%= image_tag badge_aluno.badge.imagem.variant(resize: "100x100") %></td>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <span> <%= will_paginate @badge_salunos %></span>
+  <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Usuario curso</th>
-      <th>Badges</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <br>
 
-  <tbody>
-    <% @badges_alunos.each do |badge_aluno| %>
-      <tr>
-        <td><%= badge_aluno.usuario_curso %></td>
-        <td><%= badge_aluno.badges %></td>
-        <td><%= link_to 'Show', badge_aluno %></td>
-        <td><%= link_to 'Edit', edit_badge_aluno_path(badge_aluno) %></td>
-        <td><%= link_to 'Destroy', badge_aluno, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="card-footer text-muted">
+    <%= link_to 'Voltar', controle_gestor_path, class: "btn btn-md btn-secondary" %>
+  </div>
 
-<br>
-
-<%= link_to 'New Badge Aluno', new_badge_aluno_path %>
+</div>
