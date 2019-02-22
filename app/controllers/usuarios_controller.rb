@@ -6,17 +6,14 @@ class UsuariosController < ApplicationController
 		authorize! :index, Usuario
 		@q = Usuario.ransack(params[:q])
     	@usuarios = @q.result.paginate(page: params[:page]).order('nome')
-    	render layout: 'gestor'
 	end
 
 	def edit
 		authorize! :edit, Usuario
-		render layout: 'gestor'
 	end
 
 	def show
 		authorize! :show, Usuario
-		render layout: 'gestor'
 	end 
 
 	def update

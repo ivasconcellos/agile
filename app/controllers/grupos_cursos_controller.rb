@@ -8,7 +8,6 @@ class GruposCursosController < ApplicationController
     authorize! :index, GrupoCurso
     @grupos_cursos = GrupoCurso.where(curso_id: current_usuario.curso_atual.id
       ).page(params[:page]).order('nome_curso')
-    render layout: 'professor'
   end
 
   # GET /grupos_cursos/1
@@ -22,13 +21,11 @@ class GruposCursosController < ApplicationController
     authorize! :new, GrupoCurso
     @grupo_curso = GrupoCurso.new
     @grupo_curso.curso_id = current_usuario.curso_atual.id
-    render layout: 'professor'
   end
 
   # GET /grupos_cursos/1/edit
   def edit
     authorize! :edit, GrupoCurso
-    render layout: 'professor'
   end
 
   # POST /grupos_cursos

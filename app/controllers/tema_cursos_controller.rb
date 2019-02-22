@@ -8,7 +8,6 @@ class TemaCursosController < ApplicationController
     @q = TemaCurso.ransack(params[:q])
     @tema_cursos = @q.result.paginate(page: params[:page]).order('nome')
     authorize! :index, TemaCurso
-    render layout: 'gestor'
   end
 
   # GET /temas_cursos/1
@@ -17,20 +16,17 @@ class TemaCursosController < ApplicationController
     authorize! :show, TemaCurso
     @avatares = Avatar.where(tema_curso_id: @tema_curso.id)
     @artefatos = Artefato.where(tema_curso_id: @tema_curso.id)
-    render layout: 'gestor'
   end
 
   # GET /temas_cursos/new
   def new
     authorize! :new, TemaCurso
     @tema_curso = TemaCurso.new
-    render layout: 'gestor'
   end
 
   # GET /temas_cursos/1/edit
   def edit
     authorize! :edit, TemaCurso
-    render layout: 'gestor'
   end
 
   # POST /temas_cursos
@@ -43,7 +39,7 @@ class TemaCursosController < ApplicationController
         format.html { redirect_to @tema_curso, notice: 'Tema do curso criado com sucesso!' }
         format.json { render :show, status: :created, location: @tema_curso }
       else
-        format.html { render :new, layout: 'gestor' }
+        format.html { render :new }
         format.json { render json: @tema_curso.errors, status: :unprocessable_entity }
       end
     end
@@ -57,7 +53,7 @@ class TemaCursosController < ApplicationController
         format.html { redirect_to @tema_curso, notice: 'Tema do curso atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @tema_curso }
       else
-        format.html { render :edit, layout: 'gestor' }
+        format.html { render :edit }
         format.json { render json: @tema_curso.errors, status: :unprocessable_entity }
       end
     end

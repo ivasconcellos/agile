@@ -13,7 +13,6 @@ class MateriaisController < ApplicationController
       @materiais = Material.joins(:modulo).where('modulos.curso_id = ?',
        current_usuario.curso_atual_id).page(params[:page]).order('nome')
     end
-    render layout: 'professor'
   end
 
   # GET /materiais/1
@@ -33,7 +32,6 @@ class MateriaisController < ApplicationController
   # GET /materiais/1/edit
   def edit
     authorize! :edit, Material
-    render layout: 'professor'
   end
 
   # POST /materiais
