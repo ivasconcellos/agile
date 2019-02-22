@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Badges Alunos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Usuario curso</th>
+      <th>Badges</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @badges_alunos.each do |badge_aluno| %>
+      <tr>
+        <td><%= badge_aluno.usuario_curso %></td>
+        <td><%= badge_aluno.badges %></td>
+        <td><%= link_to 'Show', badge_aluno %></td>
+        <td><%= link_to 'Edit', edit_badge_aluno_path(badge_aluno) %></td>
+        <td><%= link_to 'Destroy', badge_aluno, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Badge Aluno', new_badge_aluno_path %>

@@ -1,0 +1,27 @@
+<%= form_with(model: badge_aluno, local: true) do |form| %>
+  <% if badge_aluno.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(badge_aluno.errors.count, "error") %> prohibited this badge_aluno from being saved:</h2>
+
+      <ul>
+      <% badge_aluno.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :usuario_curso_id %>
+    <%= form.text_field :usuario_curso_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :badges_id %>
+    <%= form.text_field :badges_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
