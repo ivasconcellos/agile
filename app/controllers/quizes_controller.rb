@@ -5,7 +5,8 @@ class QuizesController < ApplicationController
   # GET /quizes
   # GET /quizes.json
   def index
-    @quizes = Quiz.page(params[:page])
+    @quizes = Quiz.joins(missao: :modulo).where('modulos.curso_id = ?',
+       current_usuario.curso_atual_id).page(params[:page])
     authorize! :read, Quiz
   end
 
@@ -13,13 +14,13 @@ class QuizesController < ApplicationController
   # GET /quizes/1.json
   def show
     authorize! :show, Quiz
-    @perguntas = PerguntaQuiz.where(quiz_id: @quiz)
+  #  @perguntas = PerguntaQuiz.where(quiz_id: @quiz)
   end
 
   # GET /quizes/new
   def new
     @quiz = Quiz.new
-    @quiz.curso_id = params[:curso_id]
+    @quiz.missao_id = params[:missao_id]
     authorize! :new, Quiz
   end
 
@@ -78,6 +79,6 @@ class QuizesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_params
-      params.require(:quiz).permit(:curso_id, :nome, :descricao, :max_tentativas, :usuario_curso_id, :data_inicio, :hora_inicio, :data_termino, :hora_termino)
+      params.require(:quiz).permit(:missao_id, :nome, :descricao, :max_tentativas, :usuario_curso_id, :data_inicio, :hora_inicio, :data_termino, :hora_termino)
     end
 end

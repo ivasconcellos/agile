@@ -24,7 +24,7 @@
       <% end %>
     <% else %>
       <% if can? :new, Quiz %>
-        <%= link_to 'Adicionar Quiz', {controller: 'Quiz', action: 'new', missao_id: @missao.id}, class: "btn btn-md btn-danger" %>
+        <%= link_to 'Adicionar Quiz', {controller: 'quizes', action: 'new', missao_id: @missao.id}, class: "btn btn-md btn-danger" %>
       <% end %>
     <% end %>
     <% if can? :edit, Missao %>

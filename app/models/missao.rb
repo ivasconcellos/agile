@@ -2,6 +2,7 @@ class Missao < ApplicationRecord
   belongs_to :modulo
   belongs_to :usuario_curso
   has_many :tarefas, :dependent => :destroy, :dependent => :restrict_with_error
+  has_many :quizes, :dependent => :destroy, :dependent => :restrict_with_error
 
   has_one_attached :imagem
   validates :imagem, size: { less_than: 10.megabytes , message: 'Imagem muito grande. Máximo de 10 MB.' }

@@ -3,7 +3,8 @@
   <div class="card-header">Missão - Tarefa</div>
   
   <ul class="list-group">
-     <li class="list-group-item"><b>Módulo:</b> <%= @tarefa.modulo.nome %></li>
+      <li class="list-group-item"><b>Missão:</b> <%= link_to @tarefa.missao.nome, @tarefa.missao %></li>
+     <li class="list-group-item"><b>Módulo:</b> <%= @tarefa.missao.modulo.nome %></li>
      <li class="list-group-item"><b>Nome:</b> <%= @tarefa.nome %></li>
      <li class="list-group-item"><b>Descrição:</b> <%= @tarefa.descricao.to_s.html_safe %></li>
     <li class="list-group-item"><b>Pontuação:</b> <%= @tarefa.missao.pontuacao %></li>

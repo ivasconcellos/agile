@@ -5,7 +5,7 @@ class TarefasController < ApplicationController
   # GET /tarefas.json
   def index
     authorize! :index, Tarefa
-    @tarefas = Tarefa.joins(:modulo)..joins(:missao).where('modulos.curso_id = ?',
+    @tarefas = Tarefa.joins(missao: :modulo).where('modulos.curso_id = ?',
        current_usuario.curso_atual_id).page(params[:page])
   end
 
