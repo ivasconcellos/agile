@@ -34,7 +34,7 @@ class UsuarioCursoController < ApplicationController
 
     respond_to do |format|
       if @usuario_curso.save
-        format.html { redirect_to @usuario_curso, notice: 'Usuário do Curso cadastrado com sucesso!' }
+        format.html { redirect_to @usuario_curso, notice: 'Usuário cadastrado no Curso com sucesso!' }
         format.json { render :show, status: :created, location: @usuario_curso }
       else
         format.html { render :new, @current_usuario => current_usuario }

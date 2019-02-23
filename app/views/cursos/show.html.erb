@@ -59,14 +59,14 @@
           <div class="row">
 
             <div class="col-xl-9 col-sm-9 col-md-9">
-              <% @tarefas.each do |tarefa| %>
-                <%= link_to tarefa.nome, tarefa, class: "fa fa-tasks text-dark" %>
+              <% @missoes.each do |missao| %>
+                <%= link_to missao.nome, missao, class: "fa fa-tasks text-dark" %>
               <% end %>
             </div>
 
             <div class="col-xl-3 col-sm-3 col-md-3">
-              <% if can? :new, Tarefa %>
-                <div><%= link_to  'Inserir Tarefa', {controller: 'tarefas', action: 'new', modulo_id: modulo.id, tipo: 'Link'}, class: "fa fa-tasks" %></div>
+              <% if can? :new, Missao %>
+                <div><%= link_to  'Inserir Missão', {controller: 'missoes', action: 'new', modulo_id: modulo.id}, class: "fa fa-tasks" %></div>
               <% end %>
             </div>
             

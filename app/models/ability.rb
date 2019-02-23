@@ -35,7 +35,6 @@ class Ability
           can :manage, Question
           can :manage, PerguntaQuiz
           can :manage, RespostaPergunta
-
         elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
           can :manage, Comentario
           can :read, Modulo

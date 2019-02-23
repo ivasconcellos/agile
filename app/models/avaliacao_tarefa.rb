@@ -14,7 +14,7 @@ class AvaliacaoTarefa < ApplicationRecord
 
 	def verificar_pontuacao_maxima
 		tarefa = 
-		if self.nota > self.tarefa_aluno.tarefa.pontuacao
+		if self.nota > self.tarefa_aluno.tarefa.missao.pontuacao
 			errors.add(:nota, " - Nota atribuída ao aluno superior a nota máxima estabelecida para esta tarefa!")
 		end
 	    

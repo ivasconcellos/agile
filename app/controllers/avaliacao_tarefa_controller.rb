@@ -6,7 +6,7 @@ class AvaliacaoTarefaController < ApplicationController
   # GET /avaliacao_tarefa.json
   def index
     @avaliacao_tarefa = AvaliacaoTarefa.all
-    authorize! :read, AvaliacaoTarefa
+    authorize! :index, AvaliacaoTarefa
   end
 
   # GET /avaliacao_tarefa/1

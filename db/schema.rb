@@ -286,6 +286,14 @@ ActiveRecord::Schema.define(version: 2019_02_22_125443) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "perguntas_quiz", force: :cascade do |t|
+    t.bigint "quiz_id"
+    t.text "descricao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_perguntas_quiz_on_quiz_id"
+  end
+
   create_table "question_groups", force: :cascade do |t|
     t.string "titulo"
     t.text "descricao"
@@ -364,6 +372,16 @@ ActiveRecord::Schema.define(version: 2019_02_22_125443) do
     t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "respostas_perguntas", force: :cascade do |t|
+    t.bigint "pergunta_quiz_id"
+    t.text "descricao"
+    t.text "comentario"
+    t.boolean "correta", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pergunta_quiz_id"], name: "index_respostas_perguntas_on_pergunta_quiz_id"
   end
 
   create_table "salas_chat", force: :cascade do |t|
@@ -487,8 +505,10 @@ ActiveRecord::Schema.define(version: 2019_02_22_125443) do
   add_foreign_key "missoes", "modulos"
   add_foreign_key "missoes", "usuario_curso"
   add_foreign_key "modulos", "cursos"
+  add_foreign_key "perguntas_quiz", "quizes"
   add_foreign_key "quizes", "missoes"
   add_foreign_key "quizes", "usuario_curso"
+  add_foreign_key "respostas_perguntas", "perguntas_quiz"
   add_foreign_key "salas_chat", "cursos"
   add_foreign_key "salas_chat", "usuario_curso"
   add_foreign_key "tarefa_alunos", "tarefas"

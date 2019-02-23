@@ -7,7 +7,7 @@
 	   <li class="list-group-item"><b>Descrição da tarefa:</b> <%= @avaliacao_tarefa.tarefa_aluno.tarefa.descricao.to_s.html_safe %></li>
 	   <li class="list-group-item"><b>Aluno:</b> <%= @avaliacao_tarefa.tarefa_aluno.usuario_curso.nickname %></li>
 	   <li class="list-group-item"><b>Arquivo:</b> <%= link_to image_tag("documento.png", :alt => "documento", size: "50x50"), @avaliacao_tarefa.tarefa_aluno.arquivo.url, target: 'blank' %></li>
-	   <li class="list-group-item"><b>Nota máxima:</b> <%= @avaliacao_tarefa.tarefa_aluno.tarefa.pontuacao %></li>
+	   <li class="list-group-item"><b>Nota máxima:</b> <%= @avaliacao_tarefa.tarefa_aluno.tarefa.missao.pontuacao %></li>
 	   <li class="list-group-item"><b>Nota do aluno:</b> <%= @avaliacao_tarefa.nota %></li>
 	   <li class="list-group-item"><b>Comentário:</b> <%= @avaliacao_tarefa.comentario %></li>
 	   <li class="list-group-item"><b>Realizada por:</b> <%= @avaliacao_tarefa.tarefa_aluno.usuario_curso.nickname %></li>

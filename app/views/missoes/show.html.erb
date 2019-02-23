@@ -8,11 +8,16 @@
      <% if @missao.imagem.attached? %>
       <li class="list-group-item"><b>Imagem:</b> <%= image_tag @missao.imagem.variant(resize: "100x100") %></li>
      <% end %>
-     <li class="list-group-item"><b>Ativa:</b> <%= @missao.pontuacao %></li>
-     <li class="list-group-item"><b>Ativa:</b> <%= @missao.tipo %></li>
+     <li class="list-group-item"><b>Pontuação:</b> <%= @missao.pontuacao %></li>
+     <li class="list-group-item"><b>Tipo:</b> <%= @missao.tipo %></li>
      <li class="list-group-item"><b>Ativa:</b> <%= @missao.ativo? ? 'Sim' : 'Não' %></li>
      <li class="list-group-item"><b>Criada por:</b> <%= @missao.usuario_curso.nickname %></li>
      <li class="list-group-item"><b>Criada em:</b> <%= @missao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
+     <% if @missao.tipo == 'Tarefa' %>
+      <%= link_to 'Ver tarefa', @missao.tarefa, class: "btn btn-md btn-warning"  %>
+     <% else %>
+      <%= link_to 'Ver quiz', @missao.quiz, class: "btn btn-md btn-warning"  %>
+     <% end %>
   </ul>
 
   
