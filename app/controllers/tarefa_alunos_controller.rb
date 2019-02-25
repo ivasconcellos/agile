@@ -5,8 +5,11 @@ class TarefaAlunosController < ApplicationController
   # GET /tarefa_alunos
   # GET /tarefa_alunos.json
   def index
-    @tarefa_alunos = TarefaAluno.joins(:usuario_curso).where('usuario_curso.curso_id= ?', current_usuario.curso_atual_id).page(params[:page])
-    authorize! :read, TarefaAluno
+    @tarefa = Tarefa.find(params[:id])
+    @tarefas_alunos = TarefaAluno.where(tarefa_id: @tarefa)
+    @alunos_sem_envio = UsuarioCurso.joins(:tarefa_aluno).where.not("usuario_curso.perfil = ? and
+      tarefa_alunos.tarefa_id = ?", "Aluno", @tarefa)
+    authorize! :new, Tarefa
   end
 
   # GET /tarefa_alunos/1
@@ -17,10 +20,10 @@ class TarefaAlunosController < ApplicationController
 
   # GET /tarefa_alunos/new
   def new
+    authorize! :new, TarefaAluno
     @tarefa_aluno = TarefaAluno.new
     @tarefa_aluno.tarefa_id = params[:tarefa_id]
-    @tarefa_aluno.usuario_curso_id = UsuarioCurso.find_by(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual.id).id
-    authorize! :new, TarefaAluno
+    @tarefa_aluno.usuario_curso_id = @perfil.id
   end
 
   # GET /tarefa_alunos/1/edit

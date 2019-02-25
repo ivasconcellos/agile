@@ -23,7 +23,7 @@
               <td><%= link_to 'Enviar Tarefa', {controller: 'tarefa_alunos', action: 'new', tarefa_id: tarefa.id}, class: "btn btn-sm btn-danger"  %></td>
             <% end %>
             <% if can? :new, AvaliacaoTarefa %>
-              <td><%= link_to 'Respostas', visualizar_respostas_path(id: tarefa.id) %></td>
+              <td><%= link_to 'Respostas', tarefa_alunos_path(id: tarefa.id) %></td>
             <% end %>
             <% if can? :show, Tarefa %>
               <td><%= link_to 'Visualizar', tarefa %></td>

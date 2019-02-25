@@ -2,13 +2,6 @@ class AvaliacaoTarefaController < ApplicationController
   before_action :set_avaliacao_tarefa, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_usuario!
 
-  # GET /avaliacao_tarefa
-  # GET /avaliacao_tarefa.json
-  def index
-    @avaliacao_tarefa = AvaliacaoTarefa.all
-    authorize! :index, AvaliacaoTarefa
-  end
-
   # GET /avaliacao_tarefa/1
   # GET /avaliacao_tarefa/1.json
   def show
@@ -17,10 +10,10 @@ class AvaliacaoTarefaController < ApplicationController
 
   # GET /avaliacao_tarefa/new
   def new
+    authorize! :new, AvaliacaoTarefa
     @avaliacao_tarefa = AvaliacaoTarefa.new
     @avaliacao_tarefa.tarefa_aluno_id = params[:tarefa_aluno_id]
-    @avaliacao_tarefa.usuario_curso_id = UsuarioCurso.find_by(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual.id).id
-    authorize! :new, AvaliacaoTarefa
+    @avaliacao_tarefa.usuario_curso_id = @perfil.id
   end
 
   # GET /avaliacao_tarefa/1/edit

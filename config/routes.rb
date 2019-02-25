@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :missoes
   resources :badges
   resources :salas_chat
-  resources :avaliacao_tarefa
+  resources :avaliacao_tarefa, except: [:index]
   resources :tarefa_alunos
   resources :tarefas
   resources :modulos
@@ -52,7 +52,6 @@ Rails.application.routes.draw do
   get 'descricao' => 'cursos#descricao'
   get 'material_texto' => 'materiais#texto'
   get 'meu_perfil' => 'usuario_curso#meu_perfil'
-  get 'visualizar_respostas' => 'tarefas#visualizar_respostas'
   get 'minhas_notas' => 'usuarios#minhas_notas'
   get 'notas_aluno' => 'usuarios#notas_aluno'
   get 'notas' => 'cursos#notas'
