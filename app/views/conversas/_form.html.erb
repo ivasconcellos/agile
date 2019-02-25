@@ -15,13 +15,22 @@
   <div class="card-body">
     <%= form.hidden_field :destinatario_id %>
     <%= form.hidden_field :conversa_id %>
-
-    <div class="form-group row">
-      <label for="inputNome" class="col-md-2 col-form-label">Assunto*</label>
-      <div class="col-md-10">
-        <%= form.text_field :assunto, autofocus: true, class: "form-control" %>
+    <%= form.hidden_field :assunto %>
+    <% if !@conversa.conversa_id %>
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 col-form-label">Assunto*</label>
+        <div class="col-md-10">
+          <%= form.text_field :assunto, autofocus: true, class: "form-control" %>
+        </div>
       </div>
-    </div>
+    <% else%>
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 col-form-label">Assunto*</label>
+        <div class="col-md-10">
+          <%= form.text_field :assunto, disabled: true, class: "form-control" %>
+        </div>
+      </div>
+    <% end %>
 
     <div class="form-group row">
       <div class="col-md-12">

@@ -18,6 +18,12 @@
     Bem-vindo ao curso!
   </div>
 
+  <% if !@conversas.empty? %>
+    <div class="alert alert-danger" role="alert">
+      Você possui mensagens não lidas!
+    </div>
+  <% end %>
+
   <div id="accordion">
     <% @modulos.each_with_index do |modulo, index| %>
     <div class="card">
