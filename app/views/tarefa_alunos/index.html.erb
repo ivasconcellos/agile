@@ -18,7 +18,7 @@
         <% @tarefas_alunos.each do |tarefa_aluno| %>
           <tr>
             <td><%= tarefa_aluno.usuario_curso.nickname %></td>
-            <td><%= link_to "Arquivo", tarefa_aluno.arquivo.url, target: 'blank' %></td>
+            <td><%= link_to "Arquivo", url_for(tarefa_aluno.arquivo), target: 'blank' %></td>
             <td><%= tarefa_aluno.tarefa.missao.pontuacao %></td>
             <% if tarefa_aluno.avaliacao_tarefa %>
               <td><%= tarefa_aluno.avaliacao_tarefa.nota %></td>

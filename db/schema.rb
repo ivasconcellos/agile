@@ -402,10 +402,6 @@ ActiveRecord::Schema.define(version: 2019_02_22_125443) do
     t.boolean "boolean", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "arquivo_file_name"
-    t.string "arquivo_content_type"
-    t.integer "arquivo_file_size"
-    t.datetime "arquivo_updated_at"
     t.index ["tarefa_id"], name: "index_tarefa_alunos_on_tarefa_id"
     t.index ["usuario_curso_id"], name: "index_tarefa_alunos_on_usuario_curso_id"
   end

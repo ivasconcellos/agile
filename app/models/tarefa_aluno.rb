@@ -7,14 +7,19 @@ class TarefaAluno < ApplicationRecord
 
   validates :tarefa, uniqueness: { scope: :usuario_curso }
   
-  has_attached_file :arquivo, style: {medium: "300x300", thumb:"100x100"}, default_url: "/images/:style/missing.png"
-  validates_attachment_content_type :arquivo, content_type: [
-  	"application/pdf", "application/msword", 
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document", 
-    "application/vnd.oasis.opendocument.text",
-    "application/vnd.ms-excel",
-    "application/vnd.ms-office",
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    "application/vnd.oasis.opendocument.spreadsheet"], message: "Tipo de arquivo não permitido!"
-   validates_attachment_size :arquivo, :less_than => 10.megabytes
+  has_one_attached :arquivo
+  validates :arquivo, attached: true, size: { less_than: 10.megabytes , message: 'Imagem muito grande. Máximo de 10 MB.' }
+  
+  validate :validate_content_type
+
+  def validate_content_type
+    if arquivo.attached? && !arquivo.content_type.in?(["application/pdf", 
+        "application/msword", 
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "application/vnd.oasis.opendocument.spreadsheet"])
+        errors.add(:arquivo, "Formato de arquivo inválido!")
+    end
+  end
+
 end

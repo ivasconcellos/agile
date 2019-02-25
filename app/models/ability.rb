@@ -35,6 +35,7 @@ class Ability
           can :manage, Question
           can :manage, PerguntaQuiz
           can :manage, RespostaPergunta
+          can :notas_aluno,:notas
         elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
           can :manage, Comentario
           can :read, Modulo
@@ -53,6 +54,7 @@ class Ability
           can :read, Explicacao
           can :read, Evento
           can :read, QuestionGroup
+          can :minhas_notas,:notas
         else
           can :read, Curso
         end
