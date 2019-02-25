@@ -8,12 +8,37 @@
      <% if @missao.imagem.attached? %>
       <li class="list-group-item"><b>Imagem:</b> <%= image_tag @missao.imagem.variant(resize: "100x100") %></li>
      <% end %>
+     <li class="list-group-item"><b>Pontuação:</b> <%= @missao.pontuacao %></li>
+     <li class="list-group-item"><b>Tipo:</b> <%= @missao.tipo %></li>
      <li class="list-group-item"><b>Ativa:</b> <%= @missao.ativo? ? 'Sim' : 'Não' %></li>
      <li class="list-group-item"><b>Criada por:</b> <%= @missao.usuario_curso.nickname %></li>
      <li class="list-group-item"><b>Criada em:</b> <%= @missao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
   </ul>
 
+  
+
   <div class="card-footer text-muted">
+
+    <% if @missao.tipo == 'Tarefa' %>
+      <% if !@missao.tarefa %>
+        <% if can? :new, Tarefa %>
+          <%= link_to 'Adicionar Tarefa', {controller: 'tarefas', action: 'new', missao_id: @missao.id}, class: "btn btn-md btn-danger" %>
+        <% end %>
+      <% else %>
+        <%= link_to 'Ver tarefa', @missao.tarefa, class: "btn btn-md btn-success"  %>
+      <% end %>
+    <% end %>
+
+    <% if @missao.tipo == 'Quiz' %>
+      <% if !@missao.quiz %>
+        <% if can? :new, Quiz %>
+          <%= link_to 'Adicionar Quiz', {controller: 'quizes', action: 'new', missao_id: @missao.id}, class: "btn btn-md btn-danger" %>
+        <% end %>
+      <% else %>
+        <%= link_to 'Ver quiz', @missao.quiz, class: "btn btn-md btn-sucess"  %>
+      <% end %>
+    <% end %>
+
     <% if can? :edit, Missao %>
       <%= link_to 'Atualizar Missão', edit_missao_path(@missao), class: "btn btn-md btn-primary" %>
     <% end %>

@@ -3,6 +3,7 @@
   <div class="card-header">Quiz</div>
 
   <ul class="list-group">
+    <li class="list-group-item"><b>Missão:</b> <%= link_to @quiz.missao.nome, @quiz.missao %></li>
     <li class="list-group-item"><b>Nome:</b> <%= @quiz.nome %></li>
     <li class="list-group-item"><b>Descrição:</b> <%= @quiz.descricao %></li>
     <li class="list-group-item"><b>Máximo de tentativas:</b> <%= @quiz.max_tentativas %></li>

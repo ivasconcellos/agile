@@ -1,12 +1,12 @@
 <div class="card">
 
-	<div class="card-header">Missão (Tarefa) Entregue</div>
+	<div class="card-header">Tarefa Entregue</div>
 
 	<ul class="list-group">
 	   <li class="list-group-item"><b>Nome da missão:</b> <%= @tarefa_aluno.tarefa.nome %></li>
 	   <li class="list-group-item"><b>Descrição da missão:</b> <%= @tarefa_aluno.tarefa.descricao.to_s.html_safe %></li>
 	   <li class="list-group-item"><b>Aluno (nickname):</b> <%= @tarefa_aluno.usuario_curso.nickname %></li>
-	   <li class="list-group-item"><b>Arquivo:</b> <%= link_to image_tag("documento.png", :alt => "documento", size: "50x50"), @tarefa_aluno.arquivo.url, target: 'blank' %></li>
+	   <li class="list-group-item"><b>Arquivo:</b> <%= link_to image_tag("documento.png", :alt => "documento", size: "50x50"), url_for(@tarefa_aluno.arquivo), target: 'blank' %></li>
        <li class="list-group-item"><b>Última atualização:</b> <%= @tarefa_aluno.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
         <li class="list-group-item"><b>Avaliada:</b> <%= @tarefa_aluno.avaliada? ? 'Sim' : 'Não' %></li>
 	</ul>
@@ -15,10 +15,16 @@
 	  <% if can? :edit, TarefaAluno %>
 	    <%= link_to 'Atualizar', edit_tarefa_aluno_path(@tarefa_aluno), class: "btn btn-md btn-primary" %>
 	  <% end %>
-	  <% if can? :new, AvaliacaoTarefa %>
-	    <%= link_to 'Avaliar Tarefa', {controller: 'avaliacao_tarefa', action: 'new', tarefa_aluno_id: @tarefa_aluno.id}, class: "btn btn-md btn-danger" %>
-	  <% end %>
-	  <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
+	<% if @tarefa_aluno.avaliacao_tarefa %>
+		<% if can? :edit, AvaliacaoTarefa %>
+			<%= link_to 'Editar Avaliação',  edit_avaliacao_tarefa_path(@tarefa_aluno.avaliacao_tarefa), class: "btn btn-md btn-danger" %>
+		<% end %>
+	<% else %>
+		<% if can? :new, AvaliacaoTarefa %>
+			<%= link_to 'Avaliar Tarefa', {controller: 'avaliacao_tarefa', action: 'new', tarefa_aluno_id: @tarefa_aluno.id}, class: "btn btn-md btn-danger" %>
+		<% end %>
+	<% end %>
+	  <%= link_to 'Voltar', tarefa_alunos_path(id: @tarefa_aluno.tarefa.id), class: "btn btn-md btn-secondary" %>
 	</div>
 
 

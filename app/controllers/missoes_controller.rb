@@ -6,7 +6,7 @@ class MissoesController < ApplicationController
   # GET /missoes.json
   def index
     authorize! :index, Missao
-    @missoes = Missao.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
+    @missoes = Missao.joins(:modulo).where('modulos.curso_id = ?', current_usuario.curso_atual_id).page(params[:page])
   end
 
   # GET /missoes/1
@@ -19,9 +19,8 @@ class MissoesController < ApplicationController
   def new
     authorize! :new, Missao
     @missao = Missao.new
-    @usuario_curso = UsuarioCurso.find_by(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual.id)
-    @missao.usuario_curso_id = @usuario_curso.id
-    @missao.curso_id = @usuario_curso.curso.id
+    @missao.usuario_curso_id = @perfil.id
+    @missao.modulo_id = params[:modulo_id]
   end
 
   # GET /missoes/1/edit
@@ -78,6 +77,6 @@ class MissoesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def missao_params
-      params.require(:missao).permit(:curso_id, :usuario_curso_id, :nome, :descricao, :ativo, :imagem)
+      params.require(:missao).permit(:modulo_id, :usuario_curso_id, :nome, :descricao, :ativo, :imagem, :tipo, :pontuacao)
     end
 end

@@ -39,7 +39,7 @@ class ConversasController < ApplicationController
     @usuario = UsuarioCurso.select(:id).where(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id).first
     @conversas = Conversa.where(usuario_curso_id: @usuario.id,
      destinatario_id: params[:professor_id]).or(Conversa.where(
-     usuario_curso_id: params[:professor_id], destinatario_id: @usuario.id)).order('created_at')
+      usuario_curso_id: params[:professor_id], destinatario_id: @usuario.id)).order('created_at')
     authorize! :show, Conversa
   end
     

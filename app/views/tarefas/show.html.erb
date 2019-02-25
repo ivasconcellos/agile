@@ -3,10 +3,11 @@
   <div class="card-header">Missão - Tarefa</div>
   
   <ul class="list-group">
-     <li class="list-group-item"><b>Módulo:</b> <%= @tarefa.modulo.nome %></li>
+      <li class="list-group-item"><b>Missão:</b> <%= link_to @tarefa.missao.nome, @tarefa.missao %></li>
+     <li class="list-group-item"><b>Módulo:</b> <%= @tarefa.missao.modulo.nome %></li>
      <li class="list-group-item"><b>Nome:</b> <%= @tarefa.nome %></li>
      <li class="list-group-item"><b>Descrição:</b> <%= @tarefa.descricao.to_s.html_safe %></li>
-    <li class="list-group-item"><b>Pontuação:</b> <%= @tarefa.pontuacao %></li>
+    <li class="list-group-item"><b>Pontuação:</b> <%= @tarefa.missao.pontuacao %></li>
     <li class="list-group-item"><b>Início da tarefa:</b> <%= @tarefa.data_hora_inicio %></li>
     <li class="list-group-item"><b>Término da tarefa:</b> <%= @tarefa.data_hora_termino %></li>
      <li class="list-group-item"><b>Público:</b> <%= @tarefa.publico? ? 'Sim' : 'Não' %></li>
@@ -28,7 +29,7 @@
       <%= link_to 'Atualizar Envio', edit_tarefa_aluno_path(@tarefa_aluno), class: "btn btn-md btn-danger" %>
     <% end %>
     <% if can? :new, AvaliacaoTarefa %>
-      <%= link_to 'Visualizar Respostas', visualizar_respostas_path(id: @tarefa.id), class: "btn btn-md btn-warning" %>
+      <%= link_to 'Visualizar Respostas', tarefa_alunos_path(id: @tarefa.id), class: "btn btn-md btn-warning" %>
     <% end %>
     <%= link_to 'Voltar', tarefas_path, class: "btn btn-md btn-secondary" %>
   </div>

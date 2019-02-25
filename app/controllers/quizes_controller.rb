@@ -5,8 +5,9 @@ class QuizesController < ApplicationController
   # GET /quizes
   # GET /quizes.json
   def index
-    @quizes = Quiz.page(params[:page])
-    authorize! :read, Quiz
+    authorize! :index, Quiz
+    @quizes = Quiz.joins(missao: :modulo).where('modulos.curso_id = ?',
+       current_usuario.curso_atual_id).page(params[:page])
   end
 
   # GET /quizes/1
@@ -19,7 +20,8 @@ class QuizesController < ApplicationController
   # GET /quizes/new
   def new
     @quiz = Quiz.new
-    @quiz.curso_id = params[:curso_id]
+    @quiz.missao_id = params[:missao_id]
+    @quiz.usuario_curso_id = @perfil.id
     authorize! :new, Quiz
   end
 
@@ -32,8 +34,7 @@ class QuizesController < ApplicationController
   # POST /quizes.json
   def create
     @quiz = Quiz.new(quiz_params)
-    @usuario = UsuarioCurso.select(:id).where(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id).first
-    @quiz.usuario_curso_id = @usuario.id
+    
     respond_to do |format|
       if @quiz.save
         format.html { redirect_to @quiz, notice: 'Quiz cadastrado com sucesso!' }
@@ -78,6 +79,6 @@ class QuizesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_params
-      params.require(:quiz).permit(:curso_id, :nome, :descricao, :max_tentativas, :usuario_curso_id, :data_inicio, :hora_inicio, :data_termino, :hora_termino)
+      params.require(:quiz).permit(:missao_id, :nome, :descricao, :max_tentativas, :usuario_curso_id, :data_inicio, :hora_inicio, :data_termino, :hora_termino)
     end
 end
