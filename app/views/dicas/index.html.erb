@@ -1,0 +1,46 @@
+<div class="card">
+
+  <div class="card-header">Dicas</div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+
+          <th class="text-center">Nome</th>          
+          <th class="text-center">Descrição</th>
+          <th class="text-center">Ativa</th>
+          <th class="text-center">Missão</th>
+          <th class="text-center" colspan="4">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @dicas.each do |dica| %>
+          <tr>
+            <td><%= dica.nome %></td>
+            <td><%= dica.descricao %></td>
+            <td><%= dica.ativo? ? 'Sim' : 'Não' %></td>
+            <td><%= dica.missao.nome %></td>
+            <% if can? :show, Dica %>
+              <td><%= link_to 'Visualizar', dica %></td>
+            <% end %>
+            <% if can? :edit, Dica %>
+              <td><%= link_to 'Atualizar', edit_dica_path(dica) %></td>
+            <% end %>
+            <% if can? :destroy, Dica %>
+              <td><%= link_to 'Excluir', dica, method: :delete, data: { confirm: 'Deseja realmente excluir a Dica?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <span> <%= will_paginate @dicas %></span>
+
+  <br>
+  <% if can? :new, Dica %>
+    <div class="card-footer text-muted">
+      <%= link_to 'Cadastrar Dica', new_dica_path, class: "btn btn-md btn-primary" %>
+    </div>
+  <% end %>
+</div>

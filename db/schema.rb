@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_22_125443) do
+ActiveRecord::Schema.define(version: 2019_02_25_192233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -184,6 +184,16 @@ ActiveRecord::Schema.define(version: 2019_02_22_125443) do
     t.datetime "updated_at", null: false
     t.index ["proprietario_id"], name: "index_cursos_on_proprietario_id"
     t.index ["tema_curso_id"], name: "index_cursos_on_tema_curso_id"
+  end
+
+  create_table "dicas", force: :cascade do |t|
+    t.string "nome"
+    t.string "descricao"
+    t.boolean "ativo"
+    t.bigint "missao_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["missao_id"], name: "index_dicas_on_missao_id"
   end
 
   create_table "eventos", force: :cascade do |t|
@@ -492,6 +502,7 @@ ActiveRecord::Schema.define(version: 2019_02_22_125443) do
   add_foreign_key "conversas", "usuario_curso", column: "destinatario_id"
   add_foreign_key "cursos", "tema_cursos"
   add_foreign_key "cursos", "usuarios", column: "proprietario_id"
+  add_foreign_key "dicas", "missoes"
   add_foreign_key "eventos", "usuario_curso"
   add_foreign_key "explicacoes", "modulos"
   add_foreign_key "foruns", "cursos"

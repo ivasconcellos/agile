@@ -7,11 +7,13 @@ class MissoesController < ApplicationController
   def index
     authorize! :index, Missao
     @missoes = Missao.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
+    
   end
 
   # GET /missoes/1
   # GET /missoes/1.json
   def show
+    @dicas = Dica.where(missao_id: @missao.id).order(:nome)
     authorize! :show, Missao
   end
 

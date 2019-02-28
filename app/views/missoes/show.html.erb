@@ -14,10 +14,37 @@
   </ul>
 
   <div class="card-footer text-muted">
+    <% if can? :new, Dica %>
+      <%= link_to 'Adicionar Dica', {controller: 'dicas', action: 'new', :missao_id => @missao.id}, class: "btn btn-md btn-atencao" %>
+    <% end %>
     <% if can? :edit, Missao %>
       <%= link_to 'Atualizar Missão', edit_missao_path(@missao), class: "btn btn-md btn-primary" %>
     <% end %>
     <%= link_to 'Voltar', missoes_path, class: "btn btn-md btn-secondary" %>
+  </div>
+</div>
+
+<div class= "card"> 
+<div class="card-header">Dicas</div>
+
+  
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Detalhes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @dicas.each do |dica| %>
+        <tr>
+          <td><%= dica.nome %></td>
+          <td><%= link_to 'Visualizar', dica %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 
 </div>
