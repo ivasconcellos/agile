@@ -12,11 +12,11 @@
     <tbody>
       <% UsuarioCurso.where("perfil = ? or not exists (select id from tarefa_alunos where tarefa_id = ?)", "Aluno", tarefa.id).each do |aluno| %>
         <tr>
-          <td><%= link_to aluno.nickname, notas_aluno_url(aluno_id: aluno.id, curso_id: tarefa.modulo.curso.id) %></td>
-          <td><%= tarefa.pontuacao %></td>
-          <td><%= minha_nota(tarefa.id, @perfil.id) %></td>
-          <td><%= enviada(tarefa.id, @perfil.id) %></td>
-          <td><%= avaliada(tarefa.id, @perfil.id) %></td>
+          <td><%= link_to aluno.nickname, notas_aluno_url(aluno_id: aluno.id, curso_id: tarefa.missao.modulo.curso.id) %></td>
+          <td><%= tarefa.missao.pontuacao %></td>
+          <td><%= minha_nota(tarefa.missao.id, aluno.id) %></td>
+          <td><%= enviada(tarefa.id, aluno.id) %></td>
+          <td><%= avaliada(tarefa.id, aluno.id) %></td>
         </tr>
       <% end %>
     </tbody>

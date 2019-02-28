@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :missoes
   resources :badges
   resources :salas_chat
-  resources :avaliacao_tarefa
+  resources :avaliacao_tarefa, except: [:index]
   resources :tarefa_alunos
   resources :tarefas
   resources :modulos
@@ -37,28 +37,33 @@ Rails.application.routes.draw do
 
   devise_scope :usuario do
     root 'usuarios/sessions#new'
-  end
+  end  
 
-  # root  :to =>'controle/#inicial'
-  
-
+  #Controle
   get 'inicial' => 'controle#inicial'
   get 'sobre' => 'controle#sobre'
   get 'controle_gestor' => 'controle#controle_gestor'
   get 'controle_professor' => 'controle#controle_professor'
   get 'desenvolvimento' => 'controle#desenvolvimento'
   get 'curso_atual' => 'cursos#atualizar_curso_atual'
+
+  #Usuário Curso
   get 'busca_curso' => 'usuario_curso#busca_curso'
   get 'inscricao_curso' => 'usuario_curso#inscricao_curso'
-  get 'descricao' => 'cursos#descricao'
-  get 'material_texto' => 'materiais#texto'
   get 'meu_perfil' => 'usuario_curso#meu_perfil'
-  get 'visualizar_respostas' => 'tarefas#visualizar_respostas'
-  get 'minhas_notas' => 'usuarios#minhas_notas'
-  get 'notas_aluno' => 'usuarios#notas_aluno'
+  get 'notas_aluno' => 'usuario_curso#notas_aluno'
+  get 'minhas_notas' => 'usuario_curso#minhas_notas'
+  
+  #Curso
+  get 'descricao' => 'cursos#descricao'
   get 'notas' => 'cursos#notas'
+
+  get 'material_texto' => 'materiais#texto'
+  
   get 'termo_compromisso' => 'usuarios#termo_compromisso'
+
   get 'equipe' => 'grupos_cursos#lista_participantes'
+
   get 'conversas_professor' => 'conversas#conversas_professor'
  
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

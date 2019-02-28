@@ -18,4 +18,10 @@ class Usuario < ApplicationRecord
     GESTOR_DO_SISTEMA
   ]
 
+  def active_for_authentication?
+    if ativo?
+      super && ativo?
+    end
+  end
+  
 end

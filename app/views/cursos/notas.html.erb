@@ -2,10 +2,12 @@
 
   <div class="card-header">Notas da Turma </div>
 
-  <% @tarefas.each do |tarefa| %>
-    <h5 class="p-3 mb-2 bg-info text-white text-center"><b>Módulo:</b> <%= link_to tarefa.modulo.nome, tarefa.modulo, class: "text-light" %></h5>
-    <h6 class="p-3 mb-2 bg-secondary text-white text-center"><b>Tarefa:</b> <%= link_to tarefa.nome, tarefa, class: "text-light" %></h6>
-    <%= render partial: "tarefas/tarefas_turma", locals: {tarefa: tarefa} %>
+  <% @missoes.each do |missao| %>
+    <h5 class="p-3 mb-2 bg-info text-white text-center"><b>Módulo:</b> <%= link_to missao.modulo.nome, missao.modulo, class: "text-light" %></h5>
+    <h6 class="p-3 mb-2 bg-secondary text-white text-center"><b>Missao:</b> <%= link_to missao.nome, missao, class: "text-light" %></h6>
+    <% if missao.tipo == 'Tarefa' %>
+    	<%= render partial: "tarefas/tarefas_turma", locals: {tarefa: missao.tarefa} %>
+    <% end %>
   <% end %>
 
 </div>

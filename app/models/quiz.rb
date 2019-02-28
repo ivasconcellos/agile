@@ -1,5 +1,5 @@
 class Quiz < ApplicationRecord
-  belongs_to :curso
+  belongs_to :missao
   belongs_to :usuario_curso
 
   self.per_page = 10

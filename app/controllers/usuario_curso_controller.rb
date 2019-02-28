@@ -34,7 +34,7 @@ class UsuarioCursoController < ApplicationController
 
     respond_to do |format|
       if @usuario_curso.save
-        format.html { redirect_to @usuario_curso, notice: 'Usuário do Curso cadastrado com sucesso!' }
+        format.html { redirect_to @usuario_curso, notice: 'Usuário cadastrado no Curso com sucesso!' }
         format.json { render :show, status: :created, location: @usuario_curso }
       else
         format.html { render :new, @current_usuario => current_usuario }
@@ -106,7 +106,18 @@ class UsuarioCursoController < ApplicationController
       format.html { render :busca_curso, @current_usuario => current_usuario, layout: 'neutro' }
       format.json { render json: @usuario_curso.errors, status: :unprocessable_entity }
     end
-    
+  end
+
+  def notas_aluno
+    @aluno = UsuarioCurso.find_by('usuario_curso.id = ? and curso_id = ?',
+       params[:aluno_id], params[:curso_id])
+    authorize! :notas_aluno,:notas
+  end
+
+  def minhas_notas
+    @modulos = Modulo.where('modulos.curso_id = ?',
+       current_usuario.curso_atual_id)
+    authorize! :minhas_notas,:notas
   end
 
   private

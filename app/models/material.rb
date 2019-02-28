@@ -7,7 +7,7 @@ class Material < ApplicationRecord
   #has_attached_file :arquivo, styles: {medium: "300x300", thumb:"100x100"}, default_url: "/images/:style/missing.png"
 
   has_one_attached :arquivo
-  validates :arquivo, size: { less_than: 7.megabytes , message: 'is not given between size' }    
+  validates :arquivo, size: { less_than: 10.megabytes , message: 'is not given between size' }    
   
   validate :validate_content_type
   def validate_content_type
@@ -25,7 +25,6 @@ class Material < ApplicationRecord
         "application/vnd.oasis.opendocument.spreadsheet"])
         errors.add(:arquivo, "Formato de arquivo inválido!")
       end
-     #validates :arquivo, attached: true, content_type: 
     end
     
     if self.tipo == "Vídeo"

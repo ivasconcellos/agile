@@ -6,7 +6,7 @@
     <table class="table table-striped table-sm">
       <thead>
         <tr>
-          <th class="text-center">Módulo</th>
+          <th class="text-center">Missão</th>
           <th class="text-center">Nome</th>
           <% if @perfil.perfil == 'Aluno' %>
             <th class="text-center">Enviar</th>
@@ -17,13 +17,13 @@
       <tbody>
         <% @tarefas.each do |tarefa| %>
           <tr>
-            <td><%= link_to tarefa.modulo.nome, tarefa.modulo %></td>
+            <td><%= link_to tarefa.missao.nome, tarefa.missao %></td>
             <td><%= tarefa.nome %></td>
             <% if @perfil.perfil == 'Aluno' and no_prazo(tarefa) %>
               <td><%= link_to 'Enviar Tarefa', {controller: 'tarefa_alunos', action: 'new', tarefa_id: tarefa.id}, class: "btn btn-sm btn-danger"  %></td>
             <% end %>
             <% if can? :new, AvaliacaoTarefa %>
-              <td><%= link_to 'Respostas', visualizar_respostas_path(id: tarefa.id) %></td>
+              <td><%= link_to 'Respostas', tarefa_alunos_path(id: tarefa.id) %></td>
             <% end %>
             <% if can? :show, Tarefa %>
               <td><%= link_to 'Visualizar', tarefa %></td>

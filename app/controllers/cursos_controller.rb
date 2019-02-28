@@ -17,8 +17,8 @@ class CursosController < ApplicationController
     @modulos = Modulo.where(curso_id: current_usuario.curso_atual_id, publico: true)
     @materiais = Material.joins(:modulo).where('modulos.curso_id = ?',
     current_usuario.curso_atual_id).order('updated_at')
-    @tarefas = Tarefa.joins(:modulo).where('modulos.curso_id = ? and tarefas.publico = ?',
-    current_usuario.curso_atual_id, true).order('updated_at')
+    @missoes = Missao.joins(:modulo).where('modulos.curso_id = ?',
+    current_usuario.curso_atual_id).order('updated_at')
     @usuario_curso = UsuarioCurso.where(curso_id: @curso.id, usuario_id: current_usuario.id)
     authorize! :show, Curso
   end
@@ -88,7 +88,7 @@ class CursosController < ApplicationController
   end
 
   def notas
-    @tarefas = Tarefa.joins(:modulo).where('modulos.curso_id = ?',
+    @missoes = Missao.joins(:modulo).where('modulos.curso_id = ?',
        current_usuario.curso_atual_id)
   end
 

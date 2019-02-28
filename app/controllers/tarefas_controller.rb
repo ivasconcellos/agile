@@ -1,11 +1,11 @@
 class TarefasController < ApplicationController
-  before_action :set_tarefa, only: [:show, :edit, :update, :destroy, :visualizar_respostas]
+  before_action :set_tarefa, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_usuario!
   # GET /tarefas
   # GET /tarefas.json
   def index
     authorize! :index, Tarefa
-    @tarefas = Tarefa.joins(:modulo).where('modulos.curso_id = ?',
+    @tarefas = Tarefa.joins(missao: :modulo).where('modulos.curso_id = ?',
        current_usuario.curso_atual_id).page(params[:page])
   end
 
@@ -20,8 +20,8 @@ class TarefasController < ApplicationController
   def new
     authorize! :new, Tarefa
     @tarefa = Tarefa.new
-    @tarefa.modulo_id = params[:modulo_id]
-    @tarefa.usuario_curso_id = UsuarioCurso.find_by(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual.id).id
+    @tarefa.missao_id = params[:missao_id]
+    @tarefa.usuario_curso_id = @perfil.id
   end
 
   # GET /tarefas/1/edit
@@ -71,13 +71,6 @@ class TarefasController < ApplicationController
     end
   end
 
-  def visualizar_respostas
-    @tarefas_alunos = TarefaAluno.where(tarefa_id: @tarefa)
-    @alunos_sem_envio = UsuarioCurso.joins(:tarefa_aluno).where.not("usuario_curso.perfil = ? and
-      tarefa_alunos.tarefa_id = ?", "Professor", @tarefa)
-    authorize! :new, Tarefa
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tarefa
@@ -86,6 +79,6 @@ class TarefasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tarefa_params
-      params.require(:tarefa).permit(:modulo_id, :usuario_curso_id, :nome, :descricao, :pontuacao, :publico, :data_inicio, :hora_inicio, :data_termino, :hora_termino)
+      params.require(:tarefa).permit(:missao_id, :usuario_curso_id, :nome, :descricao, :publico, :data_inicio, :hora_inicio, :data_termino, :hora_termino)
     end
 end
