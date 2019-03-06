@@ -10,7 +10,12 @@ class ConversasController < ApplicationController
   def new
     @conversa = Conversa.new
     @conversa.destinatario_id = params[:destinatario_id]
-    @conversa.conversa_id = params[:conversa_id]
+    @conversa.conversa_id = params[:id]
+    if params[:conversa_id]
+      @inicial = Conversa.find_by(id: params[:conversa_id])
+      @conversa.conversa_id = @inicial.id
+      @conversa.assunto = @inicial.assunto
+    end
     authorize! :new, Conversa
   end
 
@@ -21,8 +26,7 @@ class ConversasController < ApplicationController
 
   def create
     @conversa = Conversa.new(conversa_params)
-    @usuario = UsuarioCurso.select(:id).where(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id).first
-    @conversa.usuario_curso_id = @usuario.id
+    @conversa.usuario_curso_id = @perfil.id
     respond_to do |format|
       if @conversa.save
         ApplicationMailer.mensagens_professor(@conversa).deliver
@@ -35,12 +39,20 @@ class ConversasController < ApplicationController
     end
   end
 
+  def conversas_assunto
+    @conversas = Conversa.where(usuario_curso_id: @perfil.id,
+     destinatario_id: params[:pessoa_id]).or(Conversa.where(
+      usuario_curso_id: params[:pessoa_id], destinatario_id: @perfil.id))
+    @conversas = @conversas.select(:assunto).group('assunto')
+     authorize! :show, Conversa
+  end
+
   def conversas_professor
-    @usuario = UsuarioCurso.select(:id).where(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id).first
-    @conversas = Conversa.where(usuario_curso_id: @usuario.id,
-     destinatario_id: params[:professor_id]).or(Conversa.where(
-      usuario_curso_id: params[:professor_id], destinatario_id: @usuario.id)).order('created_at')
+    @conversas = Conversa.where(assunto: params[:assunto], usuario_curso_id: @perfil.id).or(Conversa.where(assunto: params[:assunto],
+      destinatario_id: @perfil.id)).order('updated_at desc')
     authorize! :show, Conversa
+    @conversas_nao_visualizadas = Conversa.select(:id).where(lida: false, destinatario_id: @perfil.id)
+    @lida = @conversas.where(destinatario_id: @perfil.id, id: @conversas_nao_visualizadas).update_all(lida: true)
   end
     
   private

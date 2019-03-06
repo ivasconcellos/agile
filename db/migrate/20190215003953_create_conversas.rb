@@ -5,7 +5,7 @@ class CreateConversas < ActiveRecord::Migration[5.2]
       t.string :assunto
       t.text :mensagem
       t.references :destinatario, index: true, foreign_key: { to_table: :usuario_curso }
-      t.boolean :lido, default: false
+      t.boolean :lida, default: false
       t.references :conversa, foreign_key: true
       t.timestamps
     end
