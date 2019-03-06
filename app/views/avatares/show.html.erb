@@ -11,30 +11,40 @@
             </div>
           </div>
 
-          <div class="col-lg-6">
+          <div class="col-lg-9">
             <div class="input-group mb-3">
-              <p> <label>Nome: </label>          
-              <%= @avatar.nome %></p>
+              <p> 
+                <label>Nome: </label>          
+                <%= @avatar.nome %>
+              </p>
             </div>
 
             <div class="input-group mb-3">
-              <p> <label>Grupo: </label>          
-              <%= @avatar.grupo.nome %></p>
+              <p>
+                <label>Grupo: </label>          
+                <%= @avatar.grupo.nome %>
+              </p>
             </div>
 
             <div class="input-group mb-3">
-              <p> <label>Perfil: </label>          
-              <%= @avatar.perfil %></p>
+              <p>
+                <label>Perfil: </label>          
+                <%= @avatar.perfil %>
+              </p>
             </div>
 
             <div class="input-group mb-3">
-              <p><label>Ativo: </label>          
-              <%= @avatar.ativo? ? 'Sim' : 'Não' %></p>
+              <p>
+                <label>Ativo: </label>          
+                <%= @avatar.ativo? ? 'Sim' : 'Não' %>
+              </p>
             </div>
             
             <div class="input-group mb-3">
-                <p><label>Cadastrado em: </label>          
-              <%= @avatar.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></p>
+              <p>
+                <label>Cadastrado em: </label>          
+                <%= @avatar.created_at.strftime("%d/%m/%Y - %H:%M:%S") %>
+              </p>
             </div>
         </div>
       </div>

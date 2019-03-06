@@ -2,13 +2,51 @@
 
   <div class="card-header">Artefato do Tema do Curso</div>
 
-  <ul class="list-group">
-    <li class="list-group-item"><%= image_tag @artefato.imagem.variant(resize: "100x100"), class: "img-responsive img-thumbnail" %></li>
-    <li class="list-group-item"><b>Tema do curso:</b> <%= @artefato.tema_curso.nome %></li>
-    <li class="list-group-item"><b>Nome:</b> <%= @artefato.nome %></li>
-    <li class="list-group-item"><b>Ativo:</b> <%= @artefato.ativo? ? 'Sim' : 'Não' %></li>  
-    <li class="list-group-item"><b>Cadastrado em:</b> <%= @artefato.created_at.strftime("%d/%m/%Y") %></li>     
-  </ul>
+
+  <div class="card-body">
+
+    <div class="row">
+
+      <div class="col-lg-4">
+        <div class="input-group mb-3">
+          <%= image_tag @artefato.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail" %>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+
+        <div class="input-group mb-3">
+          <p>
+            <label>Nome: </label>          
+            <%= @artefato.nome %>
+          </p>
+        </div>
+
+        <div class="input-group mb-3">
+          <p>
+            <label>Tema do curso: </label>          
+            <%= link_to @artefato.tema_curso.nome, @artefato.tema_curso %>
+          </p>
+        </div>
+
+        <div class="input-group mb-3">
+          <p>
+            <label>Ativo: </label>          
+            <%= @artefato.ativo? ? 'Sim' : 'Não' %>
+          </p>
+        </div>
+
+        <div class="input-group mb-3">
+          <p>
+            <label>Cadastrado em: </label>          
+            <%= @artefato.created_at.strftime("%d/%m/%Y - %H:%M:%S") %>
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
 
   <br>
   <div class="card-footer text-muted">
