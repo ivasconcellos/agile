@@ -11,6 +11,7 @@ class DicasController < ApplicationController
   # GET /dicas/1
   # GET /dicas/1.json
   def show
+    authorize! :show, Dica
   end
 
   # GET /dicas/new
@@ -18,7 +19,6 @@ class DicasController < ApplicationController
     @dica = Dica.new
     @dica.missao_id = params[:missao_id]
     authorize! :new, Dica
-    
   end
   
   # GET /dicas/1/edit

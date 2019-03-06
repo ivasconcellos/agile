@@ -5,7 +5,8 @@
   <ul class="list-group">
     <li class="list-group-item"><b>Nome:</b> <%= @dica.nome %></li>
     <li class="list-group-item"><b>Descrição:</b> <%= @dica.descricao.to_s.html_safe %></li>
-        <li class="list-group-item"><b>Missão:</b> <%= link_to @dica.missao.nome, @dica.missao %></li>  
+    <li class="list-group-item"><b>Missão:</b> <%= link_to @dica.missao.nome, @dica.missao %></li>
+    <li class="list-group-item"><b>Cadastrada em:</b> <%= @dica.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li> 
   </ul>
   
   <br>
