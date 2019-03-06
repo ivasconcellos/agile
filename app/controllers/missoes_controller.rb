@@ -12,6 +12,7 @@ class MissoesController < ApplicationController
   # GET /missoes/1
   # GET /missoes/1.json
   def show
+    @dicas = Dica.where(missao_id: @missao.id).order(:nome)
     authorize! :show, Missao
   end
 

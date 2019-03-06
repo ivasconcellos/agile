@@ -1,0 +1,45 @@
+<%= form_with(model: dica, local: true) do |form| %>
+  <% if dica.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(dica.errors.count, "erro(s)") %> Dica não pôde ser salva!</h2>
+
+      <ul>
+      <% dica.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :missao_id %>
+
+  <div class="card-body">  
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
+      <div class="col-md-6">
+        <%= form.text_field :nome, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Descrição*</label>
+      <div class="col-md-6">
+        <%= form.cktext_area :descricao, class: "form-control"%>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Ativa</label>
+      <div class="col-md-6">
+        <%= form.check_box :ativo, class: "form-check-input" %> Sim
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card-footer text-muted">
+    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', dica.missao, class: "btn btn-md btn-secondary" %>
+  </div>
+<%end%>

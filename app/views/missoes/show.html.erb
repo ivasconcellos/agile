@@ -18,6 +18,9 @@
   
 
   <div class="card-footer text-muted">
+    <% if can? :new, Dica %>
+      <%= link_to 'Adicionar Dica', {controller: 'dicas', action: 'new', :missao_id => @missao.id}, class: "btn btn-md btn-success" %>
+    <% end %>
 
     <% if @missao.tipo == 'Tarefa' %>
       <% if !@missao.tarefa %>
@@ -44,5 +47,23 @@
     <% end %>
     <%= link_to 'Voltar', missoes_path, class: "btn btn-md btn-secondary" %>
   </div>
-
 </div>
+
+
+<% if !@dicas.empty? %>
+  <div class= "card"> 
+    <div class="card-header">Dicas</div>
+    
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <tbody>
+          <% @dicas.each_with_index do |dica, index| %>
+          <tr>
+            <td class="text-left"><%= index +1 %>ª Dica: <%= link_to dica.nome, dica %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
