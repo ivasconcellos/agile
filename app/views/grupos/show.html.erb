@@ -5,27 +5,33 @@
   	<div class="card-body">
 
 	    <div class="row">
-	      	<div class="col-lg-3">
+	      	<div class="col-lg-4">
 	        	<div class="input-group mb-3">
 	        		<%= image_tag @grupo.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail" %>
 	       		</div>
 	      	</div>
 
-	      	<div class="col-lg-6">
+	      	<div class="col-lg-8">
 		        <div class="input-group mb-3">
-		          <p> <label>Nome: </label>          
-		          <%= @grupo.nome %></p>
+		        	<p> 
+			          	<label>Nome: </label>          
+			          	<%= @grupo.nome %>
+		        	</p>
 		        </div>
 
 		        <div class="input-group mb-3">
-		          <p><label>Ativo: </label>          
-		          <%= @grupo.ativo? ? 'Sim' : 'Não' %></p>
+		          	<p>
+		          		<label>Ativo: </label>          
+		          		<%= @grupo.ativo? ? 'Sim' : 'Não' %>
+		      		</p>
 		        </div>
 
 		        
 		        <div class="input-group mb-3">
-		            <p><label>Cadastrado em: </label>          
-		        	<%= @grupo.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></p>
+		            <p>
+		            	<label>Cadastrado em: </label>          
+		        		<%= @grupo.created_at.strftime("%d/%m/%Y - %H:%M:%S") %>
+		        	</p>
 		        </div>
 	    	</div>
 	    </div>

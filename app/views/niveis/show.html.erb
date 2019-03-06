@@ -1,15 +1,44 @@
 <div class="card">
 
-  <div class="card-header">Nível</div>
+  	<div class="card-header">Nível</div>
 
-	<ul class="list-group">
-	  <li class="list-group-item"><b>Nome:</b> <%= @nivel.nome %></li>
-	  <% if @nivel.imagem.attached? %>
-	  	<li class="list-group-item"><b>Imagem:</b> <%= image_tag @nivel.imagem.variant(resize: "100x100") %></li>
-	  <% end %>
-	  <li class="list-group-item"><b>Pontos requeridos:</b> <%= @nivel.pontos_requeridos %></li>
-	  <li class="list-group-item"><b>Cadastrado em:</b> <%= @nivel.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>     
-	</ul>
+  	<div class="card-body">
+
+		<div class="row">
+
+		  <div class="col-lg-4">
+		    <div class="input-group mb-3">
+		      <%= image_tag @nivel.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail" %>
+		    </div>
+		  </div>
+
+		  <div class="col-lg-8">
+
+		    <div class="input-group mb-3">
+		      <p>
+		        <label>Nome: </label>          
+		        <%= @nivel.nome %>
+		      </p>
+		    </div>
+
+		    <div class="input-group mb-3">
+		      <p>
+		        <label>Pontos requeridos: </label>          
+		        <%= @nivel.pontos_requeridos %>
+		      </p>
+		    </div>
+
+		    <div class="input-group mb-3">
+		      <p>
+		        <label>Cadastrado em: </label>          
+		        <%= @nivel.created_at.strftime("%d/%m/%Y - %H:%M:%S") %>
+		      </p>
+		    </div>
+
+		  </div>
+
+		</div>
+	</div>
 
 	<br>
 

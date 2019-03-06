@@ -1,13 +1,44 @@
 <div class="card">
 
-  <div class="card-header">Badge</div>
+	<div class="card-header">Badge</div>
 
-	<ul class="list-group">
-	  <li class="list-group-item"><b>Nome:</b> <%= @badge.nome %></li>
-	  <li class="list-group-item"><b>Imagem:</b> <%= image_tag @badge.imagem.variant(resize: "300x300") %></li>
-	  <li class="list-group-item"><b>Ativa:</b> <%= @badge.ativo? ? 'Sim' : 'Não' %></li>
-	  <li class="list-group-item"><b>Cadastrada em:</b> <%= @badge.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>     
-	</ul>
+	<div class="card-body">
+
+		<div class="row">
+
+		  <div class="col-lg-4">
+		    <div class="input-group mb-3">
+		      <%= image_tag @badge.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail" %>
+		    </div>
+		  </div>
+
+		  <div class="col-lg-8">
+
+		    <div class="input-group mb-3">
+		      <p>
+		        <label>Nome: </label>          
+		        <%= @badge.nome %>
+		      </p>
+		    </div>
+
+		    <div class="input-group mb-3">
+		      <p>
+		        <label>Ativa: </label>          
+		        <%= @badge.ativo? ? 'Sim' : 'Não' %>
+		      </p>
+		    </div>
+
+		    <div class="input-group mb-3">
+		      <p>
+		        <label>Cadastrada em: </label>          
+		        <%= @badge.created_at.strftime("%d/%m/%Y - %H:%M:%S") %>
+		      </p>
+		    </div>
+
+		  </div>
+
+		</div>
+	</div>
 
 	<br>
 

@@ -2,19 +2,23 @@
 
   <div class="card-header"><%= @curso.nome %></div>
   
-  <ul class="list-group">
-    <li class="list-group-item"><b>Descrição:</b> <%= @curso.descricao.to_s.html_safe %></li> 
-    <li class="list-group-item"><b>Professor(a) principal:</b> <%= @curso.proprietario.nome %></li>
-    <li class="list-group-item"><b>Início do curso:</b> <%= @curso.data_hora_inicio %></li>
-    <li class="list-group-item"><b>Término do curso:</b> <%= @curso.data_hora_termino %></li>
-    <% if can? :edit, Curso %>
-      <li class="list-group-item"><b>Código de acesso:</b> <%= @curso.codigo_acesso %></li>   
-      <li class="list-group-item"><b>Ativo:</b> <%= @curso.ativo? ? 'Sim' : 'Não' %></li>
-      <li class="list-group-item"><b>Público:</b> <%= @curso.publico? ? 'Sim' : 'Não' %></li>
-      <li class="list-group-item"><b>Cadastrado em:</b> <%= @curso.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
-      <li class="list-group-item"><b>Tema:</b> <%= @curso.tema_curso.nome %></li>
-    <% end %>      
-  </ul>
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <ul class="list-group">
+        <li class="list-group-item"><b>Descrição:</b> <%= @curso.descricao.to_s.html_safe %></li> 
+        <li class="list-group-item"><b>Professor(a) principal:</b> <%= @curso.proprietario.nome %></li>
+        <li class="list-group-item"><b>Início do curso:</b> <%= @curso.data_hora_inicio %></li>
+        <li class="list-group-item"><b>Término do curso:</b> <%= @curso.data_hora_termino %></li>
+        <% if can? :edit, Curso %>
+          <li class="list-group-item"><b>Código de acesso:</b> <%= @curso.codigo_acesso %></li>   
+          <li class="list-group-item"><b>Ativo:</b> <%= @curso.ativo? ? 'Sim' : 'Não' %></li>
+          <li class="list-group-item"><b>Público:</b> <%= @curso.publico? ? 'Sim' : 'Não' %></li>
+          <li class="list-group-item"><b>Cadastrado em:</b> <%= @curso.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
+          <li class="list-group-item"><b>Tema:</b> <%= link_to @curso.tema_curso.nome, @curso.tema_curso %></li>
+        <% end %>      
+      </ul>
+    </div>
+  </div>
 
   <% if @perfil and @perfil.perfil == "Aluno" %>  
     <div class="card-body">

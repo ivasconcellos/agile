@@ -50,6 +50,7 @@
           <tr>
             <th class="text-center">Nome</th>
             <th class="text-center">Grupo</th>
+            <th class="text-center">Imagem</th>
             <th colspan="3" class="text-center">Opções</th>
           </tr>
         </thead>
@@ -58,6 +59,7 @@
             <tr>
               <td><%= avatar.nome %></td>
               <td><%= avatar.grupo.nome %></td>
+              <td><%= image_tag avatar.imagem.variant(resize: "100x100"), class: "img-responsive" %></td>
               <td><%= link_to 'Visualizar', avatar %></td>
               <td>
                 <% if can? :edit, Avatar %>
