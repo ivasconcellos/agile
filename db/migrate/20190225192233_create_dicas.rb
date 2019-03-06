@@ -3,7 +3,7 @@ class CreateDicas < ActiveRecord::Migration[5.2]
     create_table :dicas do |t|
       t.string :nome
       t.string :descricao
-      t.boolean :ativo
+      t.boolean :ativo, default: true
       t.references :missao, foreign_key: true
 
       t.timestamps

@@ -126,13 +126,3 @@ td{
   padding-left: 30px;
   padding-top: 10px;
 }
-
-.btn-atencao{
-  color:#ffffff;
-  background-color:#ffc107;
-  border-color:#ffc107}
-  
-  .btn-atencao:hover{
-    color:#ffffff;
-    background-color:#e0a800;
-    border-color:#d39e00}

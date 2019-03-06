@@ -5,7 +5,7 @@
   <ul class="list-group">
     <li class="list-group-item"><b>Nome:</b> <%= @dica.nome %></li>
     <li class="list-group-item"><b>Descrição:</b> <%= @dica.descricao.to_s.html_safe %></li>
-        <li class="list-group-item"><b>Missão:</b> <%= @dica.missao.nome %></li>  
+        <li class="list-group-item"><b>Missão:</b> <%= link_to @dica.missao.nome, @dica.missao %></li>  
   </ul>
   
   <br>
@@ -14,7 +14,7 @@
     <% if can? :edit, Dica %>
       <%= link_to 'Atualizar', edit_dica_path(@dica), class: "btn btn-md btn-primary" %>
     <% end %>
-    <%= link_to 'Voltar', missoes_path, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar', @dica.missao, class: "btn btn-md btn-secondary" %>
   </div>
 </div>
   

@@ -1,6 +1,6 @@
 class DicasController < ApplicationController
   before_action :set_dica, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_usuario!
   # GET /dicas
   # GET /dicas.json
   def index
@@ -24,7 +24,6 @@ class DicasController < ApplicationController
   # GET /dicas/1/edit
   def edit
     authorize! :edit, Dica
-    
   end
   
   # POST /dicas
@@ -34,14 +33,13 @@ class DicasController < ApplicationController
     
     respond_to do |format|
       if @dica.save
-        format.html { redirect_to @dica, notice: 'Dica criada com sucesso.' }
+        format.html { redirect_to @dica, notice: 'Dica cadastrada com sucesso!' }
         format.json { render :show, status: :created, location: @dica }
       else
-        format.html { render :new }
+        format.html { render :new, @current_usuario => current_usuario }
         format.json { render json: @dica.errors, status: :unprocessable_entity }
       end
     end
-    authorize! :create, Dica
   end
 
   # PATCH/PUT /dicas/1
@@ -49,14 +47,13 @@ class DicasController < ApplicationController
   def update
     respond_to do |format|
       if @dica.update(dica_params)
-        format.html { redirect_to @dica, notice: 'Dica atualizada com sucesso.' }
+        format.html { redirect_to @dica, notice: 'Dica atualizada com sucesso!' }
         format.json { render :show, status: :ok, location: @dica }
       else
-        format.html { render :edit }
+        format.html { render :edit, @current_usuario => current_usuario }
         format.json { render json: @dica.errors, status: :unprocessable_entity }
       end
     end
-    authorize! :update, Dica
   end
 
   # DELETE /dicas/1
@@ -64,7 +61,7 @@ class DicasController < ApplicationController
   def destroy
     @dica.destroy
     respond_to do |format|
-      format.html { redirect_to dicas_url, notice: 'Dica excluida com sucesso.' }
+      format.html { redirect_to dicas_url, notice: 'Dica excluída com sucesso!' }
       format.json { head :no_content }
     end
   end

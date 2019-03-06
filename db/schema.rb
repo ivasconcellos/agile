@@ -159,7 +159,7 @@ ActiveRecord::Schema.define(version: 2019_02_25_192233) do
     t.string "assunto"
     t.text "mensagem"
     t.bigint "destinatario_id"
-    t.boolean "lido", default: false
+    t.boolean "lida", default: false
     t.bigint "conversa_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -189,7 +189,7 @@ ActiveRecord::Schema.define(version: 2019_02_25_192233) do
   create_table "dicas", force: :cascade do |t|
     t.string "nome"
     t.string "descricao"
-    t.boolean "ativo"
+    t.boolean "ativo", default: true
     t.bigint "missao_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

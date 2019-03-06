@@ -1,7 +1,7 @@
 <%= form_with(model: dica, local: true) do |form| %>
   <% if dica.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(dica.errors.count, "error") %> Dica não pôde ser salva!</h2>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(dica.errors.count, "erro(s)") %> Dica não pôde ser salva!</h2>
 
       <ul>
       <% dica.errors.full_messages.each do |message| %>
@@ -10,6 +10,7 @@
       </ul>
     </div>
   <% end %>
+
   <%= form.hidden_field :missao_id %>
 
   <div class="card-body">  
@@ -29,7 +30,7 @@
     </div>
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Ativo*</label>
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Ativa</label>
       <div class="col-md-6">
         <%= form.check_box :ativo, class: "form-check-input" %> Sim
       </div>
@@ -39,6 +40,6 @@
 
   <div class="card-footer text-muted">
     <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
-    <%= link_to 'Voltar', missoes_path, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar', dica.missao, class: "btn btn-md btn-secondary" %>
   </div>
 <%end%>
