@@ -1,13 +1,7 @@
 class TarefasController < ApplicationController
   before_action :set_tarefa, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_usuario!
-  # GET /tarefas
-  # GET /tarefas.json
-  def index
-    authorize! :index, Tarefa
-    @tarefas = Tarefa.joins(missao: :modulo).where('modulos.curso_id = ?',
-       current_usuario.curso_atual_id).page(params[:page])
-  end
+  current_usuario.curso_atual_id).page(params[:page])
 
   # GET /tarefas/1
   # GET /tarefas/1.json
