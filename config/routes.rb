@@ -50,9 +50,9 @@ Rails.application.routes.draw do
   #Usuário Curso
   get 'busca_curso' => 'usuario_curso#busca_curso'
   get 'inscricao_curso' => 'usuario_curso#inscricao_curso'
-  get 'meu_perfil' => 'usuario_curso#meu_perfil'
   get 'notas_aluno' => 'usuario_curso#notas_aluno'
   get 'minhas_notas' => 'usuario_curso#minhas_notas'
+  get 'atualizar_avatar' => 'usuario_curso#atualizar_avatar'
   
   #Curso
   get 'descricao' => 'cursos#descricao'
