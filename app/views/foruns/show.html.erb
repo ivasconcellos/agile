@@ -49,9 +49,13 @@
 
 	<div id="task-form" style="display:none;"></div>
 
-	<% if can? :new, Comentario %>
+	<% if can? :new, Comentario and @forum.ativo?  %>
 		<div class="card-footer text-muted">
 			<%= link_to "Comentar", {controller: 'comentarios', action: 'new', :forum_id => @forum.id, remote: true}, class: "btn btn-warning" %>
+		</div>
+	<% else%>
+		<div class="alert alert-danger">
+			<p>O fórum não está mais ativo! Em caso de dúvidas, entre em contato com o professor do curso. </p>
 		</div>
 	<% end %>
 

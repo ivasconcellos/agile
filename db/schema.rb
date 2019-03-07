@@ -219,6 +219,7 @@ ActiveRecord::Schema.define(version: 2019_02_25_192233) do
   create_table "foruns", force: :cascade do |t|
     t.string "titulo"
     t.text "descricao"
+    t.boolean "ativo", default: true
     t.bigint "curso_id"
     t.bigint "usuario_curso_id"
     t.datetime "created_at", null: false
