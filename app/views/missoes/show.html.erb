@@ -9,20 +9,22 @@
     <% end %>
   </div>
   
-  <ul class="list-group">
-     <li class="list-group-item"><b>Nome:</b> <%= @missao.nome %></li>
-     <li class="list-group-item"><b>Descrição:</b> <%= @missao.descricao.to_s.html_safe %></li>
-     <% if @missao.imagem.attached? %>
-      <li class="list-group-item"><b>Imagem:</b> <%= image_tag @missao.imagem.variant(resize: "100x100") %></li>
-     <% end %>
-     <li class="list-group-item"><b>Pontuação:</b> <%= @missao.pontuacao %></li>
-     <li class="list-group-item"><b>Tipo:</b> <%= @missao.tipo %></li>
-     <li class="list-group-item"><b>Ativa:</b> <%= @missao.ativo? ? 'Sim' : 'Não' %></li>
-     <li class="list-group-item"><b>Criada por:</b> <%= @missao.usuario_curso.nickname %></li>
-     <li class="list-group-item"><b>Criada em:</b> <%= @missao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
-  </ul>
-
-  
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <ul class="list-group">
+         <li class="list-group-item"><b>Nome:</b> <%= @missao.nome %></li>
+         <li class="list-group-item"><b>Descrição:</b> <%= @missao.descricao.to_s.html_safe %></li>
+         <% if @missao.imagem.attached? %>
+          <li class="list-group-item"><b>Imagem:</b> <%= image_tag @missao.imagem.variant(resize: "100x100") %></li>
+         <% end %>
+         <li class="list-group-item"><b>Pontuação:</b> <%= @missao.pontuacao %></li>
+         <li class="list-group-item"><b>Tipo:</b> <%= @missao.tipo %></li>
+         <li class="list-group-item"><b>Ativa:</b> <%= @missao.ativo? ? 'Sim' : 'Não' %></li>
+         <li class="list-group-item"><b>Criada por:</b> <%= @missao.usuario_curso.nickname %></li>
+         <li class="list-group-item"><b>Criada em:</b> <%= @missao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
+      </ul>
+    </div>
+  </div>  
 
   <div class="card-footer text-muted">
     <% if can? :new, Dica %>

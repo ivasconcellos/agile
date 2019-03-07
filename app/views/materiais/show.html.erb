@@ -1,7 +1,14 @@
 <div class="card">
 
-  <div class="card-header">Material</div>
-
+	<div class="card-header">Material
+	    <% if can? :edit, Material %>
+	      <%= link_to '', edit_material_path(@material), class: "fa fa-edit text-white" %>
+	    <% end %>
+	    <% if can? :destroy, Material %>
+	      <%= link_to '', @material, method: :delete, data: { confirm: 'Deseja realmente excluir o Material?' }, class: "fa fa-trash text-white" %>
+	    <% end %>
+	</div>
+  
 	<ul class="list-group">
 	  <li class="list-group-item"><b>Nome:</b> <%= @material.nome %></li>
 	  <li class="list-group-item"><b>Tipo:</b> <%= @material.tipo %></li>
@@ -25,15 +32,13 @@
 	  	<li class="list-group-item"><b>Vídeo:</b> <%= link_to image_tag("video.png", :alt => "video", size: "50x50"), url_for(@material.video), target: 'blank' %></li>
 	  <% end %>
 
-	  <li class="list-group-item"><b>Cadastrado em:</b> <%= @material.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
 	  <li class="list-group-item"><b>Módulo:</b> <%= link_to @material.modulo.nome, @material.modulo %></li>      
+	  <li class="list-group-item"><b>Cadastrado em:</b> <%= @material.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
+	  
 	</ul>
 
 	<br>
 	<div class="card-footer text-muted">
-	  <% if can? :edit, Material %>
-	    <%= link_to 'Atualizar', edit_material_path(@material), class: "btn btn-md btn-primary" %>
-	  <% end %>
 	  <%= link_to 'Voltar', materiais_path, class: "btn btn-md btn-secondary" %>
 	</div>
 	
