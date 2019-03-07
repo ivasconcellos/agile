@@ -37,7 +37,7 @@
           <%= link_to 'Adicionar Tarefa', {controller: 'tarefas', action: 'new', missao_id: @missao.id}, class: "btn btn-md btn-danger" %>
         <% end %>
       <% else %>
-        <%= link_to 'Ver tarefa', @missao.tarefa, class: "btn btn-md btn-success"  %>
+        <%= link_to 'Ver tarefa', @missao.tarefa, class: "btn btn-md btn-warning"  %>
       <% end %>
     <% end %>
 
@@ -47,7 +47,7 @@
           <%= link_to 'Adicionar Quiz', {controller: 'quizes', action: 'new', missao_id: @missao.id}, class: "btn btn-md btn-danger" %>
         <% end %>
       <% else %>
-        <%= link_to 'Ver quiz', @missao.quiz, class: "btn btn-md btn-sucess"  %>
+        <%= link_to 'Ver quiz', @missao.quiz, class: "btn btn-md btn-warning"  %>
       <% end %>
     <% end %>
 
