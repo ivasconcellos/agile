@@ -1,13 +1,7 @@
 class DicasController < ApplicationController
   before_action :set_dica, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_usuario!
-  # GET /dicas
-  # GET /dicas.json
-  def index
-    @dicas = Dica.all.page(params[:page])
-    authorize! :index, Dica
-  end
-
+  
   # GET /dicas/1
   # GET /dicas/1.json
   def show

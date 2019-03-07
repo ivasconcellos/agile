@@ -1,20 +1,28 @@
 <div class="card">
 
-  <div class="card-header">Dica</div>
+  <div class="card-header">Dica
+    <% if can? :edit, Dica %>
+      <%= link_to '', edit_dica_path(@dica), class: "fa fa-edit text-white" %>
+    <% end %>
+    <% if can? :destroy, Dica %>
+      <%= link_to '', @dica, method: :delete, data: { confirm: 'Deseja realmente excluir a Dica?' }, class: "fa fa-trash text-white" %>
+    <% end %>
+  </div>
   
-  <ul class="list-group">
-    <li class="list-group-item"><b>Nome:</b> <%= @dica.nome %></li>
-    <li class="list-group-item"><b>Descrição:</b> <%= @dica.descricao.to_s.html_safe %></li>
-    <li class="list-group-item"><b>Missão:</b> <%= link_to @dica.missao.nome, @dica.missao %></li>
-    <li class="list-group-item"><b>Cadastrada em:</b> <%= @dica.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li> 
-  </ul>
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <ul class="list-group">
+        <li class="list-group-item"><b>Nome:</b> <%= @dica.nome %></li>
+        <li class="list-group-item"><b>Descrição:</b> <%= @dica.descricao.to_s.html_safe %></li>
+        <li class="list-group-item"><b>Missão:</b> <%= link_to @dica.missao.nome, @dica.missao %></li>
+        <li class="list-group-item"><b>Cadastrada em:</b> <%= @dica.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li> 
+      </ul>
+    </div>
+  </div>
   
   <br>
   
   <div class="card-footer text-muted">
-    <% if can? :edit, Dica %>
-      <%= link_to 'Atualizar', edit_dica_path(@dica), class: "btn btn-md btn-primary" %>
-    <% end %>
     <%= link_to 'Voltar', @dica.missao, class: "btn btn-md btn-secondary" %>
   </div>
 </div>
