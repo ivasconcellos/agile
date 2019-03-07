@@ -1,6 +1,7 @@
 <div class="card">
   <div class="card-header">Perguntas</div>
 
+  <% if !@questions.empty? %>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
         <thead>
@@ -24,6 +25,7 @@
         </tbody>
       </table>
     </div>
+  <% end %>
 
     <br>
 
