@@ -1,0 +1,16 @@
+<h3 class="text-primary text-left font-weight-bold">Missões do módulo:</h3>
+<ul class="list-unstyled">
+  <% @missoes.where(modulo_id: modulo.id).each do |missao| %>
+    <li>
+      <%= link_to missao.nome, missao %>
+          
+      <% if can? :edit, Missao %>
+        <%= link_to '', edit_missao_path(missao), class: "fa fa-edit" %>
+      <% end %>
+      <% if can? :destroy, Missao %>
+        <%= link_to '', missao, method: :delete, data: { confirm: 'Deseja realmente excluir a Missão?' }, class: "fa fa-trash" %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+              

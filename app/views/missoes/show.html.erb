@@ -1,6 +1,13 @@
 <div class="card">
 
-  <div class="card-header">Missão</div>
+  <div class="card-header">Missão
+    <% if can? :edit, Missao %>
+      <%= link_to '', edit_missao_path(@missao), class: "fa fa-edit text-white" %>
+    <% end %>
+    <% if can? :destroy, Missao %>
+      <%= link_to '', @missao, method: :delete, data: { confirm: 'Deseja realmente excluir a Missão?' }, class: "fa fa-trash text-white" %>
+    <% end %>
+  </div>
   
   <ul class="list-group">
      <li class="list-group-item"><b>Nome:</b> <%= @missao.nome %></li>
@@ -42,9 +49,6 @@
       <% end %>
     <% end %>
 
-    <% if can? :edit, Missao %>
-      <%= link_to 'Atualizar Missão', edit_missao_path(@missao), class: "btn btn-md btn-primary" %>
-    <% end %>
     <%= link_to 'Voltar', missoes_path, class: "btn btn-md btn-secondary" %>
   </div>
 </div>
