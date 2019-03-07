@@ -1,32 +1,122 @@
 <div class="card">
 
-  <div class="card-header">Meu perfil</div>
+  <div class="card-header">Perfil</div>
 
-  <ul class="list-group">
-    <%if @usuario_curso.avatar %>
-    <li class="list-group-item"><%= image_tag @usuario_curso.avatar.imagem.url(:medium), class: "img-responsive img-thumbnail" %></li>
-    <% else %>
-      <li class="list-group-item"><%= image_tag "missing.png", class: "img-responsive img-thumbnail" %></li>
-    <% end %>
-    <li class="list-group-item"><b>Nome:</b> <%= @usuario_curso.usuario.nome %></li>
-    <li class="list-group-item"><b>Curso:</b> <%= @usuario_curso.curso.nome %></li>
-    <li class="list-group-item"><b>Apelido neste curso:</b> <%= @usuario_curso.nickname %></li>
-    <% if @usuario_curso.avatar %>
-      <li class="list-group-item"><b>Avatar:</b> <%= @usuario_curso.avatar.nome %></li>
-    <% end %>
-    <%if @usuario_curso.nivel %>
-      <li class="list-group-item"><b>Nível:</b> <%= @usuario_curso.nivel.nome %></li>
-    <% end %>
-    <li class="list-group-item"><b>Perfil:</b> <%= @usuario_curso.perfil %></li>  
-    <li class="list-group-item"><b>Cadastro no curso:</b> <%= @usuario_curso.created_at.strftime("%d/%m/%Y") %></li> 
+  <div class="card-body">
 
-  </ul>
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="input-group mb-3">
+          <%if @usuario_curso.avatar %>
+            <%= image_tag @usuario_curso.avatar.imagem.url(:medium), class: "img-responsive img-thumbnail" %>
+          <% else %>
+            <%= image_tag "missing.png", class: "img-responsive img-thumbnail" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="input-group mb-3">
+          <p> <label>Nome: </label>          
+          <%= @usuario_curso.usuario.nome %></p>
+        </div>
+
+        <div class="input-group mb-3">
+          <p><label>Nickname (apelido): </label>          
+          <%= @usuario_curso.nickname %></p>
+        </div>
+
+        <%if @usuario_curso.nivel %>
+          <div class="input-group mb-3">
+            <p><label>Nível: </label>          
+            <%= @usuario_curso.nivel.nome %></p>
+          </div>
+        <% end %>
+
+        <div class="input-group mb-3">
+          <p><label>Perfil: </label>          
+          <%= @usuario_curso.perfil %></p>
+        </div>
+
+        <div class="input-group mb-3">
+          <p><label>Cadastro no curso: </label>          
+          <%= @usuario_curso.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></p>
+        </div>
+    
+      </div>
+
+    </div>
+  </div>
+
+  <% if @usuario_curso.grupo_curso %>
+
+    <div class="card-header">Equipe</div>
+
+    <div class="card-body text-center">
+
+      <div class="row">
+
+        <div class="col-lg-6 offset-lg-4">
+          <div class="input-group mb-2">
+            <%= image_tag @usuario_curso.grupo_curso.grupo.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail text-center" %>
+          </div>
+
+          <div class="input-group mb-3">
+            <p>
+              <label><%= @usuario_curso.grupo_curso.nome_curso %></label>
+            </p>
+          </div>
+        </div> 
+
+      </div>
+    </div>
+  <% end %>
+  
+  <% if !@badges.empty? %>
+
+    <div class="card-header">Badges</div>
+
+    <div class="card-body">
+
+      <div class="row">
+        <% @badges.each do |badge| %>
+          <div class="col-lg-3">
+            <div class="input-group mb-3">
+              <%= image_tag badge.badge.imagem.url(:medium), class: "img-responsive img-thumbnail" %>
+            </div>
+          </div>
+        <% end %>
+      </div>    
+    
+  <% end %>
+
+  <% if !@artefatos.empty? %>
+
+    <div class="card-header">Artefatos</div>
+
+    <div class="card-body">
+
+      <div class="row">
+        <% @artefatos.each do |artefato| %>
+          <div class="col-lg-3">
+            <div class="input-group mb-3">
+              <%= image_tag artefato.artefato.imagem.url(:medium), class: "img-responsive img-thumbnail" %>
+            </div>
+          </div>
+        <% end %>
+      </div>    
+    
+  <% end %>
 
   <br>
   <div class="card-footer text-muted">
-    <% if can? :edit, UsuarioCurso %>
-      <%= link_to 'Atualizar', edit_usuario_curso_path(@usuario_curso), class: "btn btn-md btn-primary" %>
+    <% if @usuario_curso.grupo_curso %>
+      <%= link_to 'Atualizar Avatar', atualizar_avatar_path(id: @usuario_curso.id), class: "btn btn-md btn-warning" %>
     <% end %>
+    <% if @perfil.perfil == 'Professor' or @usuario_curso.id == @perfil.id %>
+      <%= link_to 'Atualizar Perfil', edit_usuario_curso_path(@usuario_curso), class: "btn btn-md btn-primary" %>
+    <% end %>
+    <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
   </div>
 
 </div>
