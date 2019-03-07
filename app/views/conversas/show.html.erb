@@ -2,12 +2,16 @@
 
   <div class="card-header">Mensagem</div>
 
-  <ul class="list-group">
-    <li class="list-group-item"><b>Destinatário:</b> <%= @conversa. destinatario.nickname %></li>
-    <li class="list-group-item"><b>Assunto:</b> <%= @conversa.assunto %></li>
-    <li class="list-group-item"><b>Conteúdo:</b> <%= @conversa.mensagem.to_s.html_safe %></li>
-    <li class="list-group-item"><b>Enviado em:</b> <%= @conversa.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>     
-  </ul>
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <ul class="list-group">
+        <li class="list-group-item"><b>Destinatário:</b> <%= @conversa. destinatario.nickname %></li>
+        <li class="list-group-item"><b>Assunto:</b> <%= @conversa.assunto %></li>
+        <li class="list-group-item"><b>Conteúdo:</b> <%= @conversa.mensagem.to_s.html_safe %></li>
+        <li class="list-group-item"><b>Enviado em:</b> <%= @conversa.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>     
+      </ul>
+    </div>
+  </div>
 
   <br>
   <div class="text-center text-muted">
