@@ -1,13 +1,6 @@
 class ExplicacoesController < ApplicationController
   before_action :set_explicacao, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_usuario!
-  # GET /explicacoes
-  # GET /explicacoes.json
-  def index
-    authorize! :index, Explicacao
-    @explicacoes = Explicacao.joins(:modulo).where('modulos.curso_id = ?',
-    current_usuario.curso_atual_id).page(params[:page]).order('nome')
-  end
 
   # GET /explicacoes/1
   # GET /explicacoes/1.json
