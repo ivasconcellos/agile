@@ -10,19 +10,19 @@ Rails.application.routes.draw do
   resources :grupos
   resources :respostas_perguntas
   resources :perguntas_quiz
-  resources :quizes
+  resources :quizes, except: [:index]
   resources :niveis
   resources :missoes
   resources :badges
   resources :salas_chat
   resources :avaliacao_tarefa, except: [:index]
   resources :tarefa_alunos
-  resources :tarefas
+  resources :tarefas, except: [:index]
   resources :modulos
   resources :avatares
   resources :comentarios, except: [:index, :show]
   resources :foruns
-  resources :explicacoes
+  resources :explicacoes, except: [:index]
   resources :usuario_curso
   resources :materiais
   resources :cursos
