@@ -6,8 +6,10 @@
     <div class="col-md-10 offset-md-1">
       <ul class="list-group">
         <li class="list-group-item"><b>Missão:</b> <%= link_to @quiz.missao.nome, @quiz.missao %></li>
+        <li class="list-group-item"><b>Descrição da Missão:</b> <%= @quiz.missao.descricao.html_safe %></li>
         <li class="list-group-item"><b>Nome:</b> <%= @quiz.nome %></li>
         <li class="list-group-item"><b>Descrição:</b> <%= @quiz.descricao %></li>
+        <li class="list-group-item"><b>Pontuação:</b> <%= @quiz.missao.pontuacao %></li>
         <li class="list-group-item"><b>Máximo de tentativas:</b> <%= @quiz.max_tentativas %></li>
         <li class="list-group-item"><b>Início do Quiz:</b> <%= @quiz.data_hora_inicio %></li>
         <li class="list-group-item"><b>Término do Quiz:</b> <%= @quiz.data_hora_termino %></li>
@@ -26,6 +28,6 @@
     <% if can? :new, PerguntaQuiz %>
       <%= link_to 'Cadastrar Pergunta', {controller: 'perguntas_quiz', action: 'new', quiz_id: @quiz.id}, class: "btn btn-md btn-success" %>
     <% end %>
-    <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar', @quiz.missao, class: "btn btn-md btn-secondary" %>
   </div>
 </div>
