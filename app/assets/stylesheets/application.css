@@ -43,6 +43,7 @@
 .alert-danger{
   text-align: center;
   font-weight: bold;
+  margin-top: 10px;
 }
 
 .btn{
