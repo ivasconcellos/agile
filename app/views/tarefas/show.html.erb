@@ -5,8 +5,8 @@
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <ul class="list-group">
-          <li class="list-group-item"><b>Missão:</b> <%= link_to @tarefa.missao.nome, @tarefa.missao %></li>
-         <li class="list-group-item"><b>Módulo:</b> <%= @tarefa.missao.modulo.nome %></li>
+        <li class="list-group-item"><b>Missão:</b> <%= link_to @tarefa.missao.nome, @tarefa.missao %></li>
+        <li class="list-group-item"><b>Descrição da Missão:</b> <%= @tarefa.missao.descricao.html_safe %></li>
          <li class="list-group-item"><b>Nome:</b> <%= @tarefa.nome %></li>
          <li class="list-group-item"><b>Descrição:</b> <%= @tarefa.descricao.to_s.html_safe %></li>
         <li class="list-group-item"><b>Pontuação:</b> <%= @tarefa.missao.pontuacao %></li>
@@ -35,7 +35,7 @@
     <% if can? :new, AvaliacaoTarefa %>
       <%= link_to 'Visualizar Respostas', tarefa_alunos_path(id: @tarefa.id), class: "btn btn-md btn-warning" %>
     <% end %>
-    <%= link_to 'Voltar', tarefas_path, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar', @tarefa.missao, class: "btn btn-md btn-secondary" %>
   </div>
 
 </div>
