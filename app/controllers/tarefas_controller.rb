@@ -1,8 +1,7 @@
 class TarefasController < ApplicationController
   before_action :set_tarefa, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_usuario!
-  current_usuario.curso_atual_id).page(params[:page])
-
+  
   # GET /tarefas/1
   # GET /tarefas/1.json
   def show

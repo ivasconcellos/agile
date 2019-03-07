@@ -2,16 +2,20 @@
 
   <div class="card-header">Quiz</div>
 
-  <ul class="list-group">
-    <li class="list-group-item"><b>Missão:</b> <%= link_to @quiz.missao.nome, @quiz.missao %></li>
-    <li class="list-group-item"><b>Nome:</b> <%= @quiz.nome %></li>
-    <li class="list-group-item"><b>Descrição:</b> <%= @quiz.descricao %></li>
-    <li class="list-group-item"><b>Máximo de tentativas:</b> <%= @quiz.max_tentativas %></li>
-    <li class="list-group-item"><b>Início do Quiz:</b> <%= @quiz.data_hora_inicio %></li>
-    <li class="list-group-item"><b>Término do Quiz:</b> <%= @quiz.data_hora_termino %></li>
-    <li class="list-group-item"><b>Cadastrado por:</b> <%= @quiz.usuario_curso.nickname %></li>
-    <li class="list-group-item"><b>Cadastrada em:</b> <%= @quiz.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>     
-  </ul>
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <ul class="list-group">
+        <li class="list-group-item"><b>Missão:</b> <%= link_to @quiz.missao.nome, @quiz.missao %></li>
+        <li class="list-group-item"><b>Nome:</b> <%= @quiz.nome %></li>
+        <li class="list-group-item"><b>Descrição:</b> <%= @quiz.descricao %></li>
+        <li class="list-group-item"><b>Máximo de tentativas:</b> <%= @quiz.max_tentativas %></li>
+        <li class="list-group-item"><b>Início do Quiz:</b> <%= @quiz.data_hora_inicio %></li>
+        <li class="list-group-item"><b>Término do Quiz:</b> <%= @quiz.data_hora_termino %></li>
+        <li class="list-group-item"><b>Cadastrado por:</b> <%= @quiz.usuario_curso.nickname %></li>
+        <li class="list-group-item"><b>Cadastrada em:</b> <%= @quiz.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>     
+      </ul>
+    </div>
+  </div>
 
   <br>
 
