@@ -13,7 +13,6 @@ class QuizesController < ApplicationController
   def new
     @quiz = Quiz.new
     @quiz.missao_id = params[:missao_id]
-    @quiz.usuario_curso_id = @perfil.id
     authorize! :new, Quiz
   end
 
@@ -26,7 +25,7 @@ class QuizesController < ApplicationController
   # POST /quizes.json
   def create
     @quiz = Quiz.new(quiz_params)
-    
+    @quiz.usuario_curso_id = @perfil.id
     respond_to do |format|
       if @quiz.save
         format.html { redirect_to @quiz, notice: 'Quiz cadastrado com sucesso!' }
