@@ -47,7 +47,7 @@ class CursosController < ApplicationController
     @curso = Curso.new(curso_params)
     respond_to do |format|
       if @curso.save
-        UsuarioCurso.create!(perfil: 'Professor', nickname: @curso.proprietario.nome, usuario_id: @curso.proprietario_id, curso_id: @curso.id)
+        UsuarioCurso.create!(perfil: 'Professor', nickname: @curso.proprietario.nome, usuario_id: @curso.proprietario_id, curso_id: @curso.id, nivel_id: 1)
         current_usuario.update(curso_atual_id: @curso.id)
         format.html { redirect_to cursos_path, notice: 'Curso criado com sucesso!' }
         format.json { render :show, status: :created, location: cursos_path }

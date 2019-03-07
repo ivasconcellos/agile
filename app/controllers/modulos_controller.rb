@@ -15,7 +15,7 @@ class ModulosController < ApplicationController
     authorize! :show, Modulo
     @materiais = Material.where(modulo_id: @modulo)
     @explicacoes = Explicacao.where(modulo_id: @modulo)
-    @tarefas = Tarefa.joins(:missao).where('missoes.modulo_id = ?', @modulo)
+    @missoes = Missao.where(modulo_id: @modulo)
   end
 
   # GET /modulos/new

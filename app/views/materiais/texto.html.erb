@@ -1,16 +1,20 @@
 <div class="card">
 
-  <div class="card-header"><%= @material.nome %></div>
+	<div class="card-header"><%= @material.nome %></div>
 
-	<ul class="list-group">
-	  <li class="list-group-item"><span> <%= @material.texto.to_s.html_safe %></span></li>
-	</ul>
-	  <div class="text-center">
+	<div class="row">
+	    <div class="col-md-10 offset-md-1">
+			<ul class="list-group">
+			  <li class="list-group-item"><span> <%= @material.texto.to_s.html_safe %></span></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="card-footer text-muted">
 	  	<% if can? :edit, Material %>
 	    	<%= link_to 'Atualizar', edit_material_path(@material), class: "btn btn-md btn-primary" %>
 	  	<% end %>
 	  	<%= link_to 'Voltar', :back, class: "btn btn-md btn-danger" %>
-	  </div>
 	</div>
 	
 </div>

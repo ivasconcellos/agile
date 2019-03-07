@@ -1,5 +1,5 @@
 class UsuarioCursoController < ApplicationController
-  before_action :set_usuario_curso, only: [:show, :edit, :update, :destroy]
+  before_action :set_usuario_curso, only: [:show, :edit, :update, :destroy, :atualizar_avatar]
   before_action :authenticate_usuario!
   
   # GET /usuario_curso
@@ -12,6 +12,9 @@ class UsuarioCursoController < ApplicationController
   # GET /usuario_curso/1
   # GET /usuario_curso/1.json
   def show
+    authorize! :show, UsuarioCurso
+    @badges = BadgeAluno.where(usuario_curso_id: @usuario_curso.id) 
+    @artefatos = ArtefatoAluno.where(usuario_curso_id: @usuario_curso.id) 
     authorize! :show, UsuarioCurso
   end
 
@@ -31,7 +34,7 @@ class UsuarioCursoController < ApplicationController
   # POST /usuario_curso.json
   def create
     @usuario_curso = UsuarioCurso.new(usuario_curso_params)
-
+    @usuario_curso.nivel_id = 1
     respond_to do |format|
       if @usuario_curso.save
         format.html { redirect_to @usuario_curso, notice: 'Usuário cadastrado no Curso com sucesso!' }
@@ -66,13 +69,6 @@ class UsuarioCursoController < ApplicationController
       format.html { redirect_to usuario_curso_index_url, notice: 'Usuário do Curso excluído com sucesso!' }
       format.json { head :no_content }
     end
-  end
-
-  def meu_perfil
-    @usuario_curso = UsuarioCurso.where(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id).first
-    @badges = BadgeAluno.where(usuario_curso_id: @usuario_curso.id) 
-    @artefatos = ArtefatoAluno.where(usuario_curso_id: @usuario_curso.id) 
-    authorize! :show, UsuarioCurso
   end
 
   def busca_curso
@@ -118,6 +114,10 @@ class UsuarioCursoController < ApplicationController
     @modulos = Modulo.where('modulos.curso_id = ?',
        current_usuario.curso_atual_id)
     authorize! :minhas_notas,:notas
+  end
+
+  def atualizar_avatar
+    authorize! :edit, UsuarioCurso
   end
 
   private

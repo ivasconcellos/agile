@@ -2,81 +2,108 @@
 
 	<div class="card-header"><%= @modulo.nome %>
 		<% if can? :edit, Modulo %>
-			<%= link_to '', edit_modulo_path(@modulo), class: "fa fa-edit" %>
+			<%= link_to '', edit_modulo_path(@modulo), class: "fa fa-edit text-white" %>
 		<% end %>
 		<% if can? :destroy, Modulo %>
-			<%= link_to '', @modulo, method: :delete, data: { confirm: 'Deseja realmente excluir o Conteúdo?' }, class: "fa fa-trash" %>
+			<%= link_to '', @modulo, method: :delete, data: { confirm: 'Deseja realmente excluir o Conteúdo?' }, class: "fa fa-trash text-white" %>
 		<% end %>
 	</div>
   
 	<ul class="list-group">
-	  <% if @modulo.descricao? %>
-	  	<li class="list-group-item"><b>Descrição:</b> <%= @modulo.descricao %></li>
-	  <% end %>
-	  <% if can? :edit, Modulo %>
+		<% if @modulo.descricao? %>
+			<li class="list-group-item"><b>Descrição:</b> <%= @modulo.descricao %></li>
+		<% end %>
+		<% if can? :edit, Modulo %>
 		<li class="list-group-item"><b>Público:</b> <%= @modulo.publico? ? 'Sim' : 'Não' %></li>  
 		<li class="list-group-item"><b>Cadastrado em:</b> <%= @modulo.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
 		<li class="list-group-item"><b>Curso:</b> <%= @modulo.curso.nome %></li>      
-	  <% end %>
+		<% end %>
 	</ul>
 
 	<br>
-	
-	<div class="card-footer text-muted">
-		<% if can? :new, Explicacao %>
-	  		<%= link_to  'Inserir Explicações', {controller: 'explicacoes', action: 'new', modulo_id: @modulo.id}, class: "btn btn-md btn-danger" %>
-	  	<% end %>
-	  	<% if can? :new, Missao %>
-	  		<%= link_to  'Inserir Missão', {controller: 'missoes', action: 'new', modulo_id: @modulo.id}, class: "btn btn-md btn-danger" %>
-	  	<% end %>
-	</div>
-	
-	<br><br>
 
-	<div class="card-header bg-info">Materiais do Módulo</div>
-	<div class="row">
-        <div class="col-xl-9 col-sm-9 col-md-9">
-			<%= render partial: "materiais/materiais", locals: {modulo: @modulo} %>
-		</div>
-		<div class="col-xl-3 col-sm-3 col-md-3">
-          <% if can? :new, Material %>
-            <div><%= link_to  ' Inserir Link', {controller: 'materiais', action: 'new', modulo_id: @modulo.id, tipo: 'Link'}, class: "fa fa-link" %></div>
-            <div><%= link_to  ' Inserir Arquivo', {controller: 'materiais', action: 'new', modulo_id: @modulo.id, tipo: 'Arquivo'}, class: "fa fa-file" %></div>
-            <div><%= link_to  ' Inserir Vídeo', {controller: 'materiais', action: 'new', modulo_id: @modulo.id, tipo: 'Vídeo'}, class: "fa fa-video-camera" %></div>
-            <div><%= link_to  ' Inserir Texto', {controller: 'materiais', action: 'new', modulo_id: @modulo.id, tipo: 'Texto'}, class: "fa fa-text-width" %></div>
-            <div><%= link_to  ' Inserir Imagem', {controller: 'materiais', action: 'new', modulo_id: @modulo.id, tipo: 'Imagem'}, class: "fa fa-image" %></div>
-          <% end %>
-        </div>
-	</div>
 
-	<% if not @tarefas.empty? %>
-		<div class="card-header bg-info">Tarefas do Módulo</div>
-		<div class="row">
-	        <div class="col-xl-9 col-sm-9 col-md-9">
-				<% @tarefas.each do |tarefa| %>
-					<ul class="list-unstyled">
-		    			<li><%= link_to tarefa.nome, tarefa, class: "fa fa-tasks text-dark" %></li>
-		    		</ul>
-	    		<% end %>
-			</div>
-			<div class="col-xl-3 col-sm-3 col-md-3">
-	          <% if can? :new, Tarefa %>
-	            <div><%= link_to  'Inserir Tarefa', {controller: 'tarefas', action: 'new', modulo_id: @modulo.id, tipo: 'Link'}, class: "fa fa-tasks" %></div>
+	<% if not @materiais.empty? %>
+
+        <div class="card-header">Materiais do Módulo</div>
+
+        <div class="table-responsive">
+	      <table class="table table-striped table-sm">
+	        <thead>
+	          <tr>
+	            <th class="text-center">Nome</th>
+	            <th class="text-center">Tipo</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	          <% @materiais.each do |material| %>
+	            <tr>
+	              <td><%= link_to material.nome, material %></td>
+	              <td><%= material.tipo %></td>
+	            </tr>
 	          <% end %>
-	        </div>
-		</div>
-	<% end %>
-		
+	        </tbody>
+	      </table>
+	    </div>
+	    
+    <% end %>
+
+	<% if not @missoes.empty? %>
+
+		<div class="card-header">Missões do Módulo</div>
+
+		<div class="table-responsive">
+	      <table class="table table-striped table-sm">
+	        <thead>
+	          <tr>
+	            <th class="text-center">Nome</th>
+	            <th class="text-center">Tipo</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	          <% @missoes.each do |missao| %>
+	            <tr>
+	              <td><%= link_to missao.nome, missao %></td>
+	              <td><%= missao.tipo %></td>
+	            </tr>
+	          <% end %>
+	        </tbody>
+	      </table>
+	    </div>
+
+    <% end %>
+
 	<% if not @explicacoes.empty? %>
 
-		<div class="card-header">Explicações do Módulo</div>
+        <div class="card-header">Explicações do Módulo</div>
 
-		<% @explicacoes.each do |explicacao| %>
-			<ul class="list-group">
-			  <li class="list-group-item"><b>Nome:</b> <%= link_to explicacao.nome, explicacao %></li>
-			  <li class="list-group-item"><b>Descrição:</b> <%= explicacao.descricao.to_s.html_safe %></li>     
-			</ul>
-		<% end %>
-	<% end %>
+        <div class="table-responsive">
+	      <table class="table table-striped table-sm">
+	        <thead>
+	          <tr>
+	            <th class="text-center">Nome</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	          <% @explicacoes.each do |explicacao| %>
+	            <tr>
+	              <td><%= link_to explicacao.nome, explicacao %></td>
+	            </tr>
+	          <% end %>
+	        </tbody>
+	      </table>
+	    </div>
+
+    <% end %>
+
+	
+	<div class="card-footer text-muted">
+      	<% if can? :new, Missao %>
+	  		<%= link_to  'Inserir Missão', {controller: 'missoes', action: 'new', modulo_id: @modulo.id}, class: "btn btn-md btn-danger" %>
+	  	<% end %>
+		<% if can? :new, Explicacao %>
+	  		<%= link_to  'Inserir Explicação', {controller: 'explicacoes', action: 'new', modulo_id: @modulo.id}, class: "btn btn-md btn-danger" %>
+	  	<% end %>	  	
+	</div>
 
 </div>

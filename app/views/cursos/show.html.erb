@@ -1,18 +1,5 @@
 <div class="card">
-
-   <% if can? :new, Modulo %>
-    <div class="text-center">
-      <br>
-      <%= link_to 'Cadastrar Módulo do Curso', {controller: 'modulos', action: 'new', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-primary" %>
-    </div>
-  <% end %>
-
-  <% if @usuario_curso.empty? and no_prazo(@curso) %>
-    <div class="text-center">
-      <br>
-      <%= link_to 'Me inscrever neste Curso', {controller: 'usuario_curso', action: 'inscricao_curso'}, class: "btn btn-md btn-success" %>
-    </div>
-  <% end %>
+  <div class="card-header"><%= @curso.nome %></div>
 
   <div class="alert alert-success" role="alert">
     Bem-vindo ao curso!
@@ -24,19 +11,27 @@
     </div>
   <% end %>
 
+  <div class="text-center">
+
+    <% if @usuario_curso.empty? and no_prazo(@curso) %>
+      <%= link_to 'Me inscrever neste Curso', {controller: 'usuario_curso', action: 'inscricao_curso'}, class: "btn btn-md btn-success" %>
+    <% end %>
+
+  </div>
+
   <div id="accordion">
     <% @modulos.each_with_index do |modulo, index| %>
     <div class="card">
       <div class="card-header" id="heading<%= index.to_s %>">
         <h5 class="mb-0">
-          <button class="btn btn-link modulo" data-toggle="collapse" data-target="#collapse<%= index.to_s %>" aria-expanded="false" aria-controls="collapse<%= index.to_s %>">
+          <button class="btn btn-link modulo text-white" data-toggle="collapse" data-target="#collapse<%= index.to_s %>" aria-expanded="false" aria-controls="collapse<%= index.to_s %>">
             Módulo: <%= modulo.nome %> 
           </button>
           <% if can? :edit, Modulo %>
-            <%= link_to '', edit_modulo_path(modulo), class: "fa fa-edit" %>
+            <%= link_to '', edit_modulo_path(modulo), class: "fa fa-edit text-white" %>
           <% end %>
           <% if can? :destroy, Modulo %>
-            <%= link_to '', modulo, method: :delete, data: { confirm: 'Deseja realmente excluir o Conteúdo?' }, class: "fa fa-trash" %>
+            <%= link_to '', modulo, method: :delete, data: { confirm: 'Deseja realmente excluir o Módulo?' }, class: "fa fa-trash text-white" %>
           <% end %>
         </h5>
       </div>
@@ -65,15 +60,7 @@
           <div class="row">
 
             <div class="col-xl-9 col-sm-9 col-md-9">
-              <% @missoes.each do |missao| %>
-                <%= link_to missao.nome, missao, class: "fa fa-tasks text-dark" %>
-              <% end %>
-            </div>
-
-            <div class="col-xl-3 col-sm-3 col-md-3">
-              <% if can? :new, Missao %>
-                <div><%= link_to  'Inserir Missão', {controller: 'missoes', action: 'new', modulo_id: modulo.id}, class: "fa fa-tasks" %></div>
-              <% end %>
+              <%= render partial: "missoes/missoes", locals: {modulo: modulo} %>
             </div>
             
           </div>

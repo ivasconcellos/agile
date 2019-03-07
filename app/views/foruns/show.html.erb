@@ -1,6 +1,13 @@
 <div class="card">
 
- 	<div class="card-header">Fórum: <%= @forum.titulo %></div>
+ 	<div class="card-header">Fórum: <%= @forum.titulo %>
+ 		<% if can? :edit, Forum %>
+			<%= link_to  '', edit_forum_path(@forum), class: "fa fa-pencil text-white" %>
+		<% end %>
+      <% if can? :destroy, Forum %>
+		<%= link_to  '', @forum, method: :delete, data: { confirm: 'Deseja realmente realmente remover o Fórum?'}, class: "fa fa-trash text-white", remote: true %>
+		<% end %>
+ 	</div>
 
  	<div class="card-header">
 	    <div class="row">
@@ -29,12 +36,7 @@
 					<div class="card-footer card-footer-size bg-primary">
 						<p class="card-text">Criado por:          
 					  	<%= @forum.usuario_curso.nickname %>
-						<% if can? :edit, Forum %>
-							<%= link_to  '', edit_forum_path(@forum), class: "fa fa-pencil text-light" %>
-						<% end %>
-						<% if can? :destroy, Forum %>
-							<%= link_to  '', @forum, method: :delete, data: { confirm: 'Deseja realmente realmente remover o Fórum?'}, class: "fa fa-trash text-light", remote: true %>
-						<% end %></p>
+						</p>
 						<p class="card-text"><b>Última atualização:</b> <%= @forum.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></p>
 					</div>
 				</div>

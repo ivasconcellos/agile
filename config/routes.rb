@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :dicas
+  resources :dicas, except: [:index]
   resources :artefatos_alunos, except: [:show, :edit, :destroy]
   resources :eventos
   resources :badges_alunos, except: [:show, :edit, :destroy]
@@ -10,19 +10,19 @@ Rails.application.routes.draw do
   resources :grupos
   resources :respostas_perguntas
   resources :perguntas_quiz
-  resources :quizes
+  resources :quizes, except: [:index]
   resources :niveis
   resources :missoes
   resources :badges
   resources :salas_chat
   resources :avaliacao_tarefa, except: [:index]
   resources :tarefa_alunos
-  resources :tarefas
+  resources :tarefas, except: [:index]
   resources :modulos
   resources :avatares
   resources :comentarios, except: [:index, :show]
   resources :foruns
-  resources :explicacoes
+  resources :explicacoes, except: [:index]
   resources :usuario_curso
   resources :materiais
   resources :cursos
@@ -50,9 +50,9 @@ Rails.application.routes.draw do
   #Usuário Curso
   get 'busca_curso' => 'usuario_curso#busca_curso'
   get 'inscricao_curso' => 'usuario_curso#inscricao_curso'
-  get 'meu_perfil' => 'usuario_curso#meu_perfil'
   get 'notas_aluno' => 'usuario_curso#notas_aluno'
   get 'minhas_notas' => 'usuario_curso#minhas_notas'
+  get 'atualizar_avatar' => 'usuario_curso#atualizar_avatar'
   
   #Curso
   get 'descricao' => 'cursos#descricao'

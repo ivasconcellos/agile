@@ -2,12 +2,40 @@
 
   <div class="card-header">Grupo do Curso</div>
 
-	<ul class="list-group">
-	  <li class="list-group-item"><b>Nome do grupo no curso:</b> <%= @grupo_curso.nome_curso %></li>
-	  <li class="list-group-item"><b>Nome padrão do grupo:</b> <%= @grupo_curso.grupo.nome %></li>
-	  <li class="list-group-item"><b>Imagem do grupo:</b> <%= image_tag @grupo_curso.grupo.imagem.variant(resize: "200x200") %></li>
-	  <li class="list-group-item"><b>Cadastrado em:</b> <%= @grupo_curso.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>     
-	</ul>
+
+  <div class="card-body">
+
+	    <div class="row">
+	      	<div class="col-lg-4">
+	        	<div class="input-group mb-3">
+	        		<%= image_tag @grupo_curso.grupo.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail" %>
+	       		</div>
+	      	</div>
+
+	      	<div class="col-lg-8">
+		        <div class="input-group mb-3">
+		        	<p> 
+			          	<label>Nome do grupo no curso: </label>          
+			          	<%= @grupo_curso.nome_curso %>
+		        	</p>
+		        </div>
+
+		        <div class="input-group mb-3">
+		        	<p> 
+			          	<label>Nome padrão do grupo: </label>          
+			          	<%= @grupo_curso.grupo.nome %>
+		        	</p>
+		        </div>
+
+		        <div class="input-group mb-3">
+		        	<p> 
+			          	<label>Cadastrado em: </label>          
+			          	<%= @grupo_curso.created_at.strftime("%d/%m/%Y - %H:%M:%S") %>
+		        	</p>
+		        </div>
+		    </div>
+		</div>
+	</div>
 
 	<br>
 

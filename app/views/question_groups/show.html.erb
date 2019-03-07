@@ -1,12 +1,18 @@
 <div class="card">
 
-  <div class="card-header">Pesquisa</div>
+	<div class="card-header">Pesquisa</div>
 
-	<ul class="list-group">
-	  <li class="list-group-item"><b>Título:</b> <%= @question_group.titulo %></li>
-	  <li class="list-group-item"><b>Descrição: <%= @question_group.descricao %></b> </li>
-	  <li class="list-group-item"><b>Objetivo:</b> <%= @question_group.objetivo %></li>
-	</ul>
+	<div class="row">
+	    <div class="col-md-10 offset-md-1">
+			<ul class="list-group">
+			  <li class="list-group-item"><b>Título:</b> <%= @question_group.titulo %></li>
+			  <li class="list-group-item"><b>Descrição:</b> <%= @question_group.descricao %> </li>
+			  <% if @question_group.objetivo %>
+			  	<li class="list-group-item"><b>Objetivo:</b> <%= @question_group.objetivo %></li>
+			  <% end %>
+			</ul>
+		</div>
+	</div>
 
 	<br>
 

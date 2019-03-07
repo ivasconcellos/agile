@@ -21,7 +21,7 @@
 	          <% modulo.tarefas.where(" not exists(select id from tarefa_alunos where tarefa_id is null)").each do |tarefa| %>
 	            <tr>
 	              <td><%= link_to tarefa.missao.nome, tarefa.missao %></td>
-	              <td><%= link_to tarefa.nome, tarefa %></td>
+	              <td><%= tarefa.missao.tipo %></td>
 	              <td><%= tarefa.missao.pontuacao %></td>
 	              <td><%= minha_nota(tarefa.id, @aluno.id) %></td>
 	              <td><%= enviada(tarefa.id, @aluno.id) %></td>

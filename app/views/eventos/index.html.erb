@@ -25,7 +25,7 @@
                <td><%= link_to 'Atualizar', edit_evento_path(evento) %></td>
               <% end %>
               <% if can? :destroy, Evento %>
-                <td><%= link_to 'Excluir', evento, method: :delete, data: { confirm: 'Deseja realmente excluir o Evento do curso?' } %></td>
+                <td><%= link_to 'Excluir', evento, method: :delete, data: { confirm: 'Deseja realmente excluir o Evento?' } %></td>
               <% end %>
             </tr>
           <% end %>
@@ -39,7 +39,7 @@
 
   <% if can? :new, Evento %>
     <div class="card-footer text-muted">
-      <%= link_to 'Cadastrar Evento do Curso', {controller: 'eventos', action: 'new'}, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Cadastrar Evento', {controller: 'eventos', action: 'new'}, class: "btn btn-md btn-primary" %>
     </div>
   <% end %>
 

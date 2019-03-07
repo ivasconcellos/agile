@@ -2,14 +2,6 @@ class QuizesController < ApplicationController
   before_action :set_quiz, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_usuario!
 
-  # GET /quizes
-  # GET /quizes.json
-  def index
-    authorize! :index, Quiz
-    @quizes = Quiz.joins(missao: :modulo).where('modulos.curso_id = ?',
-       current_usuario.curso_atual_id).page(params[:page])
-  end
-
   # GET /quizes/1
   # GET /quizes/1.json
   def show
@@ -21,7 +13,6 @@ class QuizesController < ApplicationController
   def new
     @quiz = Quiz.new
     @quiz.missao_id = params[:missao_id]
-    @quiz.usuario_curso_id = @perfil.id
     authorize! :new, Quiz
   end
 
@@ -34,7 +25,7 @@ class QuizesController < ApplicationController
   # POST /quizes.json
   def create
     @quiz = Quiz.new(quiz_params)
-    
+    @quiz.usuario_curso_id = @perfil.id
     respond_to do |format|
       if @quiz.save
         format.html { redirect_to @quiz, notice: 'Quiz cadastrado com sucesso!' }
