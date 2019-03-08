@@ -2,7 +2,7 @@ class ControleController < ApplicationController
   before_action :authenticate_usuario!, :except => [:sobre]
 
   def inicial
-  	@cursos_publicos = Curso.where(publico: true).paginate(:page => params[:page], :per_page => 6).order('updated_at')
+  	@cursos_publicos = Curso.where(publico: true, ativo: true).paginate(:page => params[:page], :per_page => 6).order('updated_at')
   	if params[:nome]
   		@cursos_publicos = @cursos_publicos.where("nome like ? ", "%#{params[:nome]}%").order('updated_at')
   	end
