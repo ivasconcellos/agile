@@ -21,7 +21,7 @@
 	  <% end %>
 
 	  <% if @material.tipo == "Imagem" %>
-	  	<li class="list-group-item"><b>Imagem:</b> <%= image_tag @material.arquivo.variant(resize: "100x100") %></li>
+	  	<li class="list-group-item"><b>Imagem:</b> <%= image_tag @material.arquivo.variant(resize: "200x200"), class: "img-responsive" %></li>
 	  <% end %>
 
 	  <% if @material.tipo == "Arquivo" %>
