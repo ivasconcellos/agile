@@ -1,10 +1,10 @@
-<%= form_with(model: usuario_resposta, local: true) do |form| %>
-  <% if usuario_resposta.errors.any? %>
+<%= form_with(model: aluno_resposta, local: true) do |form| %>
+  <% if aluno_resposta.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(usuario_resposta.errors.count, "error") %> prohibited this usuario_resposta from being saved:</h2>
+      <h2><%= pluralize(aluno_resposta.errors.count, "error") %> prohibited this aluno_resposta from being saved:</h2>
 
       <ul>
-      <% usuario_resposta.errors.full_messages.each do |message| %>
+      <% aluno_resposta.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

@@ -28,7 +28,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'grupo_curso', 'grupos_cursos'
 	inflect.irregular 'badge_aluno', 'badges_alunos'
 	inflect.irregular 'artefato_aluno', 'artefatos_alunos'
-	inflect.irregular 'usuario_resposta', 'usuario_respostas'
+	inflect.irregular 'aluno_resposta', 'aluno_respostas'
 end
 
 # These inflection rules are supported but not enabled by default:

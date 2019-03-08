@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :usuario_respostas
+  resources :aluno_respostas
   resources :dicas, except: [:index]
   resources :artefatos_alunos, except: [:show, :edit, :destroy]
   resources :eventos
