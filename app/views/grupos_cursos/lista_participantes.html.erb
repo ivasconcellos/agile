@@ -12,7 +12,7 @@
           <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white o-hidden h-200 curso">
               <div class="card-body">
-                <%= image_tag participante.avatar.imagem.url(:medium), class: "img-responsive" %>
+                <%= image_tag participante.avatar.imagem.variant(resize: "300x300"), class: "img-responsive" %>
               </div>
               <div class="card-footer bg-primary text-white">
                 
