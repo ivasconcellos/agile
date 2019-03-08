@@ -12,7 +12,6 @@
         <li class="list-group-item"><b>Pontuação:</b> <%= @tarefa.missao.pontuacao %></li>
         <li class="list-group-item"><b>Início da Tarefa:</b> <%= @tarefa.data_hora_inicio %></li>
         <li class="list-group-item"><b>Término da Tarefa:</b> <%= @tarefa.data_hora_termino %></li>
-         <li class="list-group-item"><b>Pública:</b> <%= @tarefa.publico? ? 'Sim' : 'Não' %></li>
          <li class="list-group-item"><b>Criada por:</b> <%= @tarefa.usuario_curso.nickname %></li>
          <li class="list-group-item"><b>Criada em:</b> <%= @tarefa.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
          <% if @tarefa_aluno %>
