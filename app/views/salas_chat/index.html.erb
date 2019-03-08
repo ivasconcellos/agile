@@ -7,6 +7,7 @@
         <thead>
           <tr>
             <th class="text-center">Nome</th>
+            <th class="text-center">Ativa</th>
             <th colspan="3" class="text-center">Opções</th>
           </tr>
         </thead>
@@ -14,6 +15,7 @@
           <% @salas_chat.each do |sala_chat| %>
             <tr>
               <td><%= sala_chat.nome %></td>
+              <td><%= sala_chat.ativo? ? 'Sim' : 'Não' %></td>
               <td><%= link_to 'Visualizar', sala_chat %></td></td>
               <td>
                 <% if can? :edit, SalaChat %>
