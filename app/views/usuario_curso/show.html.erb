@@ -82,7 +82,7 @@
         <% @badges.each do |badge| %>
           <div class="col-lg-3">
             <div class="input-group mb-3">
-              <%= image_tag badge.badge.imagem.url(:medium), class: "img-responsive img-thumbnail" %>
+              <%= image_tag badge.badge.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail" %>
             </div>
           </div>
         <% end %>
@@ -100,7 +100,7 @@
         <% @artefatos.each do |artefato| %>
           <div class="col-lg-3">
             <div class="input-group mb-3">
-              <%= image_tag artefato.artefato.imagem.url(:medium), class: "img-responsive img-thumbnail" %>
+              <%= image_tag artefato.artefato.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail" %>
             </div>
           </div>
         <% end %>
