@@ -72,6 +72,6 @@ class TarefasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tarefa_params
-      params.require(:tarefa).permit(:missao_id, :usuario_curso_id, :nome, :descricao, :publico, :data_inicio, :hora_inicio, :data_termino, :hora_termino)
+      params.require(:tarefa).permit(:missao_id, :usuario_curso_id, :nome, :descricao, :data_inicio, :hora_inicio, :data_termino, :hora_termino)
     end
 end

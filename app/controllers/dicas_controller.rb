@@ -68,6 +68,6 @@ class DicasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dica_params
-      params.require(:dica).permit(:nome, :descricao, :ativo, :missao_id)
+      params.require(:dica).permit(:nome, :descricao, :missao_id)
     end
 end

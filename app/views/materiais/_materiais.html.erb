@@ -1,44 +1,48 @@
 <h3 class="text-primary text-left font-weight-bold">Materiais do módulo:</h3>
 <ul class="list-unstyled">
   <% @materiais.where(modulo_id: modulo.id).each do |material| %>
-    <li>
+    <% if material.publico? or @perfil.perfil != 'Aluno' %>
+      <li>
 
-      <% if material.tipo == "Link" %>
-        <%= link_to extlink(material.texto), target: "_blank", class: "text-dark" do %>
-          <%= fa_icon "link" %> <%= material.nome %>
+        <% if material.tipo == "Link" %>
+          <%= link_to extlink(material.texto), target: "_blank", class: "text-dark" do %>
+            <%= fa_icon "link" %> <%= publico(material) %>
+          <% end %>
         <% end %>
-      <% end %>
 
-      <% if material.tipo == "Arquivo" %>
-       <%= link_to url_for(material.arquivo), target: '_blank' do %>
-          <i class = "fa fa-file text-dark"> <%= material.nome %></i>
+        <% if material.tipo == "Arquivo" %>
+          <%= link_to url_for(material.arquivo), target: '_blank' do %>
+            <i class = "fa fa-file text-dark"> <%= publico(material) %></i>
+          <% end %>          
         <% end %>
-      <% end %>
 
-      <% if material.tipo == "Vídeo" %>
-        <%= link_to url_for(material.arquivo), target: '_blank' do %>
-          <i class = "fa fa-video-camera text-dark"> <%= material.nome %></i>
+        <% if material.tipo == "Vídeo" %>
+          <%= link_to url_for(material.arquivo), target: '_blank' do %>
+            <i class = "fa fa-video-camera text-dark"> <%= publico(material) %></i>
+          <% end %>
         <% end %>
-      <% end %>
 
-      <% if material.tipo == "Imagem" %>
-        <%= link_to url_for(material.arquivo), target: '_blank' do %>
-          <i class = "fa fa-image text-dark"> <%= material.nome %></i>
+        <% if material.tipo == "Imagem" %>
+          <%= link_to url_for(material.arquivo), target: '_blank' do %>
+            <i class = "fa fa-image text-dark"> <%= publico(material) %></i>
+          <% end %>
         <% end %>
-      <% end %>
 
-      <% if material.tipo == "Texto" %>
-        <%= link_to material_texto_url(id: material.id) do %>
-          <i class = "fa fa-text-width text-dark"> <%= material.nome %></i>
+        <% if material.tipo == "Texto" %>
+          <%= link_to material_texto_url(id: material.id) do %>
+            <i class = "fa fa-text-width text-dark"> <%= publico(material) %></i>
+          <% end %>
         <% end %>
-      <% end %>
-      <% if can? :edit, Material %>
-        <%= link_to '', edit_material_path(material), class: "fa fa-edit" %>
-      <% end %>
-      <% if can? :destroy, Material %>
-        <%= link_to '', material, method: :delete, data: { confirm: 'Deseja realmente excluir o Material?' }, class: "fa fa-trash" %>
-      <% end %>
-    </li>
+
+
+        <% if can? :edit, Material %>
+          <%= link_to '', edit_material_path(material), class: "fa fa-edit" %>
+        <% end %>
+        <% if can? :destroy, Material %>
+          <%= link_to '', material, method: :delete, data: { confirm: 'Deseja realmente excluir o Material?' }, class: "fa fa-trash" %>
+        <% end %>
+      </li>
+    <% end %>
   <% end %>
 </ul>
               

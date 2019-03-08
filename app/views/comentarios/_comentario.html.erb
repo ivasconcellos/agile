@@ -13,7 +13,7 @@
                 <div class="card-body text-center">
                   <div>
                     <%if comentario.usuario_curso.avatar %>
-                      <%= image_tag comentario.usuario_curso.avatar.imagem.url(:medium), class: "img-responsive img-thumbnail" %>
+                      <%= image_tag comentario.usuario_curso.avatar.imagem.variant(resize: "100x100"), class: "img-responsive img-thumbnail" %>
                     <% else %>
                       <%= image_tag "missing.png", class: "img-responsive img-thumbnail" %>
                     <% end %>

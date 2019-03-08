@@ -1,33 +1,37 @@
-<%= form_with(model: @usuario_curso, local: true) do |form| %>
-  <% if @usuario_curso.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(@usuario_curso.errors.count, "erro(s)") %> - Avatar não pode ser atualizado!</h2>
+<div class="card">
+    <div class="card-header">Atualizar Avatar</div> 
+  <%= form_with(model: @usuario_curso, local: true) do |form| %>
+    <% if @usuario_curso.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <h2><%= pluralize(@usuario_curso.errors.count, "erro(s)") %> - Avatar não pode ser atualizado!</h2>
 
-      <ul>
-      <% @usuario_curso.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @usuario_curso.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <div class="card-body">
+
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Avatar</label>
+        <div class="col-md-6">
+          <% Avatar.where(grupo_id: @perfil.grupo_curso.grupo.id, perfil: @perfil.perfil, ativo: true).each do |avatar| %>
+            <p><%= image_tag avatar.imagem.variant(resize: "200x200"), class: "img-responsive img-thumbnail" %></p>
+            <p><%= form.radio_button :avatar_id, avatar.id %>
+               <%= avatar.nome %></p>
+          <% end %>      
+        </div>
+      </div>    
+
+    </div>
+    
+    <div class="card-footer text-muted">
+      <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+      <%= link_to 'Voltar', @usuario_curso, class: "btn btn-md btn-secondary" %>
     </div>
   <% end %>
-
-  <div class="card-body">
-
-    <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Avatar</label>
-      <div class="col-md-6">
-        <% Avatar.where(grupo_id: @perfil.grupo_curso.grupo.id, perfil: @perfil.perfil).each do |avatar| %>
-          <p><%= image_tag avatar.imagem.url(:medium), class: "img-responsive img-thumbnail" %></p>
-          <p><%= form.radio_button :avatar_id, avatar.id %>
-             <%= avatar.nome %></p>
-        <% end %>      
-      </div>
-    </div>    
-
-  </div>
-  
-  <div class="card-footer text-muted">
-    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
-    <%= link_to 'Voltar', @usuario_curso, class: "btn btn-md btn-secondary" %>
-  </div>
-<% end %>
+</div>

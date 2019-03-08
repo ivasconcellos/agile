@@ -37,10 +37,12 @@
 	        </thead>
 	        <tbody>
 	          <% @materiais.each do |material| %>
-	            <tr>
-	              <td><%= link_to material.nome, material %></td>
-	              <td><%= material.tipo %></td>
-	            </tr>
+		          <% if material.publico? or @perfil.perfil != 'Aluno' %>
+		            <tr>
+		              	<td><%= link_to publico(material), material %></td>
+		            	<td><%= material.tipo %></td>
+		            </tr>
+	            <% end %>
 	          <% end %>
 	        </tbody>
 	      </table>
@@ -62,10 +64,12 @@
 	        </thead>
 	        <tbody>
 	          <% @missoes.each do |missao| %>
-	            <tr>
-	              <td><%= link_to missao.nome, missao %></td>
-	              <td><%= missao.tipo %></td>
-	            </tr>
+	          	<% if missao.ativo? or @perfil.perfil != 'Aluno' %>
+		            <tr>
+		            	<td><%= link_to ativa(missao), missao %></td>
+		              <td><%= missao.tipo %></td>
+		            </tr>
+		        <% end %>
 	          <% end %>
 	        </tbody>
 	      </table>
