@@ -17,7 +17,7 @@
             <tr>
               <td><%= artefato_aluno.aluno.nickname %></td>
               <td><%= artefato_aluno.badge.nome %></td>
-              <td><%= image_tag artefato_aluno.artefato.imagem.variant(resize: "100x100") %></td>
+              <td><%= image_tag artefato_aluno.artefato.imagem.variant(resize: "100x100"), class: "img-responsive" %></td>
               </td>
             </tr>
           <% end %>
