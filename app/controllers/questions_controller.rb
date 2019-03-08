@@ -1,11 +1,16 @@
 class QuestionsController < ApplicationController
 	before_action :authenticate_usuario!
-	before_action :find_question_group!
+	before_action :find_question_group!, except: [:show]
 	before_action :find_question!, :only => [:edit, :update, :destroy]
 	
 	def index
 		@questions = @question_group.questions
 		authorize! :index, Question
+	end
+
+	def show
+		@question = Question.find(params[:id])
+		authorize! :show, Question
 	end
 
 	def new
@@ -41,11 +46,11 @@ class QuestionsController < ApplicationController
 		@question = QuestionForm.new(form_params)
 		respond_to do |format|
 			if @question.save
-				format.html {redirect_to(:controller => 'questions', :action => 'index', :usuario_curso_id => @question.question_group.usuario_curso_id)}
+				format.html {redirect_to(:controller => 'questions', :action => 'show')}
 				flash[:notice] = ('Pergunta atualizada com sucesso!')
 				format.json { render json: @question, status: :created, location: @question }
 			else
-				format.html { render action: "new" }
+				format.html { render action: "edit" }
 				format.json { render json: @question.errors, status: :unprocessable_entity }
 			end	
 		end

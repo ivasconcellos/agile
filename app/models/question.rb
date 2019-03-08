@@ -7,6 +7,19 @@ class Question < ActiveRecord::Base
 	validates_presence_of :pergunta, :tipo, :message => "- Deve ser preenchido!"
 	serialize :validation_rules
 	
+	def tipo_formatado
+		tipo.split("::").last
+	end
+
+	def obrigatoria
+
+		if rules[:presence] == "1"
+			return "Sim"
+		else
+			return "Não"
+		end
+
+	end
 
 	def options
 		respostas.split(Rapidfire.answers_delimiter)

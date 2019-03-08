@@ -78,7 +78,7 @@
 
 	<div class="card-footer text-muted">
 	    <%= f.submit "Salvar", class: "btn btn-md btn-primary" %>
-	    <%= link_to 'Voltar', {controller: "question_groups", action: 'index', question_group_id: @question.question_group_id}, class: "btn btn-md btn-secondary" %>
+	    <%= link_to 'Voltar', {controller: "questions", action: 'index', question_group_id: @question.question_group_id}, class: "btn btn-md btn-secondary" %>
 	</div>
 
 <% end %>

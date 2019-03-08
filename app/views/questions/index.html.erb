@@ -14,8 +14,11 @@
           <% @questions.each do |questao| %>
             <tr>
               <td><%= questao.pergunta %></td>
+              <% if can? :show, Question %>
+                <td><%= link_to "Visualizar", questao %></td>
+              <% end %>
               <% if can? :edit, Question %>
-                <td><%= link_to "Atualzar", [:edit, questao.question_group, questao]%></td>
+                <td><%= link_to "Atualizar", [:edit, questao.question_group, questao]%></td>
               <% end %>
               <% if can? :destroy, Question %>
                 <td><%= link_to "Excluir", [questao.question_group, questao], method: :delete, data: { confirm: 'Deseja realmente excluir a Pergunta?' } %></td>
@@ -33,7 +36,7 @@
     <% if can? :new, Question %>
       <%= link_to 'Cadastrar Pergunta', new_question_group_question_path(@question_group), class: "btn btn-md btn-primary" %>
     <% end %>
-    <%= link_to 'Voltar', {:controller => 'question_groups', :action => 'index', :id => @question_group.id, :usuario_curso_id => @perfil.id}, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar para Pesquisa', {:controller => 'question_groups', :action => 'index', :id => @question_group.id, :usuario_curso_id => @perfil.id}, class: "btn btn-md btn-secondary" %>
   </div>
 
 </div>

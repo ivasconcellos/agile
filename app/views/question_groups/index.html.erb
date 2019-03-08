@@ -17,7 +17,7 @@
           <% @question_groups.each do |grupo_de_questoes| %>
             <tr>
               <td><%= grupo_de_questoes.titulo %></td>
-              <td><%= link_to "Inserir Perguntas", {:controller => 'questions', :action =>  'index', :usuario_curso_id => @perfil.id, :question_group_id => grupo_de_questoes.id}, class: "btn btn-sm btn-danger" %></td>
+              <td><%= link_to "Perguntas", {:controller => 'questions', :action =>  'index', :usuario_curso_id => @perfil.id, :question_group_id => grupo_de_questoes.id}, class: "btn btn-sm btn-danger" %></td>
               <td><%= link_to "Resultado", {:controller => 'question_groups', :action => 'results', :id => grupo_de_questoes.id, :usuario_curso_id => grupo_de_questoes.usuario_curso_id}, class: "btn btn-sm btn-danger" %></td>
               <td><%= link_to "Responder", new_question_group_answer_group_path(grupo_de_questoes), class: "btn btn-sm btn-danger" %> </td>              
               <% if can? :show, QuestionGroup %>

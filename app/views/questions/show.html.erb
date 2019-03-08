@@ -1,0 +1,25 @@
+<div class="card">
+
+  <div class="card-header">Pergunta</div>
+
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <ul class="list-group">
+      	<li class="list-group-item"><b>Descrição da pergunta:</b> <%= @question.pergunta %></li>
+        <li class="list-group-item"><b>Tipo:</b> <%= @question.tipo_formatado %></li>
+        <li class="list-group-item"><b>Opções de Respostas:</b> <%= @question.options %></li>
+        <li class="list-group-item"><b>Obrigatória:</b> <%= @question.obrigatoria %></li>
+        <li class="list-group-item"><b>Pesquisa:</b> <%= link_to @question.question_group.titulo, @question.question_group %></li>
+        <li class="list-group-item"><b>Cadastrada em:</b> <%= @question.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
+      </ul>
+    </div>
+  </div>
+  
+  <br>
+  
+  <div class="card-footer text-muted">
+  	<%= link_to "Atualizar", [:edit, @question.question_group, @question], class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', {:controller => 'questions', :action => 'index', :question_group_id => @question.question_group.id, :usuario_curso_id => @perfil.id}, class: "btn btn-md btn-secondary" %>
+  </div>
+</div>
+  
