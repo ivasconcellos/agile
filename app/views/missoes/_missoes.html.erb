@@ -2,13 +2,8 @@
 <ul class="list-unstyled">
   <% @missoes.where(modulo_id: modulo.id).each do |missao| %>
     <% if missao.ativo? or @perfil.perfil != 'Aluno' %>
-      <li>
-        <% if !missao.ativo? %>
-          <span class= "text-danger"> <%= link_to missao.nome, missao, class: "text-danger" %> - Inativa!</span>
-        <% else %>
-          <%= link_to missao.nome, missao %>
-        <% end %>
-        
+      <li>        
+        <%= link_to ativa(missao), missao %>
             
         <% if can? :edit, Missao %>
           <%= link_to '', edit_missao_path(missao), class: "fa fa-edit" %>

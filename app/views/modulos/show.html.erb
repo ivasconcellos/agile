@@ -39,12 +39,8 @@
 	          <% @materiais.each do |material| %>
 		          <% if material.publico? or @perfil.perfil != 'Aluno' %>
 		            <tr>
-		            	<% if !material.publico? %>
-		              		<td class="alert alert-danger"><%= link_to material.nome, material %> - Não publicado!</td>
-		              	<% else %>
-		              		<td><%= link_to material.nome, material %></td>
-		              	<% end %>
-		              <td><%= material.tipo %></td>
+		              	<td><%= link_to publico(material), material %></td>
+		            	<td><%= material.tipo %></td>
 		            </tr>
 	            <% end %>
 	          <% end %>
@@ -70,11 +66,7 @@
 	          <% @missoes.each do |missao| %>
 	          	<% if missao.ativo? or @perfil.perfil != 'Aluno' %>
 		            <tr>
-		            	<% if !missao.ativo? %>
-		              		<td class="alert alert-danger"><%= link_to missao.nome, missao %> - Inativa!</td>
-		              	<% else %>
-		              		<td><%= link_to missao.nome, missao %></td>
-		              	<% end %>
+		            	<td><%= link_to ativa(missao), missao %></td>
 		              <td><%= missao.tipo %></td>
 		            </tr>
 		        <% end %>

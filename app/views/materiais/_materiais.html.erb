@@ -5,62 +5,32 @@
       <li>
 
         <% if material.tipo == "Link" %>
-          <% if material.publico? %>
-            <%= link_to extlink(material.texto), target: "_blank", class: "text-dark" do %>
-              <%= fa_icon "link" %> <%= material.nome %>
-            <% end %>
-          <% else %>
-            <%= link_to extlink(material.texto), target: "_blank", class: "text-danger" do %>
-              <%= fa_icon "link" %> <%= material.nome %> - Não publicado!
-            <% end %>
+          <%= link_to extlink(material.texto), target: "_blank", class: "text-dark" do %>
+            <%= fa_icon "link" %> <%= publico(material) %>
           <% end %>
         <% end %>
 
         <% if material.tipo == "Arquivo" %>
-          <% if material.publico? %>
-            <%= link_to url_for(material.arquivo), target: '_blank' do %>
-              <i class = "fa fa-file text-dark"> <%= material.nome %></i>
-            <% end %>
-          <% else %>
-            <%= link_to url_for(material.arquivo), target: '_blank' do %>
-              <i class = "fa fa-file text-danger"> <%= material.nome %> - Não publicado!</i>
-            <% end %>
-          <% end %>
+          <%= link_to url_for(material.arquivo), target: '_blank' do %>
+            <i class = "fa fa-file text-dark"> <%= publico(material) %></i>
+          <% end %>          
         <% end %>
 
         <% if material.tipo == "Vídeo" %>
-          <% if material.publico? %>
-            <%= link_to url_for(material.arquivo), target: '_blank' do %>
-              <i class = "fa fa-video-camera text-dark"> <%= material.nome %></i>
-            <% end %>
-          <% else %>
-            <%= link_to url_for(material.arquivo), target: '_blank' do %>
-              <i class = "fa fa-video-camera text-danger"> <%= material.nome %> - Não publicado!</i>
-            <% end %>
+          <%= link_to url_for(material.arquivo), target: '_blank' do %>
+            <i class = "fa fa-video-camera text-dark"> <%= publico(material) %></i>
           <% end %>
         <% end %>
 
         <% if material.tipo == "Imagem" %>
-          <% if material.publico? %>
-            <%= link_to url_for(material.arquivo), target: '_blank' do %>
-              <i class = "fa fa-image text-dark"> <%= material.nome %></i>
-            <% end %>
-          <% else %>
-              <%= link_to url_for(material.arquivo), target: '_blank' do %>
-                <i class = "fa fa-image text-danger"> <%= material.nome %> - Não publicado!</i>
-            <% end %>
+          <%= link_to url_for(material.arquivo), target: '_blank' do %>
+            <i class = "fa fa-image text-dark"> <%= publico(material) %></i>
           <% end %>
         <% end %>
 
         <% if material.tipo == "Texto" %>
-          <% if material.publico? %>
-            <%= link_to material_texto_url(id: material.id) do %>
-              <i class = "fa fa-text-width text-dark"> <%= material.nome %></i>
-            <% end %>
-          <% else %>
-              <%= link_to material_texto_url(id: material.id) do %>
-              <i class = "fa fa-text-width text-danger"> <%= material.nome %> - Não publicado!</i>
-            <% end %>
+          <%= link_to material_texto_url(id: material.id) do %>
+            <i class = "fa fa-text-width text-dark"> <%= publico(material) %></i>
           <% end %>
         <% end %>
 
