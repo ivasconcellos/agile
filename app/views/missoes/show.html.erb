@@ -48,6 +48,7 @@
         <% end %>
       <% else %>
         <%= link_to 'Ver quiz', @missao.quiz, class: "btn btn-md btn-warning"  %>
+        <%= link_to 'Responder Quiz', {controller: 'aluno_respostas', action: 'new', quiz_id: @missao.quiz}, class: "btn btn-md btn-danger" %>
       <% end %>
     <% end %>
 

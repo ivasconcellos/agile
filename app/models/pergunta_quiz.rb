@@ -1,6 +1,5 @@
 class PerguntaQuiz < ApplicationRecord
   belongs_to :quiz
-
-  self.per_page = 10
+  has_many :respostas_perguntas
   validates_presence_of :descricao
 end

@@ -15,7 +15,7 @@
     <% @aluno_respostas.each do |aluno_resposta| %>
       <tr>
         <td><%= aluno_resposta.usuario_curso %></td>
-        <td><%= aluno_resposta.respostas_perguntas %></td>
+        <td><%= aluno_resposta.resposta_pergunta %></td>
         <td><%= link_to 'Show', aluno_resposta %></td>
         <td><%= link_to 'Edit', edit_aluno_resposta_path(aluno_resposta) %></td>
         <td><%= link_to 'Destroy', aluno_resposta, method: :delete, data: { confirm: 'Are you sure?' } %></td>

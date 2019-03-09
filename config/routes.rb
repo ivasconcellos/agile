@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :artefatos
   resources :grupos
   resources :respostas_perguntas
-  resources :perguntas_quiz
+  resources :perguntas_quiz, except: [:index]
   resources :quizes, except: [:index]
   resources :niveis
   resources :missoes

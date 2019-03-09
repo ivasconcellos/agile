@@ -38,6 +38,7 @@
 .alert-success{
   text-align: center;
   font-weight: bold;
+  margin-top: 10px;
 }
 
 .alert-danger{
@@ -126,4 +127,16 @@ td{
 .question{
   padding-left: 30px;
   padding-top: 10px;
+}
+
+.card-header2{
+  padding: 5px;
+  font-size: 16px;
+  color: #FFFFFF;
+  width: 100%;
+  background-color: #2b2b89;
+}
+
+.list-group-item{
+ margin-bottom: 15px; 
 }

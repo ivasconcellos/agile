@@ -1,10 +1,18 @@
-<%= form_with(model: pergunta_quiz, local: true) do |form| %>
-  <% if pergunta_quiz.errors.any? %>
+<script>
+  function fechar() {
+  $('#pergunta-form<%= @pergunta_quiz.id %>').slideUp(350);
+  $('#<%= @pergunta_quiz.id %>').show();
+}
+  
+</script>
+<div class="card-header">Pergunta do Quiz</div> 
+<%= form_with(model: @pergunta_quiz, remote: true) do |form| %>
+  <% if @pergunta_quiz.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(pergunta_quiz.errors.count, "erro(s)") %> - Pergunta do Quiz não pôde ser salva!</h2>
+      <h2><%= pluralize(@pergunta_quiz.errors.count, "erro(s)") %> - Pergunta do Quiz não pôde ser salva!</h2>
 
       <ul>
-      <% pergunta_quiz.errors.full_messages.each do |message| %>
+      <% @pergunta_quiz.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -16,16 +24,15 @@
   <div class="card-body">
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Descrição*</label>
-      <div class="col-md-6">
-        <%= form.text_area :descricao, autofocus: true, class: "form-control" %>
+      <div class="col-md-12">
+        <%= form.cktext_area :descricao, autofocus: true, class: "form-control" %>
       </div>
     </div>
   </div>
 
   <div class="card-footer text-muted">
     <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
-    <%= link_to 'Voltar', perguntas_quiz_path, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar', "javascript:fechar()", class: "btn btn-md btn-secondary" %>
   </div>
 
 <% end %>
