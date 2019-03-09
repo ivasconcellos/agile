@@ -3,7 +3,7 @@
   <% @missoes.where(modulo_id: modulo.id).each do |missao| %>
     <% if missao.ativo? or @perfil.perfil != 'Aluno' %>
       <li>        
-        <%= link_to ativa(missao), missao %>
+        <%= link_to publica(missao), missao %>
             
         <% if can? :edit, Missao %>
           <%= link_to '', edit_missao_path(missao), class: "fa fa-edit" %>
