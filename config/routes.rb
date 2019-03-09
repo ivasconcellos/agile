@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :aluno_respostas, except: [:index]
   resources :dicas, except: [:index]
   resources :artefatos_alunos, except: [:show, :edit, :destroy]
   resources :eventos
@@ -9,7 +10,7 @@ Rails.application.routes.draw do
   resources :artefatos
   resources :grupos
   resources :respostas_perguntas
-  resources :perguntas_quiz
+  resources :perguntas_quiz, except: [:index]
   resources :quizes, except: [:index]
   resources :niveis
   resources :missoes
@@ -64,6 +65,7 @@ Rails.application.routes.draw do
 
   get 'equipe' => 'grupos_cursos#lista_participantes'
 
+  get 'resultado_final_quiz' => 'aluno_respostas#resultado_final_quiz'
   #Conversas
   get 'conversas_professor' => 'conversas#conversas_professor'
   get 'conversas_assunto' => 'conversas#conversas_assunto'

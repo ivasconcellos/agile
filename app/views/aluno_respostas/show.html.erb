@@ -1,0 +1,66 @@
+<div class="card">
+
+  <div class="card-header">Resposta Quiz</div>
+
+  <% if @aluno_resposta.resposta_pergunta.correta? %>
+  	<div class="alert alert-success"> Parabéns! Você acertou!</div>
+  <% else %>
+  	<div class="alert alert-danger"> Resposta incorreta! Revise o conteúdo para melhorar!</div>
+  <% end %>
+  <div class="card-body">
+
+    <div class="row">
+
+      <div class="col-lg-12">
+
+        <div class="input-group mb-3">
+          <p>
+            <label>Quiz: </label>          
+            <%= @aluno_resposta.resposta_pergunta.pergunta_quiz.quiz.nome %>
+          </p>
+        </div>
+
+      	<div class="input-group mb-3">
+          <p><label>Pergunta: </label></p>
+          <p><%= @aluno_resposta.resposta_pergunta.pergunta_quiz.descricao.html_safe %></p>
+        </div>
+
+        <div class="input-group mb-3">
+          <p><label>Respostas: </label></p>
+          <br>
+          <p>
+            <ul>
+	        	<% @respostas.each do |resposta| %>
+	        		<li><%= resposta_correta(resposta) %></li>
+	        		<% if resposta.comentario %>
+	        			<li class="list-group-item comentario"><label>Comentário:</label> <%= resposta.comentario.html_safe %></li>
+	        		<% end %> 
+	    		<% end %>
+			</ul>
+          </p>
+        </div>
+        
+        <div class="input-group mb-3">
+          <p>
+            <label>Sua resposta: </label>          
+            <%= resposta_correta(@aluno_resposta.resposta_pergunta) %>
+          </p>
+        </div>
+
+        <div class="input-group mb-3">
+          <p>
+            <label>Resposta salva em: </label>          
+            <%= @aluno_resposta.created_at.strftime("%d/%m/%Y - %H:%M:%S") %>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <br>
+  <div class="card-footer text-muted">
+    <%= link_to 'Próxima pergunta', {controller: 'aluno_respostas', action: 'new', pergunta_id: @aluno_resposta.resposta_pergunta.pergunta_quiz.id, quiz_id: @aluno_resposta.resposta_pergunta.pergunta_quiz.quiz_id}, class: "btn btn-md btn-success" %>
+  </div>
+
+</div>

@@ -33,7 +33,7 @@ class RespostasPerguntasController < ApplicationController
   # PATCH/PUT /respostas_perguntas/1.json
   def update
     if @resposta_pergunta.update(resposta_pergunta_params)
-      @respostas_perguntas = RespostaPergunta.where(pergunta_quiz_id: @resposta_pergunta.pergunta_quiz_id)
+      @respostas_perguntas = RespostaPergunta.where(pergunta_quiz_id: @resposta_pergunta.pergunta_quiz_id).order('created_at')
     end
   end
 
@@ -45,7 +45,7 @@ class RespostasPerguntasController < ApplicationController
     @pergunta_quiz = @resposta_pergunta.pergunta_quiz_id
     @resposta_pergunta.destroy
     if @resposta_pergunta.destroy
-       @respostas_perguntas = RespostaPergunta.where(pergunta_quiz_id: @pergunta_quiz)
+      @respostas_perguntas = RespostaPergunta.where(pergunta_quiz_id: @pergunta_quiz).order('created_at')
     end
   end
 

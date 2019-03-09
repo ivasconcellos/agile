@@ -1,0 +1,46 @@
+<%= form_with(model: aluno_resposta, local: true) do |form| %>
+  <% if aluno_resposta.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(aluno_resposta.errors.count, "erro(s)") %> Resposta não pôde ser salva!:</h2>
+
+      <ul>
+      <% aluno_resposta.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :usuario_curso_id %>
+  <div class="card-body">
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Quiz</label>
+      <div class="col-md-6">
+        <%= @pergunta.quiz.nome %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Pergunta</label>
+      <div class="col-md-6">
+        <%= @pergunta.descricao.html_safe %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Opções</label>
+      <div class="col-md-6">
+        <% RespostaPergunta.where(pergunta_quiz_id: @pergunta.id).each do |resposta| %>
+              <p><%= form.radio_button :resposta_pergunta_id, resposta.id %>
+              <%= resposta.descricao %></p>
+        <% end %>      
+      </div>
+    </div>
+
+  </div>
+     
+  <div class="card-footer text-muted">
+    <%= form.submit "Salvar Resposta", class: "btn btn-md btn-primary" %>
+  </div>
+<% end %>
