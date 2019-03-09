@@ -5,11 +5,7 @@ class CreateTarefas < ActiveRecord::Migration[5.2]
       t.references :usuario_curso, foreign_key: true
       t.text :nome
       t.text :descricao
-      t.date :data_inicio
-      t.time :hora_inicio
-      t.date :data_termino
-      t.time :hora_termino
-      
+
       t.timestamps
     end
   end
