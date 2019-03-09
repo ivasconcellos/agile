@@ -33,7 +33,7 @@
 	        	<% @respostas.each do |resposta| %>
 	        		<li><%= resposta_correta(resposta) %></li>
 	        		<% if resposta.comentario %>
-	        			<li class="list-group-item"><label>Comentário:</label> <%= resposta.comentario.html_safe %></li>
+	        			<li class="list-group-item comentario"><label>Comentário:</label> <%= resposta.comentario.html_safe %></li>
 	        		<% end %> 
 	    		<% end %>
 			</ul>
