@@ -26,6 +26,11 @@ class RespostasPerguntasController < ApplicationController
     @resposta_pergunta = RespostaPergunta.new(resposta_pergunta_params)
     if @resposta_pergunta.save
       @respostas_perguntas = RespostaPergunta.where(pergunta_quiz_id: @resposta_pergunta.pergunta_quiz_id)
+    else
+      respond_to do |format|
+        format.js { render :new }
+        format.json { render json: @resposta_pergunta.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -34,6 +39,11 @@ class RespostasPerguntasController < ApplicationController
   def update
     if @resposta_pergunta.update(resposta_pergunta_params)
       @respostas_perguntas = RespostaPergunta.where(pergunta_quiz_id: @resposta_pergunta.pergunta_quiz_id).order('created_at')
+    else
+      respond_to do |format|
+        format.js { render :edit }
+        format.json { render json: @resposta_pergunta.errors, status: :unprocessable_entity }
+      end
     end
   end
 

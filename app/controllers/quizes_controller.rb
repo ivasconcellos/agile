@@ -7,6 +7,7 @@ class QuizesController < ApplicationController
   def show
     authorize! :show, Quiz
     @perguntas_quizes = PerguntaQuiz.where(quiz_id: @quiz)
+    @quiz.pontuacao
   end
 
   # GET /quizes/new

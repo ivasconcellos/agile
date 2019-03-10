@@ -8,11 +8,13 @@
       <%= link_to '', @missao, method: :delete, data: { confirm: 'Deseja realmente excluir o Quiz?' }, class: "fa fa-trash text-white" %>
     <% end %>
   </div>
-
+  <% if @quiz.pontuacao  %>
+    <div class="alert alert-danger">A pontuação total das Perguntas é menor que a pontuação da Missão </div>
+  <% end %>
   <ul class="list-group">
     <li class="list-group-item"><b>Nome:</b> <%= @quiz.nome %></li>
     <li class="list-group-item"><b>Descrição:</b> <%= @quiz.descricao %></li>
-    <li class="list-group-item"><b>Pontuação:</b> <%= @quiz.missao.pontuacao %></li>
+    <li class="list-group-item"><b>Pontuação da Missão:</b> <%= @quiz.missao.pontuacao %></li>
     <li class="list-group-item"><b>Data de início:</b> <%= @quiz.missao.data_inicio.strftime("%d/%m/%Y") %></li>
     <li class="list-group-item"><b>Data de término:</b> <%= @quiz.missao.data_termino.strftime("%d/%m/%Y") %></li>
     <li class="list-group-item"><b>Cadastrado por:</b> <%= @quiz.usuario_curso.nickname %></li>
@@ -21,14 +23,12 @@
 
   <br>
 
-  <div id="pergunta_quiz"><%= render 'perguntas_quiz/pergunta_quiz', :collection => @perguntas_quizes %></div>
-
-  <div id="pergunta-form" style="display:none;"></div>
+  <div><%= render 'perguntas_quiz/pergunta_quiz', :collection => @perguntas_quizes %></div>
 
 
   <div class="card-footer text-muted">
     <% if can? :new, PerguntaQuiz %>
-      <%= link_to 'Cadastrar Pergunta', {controller: 'perguntas_quiz', action: 'new', quiz_id: @quiz.id, remote: true}, class: "btn btn-md btn-success" %>
+      <%= link_to 'Cadastrar Pergunta', {controller: 'perguntas_quiz', action: 'new', quiz_id: @quiz.id}, class: "btn btn-md btn-success" %>
     <% end %>
     <%= link_to 'Voltar para Missão', :back, class: "btn btn-md btn-secondary" %>
   </div>
