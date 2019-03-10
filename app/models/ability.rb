@@ -48,7 +48,6 @@ class Ability
           can :perms_read_and_update, UsuarioCurso
           can :read, Tarefa
           can :perms_without_delete, TarefaAluno
-          can :read, Quiz
           can :manage, Conversa
           can :read, SalaChat
           can :lista_participantes, :grupo

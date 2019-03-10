@@ -26,7 +26,7 @@ class CursosController < ApplicationController
 
   def descricao
     authorize! :show, Curso
-    @usuario_curso = UsuarioCurso.find_by(curso_id: @curso.id, usuario_id: current_usuario.id)
+    @usuario_curso = UsuarioCurso.where(curso_id: @curso.id, usuario_id: current_usuario.id)
   end
 
   # GET /cursos/new

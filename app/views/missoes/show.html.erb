@@ -49,8 +49,11 @@
           <%= link_to 'Adicionar Quiz', {controller: 'quizes', action: 'new', missao_id: @missao.id}, class: "btn btn-md btn-danger" %>
         <% end %>
       <% else %>
-        <%= link_to 'Ver quiz', @missao.quiz, class: "btn btn-md btn-warning"  %>
-        <%= link_to 'Responder Quiz', {controller: 'aluno_respostas', action: 'new', quiz_id: @missao.quiz}, class: "btn btn-md btn-danger" %>
+        <% if !@perfil.perfil == 'Aluno' %>
+          <%= link_to 'Ver quiz', @missao.quiz, class: "btn btn-md btn-warning"  %>
+        <% else %>
+          <%= link_to 'Responder Quiz', {controller: 'aluno_respostas', action: 'new', quiz_id: @missao.quiz}, class: "btn btn-md btn-danger" %>
+        <% end %>
       <% end %>
     <% end %>
 

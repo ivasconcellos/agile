@@ -29,10 +29,10 @@
   </div>
 
   <div class="card-footer text-muted">
-    <% if @perfil.perfil == 'Aluno' and no_prazo(@tarefa) %>
+    <% if @perfil.perfil == 'Aluno' and no_prazo(@tarefa.missao) %>
       <%= link_to 'Enviar Tarefa', {controller: 'tarefa_alunos', action: 'new', tarefa_id: @tarefa.id}, class: "btn btn-md btn-warning" %>
     <% end %>
-    <% if @tarefa_aluno and no_prazo(@tarefa) %>
+    <% if @tarefa_aluno and no_prazo(@tarefa.missao) %>
       <%= link_to 'Atualizar Envio', edit_tarefa_aluno_path(@tarefa_aluno), class: "btn btn-md btn-danger" %>
     <% end %>
     <% if can? :new, AvaliacaoTarefa %>

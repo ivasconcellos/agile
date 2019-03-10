@@ -30,8 +30,6 @@
             <% end %>
             <% if tarefa_aluno.avaliacao_tarefa %>
               <td><%= link_to 'Editar Avaliação',  edit_avaliacao_tarefa_path(tarefa_aluno.avaliacao_tarefa), class: "btn btn-sm btn-danger" %></td>
-            <% else %>
-              <td><%= link_to 'Avaliar Tarefa', {controller: 'avaliacao_tarefa', action: 'new', tarefa_aluno_id: tarefa_aluno.id}, class: "btn btn-sm btn-danger" %></td>
             <% end %>
           </tr>
         <% end %>

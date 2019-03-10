@@ -106,7 +106,7 @@
                 <% if current_usuario.perfil == 'Gestor'%>  
                   <%= yield %>
                 <% else %>
-                  <% if @perfil.curso.ativo? %>
+                  <% if current_usuario.curso_atual.ativo? %>
                     <%= yield %>
                   <% else %>
                     <div class="alert alert-danger"> 
