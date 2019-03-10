@@ -64,9 +64,9 @@
 	        </thead>
 	        <tbody>
 	          <% @missoes.each do |missao| %>
-	          	<% if missao.ativo? or @perfil.perfil != 'Aluno' %>
+	          	<% if missao.publico? or @perfil.perfil != 'Aluno' %>
 		            <tr>
-		            	<td><%= link_to ativa(missao), missao %></td>
+		            	<td><%= link_to publica(missao), missao %></td>
 		              <td><%= missao.tipo %></td>
 		            </tr>
 		        <% end %>

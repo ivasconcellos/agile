@@ -279,9 +279,13 @@ ActiveRecord::Schema.define(version: 2019_03_08_180355) do
     t.bigint "usuario_curso_id"
     t.string "nome"
     t.text "descricao"
-    t.boolean "ativo", default: true
+    t.boolean "publico", default: true
     t.string "tipo"
     t.float "pontuacao"
+    t.date "data_inicio"
+    t.time "hora_inicio"
+    t.date "data_termino"
+    t.time "hora_termino"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["modulo_id"], name: "index_missoes_on_modulo_id"
@@ -308,6 +312,7 @@ ActiveRecord::Schema.define(version: 2019_03_08_180355) do
   create_table "perguntas_quiz", force: :cascade do |t|
     t.bigint "quiz_id"
     t.text "descricao"
+    t.float "pontuacao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quiz_id"], name: "index_perguntas_quiz_on_quiz_id"
@@ -339,12 +344,7 @@ ActiveRecord::Schema.define(version: 2019_03_08_180355) do
     t.bigint "missao_id"
     t.string "nome"
     t.text "descricao"
-    t.integer "max_tentativas"
     t.bigint "usuario_curso_id"
-    t.date "data_inicio"
-    t.time "hora_inicio"
-    t.date "data_termino"
-    t.time "hora_termino"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["missao_id"], name: "index_quizes_on_missao_id"
@@ -430,10 +430,6 @@ ActiveRecord::Schema.define(version: 2019_03_08_180355) do
     t.bigint "usuario_curso_id"
     t.text "nome"
     t.text "descricao"
-    t.date "data_inicio"
-    t.time "hora_inicio"
-    t.date "data_termino"
-    t.time "hora_termino"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["missao_id"], name: "index_tarefas_on_missao_id"

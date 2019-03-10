@@ -26,27 +26,40 @@ class PerguntasQuizController < ApplicationController
   def create
     @pergunta_quiz = PerguntaQuiz.new(pergunta_quiz_params)
 
-    if @pergunta_quiz.save
-      @perguntas_quizes = PerguntaQuiz.where(quiz_id: @pergunta_quiz.quiz_id)
+    respond_to do |format|
+      if @pergunta_quiz.save
+        format.html { redirect_to @pergunta_quiz.quiz, notice: 'Pergunta do Quiz cadastrada com sucesso!' }
+        format.json { render :show, status: :created, location: @pergunta_quiz }
+      else
+        format.html { render :new }
+        format.json { render json: @pergunta_quiz.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # PATCH/PUT /perguntas_quiz/1
   # PATCH/PUT /perguntas_quiz/1.json
   def update
-    if @pergunta_quiz.update(pergunta_quiz_params)
-      @perguntas_quizes = PerguntaQuiz.where(quiz_id: @pergunta_quiz.quiz_id)
-     end
+    respond_to do |format|
+      if @pergunta_quiz.update(pergunta_quiz_params)
+        format.html { redirect_to @pergunta_quiz.quiz, notice: 'Pergunta do Quiz atualizada com sucesso!' }
+        format.json { render :show, status: :ok, location: @pergunta_quiz }
+      else
+        format.html { render :edit }
+        format.json { render json: @pergunta_quiz.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /perguntas_quiz/1
   # DELETE /perguntas_quiz/1.json
   def destroy
     authorize! :destroy, PerguntaQuiz
-    @quiz = @pergunta_quiz.quiz_id
-
-    if @pergunta_quiz.destroy
-      @perguntas_quizes = PerguntaQuiz.where(quiz_id: @pergunta_quiz.quiz_id)
+    @quiz = @pergunta_quiz.quiz
+    @pergunta_quiz.destroy
+    respond_to do |format|
+      format.html { redirect_to @quiz, notice: 'Pergunta do Quiz excluída com sucesso!' }
+      format.json { head :no_content }
     end
   end
 
@@ -58,6 +71,6 @@ class PerguntasQuizController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pergunta_quiz_params
-      params.require(:pergunta_quiz).permit(:quiz_id, :descricao)
+      params.require(:pergunta_quiz).permit(:quiz_id, :descricao, :pontuacao)
     end
 end

@@ -5,9 +5,13 @@ class CreateMissoes < ActiveRecord::Migration[5.2]
       t.references :usuario_curso, foreign_key: true
       t.string :nome
       t.text :descricao
-      t.boolean :ativo, default: true
+      t.boolean :publico, default: true
       t.string :tipo
       t.float :pontuacao
+      t.date :data_inicio
+      t.time :hora_inicio
+      t.date :data_termino
+      t.time :hora_termino
 
       t.timestamps
     end

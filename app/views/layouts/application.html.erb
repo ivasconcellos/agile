@@ -102,13 +102,19 @@
           <% if usuario_signed_in? %>
             <div class="row"> 
               <div class="col-md-12 col-sm-10">
-              <% if @perfil.curso.ativo? %>
-                <%= yield %>
-              <% else %>
-                <div class="alert alert-danger"> 
-                  <p>Este curso não está mais ativo. Em caso de dúvidas, entre em contato com o administrador do sistema.</p>
-                </div>
-              <% end %>
+
+                <% if current_usuario.perfil == 'Gestor'%>  
+                  <%= yield %>
+                <% else %>
+                  <% if @perfil.curso.ativo? %>
+                    <%= yield %>
+                  <% else %>
+                    <div class="alert alert-danger"> 
+                      <p>Este curso não está mais ativo. Em caso de dúvidas, entre em contato com o administrador do sistema.</p>
+                    </div>
+                  <% end %>
+                <% end %>
+                
               </div>
             </div>
           <%else%>

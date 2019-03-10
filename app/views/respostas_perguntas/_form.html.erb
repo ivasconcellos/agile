@@ -1,3 +1,9 @@
+<script>
+  function fechar() {
+    $('#task-form<%= @resposta_pergunta.id %>').slideUp(350);
+  }
+</script>
+
 <div class="card">
   <div class="card-header">Resposta</div> 
 
@@ -7,7 +13,7 @@
         <h2><%= pluralize(@resposta_pergunta.errors.count, "erro(s)") %> - Resposta da pergunta não pôde ser salva!</h2>
 
         <ul>
-        <% resposta_pergunta.errors.full_messages.each do |message| %>
+        <% @resposta_pergunta.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
         </ul>
@@ -45,6 +51,7 @@
 
     <div class="card-footer text-muted">
       <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+      <%= link_to 'Fechar', @resposta_pergunta.pergunta_quiz.quiz, class: "btn btn-md btn-secondary" %>
     </div>
   <% end %>
 </div>

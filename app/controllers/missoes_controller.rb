@@ -78,6 +78,6 @@ class MissoesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def missao_params
-      params.require(:missao).permit(:modulo_id, :usuario_curso_id, :nome, :descricao, :ativo, :imagem, :tipo, :pontuacao)
+      params.require(:missao).permit(:modulo_id, :usuario_curso_id, :nome, :descricao, :publico, :imagem, :tipo, :pontuacao, :data_inicio, :hora_inicio, :data_termino, :hora_termino)
     end
 end

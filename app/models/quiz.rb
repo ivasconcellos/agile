@@ -4,13 +4,14 @@ class Quiz < ApplicationRecord
 
   self.per_page = 10
 
-  validates_presence_of :nome, :descricao, :max_tentativas, :data_inicio, :hora_inicio, :data_termino, :hora_termino
+  validates_presence_of :nome, :descricao
 
-  	def data_hora_inicio
-		self.data_inicio.strftime("%d/%m/%Y") + " " + self.hora_inicio.strftime("%H:%M:%S")
-	end
+  def pontuacao
+  	@pontuacao_missao = Missao.select(:pontuacao).joins(:quiz).find_by('quizes.id =?', self.id)
+  	@pontuacao_perguntas = PerguntaQuiz.where(quiz_id: self.id).sum('pontuacao')
+  	if @pontuacao_missao.pontuacao > @pontuacao_perguntas
+  		return true
+  	end
+  end
 
-	def data_hora_termino
-		self.data_termino.strftime("%d/%m/%Y") + " " + self.hora_termino.strftime("%H:%M:%S")
-	end
 end

@@ -40,34 +40,6 @@
       </div>
     </div>
 
-    <div class="form-group row">
-      <label for="inputDataInicio" class="col-md-2 offset-md-2 col-form-label">Data de início*</label>
-      <div class="col-md-2">
-        <%= form.date_field :data_inicio, value: @tarefa.data_inicio.try(:strftime,"%Y-%m-%d"), class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="inputDataInicio" class="col-md-2 offset-md-2 col-form-label">Hora de início*</label>
-      <div class="col-md-2">
-        <%= form.time_field :hora_inicio, value: @tarefa.hora_inicio.try(:strftime,"%H:%M"), class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="inputDataTermino" class="col-md-2 offset-md-2 col-form-label">Data de término*</label>
-      <div class="col-md-2">
-        <%= form.date_field :data_termino, value: @tarefa.data_termino.try(:strftime,"%Y-%m-%d"), class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="inputDataInicio" class="col-md-2 offset-md-2 col-form-label">Hora de término*</label>
-      <div class="col-md-2">
-        <%= form.time_field :hora_termino, value: @tarefa.hora_termino.try(:strftime,"%H:%M"), class: "form-control" %>
-      </div>
-    </div>
-
   </div>
 
   <div class="card-footer text-muted">

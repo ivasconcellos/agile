@@ -49,7 +49,7 @@ class CursosController < ApplicationController
       if @curso.save
         UsuarioCurso.create!(perfil: 'Professor', nickname: @curso.proprietario.nome, usuario_id: @curso.proprietario_id, curso_id: @curso.id, nivel_id: 1)
         current_usuario.update(curso_atual_id: @curso.id)
-        format.html { redirect_to cursos_path, notice: 'Curso criado com sucesso!' }
+        format.html { redirect_to descricao_path(id: @curso.id), notice: 'Curso criado com sucesso!' }
         format.json { render :show, status: :created, location: cursos_path }
       else
         format.html { render :new}
@@ -63,7 +63,7 @@ class CursosController < ApplicationController
   def update
     respond_to do |format|
       if @curso.update(curso_params)
-        format.html { redirect_to @curso, notice: 'Curso atualizado com sucesso!' }
+        format.html { redirect_to descricao_path(id: @curso.id), notice: 'Curso atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: cursos_path }
       else
         format.html { render :edit}

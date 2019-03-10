@@ -5,23 +5,23 @@
       <p>
         <b><%= index+1 %>º Pergunta: </b>
         <% if can? :edit, PerguntaQuiz %>
-          <%= link_to  '', edit_pergunta_quiz_path(pergunta_quiz), class: "fa fa-pencil text-light", remote: true %>
+          <%= link_to  '', edit_pergunta_quiz_path(pergunta_quiz), class: "fa fa-pencil text-light" %>
         <% end %>
         <% if can? :destroy, PerguntaQuiz %>
-          <%= link_to  '', pergunta_quiz, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover A pergunta?'}, class: "fa fa-trash text-light", remote: true %>
+          <%= link_to  '', pergunta_quiz, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover A pergunta?'}, class: "fa fa-trash text-light" %>
         <% end %>
       </p>
-
       <p><%= pergunta_quiz.descricao.to_s.html_safe %></p>
-      
-      <div id="pergunta-form<%= pergunta_quiz.id %>" style="display:none;"></div>
+      <p><label class="text-light">Pontuação:</label> <%= pergunta_quiz.pontuacao %></p>
     </div>
 
-    <div class="card-body bg-dark" id="<%= pergunta_quiz.id %>">
+    <div class="card-body bg-dark">
       <p class="card-text">
-        <div id="resposta_pergunta"><% @respostas_perguntas = RespostaPergunta.where(pergunta_quiz_id: pergunta_quiz.id).order('created_at') %><%= render 'respostas_perguntas/resposta_pergunta', :collection => @respostas_perguntas %></div>
+        <div id="<%= pergunta_quiz.id %>"><% @respostas_perguntas = RespostaPergunta.where(pergunta_quiz_id: pergunta_quiz.id).order('created_at') %><%= render 'respostas_perguntas/resposta_pergunta', :collection => @respostas_perguntas %></div>
 
-        <div id="task-form" style="display:none;"></div>
+
+        <div id="task-form<%= pergunta_quiz.id %>" style="display:none;"></div>
+        
         <br>
         <% if can? :new, RespostaPergunta %>
           <div class="text-center">
