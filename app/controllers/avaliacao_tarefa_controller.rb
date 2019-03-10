@@ -30,6 +30,7 @@ class AvaliacaoTarefaController < ApplicationController
       if @avaliacao_tarefa.save
         @avaliacao_tarefa.tarefa_aluno.avaliada = true
         @avaliacao_tarefa.tarefa_aluno.save!
+        @avaliacao_tarefa.pontuacao_aluno(nil)
         format.html { redirect_to @avaliacao_tarefa, notice: 'Avaliação da tarefa cadastrada com sucesso!' }
         format.json { render :show, status: :created, location: @avaliacao_tarefa }
       else
@@ -42,8 +43,10 @@ class AvaliacaoTarefaController < ApplicationController
   # PATCH/PUT /avaliacao_tarefa/1
   # PATCH/PUT /avaliacao_tarefa/1.json
   def update
+    @nota = @avaliacao_tarefa.nota
     respond_to do |format|
       if @avaliacao_tarefa.update(avaliacao_tarefa_params)
+        @avaliacao_tarefa.pontuacao_aluno(@nota)
         format.html { redirect_to @avaliacao_tarefa, notice: 'Avaliação da tarefa atualizada com sucesso!' }
         format.json { render :show, status: :ok, location: @avaliacao_tarefa }
       else

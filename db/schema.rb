@@ -449,6 +449,7 @@ ActiveRecord::Schema.define(version: 2019_03_08_180355) do
   create_table "usuario_curso", force: :cascade do |t|
     t.string "perfil", default: "Aluno", null: false
     t.string "nickname", null: false
+    t.float "pontos_experiencia", default: 0.0
     t.bigint "usuario_id"
     t.bigint "curso_id"
     t.datetime "created_at", null: false
