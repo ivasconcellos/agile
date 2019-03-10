@@ -36,9 +36,9 @@ class AlunoRespostasController < ApplicationController
   # POST /aluno_respostas.json
   def create
     @aluno_resposta = AlunoResposta.new(aluno_resposta_params)
-    @perguntas = PerguntaQuiz.where(quiz_id: params[:quiz_id]).paginate(page: params[:page])
     respond_to do |format|
       if @aluno_resposta.save
+        @aluno_resposta.pontuacao_aluno
         format.html { redirect_to @aluno_resposta, notice: 'Resposta salva com sucesso!' }
         format.json { render :show, status: :created, location: @aluno_resposta }
       else

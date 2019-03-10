@@ -12,35 +12,50 @@
   <% end %>
 
   <%= form.hidden_field :usuario_curso_id %>
-  <div class="card-body">
-
-    <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Quiz</label>
-      <div class="col-md-6">
-        <%= @pergunta.quiz.nome %>
+  <% if @pergunta %>
+    <div class="card-body">
+   
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Quiz</label>
+        <div class="col-md-6">
+          <%= @pergunta.quiz.nome %>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Pergunta</label>
-      <div class="col-md-6">
-        <%= @pergunta.descricao.html_safe %>
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Pergunta</label>
+        <div class="col-md-6">
+          <%= @pergunta.descricao.html_safe %>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Opções</label>
-      <div class="col-md-6">
-        <% RespostaPergunta.where(pergunta_quiz_id: @pergunta.id).each do |resposta| %>
-              <p><%= form.radio_button :resposta_pergunta_id, resposta.id %>
-              <%= resposta.descricao %></p>
-        <% end %>      
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Pontuação</label>
+        <div class="col-md-6">
+          <%= @pergunta.pontuacao %>
+        </div>
       </div>
-    </div>
 
-  </div>
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Opções</label>
+        <div class="col-md-6">
+          <% RespostaPergunta.where(pergunta_quiz_id: @pergunta.id).each do |resposta| %>
+                <p><%= form.radio_button :resposta_pergunta_id, resposta.id, required: true %>
+                <%= resposta.descricao %></p>
+          <% end %>      
+        </div>
+      </div>
+
+    </div>
      
-  <div class="card-footer text-muted">
-    <%= form.submit "Salvar Resposta", class: "btn btn-md btn-primary" %>
-  </div>
+    <div class="card-footer text-muted">
+      <%= form.submit "Salvar Resposta", class: "btn btn-md btn-primary" %>
+    </div>
+
+  <% else %>
+    <div class="card-footer text-muted">
+      <%= link_to 'Próxima pergunta', {controller: 'aluno_respostas', action: 'new', pergunta_id: aluno_resposta.resposta_pergunta.pergunta_quiz.id, quiz_id: aluno_resposta.resposta_pergunta.pergunta_quiz.quiz_id}, class: "btn btn-md btn-success" %>
+    </div>
+  <% end %>
+
 <% end %>

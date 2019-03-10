@@ -7,9 +7,15 @@
     <% @aluno_respostas.each_with_index do |aluno, index| %>
       <div class="row alert alert-info">
         <div class="col-lg-12">
-          <div class="input-group mb-3 ">
+          <div class="input-group">
             <p><label><%= index + 1 %>ª Pergunta: </label> </p>
             <p><%= aluno.resposta_pergunta.pergunta_quiz.descricao.html_safe %></p>
+          </div>        
+        </div>
+
+        <div class="col-lg-12">
+          <div class="input-group">
+            <p><label>Pontuação da pergunta:</label> <%= aluno.resposta_pergunta.pergunta_quiz.pontuacao %></p>
           </div>        
         </div>
 
