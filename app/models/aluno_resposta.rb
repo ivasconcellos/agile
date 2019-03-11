@@ -22,8 +22,7 @@ class AlunoResposta < ApplicationRecord
 	  	if !@resposta.empty?
 	  		errors.add(:resposta, " - Você já resposdeu a esta Pergunta!")
 	  	end
-	end
+	  end
   end
 
-  
 end
