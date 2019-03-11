@@ -5,7 +5,8 @@ class UsuarioCursoController < ApplicationController
   # GET /usuario_curso
   # GET /usuario_curso.json
   def index
-    @usuario_curso = UsuarioCurso.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
+    @q = UsuarioCurso.where(curso_id: current_usuario.curso_atual_id).ransack(params[:q])
+    @usuario_curso = @q.result.paginate(page: params[:page]).order('nickname')
     authorize! :index, UsuarioCurso
   end
 

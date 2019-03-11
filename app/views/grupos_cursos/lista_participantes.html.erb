@@ -15,8 +15,7 @@
                 <%= image_tag participante.avatar.imagem.variant(resize: "200x200"), class: "img-responsive" %>
               </div>
               <div class="card-footer bg-primary text-white">
-                
-                <div><%= participante.nickname %></div>
+                <div><%= link_to participante.nickname, participante, class: "text-white" %></div>
               </div>
             </div>
           </div>
