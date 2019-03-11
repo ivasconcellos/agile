@@ -19,7 +19,7 @@
               <td><%= evento.data.strftime("%d/%m/%Y") %></td>
               <td><%= evento.hora.strftime("%H:%M:%S") %></td>
               <% if can? :show, Evento %>
-                <td><%= link_to 'Visualizar', Evento %></td>
+                <td><%= link_to 'Visualizar', evento %></td>
               <% end %>
               <% if can? :edit, Evento %>
                <td><%= link_to 'Atualizar', edit_evento_path(evento) %></td>

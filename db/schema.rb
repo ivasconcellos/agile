@@ -210,8 +210,10 @@ ActiveRecord::Schema.define(version: 2019_03_08_180355) do
     t.string "nome"
     t.text "descricao"
     t.bigint "usuario_curso_id"
+    t.bigint "curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["curso_id"], name: "index_eventos_on_curso_id"
     t.index ["usuario_curso_id"], name: "index_eventos_on_usuario_curso_id"
   end
 
@@ -507,6 +509,7 @@ ActiveRecord::Schema.define(version: 2019_03_08_180355) do
   add_foreign_key "cursos", "tema_cursos"
   add_foreign_key "cursos", "usuarios", column: "proprietario_id"
   add_foreign_key "dicas", "missoes"
+  add_foreign_key "eventos", "cursos"
   add_foreign_key "eventos", "usuario_curso"
   add_foreign_key "explicacoes", "modulos"
   add_foreign_key "foruns", "cursos"

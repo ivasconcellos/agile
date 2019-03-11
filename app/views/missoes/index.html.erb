@@ -7,7 +7,10 @@
       <thead>
         <tr>
           <th class="text-center">Nome</th>
-          <th class="text-center">Pública</th>
+          <th class="text-center">Módulo</th>
+          <% if can? :edit, Missao %>
+            <th class="text-center">Pública</th>
+          <% end %>
           <th class="text-center" colspan="4">Opções</th>
         </tr>
       </thead>
@@ -15,7 +18,10 @@
         <% @missoes.each do |missao| %>
           <tr>
             <td><%= missao.nome %></td>
-            <td><%= missao.publico? ? 'Sim' : 'Não' %></td>
+            <td><%= missao.modulo.nome %></td>
+            <% if can? :edit, Missao %>
+              <td><%= missao.publico? ? 'Sim' : 'Não' %></td>
+            <% end %>
             <% if can? :show, Missao %>
               <td><%= link_to 'Visualizar', missao %></td>
             <% end %>

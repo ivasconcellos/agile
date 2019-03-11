@@ -59,6 +59,7 @@ class Ability
           can :read, QuestionGroup
           can :minhas_notas,:notas
           can :manage, AlunoResposta
+          can :read, Material
         else
           can :read, Curso
         end

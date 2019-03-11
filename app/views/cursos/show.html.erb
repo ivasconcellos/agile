@@ -1,10 +1,6 @@
 <div class="card">
   <div class="card-header"><%= @curso.nome %></div>
 
-  <div class="alert alert-success" role="alert">
-    Bem-vindo ao curso!
-  </div>
-
   <% if !@conversas.empty? %>
     <div class="alert alert-danger" role="alert">
       Você possui mensagens não lidas!

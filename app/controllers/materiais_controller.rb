@@ -2,19 +2,6 @@ class MateriaisController < ApplicationController
   before_action :set_material, only: [:show, :edit, :update, :destroy, :texto]
   before_action :authenticate_usuario!
 
-  # GET /materiais
-  # GET /materiais.json
-  def index
-    authorize! :index, Material
-    if params[:modulo_id]
-      @materiais = Material.where('modulo_id = ?',
-       params[:modulo_id]).page(params[:page]).order('nome')
-    else
-      @materiais = Material.joins(:modulo).where('modulos.curso_id = ?',
-       current_usuario.curso_atual_id).page(params[:page]).order('nome')
-    end
-  end
-
   # GET /materiais/1
   # GET /materiais/1.json
   def show

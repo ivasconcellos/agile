@@ -1,21 +1,19 @@
 <div class="card">
   <div class="card-header">Mensagens por assunto</div>
 
-  <div class="table-responsive">
-    <table class="table table-striped table-sm">
-      <thead>
-        <tr>
-          <th class="text-center">Assunto</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @conversas.each do |conversa| %>
-          <tr>
-            <td><%= link_to conversa.assunto, controller: 'conversas', action: 'conversas_professor', assunto: conversa.assunto %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
 
+  <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <ul class="list-group">
+          <li class="list-group-item text-center"><label>Assunto</label></li>
+          <% @conversas.each do |conversa| %>
+            <li class="list-group-item"><%= link_to conversa.assunto, controller: 'conversas', action: 'conversas_professor', assunto: conversa.assunto %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+  <div class="card-footer text-muted">
+    <%= link_to 'Voltar',  conversas_path, class: "btn btn-md btn-secondary" %>
+  </div>
 </div>

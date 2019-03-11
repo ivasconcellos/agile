@@ -6,7 +6,7 @@ class EventosController < ApplicationController
   # GET /eventos.json
   def index
     authorize! :index, Evento
-    @eventos = Evento.where(usuario_curso_id: @perfil.id).page(params[:page]).order('data desc')
+    @eventos = Evento.where(curso_id: current_usuario.curso_atual_id).page(params[:page]).order('data desc')
   end
 
   # GET /eventos/1
@@ -19,7 +19,7 @@ class EventosController < ApplicationController
   def new
     authorize! :new, Evento
     @evento = Evento.new
-    @evento.usuario_curso_id = @perfil.id
+    @evento.curso_id = @perfil.curso.id
   end
 
   # GET /eventos/1/edit
@@ -31,7 +31,7 @@ class EventosController < ApplicationController
   # POST /eventos.json
   def create
     @evento = Evento.new(evento_params)
-
+    @evento.usuario_curso_id = @perfil.id
     respond_to do |format|
       if @evento.save
         format.html { redirect_to @evento, notice: 'Evento cadastrado com sucesso!' }
@@ -76,6 +76,6 @@ class EventosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def evento_params
-      params.require(:evento).permit(:nome, :descricao, :data, :hora, :usuario_curso_id)
+      params.require(:evento).permit(:nome, :descricao, :data, :hora, :curso_id, :usuario_curso_id)
     end
 end
