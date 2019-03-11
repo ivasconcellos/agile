@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   resources :foruns
   resources :explicacoes, except: [:index]
   resources :usuario_curso
-  resources :materiais
+  resources :materiais, except: [:index]
   resources :cursos
   resources :tema_cursos
   devise_for :admins, :skip => [:registrations]
