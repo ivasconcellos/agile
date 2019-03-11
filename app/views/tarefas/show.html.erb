@@ -14,31 +14,40 @@
       <ul class="list-group">
         <li class="list-group-item"><b>Missão:</b> <%= link_to @tarefa.missao.nome, @tarefa.missao %></li>
         <li class="list-group-item"><b>Descrição da Missão:</b> <%= @tarefa.missao.descricao.html_safe %></li>
-         <li class="list-group-item"><b>Nome:</b> <%= @tarefa.nome %></li>
-         <li class="list-group-item"><b>Descrição:</b> <%= @tarefa.descricao.to_s.html_safe %></li>
-        <li class="list-group-item"><b>Pontuação:</b> <%= @tarefa.missao.pontuacao %></li>
+        <li class="list-group-item"><b>Nome:</b> <%= @tarefa.nome %></li>
+        <li class="list-group-item"><b>Descrição:</b> <%= @tarefa.descricao.to_s.html_safe %></li>
+        <li class="list-group-item"><b>Pontuação da Tarefa:</b> <%= @tarefa.missao.pontuacao %></li>
         <li class="list-group-item"><b>Início da Tarefa:</b> <%= @tarefa.missao.data_hora_inicio %></li>
         <li class="list-group-item"><b>Término da Tarefa:</b> <%= @tarefa.missao.data_hora_termino %></li>
-         <li class="list-group-item"><b>Criada por:</b> <%= @tarefa.usuario_curso.nickname %></li>
-         <li class="list-group-item"><b>Criada em:</b> <%= @tarefa.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
-         <% if @tarefa_aluno %>
+        <% if @tarefa_aluno %>
+          <li class="list-group-item"><b>Enviada em:</b> <%= @tarefa_aluno.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
+          <% if @tarefa_aluno.avaliada %>
+            <li class="list-group-item"><b>Pontuação obtida:</b> <%= @tarefa_aluno.avaliacao_tarefa.nota %></li>
+            <li class="list-group-item"><b>Avaliada em:</b> <%= @tarefa_aluno.avaliacao_tarefa.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
+          <% end %>
+        <% end %>
+        <% if @perfil.perfil != 'Aluno' %>
+          <li class="list-group-item"><b>Criada por:</b> <%= @tarefa.usuario_curso.nickname %></li>
+          <li class="list-group-item"><b>Criada em:</b> <%= @tarefa.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
+        <% end %>
+        <% if @tarefa_aluno %>
           <li class="list-group-item"><b>Visualizar envio:</b> <%= link_to 'Missão realizada (Tarefa enviada)', @tarefa_aluno %></li>
-         <% end %>
+        <% end %>
       </ul>
     </div>
   </div>
 
   <div class="card-footer text-muted">
-    <% if @perfil.perfil == 'Aluno' and no_prazo(@tarefa.missao) %>
+    <% if @perfil.perfil == 'Aluno' and no_prazo(@tarefa.missao) and !@tarefa_aluno %>
       <%= link_to 'Enviar Tarefa', {controller: 'tarefa_alunos', action: 'new', tarefa_id: @tarefa.id}, class: "btn btn-md btn-warning" %>
     <% end %>
-    <% if @tarefa_aluno and no_prazo(@tarefa.missao) %>
+    <% if @tarefa_aluno and no_prazo(@tarefa.missao) and !@tarefa_aluno.avaliada %>
       <%= link_to 'Atualizar Envio', edit_tarefa_aluno_path(@tarefa_aluno), class: "btn btn-md btn-danger" %>
     <% end %>
     <% if can? :new, AvaliacaoTarefa %>
       <%= link_to 'Visualizar Respostas', tarefa_alunos_path(id: @tarefa.id), class: "btn btn-md btn-warning" %>
     <% end %>
-    <%= link_to 'Voltar', @tarefa.missao, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar para Missão', @tarefa.missao, class: "btn btn-md btn-secondary" %>
   </div>
 
 </div>

@@ -21,9 +21,11 @@
         <li class="list-group-item"><b>Tipo:</b> <%= @missao.tipo %></li>
         <li class="list-group-item"><b>Início da Missão:</b> <%= @missao.data_hora_inicio %></li>
         <li class="list-group-item"><b>Término da Missão:</b> <%= @missao.data_hora_termino %></li>
-        <li class="list-group-item"><b>Pública:</b> <%= @missao.publico? ? 'Sim' : 'Não' %></li>
-        <li class="list-group-item"><b>Criada por:</b> <%= @missao.usuario_curso.nickname %></li>
-        <li class="list-group-item"><b>Criada em:</b> <%= @missao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
+        <% if @perfil.perfil != 'Aluno' %>
+          <li class="list-group-item"><b>Pública:</b> <%= @missao.publico? ? 'Sim' : 'Não' %></li>
+          <li class="list-group-item"><b>Criada por:</b> <%= @missao.usuario_curso.nickname %></li>
+          <li class="list-group-item"><b>Criada em:</b> <%= @missao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
+        <% end %>
       </ul>
     </div>
   </div>  
@@ -51,7 +53,8 @@
       <% else %>
         <% if !@perfil.perfil == 'Aluno' %>
           <%= link_to 'Ver quiz', @missao.quiz, class: "btn btn-md btn-warning"  %>
-        <% else %>
+        <% end%>
+        <% if @perfil.perfil == 'Aluno' and respondido_quiz(@missao.quiz, @perfil.id) == 'Não' %>
           <%= link_to 'Responder Quiz', {controller: 'aluno_respostas', action: 'new', quiz_id: @missao.quiz}, class: "btn btn-md btn-danger" %>
         <% end %>
       <% end %>
@@ -59,23 +62,23 @@
 
     <%= link_to 'Voltar', missoes_path, class: "btn btn-md btn-secondary" %>
   </div>
-</div>
 
+  <br>
 
-<% if !@dicas.empty? %>
-  <div class= "card"> 
-    <div class="card-header">Dicas</div>
+  <% if !@dicas.empty? %>
+
+    <div class="card-header">Dicas da Missão</div>
     
-    <div class="table-responsive">
-      <table class="table table-bordered table-hover">
-        <tbody>
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <ul class="list-group">
           <% @dicas.each_with_index do |dica, index| %>
-          <tr>
-            <td class="text-left"><%= index +1 %>ª Dica: <%= link_to dica.nome, dica %></td>
-          </tr>
+            <li class="list-group-item"><%= index +1 %>ª Dica: <%= link_to dica.nome, dica %></li>
           <% end %>
-        </tbody>
-      </table>
+        </ul>
+      </div>
     </div>
-  </div>
-<% end %>
+
+  <% end %>
+
+</div>

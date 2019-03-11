@@ -14,7 +14,7 @@
   <%= form.hidden_field :curso_id %>
 
   <div class="card-body">  
-    <% if current_usuario.curso_atual.usuario_curso.first.perfil == "Professor" %>
+    <% if @perfil.perfil == "Professor" %>
 
       <div class="form-group row">
         <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Perfil*</label>
@@ -40,7 +40,7 @@
     <% end %>
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nickname (apelido)*</label>
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nickname(apelido)*</label>
       <div class="col-md-6">
         <%= form.text_field :nickname, class: "form-control" %> 
       </div>

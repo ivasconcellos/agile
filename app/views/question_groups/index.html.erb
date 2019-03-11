@@ -7,8 +7,10 @@
         <thead>
           <tr>
             <th class="text-center">Nome</th>
-            <th class="text-center">Perguntas</th>
-            <th class="text-center">Ver resultado</th>
+            <% if can? :new, Question %>
+              <th class="text-center">Perguntas</th>
+              <th class="text-center">Ver resultado</th>
+            <% end %>
             <th class="text-center">Responder</th>
             <th colspan="3" class="text-center">Opções</th>
           </tr>
@@ -17,9 +19,15 @@
           <% @question_groups.each do |grupo_de_questoes| %>
             <tr>
               <td><%= grupo_de_questoes.titulo %></td>
-              <td><%= link_to "Perguntas", {:controller => 'questions', :action =>  'index', :usuario_curso_id => @perfil.id, :question_group_id => grupo_de_questoes.id}, class: "btn btn-sm btn-danger" %></td>
-              <td><%= link_to "Resultado", {:controller => 'question_groups', :action => 'results', :id => grupo_de_questoes.id, :usuario_curso_id => grupo_de_questoes.usuario_curso_id}, class: "btn btn-sm btn-danger" %></td>
-              <td><%= link_to "Responder", new_question_group_answer_group_path(grupo_de_questoes), class: "btn btn-sm btn-danger" %> </td>              
+              <% if can? :new, Question %>
+                <td><%= link_to "Perguntas", {:controller => 'questions', :action =>  'index', :usuario_curso_id => @perfil.id, :question_group_id => grupo_de_questoes.id}, class: "btn btn-sm btn-danger" %></td>
+                <td><%= link_to "Resultado", {:controller => 'question_groups', :action => 'results', :id => grupo_de_questoes.id, :usuario_curso_id => grupo_de_questoes.usuario_curso_id}, class: "btn btn-sm btn-danger" %></td>
+              <% end %>
+              <% if !grupo_de_questoes.usuario_curso_id %>
+                <td><%= link_to "Responder", new_question_group_answer_group_path(grupo_de_questoes), class: "btn btn-sm btn-danger" %> </td>
+              <% else %>
+                <td>Pesquisa já respondida!</td>
+              <% end %>             
               <% if can? :show, QuestionGroup %>
                 <td><%= link_to "Visualizar", :controller => 'question_groups', :action => 'show', :id => grupo_de_questoes.id, :usuario_curso_id => grupo_de_questoes.usuario_curso_id %></td>
               <% end %>

@@ -15,6 +15,14 @@
   <%= form.hidden_field :usuario_curso_id %>
 
   <div class="card_body">
+
+    <div class="form-group row">
+      <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Tarefa</label>
+      <div class="col-md-6">
+        <%= @tarefa_aluno.tarefa.nome %> 
+      </div>
+    </div>
+
     <div class="form-group row">
       <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Descrição da tarefa</label>
       <div class="col-md-6">
@@ -26,6 +34,7 @@
       <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Arquivo*</label>
       <div class="col-md-6">
         <%= form.file_field :arquivo, as: :file %> 
+        <p class="text-secondary">Somente arquivos em PDF (máx. 10MB).</p>
       </div>
     </div>
     </div>
@@ -33,7 +42,7 @@
 
   <div class="card-footer text-muted">
     <%= form.submit "Enviar", class: "btn btn-md btn-primary" %>
-    <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar para Tarefa', :back, class: "btn btn-md btn-secondary" %>
   </div>
   
 <% end %>
