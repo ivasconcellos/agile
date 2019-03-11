@@ -91,6 +91,7 @@ class CursosController < ApplicationController
   def notas
     @modulos = Modulo.where('curso_id = ?',
        current_usuario.curso_atual_id)
+    authorize! :notas_turma, :curso
   end
 
   private

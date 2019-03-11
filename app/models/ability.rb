@@ -38,6 +38,7 @@ class Ability
           can :manage, Dica
           can :notas_aluno,:notas
           can :read, AlunoResposta
+          can :notas_turma, :curso
         elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
           can :manage, Comentario
           can :read, Modulo

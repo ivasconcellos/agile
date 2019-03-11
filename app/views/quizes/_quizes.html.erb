@@ -1,0 +1,29 @@
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th class="text-center">Quiz</th> 
+            <th class="text-center">Pontuação máxima</th>
+            <th class="text-center">Minha nota</th>
+            <th class="text-center">Realizada</th> 
+            <th class="text-center">Avaliada</th>        
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td><%= link_to quiz.nome, quiz %></td>
+              <td><%= quiz.missao.pontuacao %></td>
+              <td><%= minha_nota_quiz(quiz.id, @perfil.id) %></td>
+              <td><%= respondido_quiz(quiz.id, @perfil.id) %></td>
+              <td><%= respondido_quiz(quiz.id, @perfil.id) %></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+        
+        
+      
