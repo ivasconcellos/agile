@@ -1,24 +1,67 @@
 <div class="card">
   <div class="card-header">Participantes do Curso</div>
 
+  <%= search_form_for @q do |f| %>
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Nickname</span>
+            </div>
+            <%= f.search_field :nickname_cont, :class => 'form-control'  %>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Perfil</span>
+            </div>
+            <span class="input-group-text borda">
+              <%= f.select :perfil_cont,  options_from_collection_for_select(UsuarioCurso.all.to_a.uniq{ |o| o.perfil}, "perfil", "perfil", params[:perfil]), :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
+            </span>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Equipe</span>
+            </div>
+            <span class="input-group-text borda">
+              <%= f.select :grupo_curso_id_eq,   options_from_collection_for_select(GrupoCurso.where(curso_id: @perfil.curso.id), "id", "nome_curso", params[:grupo_curso_id]), :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
+            </span>
+          </div>
+        </div>
+
+      </div>     
+    </div>
+    <div class="text-center">
+      <button class="btn btn-primary link search-btn" ><% submit_tag "" %>Pesquisar</button>
+    </div>
+  <% end %>
+
   <div class="table-responsive">
     <table class="table table-striped table-sm">
       <thead>
         <tr>
-          <% if can? :new, UsuarioCurso %>
-            <th class="text-center">Nome</th>
-          <% end %>
-          <th class="text-center">Apelido</th>
+          <th class="text-center">Nickname</th>
+          <th class="text-center">Avatar</th>
           <th class="text-center">Perfil</th>
-          <% if can? :new, UsuarioCurso %>
-            <th colspan="3" class="text-center">Opções</th>
-          <% end %>
+          <th colspan="3" class="text-center">Opções</th>
         </tr>
       </thead>
       <tbody>
         <% @usuario_curso.each do |usuario_curso| %>
           <tr>
-            <td><%= usuario_curso.usuario.nome %></td>
+            <td><%= usuario_curso.nickname %></td>
+            <% if usuario_curso.avatar %>
+              <td><%= image_tag usuario_curso.avatar.imagem.variant(resize: "100x100"), class: "img-responsive" %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
             <% if can? :new, UsuarioCurso %>
               <td class="text-center"><%= usuario_curso.nickname %></td>
             <% end %>

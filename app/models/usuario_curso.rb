@@ -18,4 +18,6 @@ class UsuarioCurso < ApplicationRecord
 	has_many :artefatos_alunos, :dependent => :destroy, :dependent => :restrict_with_error
 
 	validates_uniqueness_of :usuario_id, scope: :curso_id, message: "já está cadastrado no curso!"
+
+	self.per_page = 10
 end
