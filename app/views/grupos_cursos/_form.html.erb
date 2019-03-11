@@ -16,7 +16,7 @@
     <%= form.hidden_field :curso_id %>
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Grupo*</label>
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Equipe*</label>
       <div class="col-md-6">
         <% Grupo.where(ativo: true).each do |grupo| %>
           <p><%= image_tag grupo.imagem.variant(resize: "200x200"), class: "img-responsive img-thumbnail" %></p>

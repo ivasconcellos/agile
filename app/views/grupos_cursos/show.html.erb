@@ -1,6 +1,6 @@
 <div class="card">
 
-  <div class="card-header">Grupo do Curso</div>
+  <div class="card-header">Equipe</div>
 
 
   <div class="card-body">
@@ -15,14 +15,14 @@
 	      	<div class="col-lg-8">
 		        <div class="input-group mb-3">
 		        	<p> 
-			          	<label>Nome do grupo no curso: </label>          
+			          	<label>Nome da equipe no curso: </label>          
 			          	<%= @grupo_curso.nome_curso %>
 		        	</p>
 		        </div>
 
 		        <div class="input-group mb-3">
 		        	<p> 
-			          	<label>Nome padrão do grupo: </label>          
+			          	<label>Nome padrão da equipe: </label>          
 			          	<%= @grupo_curso.grupo.nome %>
 		        	</p>
 		        </div>
@@ -38,6 +38,33 @@
 	</div>
 
 	<br>
+
+	<% if !@lista_participantes.empty? %>
+	  <div class="card">
+	    <div><br></div>
+	    <div class="card-header bg-primary">Membros da Equipe</div>
+	    <div class="container-fluid">
+	      <div class="row">
+	        <% @lista_participantes.each do |participante| %>
+	          <div class="col-xl-3 col-sm-6 mb-3">
+	            <div class="card text-white o-hidden h-200 curso">
+	              <div class="card-body">
+	              	<% if participante.avatar %>
+	                	<%= image_tag participante.avatar.imagem.variant(resize: "200x200"), class: "img-responsive" %>
+	                <% else %>
+	                	<p class="list-group-item text-center"><%= image_tag "missing.png", class: "img-responsive img-thumbnail" %></p>
+	                <% end %>
+	              </div>
+	              <div class="card-footer bg-primary text-white">
+	                <div><%= link_to participante.nickname, participante, class: "text-white" %></div>
+	              </div>
+	            </div>
+	          </div>
+	        <% end %>
+	      </div>
+	    </div>
+	  </div>
+	<% end %>
 
 	<div class="card-footer text-muted">
 	  <% if can? :edit, GrupoCurso %>

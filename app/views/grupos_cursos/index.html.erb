@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-header">Grupos do Curso</div>
+  <div class="card-header">Equipes do Curso</div>
 
   <% if !@grupos_cursos.empty? %>
     <div class="table-responsive">
@@ -24,7 +24,7 @@
                 <% end %>
               <td>
                 <% if can? :Destroy, GrupoCurso %>
-                  <%= link_to 'Excluir', grupo_curso, method: :delete, data: { confirm: 'Deseja realmente excluir o Grupo do Curso?' } %>
+                  <%= link_to 'Excluir', grupo_curso, method: :delete, data: { confirm: 'Deseja realmente excluir a Equipe do Curso?' } %>
                 <% else%> - 
                 <% end %>
               </td>
@@ -40,7 +40,7 @@
 
   <% if can? :new, GrupoCurso %>
     <div class="card-footer text-muted">
-      <%= link_to 'Cadastrar Grupo no Curso', new_grupo_curso_path, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Cadastrar Equipe no Curso', new_grupo_curso_path, class: "btn btn-md btn-primary" %>
     </div>
   <% end %>
 

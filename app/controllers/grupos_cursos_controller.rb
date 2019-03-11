@@ -14,6 +14,7 @@ class GruposCursosController < ApplicationController
   # GET /grupos_cursos/1.json
   def show
     authorize! :show, GrupoCurso
+    @lista_participantes = UsuarioCurso.where(grupo_curso_id: @grupo_curso.id).page(params[:page]).order('nickname')
   end
 
   # GET /grupos_cursos/new

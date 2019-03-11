@@ -58,8 +58,10 @@
         <div class="sidebar-header">
           <%if @perfil and @perfil.avatar %>
             <p class="list-group-item text-center"><%= image_tag @perfil.avatar.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail" %></p>
-            <p class="list-group-item text-center"> <%= @perfil.nickname %></p>
+          <% else %>
+            <p class="list-group-item text-center"><%= image_tag "missing.png", class: "img-responsive img-thumbnail" %></p>
           <% end %>
+          <p class="list-group-item text-center"> <%= @perfil.nickname %></p>
         </div>
 
         <ul class="list-unstyled components">  
