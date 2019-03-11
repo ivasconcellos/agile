@@ -89,7 +89,7 @@ class CursosController < ApplicationController
   end
 
   def notas
-    @missoes = Missao.joins(:modulo).where('modulos.curso_id = ?',
+    @modulos = Modulo.where('curso_id = ?',
        current_usuario.curso_atual_id)
   end
 

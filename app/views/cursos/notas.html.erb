@@ -2,12 +2,18 @@
 
   <div class="card-header">Notas da Turma </div>
 
-  <% @missoes.each do |missao| %>
-    <h5 class="p-3 mb-2 bg-info text-white text-center"><b>Módulo:</b> <%= link_to missao.modulo.nome, missao.modulo, class: "text-light" %></h5>
-    <h6 class="p-3 mb-2 bg-secondary text-white text-center"><b>Missao:</b> <%= link_to missao.nome, missao, class: "text-light" %></h6>
-    <% if missao.tipo == 'Tarefa' %>
-    	<%= render partial: "tarefas/tarefas_turma", locals: {tarefa: missao.tarefa} %>
-    <% end %>
+  <% @modulos.each do |modulo| %>
+    <h5 class="p-3 mb-2 bg-info text-white text-center"><b>Módulo:</b> <%= link_to modulo.nome, modulo, class: "text-light" %></h5>
+    <% Missao.where(modulo_id: modulo.id).each do |missao| %>
+	    <h6 class="p-3 mb-2 bg-secondary text-white text-center">
+	    	<b>Missão (<%= missao.tipo %>):</b> <%= link_to missao.nome, missao, class: "text-light" %></h6>
+	    <% if missao.tipo == 'Tarefa' %>
+	    	<%= render partial: "tarefas/tarefas_turma", locals: {tarefa: missao.tarefa} %>
+	    <% end %>
+	    <% if missao.tipo == 'Quiz' %>
+	    	<%= render partial: "quizes/quizes_turma", locals: {quiz: missao.quiz} %>
+	    <% end %>
+	<% end %>
   <% end %>
 
 </div>

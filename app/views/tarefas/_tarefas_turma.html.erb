@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <% UsuarioCurso.where("perfil = ? or not exists (select id from tarefa_alunos where tarefa_id = ?)", "Aluno", tarefa.id).each do |aluno| %>
+      <% UsuarioCurso.where("curso_id = ? and perfil = ?", @perfil.curso.id, "Aluno").each do |aluno| %>
         <tr>
           <td><%= link_to aluno.nickname, notas_aluno_url(aluno_id: aluno.id, curso_id: tarefa.missao.modulo.curso.id) %></td>
           <td><%= tarefa.missao.pontuacao %></td>
