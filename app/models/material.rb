@@ -1,6 +1,6 @@
 class Material < ApplicationRecord
   belongs_to :modulo
-  validates_presence_of :nome
+  validates_presence_of :nome, :texto
   self.per_page = 10
   
   #has_attached_file :arquivo, styles: {medium: "300x300", thumb:"100x100"}, default_url: "/images/:style/missing.png"
@@ -12,7 +12,7 @@ class Material < ApplicationRecord
   def validate_content_type
     
     if self.tipo == "Link"
-    validates_format_of :texto, :with => URI::regexp(%w(http https)), message: "Link inválido"
+    validates_format_of :texto, :with => URI::regexp(%w(http https)), message: "do link inválido, siga o exemplo."
     end
 
     if self.tipo == "Imagem"
