@@ -74,7 +74,7 @@
           <%= link_to 'Adicionar Quiz', {controller: 'quizes', action: 'new', missao_id: @missao.id}, class: "btn btn-md btn-danger" %>
         <% end %>
       <% else %>
-        <% if !@perfil.perfil == 'Aluno' %>
+        <% if @perfil.perfil != 'Aluno' %>
           <%= link_to 'Ver quiz', @missao.quiz, class: "btn btn-md btn-warning"  %>
         <% end%>
         <% if @perfil.perfil == 'Aluno' and respondido_quiz(@missao.quiz, @perfil.id) == 'Não' %>

@@ -28,7 +28,7 @@
 			<%= link_to 'Avaliar Tarefa', {controller: 'avaliacao_tarefa', action: 'new', tarefa_aluno_id: @tarefa_aluno.id}, class: "btn btn-md btn-danger" %>
 		<% end %>
 	<% end %>
-	  <%= link_to 'Voltar', tarefa_alunos_path(id: @tarefa_aluno.tarefa.id), class: "btn btn-md btn-secondary" %>
+	  <%= link_to 'Voltar', @tarefa_aluno.tarefa, class: "btn btn-md btn-secondary" %>
 	</div>
 
 

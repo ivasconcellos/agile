@@ -11,6 +11,7 @@ class AvaliacaoTarefa < ApplicationRecord
   validates_inclusion_of :nota, :in => 0..100, message: " - A pontuação deve ser entre 1 e 100"
 
   def pontuacao_aluno nota
+    
     @usuario = UsuarioCurso.find_by(id: self.tarefa_aluno.usuario_curso_id)
     if nota
       @usuario.pontos_experiencia = @usuario.pontos_experiencia - nota + self.nota
@@ -18,6 +19,8 @@ class AvaliacaoTarefa < ApplicationRecord
       @usuario.pontos_experiencia += self.nota
     end
     @usuario.save
+    
+    Nivel.verifica_nivel(@usuario)
   end
 
   private
