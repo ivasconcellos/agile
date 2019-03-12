@@ -8,6 +8,9 @@ class AlunoResposta < ApplicationRecord
       @usuario.pontos_experiencia += self.resposta_pergunta.pergunta_quiz.pontuacao
     end
     @usuario.save
+
+    Nivel.verifica_nivel(@usuario)
+    
   end
 
   validate :unica_resposta
