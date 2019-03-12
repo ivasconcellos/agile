@@ -1,9 +1,8 @@
 class Material < ApplicationRecord
   belongs_to :modulo
   validates_presence_of :nome
-
   self.per_page = 10
-
+  
   #has_attached_file :arquivo, styles: {medium: "300x300", thumb:"100x100"}, default_url: "/images/:style/missing.png"
 
   has_one_attached :arquivo
@@ -11,6 +10,11 @@ class Material < ApplicationRecord
   
   validate :validate_content_type
   def validate_content_type
+    
+    if self.tipo == "Link"
+    validates_format_of :texto, :with => URI::regexp(%w(http https)), message: "Link inválido"
+    end
+
     if self.tipo == "Imagem"
       if arquivo.attached? && !arquivo.content_type.in?(["image/png", "image/jpg", "image/jpeg"])
         errors.add(:arquivo, "Formato de arquivo inválido!")
@@ -33,7 +37,6 @@ class Material < ApplicationRecord
       end
     end
   end
-  
      
 end
 
