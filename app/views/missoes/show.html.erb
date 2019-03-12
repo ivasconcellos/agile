@@ -1,5 +1,8 @@
 <div class="card">
 
+  <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document"></div>
+  </div>
   <div class="card-header">Missão
     <% if can? :edit, Missao %>
       <%= link_to '', edit_missao_path(@missao), class: "fa fa-edit text-white" %>
@@ -26,9 +29,29 @@
           <li class="list-group-item"><b>Criada por:</b> <%= @missao.usuario_curso.nickname %></li>
           <li class="list-group-item"><b>Criada em:</b> <%= @missao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
         <% end %>
+        <% if !@dicas.empty? %>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-lg-2">
+                <div class="input-group mb-3">
+                 <p><label>Dicas:</label></p>
+                </div>
+              </div>
+              <% @dicas.each_with_index do |dica, index| %>
+              <div class="col-lg-2">
+                <div class="input-group mb-3">
+                 <p><%= index +1 %>ª <%= link_to "", dica, {class: "fa fa-lightbulb-o fa-sm nav-link", :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}  %></p>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>  
+
+
 
   <div class="card-footer text-muted">
     <% if can? :new, Dica %>
@@ -65,17 +88,19 @@
 
   <br>
 
-  <% if !@dicas.empty? %>
+  <% if !@dicas.empty? and can? :new, Dica %>
 
     <div class="card-header">Dicas da Missão</div>
     
     <div class="row">
       <div class="col-md-10 offset-md-1">
+     
         <ul class="list-group">
           <% @dicas.each_with_index do |dica, index| %>
             <li class="list-group-item"><%= index +1 %>ª Dica: <%= link_to dica.nome, dica %></li>
           <% end %>
-        </ul>
+        </ul>       
+        
       </div>
     </div>
 
