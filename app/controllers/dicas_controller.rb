@@ -6,6 +6,10 @@ class DicasController < ApplicationController
   # GET /dicas/1.json
   def show
     authorize! :show, Dica
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /dicas/new
