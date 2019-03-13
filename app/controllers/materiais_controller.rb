@@ -57,7 +57,7 @@ class MateriaisController < ApplicationController
     authorize! :destroy, Material
     @material.destroy
     respond_to do |format|
-      format.html { redirect_to materiais_url, notice: 'Material excluído com sucesso!' }
+      format.html { redirect_to @material.modulo.curso, notice: 'Material excluído com sucesso!' }
       format.json { head :no_content }
     end
   end
