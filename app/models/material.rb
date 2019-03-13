@@ -12,7 +12,7 @@ class Material < ApplicationRecord
   def validate_content_type
     
     if self.tipo == "Link"
-    validates_format_of :texto, :with => URI::regexp(%w(http https)), message: "do link inválido, siga o exemplo."
+    validates_format_of :texto, :with => /\A((http|https):\/\/){0,1}[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,3}(:[0-9]{1,5})?(\/.*)?\z/, message: "do link inválido, siga o exemplo."
     end
 
     if self.tipo == "Imagem"
