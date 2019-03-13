@@ -8,6 +8,7 @@ class AlunoResposta < ApplicationRecord
       @usuario.pontos_experiencia += self.resposta_pergunta.pergunta_quiz.pontuacao
       Nivel.verifica_nivel(@usuario)
       Badge.verifica_badge(@usuario)
+      Artefato.verifica_artefato(@usuario)
     end
     @usuario.save  
     

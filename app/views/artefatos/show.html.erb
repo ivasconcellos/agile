@@ -24,6 +24,13 @@
 
         <div class="input-group mb-3">
           <p>
+            <label>Pontos requeridos: </label>          
+            <%= @artefato.pontos_requeridos %>
+          </p>
+        </div>
+
+        <div class="input-group mb-3">
+          <p>
             <label>Tema do curso: </label>          
             <%= link_to @artefato.tema_curso.nome, @artefato.tema_curso %>
           </p>
