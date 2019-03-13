@@ -6,8 +6,7 @@
     Você possui mensagens não lidas!
     </div>
     <% end %>
-
-    <%if @contador == 1 %>
+    <% if !@eventos.empty? %>
       <div class="alert alert-primary text-center">Eventos disponiveis! acesse: <%= link_to  "Eventos", eventos_path %></div>
     <%else%>
       <div class="alert alert-secondary text-center">Não há eventos disponiveis!</div>

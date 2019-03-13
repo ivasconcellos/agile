@@ -15,20 +15,13 @@ class CursosController < ApplicationController
   def show
     @curso = Curso.find(current_usuario.curso_atual_id)
     @modulos = Modulo.where(curso_id: current_usuario.curso_atual_id, publico: true)
-    @eventos = Evento.where(usuario_curso_id: @curso.usuario_curso)
+    @eventos = Evento.where('data >= ? and curso_id = ?', Date.today, @perfil.curso.id)
     @materiais = Material.joins(:modulo).where('modulos.curso_id = ?',
     current_usuario.curso_atual_id).order('updated_at')
     @missoes = Missao.joins(:modulo).where('modulos.curso_id = ?',
     current_usuario.curso_atual_id).order('updated_at')
     @usuario_curso = UsuarioCurso.where(curso_id: @curso.id, usuario_id: current_usuario.id)
-    @conversas = Conversa.where(destinatario_id: @perfil.id, lida: false)   
-    if !@eventos.empty?
-      @eventos.each do |evento|
-        if evento.data >= Date.today
-          @contador = 1
-        end 
-      end
-    end
+    @conversas = Conversa.where(destinatario_id: @perfil.id, lida: false)
     authorize! :show, Curso
   end
 
