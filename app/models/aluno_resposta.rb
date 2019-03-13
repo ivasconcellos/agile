@@ -6,10 +6,9 @@ class AlunoResposta < ApplicationRecord
   	@usuario = UsuarioCurso.find_by(id: self.usuario_curso_id)
     if self.resposta_pergunta.correta?
       @usuario.pontos_experiencia += self.resposta_pergunta.pergunta_quiz.pontuacao
+      Nivel.verifica_nivel(@usuario)
     end
-    @usuario.save
-
-    Nivel.verifica_nivel(@usuario)
+    @usuario.save  
     
   end
 
