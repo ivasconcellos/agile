@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :perguntas_quiz, except: [:index]
   resources :quizes, except: [:index]
   resources :niveis
-  resources :missoes
+  resources :missoes, except: [:index]
   resources :badges
   resources :salas_chat
   resources :avaliacao_tarefa, except: [:index]

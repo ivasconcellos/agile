@@ -15,16 +15,6 @@
   <%= form.hidden_field :usuario_curso_id %>
   <div class="card-body">
 
-    <% if not @missao.modulo_id %>
-
-      <div class="form-group row">
-        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Módulo*</label>
-        <div class="col-md-6">
-          <%= form.collection_select(:modulo_id, Modulo.where('curso_id = ?', current_usuario.curso_atual).order('nome'), :id, :nome, :prompt => true, class: "form-control") %>
-        </div>
-      </div>
-    <% end %>
-
     <div class="form-group row">
       <label for="inputTexto" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
       <div class="col-md-6">
