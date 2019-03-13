@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 2019_03_08_180355) do
 
   create_table "badges", force: :cascade do |t|
     t.string "nome"
+    t.integer "pontos_requeridos"
     t.boolean "ativo", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

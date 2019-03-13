@@ -56,15 +56,17 @@
       <% end %>
         
         <div class="sidebar-header">
-          <%if @perfil and @perfil.avatar %>
-            <p class="list-group-item text-center"><%= image_tag @perfil.avatar.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail" %></p>
-          <% else %>
-            <p class="list-group-item text-center"><%= image_tag "missing.png", class: "img-responsive img-thumbnail" %></p>
-          <% end %>
-          <p class="list-group-item text-center perfil"> <%= @perfil.nickname %></p>
-          <% if @perfil.perfil == 'Aluno' %>
-            <p class="list-group-item text-center perfil"><label>Nível:</label> <%= @perfil.nivel.nome %></p>
-            <p class="list-group-item text-center perfil"><label>XP:</label> <%= @perfil.pontos_experiencia %></p>
+          <% if @perfil %>
+            <% if @perfil.avatar %>
+              <p class="list-group-item text-center"><%= image_tag @perfil.avatar.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail" %></p>
+            <% else %>
+              <p class="list-group-item text-center"><%= image_tag "missing.png", class: "img-responsive img-thumbnail" %></p>
+            <% end %>
+            <p class="list-group-item text-center perfil"> <%= @perfil.nickname %></p>
+            <% if @perfil.perfil == 'Aluno' %>
+              <p class="list-group-item text-center perfil"><label>Nível:</label> <%= @perfil.nivel.nome %></p>
+              <p class="list-group-item text-center perfil"><label>XP:</label> <%= @perfil.pontos_experiencia %></p>
+            <% end %>
           <% end %>
         </div>
 
