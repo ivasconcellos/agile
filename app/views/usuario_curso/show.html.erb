@@ -129,6 +129,11 @@
               <div class="input-group mb-3">
                 <%= image_tag artefato.artefato.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail" %>
               </div>
+              <div class="input-group">
+                <p>
+                  <label><%= artefato.artefato.nome %></label>
+                </p>
+              </div>
             </div>
           <% end %>
         </div>    

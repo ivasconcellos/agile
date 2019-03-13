@@ -22,6 +22,7 @@ class AvaliacaoTarefa < ApplicationRecord
     
     Nivel.verifica_nivel(@usuario)
     Badge.verifica_badge(@usuario)
+    Artefato.verifica_artefato(@usuario)
   end
 
   private
