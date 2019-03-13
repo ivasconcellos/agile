@@ -14,6 +14,11 @@ class QuestionsController < ApplicationController
 	end
 
 	def new
+		@qp = QuestionForm::QUESTION_TYPES.clone
+		@qp["Data"] = "Questions::Date"
+		@qp["Numerico"] = "Questions::Numeric"
+		@qp.delete('Date')
+		@qp.delete('Numeric')
 		@question = QuestionForm.new(:question_group => @question_group)
 		@question.question_group_id = params[:question_group_id]
 		@question.tipo = params[:tipo]

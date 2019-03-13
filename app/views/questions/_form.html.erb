@@ -19,7 +19,7 @@
 	    <div class="form-group row">
 	      <label for="inputNome" class="col-md-3 offset-md-2 col-form-label">Tipo*</label>
 	      <div class="col-md-6">
-	        <%= f.select :tipo, QuestionForm::QUESTION_TYPES, class: "form-control" %>
+	        <%= f.select :tipo, @qp, class: "form-control" %>
 	      </div>
 	    </div>
 
