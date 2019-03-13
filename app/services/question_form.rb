@@ -3,11 +3,9 @@ class QuestionForm < BaseService
 	[
 	Questions::Checkbox,
 	Questions::Date,
-	Questions::Long,
 	Questions::Numeric,
 	Questions::Radio,
 	Questions::Select,
-	Questions::Short,
 	]
 	QUESTION_TYPES = AVAILABLE_QUESTIONS.inject({}) do |result, question|
 	question_name = question.to_s.split("::").last
@@ -15,9 +13,8 @@ class QuestionForm < BaseService
 	result
 	end
 	attr_accessor :question_group_id, :question_group, :question,
-	:tipo, :pergunta, :respostas,  :answer_presence,
-	:answer_minimum_length, :answer_maximum_length,
-	:answer_greater_than_or_equal_to, :answer_less_than_or_equal_to
+	:tipo, :pergunta, :respostas,  :answer_presence
+	
 	delegate :valid?, :errors, :id, :to => :question
 
 	def to_model
@@ -58,10 +55,6 @@ class QuestionForm < BaseService
 			:respostas => respostas,
 			:validation_rules => {
 			:presence => answer_presence,
-			:minimum => answer_minimum_length,
-			:maximum => answer_maximum_length,
-			:greater_than_or_equal_to => answer_greater_than_or_equal_to,
-			:less_than_or_equal_to => answer_less_than_or_equal_to
 			}
 		}
 	end
@@ -73,9 +66,5 @@ class QuestionForm < BaseService
 		self.pergunta = question.pergunta
 		self.respostas = question.respostas
 		self.answer_presence = question.rules[:presence]
-		self.answer_minimum_length = question.rules[:minimum]
-		self.answer_maximum_length = question.rules[:maximum]
-		self.answer_greater_than_or_equal_to = question.rules[:greater_than_or_equal_to]
-		self.answer_less_than_or_equal_to = question.rules[:less_than_or_equal_to]
 	end
 end
