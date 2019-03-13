@@ -6,14 +6,7 @@
     Você possui mensagens não lidas!
     </div>
     <% end %>
-    
-  <% if !@eventos.empty? %>
-    <% @eventos.each do |evento| %>
-      <% if evento.data >= Date.today %>
-        <% @contador = 1 %>
-      <% end %>
-    <% end %>
-        
+
     <%if @contador == 1 %>
       <div class="alert alert-primary text-center">Eventos disponiveis! acesse: <%= link_to  "Eventos", eventos_path %></div>
     <%else%>
@@ -25,7 +18,6 @@
         <%= link_to 'Cadastrar Evento do Curso', {controller: 'eventos', action: 'new'}, class: "btn btn-md btn-primary" %>
       </div>
     <% end %>
-  <% end %>
  
   <div id="accordion">
     <% @modulos.each_with_index do |modulo, index| %>
