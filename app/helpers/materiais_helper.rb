@@ -1,12 +1,10 @@
 module MateriaisHelper
 
 	def extlink(link)
-		if link.include?("http://")
-		  puts link
-		else
+		if !(link.include?("http://") || link.include?("https://"))
 		  link.insert(0, "http://")
-		  link
 		end
+		link
 	end
 
 	def publico(material)
