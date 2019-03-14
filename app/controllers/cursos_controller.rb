@@ -15,6 +15,7 @@ class CursosController < ApplicationController
   def show
     @curso = Curso.find(current_usuario.curso_atual_id)
     @modulos = Modulo.where(curso_id: current_usuario.curso_atual_id, publico: true)
+    @eventos = Evento.where('data >= ? and curso_id = ?', Date.today, @perfil.curso.id)
     @materiais = Material.joins(:modulo).where('modulos.curso_id = ?',
     current_usuario.curso_atual_id).order('updated_at')
     @missoes = Missao.joins(:modulo).where('modulos.curso_id = ?',
