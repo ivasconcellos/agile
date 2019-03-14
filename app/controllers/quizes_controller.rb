@@ -1,5 +1,5 @@
 class QuizesController < ApplicationController
-  before_action :set_quiz, only: [:show, :edit, :update, :destroy]
+  before_action :set_quiz, only: [:show, :edit, :update, :destroy, :finalizar_quiz]
   before_action :authenticate_usuario!
 
   # GET /quizes/1
@@ -63,6 +63,14 @@ class QuizesController < ApplicationController
     end
   end
 
+  def finalizar_quiz
+    @quiz.finalizado = true
+    @quiz.save
+    respond_to do |format|
+      format.html { redirect_to @quiz, notice: 'Quiz finalizado com sucesso!' }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz
@@ -71,6 +79,6 @@ class QuizesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_params
-      params.require(:quiz).permit(:missao_id, :nome, :descricao, :usuario_curso_id)
+      params.require(:quiz).permit(:missao_id, :nome, :descricao, :usuario_curso_id, :finalizado)
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_08_180355) do
+ActiveRecord::Schema.define(version: 2019_03_14_131957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -351,6 +351,7 @@ ActiveRecord::Schema.define(version: 2019_03_08_180355) do
     t.bigint "usuario_curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "finalizado", default: false
     t.index ["missao_id"], name: "index_quizes_on_missao_id"
     t.index ["usuario_curso_id"], name: "index_quizes_on_usuario_curso_id"
   end

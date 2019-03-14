@@ -11,12 +11,16 @@
   <% if @quiz.pontuacao  %>
     <div class="alert alert-danger">A pontuação total das Perguntas é menor que a pontuação da Missão </div>
   <% end %>
+  <% if !@quiz.finalizado  %>
+    <div class="alert alert-danger">O Quiz ainda não foi finalizado! Por favor finalize para que esteja disponível aos alunos! </div>
+  <% end %>
   <ul class="list-group">
     <li class="list-group-item"><b>Nome:</b> <%= @quiz.nome %></li>
     <li class="list-group-item"><b>Descrição:</b> <%= @quiz.descricao %></li>
     <li class="list-group-item"><b>Pontuação da Missão:</b> <%= @quiz.missao.pontuacao %></li>
     <li class="list-group-item"><b>Data de início:</b> <%= @quiz.missao.data_inicio.strftime("%d/%m/%Y") %></li>
     <li class="list-group-item"><b>Data de término:</b> <%= @quiz.missao.data_termino.strftime("%d/%m/%Y") %></li>
+    <li class="list-group-item"><b>Finalizado:</b> <%= @quiz.finalizado? ? 'Sim' : 'Não' %></li>
     <li class="list-group-item"><b>Cadastrado por:</b> <%= @quiz.usuario_curso.nickname %></li>
     <li class="list-group-item"><b>Cadastrada em:</b> <%= @quiz.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>     
   </ul>
@@ -29,6 +33,9 @@
   <div class="card-footer text-muted">
     <% if can? :new, PerguntaQuiz %>
       <%= link_to 'Cadastrar Pergunta', {controller: 'perguntas_quiz', action: 'new', quiz_id: @quiz.id}, class: "btn btn-md btn-success" %>
+    <% end %>
+    <% if can? :new, Quiz %>
+      <%= link_to 'Finalizar Quiz', {controller: 'quizes', action: 'finalizar_quiz', id: @quiz.id}, class: "btn btn-md btn-warning" %>
     <% end %>
     <%= link_to 'Voltar para Missão', :back, class: "btn btn-md btn-secondary" %>
   </div>
