@@ -2,13 +2,6 @@ class MissoesController < ApplicationController
   before_action :set_missao, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_usuario!
 
-  # GET /missoes
-  # GET /missoes.json
-  def index
-    authorize! :index, Missao
-    @missoes = Missao.joins(:modulo).where('modulos.curso_id = ?', current_usuario.curso_atual_id).page(params[:page])
-  end
-
   # GET /missoes/1
   # GET /missoes/1.json
   def show
@@ -65,7 +58,7 @@ class MissoesController < ApplicationController
     authorize! :destroy, Missao
     @missao.destroy
     respond_to do |format|
-      format.html { redirect_to missoes_url, notice: 'Missão excluída com sucesso!' }
+      format.html { redirect_to @missao.modulo, notice: 'Missão excluída com sucesso!' }
       format.json { head :no_content }
     end
   end

@@ -4,10 +4,10 @@
     <div class="card-header2 bg-primary text-left">
       <p>
         <b><%= index+1 %>º Pergunta: </b>
-        <% if can? :edit, PerguntaQuiz %>
+        <% if can? :edit, PerguntaQuiz and !pergunta_quiz.quiz.finalizado %>
           <%= link_to  '', edit_pergunta_quiz_path(pergunta_quiz), class: "fa fa-pencil text-light" %>
         <% end %>
-        <% if can? :destroy, PerguntaQuiz %>
+        <% if can? :destroy, PerguntaQuiz and !pergunta_quiz.quiz.finalizado %>
           <%= link_to  '', pergunta_quiz, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover A pergunta?'}, class: "fa fa-trash text-light" %>
         <% end %>
       </p>

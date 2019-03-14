@@ -106,10 +106,15 @@
               <div class="input-group mb-3">
                 <%= image_tag badge.badge.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail" %>
               </div>
+              <div class="input-group">
+                <p>
+                  <label><%= badge.badge.nome %></label>
+                </p>
+              </div>
             </div>
           <% end %>
         </div>    
-      
+      </div>
     <% end %>
 
     <% if !@artefatos.empty? %>
@@ -123,6 +128,11 @@
             <div class="col-lg-3">
               <div class="input-group mb-3">
                 <%= image_tag artefato.artefato.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail" %>
+              </div>
+              <div class="input-group">
+                <p>
+                  <label><%= artefato.artefato.nome %></label>
+                </p>
               </div>
             </div>
           <% end %>

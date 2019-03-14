@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_08_180355) do
+ActiveRecord::Schema.define(version: 2019_03_14_131957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 2019_03_08_180355) do
 
   create_table "artefatos", force: :cascade do |t|
     t.string "nome"
+    t.integer "pontos_requeridos"
     t.boolean "ativo", default: true
     t.bigint "tema_curso_id"
     t.datetime "created_at", null: false
@@ -94,10 +95,10 @@ ActiveRecord::Schema.define(version: 2019_03_08_180355) do
 
   create_table "artefatos_alunos", force: :cascade do |t|
     t.bigint "usuario_curso_id"
-    t.bigint "artefatos_id"
+    t.bigint "artefato_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["artefatos_id"], name: "index_artefatos_alunos_on_artefatos_id"
+    t.index ["artefato_id"], name: "index_artefatos_alunos_on_artefato_id"
     t.index ["usuario_curso_id"], name: "index_artefatos_alunos_on_usuario_curso_id"
   end
 
@@ -124,6 +125,7 @@ ActiveRecord::Schema.define(version: 2019_03_08_180355) do
 
   create_table "badges", force: :cascade do |t|
     t.string "nome"
+    t.integer "pontos_requeridos"
     t.boolean "ativo", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -349,6 +351,7 @@ ActiveRecord::Schema.define(version: 2019_03_08_180355) do
     t.bigint "usuario_curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "finalizado", default: false
     t.index ["missao_id"], name: "index_quizes_on_missao_id"
     t.index ["usuario_curso_id"], name: "index_quizes_on_usuario_curso_id"
   end
@@ -493,7 +496,7 @@ ActiveRecord::Schema.define(version: 2019_03_08_180355) do
 
   add_foreign_key "aluno_respostas", "respostas_perguntas"
   add_foreign_key "aluno_respostas", "usuario_curso"
-  add_foreign_key "artefatos_alunos", "artefatos", column: "artefatos_id"
+  add_foreign_key "artefatos_alunos", "artefatos"
   add_foreign_key "artefatos_alunos", "usuario_curso"
   add_foreign_key "avaliacao_tarefa", "tarefa_alunos"
   add_foreign_key "avaliacao_tarefa", "usuario_curso"

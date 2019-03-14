@@ -34,6 +34,6 @@ class ArtefatosAlunosController < ApplicationController
    
     # Never trust parameters from the scary internet, only allow the white list through.
     def artefato_aluno_params
-      params.require(:artefato_aluno).permit(:usuario_curso_id, :artefatos_id)
+      params.require(:artefato_aluno).permit(:usuario_curso_id, :artefato_id)
     end
 end

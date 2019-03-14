@@ -6,8 +6,12 @@ class AlunoResposta < ApplicationRecord
   	@usuario = UsuarioCurso.find_by(id: self.usuario_curso_id)
     if self.resposta_pergunta.correta?
       @usuario.pontos_experiencia += self.resposta_pergunta.pergunta_quiz.pontuacao
+      Nivel.verifica_nivel(@usuario)
+      Badge.verifica_badge(@usuario)
+      Artefato.verifica_artefato(@usuario)
     end
-    @usuario.save
+    @usuario.save  
+    
   end
 
   validate :unica_resposta

@@ -7,6 +7,7 @@
   <% else %>
   	<div class="alert alert-danger"> Resposta incorreta! Revise o conteúdo para melhorar!</div>
   <% end %>
+
   <div class="card-body">
 
     <div class="row">
@@ -31,26 +32,38 @@
         </div>
 
         <div class="input-group mb-3">
-          <p><label>Respostas: </label></p>
-          <br>
-          <p>
-            <ul>
-	        	<% @respostas.each do |resposta| %>
-	        		<li><%= resposta_correta(resposta) %></li>
-	        		<% if resposta.comentario %>
-	        			<li class="list-group-item comentario"><label>Comentário:</label> <%= resposta.comentario.html_safe %></li>
-	        		<% end %> 
-	    		<% end %>
-			</ul>
-          </p>
-        </div>
-        
-        <div class="input-group mb-3">
           <p>
             <label>Sua resposta: </label>          
             <%= resposta_correta(@aluno_resposta.resposta_pergunta) %>
           </p>
         </div>
+
+        <div class="input-group mb-3">
+          <p><label>Respostas: </label></p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th class="text-center">Opções de Resposta</th>
+                <th class="text-center">Comentário</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @respostas.each do |resposta| %>
+                <tr>
+                  <td><%= resposta_correta(resposta) %></td>
+                  <% if resposta.comentario? %>
+                    <td><%= resposta.comentario.html_safe %></td>
+                  <% else %>
+                    <td>-</td>
+                  <% end %> 
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>       
 
         <div class="input-group mb-3">
           <p>

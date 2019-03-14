@@ -77,6 +77,6 @@ class ArtefatosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def artefato_params
-      params.require(:artefato).permit(:nome, :ativo, :tema_curso_id, :imagem)
+      params.require(:artefato).permit(:nome, :ativo, :pontos_requeridos, :tema_curso_id, :imagem)
     end
 end
