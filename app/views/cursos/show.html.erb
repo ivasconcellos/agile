@@ -2,21 +2,16 @@
   <div class="card-header"><%= @curso.nome %></div>
 
   <% if !@conversas.empty? %>
-  <div class="alert alert-danger" role="alert">
-    Você possui mensagens não lidas!
+    <div class="alert alert-danger" role="alert">
+      Você possui mensagens não lidas!
     </div>
-    <% end %>
-    <% if !@eventos.empty? %>
-      <div class="alert alert-primary text-center">Eventos disponiveis! acesse: <%= link_to  "Eventos", eventos_path %></div>
-    <%else%>
-      <div class="alert alert-secondary text-center">Não há eventos disponiveis!</div>
-    <% end %>  
-      
-    <% if can? :new, Evento %>
-      <div class="text-center">
-        <%= link_to 'Cadastrar Evento do Curso', {controller: 'eventos', action: 'new'}, class: "btn btn-md btn-primary" %>
-      </div>
-    <% end %>
+  <% end %>
+
+  <% if !@eventos.empty? %>
+    <div class="alert alert-primary text-center">Eventos disponíveis! acesse: <%= link_to  "Eventos", eventos_path %></div>
+  <%else%>
+    <div class="alert alert-secondary text-center">Não há eventos disponíveis!</div>
+  <% end %>  
  
   <div id="accordion">
     <% @modulos.each_with_index do |modulo, index| %>
@@ -40,14 +35,14 @@
           <div class="row">
             <div class="col-xl-9 col-sm-9 col-md-9">
               <% if modulo.descricao? %>
-              <b> Descrição:</b> <%= modulo.descricao %>
+                <b> Descrição:</b> <%= modulo.descricao %>
               <% end %>
               <%= render partial: "materiais/materiais", locals: {modulo: modulo} %>
             </div>           
             
             <div class="col-xl-3 col-sm-3 col-md-3">
               <% if can? :new, Material %>
-              <div><%= link_to  ' Inserir Link', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Link'}, class: "fa fa-link" %></div>
+                <div><%= link_to  ' Inserir Link', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Link'}, class: "fa fa-link" %></div>
                 <div><%= link_to  ' Inserir Arquivo', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Arquivo'}, class: "fa fa-file" %></div>
                 <div><%= link_to  ' Inserir Vídeo', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Vídeo'}, class: "fa fa-video-camera" %></div>
                 <div><%= link_to  ' Inserir Texto', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Texto'}, class: "fa fa-text-width" %></div>
@@ -68,6 +63,5 @@
       </div>
     </div>
     <% end %>
-  </div>
   </div>
 </div>
