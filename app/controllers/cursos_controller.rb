@@ -23,10 +23,7 @@ class CursosController < ApplicationController
     @usuario_curso = UsuarioCurso.where(curso_id: @curso.id, usuario_id: current_usuario.id)
     @conversas = Conversa.where(destinatario_id: @perfil.id, lida: false)
     if @perfil.perfil == 'Professor'
-      @quiz = Quiz.joins(missao: :modulo).where('modulo.curso_id = ? and finalizado =?', @curso.id, false)
-      @missao_quiz = Missao.joins(:modulo).where('modulos.curso_id = ? and missoes.tipo = ?', @curso.id, 'Quiz').select { |missao| !missao.quiz }
-      @missao_tarefa = Missao.joins(:modulo).where('modulos.curso_id = ? and tipo =?', @curso.id, 'Tarefa').select { |missao| !missao.tarefa }
-      @tarefa_nao_avaliada = TarefaAluno.joins(:usuario_curso).where('usuario_curso.curso_id = ? and avaliada =?', @curso.id, false)
+      @curso.alerta  
     end
     authorize! :show, Curso
   end
