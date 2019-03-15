@@ -34,6 +34,7 @@ class EventosController < ApplicationController
     @evento.usuario_curso_id = @perfil.id
     respond_to do |format|
       if @evento.save
+        ApplicationMailer.novo_evento(@evento).deliver
         format.html { redirect_to @evento, notice: 'Evento cadastrado com sucesso!' }
         format.json { render :show, status: :created, location: @evento }
       else
@@ -48,6 +49,7 @@ class EventosController < ApplicationController
   def update
     respond_to do |format|
       if @evento.update(evento_params)
+        ApplicationMailer.novo_evento(@evento).deliver
         format.html { redirect_to @evento, notice: 'Evento atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @evento }
       else

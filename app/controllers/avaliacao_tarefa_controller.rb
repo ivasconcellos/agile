@@ -31,6 +31,7 @@ class AvaliacaoTarefaController < ApplicationController
         @avaliacao_tarefa.tarefa_aluno.avaliada = true
         @avaliacao_tarefa.tarefa_aluno.save!
         @avaliacao_tarefa.pontuacao_aluno(nil)
+        ApplicationMailer.tarefa_avaliada(@avaliacao_tarefa).deliver
         format.html { redirect_to @avaliacao_tarefa, notice: 'Avaliação da tarefa cadastrada com sucesso!' }
         format.json { render :show, status: :created, location: @avaliacao_tarefa }
       else
@@ -47,6 +48,7 @@ class AvaliacaoTarefaController < ApplicationController
     respond_to do |format|
       if @avaliacao_tarefa.update(avaliacao_tarefa_params)
         @avaliacao_tarefa.pontuacao_aluno(@nota)
+        ApplicationMailer.tarefa_avaliada(@avaliacao_tarefa).deliver
         format.html { redirect_to @avaliacao_tarefa, notice: 'Avaliação da tarefa atualizada com sucesso!' }
         format.json { render :show, status: :ok, location: @avaliacao_tarefa }
       else

@@ -14,6 +14,7 @@ class Nivel < ApplicationRecord
 	    if usuario.pontos_experiencia >= @nivel.pontos_requeridos
 	      usuario.nivel_id = @nivel.id
 	      usuario.save!
+	      ApplicationMailer.novo_nivel(usuario).deliver
 	    end
 	end
 end
