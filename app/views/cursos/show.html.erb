@@ -7,6 +7,24 @@
     </div>
   <% end %>
 
+  <% if !@missao_quiz.empty? %>
+    <div class="alert alert-danger" role="alert">
+      Missão sem Quiz!!!
+    </div>
+  <% end %>
+
+  <% if !@missao_tarefa.empty? %>
+    <div class="alert alert-danger" role="alert">
+      Missãs sem Tarefa!!!
+    </div>
+  <% end %>
+
+  <% if !@tarefa_nao_avaliada.empty? %>
+    <div class="alert alert-danger" role="alert">
+      Avaliar Tarefa!!!
+    </div>
+  <% end %>
+
   <% if !@eventos.empty? %>
     <div class="alert alert-primary text-center">Eventos disponíveis! acesse: <%= link_to  "Eventos", eventos_path %></div>
   <%else%>
