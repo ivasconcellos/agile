@@ -20,4 +20,31 @@ class Curso < ApplicationRecord
   	def data_hora_termino
   		self.data_termino.strftime("%d/%m/%Y") + " - " + self.hora_termino.strftime("%H:%M:%S")
   	end
+
+  	def alerta
+  	  @alertas = []
+  	  
+  	  @quiz_nao_finalizado = Quiz.joins(missao: :modulo).where('modulos.curso_id = ? and finalizado =?', self.id, false).first
+  	  @missao_quiz = Missao.joins(:modulo).where('modulos.curso_id = ? and missoes.tipo = ?', self.id, 'Quiz').select { |missao| !missao.quiz }.first
+  	  @missao_tarefa = Missao.joins(:modulo).where('modulos.curso_id = ? and tipo =?', self.id, 'Tarefa').select { |missao| !missao.tarefa }.first
+  	  @tarefa_pendente_avaliacao = TarefaAluno.joins(:usuario_curso).where('usuario_curso.curso_id = ? and avaliada =?', self.id, false).first
+
+  	  if @quiz_nao_finalizado
+  	  	@alertas.append("Há Quiz não finalizado! Por favor verifique!!!")
+  	  end
+  	  
+  	  if @missao_quiz
+  	  	@alertas.append("Há Missão Cadastrada sem Quiz! Por favor verifique!!!")
+      end
+      
+      if @missao_tarefa
+      	@alertas.append("Há Missão Cadastrada sem Tarefa! Por favor verifique!!!")
+      end
+      
+      if @tarefa_pendente_avaliacao
+      	@alertas.append("Há Tarefas a serem avaliadas! Por favor verifique!!!")
+      end
+
+      return @alertas
+  	end
 end
