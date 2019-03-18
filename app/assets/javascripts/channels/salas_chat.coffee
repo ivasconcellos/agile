@@ -1,5 +1,10 @@
 jQuery(document).on 'turbolinks:load', ->
   mensagens = $('#mensagens')
+  online = []
+  atualiza_view = () ->
+    $("#TABELA").empty()
+    for usuario in online
+      $('#TABELA').append("<tr><td>#{usuario.nome}</td></tr>")
   if $('#mensagens').length > 0
     mensagens_to_bottom = -> mensagens.scrollTop(mensagens.prop("scrollHeight"))
 
@@ -16,12 +21,29 @@ jQuery(document).on 'turbolinks:load', ->
         # Called when the subscription has been terminated by the server
 
       received: (data) ->
+        if "comando" of data
+          if data["comando"] == "atualizar"
+            @perform "online"
+        if "usuario" of data 
+          isthere = false
+          for usuario in online
+            if data["usuario"]["id"] == usuario.id
+              isthere = true
+          if !isthere
+            online.push data["usuario"]
+          atualiza_view()
+        console.log(online)
+
+
         mensagens.append data['mensagem']
         mensagens_to_bottom()
 
       send_mensagem: (mensagem, sala_chat_id) ->
         @perform 'send_mensagem', mensagem: mensagem, sala_chat_id: sala_chat_id
-
+      atualiza_online: () ->
+        @perform "atualiza_online"
+      online: () ->
+        @perform "online"
 
     $('#new_mensagem').submit (e) ->
       $this = $(this)
@@ -31,3 +53,8 @@ jQuery(document).on 'turbolinks:load', ->
         textarea.val('')
       e.preventDefault()
       return false
+    
+    atualiza = () ->
+      App.global_chat.atualiza_online()
+    
+    setInterval(atualiza, 10000);
