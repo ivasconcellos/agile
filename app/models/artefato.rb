@@ -17,7 +17,8 @@ class Artefato < ApplicationRecord
 			@artefato_aluno = ArtefatoAluno.find_by(usuario_curso_id: usuario.id, artefato_id: artefato.id)
 		    if !@artefato_aluno
 		    	if usuario.pontos_experiencia >= artefato.pontos_requeridos
-		    		ArtefatoAluno.create!(usuario_curso_id: usuario.id, artefato_id: artefato.id)
+		    		@novo_artefato = ArtefatoAluno.create!(usuario_curso_id: usuario.id, artefato_id: artefato.id)
+		    		ApplicationMailer.novo_artefato(@novo_artefato).deliver
 		    	end
 		    end
 		end
