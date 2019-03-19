@@ -8,8 +8,8 @@
   </head>
 
   <body>
-  	<p>Prezado <%= @aluno %>,</p>
-  	<p>A tarefa <%= @tarefa.nome %> foi avaliada! </p>
-    <p>Acesse o sistema para verificar sua pontuação!</p>
+  	<p>Prezado <%= @aluno.nickname %>,</p>
+  	<p>A tarefa <%= @tarefa.tarefa.nome %> do curso <%= @aluno.curso.nome %> foi avaliada! </p>
+    <p>Acesse o curso para verificar sua pontuação!</p>
   </body>
 </html>

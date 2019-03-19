@@ -21,7 +21,6 @@ class ArtefatosAlunosController < ApplicationController
 
     respond_to do |format|
       if @artefato_aluno.save
-        ApplicationMailer.novo_artefato(@artefato_aluno).deliver
         format.html { redirect_to @artefato_aluno, notice: 'Parabéns! Você recebeu um novo Artefato!' }
         format.json { render :show, status: :created, location: @artefato_aluno }
       else
