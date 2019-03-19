@@ -121,6 +121,10 @@ class UsuarioCursoController < ApplicationController
     authorize! :edit, UsuarioCurso
   end
 
+  def raking_usuario
+    @usuarios = UsuarioCurso.where(curso_id: current_usuario.curso_atual_id).order(pontos_experiencia: :desc)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_usuario_curso
