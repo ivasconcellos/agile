@@ -1,10 +1,12 @@
 jQuery(document).on 'turbolinks:load', ->
   mensagens = $('#mensagens')
-  online = []
+  window.online = []
+  limpar = () ->
+    window.online = []
   atualiza_view = () ->
     $("#TABELA").empty()
     for usuario in online
-      $('#TABELA').append("<tr><td>#{usuario.nome}</td></tr>")
+      $('#TABELA').append("<li><i class='fa fa-user fa-sm' style='color: #15ff00;'></i> #{usuario.nome}</li>")
   if $('#mensagens').length > 0
     mensagens_to_bottom = -> mensagens.scrollTop(mensagens.prop("scrollHeight"))
 
@@ -30,9 +32,8 @@ jQuery(document).on 'turbolinks:load', ->
             if data["usuario"]["id"] == usuario.id
               isthere = true
           if !isthere
-            online.push data["usuario"]
+            window.online.push data["usuario"]
           atualiza_view()
-        console.log(online)
 
 
         mensagens.append data['mensagem']
@@ -57,4 +58,5 @@ jQuery(document).on 'turbolinks:load', ->
     atualiza = () ->
       App.global_chat.atualiza_online()
     
-    setInterval(atualiza, 10000);
+    setInterval(atualiza, 5000);
+    setInterval(limpar, 6000)

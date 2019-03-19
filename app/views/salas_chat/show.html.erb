@@ -8,40 +8,41 @@
 		<% if can? :destroy, SalaChat %>
 			<%= link_to  '', @sala_chat, method: :delete, data: { confirm: 'Deseja realmente realmente remover a Sala de Chat?'}, class: "fa fa-trash text-light", remote: true %>
 		<% end %>
- 	</div>
- 	<div class="card-header bg-info text-left" id="mensagens" data-sala-chat-id="<%= @sala_chat.id %>">
-  		<%= render @sala_chat.mensagens %>
-	</div>
+	 </div>
+	 <div class="row">
+		<div class="col-md-10">
+			<div class="card-header bg-info text-left" id="mensagens" data-sala-chat-id="<%= @sala_chat.id %>">
+				<%= render @sala_chat.mensagens %>
+			</div>
 
-	<% if @sala_chat.ativo %>
-		<%= form_for @mensagem, url: '#' do |f| %>
-		  	<%= hidden_field_tag 'sala_chat_id', @sala_chat.id %>
-		  	<div class="card-body bg-secondary">
-				<div class="form-group row">
-					<%= f.text_area :texto, placeholder: 'Digite sua mensagem...', class: 'form-control' %>
-					<small class="text-muted">De 2 a 1000 caracteres!</small>
-				</div>
+			<% if @sala_chat.ativo %>
+				<%= form_for @mensagem, url: '#' do |f| %>
+					<%= hidden_field_tag 'sala_chat_id', @sala_chat.id %>
+					<div class="card-body bg-secondary">
+						<div class="form-group row">
+							<%= f.text_area :texto, placeholder: 'Digite sua mensagem...', class: 'form-control' %>
+							<small class="text-muted">De 2 a 1000 caracteres!</small>
+						</div>
 
-				<div class="text-center">
-					<%= f.submit "Enviar", class: 'btn btn-primary' %>
-					<%= link_to "Voltar", salas_chat_path, {class: 'btn btn-info'} %>
+						<div class="text-center">
+							<%= f.submit "Enviar", class: 'btn btn-primary' %>
+							<%= link_to "Voltar", salas_chat_path, {class: 'btn btn-info'} %>
+						</div>
+					</div>
+				<% end %>
+			<% else %>
+				
+				<div class="alert alert-danger" role="alert">
+					Este Chat já não está mais ativo. Em caso de dúvidas, entre em contato com o Professor do Curso.
 				</div>
-		  	</div>
-		<% end %>
-	<% else %>
-		
-		<div class="alert alert-danger" role="alert">
-		    Este Chat já não está mais ativo. Em caso de dúvidas, entre em contato com o Professor do Curso.
+			<% end %>
 		</div>
-	<% end %>
-	<table id="TABELA"> 
-		
-		<tr>
-			
-		</tr>
-	</table>
-
+		<div class="col-md-2" >
+			<div class="card-body" style="color: white; background: #2323ab;">
+				<b> Pessoas Online </b> 
+				<ul style="list-style: none; padding-left: 0px;" id="TABELA"></ul>
+			</div>
+		</div>
+	</div>
 </div>
-
-
 
