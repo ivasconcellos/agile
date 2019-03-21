@@ -7,11 +7,29 @@ class QuestionForm < BaseService
 	Questions::Radio,
 	Questions::Select,
 	]
+	
 	QUESTION_TYPES = AVAILABLE_QUESTIONS.inject({}) do |result, question|
-	question_name = question.to_s.split("::").last
-	result[question_name] = question.to_s
-	result
+		question_name = question.to_s.split("::").last
+		if question_name == 'Checkbox'
+			question_name = 'Várias respostas (Checkbox)'
+		end
+		if question_name == 'Date'
+			question_name = 'Data'
+		end
+		if question_name == 'Numeric'
+			question_name = 'Número inteiro'
+		end
+		if question_name == 'Radio'
+			question_name = 'Única resposta (Radio)'
+		end
+		if question_name == 'Select'
+			question_name = 'Seleção de resposta em lista (Select)'
+		end
+
+		result[question_name] = question.to_s
+		result
 	end
+
 	attr_accessor :question_group_id, :question_group, :question,
 	:tipo, :pergunta, :respostas,  :answer_presence
 	
