@@ -1,0 +1,19 @@
+<% if @perfil.evento %>
+
+	<li class="nav-item">
+	  <i class="fa fa-calendar fa-sm nav-link text-white"> Eventos </i>
+	</li>
+	<div class="alert alert-info">
+	<% @perfil.evento.each do |evento| %>
+		<li class="nav-item ">
+    		<%= link_to evento.data.strftime("%d/%m/%Y"), evento, class: 'nav-link' %>
+    	</li>
+    <% end %>
+   </div>
+  	
+
+<% end %>  
+
+<li class="nav-item">
+  <i class="fa fa-gamepad fa-sm nav-link text-white"> Ranking </i>
+</li>

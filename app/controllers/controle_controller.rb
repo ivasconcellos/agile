@@ -30,5 +30,4 @@ class ControleController < ApplicationController
     authorize! :controle_gestor,:controle
   end
 
-
 end

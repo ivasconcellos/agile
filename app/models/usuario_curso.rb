@@ -20,4 +20,12 @@ class UsuarioCurso < ApplicationRecord
 	validates_uniqueness_of :usuario_id, scope: :curso_id, message: "já está cadastrado no curso!"
 
 	self.per_page = 10
+
+	def evento
+		@eventos = Evento.where('data >= ? and curso_id = ?', Date.today, self.curso.id).order('data')
+		if @eventos
+			return @eventos
+		end
+	end
+
 end
