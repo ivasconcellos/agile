@@ -9,6 +9,7 @@
 			<%= link_to  '', @sala_chat, method: :delete, data: { confirm: 'Deseja realmente realmente remover a Sala de Chat?'}, class: "fa fa-trash text-light", remote: true %>
 		<% end %>
 	 </div>
+
 	 <div class="row">
 		<div class="col-md-10">
 			<div class="card-header bg-info text-left" id="mensagens" data-sala-chat-id="<%= @sala_chat.id %>">
@@ -37,12 +38,16 @@
 				</div>
 			<% end %>
 		</div>
+
 		<div class="col-md-2" >
 			<div class="card-body" style="color: white; background: #2323ab;">
 				<b> Online </b> 
-				<ul style="list-style: none; padding-left: 0px;" id="TABELA"></ul>
+				<ul style="list-style: none; padding-left: 0px;" id="TABELA">
+					
+				</ul>
 			</div>
 		</div>
+
 	</div>
 </div>
 
