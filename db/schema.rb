@@ -102,15 +102,15 @@ ActiveRecord::Schema.define(version: 2019_03_24_014538) do
     t.index ["usuario_curso_id"], name: "index_artefatos_alunos_on_usuario_curso_id"
   end
 
-  create_table "avaliacao_tarefa", force: :cascade do |t|
+  create_table "tarefa_avaliacao", force: :cascade do |t|
     t.bigint "tarefa_aluno_id"
     t.float "nota"
     t.text "comentario"
     t.bigint "usuario_curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tarefa_aluno_id"], name: "index_avaliacao_tarefa_on_tarefa_aluno_id"
-    t.index ["usuario_curso_id"], name: "index_avaliacao_tarefa_on_usuario_curso_id"
+    t.index ["tarefa_aluno_id"], name: "index_tarefa_avaliacao_on_tarefa_aluno_id"
+    t.index ["usuario_curso_id"], name: "index_tarefa_avaliacao_on_usuario_curso_id"
   end
 
   create_table "avatares", force: :cascade do |t|
@@ -509,8 +509,8 @@ ActiveRecord::Schema.define(version: 2019_03_24_014538) do
   add_foreign_key "aluno_respostas", "usuario_curso"
   add_foreign_key "artefatos_alunos", "artefatos"
   add_foreign_key "artefatos_alunos", "usuario_curso"
-  add_foreign_key "avaliacao_tarefa", "tarefa_alunos"
-  add_foreign_key "avaliacao_tarefa", "usuario_curso"
+  add_foreign_key "tarefa_avaliacao", "tarefa_alunos"
+  add_foreign_key "tarefa_avaliacao", "usuario_curso"
   add_foreign_key "avatares", "grupos"
   add_foreign_key "badges_alunos", "badges"
   add_foreign_key "badges_alunos", "usuario_curso"

@@ -13,7 +13,7 @@ class ForunsController < ApplicationController
   # GET /foruns/1.json
   def show
     authorize! :show, Forum
-    @comentario = Comentario.where(forum_id: @forum)
+    @forum_comentario = ForumComentario.where(forum_id: @forum)
   end
 
   # GET /foruns/new

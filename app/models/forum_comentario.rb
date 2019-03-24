@@ -1,4 +1,4 @@
-class Comentario < ApplicationRecord
+class ForumComentario < ApplicationRecord
   belongs_to :usuario_curso
   belongs_to :forum
   

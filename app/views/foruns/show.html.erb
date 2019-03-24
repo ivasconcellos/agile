@@ -51,13 +51,13 @@
     	</div>
 	</div>
 	
-	<div id="comentario"><%= render 'comentarios/comentario', :collection => @comentarios %></div>
+	<div id="comentario"><%= render 'foruns_comentarios/forum_comentario', :collection => @comentarios %></div>
 
 	<div id="task-form" style="display:none;"></div>
 
-	<% if can? :new, Comentario and @forum.ativo?  %>
+	<% if can? :new, ForumComentario and @forum.ativo?  %>
 		<div class="card-footer text-muted">
-			<%= link_to "Comentar", {controller: 'comentarios', action: 'new', :forum_id => @forum.id, remote: true}, class: "btn btn-warning" %>
+			<%= link_to "Comentar", {controller: 'foruns_comentarios', action: 'new', :forum_id => @forum.id, remote: true}, class: "btn btn-warning" %>
 		</div>
 	<% else %>
 		<div class="alert alert-danger">

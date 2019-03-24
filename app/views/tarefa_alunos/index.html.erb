@@ -20,16 +20,16 @@
             <td><%= tarefa_aluno.usuario_curso.nickname %></td>
             <td><%= link_to "Arquivo", url_for(tarefa_aluno.arquivo), target: 'blank' %></td>
             <td><%= tarefa_aluno.tarefa.missao.pontuacao %></td>
-            <% if tarefa_aluno.avaliacao_tarefa %>
-              <td><%= tarefa_aluno.avaliacao_tarefa.nota %></td>
+            <% if tarefa_aluno.tarefa_avaliacao %>
+              <td><%= tarefa_aluno.tarefa_avaliacao.nota %></td>
             <% else %>
               <td>-</td>
             <% end %>
             <% if can? :show, TarefaAluno %>
               <td><%= link_to 'Visualizar', tarefa_aluno %></td>
             <% end %>
-            <% if tarefa_aluno.avaliacao_tarefa %>
-              <td><%= link_to 'Editar Avaliação',  edit_avaliacao_tarefa_path(tarefa_aluno.avaliacao_tarefa), class: "btn btn-sm btn-danger" %></td>
+            <% if tarefa_aluno.tarefa_avaliacao %>
+              <td><%= link_to 'Editar Avaliação',  edit_tarefa_avaliacao_path(tarefa_aluno.tarefa_avaliacao), class: "btn btn-sm btn-danger" %></td>
             <% end %>
           </tr>
         <% end %>

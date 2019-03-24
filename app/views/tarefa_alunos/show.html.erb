@@ -19,13 +19,13 @@
 	  <% if can? :edit, TarefaAluno %>
 	    <%= link_to 'Atualizar', edit_tarefa_aluno_path(@tarefa_aluno), class: "btn btn-md btn-primary" %>
 	  <% end %>
-	<% if @tarefa_aluno.avaliacao_tarefa %>
-		<% if can? :edit, AvaliacaoTarefa %>
-			<%= link_to 'Editar Avaliação',  edit_avaliacao_tarefa_path(@tarefa_aluno.avaliacao_tarefa), class: "btn btn-md btn-danger" %>
+	<% if @tarefa_aluno.tarefa_avaliacao %>
+		<% if can? :edit, TarefaAvaliacao %>
+			<%= link_to 'Editar Avaliação',  edit_tarefa_avaliacao_path(@tarefa_aluno.tarefa_avaliacao), class: "btn btn-md btn-danger" %>
 		<% end %>
 	<% else %>
-		<% if can? :new, AvaliacaoTarefa %>
-			<%= link_to 'Avaliar Tarefa', {controller: 'avaliacao_tarefa', action: 'new', tarefa_aluno_id: @tarefa_aluno.id}, class: "btn btn-md btn-danger" %>
+		<% if can? :new, TarefaAvaliacao %>
+			<%= link_to 'Avaliar Tarefa', {controller: 'tarefa_avaliacao', action: 'new', tarefa_aluno_id: @tarefa_aluno.id}, class: "btn btn-md btn-danger" %>
 		<% end %>
 	<% end %>
 	  <%= link_to 'Voltar', @tarefa_aluno.tarefa, class: "btn btn-md btn-secondary" %>

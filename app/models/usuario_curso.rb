@@ -11,7 +11,7 @@ class UsuarioCurso < ApplicationRecord
 	belongs_to :nivel, optional: true
 	has_many :missoes, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :foruns, :dependent => :destroy, :dependent => :restrict_with_error
-	has_many :comentarios, :dependent => :destroy, :dependent => :restrict_with_error
+	has_many :foruns_comentarios, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :conversas, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :badges_alunos, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :eventos, :dependent => :destroy, :dependent => :restrict_with_error

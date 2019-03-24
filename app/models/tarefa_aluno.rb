@@ -1,7 +1,7 @@
 class TarefaAluno < ApplicationRecord
   belongs_to :tarefa
   belongs_to :usuario_curso
-  has_one :avaliacao_tarefa
+  has_one :tarefa_avaliacao
 
   self.per_page = 10
 

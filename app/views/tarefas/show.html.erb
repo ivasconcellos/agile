@@ -22,8 +22,8 @@
         <% if @tarefa_aluno %>
           <li class="list-group-item"><b>Enviada em:</b> <%= @tarefa_aluno.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
           <% if @tarefa_aluno.avaliada %>
-            <li class="list-group-item"><b>Pontuação obtida:</b> <%= @tarefa_aluno.avaliacao_tarefa.nota %></li>
-            <li class="list-group-item"><b>Avaliada em:</b> <%= @tarefa_aluno.avaliacao_tarefa.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
+            <li class="list-group-item"><b>Pontuação obtida:</b> <%= @tarefa_aluno.tarefa_avaliacao.nota %></li>
+            <li class="list-group-item"><b>Avaliada em:</b> <%= @tarefa_aluno.tarefa_avaliacao.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
           <% end %>
         <% end %>
         <% if @perfil.perfil != 'Aluno' %>
@@ -44,7 +44,7 @@
     <% if @tarefa_aluno and no_prazo(@tarefa.missao) and !@tarefa_aluno.avaliada %>
       <%= link_to 'Atualizar Envio', edit_tarefa_aluno_path(@tarefa_aluno), class: "btn btn-md btn-danger" %>
     <% end %>
-    <% if can? :new, AvaliacaoTarefa %>
+    <% if can? :new, TarefaAvaliacao %>
       <%= link_to 'Visualizar Respostas', tarefa_alunos_path(id: @tarefa.id), class: "btn btn-md btn-warning" %>
     <% end %>
     <%= link_to 'Voltar para Missão', @tarefa.missao, class: "btn btn-md btn-secondary" %>

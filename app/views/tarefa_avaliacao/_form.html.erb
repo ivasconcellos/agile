@@ -1,10 +1,10 @@
-<%= form_with(model: avaliacao_tarefa, local: true) do |form| %>
-  <% if avaliacao_tarefa.errors.any? %>
+<%= form_with(model: tarefa_avaliacao, local: true) do |form| %>
+  <% if tarefa_avaliacao.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(avaliacao_tarefa.errors.count, "erro(s)") %> A Avaliação da Tarefa não pôde ser salva!</h2>
+      <h2><%= pluralize(tarefa_avaliacao.errors.count, "erro(s)") %> A Avaliação da Tarefa não pôde ser salva!</h2>
 
       <ul>
-      <% avaliacao_tarefa.errors.full_messages.each do |message| %>
+      <% tarefa_avaliacao.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -19,21 +19,21 @@
     <div class="form-group row">
         <label for="inputPontuacao" class="col-md-2 offset-md-2 col-form-label">Descrição da Missão</label>
         <div class="col-md-6">
-        <%= @avaliacao_tarefa.tarefa_aluno.tarefa.missao.descricao.to_s.html_safe %>
+        <%= @tarefa_avaliacao.tarefa_aluno.tarefa.missao.descricao.to_s.html_safe %>
       </div>
     </div>
 
     <div class="form-group row">
         <label for="inputPontuacao" class="col-md-2 offset-md-2 col-form-label">Descrição da tarefa</label>
         <div class="col-md-6">
-        <%= @avaliacao_tarefa.tarefa_aluno.tarefa.descricao.to_s.html_safe %>
+        <%= @tarefa_avaliacao.tarefa_aluno.tarefa.descricao.to_s.html_safe %>
       </div>
     </div>
 
     <div class="form-group row">
         <label for="inputPontuacao" class="col-md-2 offset-md-2 col-form-label">Pontuação máxima</label>
         <div class="col-md-6">
-        <%= @avaliacao_tarefa.tarefa_aluno.tarefa.missao.pontuacao %>
+        <%= @tarefa_avaliacao.tarefa_aluno.tarefa.missao.pontuacao %>
       </div>
     </div>
 

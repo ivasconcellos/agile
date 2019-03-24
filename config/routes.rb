@@ -17,12 +17,12 @@ Rails.application.routes.draw do
   resources :missoes, except: [:index]
   resources :badges
   resources :salas_chat
-  resources :avaliacao_tarefa, except: [:index]
+  resources :tarefa_avaliacao, except: [:index]
   resources :tarefa_alunos
   resources :tarefas, except: [:index]
   resources :modulos
   resources :avatares
-  resources :comentarios, except: [:index, :show]
+  resources :foruns_comentarios, except: [:index, :show]
   resources :foruns
   resources :explicacoes, except: [:index]
   resources :usuario_curso

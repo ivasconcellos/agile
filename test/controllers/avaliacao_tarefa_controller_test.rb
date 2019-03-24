@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class AvaliacaoTarefaControllerTest < ActionDispatch::IntegrationTest
+class TarefaAvaliacaoControllerTest < ActionDispatch::IntegrationTest
   setup do
     @avaliacao_tarefa = avaliacao_tarefa(:one)
   end
@@ -16,11 +16,11 @@ class AvaliacaoTarefaControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create avaliacao_tarefa" do
-    assert_difference('AvaliacaoTarefa.count') do
+    assert_difference('TarefaAvaliacao.count') do
       post avaliacao_tarefa_index_url, params: { avaliacao_tarefa: { comentario: @avaliacao_tarefa.comentario, nota: @avaliacao_tarefa.nota, tarefa_aluno_id: @avaliacao_tarefa.tarefa_aluno_id, usuario_curso_id: @avaliacao_tarefa.usuario_curso_id } }
     end
 
-    assert_redirected_to avaliacao_tarefa_url(AvaliacaoTarefa.last)
+    assert_redirected_to avaliacao_tarefa_url(TarefaAvaliacao.last)
   end
 
   test "should show avaliacao_tarefa" do
@@ -39,7 +39,7 @@ class AvaliacaoTarefaControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy avaliacao_tarefa" do
-    assert_difference('AvaliacaoTarefa.count', -1) do
+    assert_difference('TarefaAvaliacao.count', -1) do
       delete avaliacao_tarefa_url(@avaliacao_tarefa)
     end
 

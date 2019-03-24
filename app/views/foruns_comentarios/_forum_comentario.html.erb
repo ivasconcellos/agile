@@ -1,4 +1,4 @@
-<% @comentario.each do |comentario| %>
+<% @forum_comentario.each do |comentario| %>
 
   <div class="card">
     <div class="card-header bg-secondary">
@@ -33,10 +33,10 @@
 
             <div class="card-footer card-footer-size bg-primary">
               <p class="card-text">Criado por: <%= comentario.usuario_curso.nickname %>
-              <% if can? :edit, Comentario and comentario.forum.ativo? %>
-                <%= link_to  '', edit_comentario_path(comentario), class: "fa fa-pencil text-light", remote: true %>
+              <% if can? :edit, ForumComentario and comentario.forum.ativo? %>
+                <%= link_to  '', edit_forum_comentario_path(comentario), class: "fa fa-pencil text-light", remote: true %>
               <% end %>
-              <% if can? :destroy, Comentario and comentario.forum.ativo? %>
+              <% if can? :destroy, ForumComentario and comentario.forum.ativo? %>
                 <%= link_to  '', comentario, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover o Comentário?'}, class: "fa fa-trash text-light", remote: true %>
               <% end %></p>
               <p class="card-text"><b>Última atualização:</b> <%= comentario.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></p>
