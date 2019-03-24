@@ -28,4 +28,9 @@ class UsuarioCurso < ApplicationRecord
 		end
 	end
 
+
+	def ranking
+    	@usuarios = UsuarioCurso.where(curso_id: self.curso_id, perfil: 'Aluno').order(pontos_experiencia: :desc).limit(10)
+  	end
+
 end

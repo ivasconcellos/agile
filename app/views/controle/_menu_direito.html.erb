@@ -1,19 +1,30 @@
 <% if @perfil.evento %>
 
-	<li class="nav-item">
-	  <i class="fa fa-calendar fa-sm nav-link text-white"> Eventos </i>
-	</li>
-	<div class="alert alert-info">
-	<% @perfil.evento.each do |evento| %>
-		<li class="nav-item ">
-    		<%= link_to evento.data.strftime("%d/%m/%Y"), evento, class: 'nav-link' %>
-    	</li>
-    <% end %>
-   </div>
-  	
+	<div class="alert alert-primary alert-lateral">
+		<li class="nav-item">
+		  <i class="fa fa-calendar fa-sm nav-link text-secondary"> Eventos </i>
+		</li>
+	
+		<% @perfil.evento.each do |evento| %>
+			<li class="nav-item ">
+	    		<%= link_to evento.data.strftime("%d/%m/%Y"), evento, class: 'nav-link' %>
+	    	</li>
+	    <% end %>
+	    <li class="nav-item text-center"><%= link_to 'Ver todos', eventos_path, class: 'btn btn-sm btn-primary btn-block' %></li>
+	</div>
 
 <% end %>  
 
-<li class="nav-item">
-  <i class="fa fa-gamepad fa-sm nav-link text-white"> Ranking </i>
-</li>
+<div class="alert alert-success alert-lateral">
+	<li class="nav-item">
+		<i class="fa fa-gamepad fa-sm nav-link text-secondary"> Ranking</i>
+	</li>
+  	
+	<% @perfil.ranking.each_with_index do |aluno, index| %>
+		<li class="nav-item">
+			<%= link_to "#{index+1}º  #{aluno.nickname}", aluno, class: 'nav-link' %>
+		</li>
+	<% end %>
+	
+	<li class="nav-item text-center"><%= link_to 'Ver todos', ranking_usuario_path, class: 'btn btn-sm btn-success btn-block' %></li>
+</div>
