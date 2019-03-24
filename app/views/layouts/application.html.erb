@@ -48,6 +48,7 @@
       </ul>
 
     </nav>
+
     <div id="wrapper">
       <% if @perfil %>
         <nav id="sidebar" class="sidebar navbar-nav" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
@@ -109,11 +110,13 @@
           <% end %>
           <% if usuario_signed_in? %>
             <div class="row"> 
-              <div class="col-md-12 col-sm-10">
-
-                <% if current_usuario.perfil == 'Gestor'%>  
+              
+              <% if current_usuario.perfil == 'Gestor'%>
+                <div class="col-md-12 col-sm-12">
                   <%= yield %>
-                <% else %>
+                </div>
+              <% else %>
+                <div class="col-md-10 col-sm-10">
                   <% if current_usuario.curso_atual.ativo? %>
                     <%= yield %>
                   <% else %>
@@ -121,9 +124,17 @@
                       <p>Este curso não está mais ativo. Em caso de dúvidas, entre em contato com o administrador do sistema.</p>
                     </div>
                   <% end %>
-                <% end %>
+                </div>
+                <div class="col-md-2 col-sm-2 menu_lateral">
+                  <div class="sidebar-header">
+                    <ul class="list-unstyled components">  
+    
+                      <%= render 'controle/menu_direito' %>
+                    </ul>
+                  </div>
+                </div>
+              <% end %>
                 
-              </div>
             </div>
           <%else%>
             <div class="row"> 
@@ -132,6 +143,7 @@
           <%end%>
         </div>
         <!-- /.container-fluid -->
+
 
         <!-- Sticky Footer -->
         <footer class="sticky-footer">
@@ -142,14 +154,12 @@
           </div>
         </footer>
         
-
       </div>
       <!-- /.content-wrapper -->
 
     </div>
     <!-- /#wrapper -->  
-
-    
+         
 
   </body>
 </html>

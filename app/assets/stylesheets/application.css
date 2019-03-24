@@ -144,3 +144,13 @@ td{
 .perfil{
   padding: 5px;
 }
+
+.menu_lateral{
+  background-color: #1b115d;
+}
+
+.alert-lateral{
+  padding: 5px;
+  margin-top: 15px;
+  text-align: center;
+}
