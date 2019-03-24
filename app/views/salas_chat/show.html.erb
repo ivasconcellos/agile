@@ -11,7 +11,7 @@
 	 </div>
 
 	 <div class="row">
-		<div class="col-md-10">
+		<div class="col-md-9">
 			<div class="card-header bg-info text-left" id="mensagens" data-sala-chat-id="<%= @sala_chat.id %>">
 				<%= render @sala_chat.mensagens %>
 			</div>
@@ -39,9 +39,9 @@
 			<% end %>
 		</div>
 
-		<div class="col-md-2" >
-			<div class="card-body" style="color: white; background: #2323ab;">
-				<b> Online </b> 
+		<div class="col-md-3" >
+			<div class="card-body bg-dark text-white">
+				<p class="text-center font-weight-bold"> Online </p> 
 				<ul style="list-style: none; padding-left: 0px;" id="TABELA">
 					
 				</ul>
