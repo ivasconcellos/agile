@@ -27,7 +27,7 @@ class ExplicacoesController < ApplicationController
 
     respond_to do |format|
       if @explicacao.save
-        format.html { redirect_to @explicacao, notice: 'Explicação criada com sucesso!' }
+        format.html { redirect_to @explicacao, notice: 'Explicação cadastrada com sucesso!' }
         format.json { render :show, status: :created, location: @explicacao }
       else
         format.html { render :new, @current_usuario => current_usuario }
@@ -54,10 +54,15 @@ class ExplicacoesController < ApplicationController
   # DELETE /explicacoes/1.json
   def destroy
     authorize! :destroy, Explicacao
-    @explicacao.destroy
+    
     respond_to do |format|
-      format.html { redirect_to explicacoes_url, notice: 'Explicação excluída com sucesso!' }
-      format.json { head :no_content }
+      if @explicacao.destroy
+        format.html { redirect_to @explicacao.modulo, notice: 'Explicação excluída com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @explicacao.modulo, alert: 'A Explicação não pôde ser excluída, pois está sendo utilizada!' }
+        format.json { head :no_content }
+      end
     end
   end
 

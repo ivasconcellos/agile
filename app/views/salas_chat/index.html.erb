@@ -23,7 +23,7 @@
                 <% else%> - 
                 <% end %>
               <td>
-                <% if can? :Destroy, SalaChat %>
+                <% if can? :destroy, SalaChat %>
                   <%= link_to 'Excluir', sala_chat, method: :delete, data: { confirm: 'Deseja realmente excluir a sala de Chat?' } %></td>
                 <% else%> - 
                 <% end %>

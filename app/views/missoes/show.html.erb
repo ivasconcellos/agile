@@ -51,8 +51,6 @@
     </div>
   </div>  
 
-
-
   <div class="card-footer text-muted">
     <% if can? :new, Dica %>
       <%= link_to 'Adicionar Dica', {controller: 'dicas', action: 'new', :missao_id => @missao.id}, class: "btn btn-md btn-success" %>

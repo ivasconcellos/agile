@@ -1,7 +1,7 @@
 <%= form_with(model: comunicado, local: true) do |form| %>
   <% if comunicado.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(comunicado.errors.count, "erro(s)") %> - Comunicado não pôde ser salvo!</h2>
+      <h2><%= pluralize(comunicado.errors.count, "erro(s)") %> - Comunicado não pôde ser enviado!</h2>
 
       <ul>
       <% comunicado.errors.full_messages.each do |message| %>

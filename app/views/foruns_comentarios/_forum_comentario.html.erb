@@ -1,4 +1,4 @@
-<% @forum_comentario.each do |comentario| %>
+<% @forum_comentario.each do |forum_comentario| %>
 
   <div class="card">
     <div class="card-header bg-secondary">
@@ -12,8 +12,8 @@
               <div class="col-xl-2 col-sm-2 mb-3">
                 <div class="card-body text-center">
                   <div>
-                    <%if comentario.usuario_curso.avatar %>
-                      <%= image_tag comentario.usuario_curso.avatar.imagem.variant(resize: "100x100"), class: "img-responsive img-thumbnail" %>
+                    <%if forum_comentario.usuario_curso.avatar %>
+                      <%= image_tag forum_comentario.usuario_curso.avatar.imagem.variant(resize: "100x100"), class: "img-responsive img-thumbnail" %>
                     <% else %>
                       <%= image_tag "missing.png", class: "img-responsive img-thumbnail" %>
                     <% end %>
@@ -24,7 +24,7 @@
               <div class="col-xl-10 col-sm-10 mb-3">
                 <div class="card-body text-left">
                   <div>
-                    <%= comentario.texto.to_s.html_safe %>
+                    <%= forum_comentario.texto.to_s.html_safe %>
                   </div>
                 </div>
               </div>
@@ -32,15 +32,15 @@
             </div>
 
             <div class="card-footer card-footer-size bg-primary">
-              <p class="card-text">Criado por: <%= comentario.usuario_curso.nickname %>
-              <% if can? :edit, ForumComentario and comentario.forum.ativo? %>
-                <%= link_to  '', edit_forum_comentario_path(comentario), class: "fa fa-pencil text-light", remote: true %>
+              <p class="card-text">Criado por: <%= forum_comentario.usuario_curso.nickname %>
+              <% if can? :edit, ForumComentario and forum_comentario.forum.ativo? and forum_comentario.usuario_curso.id == @perfil.id %>
+                <%= link_to  '', edit_forum_comentario_path(forum_comentario), class: "fa fa-pencil text-light", remote: true %>
               <% end %>
-              <% if can? :destroy, ForumComentario and comentario.forum.ativo? %>
-                <%= link_to  '', comentario, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover o Comentário?'}, class: "fa fa-trash text-light", remote: true %>
+              <% if can? :destroy, ForumComentario and forum_comentario.forum.ativo? and forum_comentario.usuario_curso.id == @perfil.id %>
+                <%= link_to  '', forum_comentario, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover o Comentário?'}, class: "fa fa-trash text-light", remote: true %>
               <% end %></p>
-              <p class="card-text"><b>Última atualização:</b> <%= comentario.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></p>
-              <div id="task-form<%= comentario.id %>" style="display:none;"></div>
+              <p class="card-text"><b>Última atualização:</b> <%= forum_comentario.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></p>
+              <div id="task-form<%= forum_comentario.id %>" style="display:none;"></div>
             </div>
           </div>
         </div>

@@ -40,7 +40,7 @@ class Ability
           can :manage, Comunicado
         elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
           can :read, Modulo
-          can :show, Curso
+          can :read, Curso
           can :read, Forum
           can :manage, ForumComentario
           can :perms_read_and_update, UsuarioCurso
@@ -48,7 +48,7 @@ class Ability
           can :perms_without_delete, TarefaAluno
           can :manage, Conversa
           can :read, SalaChat
-          can :lista_participantes, :grupo
+          can :lista_participantes, :grupo_curso
           can :read, Missao
           can :read, Explicacao
           can :read, Evento

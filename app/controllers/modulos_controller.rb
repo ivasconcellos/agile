@@ -6,7 +6,7 @@ class ModulosController < ApplicationController
   # GET /modulos.json
   def index
     authorize! :index, Modulo
-    @modulos = Modulo.where(curso_id: current_usuario.curso_atual_id).page(params[:page]).order('nome')
+    @modulos = Modulo.where(curso_id: @perfil.curso_id).page(params[:page]).order('nome')
   end
 
   # GET /modulos/1
@@ -70,7 +70,7 @@ class ModulosController < ApplicationController
         format.html { redirect_to modulos_url, notice: 'Módulo excluído com sucesso!' }
         format.json { head :no_content }
       else
-        format.html { redirect_to modulos_url, alert: 'Não foi possível excluir o Módulo! Este possui itens vinculados!' }
+        format.html { redirect_to modulos_url, alert: 'O Módulo não pôde ser excluído, pois está sendo utilizado!' }
         format.json { head :no_content }
       end
     end

@@ -14,9 +14,9 @@ class DicasController < ApplicationController
 
   # GET /dicas/new
   def new
+    authorize! :new, Dica
     @dica = Dica.new
     @dica.missao_id = params[:missao_id]
-    authorize! :new, Dica
   end
   
   # GET /dicas/1/edit
@@ -57,10 +57,15 @@ class DicasController < ApplicationController
   # DELETE /dicas/1
   # DELETE /dicas/1.json
   def destroy
-    @dica.destroy
+    authorize! :destroy, Dica
     respond_to do |format|
-      format.html { redirect_to dicas_url, notice: 'Dica excluída com sucesso!' }
-      format.json { head :no_content }
+      if @dica.destroy
+        format.html { redirect_to @dica.missao, notice: 'Dica excluída com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @dica.missao, alert: 'A Dica não pôde ser excluída, pois está sendo utilizada!' }
+        format.json { head :no_content }
+      end
     end
   end
 

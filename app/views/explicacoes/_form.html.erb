@@ -1,7 +1,7 @@
 <%= form_with(model: explicacao, local: true) do |form| %>
   <% if explicacao.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(explicacao.errors.count, "erro(s)") %> - Curso não pôde ser salvo!</h2>
+      <h2><%= pluralize(explicacao.errors.count, "erro(s)") %> - Explicação não pôde ser salva!</h2>
 
       <ul>
       <% explicacao.errors.full_messages.each do |message| %>
@@ -13,16 +13,6 @@
 
   <div class="card-body">
     <%= form.hidden_field :modulo_id %>
-
-    <% if not @explicacao.modulo_id %>
-
-      <div class="form-group row">
-        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Módulo*</label>
-        <div class="col-md-6">
-          <%= form.collection_select(:modulo_id, Modulo.where(curso_id: current_usuario.curso_atual).order('nome'), :id, :nome, :prompt => true, class: "form-control") %>
-        </div>
-      </div>
-    <% end %>
 
     <div class="form-group row">
       <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>

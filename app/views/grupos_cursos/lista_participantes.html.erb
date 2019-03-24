@@ -1,8 +1,8 @@
-<% if @usuario.grupo_curso %>
+<% if @perfil.grupo_curso %>
   <div class="card">
     <div class="card-header">
-      <p>Equipe <%= @usuario.grupo_curso.nome_curso %></p>
-      <p><%= image_tag @usuario.grupo_curso.grupo.imagem.variant(resize: "400x400"), class: 'img-responsive img-thumbnail' %></p></div>
+      <p>Equipe <%= @perfil.grupo_curso.nome_curso %></p>
+      <p><%= image_tag @perfil.grupo_curso.grupo.imagem.variant(resize: "400x400"), class: 'img-responsive img-thumbnail' %></p></div>
 
     <div><br></div>
     <div class="card-header bg-primary">Membros da Equipe</div>
@@ -12,7 +12,11 @@
           <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white o-hidden h-200 curso">
               <div class="card-body">
-                <%= image_tag participante.avatar.imagem.variant(resize: "200x200"), class: "img-responsive" %>
+                <% if participante.avatar %>
+                  <%= image_tag participante.avatar.imagem.variant(resize: "200x200"), class: "img-responsive" %>
+                <% else %>
+                  <%= image_tag "missing.png", class: "img-responsive img-thumbnail" %>
+                <% end %>
               </div>
               <div class="card-footer bg-primary text-white">
                 <div><%= link_to participante.nickname, participante, class: "text-white" %></div>

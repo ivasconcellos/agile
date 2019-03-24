@@ -5,8 +5,8 @@ class ComunicadosController < ApplicationController
   # GET /comunicados
   # GET /comunicados.json
   def index
-    @comunicados = Comunicado.where(curso_id: current_usuario.curso_atual_id).page(params[:page]).order('created_at desc')
     authorize! :index, Comunicado
+    @comunicados = Comunicado.where(curso_id: @perfil.curso_id).page(params[:page]).order('created_at desc')
   end
 
   # GET /comunicados/1

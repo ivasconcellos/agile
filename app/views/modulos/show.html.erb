@@ -16,6 +16,7 @@
 		<% if can? :edit, Modulo %>
 		<li class="list-group-item"><b>Público:</b> <%= @modulo.publico? ? 'Sim' : 'Não' %></li>  
 		<li class="list-group-item"><b>Cadastrado em:</b> <%= @modulo.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
+		<li class="list-group-item"><b>Atualizado em:</b> <%= @modulo.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
 		<li class="list-group-item"><b>Curso:</b> <%= @modulo.curso.nome %></li>      
 		<% end %>
 	</ul>

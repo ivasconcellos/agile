@@ -21,8 +21,9 @@ class CursosController < ApplicationController
     @missoes = Missao.joins(:modulo).where('modulos.curso_id = ?',
     current_usuario.curso_atual_id).order('updated_at')
     @usuario_curso = UsuarioCurso.where(curso_id: @curso.id, usuario_id: current_usuario.id)
-    @conversas = Conversa.where(destinatario_id: @perfil.id, lida: false)
-    if @perfil.perfil == 'Professor'
+    @conversas = []
+    #@conversas = Conversa.where(destinatario_id: @perfil.id, lida: false)
+    if @perfil and @perfil.perfil == 'Professor'
       @curso.alerta  
     end
   end

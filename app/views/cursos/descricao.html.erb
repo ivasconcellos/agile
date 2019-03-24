@@ -8,7 +8,7 @@
   
   <div class="text-center">
 
-    <% if !@usuario_curso.empty? and no_prazo(@curso) %>
+    <% if @usuario_curso.empty? and no_prazo(@curso) %>
       <%= link_to 'Me inscrever neste Curso', {controller: 'usuario_curso', action: 'inscricao_curso'}, class: "btn btn-md btn-success" %>
     <% end %>
 

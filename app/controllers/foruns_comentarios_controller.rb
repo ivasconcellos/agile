@@ -38,7 +38,7 @@ class ForunsComentariosController < ApplicationController
   def destroy
     authorize! :destroy, ForumComentario
     @forum = @forum_comentario.forum_id
-    @Forumforum_comentario.destroy
+    @forum_comentario.destroy
     if @forum_comentario.destroy
       @forum_comentario = ForumComentario.where(forum_id: @forum)
     end

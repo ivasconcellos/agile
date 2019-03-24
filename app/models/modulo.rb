@@ -3,7 +3,7 @@ class Modulo < ApplicationRecord
   has_many :materiais, :dependent => :destroy, :dependent => :restrict_with_error
   has_many :explicacoes, :dependent => :destroy, :dependent => :restrict_with_error
   has_many :missoes, :dependent => :destroy, :dependent => :restrict_with_error
-  has_many :tarefas, through: :missoes
+ 
   validates_presence_of :nome, :curso_id
   
   self.per_page = 10
