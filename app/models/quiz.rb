@@ -8,7 +8,7 @@ class Quiz < ApplicationRecord
   validates_presence_of :nome, :descricao
 
   def pontuacao
-  	@pontuacao_missao = Missao.select(:pontuacao).joins(:quiz).find_by('quizes.id =?', self.id)
+  	@pontuacao_missao = Missao.select(:pontuacao).joins(:quiz).find_by('quizzes.id =?', self.id)
   	@pontuacao_perguntas = QuizPergunta.where(quiz_id: self.id).sum('pontuacao')
   	if @pontuacao_missao.pontuacao > @pontuacao_perguntas
   		return true

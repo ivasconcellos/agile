@@ -35,7 +35,7 @@
       <%= link_to 'Cadastrar Pergunta', {controller: 'quiz_perguntas', action: 'new', quiz_id: @quiz.id}, class: "btn btn-md btn-success" %>
     <% end %>
     <% if can? :new, Quiz %>
-      <%= link_to 'Finalizar Quiz', {controller: 'quizes', action: 'finalizar_quiz', id: @quiz.id}, class: "btn btn-md btn-warning" %>
+      <%= link_to 'Finalizar Quiz', {controller: 'quizzes', action: 'finalizar_quiz', id: @quiz.id}, class: "btn btn-md btn-warning" %>
     <% end %>
     <%= link_to 'Voltar para Missão', :back, class: "btn btn-md btn-secondary" %>
   </div>

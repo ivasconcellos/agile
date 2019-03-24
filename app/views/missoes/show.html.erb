@@ -71,7 +71,7 @@
     <% if @missao.tipo == 'Quiz' %>
       <% if !@missao.quiz %>
         <% if can? :new, Quiz %>
-          <%= link_to 'Adicionar Quiz', {controller: 'quizes', action: 'new', missao_id: @missao.id}, class: "btn btn-md btn-danger" %>
+          <%= link_to 'Adicionar Quiz', {controller: 'quizzes', action: 'new', missao_id: @missao.id}, class: "btn btn-md btn-danger" %>
         <% end %>
       <% else %>
         <% if @perfil.perfil != 'Aluno' %>

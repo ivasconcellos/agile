@@ -60,26 +60,26 @@ Usuario.create! nome: 'Aluno', email: 'aluno@iff.edu.br', perfil: 'Usuario comum
 @nivel6.save!
 
 ##Badges
-#@badge1 = Badge.new nome: 'Badge 1', ativo: true
-#@badge1.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
-#@badge1.save!
+@badge1 = Badge.new nome: 'Badge 1', ativo: true
+@badge1.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
+@badge1.save!
 
-#@badge2 = Badge.new nome: 'Badge 2', ativo: true
-#@badge2.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
-#@badge2.save!
+@badge2 = Badge.new nome: 'Badge 2', ativo: true
+@badge2.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
+@badge2.save!
 
-#@badge3 = Badge.new nome: 'Badge 3', ativo: true
-#@badge3.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
-#@badge3.save!
+@badge3 = Badge.new nome: 'Badge 3', ativo: true
+@badge3.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
+@badge3.save!
 
-#@badge4 = Badge.new nome: 'Badge 4', ativo: true
-#@badge4.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
-#@badge4.save!
+@badge4 = Badge.new nome: 'Badge 4', ativo: true
+@badge4.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
+@badge4.save!
 
-#@badge5 = Badge.new nome: 'Badge 5', ativo: true
-#@badge5.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
-#@badge5.save!
+@badge5 = Badge.new nome: 'Badge 5', ativo: true
+@badge5.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
+@badge5.save!
 
-#@badge6 = Badge.new nome: 'Badge 6', ativo: true
-#@badge6.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
-#@badge6.save!
+@badge6 = Badge.new nome: 'Badge 6', ativo: true
+@badge6.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
+@badge6.save!

@@ -23,7 +23,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'badge', 'badges'
 	inflect.irregular 'missao', 'missoes'
 	inflect.irregular 'nivel', 'niveis'
-	inflect.irregular 'quiz', 'quizes'
+	inflect.irregular 'quiz', 'quizzes'
 	inflect.irregular 'quiz_pergunta', 'quiz_perguntas'
 	inflect.irregular 'quiz_pergunta_resposta', 'quiz_pergunta_respostas'
 	inflect.irregular 'grupo_curso', 'grupos_cursos'
