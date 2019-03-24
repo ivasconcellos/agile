@@ -64,10 +64,15 @@ class ModulosController < ApplicationController
   # DELETE /modulos/1.json
   def destroy
     authorize! :destroy, Modulo
-    @modulo.destroy
+   
     respond_to do |format|
-      format.html { redirect_to modulos_url, notice: 'Módulo excluído com sucesso!' }
-      format.json { head :no_content }
+      if  @modulo.destroy
+        format.html { redirect_to modulos_url, notice: 'Módulo excluído com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to modulos_url, alert: 'Não foi possível excluir o Módulo! Este possui itens vinculados!' }
+        format.json { head :no_content }
+      end
     end
   end
 

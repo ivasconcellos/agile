@@ -79,10 +79,15 @@ class CursosController < ApplicationController
   # DELETE /cursos/1.json
   def destroy
     authorize! :destroy, Curso
-    @curso.destroy
+    
     respond_to do |format|
-      format.html { redirect_to cursos_url, notice: 'Curso excluído com sucesso!' }
-      format.json { head :no_content }
+      if @curso.destroy
+        format.html { redirect_to cursos_url, notice: 'Curso excluído com sucesso!' }
+        format.json { head :no_content }
+      else
+        ormat.html { redirect_to cursos_url, alert: 'Não foi possível excluir o Curso! Este possui itens vinculados!' }
+        format.json { head :no_content }
+      end
     end
   end
 
