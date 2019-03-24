@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :comunicados
   resources :aluno_respostas, except: [:index]
   resources :dicas, except: [:index]
   resources :artefatos_alunos, except: [:show, :edit, :destroy]

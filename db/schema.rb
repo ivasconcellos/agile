@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_14_131957) do
+ActiveRecord::Schema.define(version: 2019_03_24_014538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,6 +163,17 @@ ActiveRecord::Schema.define(version: 2019_03_14_131957) do
     t.index ["comentario_id"], name: "index_comentarios_on_comentario_id"
     t.index ["forum_id"], name: "index_comentarios_on_forum_id"
     t.index ["usuario_curso_id"], name: "index_comentarios_on_usuario_curso_id"
+  end
+
+  create_table "comunicados", force: :cascade do |t|
+    t.string "assunto"
+    t.text "mensagem"
+    t.bigint "curso_id"
+    t.bigint "remetente_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["curso_id"], name: "index_comunicados_on_curso_id"
+    t.index ["remetente_id"], name: "index_comunicados_on_remetente_id"
   end
 
   create_table "conversas", force: :cascade do |t|
@@ -496,7 +507,7 @@ ActiveRecord::Schema.define(version: 2019_03_14_131957) do
 
   add_foreign_key "aluno_respostas", "respostas_perguntas"
   add_foreign_key "aluno_respostas", "usuario_curso"
-  add_foreign_key "artefatos_alunos", "artefatos", column: "artefato_id"
+  add_foreign_key "artefatos_alunos", "artefatos"
   add_foreign_key "artefatos_alunos", "usuario_curso"
   add_foreign_key "avaliacao_tarefa", "tarefa_alunos"
   add_foreign_key "avaliacao_tarefa", "usuario_curso"
@@ -506,6 +517,8 @@ ActiveRecord::Schema.define(version: 2019_03_14_131957) do
   add_foreign_key "comentarios", "comentarios"
   add_foreign_key "comentarios", "foruns"
   add_foreign_key "comentarios", "usuario_curso"
+  add_foreign_key "comunicados", "cursos"
+  add_foreign_key "comunicados", "usuario_curso", column: "remetente_id"
   add_foreign_key "conversas", "conversas"
   add_foreign_key "conversas", "usuario_curso"
   add_foreign_key "conversas", "usuario_curso", column: "destinatario_id"

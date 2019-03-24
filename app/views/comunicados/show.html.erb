@@ -1,0 +1,21 @@
+<div class="card">
+
+	<div class="card-header">Comunicado</div>
+
+	<div class="row">
+	    <div class="col-md-10 offset-md-1">
+			<ul class="list-group">
+			  <li class="list-group-item"><b>Assunto:</b> <%= @comunicado.assunto %></li>
+			  <li class="list-group-item"><b>Mensagem:</b> <%= @comunicado.mensagem.to_s.html_safe %></li>
+			  <li class="list-group-item"><b>Remetente:</b> <%= @comunicado.remetente.nickname %></li>
+			  <li class="list-group-item"><b>Enviado em:</b> <%= @comunicado.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>      
+			</ul>
+		</div>
+	</div>
+
+	<br>
+
+	<div class="card-footer text-muted">
+	  <%= link_to 'Voltar', comunicados_path, class: "btn btn-md btn-secondary" %>
+	</div>
+</div>

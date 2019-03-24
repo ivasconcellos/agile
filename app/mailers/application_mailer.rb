@@ -44,4 +44,10 @@ class ApplicationMailer < ActionMailer::Base
     @nivel = usuario.nivel
     mail to: @email, subject: @subject
   end
+
+  def comunicado_turma(comunicado)
+    @subject = "AGILE - "+ comunicado.assunto
+    @mensagem = comunicado.mensagem
+    mail to: Usuario.joins(:usuario_curso).where('usuario_curso.curso_id = ? and usuarios.ativo = ?', comunicado.curso.id, true).pluck(:email), subject: @subject
+  end
 end
