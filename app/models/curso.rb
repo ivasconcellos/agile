@@ -35,11 +35,11 @@ class Curso < ApplicationRecord
 	  	end
 	  	  
 	  	if @missao_quiz
-	  	  	@alertas.append("Missão Cadastrada sem Quiz!")
+	  	  	@alertas.append("Há Missão Cadastrada sem Quiz!")
 	    end
 	      
 	    if @missao_tarefa
-	      	@alertas.append("Missão Cadastrada sem Tarefa!")
+	      	@alertas.append("Há Missão Cadastrada sem Tarefa!")
 	    end
 	      
 	    if @tarefa_pendente_avaliacao
