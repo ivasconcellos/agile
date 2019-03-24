@@ -78,7 +78,7 @@
           <%= link_to 'Ver quiz', @missao.quiz, class: "btn btn-md btn-warning"  %>
         <% end%>
         <% if @perfil.perfil == 'Aluno' and respondido_quiz(@missao.quiz, @perfil.id) == 'Não' and @missao.quiz.finalizado %>
-          <%= link_to 'Responder Quiz', {controller: 'aluno_respostas', action: 'new', quiz_id: @missao.quiz}, class: "btn btn-md btn-danger" %>
+          <%= link_to 'Responder Quiz', {controller: 'quiz_resposta_alunos', action: 'new', quiz_id: @missao.quiz}, class: "btn btn-md btn-danger" %>
         <% end %>
       <% end %>
     <% end %>

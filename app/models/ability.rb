@@ -33,11 +33,11 @@ class Ability
           can :manage, Conversa
           can :manage, QuestionGroup
           can :manage, Question
-          can :manage, PerguntaQuiz
-          can :manage, RespostaPergunta
+          can :manage, QuizPergunta
+          can :manage, QuizPerguntaResposta
           can :manage, Dica
           can :notas_aluno,:notas
-          can :read, AlunoResposta
+          can :read, QuizRespostaAluno
           can :notas_turma, :curso
           can :manage, Comunicado
         elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
@@ -58,7 +58,7 @@ class Ability
           can :read, Dica
           can :read, QuestionGroup
           can :minhas_notas,:notas
-          can :manage, AlunoResposta
+          can :manage, QuizRespostaAluno
           can :read, Material
           can :read, Comunicado
         else

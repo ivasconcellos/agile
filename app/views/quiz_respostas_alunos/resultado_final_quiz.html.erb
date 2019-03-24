@@ -1,0 +1,38 @@
+<div class="card">
+
+  <div class="card-header">Resultado do Quiz</div>
+
+  <div class="card-body">
+    
+    <% @quiz_resposta_alunos.each_with_index do |aluno, index| %>
+      <div class="row alert alert-info">
+        <div class="col-lg-12">
+          <div class="input-group">
+            <p><label><%= index + 1 %>ª Pergunta: </label> </p>
+            <p><%= aluno.resposta_pergunta.quiz_pergunta.descricao.html_safe %></p>
+          </div>        
+        </div>
+
+        <div class="col-lg-12">
+          <div class="input-group">
+            <p><label>Pontuação da pergunta:</label> <%= aluno.resposta_pergunta.quiz_pergunta.pontuacao %></p>
+          </div>        
+        </div>
+
+        <div class="col-lg-12">
+          <div class="input-group mb-3 alert alert-light">
+            <p><label>Resposta salva:</label> <%= resposta_correta(aluno.resposta_pergunta) %></p>
+          </div>        
+        </div>
+      </div>
+    <% end %>
+
+    
+  </div>
+
+  <br>
+  <div class="card-footer text-muted">
+    <%= link_to 'Voltar', @missao, class: "btn btn-md btn-secondary" %>
+  </div>
+
+</div>

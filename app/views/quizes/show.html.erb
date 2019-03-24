@@ -27,12 +27,12 @@
 
   <br>
 
-  <div><%= render 'perguntas_quiz/pergunta_quiz', :collection => @perguntas_quizes %></div>
+  <div><%= render 'perguntas_quiz/quiz_pergunta', :collection => @perguntas_quizes %></div>
 
 
   <div class="card-footer text-muted">
-    <% if can? :new, PerguntaQuiz %>
-      <%= link_to 'Cadastrar Pergunta', {controller: 'perguntas_quiz', action: 'new', quiz_id: @quiz.id}, class: "btn btn-md btn-success" %>
+    <% if can? :new, QuizPergunta %>
+      <%= link_to 'Cadastrar Pergunta', {controller: 'quiz_perguntas', action: 'new', quiz_id: @quiz.id}, class: "btn btn-md btn-success" %>
     <% end %>
     <% if can? :new, Quiz %>
       <%= link_to 'Finalizar Quiz', {controller: 'quizes', action: 'finalizar_quiz', id: @quiz.id}, class: "btn btn-md btn-warning" %>

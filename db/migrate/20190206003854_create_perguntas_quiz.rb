@@ -1,6 +1,6 @@
-class CreatePerguntasQuiz < ActiveRecord::Migration[5.2]
+class CreateQuizPerguntas < ActiveRecord::Migration[5.2]
   def change
-    create_table :perguntas_quiz do |t|
+    create_table :quiz_perguntas do |t|
       t.references :quiz, foreign_key: true
       t.text :descricao
       t.float :pontuacao

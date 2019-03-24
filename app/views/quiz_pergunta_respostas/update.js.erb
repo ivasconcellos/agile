@@ -1,0 +1,2 @@
+$('#task-form<%= @quiz_pergunta_resposta.id %>').slideUp(350);
+$('#<%= @quiz_pergunta_resposta.quiz_pergunta.id %>').html("<%= j (render 'quiz_pergunta_respostas/quiz_pergunta_resposta', :collection => @quiz_pergunta_respostas) %>");

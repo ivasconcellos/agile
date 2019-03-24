@@ -1,0 +1,61 @@
+<%= form_with(model: quiz_resposta_aluno, local: true) do |form| %>
+  <% if quiz_resposta_aluno.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(quiz_resposta_aluno.errors.count, "erro(s)") %> Resposta não pôde ser salva!:</h2>
+
+      <ul>
+      <% quiz_resposta_aluno.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :usuario_curso_id %>
+  <% if @pergunta %>
+    <div class="card-body">
+   
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Quiz</label>
+        <div class="col-md-6">
+          <%= @pergunta.quiz.nome %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Pergunta</label>
+        <div class="col-md-6">
+          <%= @pergunta.descricao.html_safe %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Pontuação</label>
+        <div class="col-md-6">
+          <%= @pergunta.pontuacao %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Opções</label>
+        <div class="col-md-6">
+          <% QuizPerguntaResposta.where(quiz_pergunta_id: @pergunta.id).each do |resposta| %>
+                <p><%= form.radio_button :resposta_pergunta_id, resposta.id, required: true %>
+                <%= resposta.descricao %></p>
+          <% end %>      
+        </div>
+      </div>
+
+    </div>
+     
+    <div class="card-footer text-muted">
+      <%= form.submit "Salvar Resposta", class: "btn btn-md btn-primary" %>
+    </div>
+
+  <% else %>
+    <div class="card-footer text-muted">
+      <%= link_to 'Próxima pergunta', {controller: 'quiz_resposta_alunos', action: 'new', pergunta_id: quiz_resposta_aluno.resposta_pergunta.quiz_pergunta.id, quiz_id: quiz_resposta_aluno.resposta_pergunta.quiz_pergunta.quiz_id}, class: "btn btn-md btn-success" %>
+    </div>
+  <% end %>
+
+<% end %>

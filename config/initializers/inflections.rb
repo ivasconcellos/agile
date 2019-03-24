@@ -24,12 +24,12 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'missao', 'missoes'
 	inflect.irregular 'nivel', 'niveis'
 	inflect.irregular 'quiz', 'quizes'
-	inflect.irregular 'pergunta_quiz', 'perguntas_quiz'
-	inflect.irregular 'resposta_pergunta', 'respostas_perguntas'
+	inflect.irregular 'quiz_pergunta', 'quiz_perguntas'
+	inflect.irregular 'quiz_pergunta_resposta', 'quiz_pergunta_respostas'
 	inflect.irregular 'grupo_curso', 'grupos_cursos'
 	inflect.irregular 'badge_aluno', 'badges_alunos'
 	inflect.irregular 'artefato_aluno', 'artefatos_alunos'
-	inflect.irregular 'aluno_resposta', 'aluno_respostas'
+	inflect.irregular 'quiz_resposta_aluno', 'quiz_respostas_alunos'
 	inflect.irregular 'comunicado', 'comunicados'
 end
 

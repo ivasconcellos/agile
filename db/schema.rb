@@ -54,13 +54,13 @@ ActiveRecord::Schema.define(version: 2019_03_24_014538) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "aluno_respostas", force: :cascade do |t|
+  create_table "quiz_resposta_alunos", force: :cascade do |t|
     t.bigint "usuario_curso_id"
     t.bigint "resposta_pergunta_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["resposta_pergunta_id"], name: "index_aluno_respostas_on_resposta_pergunta_id"
-    t.index ["usuario_curso_id"], name: "index_aluno_respostas_on_usuario_curso_id"
+    t.index ["resposta_pergunta_id"], name: "index_quiz_resposta_alunos_on_resposta_pergunta_id"
+    t.index ["usuario_curso_id"], name: "index_quiz_resposta_alunos_on_usuario_curso_id"
   end
 
   create_table "answer_groups", force: :cascade do |t|
@@ -409,14 +409,14 @@ ActiveRecord::Schema.define(version: 2019_03_24_014538) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "respostas_perguntas", force: :cascade do |t|
-    t.bigint "pergunta_quiz_id"
+  create_table "quiz_pergunta_respostas", force: :cascade do |t|
+    t.bigint "quiz_pergunta_id"
     t.text "descricao"
     t.text "comentario"
     t.boolean "correta", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pergunta_quiz_id"], name: "index_respostas_perguntas_on_pergunta_quiz_id"
+    t.index ["quiz_pergunta_id"], name: "index_quiz_pergunta_respostas_on_quiz_pergunta_id"
   end
 
   create_table "salas_chat", force: :cascade do |t|
@@ -505,8 +505,8 @@ ActiveRecord::Schema.define(version: 2019_03_24_014538) do
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "aluno_respostas", "respostas_perguntas"
-  add_foreign_key "aluno_respostas", "usuario_curso"
+  add_foreign_key "quiz_resposta_alunos", "quiz_pergunta_respostas"
+  add_foreign_key "quiz_resposta_alunos", "usuario_curso"
   add_foreign_key "artefatos_alunos", "artefatos"
   add_foreign_key "artefatos_alunos", "usuario_curso"
   add_foreign_key "tarefa_avaliacao", "tarefa_alunos"
@@ -541,7 +541,7 @@ ActiveRecord::Schema.define(version: 2019_03_24_014538) do
   add_foreign_key "perguntas_quiz", "quizes"
   add_foreign_key "quizes", "missoes"
   add_foreign_key "quizes", "usuario_curso"
-  add_foreign_key "respostas_perguntas", "perguntas_quiz"
+  add_foreign_key "quiz_pergunta_respostas", "perguntas_quiz"
   add_foreign_key "salas_chat", "cursos"
   add_foreign_key "salas_chat", "usuario_curso"
   add_foreign_key "tarefa_alunos", "tarefas"
