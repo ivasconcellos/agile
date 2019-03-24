@@ -1,11 +1,10 @@
 <%= render partial: "answers/errors", locals: {answer: answer} %>
 <script>
-
-function ValidaData(data){
+	function ValidaData(data){
 	exp = /\d{2}\/\d{2}\/\d{4}/
 	if(!exp.test(data.value))
 		alert('Data Inválida!');			
-}
+	}
 </script>
 
 <li><b><%= @contador +=1 %>- <%= answer.question.pergunta %><% if answer.question.rules[:presence] == "1" %>*<% end %></b></li>

@@ -496,7 +496,7 @@ ActiveRecord::Schema.define(version: 2019_03_14_131957) do
 
   add_foreign_key "aluno_respostas", "respostas_perguntas"
   add_foreign_key "aluno_respostas", "usuario_curso"
-  add_foreign_key "artefatos_alunos", "artefatos"
+  add_foreign_key "artefatos_alunos", "artefatos", column: "artefato_id"
   add_foreign_key "artefatos_alunos", "usuario_curso"
   add_foreign_key "avaliacao_tarefa", "tarefa_alunos"
   add_foreign_key "avaliacao_tarefa", "usuario_curso"
