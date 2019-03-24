@@ -3,9 +3,9 @@ class AvataresController < ApplicationController
   before_action :authenticate_usuario!
 
   def index
+    authorize! :index, Avatar
     @q = Avatar.ransack(params[:q])
     @avatares = @q.result.paginate(page: params[:page]).order('nome')
-    authorize! :index, Avatar
   end
 
   # GET /avatares/1
@@ -61,10 +61,15 @@ class AvataresController < ApplicationController
   def destroy
     authorize! :destroy, Avatar
     @grupo = @avatar.grupo
-    @avatar.destroy
+    
     respond_to do |format|
-      format.html { redirect_to @grupo, notice: 'Avatar excluído com sucesso!' }
-      format.json { head :no_content }
+      if @avatar.destroy
+        format.html { redirect_to @grupo, notice: 'Avatar excluído com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @grupo, alert: 'O Avatar não pôde ser excluído, pois está sendo utilizado!' }
+        format.json { head :no_content }
+      end
     end
   end
 

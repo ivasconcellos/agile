@@ -14,15 +14,14 @@
   <div class="card-body">
     <%= form.hidden_field :grupo_id %>
     
-    <% if not avatar.grupo_id? %>
-      <div class="form-group row">
-        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Tema curso*</label>
-        <div class="col-md-6">
-          <%= form.collection_select(:tema_curso_id, Grupo.all.order('nome'), :id, :nome, :prompt => true, class: "form-control") %>
-        </div>
-      </div>
-    <% end %>
   
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Grupo*</label>
+      <div class="col-md-6">
+        <%= @avatar.grupo.nome %>
+      </div>
+    </div>
+
     <div class="form-group row">
       <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
       <div class="col-md-6">

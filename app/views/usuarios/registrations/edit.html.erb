@@ -2,10 +2,11 @@
 
   <div class="card-header">Atualizar dados</div> 
 
-  <div class="card-body">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= devise_error_messages! %>
 
+    <div class="card-body">
       <div class="form-group row">
         <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome</label>
         <div class="col-md-6">
@@ -57,12 +58,12 @@
           <%= f.password_field :current_password, autocomplete: "off", class: "form-control", placeholder: "Necessária para confirmar as mudanças!" %> 
         </div>
       </div>
+    </div>
 
-      <div class="text-center">
-        <%= f.submit "Atualizar", class: "btn btn-md btn-primary" %>
-        <%= link_to "Voltar", :back, class: "btn btn-md btn-secondary" %>
-      </div>
-    <% end %>
-
-  </div>
+    <div class="card-footer text-muted">
+      <%= f.submit "Atualizar", class: "btn btn-md btn-primary" %>
+      <%= link_to "Voltar", :back, class: "btn btn-md btn-secondary" %>
+    </div>
+  <% end %>
+  
 </div>

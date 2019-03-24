@@ -62,10 +62,15 @@ class GruposController < ApplicationController
   # DELETE /grupos/1.json
   def destroy
     authorize! :destroy, Grupo
-    @grupo.destroy
+    
     respond_to do |format|
-      format.html { redirect_to grupos_url, notice: 'Grupo excluído com sucesso!' }
-      format.json { head :no_content }
+      if @grupo.destroy
+        format.html { redirect_to grupos_url, notice: 'Grupo excluído com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to grupos_url, alert: 'O Grupo não pôde ser excluído, pois está em uso!' }
+        format.json { head :no_content }
+      end
     end
   end
 

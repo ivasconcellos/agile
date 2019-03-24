@@ -33,6 +33,13 @@
 		        		<%= @grupo.created_at.strftime("%d/%m/%Y - %H:%M:%S") %>
 		        	</p>
 		        </div>
+
+		        <div class="input-group mb-3">
+		            <p>
+		            	<label>Atualizado em: </label>          
+		        		<%= @grupo.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %>
+		        	</p>
+		        </div>
 	    	</div>
 	    </div>
 
@@ -65,7 +72,7 @@
 			              <td><%= link_to 'Atualizar', edit_avatar_path(avatar) %></td>
 			            <% end %>
 			            <% if can? :destroy, Avatar %>
-			              <td><%= link_to 'Excluir', avatar, method: :delete, data: { confirm: 'Deseja realmente excluir o Avatar do Tema do Curso?' } %></td>
+			              <td><%= link_to 'Excluir', avatar, method: :delete, data: { confirm: 'Deseja realmente excluir o Avatar do Grupo?' } %></td>
 			            <% end %>
 			          </tr>
 			        <% end %>

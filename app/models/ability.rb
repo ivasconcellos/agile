@@ -18,8 +18,6 @@ class Ability
           can :manage, UsuarioCurso
           can :manage, Forum
           can :manage, ForumComentario
-          can :manage, TemaCurso
-          can :manage, Avatar
           can :manage, Tarefa
           can :read, TarefaAluno
           can :manage, TarefaAvaliacao
@@ -45,7 +43,6 @@ class Ability
           can :show, Curso
           can :read, Forum
           can :manage, ForumComentario
-          can :manage, Avatar
           can :perms_read_and_update, UsuarioCurso
           can :read, Tarefa
           can :perms_without_delete, TarefaAluno

@@ -5,9 +5,9 @@ class TemaCursosController < ApplicationController
   # GET /temas_cursos
   # GET /temas_cursos.json
   def index
+    authorize! :index, TemaCurso
     @q = TemaCurso.ransack(params[:q])
     @tema_cursos = @q.result.paginate(page: params[:page]).order('nome')
-    authorize! :index, TemaCurso
   end
 
   # GET /temas_cursos/1
@@ -62,10 +62,15 @@ class TemaCursosController < ApplicationController
   # DELETE /temas_cursos/1.json
   def destroy
     authorize! :destroy, TemaCurso
-    @tema_curso.destroy
+    
     respond_to do |format|
-      format.html { redirect_to temas_cursos_url, notice: 'Tema do curso excluído com sucesso!' }
-      format.json { head :no_content }
+      if @tema_curso.destroy
+        format.html { redirect_to temas_cursos_url, notice: 'Tema do curso excluído com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to temas_cursos_url, notice: 'O Tema do curso não pôde ser excluído, pois está sendo utilizado!' }
+        format.json { head :no_content }
+      end
     end
   end
 

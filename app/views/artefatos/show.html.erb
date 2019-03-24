@@ -1,6 +1,6 @@
 <div class="card">
 
-  <div class="card-header">Artefato do Tema do Curso</div>
+  <div class="card-header">Artefato</div>
 
 
   <div class="card-body">
@@ -47,6 +47,13 @@
           <p>
             <label>Cadastrado em: </label>          
             <%= @artefato.created_at.strftime("%d/%m/%Y - %H:%M:%S") %>
+          </p>
+        </div>
+
+        <div class="input-group mb-3">
+          <p>
+            <label>Atualizado em: </label>          
+            <%= @artefato.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %>
           </p>
         </div>
 

@@ -5,9 +5,9 @@ class NiveisController < ApplicationController
   # GET /niveis
   # GET /niveis.json
   def index
+    authorize! :index, Nivel
     @q = Nivel.ransack(params[:q])
     @niveis = @q.result.paginate(page: params[:page]).order('nome')
-    authorize! :read, Nivel
   end
 
   # GET /niveis/1
@@ -61,10 +61,14 @@ class NiveisController < ApplicationController
   # DELETE /niveis/1.json
   def destroy
     authorize! :destroy, Nivel
-    @nivel.destroy
     respond_to do |format|
-      format.html { redirect_to niveis_url, notice: 'Nível excluído com sucesso!' }
-      format.json { head :no_content }
+      if @nivel.destroy
+        format.html { redirect_to niveis_url, notice: 'Nível excluído com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to niveis_url, alert: 'O Nível não pôde excluído, pois está sendo utilizado!' }
+        format.json { head :no_content }
+      end
     end
   end
 
