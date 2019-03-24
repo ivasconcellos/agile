@@ -1,5 +1,6 @@
 class ComunicadosController < ApplicationController
   before_action :set_comunicado, only: [:show]
+  before_action :authenticate_usuario!
 
   # GET /comunicados
   # GET /comunicados.json
