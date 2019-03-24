@@ -39,6 +39,7 @@ class Ability
           can :notas_aluno,:notas
           can :read, AlunoResposta
           can :notas_turma, :curso
+          can :manage, Comunicado
         elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
           can :manage, Comentario
           can :read, Modulo
@@ -60,6 +61,7 @@ class Ability
           can :minhas_notas,:notas
           can :manage, AlunoResposta
           can :read, Material
+          can :read, Comunicado
         else
           can :read, Curso
         end
