@@ -1,6 +1,8 @@
 class UsuariosController < ApplicationController
 	before_action :set_usuario, only: [:edit, :show, :update]
 	before_action :authenticate_usuario!, :except => [:termo_compromisso]
+	skip_before_action :perfil
+	before_action :perfil, except: [:termo_compromisso]
 
 	def index
 		authorize! :index, Usuario
@@ -33,7 +35,7 @@ class UsuariosController < ApplicationController
 		respond_to do |format|
     		format.html
     		format.js
-  		end
+			end
 	end
 
 	private 
