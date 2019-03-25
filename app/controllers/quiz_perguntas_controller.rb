@@ -5,20 +5,20 @@ class QuizPerguntasController < ApplicationController
   # GET /perguntas_quiz/1
   # GET /perguntas_quiz/1.json
   def show
-    authorize! :show, QuizPerguntas
+    authorize! :show, QuizPergunta
     @quiz_pergunta_respostas = QuizPerguntaResposta.where(quiz_pergunta_id: @quiz_pergunta)
   end
 
   # GET /perguntas_quiz/new
   def new
-    authorize! :new, QuizPerguntas
+    authorize! :new, QuizPergunta
     @quiz_pergunta = QuizPergunta.new
     @quiz_pergunta.quiz_id = params[:quiz_id]
   end
 
   # GET /perguntas_quiz/1/edit
   def edit
-    authorize! :edit, QuizPerguntas
+    authorize! :edit, QuizPergunta
   end
 
   # POST /perguntas_quiz
@@ -54,12 +54,16 @@ class QuizPerguntasController < ApplicationController
   # DELETE /perguntas_quiz/1
   # DELETE /perguntas_quiz/1.json
   def destroy
-    authorize! :destroy, QuizPerguntas
-    @quiz = @quiz_pergunta.quiz
-    @quiz_pergunta.destroy
+    authorize! :destroy, QuizPergunta
+        
     respond_to do |format|
-      format.html { redirect_to @quiz, notice: 'Pergunta do Quiz excluída com sucesso!' }
-      format.json { head :no_content }
+      if @quiz_pergunta.destroy
+        format.html { redirect_to @quiz_pergunta.quiz, notice: 'Pergunta do Quiz excluída com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @quiz_pergunta.quiz, alert: 'A Pergunta do Quiz não pôde ser excluída, pois está sendo utilizada!' }
+        format.json { head :no_content }
+      end
     end
   end
 

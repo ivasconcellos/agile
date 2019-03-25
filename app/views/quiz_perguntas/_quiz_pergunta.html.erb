@@ -1,4 +1,4 @@
-<% @quizzes_perguntas.each_with_index do |quiz_pergunta, index| %>
+<% @quiz_perguntas.each_with_index do |quiz_pergunta, index| %>
 
   <div class="card">
     <div class="card-header2 bg-primary text-left">
@@ -17,7 +17,7 @@
 
     <div class="card-body bg-dark">
       <p class="card-text">
-        <div id="<%= quiz_pergunta.id %>"><% @quiz_pergunta_respostas = QuizPerguntaResposta.where(quiz_pergunta_id: quiz_pergunta.id).order('created_at') %><%= render 'quiz_pergunta_respostas/resposta_pergunta', :collection => @quiz_pergunta_respostas %></div>
+        <div id="<%= quiz_pergunta.id %>"><% @quiz_pergunta_respostas = QuizPerguntaResposta.where(quiz_pergunta_id: quiz_pergunta.id).order('created_at') %><%= render 'quiz_pergunta_respostas/quiz_pergunta_resposta', :collection => @quiz_pergunta_respostas %></div>
 
 
         <div id="task-form<%= quiz_pergunta.id %>" style="display:none;"></div>

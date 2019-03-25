@@ -8,7 +8,7 @@ class TarefaAluno < ApplicationRecord
   validates :tarefa, uniqueness: { scope: :usuario_curso }
   
   has_one_attached :arquivo
-  validates :arquivo, attached: true, size: { less_than: 10.megabytes , message: 'Imagem muito grande. Máximo de 10 MB.' }
+  validates :arquivo, attached: true, size: { less_than: 10.megabytes , message: 'Arquivo muito grande. O tamanho máximo deve ser 10 MB.' }
   
   validate :validate_content_type
 

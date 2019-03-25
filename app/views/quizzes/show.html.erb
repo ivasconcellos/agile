@@ -8,12 +8,15 @@
       <%= link_to '', @missao, method: :delete, data: { confirm: 'Deseja realmente excluir o Quiz?' }, class: "fa fa-trash text-white" %>
     <% end %>
   </div>
+
   <% if @quiz.pontuacao  %>
     <div class="alert alert-danger">A pontuação total das Perguntas é menor que a pontuação da Missão </div>
   <% end %>
+
   <% if !@quiz.finalizado  %>
     <div class="alert alert-danger">O Quiz ainda não foi finalizado! Por favor finalize para que esteja disponível aos alunos! </div>
   <% end %>
+
   <ul class="list-group">
     <li class="list-group-item"><b>Nome:</b> <%= @quiz.nome %></li>
     <li class="list-group-item"><b>Descrição:</b> <%= @quiz.descricao %></li>
@@ -27,7 +30,7 @@
 
   <br>
 
-  <div><%= render 'perguntas_quiz/quiz_pergunta', :collection => @perguntas_quizes %></div>
+  <div><%= render 'quiz_perguntas/quiz_pergunta', :collection => @quiz_perguntas %></div>
 
 
   <div class="card-footer text-muted">
@@ -37,7 +40,7 @@
     <% if can? :new, Quiz %>
       <%= link_to 'Finalizar Quiz', {controller: 'quizzes', action: 'finalizar_quiz', id: @quiz.id}, class: "btn btn-md btn-warning" %>
     <% end %>
-    <%= link_to 'Voltar para Missão', :back, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar para Missão', @quiz.missao, class: "btn btn-md btn-secondary" %>
   </div>
 
   

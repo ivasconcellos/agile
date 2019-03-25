@@ -1,7 +1,7 @@
 <%= form_with(model: tarefa, local: true) do |form| %>
   <% if tarefa.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(tarefa.errors.count, "erro(s)") %> Missão (Tarefa) não pôde ser salva!</h2>
+      <h2><%= pluralize(tarefa.errors.count, "erro(s)") %> Tarefa não pôde ser salva!</h2>
 
       <ul>
       <% tarefa.errors.full_messages.each do |message| %>
@@ -12,19 +12,8 @@
   <% end %>
 
   <%= form.hidden_field :missao_id %>
-  <%= form.hidden_field :usuario_curso_id %>
-
+  
   <div class="card-body">
-
-    <% if not @tarefa.missao_id %>
-
-      <div class="form-group row">
-        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Missão*</label>
-        <div class="col-md-6">
-          <%= form.collection_select(:missao_id, Missao.joins(:modulo).where('modulos.curso_id = ?', current_usuario.curso_atual).order('nome'), :id, :nome, :prompt => true, class: "form-control") %>
-        </div>
-      </div>
-    <% end %>
 
     <div class="form-group row">
         <label for="inputTexto" class="col-md-2 offset-md-2 col-form-label">Nome*</label>

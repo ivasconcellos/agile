@@ -15,16 +15,6 @@
 
   <div class="card-body">
 
-    <% if not @quiz.missao_id %>
-
-      <div class="form-group row">
-        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Missão*</label>
-        <div class="col-md-6">
-          <%= form.collection_select(:missao_id, Missao.joins(:modulo).where('modulos.curso_id = ?', current_usuario.curso_atual).order('nome'), :id, :nome, :prompt => true, class: "form-control") %>
-        </div>
-      </div>
-    <% end %>
-
     <div class="form-group row">
       <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
       <div class="col-md-6">

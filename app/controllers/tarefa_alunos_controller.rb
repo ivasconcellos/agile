@@ -5,11 +5,11 @@ class TarefaAlunosController < ApplicationController
   # GET /tarefa_alunos
   # GET /tarefa_alunos.json
   def index
+    authorize! :new, Tarefa
     @tarefa = Tarefa.find(params[:id])
     @tarefas_alunos = TarefaAluno.where(tarefa_id: @tarefa)
     @alunos_sem_envio = UsuarioCurso.joins(:tarefa_aluno).where.not("usuario_curso.perfil = ? and
       tarefa_alunos.tarefa_id = ?", "Aluno", @tarefa)
-    authorize! :new, Tarefa
   end
 
   # GET /tarefa_alunos/1
@@ -23,7 +23,6 @@ class TarefaAlunosController < ApplicationController
     authorize! :new, TarefaAluno
     @tarefa_aluno = TarefaAluno.new
     @tarefa_aluno.tarefa_id = params[:tarefa_id]
-    @tarefa_aluno.usuario_curso_id = @perfil.id
   end
 
   # GET /tarefa_alunos/1/edit
@@ -35,7 +34,7 @@ class TarefaAlunosController < ApplicationController
   # POST /tarefa_alunos.json
   def create
     @tarefa_aluno = TarefaAluno.new(tarefa_aluno_params)
-
+    @tarefa_aluno.usuario_curso_id = @perfil.id
     respond_to do |format|
       if @tarefa_aluno.save
         format.html { redirect_to @tarefa_aluno, notice: 'Tarefa do aluno cadastrada com sucesso!' }
@@ -58,17 +57,6 @@ class TarefaAlunosController < ApplicationController
         format.html { render :edit, @current_usuario => current_usuario}
         format.json { render json: @tarefa_aluno.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /tarefa_alunos/1
-  # DELETE /tarefa_alunos/1.json
-  def destroy
-    authorize! :destroy, TarefaAluno
-    @tarefa_aluno.destroy
-    respond_to do |format|
-      format.html { redirect_to tarefa_alunos_url, notice: 'Tarefa do aluno excluída com sucesso!' }
-      format.json { head :no_content }
     end
   end
 

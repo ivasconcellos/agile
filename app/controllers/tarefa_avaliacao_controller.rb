@@ -58,17 +58,6 @@ class TarefaAvaliacaoController < ApplicationController
     end
   end
 
-  # DELETE /tarefa_avaliacao/1
-  # DELETE /tarefa_avaliacao/1.json
-  def destroy
-    authorize! :destroy, TarefaAvaliacao
-    @tarefa_avaliacao.destroy
-    respond_to do |format|
-      format.html { redirect_to tarefa_avaliacao_index_url, notice: 'Avaliação da tarefa excluída com sucesso!' }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tarefa_avaliacao

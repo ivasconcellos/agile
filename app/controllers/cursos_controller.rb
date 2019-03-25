@@ -23,9 +23,6 @@ class CursosController < ApplicationController
     @usuario_curso = UsuarioCurso.where(curso_id: @curso.id, usuario_id: current_usuario.id)
     @conversas = []
     #@conversas = Conversa.where(destinatario_id: @perfil.id, lida: false)
-    if @perfil and @perfil.perfil == 'Professor'
-      @curso.alerta  
-    end
   end
 
   def descricao

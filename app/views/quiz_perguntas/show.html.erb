@@ -17,7 +17,7 @@
     <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
   </div>
 
-  <div id="resposta_pergunta"><%= render 'quiz_pergunta_respostas/resposta_pergunta', :collection => @quiz_pergunta_respostas %></div>
+  <div id="resposta_pergunta"><%= render 'quiz_pergunta_respostas/quiz_pergunta_resposta', :collection => @quiz_pergunta_respostas %></div>
 
   <div id="pergunta-form" style="display:none;"></div>
 

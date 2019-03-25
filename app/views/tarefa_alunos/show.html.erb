@@ -13,10 +13,13 @@
 	   <li class="list-group-item"><b>Arquivo:</b> <%= link_to image_tag("documento.png", :alt => "documento", size: "50x50"), url_for(@tarefa_aluno.arquivo), target: 'blank' %></li>
        <li class="list-group-item"><b>Última atualização:</b> <%= @tarefa_aluno.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
         <li class="list-group-item"><b>Avaliada:</b> <%= @tarefa_aluno.avaliada? ? 'Sim' : 'Não' %></li>
+        <% if @tarefa_aluno.tarefa_avaliacao %>
+        	<li class="list-group-item"><b>Pontuação obtida:</b> <%= @tarefa_aluno.tarefa_avaliacao.nota %></li>
+        <% end %>
 	</ul>
 
 	<div class="card-footer text-muted">
-	  <% if can? :edit, TarefaAluno %>
+	  <% if can? :edit, TarefaAluno and no_prazo(@tarefa_aluno.tarefa.missao) and !@tarefa_aluno.tarefa_avaliacao %>
 	    <%= link_to 'Atualizar', edit_tarefa_aluno_path(@tarefa_aluno), class: "btn btn-md btn-primary" %>
 	  <% end %>
 	<% if @tarefa_aluno.tarefa_avaliacao %>

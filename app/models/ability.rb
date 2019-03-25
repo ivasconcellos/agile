@@ -20,7 +20,7 @@ class Ability
           can :manage, ForumComentario
           can :manage, Tarefa
           can :read, TarefaAluno
-          can :manage, TarefaAvaliacao
+          can :perms_without_delete, TarefaAvaliacao
           can :manage, Quiz
           can :manage, Evento
           can :read, Grupo

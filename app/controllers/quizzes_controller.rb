@@ -6,15 +6,15 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1.json
   def show
     authorize! :show, Quiz
-    @perguntas_quizzes = QuizPergunta.where(quiz_id: @quiz)
+    @quiz_perguntas = QuizPergunta.where(quiz_id: @quiz)
     @quiz.pontuacao
   end
 
   # GET /quizzes/new
   def new
+    authorize! :new, Quiz
     @quiz = Quiz.new
     @quiz.missao_id = params[:missao_id]
-    authorize! :new, Quiz
   end
 
   # GET /quizzes/1/edit
@@ -56,14 +56,20 @@ class QuizzesController < ApplicationController
   # DELETE /quizzes/1.json
   def destroy
     authorize! :detroy, Quiz
-    @quiz.destroy
+    
     respond_to do |format|
-      format.html { redirect_to quizzes_url, notice: 'Quiz excluído com sucesso!' }
-      format.json { head :no_content }
+      if @quiz.destroy
+        format.html { redirect_to quizzes_url, notice: 'Quiz excluído com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to quizzes_url, alert: 'O Quiz não pôde ser excluído, pois está sendo utilizado!' }
+        format.json { head :no_content }
+      end
     end
   end
 
   def finalizar_quiz
+    authorize! :new, Quiz
     @quiz.finalizado = true
     @quiz.save
     respond_to do |format|
