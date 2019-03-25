@@ -5,9 +5,9 @@ class BadgesController < ApplicationController
   # GET /badges
   # GET /badges.json
   def index
+    authorize! :index, Badge
     @q = Badge.ransack(params[:q])
     @badges = @q.result.paginate(page: params[:page]).order('nome')
-    authorize! :index, Badge
   end
 
   # GET /badges/1
@@ -61,10 +61,14 @@ class BadgesController < ApplicationController
   # DELETE /badges/1.json
   def destroy
     authorize! :destroy, Badge
-    @badge.destroy
     respond_to do |format|
-      format.html { redirect_to badges_url, notice: 'Badge excluída com sucesso!' }
-      format.json { head :no_content }
+      if @badge.destroy
+        format.html { redirect_to badges_url, notice: 'Badge excluída com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to badges_url, alert: 'A Badge não pôde ser excluída, pois está sendo utilizada!' }
+        format.json { head :no_content }
+      end
     end
   end
 

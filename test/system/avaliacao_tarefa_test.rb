@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class AvaliacaoTarefasTest < ApplicationSystemTestCase
+class TarefaAvaliacaosTest < ApplicationSystemTestCase
   setup do
     @avaliacao_tarefa = avaliacao_tarefa(:one)
   end

@@ -13,6 +13,7 @@ class CursosController < ApplicationController
   # GET /cursos/1
   # GET /cursos/1.json
   def show
+    authorize! :show, Curso
     @curso = Curso.find(current_usuario.curso_atual_id)
     @modulos = Modulo.where(curso_id: current_usuario.curso_atual_id, publico: true)
     @materiais = Material.joins(:modulo).where('modulos.curso_id = ?',
@@ -20,11 +21,8 @@ class CursosController < ApplicationController
     @missoes = Missao.joins(:modulo).where('modulos.curso_id = ?',
     current_usuario.curso_atual_id).order('updated_at')
     @usuario_curso = UsuarioCurso.where(curso_id: @curso.id, usuario_id: current_usuario.id)
-    @conversas = Conversa.where(destinatario_id: @perfil.id, lida: false)
-    if @perfil.perfil == 'Professor'
-      @curso.alerta  
-    end
-    authorize! :show, Curso
+    @conversas = []
+    #@conversas = Conversa.where(destinatario_id: @perfil.id, lida: false)
   end
 
   def descricao
@@ -36,7 +34,11 @@ class CursosController < ApplicationController
   def new
     authorize! :new, Curso
     @curso = Curso.new
-    @curso.codigo_acesso = SecureRandom.urlsafe_base64 6
+    char = (?0..?z).grep(/\w/)
+    begin
+      str = char.shuffle.take(8).join
+    end while Curso.exists?( :codigo_acesso => str)
+    @curso.codigo_acesso = str
   end
 
   # GET /cursos/1/edit
@@ -79,10 +81,15 @@ class CursosController < ApplicationController
   # DELETE /cursos/1.json
   def destroy
     authorize! :destroy, Curso
-    @curso.destroy
+    
     respond_to do |format|
-      format.html { redirect_to cursos_url, notice: 'Curso excluído com sucesso!' }
-      format.json { head :no_content }
+      if @curso.destroy
+        format.html { redirect_to cursos_url, notice: 'Curso excluído com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to cursos_url, alert: 'O Curso não pôde ser excluído, pois está sendo utilizado!' }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -92,9 +99,9 @@ class CursosController < ApplicationController
   end
 
   def notas
+    authorize! :notas_turma, :curso
     @modulos = Modulo.where('curso_id = ?',
        current_usuario.curso_atual_id)
-    authorize! :notas_turma, :curso
   end
 
   private

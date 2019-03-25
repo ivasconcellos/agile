@@ -5,9 +5,9 @@ class ArtefatosController < ApplicationController
   # GET /artefatos
   # GET /artefatos.json
   def index
+    authorize! :index, Artefato
     @q = Artefato.ransack(params[:q])
     @artefatos = @q.result.paginate(page: params[:page]).order('nome')
-    authorize! :index, Artefato
   end
 
   # GET /artefatos/1
@@ -62,10 +62,15 @@ class ArtefatosController < ApplicationController
   # DELETE /artefatos/1.json
   def destroy
     authorize! :destroy, Artefato
-    @artefato.destroy
+    
     respond_to do |format|
-      format.html { redirect_to artefatos_url, notice: 'Artefato excluído com sucesso!' }
-      format.json { head :no_content }
+      if @artefato.destroy
+        format.html { redirect_to artefatos_url, notice: 'Artefato excluído com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to artefatos_url, alert: 'O Artefato não pôde ser excluído, pois está sendo utilizado!' }
+        format.json { head :no_content }
+      end
     end
   end
 

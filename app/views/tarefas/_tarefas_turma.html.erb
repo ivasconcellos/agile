@@ -14,7 +14,7 @@
         <tr>
           <td><%= link_to aluno.nickname, notas_aluno_url(aluno_id: aluno.id, curso_id: tarefa.missao.modulo.curso.id) %></td>
           <td><%= tarefa.missao.pontuacao %></td>
-          <td><%= minha_nota(tarefa.missao.id, aluno.id) %></td>
+          <td><%= minha_nota(tarefa.id, aluno.id) %></td>
           <td><%= enviada(tarefa.id, aluno.id) %></td>
           <td><%= avaliada(tarefa.id, aluno.id) %></td>
         </tr>

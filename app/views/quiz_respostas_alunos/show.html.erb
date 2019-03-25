@@ -1,0 +1,84 @@
+<div class="card">
+
+  <div class="card-header">Resposta Quiz</div>
+
+  <% if @quiz_resposta_aluno.quiz_pergunta_resposta.correta? %>
+  	<div class="alert alert-success"> Parabéns! Você acertou!</div>
+  <% else %>
+  	<div class="alert alert-danger"> Resposta incorreta! Revise o conteúdo para melhorar!</div>
+  <% end %>
+
+  <div class="card-body">
+
+    <div class="row">
+
+      <div class="col-lg-12">
+
+        <div class="input-group mb-3">
+          <p>
+            <label>Quiz: </label>          
+            <%= @quiz_resposta_aluno.quiz_pergunta_resposta.quiz_pergunta.quiz.nome %>
+          </p>
+        </div>
+
+      	<div class="input-group mb-3">
+          <p><label>Pergunta: </label></p>
+          <p><%= @quiz_resposta_aluno.quiz_pergunta_resposta.quiz_pergunta.descricao.html_safe %></p>
+        </div>
+
+        <div class="input-group mb-3">
+          <p><label>Pontuação: </label></p>
+          <p><%= @quiz_resposta_aluno.quiz_pergunta_resposta.quiz_pergunta.pontuacao %></p>
+        </div>
+
+        <div class="input-group mb-3">
+          <p>
+            <label>Sua resposta: </label>          
+            <%= resposta_correta(@quiz_resposta_aluno.quiz_pergunta_resposta) %>
+          </p>
+        </div>
+
+        <div class="input-group mb-3">
+          <p><label>Respostas: </label></p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th class="text-center">Opções de Resposta</th>
+                <th class="text-center">Comentário</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @respostas.each do |resposta| %>
+                <tr>
+                  <td><%= resposta_correta(resposta) %></td>
+                  <% if resposta.comentario? %>
+                    <td><%= resposta.comentario.html_safe %></td>
+                  <% else %>
+                    <td>-</td>
+                  <% end %> 
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>       
+
+        <div class="input-group mb-3">
+          <p>
+            <label>Resposta salva em: </label>          
+            <%= @quiz_resposta_aluno.created_at.strftime("%d/%m/%Y - %H:%M:%S") %>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <br>
+  <div class="card-footer text-muted">
+    <%= link_to 'Próxima pergunta', {controller: 'quiz_respostas_alunos', action: 'new', pergunta_id: @quiz_resposta_aluno.quiz_pergunta_resposta.quiz_pergunta.id, quiz_id: @quiz_resposta_aluno.quiz_pergunta_resposta.quiz_pergunta.quiz_id}, class: "btn btn-md btn-success" %>
+  </div>
+
+</div>

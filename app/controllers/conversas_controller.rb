@@ -2,12 +2,13 @@ class ConversasController < ApplicationController
   before_action :authenticate_usuario!
 
   def index
+    authorize! :index, Conversa
     @professores = UsuarioCurso.where(perfil: 'Professor', curso_id: current_usuario.curso_atual)
     @alunos = UsuarioCurso.where(perfil: 'Aluno', curso_id: current_usuario.curso_atual)
-    authorize! :index, Conversa
   end
 
   def new
+    authorize! :new, Conversa
     @conversa = Conversa.new
     @conversa.destinatario_id = params[:destinatario_id]
     @conversa.conversa_id = params[:id]
@@ -16,12 +17,11 @@ class ConversasController < ApplicationController
       @conversa.conversa_id = @inicial.id
       @conversa.assunto = @inicial.assunto
     end
-    authorize! :new, Conversa
   end
 
   def show
-    @conversa = Conversa.find(params[:id])
     authorize! :show, Conversa
+    @conversa = Conversa.find(params[:id])
   end
 
   def create

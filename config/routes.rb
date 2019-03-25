@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :comunicados
-  resources :aluno_respostas, except: [:index]
+  resources :quiz_respostas_alunos, except: [:index]
   resources :dicas, except: [:index]
   resources :artefatos_alunos, except: [:show, :edit, :destroy]
   resources :eventos
@@ -10,19 +10,19 @@ Rails.application.routes.draw do
   resources :grupos_cursos
   resources :artefatos
   resources :grupos
-  resources :respostas_perguntas
-  resources :perguntas_quiz, except: [:index]
-  resources :quizes, except: [:index]
+  resources :quiz_pergunta_respostas
+  resources :quiz_perguntas, except: [:index]
+  resources :quizzes, except: [:index]
   resources :niveis
   resources :missoes, except: [:index]
   resources :badges
   resources :salas_chat
-  resources :avaliacao_tarefa, except: [:index]
+  resources :tarefa_avaliacao, except: [:index]
   resources :tarefa_alunos
   resources :tarefas, except: [:index]
   resources :modulos
   resources :avatares
-  resources :comentarios, except: [:index, :show]
+  resources :foruns_comentarios, except: [:index, :show]
   resources :foruns
   resources :explicacoes, except: [:index]
   resources :usuario_curso
@@ -67,9 +67,9 @@ Rails.application.routes.draw do
 
   get 'equipe' => 'grupos_cursos#lista_participantes'
 
-  get 'resultado_final_quiz' => 'aluno_respostas#resultado_final_quiz'
+  get 'resultado_final_quiz' => 'quiz_respostas_alunos#resultado_final_quiz'
 
-  get 'finalizar_quiz' => 'quizes#finalizar_quiz'
+  get 'finalizar_quiz' => 'quizzes#finalizar_quiz'
   #Conversas
   get 'conversas_professor' => 'conversas#conversas_professor'
   get 'conversas_assunto' => 'conversas#conversas_assunto'

@@ -8,7 +8,7 @@ class Missao < ApplicationRecord
   has_one_attached :imagem
   
   validates :imagem, size: { less_than: 10.megabytes, 
-    message: 'Imagem muito grande. Máximo de 10 MB.' }, 
+    message: 'Imagem muito grande. O tamanho máximo deve ser 10 MB.' }, 
     content_type: [ "image/png", "image/jpg", "image/jpeg"] 
     
   validates_presence_of :nome, :descricao, :tipo, :pontuacao, :data_inicio, :hora_inicio, :data_termino, :hora_termino

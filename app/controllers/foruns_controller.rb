@@ -6,14 +6,14 @@ class ForunsController < ApplicationController
   # GET /foruns.json
   def index
     authorize! :index, Forum
-    @foruns = Forum.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
+    @foruns = Forum.where(curso_id: @perfil.curso_id).page(params[:page])
   end
 
   # GET /foruns/1
   # GET /foruns/1.json
   def show
     authorize! :show, Forum
-    @comentario = Comentario.where(forum_id: @forum)
+    @forum_comentario = ForumComentario.where(forum_id: @forum)
   end
 
   # GET /foruns/new
@@ -63,10 +63,15 @@ class ForunsController < ApplicationController
   # DELETE /foruns/1.json
   def destroy
     authorize! :destroy, Forum
-    @forum.destroy
+    
     respond_to do |format|
-      format.html { redirect_to foruns_url, notice: 'Fórum excluído com sucesso!' }
-      format.json { head :no_content }
+      if @forum.destroy
+        format.html { redirect_to foruns_url, notice: 'Fórum excluído com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to foruns_url, alert: 'O Fórum não pôde ser excluído, pois está sendo utilizado!' }
+        format.json { head :no_content }
+      end
     end
   end
 

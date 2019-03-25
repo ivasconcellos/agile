@@ -7,7 +7,8 @@
         <thead>
           <tr>
             <th class="text-center">Assunto</th>
-            <th class="text-center">Data</th>
+            <th class="text-center">Data de envio</th>
+            <th class="text-center">Opção</th>
           </tr>
         </thead>
         <tbody>
@@ -15,6 +16,7 @@
             <tr>
               <td><%= comunicado.assunto %></td>
               <td><%= comunicado.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></td>
+              <td><%= link_to 'Visualizar', comunicado %></td>
             </tr>
           <% end %>
         </tbody>

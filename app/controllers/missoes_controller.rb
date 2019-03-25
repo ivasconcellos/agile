@@ -5,15 +5,14 @@ class MissoesController < ApplicationController
   # GET /missoes/1
   # GET /missoes/1.json
   def show
-    @dicas = Dica.where(missao_id: @missao.id).order(:nome)
     authorize! :show, Missao
+    @dicas = Dica.where(missao_id: @missao.id).order(:nome)
   end
 
   # GET /missoes/new
   def new
     authorize! :new, Missao
     @missao = Missao.new
-    @missao.usuario_curso_id = @perfil.id
     @missao.modulo_id = params[:modulo_id]
   end
 
@@ -26,7 +25,7 @@ class MissoesController < ApplicationController
   # POST /missoes.json
   def create
     @missao = Missao.new(missao_params)
-
+    @missao.usuario_curso_id = @perfil.id
     respond_to do |format|
       if @missao.save
         format.html { redirect_to @missao, notice: 'Missão cadastrada com sucesso!' }
@@ -56,10 +55,15 @@ class MissoesController < ApplicationController
   # DELETE /missoes/1.json
   def destroy
     authorize! :destroy, Missao
-    @missao.destroy
+    
     respond_to do |format|
-      format.html { redirect_to @missao.modulo, notice: 'Missão excluída com sucesso!' }
-      format.json { head :no_content }
+      if @missao.destroy
+        format.html { redirect_to @missao.modulo, notice: 'Missão excluída com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @missao.modulo, alert: 'A Missão não pôde ser excluída, pois está sendo utilizada!' }
+        format.json { head :no_content }
+      end
     end
   end
 

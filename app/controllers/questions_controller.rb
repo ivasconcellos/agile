@@ -4,20 +4,20 @@ class QuestionsController < ApplicationController
 	before_action :find_question!, :only => [:edit, :update, :destroy]
 	
 	def index
-		@questions = @question_group.questions
 		authorize! :index, Question
+		@questions = @question_group.questions
 	end
 
 	def show
-		@question = Question.find(params[:id])
 		authorize! :show, Question
+		@question = Question.find(params[:id])
 	end
 
 	def new
+		authorize! :new, Question
 		@question = QuestionForm.new(:question_group => @question_group)
 		@question.question_group_id = params[:question_group_id]
 		@question.tipo = params[:tipo]
-		authorize! :new, Question
 	end
 
 	def create
@@ -37,8 +37,8 @@ class QuestionsController < ApplicationController
 	end
 
 	def edit
-		@question = QuestionForm.new(:question => @question)
 		authorize! :edit, Question
+		@question = QuestionForm.new(:question => @question)
 	end
 
 	def update
@@ -59,11 +59,17 @@ class QuestionsController < ApplicationController
 	def destroy
 		authorize! :destroy, Question
 		@grupo = @question.question_group_id
-		@question.destroy
+		
 		respond_to do |format|
-      		format.html { redirect_to :controller => 'questions', :action => 'index', :question_group_id => @grupo, :empresa_id => @empresa }
-			flash[:notice] = ('Pergunta excluída com sucesso!')
-      		format.json { head :no_content }
+			if @question.destroy
+	      		format.html { redirect_to :controller => 'questions', :action => 'index', :question_group_id => @grupo, :empresa_id => @empresa }
+				flash[:notice] = ('Pergunta excluída com sucesso!')
+	      		format.json { head :no_content }
+	      	else
+	      		format.html { redirect_to :controller => 'questions', :action => 'index', :question_group_id => @grupo, :empresa_id => @empresa }
+				flash[:alert] = ('A Pergunta não pôde ser excluída, pois está sendo utilizada!')
+	      		format.json { head :no_content }
+	      	end
     	end
 	end
 

@@ -1,14 +1,14 @@
 class TarefaAluno < ApplicationRecord
   belongs_to :tarefa
   belongs_to :usuario_curso
-  has_one :avaliacao_tarefa
+  has_one :tarefa_avaliacao
 
   self.per_page = 10
 
   validates :tarefa, uniqueness: { scope: :usuario_curso }
   
   has_one_attached :arquivo
-  validates :arquivo, attached: true, size: { less_than: 10.megabytes , message: 'Imagem muito grande. Máximo de 10 MB.' }
+  validates :arquivo, attached: true, size: { less_than: 10.megabytes , message: 'Arquivo muito grande. O tamanho máximo deve ser 10 MB.' }
   
   validate :validate_content_type
 

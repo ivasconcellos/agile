@@ -1,0 +1,38 @@
+<%= form_with(model: quiz, local: true) do |form| %>
+  <% if quiz.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(quiz.errors.count, "erro(s)") %> - Quiz não pôde ser salvo!</h2>
+
+      <ul>
+      <% quiz.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :missao_id %>
+
+  <div class="card-body">
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
+      <div class="col-md-6">
+        <%= form.text_field :nome, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Descrição*</label>
+      <div class="col-md-6">
+        <%= form.text_area :descricao, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card-footer text-muted">
+    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', @quiz.missao, class: "btn btn-md btn-secondary" %>
+  </div>
+<% end %>

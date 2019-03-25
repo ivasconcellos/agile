@@ -14,7 +14,7 @@ class TarefasController < ApplicationController
     authorize! :new, Tarefa
     @tarefa = Tarefa.new
     @tarefa.missao_id = params[:missao_id]
-    @tarefa.usuario_curso_id = @perfil.id
+    
   end
 
   # GET /tarefas/1/edit
@@ -26,7 +26,7 @@ class TarefasController < ApplicationController
   # POST /tarefas.json
   def create
     @tarefa = Tarefa.new(tarefa_params)
-
+    @tarefa.usuario_curso_id = @perfil.id
     respond_to do |format|
       if @tarefa.save
         format.html { redirect_to @tarefa, notice: 'Tarefa cadastrada com sucesso!' }
@@ -57,10 +57,15 @@ class TarefasController < ApplicationController
   # DELETE /tarefas/1.json
   def destroy
     authorize! :destroy, Tarefa
-    @tarefa.destroy
+    
     respond_to do |format|
-      format.html { redirect_to tarefas_url, notice: 'Tarefa excluída com sucesso!' }
-      format.json { head :no_content }
+      if @tarefa.destroy
+        format.html { redirect_to @tarefa.missao, notice: 'Tarefa excluída com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @tarefa.missao, alert: 'A Tarefa não pôde ser excluída, pois está sendo utilizada!' }
+        format.json { head :no_content }
+      end
     end
   end
 

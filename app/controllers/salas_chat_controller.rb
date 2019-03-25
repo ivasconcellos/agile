@@ -5,16 +5,16 @@ class SalasChatController < ApplicationController
   # GET /sala_chat
   # GET /sala_chat.json
   def index
-    @salas_chat = SalaChat.where(curso_id: current_usuario.curso_atual_id).page(params[:page])
     authorize! :index, SalaChat
+    @salas_chat = SalaChat.where(curso_id: @perfil.curso_id).page(params[:page])
   end
 
   # GET /sala_chat/1
   # GET /sala_chat/1.json
   def show
+    authorize! :show, SalaChat
     @sala_chat = SalaChat.includes(:mensagens).find_by(id: params[:id])
     @mensagem = Mensagem.new
-    authorize! :show, SalaChat
   end
 
   # GET /sala_chat/new
@@ -27,15 +27,13 @@ class SalasChatController < ApplicationController
   # GET /sala_chat/1/edit
   def edit
     authorize! :edit, SalaChat
-    authorize! :new, SalaChat
   end
 
   # POST /sala_chat
   # POST /sala_chat.json
   def create
     @sala_chat = SalaChat.new(sala_chat_params)
-    @usuario = UsuarioCurso.select(:id).where(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id).first
-    @sala_chat.usuario_curso_id = @usuario.id
+    @sala_chat.usuario_curso_id = @perfil.id
     respond_to do |format|
       if @sala_chat.save
         format.html { redirect_to @sala_chat, notice: 'Sala de chat cadastrada com sucesso!' }
@@ -65,10 +63,15 @@ class SalasChatController < ApplicationController
   # DELETE /sala_chat/1.json
   def destroy
     authorize! :destroy, SalaChat
-    @sala_chat.destroy
+    
     respond_to do |format|
-      format.html { redirect_to sala_chat_index_url, notice: 'Sala de chat excluída com sucesso!' }
-      format.json { head :no_content }
+      if @sala_chat.destroy
+        format.html { redirect_to salas_chat_url, notice: 'Sala de chat excluída com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to salas_chat_url, alert: 'A Sala de chat não pôde ser excluída, pois está sendo utilizada!' }
+        format.json { head :no_content }
+      end
     end
   end
 

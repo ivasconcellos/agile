@@ -6,7 +6,7 @@ class GruposCursosController < ApplicationController
   # GET /grupos_cursos.json
   def index
     authorize! :index, GrupoCurso
-    @grupos_cursos = GrupoCurso.where(curso_id: current_usuario.curso_atual.id
+    @grupos_cursos = GrupoCurso.where(curso_id: @perfil.curso_id
       ).page(params[:page]).order('nome_curso')
   end
 
@@ -21,7 +21,7 @@ class GruposCursosController < ApplicationController
   def new
     authorize! :new, GrupoCurso
     @grupo_curso = GrupoCurso.new
-    @grupo_curso.curso_id = current_usuario.curso_atual.id
+    @grupo_curso.curso_id = @perfil.curso_id
   end
 
   # GET /grupos_cursos/1/edit
@@ -63,17 +63,21 @@ class GruposCursosController < ApplicationController
   # DELETE /grupos_cursos/1.json
   def destroy
     authorize! :destroy, GrupoCurso
-    @grupo_curso.destroy
+    
     respond_to do |format|
-      format.html { redirect_to grupos_cursos_url, notice: 'Grupo do curso excluído com sucesso!' }
-      format.json { head :no_content }
+      if @grupo_curso.destroy
+        format.html { redirect_to grupos_cursos_url, notice: 'Grupo do curso excluído com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to grupos_cursos_url, alert: 'O Grupo do curso não pôde ser excluído, pois está sendo utilizado!' }
+        format.json { head :no_content }
+      end
     end
   end
 
   def lista_participantes
-    @usuario = UsuarioCurso.find_by(curso_id: current_usuario.curso_atual, usuario_id: current_usuario.id)
-    @lista_participantes = UsuarioCurso.where(grupo_curso_id: @usuario.grupo_curso_id).page(params[:page]).order('nickname')
-    authorize! :lista_participantes, :grupo
+    authorize! :lista_participantes, :grupo_curso
+    @lista_participantes = UsuarioCurso.where(grupo_curso_id: @perfil.grupo_curso_id).page(params[:page]).order('nickname')
   end
 
   private

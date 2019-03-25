@@ -6,7 +6,7 @@ class ModulosController < ApplicationController
   # GET /modulos.json
   def index
     authorize! :index, Modulo
-    @modulos = Modulo.where(curso_id: current_usuario.curso_atual_id).page(params[:page]).order('nome')
+    @modulos = Modulo.where(curso_id: @perfil.curso_id).page(params[:page]).order('nome')
   end
 
   # GET /modulos/1
@@ -64,10 +64,15 @@ class ModulosController < ApplicationController
   # DELETE /modulos/1.json
   def destroy
     authorize! :destroy, Modulo
-    @modulo.destroy
+   
     respond_to do |format|
-      format.html { redirect_to modulos_url, notice: 'Módulo excluído com sucesso!' }
-      format.json { head :no_content }
+      if  @modulo.destroy
+        format.html { redirect_to modulos_url, notice: 'Módulo excluído com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to modulos_url, alert: 'O Módulo não pôde ser excluído, pois está sendo utilizado!' }
+        format.json { head :no_content }
+      end
     end
   end
 

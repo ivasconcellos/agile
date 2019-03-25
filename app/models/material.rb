@@ -3,10 +3,8 @@ class Material < ApplicationRecord
   validates_presence_of :nome
   self.per_page = 10
   
-  #has_attached_file :arquivo, styles: {medium: "300x300", thumb:"100x100"}, default_url: "/images/:style/missing.png"
-
   has_one_attached :arquivo
-  validates :arquivo, size: { less_than: 10.megabytes , message: 'is not given between size' }    
+  validates :arquivo, size: { less_than: 10.megabytes , message: 'Arquivo muito grande. O tamanho máximo deve ser 10 MB.' }    
   
   validate :validate_content_type
   def validate_content_type

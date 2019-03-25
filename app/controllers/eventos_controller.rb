@@ -1,3 +1,4 @@
+
 class EventosController < ApplicationController
   before_action :set_evento, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_usuario!
@@ -6,7 +7,7 @@ class EventosController < ApplicationController
   # GET /eventos.json
   def index
     authorize! :index, Evento
-    @eventos = Evento.where(curso_id: current_usuario.curso_atual_id).page(params[:page]).order('data desc')
+    @eventos = Evento.where(curso_id: @perfil.curso_id).page(params[:page]).order('data desc')
   end
 
   # GET /eventos/1
@@ -19,7 +20,7 @@ class EventosController < ApplicationController
   def new
     authorize! :new, Evento
     @evento = Evento.new
-    @evento.curso_id = @perfil.curso.id
+    @evento.curso_id = @perfil.curso_id
   end
 
   # GET /eventos/1/edit

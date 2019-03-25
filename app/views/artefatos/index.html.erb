@@ -38,6 +38,7 @@
         <thead>
           <tr>
             <th class="text-center">Nome</th>
+            <th class="text-center">Pontos requeridos</th>
             <th class="text-center">Ativo</th>
             <th class="text-center">Imagem</th>
             <th colspan="3" class="text-center">Opções</th>
@@ -47,6 +48,7 @@
           <% @artefatos.each do |artefato| %>
             <tr>
               <td><%= artefato.nome %></td>
+              <td><%= artefato.pontos_requeridos %></td>
               <td><%= artefato.ativo? ? 'Sim' : 'Não' %></td>
               <td><%= image_tag artefato.imagem.variant(resize: "100x100"), class: "img-responsive" %></td>
               <td><%= link_to 'Visualizar', artefato %></td>

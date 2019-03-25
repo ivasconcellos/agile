@@ -13,19 +13,22 @@
 	   <li class="list-group-item"><b>Arquivo:</b> <%= link_to image_tag("documento.png", :alt => "documento", size: "50x50"), url_for(@tarefa_aluno.arquivo), target: 'blank' %></li>
        <li class="list-group-item"><b>Última atualização:</b> <%= @tarefa_aluno.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
         <li class="list-group-item"><b>Avaliada:</b> <%= @tarefa_aluno.avaliada? ? 'Sim' : 'Não' %></li>
+        <% if @tarefa_aluno.tarefa_avaliacao %>
+        	<li class="list-group-item"><b>Pontuação obtida:</b> <%= @tarefa_aluno.tarefa_avaliacao.nota %></li>
+        <% end %>
 	</ul>
 
 	<div class="card-footer text-muted">
-	  <% if can? :edit, TarefaAluno %>
+	  <% if can? :edit, TarefaAluno and no_prazo(@tarefa_aluno.tarefa.missao) and !@tarefa_aluno.tarefa_avaliacao %>
 	    <%= link_to 'Atualizar', edit_tarefa_aluno_path(@tarefa_aluno), class: "btn btn-md btn-primary" %>
 	  <% end %>
-	<% if @tarefa_aluno.avaliacao_tarefa %>
-		<% if can? :edit, AvaliacaoTarefa %>
-			<%= link_to 'Editar Avaliação',  edit_avaliacao_tarefa_path(@tarefa_aluno.avaliacao_tarefa), class: "btn btn-md btn-danger" %>
+	<% if @tarefa_aluno.tarefa_avaliacao %>
+		<% if can? :edit, TarefaAvaliacao %>
+			<%= link_to 'Editar Avaliação',  edit_tarefa_avaliacao_path(@tarefa_aluno.tarefa_avaliacao), class: "btn btn-md btn-danger" %>
 		<% end %>
 	<% else %>
-		<% if can? :new, AvaliacaoTarefa %>
-			<%= link_to 'Avaliar Tarefa', {controller: 'avaliacao_tarefa', action: 'new', tarefa_aluno_id: @tarefa_aluno.id}, class: "btn btn-md btn-danger" %>
+		<% if can? :new, TarefaAvaliacao %>
+			<%= link_to 'Avaliar Tarefa', {controller: 'tarefa_avaliacao', action: 'new', tarefa_aluno_id: @tarefa_aluno.id}, class: "btn btn-md btn-danger" %>
 		<% end %>
 	<% end %>
 	  <%= link_to 'Voltar', @tarefa_aluno.tarefa, class: "btn btn-md btn-secondary" %>

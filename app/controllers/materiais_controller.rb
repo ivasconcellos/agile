@@ -55,10 +55,15 @@ class MateriaisController < ApplicationController
   # DELETE /materiais/1.json
   def destroy
     authorize! :destroy, Material
-    @material.destroy
+    
     respond_to do |format|
-      format.html { redirect_to @material.modulo.curso, notice: 'Material excluído com sucesso!' }
-      format.json { head :no_content }
+      if @material.destroy
+        format.html { redirect_to @material.modulo.curso, notice: 'Material excluído com sucesso!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @material.modulo.curso, notice: 'O Material não pôde ser excluído, pois está sendo utilizado!' }
+        format.json { head :no_content }
+      end
     end
   end
 

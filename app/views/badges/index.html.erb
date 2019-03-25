@@ -5,7 +5,7 @@
     <div class="card-body">
 
       <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-6">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Nome</span>
@@ -17,7 +17,16 @@
         <div class="col-lg-3">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">Ativo</span>
+              <span class="input-group-text" id="basic-addon1">Pontos requeridos</span>
+            </div>
+            <%= f.search_field :pontos_requeridos_eq, :class => 'form-control'  %>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Ativa</span>
             </div>
             <span class="input-group-text borda">
               <%= f.select :ativo_eq,   [['Sim', true], ['Não', false]], :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
@@ -38,6 +47,8 @@
         <thead>
           <tr>
             <th class="text-center">Nome</th>
+            <th class="text-center">Pontos requeridos</th>
+            <th class="text-center">Ativa</th>
             <th class="text-center">Imagem</th>
             <th colspan="3" class="text-center">Opções</th>
           </tr>
@@ -46,6 +57,8 @@
           <% @badges.each do |badge| %>
             <tr>
               <td><%= badge.nome %></td>
+              <td><%= badge.pontos_requeridos %></td>
+              <td><%= badge.ativo? ? 'Sim' : 'Não' %></td>
               <td><%= image_tag badge.imagem.variant(resize: "100x100"), class: "img-responsive" %></td>
               <td><%= link_to 'Visualizar', badge %></td>
               <td>
@@ -67,11 +80,11 @@
 
   <br>
 
-  <% if can? :new, Badge %>
-    <div class="card-footer text-muted">
+  <div class="card-footer text-muted">
+    <% if can? :new, Badge %>
       <%= link_to 'Cadastrar Badge', new_badge_path, class: "btn btn-md btn-primary" %>
-      <%= link_to 'Voltar', controle_gestor_path, class: "btn btn-md btn-secondary" %>
-    </div>
-  <% end %>
+    <% end %>
+    <%= link_to 'Voltar', controle_gestor_path, class: "btn btn-md btn-secondary" %>
+  </div>  
 
 </div>

@@ -4,8 +4,8 @@ class QuestionGroupsController < ApplicationController
 	respond_to :html, only: :results
 
 	def index
-		@question_groups = QuestionGroup.all
 		authorize! :index, QuestionGroup
+		@question_groups = QuestionGroup.all
 	end
 
 	def show
@@ -49,10 +49,15 @@ class QuestionGroupsController < ApplicationController
 
 	def destroy
 		authorize! :destroy, QuestionGroup
-		@question_group.destroy
+		
 		respond_to do |format|
-      		format.html { redirect_to question_groups_url, notice: 'Pesquisa excluída com sucesso!' }
-      		format.json { head :no_content }
+			if @question_group.destroy
+	      		format.html { redirect_to question_groups_url, notice: 'Pesquisa excluída com sucesso!' }
+	      		format.json { head :no_content }
+	      	else
+	      		format.html { redirect_to question_groups_url, alert: 'A Pesquisa não pôde ser excluída, pois está sendo utilizada!' }
+      			format.json { head :no_content }
+	      	end
     	end
 	end
 

@@ -7,6 +7,7 @@ class Curso < ApplicationRecord
 	has_many :salas_chat, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :eventos, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :comunicados, :dependent => :destroy, :dependent => :restrict_with_error
+	has_many :grupos_cursos, :dependent => :destroy, :dependent => :restrict_with_error
 
 	validates_presence_of :nome, :tema_curso_id, :proprietario_id, :codigo_acesso, :data_inicio, :hora_inicio, :data_termino, :hora_termino
 	validates_length_of :codigo_acesso, :minimum => 8, :maximum => 8
