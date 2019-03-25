@@ -5,7 +5,7 @@ class QuizRespostaAluno < ApplicationRecord
   def pontuacao_aluno
   	@usuario = UsuarioCurso.find_by(id: self.usuario_curso_id)
     if self.quiz_pergunta_resposta.correta?
-      @usuario.pontos_experiencia += self.quiz_pergunta_respostas.quiz_pergunta.pontuacao
+      @usuario.pontos_experiencia += self.quiz_pergunta_resposta.quiz_pergunta.pontuacao
       Nivel.verifica_nivel(@usuario)
       Badge.verifica_badge(@usuario)
       Artefato.verifica_artefato(@usuario)
@@ -19,10 +19,10 @@ class QuizRespostaAluno < ApplicationRecord
   private
 
   def unica_resposta
-  	if self.quiz_pergunta_respostas
-	  	@resposta = QuizRespostaAluno.joins(:quiz_pergunta_respostas).where(
+  	if self.quiz_pergunta_resposta
+	  	@resposta = QuizRespostaAluno.joins(:quiz_pergunta_resposta).where(
 	  		'usuario_curso_id = ? and quiz_pergunta_respostas.quiz_pergunta_id = ?',
-	  		 self.usuario_curso_id, self.quiz_pergunta_respostas.quiz_pergunta.id)
+	  		 self.usuario_curso_id, self.quiz_pergunta_resposta.quiz_pergunta.id)
 	  	if !@resposta.empty?
 	  		errors.add(:resposta, " - Você já resposdeu a esta Pergunta!")
 	  	end

@@ -6,7 +6,7 @@ class QuizRespostasAlunosController < ApplicationController
   # GET /quiz_resposta_alunos/1.json
   def show
     authorize! :show, QuizRespostaAluno
-    @respostas = QuizPerguntaResposta.where(quiz_pergunta_id: @quiz_resposta_aluno.resposta_pergunta.quiz_pergunta.id).order('id')
+    @respostas = QuizPerguntaResposta.where(quiz_pergunta_id: @quiz_resposta_aluno.quiz_pergunta_resposta.quiz_pergunta.id).order('id')
     @perguntas = QuizPergunta.where(quiz_id: params[:quiz_id]).order('id').paginate(page: params[:page],:per_page => 1)
   end
 
@@ -20,8 +20,8 @@ class QuizRespostasAlunosController < ApplicationController
       @pergunta = QuizPergunta.where("quiz_id = ? and id > ?",params[:quiz_id], params[:pergunta_id]).first
       if !@pergunta
         respond_to do |format|
-          format.html { redirect_to(controller: 'quiz_resposta_alunos', action: 'resultado_final_quiz', usuario_curso_id: @perfil.id, quiz_id: params[:quiz_id]) }
-          flash[:notice] = ('Pesquisa respondida com sucesso!')
+          format.html { redirect_to(controller: 'quiz_respostas_alunos', action: 'resultado_final_quiz', usuario_curso_id: @perfil.id, quiz_id: params[:quiz_id]) }
+          flash[:notice] = ('Quiz respondido com sucesso!')
         end
       else
         @pergunta
@@ -50,7 +50,7 @@ class QuizRespostasAlunosController < ApplicationController
 
   def resultado_final_quiz
     authorize! :show, QuizRespostaAluno
-    @quiz_resposta_alunos  = QuizRespostaAluno.joins(quiz_pergunta_resposta: :quiz_pergunta).where('usuario_curso_id = ? and  perguntas_quiz.quiz_id = ?',  params[:usuario_curso_id], params[:quiz_id] )
+    @quiz_resposta_alunos  = QuizRespostaAluno.joins(quiz_pergunta_resposta: :quiz_pergunta).where('usuario_curso_id = ? and  quiz_perguntas.quiz_id = ?',  params[:usuario_curso_id], params[:quiz_id] )
     @missao = @quiz_resposta_alunos.first.quiz_pergunta_resposta.quiz_pergunta.quiz.missao
   end
 

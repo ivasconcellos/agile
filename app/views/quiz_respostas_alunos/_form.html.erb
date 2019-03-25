@@ -40,7 +40,7 @@
         <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Opções</label>
         <div class="col-md-6">
           <% QuizPerguntaResposta.where(quiz_pergunta_id: @pergunta.id).each do |resposta| %>
-                <p><%= form.radio_button :resposta_pergunta_id, resposta.id, required: true %>
+                <p><%= form.radio_button :quiz_pergunta_resposta_id, resposta.id, required: true %>
                 <%= resposta.descricao %></p>
           <% end %>      
         </div>
@@ -54,7 +54,7 @@
 
   <% else %>
     <div class="card-footer text-muted">
-      <%= link_to 'Próxima pergunta', {controller: 'quiz_resposta_alunos', action: 'new', pergunta_id: quiz_resposta_aluno.resposta_pergunta.quiz_pergunta.id, quiz_id: quiz_resposta_aluno.resposta_pergunta.quiz_pergunta.quiz_id}, class: "btn btn-md btn-success" %>
+      <%= link_to 'Próxima pergunta', {controller: 'quiz_respostas_alunos', action: 'new', pergunta_id: quiz_resposta_aluno.quiz_pergunta_resposta.quiz_pergunta.id, quiz_id: quiz_resposta_aluno.quiz_pergunta_resposta.quiz_pergunta.quiz_id}, class: "btn btn-md btn-success" %>
     </div>
   <% end %>
 

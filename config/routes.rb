@@ -67,7 +67,7 @@ Rails.application.routes.draw do
 
   get 'equipe' => 'grupos_cursos#lista_participantes'
 
-  get 'resultado_final_quiz' => 'quiz_resposta_alunos#resultado_final_quiz'
+  get 'resultado_final_quiz' => 'quiz_respostas_alunos#resultado_final_quiz'
 
   get 'finalizar_quiz' => 'quizzes#finalizar_quiz'
   #Conversas
