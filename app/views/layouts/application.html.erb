@@ -65,8 +65,13 @@
             <% end %>
             <p class="list-group-item text-center perfil"> <%= link_to @perfil.nickname, @perfil %></p>
             <% if @perfil.perfil == 'Aluno' %>
-              <p class="list-group-item text-center perfil"><label>Nível:</label> <%= @perfil.nivel.nome %></p>
               <p class="list-group-item text-center perfil"><label>XP:</label> <%= @perfil.pontos_experiencia %></p>
+              <p class="list-group-item text-center perfil"><label>Nível:</label> <%= @perfil.nivel.nome %></p>
+              <% if @perfil.grupo_curso %>
+                <p class="list-group-item text-center perfil"><label>Equipe:</label> <%= @perfil.grupo_curso.nome_curso %></p>
+              <% else %>
+                <p class="list-group-item text-center perfil"><%= link_to 'Escolher Equipe', escolher_equipe_url(id: @perfil.id), class: 'text-danger' %></p>
+              <% end %>
             <% end %>
           <% end %>
         </div>
