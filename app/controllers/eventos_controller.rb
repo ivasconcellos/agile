@@ -1,6 +1,5 @@
-
 class EventosController < ApplicationController
-  before_action :set_evento, only: [:show, :edit, :update, :destroy]
+  before_action :set_evento, only: [:show, :edit, :update, :cancelar_evento]
   before_action :authenticate_usuario!
 
   # GET /eventos
@@ -60,14 +59,14 @@ class EventosController < ApplicationController
     end
   end
 
-  # DELETE /eventos/1
-  # DELETE /eventos/1.json
-  def destroy
-    authorize! :destroy, Evento
-    @evento.destroy
+  def cancelar_evento
+    authorize! :cancelar_evento, :evento
+    @evento.ativo = false
+    @evento.save
+    ApplicationMailer.evento_cancelado(@evento).deliver
     respond_to do |format|
-      format.html { redirect_to eventos_url, notice: 'Evento excluído com sucesso!' }
-      format.json { head :no_content }
+      format.html { redirect_to @evento, notice: 'Evento cancelado com sucesso!' }
+      format.json { render :show, status: :ok, location: @evento }
     end
   end
 
@@ -79,6 +78,6 @@ class EventosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def evento_params
-      params.require(:evento).permit(:nome, :descricao, :data, :hora, :curso_id, :usuario_curso_id)
+      params.require(:evento).permit(:nome, :descricao, :data, :hora, :curso_id, :usuario_curso_id, :ativo)
     end
 end

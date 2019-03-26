@@ -4,10 +4,11 @@
       <% if can? :edit, Evento %>
         <%= link_to '', edit_evento_path(@evento), class: "fa fa-edit text-white" %>
       <% end %>
-      <% if can? :destroy, Evento %>
-        <%= link_to '', @evento, method: :delete, data: { confirm: 'Deseja realmente excluir o Evento?' }, class: "fa fa-trash text-white" %>
-      <% end %>
   </div>
+
+  <% if !@evento.ativo %>
+    <div class="alert alert-danger">Evento cancelado!</div>
+  <% end %>
 
   <div class="row">
     <div class="col-md-10 offset-md-1">

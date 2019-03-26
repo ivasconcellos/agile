@@ -9,4 +9,16 @@ class Evento < ApplicationRecord
   def data_hora
     self.data.strftime("%d/%m/%Y") + " - " + self.hora.strftime("%H:%M")
   end
+
+  def evento_no_prazo
+
+	data_hora = (self.data.to_s + " " +  self.hora.to_s).to_datetime
+
+	if data_hora > DateTime.now 
+		return true
+	else
+		return false
+	end
+ 
+  end
 end

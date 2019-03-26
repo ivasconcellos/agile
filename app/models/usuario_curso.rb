@@ -26,7 +26,7 @@ class UsuarioCurso < ApplicationRecord
 	self.per_page = 10
 
 	def evento
-		@eventos = Evento.where('data >= ? and curso_id = ?', Date.today, self.curso.id).order('data')
+		@eventos = Evento.where('data >= ? and curso_id = ? and ativo = ?', Date.today, self.curso.id, true).order('data')
 		if @eventos
 			return @eventos
 		end
