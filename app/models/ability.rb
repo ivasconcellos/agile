@@ -59,6 +59,7 @@ class Ability
           can :manage, QuizRespostaAluno
           can :read, Material
           can :read, Comunicado
+          can :escolher_equipe, UsuarioCurso
         else
           can :read, Curso
         end

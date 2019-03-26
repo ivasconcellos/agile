@@ -1,9 +1,9 @@
 <div class="card">
-    <div class="card-header">Atualizar Avatar</div> 
+    <div class="card-header">Escolher Equipe</div> 
   <%= form_with(model: @usuario_curso, local: true) do |form| %>
     <% if @usuario_curso.errors.any? %>
       <div id="error_explanation" class="alert alert-danger">
-        <h2><%= pluralize(@usuario_curso.errors.count, "erro(s)") %> - Avatar não pode ser atualizado!</h2>
+        <h2><%= pluralize(@usuario_curso.errors.count, "erro(s)") %> - Equipe não pode ser atualizada!</h2>
 
         <ul>
         <% @usuario_curso.errors.full_messages.each do |message| %>
@@ -17,15 +17,11 @@
     <div class="card-body">
 
       <div class="form-group row">
-        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Avatar</label>
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Equipe</label>
         <div class="col-md-6">
-          <% Avatar.where(grupo_id: @perfil.grupo_curso.grupo.id, perfil: @perfil.perfil, ativo: true).each do |avatar| %>
-            <p><%= image_tag avatar.imagem.variant(resize: "200x200"), class: "img-responsive img-thumbnail" %></p>
-            <p><%= form.radio_button :avatar_id, avatar.id %>
-               <%= avatar.nome %></p>
-          <% end %>      
+          <%= form.collection_select(:grupo_curso_id, GrupoCurso.where(curso_id: current_usuario.curso_atual).order('nome_curso'), :id, :nome_curso, :prompt => true, class: "form-control")%>
         </div>
-      </div>    
+      </div>
 
     </div>
     
