@@ -21,7 +21,7 @@
         <% Grupo.where(ativo: true).each do |grupo| %>
           <p><%= image_tag grupo.imagem.variant(resize: "200x200"), class: "img-responsive img-thumbnail" %></p>
           <p><%= form.radio_button :grupo_id, grupo.id %>
-          <%= grupo.nome %></p>
+          <%= grupo.nome %> - Perfil: <%= grupo.perfil %></p>
         <% end %>      
       </div>
     </div>
