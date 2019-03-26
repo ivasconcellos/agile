@@ -13,6 +13,7 @@
 
   <%= form.hidden_field :curso_id %>
 
+  <div class="alert alert-success">Só é possível alterar o Avatar se você fizer parte de uma Equipe!</div>
   <div class="card-body">  
     <% if @perfil.perfil == "Professor" %>
 

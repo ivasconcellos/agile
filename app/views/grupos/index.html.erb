@@ -17,6 +17,17 @@
         <div class="col-lg-3">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Perfil</span>
+            </div>
+            <span class="input-group-text borda">
+              <%= f.select :perfil_eq,   [['Aluno', 'Aluno'], ['Professor', 'Professor']], :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
+            </span>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Ativo</span>
             </div>
             <span class="input-group-text borda">
@@ -37,6 +48,7 @@
         <thead>
           <tr>
             <th class="text-center">Nome</th>
+            <th class="text-center">Perfil</th>
             <th class="text-center">Ativo</th>
             <th class="text-center">Imagem</th>
             <th colspan="3" class="text-center">Opções</th>
@@ -46,6 +58,7 @@
           <% @grupos.each do |grupo| %>
             <tr>
               <td><%= grupo.nome %></td>
+              <td><%= grupo.perfil %></td>
               <td><%= grupo.ativo? ? 'Sim' : 'Não' %></td>
               <td><%= image_tag grupo.imagem.variant(resize: "100x100"), class: "img-responsive" %></td>
               <% if can? :show, Grupo %>
