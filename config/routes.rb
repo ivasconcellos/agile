@@ -70,9 +70,12 @@ Rails.application.routes.draw do
   get 'resultado_final_quiz' => 'quiz_respostas_alunos#resultado_final_quiz'
 
   get 'finalizar_quiz' => 'quizzes#finalizar_quiz'
+
   #Conversas
   get 'conversas_professor' => 'conversas#conversas_professor'
   get 'conversas_assunto' => 'conversas#conversas_assunto'
+
+  get 'cancelar_evento' => 'eventos#cancelar_evento'
  
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

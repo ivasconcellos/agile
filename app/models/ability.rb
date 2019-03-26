@@ -38,6 +38,7 @@ class Ability
           can :read, QuizRespostaAluno
           can :notas_turma, :curso
           can :manage, Comunicado
+          can :cancelar_evento, :evento
         elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
           can :read, Modulo
           can :read, Curso

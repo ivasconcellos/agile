@@ -50,4 +50,10 @@ class ApplicationMailer < ActionMailer::Base
     @mensagem = comunicado.mensagem
     mail to: Usuario.joins(:usuario_curso).where('usuario_curso.curso_id = ? and usuarios.ativo = ?', comunicado.curso.id, true).pluck(:email), subject: @subject
   end
+
+  def evento_cancelado(evento)
+    @subject = 'AGILE: Cancelamento de Evento! ' + evento.data.strftime("%d/%m/%Y") + ' - ' + evento.hora.strftime("%H:%M:%S") 
+    @evento = evento
+    mail to: Usuario.joins(:usuario_curso).where('usuario_curso.curso_id = ? and usuarios.ativo = ?', evento.curso.id, true).pluck(:email), subject: @subject
+  end
 end

@@ -9,7 +9,8 @@
 
   <body>
   	<p>Prezado(a),</p>
-  	<p><%= @mensagem.html_safe %> </p>
-    
+
+  	<p>Informamos que o Evento <%= @evento.nome %> do curso <%= @evento.curso.nome %> marcado para <%= @evento.data_hora %> foi cancelado!</p>
+    <p>Para visualizar mais detalhes, acesse o curso!</p>
   </body>
 </html>

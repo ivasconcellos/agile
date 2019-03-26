@@ -24,8 +24,8 @@
               <% if can? :edit, Evento %>
                <td><%= link_to 'Atualizar', edit_evento_path(evento) %></td>
               <% end %>
-              <% if can? :destroy, Evento %>
-                <td><%= link_to 'Excluir', evento, method: :delete, data: { confirm: 'Deseja realmente excluir o Evento?' } %></td>
+              <% if can? :cancelar_evento, :evento and evento.evento_no_prazo %>
+                <td><%= link_to 'Cancelar', cancelar_evento_url(id: evento), data: { confirm: 'Deseja realmente excluir o Evento?' } %></td>
               <% end %>
             </tr>
           <% end %>
