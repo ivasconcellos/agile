@@ -15,6 +15,12 @@ class Missao < ApplicationRecord
 
   validates_inclusion_of :pontuacao, :in => 0..100, message: " - A pontuação deve ser entre 1 e 100"
   
+  after_create :ordenacao
+
+  def ordenacao
+    ModuloOrdenacao.ordenar(self)
+  end
+
   def data_hora_inicio
     self.data_inicio.strftime("%d/%m/%Y") + " - " + self.hora_inicio.strftime("%H:%M:%S")
   end

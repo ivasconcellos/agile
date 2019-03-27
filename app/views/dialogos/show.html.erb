@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <ul class="list-group">
-        <li class="list-group-item"><b>Título:</b> <%= @dialogo.titulo %></li>
+        <li class="list-group-item"><b>Nome:</b> <%= @dialogo.nome %></li>
         <li class="list-group-item"><b>Texto:</b> <%= @dialogo.texto.to_s.html_safe %></li>
         <li class="list-group-item"><b>Módulo:</b> <%= link_to @dialogo.modulo.nome, @dialogo.modulo %></li>
         <li class="list-group-item"><b>Cadastrado por:</b> <%= @dialogo.usuario_curso.nickname %></li>

@@ -109,13 +109,13 @@
 	      <table class="table table-striped table-sm">
 	        <thead>
 	          <tr>
-	            <th class="text-center">Título</th>
+	            <th class="text-center">Nome</th>
 	          </tr>
 	        </thead>
 	        <tbody>
 	          <% @dialogos.each do |dialogo| %>
 	            <tr>
-	              <td><%= link_to dialogo.titulo, dialogo %></td>
+	              <td><%= link_to dialogo.nome, dialogo %></td>
 	            </tr>
 	          <% end %>
 	        </tbody>
