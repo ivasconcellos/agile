@@ -36,5 +36,10 @@ class Material < ApplicationRecord
     end
   end
      
+  after_create :ordenacao
+
+  def ordenacao
+    ModuloOrdenacao.ordenar(self)
+  end
 end
 

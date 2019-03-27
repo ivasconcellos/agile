@@ -69,6 +69,6 @@ class DialogosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dialogo_params
-      params.require(:dialogo).permit(:titulo, :texto, :usuario_curso_id, :modulo_id)
+      params.require(:dialogo).permit(:nome, :texto, :usuario_curso_id, :modulo_id)
     end
 end

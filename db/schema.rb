@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_26_234000) do
+ActiveRecord::Schema.define(version: 2019_03_27_131130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,7 +177,7 @@ ActiveRecord::Schema.define(version: 2019_03_26_234000) do
   end
 
   create_table "dialogos", force: :cascade do |t|
-    t.string "titulo"
+    t.string "nome"
     t.text "texto"
     t.bigint "usuario_curso_id"
     t.bigint "modulo_id"
@@ -308,6 +308,16 @@ ActiveRecord::Schema.define(version: 2019_03_26_234000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["curso_id"], name: "index_modulos_on_curso_id"
+  end
+
+  create_table "modulos_ordenacoes", force: :cascade do |t|
+    t.bigint "modulo_id"
+    t.integer "indice"
+    t.string "classe"
+    t.integer "classe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["modulo_id"], name: "index_modulos_ordenacoes_on_modulo_id"
   end
 
   create_table "niveis", force: :cascade do |t|
