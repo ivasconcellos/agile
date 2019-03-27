@@ -30,17 +30,17 @@
 		<li class="nav-item text-center"><%= link_to 'Ver todos', ranking_usuario_path, class: 'btn btn-sm btn-success btn-block' %></li>
 	</div>
 
-	<div class="alert alert-info alert-lateral">
-		<li class="nav-item">
-			<i class="fa fa-trophy fa-sm nav-link text-secondary"> Equipes</i>
-		</li>
-	  	
-		<% @perfil.ranking_equipe.each_with_index do |equipe, index| %>
+	<% if  !@perfil.ranking_equipe.empty? %>
+		<div class="alert alert-info alert-lateral">
 			<li class="nav-item">
-				<%= "#{index+1}º #{equipe[0]}: #{equipe[1]}XP" %>
+				<i class="fa fa-trophy fa-sm nav-link text-secondary"> Equipes</i>
 			</li>
-		<% end %>
-		
-		
-	</div>
+		  	
+			<% @perfil.ranking_equipe.each_with_index do |equipe, index| %>
+				<li class="nav-item">
+					<%= "#{index+1}º #{equipe[0]}: #{equipe[1]}XP" %>
+				</li>
+			<% end %>
+		</div>
+	<% end %>
 <% end %>
