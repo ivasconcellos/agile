@@ -2,9 +2,14 @@
   <div class="card">
     <div class="card-header">
       <p>Equipe <%= @perfil.grupo_curso.nome_curso %></p>
-      <p><%= image_tag @perfil.grupo_curso.grupo.imagem.variant(resize: "400x400"), class: 'img-responsive img-thumbnail' %></p></div>
+      <p><%= image_tag @perfil.grupo_curso.grupo.imagem.variant(resize: "400x400"), class: 'img-responsive img-thumbnail' %></p>
+    </div>
 
-    <div><br></div>
+    <div class="alert alert-success">
+      <p>Pontuação Total da Equipe: <%= @perfil.grupo_curso.pontuacao_total %></p>
+      <p>Pontuação Média da Equipe: <%= @perfil.grupo_curso.pontuacao_media %></p>
+    </div>
+
     <div class="card-header bg-primary">Membros da Equipe</div>
     <div class="container-fluid">
       <div class="row">
@@ -19,7 +24,13 @@
                 <% end %>
               </div>
               <div class="card-footer bg-primary text-white">
-                <div><%= link_to participante.nickname, participante, class: "text-white" %></div>
+                <div>
+                  <ul class="list-unstyled components">
+                  <li><%= link_to participante.nickname, participante, class: "text-white" %></li>
+                  <li><b>XP:</b> <%= participante.pontos_experiencia %></li>
+                  <li><b><%= participante.nivel.nome %></b></li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>

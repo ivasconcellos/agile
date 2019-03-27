@@ -37,4 +37,14 @@ class UsuarioCurso < ApplicationRecord
     	@usuarios = UsuarioCurso.where(curso_id: self.curso_id, perfil: 'Aluno').order(pontos_experiencia: :desc).limit(10)
   	end
 
+  	def ranking_equipe
+  		equipes = {}
+  		@grupos = GrupoCurso.joins(:grupo).where('curso_id = ? and grupos.perfil = ?', self.curso.id, 'Aluno')
+  		for grupo in @grupos
+  			equipes[grupo.nome_curso] = UsuarioCurso.where(grupo_curso_id: grupo.id, curso_id: self.curso.id).average('pontos_experiencia')
+  		end  	
+
+  		return Hash[equipes.sort_by{|k, v| v}.reverse]
+  	end
+
 end
