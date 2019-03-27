@@ -6,7 +6,12 @@ class QuizPerguntaResposta < ApplicationRecord
   validate :existe_correta
 
   def existe_correta
-  	@correta = QuizPerguntaResposta.where(quiz_pergunta_id: self.quiz_pergunta_id, correta: true)
+    if self.id
+    	@correta = QuizPerguntaResposta.where('quiz_pergunta_id =? and correta = ? and id != ?', self.quiz_pergunta_id, true, self.id)
+    else
+      @correta = QuizPerguntaResposta.where(quiz_pergunta_id: self.quiz_pergunta_id, correta: true)
+    end
+
   	if !@correta.empty? and self.correta == true
   		errors.add(:correta, " - Já existe uma resposta correta para esta pergunta!")
   	else
