@@ -31,6 +31,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'artefato_aluno', 'artefatos_alunos'
 	inflect.irregular 'quiz_resposta_aluno', 'quiz_respostas_alunos'
 	inflect.irregular 'comunicado', 'comunicados'
+	inflect.irregular 'dialogo', 'dialogos'
 end
 
 # These inflection rules are supported but not enabled by default:

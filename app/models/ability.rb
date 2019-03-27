@@ -40,6 +40,7 @@ class Ability
           can :manage, Comunicado
           can :cancelar_evento, :evento
           can :escolher_equipe, UsuarioCurso
+          can :manage, Dialogo
         elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
           can :read, Modulo
           can :read, Curso
@@ -61,6 +62,7 @@ class Ability
           can :read, Material
           can :read, Comunicado
           can :escolher_equipe, UsuarioCurso
+          can :read, Dialogo
         else
           can :read, Curso
         end

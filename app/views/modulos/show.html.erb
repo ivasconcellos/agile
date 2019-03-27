@@ -5,7 +5,7 @@
 			<%= link_to '', edit_modulo_path(@modulo), class: "fa fa-edit text-white" %>
 		<% end %>
 		<% if can? :destroy, Modulo %>
-			<%= link_to '', @modulo, method: :delete, data: { confirm: 'Deseja realmente excluir o Conteúdo?' }, class: "fa fa-trash text-white" %>
+			<%= link_to '', @modulo, method: :delete, data: { confirm: 'Deseja realmente excluir o Módulo?' }, class: "fa fa-trash text-white" %>
 		<% end %>
 	</div>
   
@@ -101,6 +101,29 @@
 
     <% end %>
 
+    <% if not @dialogos.empty? %>
+
+        <div class="card-header">Diálogos do Módulo</div>
+
+        <div class="table-responsive">
+	      <table class="table table-striped table-sm">
+	        <thead>
+	          <tr>
+	            <th class="text-center">Título</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	          <% @dialogos.each do |dialogo| %>
+	            <tr>
+	              <td><%= link_to dialogo.titulo, dialogo %></td>
+	            </tr>
+	          <% end %>
+	        </tbody>
+	      </table>
+	    </div>
+
+    <% end %>
+
 	
 	<div class="card-footer text-muted">
       	<% if can? :new, Missao %>
@@ -108,6 +131,9 @@
 	  	<% end %>
 		<% if can? :new, Explicacao %>
 	  		<%= link_to  'Inserir Explicação', {controller: 'explicacoes', action: 'new', modulo_id: @modulo.id}, class: "btn btn-md btn-danger" %>
+	  	<% end %>	
+	  	<% if can? :new, Dialogo %>
+	  		<%= link_to  'Inserir Diálogo', {controller: 'dialogos', action: 'new', modulo_id: @modulo.id}, class: "btn btn-md btn-danger" %>
 	  	<% end %>	  	
 	</div>
 

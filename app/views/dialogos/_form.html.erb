@@ -1,0 +1,37 @@
+<%= form_with(model: dialogo, local: true) do |form| %>
+  <% if dialogo.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(dialogo.errors.count, "erro(s)") %> Diálogo não pôde ser salvo!</h2>
+
+      <ul>
+      <% dialogo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :modulo_id %>
+
+  <div class="card-body">  
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Título*</label>
+      <div class="col-md-6">
+        <%= form.text_field :titulo, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Texto*</label>
+      <div class="col-md-6">
+        <%= form.cktext_area :texto, class: "form-control"%>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', dialogo.modulo, class: "btn btn-md btn-secondary" %>
+  </div>
+<% end %>

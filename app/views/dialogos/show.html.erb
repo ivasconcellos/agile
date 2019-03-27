@@ -1,0 +1,29 @@
+<div class="card">
+
+  <div class="card-header">Diálogo
+    <% if can? :edit, Dialogo %>
+      <%= link_to '', edit_dialogo_path(@dialogo), class: "fa fa-edit text-white" %>
+    <% end %>
+    <% if can? :destroy, Dialogo %>
+      <%= link_to '', @dialogo, method: :delete, data: { confirm: 'Deseja realmente excluir o Diálogo?' }, class: "fa fa-trash text-white" %>
+    <% end %>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <ul class="list-group">
+        <li class="list-group-item"><b>Título:</b> <%= @dialogo.titulo %></li>
+        <li class="list-group-item"><b>Texto:</b> <%= @dialogo.texto.to_s.html_safe %></li>
+        <li class="list-group-item"><b>Módulo:</b> <%= link_to @dialogo.modulo.nome, @dialogo.modulo %></li>
+        <li class="list-group-item"><b>Cadastrado por:</b> <%= @dialogo.usuario_curso.nickname %></li>
+        <li class="list-group-item"><b>Cadastrado em:</b> <%= @dialogo.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li> 
+      </ul>
+    </div>
+  </div>
+  
+  <br>
+  
+  <div class="card-footer text-muted">
+    <%= link_to 'Voltar', @dialogo.modulo, class: "btn btn-md btn-secondary" %>
+  </div>
+</div>
