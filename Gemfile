@@ -85,7 +85,6 @@ gem 'bootstrap-datepicker-rails'
 gem 'active_storage_validations'
 
 gem 'rapidfire'
-
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
-gem 'rails_sortable'
+gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
+gem 'acts_as_list'

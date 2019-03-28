@@ -21,6 +21,5 @@ Rails.application.config.assets.precompile += %w(
 	sb-admin.css
 	template_cursos.css
 	font-awesome.min.css
-	plugin.js
 	ckeditor/*
 )

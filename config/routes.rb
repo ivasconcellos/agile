@@ -29,6 +29,12 @@ Rails.application.routes.draw do
   resources :usuario_curso
   resources :materiais, except: [:index]
   resources :cursos
+
+  resources :modulos_ordenacoes do
+    collection do
+      patch :sort
+    end
+  end
   resources :tema_cursos
   devise_for :admins, :skip => [:registrations]
   

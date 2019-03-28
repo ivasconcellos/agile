@@ -1,8 +1,6 @@
 class ModuloOrdenacao < ApplicationRecord
 	belongs_to :modulo
 	validates_presence_of  :classe, :classe_id
-	include RailsSortable::Model
-	set_sortable :sort
 
 	def self.ordenar(objeto)
 	    

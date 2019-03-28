@@ -1,9 +1,5 @@
-<script> 
-$(function() {
-  $('.sortable').railsSortable();
-});
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 
-</script> 
 <div class="card">
   <div class="card-header"><%= @curso.nome %></div>
 
@@ -47,31 +43,31 @@ $(function() {
               <% if modulo.descricao? %>
                 <b> Descrição:</b> <%= modulo.descricao %>
               <% end %>
-
-              <table>
-                <tbody class="sortable">  <!-- sortable target -->
-                  <% ModuloOrdenacao.where(modulo_id: modulo.id).order(:sort).each_with_sortable_id do |ordem_modulo, sortable_id| %>
-                    <tr id="<%= sortable_id %>">  <!-- Needs id tag on sorting elements -->
-                      <% if ordem_modulo.objeto.class == Missao and (ordem_modulo.objeto.publico? or @perfil.perfil != 'Aluno') %>
-                        <%= render 'missoes/missao', ordem_modulo: ordem_modulo  %>
+              
+              <div id="modulos_ordenacoes" class="list-group" data-url="<%= sort_modulos_ordenacoes_path %>">
+                
+                  <% ModuloOrdenacao.where(modulo_id: modulo.id).order(:position).each do |modulo_ordenacao| %>
+                   
+                      <% if modulo_ordenacao.objeto.class == Missao and (modulo_ordenacao.objeto.publico? or @perfil.perfil != 'Aluno') %>
+                        <%= render 'missoes/missao', modulo_ordenacao: modulo_ordenacao  %>
                       <% end %>
 
-                      <% if ordem_modulo.objeto.class == Dialogo %>
-                        <%= render 'dialogos/dialogo', ordem_modulo: ordem_modulo  %>
+                      <% if modulo_ordenacao.objeto.class == Dialogo %>
+                        <%= render 'dialogos/dialogo', modulo_ordenacao: modulo_ordenacao  %>
                       <% end %>
 
-                      <% if ordem_modulo.objeto.class == Explicacao %>
-                        <%= render 'explicacoes/explicacao', ordem_modulo: ordem_modulo  %>
+                      <% if modulo_ordenacao.objeto.class == Explicacao %>
+                        <%= render 'explicacoes/explicacao', modulo_ordenacao: modulo_ordenacao  %>
                       <% end %>
 
-                      <% if ordem_modulo.objeto.class == Material  and (ordem_modulo.objeto.publico? or @perfil.perfil != 'Aluno' )%>
-                        <%= render 'materiais/material', ordem_modulo: ordem_modulo  %>
+                      <% if modulo_ordenacao.objeto.class == Material  and (modulo_ordenacao.objeto.publico? or @perfil.perfil != 'Aluno' )%>
+                        <%= render 'materiais/material', modulo_ordenacao: modulo_ordenacao  %>
                       <% end %>
-                    </tr>
+                  
                   <% end %>
-                </tbody>
-              </table>
-
+                
+              </div>
+        
             </div>           
             
             <div class="col-xl-3 col-sm-3 col-md-3 alert alert-primary">

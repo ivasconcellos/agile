@@ -1,12 +1,12 @@
-<td>        
-  	<%= link_to ordem_modulo.objeto do %>
-      <i class = "fa fa-lightbulb-o text-warning"> <%= ordem_modulo.objeto.nome %></i>
+<div id=modulo_ordenacao_<%= modulo_ordenacao.id %>>        
+    <%= link_to modulo_ordenacao.objeto do %>
+      <i class = "fa fa-lightbulb-o text-warning"> <%= modulo_ordenacao.objeto.nome %></i>
     <% end %>
-    <%= ordem_modulo.sort %>
 	<% if can? :edit, Explicacao %>
-		<%= link_to '', edit_explicacao_path(ordem_modulo.objeto), class: "fa fa-edit" %>
+	<%= link_to '', edit_explicacao_path(modulo_ordenacao.objeto), class: "fa fa-edit" %>
 	<% end %>
 	<% if can? :destroy, Explicacao %>
-	    <%= link_to '', ordem_modulo.objeto, method: :delete, data: { confirm: 'Deseja realmente excluir a Explicação?' }, class: "fa fa-trash" %>
+	<%= link_to '', modulo_ordenacao.objeto, method: :delete, data: { confirm: 'Deseja realmente excluir a Explicação?' }, class: "fa fa-trash" %>
 	<% end %>
-</td>
+</div>
+    

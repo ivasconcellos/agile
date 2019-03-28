@@ -11,12 +11,11 @@
 // about supported directives.
 //
 //= require jquery2
-//= require jquery_ujs
-//= require jquery-ui
-//= require jquery-ui/sortable
 
-//= require plugin
-//= require rails_sortable
+//= require jquery-ui
+//= require jquery_ujs
+//= require jquery-ui/widget
+//= require jquery-ui/sortable
 //= require cable
 //= require activestorage
 //= require turbolinks
