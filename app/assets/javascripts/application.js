@@ -12,12 +12,18 @@
 //
 //= require jquery2
 //= require jquery_ujs
+//= require jquery-ui
+//= require jquery-ui/sortable
+
+//= require plugin
+//= require rails_sortable
 //= require cable
 //= require activestorage
 //= require turbolinks
 //= require ckeditor/init
 
 //= require bootstrap-datepicker
+
 //= require_tree .
 
 function initialize() {
@@ -34,3 +40,4 @@ function initialize() {
     prevText: '<<'
   });
 }
+

@@ -1,10 +1,12 @@
 class ModuloOrdenacao < ApplicationRecord
 	belongs_to :modulo
-	validates_presence_of :indice, :classe, :classe_id
+	validates_presence_of  :classe, :classe_id
+	include RailsSortable::Model
+	set_sortable :sort
 
 	def self.ordenar(objeto)
-	    @indice = ModuloOrdenacao.where(modulo_id: objeto.modulo_id).maximum("indice").to_i
-	    ModuloOrdenacao.create!(modulo_id: objeto.modulo_id, classe: objeto.class.name, classe_id: objeto.id, indice: @indice + 1 )
+	    
+	    ModuloOrdenacao.create!(modulo_id: objeto.modulo_id, classe: objeto.class.name, classe_id: objeto.id )
 	end
 
 	def objeto

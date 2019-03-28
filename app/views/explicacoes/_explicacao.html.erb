@@ -1,11 +1,12 @@
-<li>        
+<td>        
   	<%= link_to ordem_modulo.objeto do %>
       <i class = "fa fa-lightbulb-o text-warning"> <%= ordem_modulo.objeto.nome %></i>
     <% end %>
+    <%= ordem_modulo.sort %>
 	<% if can? :edit, Explicacao %>
 		<%= link_to '', edit_explicacao_path(ordem_modulo.objeto), class: "fa fa-edit" %>
 	<% end %>
 	<% if can? :destroy, Explicacao %>
 	    <%= link_to '', ordem_modulo.objeto, method: :delete, data: { confirm: 'Deseja realmente excluir a Explicação?' }, class: "fa fa-trash" %>
 	<% end %>
-</li>
+</td>
