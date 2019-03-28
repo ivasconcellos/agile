@@ -85,3 +85,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'active_storage_validations'
 
 gem 'rapidfire'
+
+gem 'cpf_cnpj'
+
+gem 'jquery-inputmask-rails'

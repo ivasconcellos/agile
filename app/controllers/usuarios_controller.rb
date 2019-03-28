@@ -20,14 +20,14 @@ class UsuariosController < ApplicationController
 
 	def update
 		respond_to do |format|
-	      if @usuario.update(usuario_params)
-	        format.html { redirect_to @usuario, notice: 'Usuário atualizado com sucesso!' }
-	        format.json { render :show, status: :ok, location: @usuario }
-	      else
-	        format.html { render :edit }
-	        format.json { render json: @usuario.errors, status: :unprocessable_entity }
-	      end
-	    end
+			if @usuario.update(usuario_params)
+				format.html { redirect_to @usuario, notice: 'Usuário atualizado com sucesso!' }
+				format.json { render :show, status: :ok, location: @usuario }
+			else
+				format.html { render :edit }
+				format.json { render json: @usuario.errors, status: :unprocessable_entity }
+			end
+		end
 	end
 
 	def termo_compromisso
@@ -45,7 +45,7 @@ class UsuariosController < ApplicationController
     end
 
     def usuario_params
-    	params.require(:usuario).permit(:nome, :email, :perfil, :data_nascimento, :sexo, :ativo, :termo_compromisso, :password, :password_confirmation, :updated_at, )
+    	params.require(:usuario).permit(:nome, :cpf, :email, :perfil, :data_nascimento, :sexo, :ativo, :termo_compromisso, :password, :password_confirmation, :updated_at, )
     end
 
 end

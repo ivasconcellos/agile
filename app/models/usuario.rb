@@ -8,6 +8,8 @@ class Usuario < ApplicationRecord
   belongs_to :curso_atual, class_name: "Curso", optional: true
   has_many :usuario_curso, :dependent => :destroy
 
+  validate :valida_cpf
+
   self.per_page = 10
   
   USUARIO_COMUM = 'Usuário'
@@ -17,7 +19,11 @@ class Usuario < ApplicationRecord
     USUARIO_COMUM,
     GESTOR_DO_SISTEMA
   ]
-
+  def valida_cpf
+    if CPF.valid?(cpf, strict: true) != true
+      errors.add(:cpf, "Invalido")
+    end
+  end
   def active_for_authentication?
     if ativo?
       super && ativo?

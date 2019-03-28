@@ -21,7 +21,6 @@
 //= require_tree .
 
 function initialize() {
- 
   $(".data").mask("99/99/9999");
   $(".data").datepicker({
     dateFormat: 'dd/mm/yy',
@@ -34,3 +33,11 @@ function initialize() {
     prevText: '<<'
   });
 }
+$( document ).on('turbolinks:load', function() {
+  (function( $ ) {
+    $(function() {
+       $('#cpf').mask('999.999.999-99', {reverse: true});
+    });
+  })(jQuery);
+})
+
