@@ -1,0 +1,41 @@
+<li>
+
+  <% if ordem_modulo.objeto.tipo == "Link" %>
+    <%= link_to extlink(ordem_modulo.objeto.texto), target: "_blank", class: "text-danger" do %>
+      <%= fa_icon "link" %> <%= publico(ordem_modulo.objeto) %>
+    <% end %>
+  <% end %>
+
+  <% if ordem_modulo.objeto.tipo == "Arquivo" %>
+    <%= link_to url_for(ordem_modulo.objeto.arquivo), target: '_blank' do %>
+      <i class = "fa fa-file text-danger"> <%= publico(ordem_modulo.objeto) %></i>
+    <% end %>          
+  <% end %>
+
+  <% if ordem_modulo.objeto.tipo == "Vídeo" %>
+    <%= link_to url_for(ordem_modulo.objeto.arquivo), target: '_blank' do %>
+      <i class = "fa fa-video-camera text-danger"> <%= publico(ordem_modulo.objeto) %></i>
+    <% end %>
+  <% end %>
+
+  <% if ordem_modulo.objeto.tipo == "Imagem" %>
+    <%= link_to url_for(ordem_modulo.objeto.arquivo), target: '_blank' do %>
+      <i class = "fa fa-image text-danger"> <%= publico(ordem_modulo.objeto) %></i>
+    <% end %>
+  <% end %>
+
+  <% if ordem_modulo.objeto.tipo == "Texto" %>
+    <%= link_to material_texto_url(id: ordem_modulo.objeto.id) do %>
+      <i class = "fa fa-text-width text-danger"> <%= publico(ordem_modulo.objeto) %></i>
+    <% end %>
+  <% end %>
+
+
+  <% if can? :edit, Material %>
+    <%= link_to '', edit_material_path(ordem_modulo.objeto), class: "fa fa-edit" %>
+  <% end %>
+  <% if can? :destroy, Material %>
+    <%= link_to '', ordem_modulo.objeto, method: :delete, data: { confirm: 'Deseja realmente excluir o ordem_modulo.objeto?' }, class: "fa fa-trash" %>
+  <% end %>
+</li>
+              

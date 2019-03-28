@@ -1,0 +1,11 @@
+<li>        
+    <%= link_to ordem_modulo.objeto do %>
+      <i class = "fa fa-commenting-o text-dark"> <%= ordem_modulo.objeto.nome %></i>
+    <% end %>
+	<% if can? :edit, Dialogo %>
+	<%= link_to '', edit_dialogo_path(ordem_modulo.objeto), class: "fa fa-edit" %>
+	<% end %>
+	<% if can? :destroy, Dialogo %>
+	<%= link_to '', ordem_modulo.objeto, method: :delete, data: { confirm: 'Deseja realmente excluir o Dialogo?' }, class: "fa fa-trash" %>
+	<% end %>
+</li>
