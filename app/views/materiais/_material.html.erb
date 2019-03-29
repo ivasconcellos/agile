@@ -1,0 +1,41 @@
+<div id=modulo_ordenacao_<%= modulo_ordenacao.id %> class="modulo-item">
+  <% if modulo_ordenacao.objeto.tipo == "Link" %>
+    <%= link_to extlink(modulo_ordenacao.objeto.texto), target: "_blank", class: "text-danger" do %>
+      <%= fa_icon "link" %> <%= publico(modulo_ordenacao.objeto) %>
+    <% end %>
+  <% end %>
+
+  <% if modulo_ordenacao.objeto.tipo == "Arquivo" %>
+    <%= link_to url_for(modulo_ordenacao.objeto.arquivo), target: '_blank' do %>
+      <i class = "fa fa-file text-danger"> <%= publico(modulo_ordenacao.objeto) %></i>
+    <% end %>          
+  <% end %>
+
+  <% if modulo_ordenacao.objeto.tipo == "Vídeo" %>
+    <%= link_to url_for(modulo_ordenacao.objeto.arquivo), target: '_blank' do %>
+      <i class = "fa fa-video-camera text-danger"> <%= publico(modulo_ordenacao.objeto) %></i>
+    <% end %>
+  <% end %>
+
+  <% if modulo_ordenacao.objeto.tipo == "Imagem" %>
+    <%= link_to url_for(modulo_ordenacao.objeto.arquivo), target: '_blank' do %>
+      <i class = "fa fa-image text-danger"> <%= publico(modulo_ordenacao.objeto) %></i>
+    <% end %>
+  <% end %>
+
+  <% if modulo_ordenacao.objeto.tipo == "Texto" %>
+    <%= link_to material_texto_url(id: modulo_ordenacao.objeto.id) do %>
+      <i class = "fa fa-text-width text-danger"> <%= publico(modulo_ordenacao.objeto) %></i>
+    <% end %>
+  <% end %>
+
+
+  <% if can? :edit, Material %>
+    <%= link_to '', edit_material_path(modulo_ordenacao.objeto), class: "fa fa-edit" %>
+  <% end %>
+  <% if can? :destroy, Material %>
+    <%= link_to '', modulo_ordenacao.objeto, method: :delete, data: { confirm: 'Deseja realmente excluir o modulo_ordenacao.objeto?' }, class: "fa fa-trash" %>
+  <% end %>
+</div>
+
+              

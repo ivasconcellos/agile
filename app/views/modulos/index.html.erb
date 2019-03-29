@@ -7,9 +7,6 @@
         <thead>
           <tr>
             <th class="text-center">Nome</th>
-            <th class="text-center">Missões</th>
-            <th class="text-center">Explicações</th>
-            <th class="text-center">Diálogo</th>
             <th colspan="3" class="text-center">Opções</th>
           </tr>
         </thead>
@@ -17,24 +14,6 @@
           <% @modulos.each do |modulo| %>
             <tr>
               <td><%= modulo.nome %></td>
-              <td>
-                <% if can? :new, Missao %>
-                  <%= link_to  'Missões', {controller: 'missoes', action: 'new', modulo_id: modulo.id}, class: "btn btn-sm btn-danger" %>
-                <% else%> - 
-                <% end %>
-              </td>
-              <td>
-                <% if can? :new, Explicacao %>
-                  <%= link_to  'Explicações', {controller: 'explicacoes', action: 'new', modulo_id: modulo.id}, class: "btn btn-sm btn-danger" %>
-                <% else%> - 
-                <% end %>
-              </td>
-               <td>
-                <% if can? :new, Dialogo %>
-                  <%= link_to  'Diálogos', {controller: 'dialogos', action: 'new', modulo_id: modulo.id}, class: "btn btn-sm btn-danger" %>
-                <% else%> - 
-                <% end %>
-              </td>
               <% if can? :show, Modulo %>
                 <td><%= link_to 'Visualizar', modulo %></td>
               <% end %>

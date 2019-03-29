@@ -11,13 +11,18 @@
 // about supported directives.
 //
 //= require jquery2
+
+//= require jquery-ui
 //= require jquery_ujs
+//= require jquery-ui/widget
+//= require jquery-ui/sortable
 //= require cable
 //= require activestorage
 //= require turbolinks
 //= require ckeditor/init
 
 //= require bootstrap-datepicker
+
 //= require_tree .
 
 function initialize() {
@@ -34,3 +39,4 @@ function initialize() {
     prevText: '<<'
   });
 }
+

@@ -14,6 +14,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.precompile += %w(
 	jquery-3.3.1.min.js
+	jquery-ui.min.js
 	bootstrap.min.js
 	jquery.maskedinput.min.js
 	sb-admin.js

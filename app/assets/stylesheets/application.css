@@ -11,8 +11,8 @@
  * It is generally better to create a new file per style scope.
  *
 
- *= require_self
  *= require font-awesome
+ *= require_self
  */
 
 
@@ -153,4 +153,12 @@ td{
   padding: 5px;
   margin-top: 15px;
   text-align: center;
+}
+
+.text-orange{
+  color: #f36811;
+}
+
+.modulo-item{
+  margin-top: 15px;
 }

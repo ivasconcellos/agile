@@ -1,0 +1,12 @@
+<div id=modulo_ordenacao_<%= modulo_ordenacao.id %> class="modulo-item">     
+    <%= link_to modulo_ordenacao.objeto do %>
+      <i class = "fa fa-diamond text-success"> <%= publica(modulo_ordenacao.objeto) %></i>
+    <% end %>
+	<% if can? :edit, Missao %>
+	<%= link_to '', edit_missao_path(modulo_ordenacao.objeto), class: "fa fa-edit" %>
+	<% end %>
+	<% if can? :destroy, Missao %>
+	<%= link_to '', modulo_ordenacao.objeto, method: :delete, data: { confirm: 'Deseja realmente excluir a Missão?' }, class: "fa fa-trash" %>
+	<% end %>
+</div>
+    

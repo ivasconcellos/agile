@@ -16,9 +16,14 @@ class Missao < ApplicationRecord
   validates_inclusion_of :pontuacao, :in => 0..100, message: " - A pontuação deve ser entre 1 e 100"
   
   after_create :ordenacao
+  after_destroy :remocao
 
   def ordenacao
     ModuloOrdenacao.ordenar(self)
+  end
+
+  def remocao
+    ModuloOrdenacao.remover(self)
   end
 
   def data_hora_inicio

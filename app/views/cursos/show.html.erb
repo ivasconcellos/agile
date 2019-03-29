@@ -41,29 +41,57 @@
               <% if modulo.descricao? %>
                 <b> Descrição:</b> <%= modulo.descricao %>
               <% end %>
+              
+              <div id="modulos_ordenacoes" class="list-group " data-url="<%= sort_modulos_ordenacoes_path %>">
+                
+                  <% ModuloOrdenacao.where(modulo_id: modulo.id).order(:position).each do |modulo_ordenacao| %>
+                   
+                      <% if modulo_ordenacao.classe == 'Missao' and (modulo_ordenacao.objeto.publico? or @perfil.perfil != 'Aluno') %>
+                        <%= render 'missoes/missao', modulo_ordenacao: modulo_ordenacao  %>
+                      <% end %>
+
+                      <% if modulo_ordenacao.classe == 'Dialogo' %>
+                        <%= render 'dialogos/dialogo', modulo_ordenacao: modulo_ordenacao  %>
+                      <% end %>
+
+                      <% if modulo_ordenacao.classe == 'Explicacao' %>
+                        <%= render 'explicacoes/explicacao', modulo_ordenacao: modulo_ordenacao  %>
+                      <% end %>
+
+                      <% if modulo_ordenacao.classe == 'Material'  and (modulo_ordenacao.objeto.publico? or @perfil.perfil != 'Aluno' )%>
+                        <%= render 'materiais/material', modulo_ordenacao: modulo_ordenacao  %>
+                      <% end %>
+                  
+                  <% end %>
+                
+              </div>
+        
             </div>           
             
-            <div class="col-xl-3 col-sm-3 col-md-3">
-              <% if can? :new, Material %>
-                <div><%= link_to  ' Inserir Link', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Link'}, class: "fa fa-link" %></div>
-                <div><%= link_to  ' Inserir Arquivo', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Arquivo'}, class: "fa fa-file" %></div>
-                <div><%= link_to  ' Inserir Vídeo', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Vídeo'}, class: "fa fa-video-camera" %></div>
-                <div><%= link_to  ' Inserir Texto', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Texto'}, class: "fa fa-text-width" %></div>
-                <div><%= link_to  ' Inserir Imagem', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Imagem'}, class: "fa fa-image" %></div>
+            <% if @perfil.perfil != 'Aluno' %>
+              <div class="col-xl-3 col-sm-3 col-md-3 alert alert-primary">
+                <div class="text-center alert bg-info text-white font-weight-bold">Recursos</div>
+                <ul class="list-unstyled ">
+                  <% if can? :new, Material %>
+                    <li ><%= link_to  ' Inserir Link', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Link'}, class: "fa fa-link" %></li>
+                    <li><%= link_to  ' Inserir Arquivo', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Arquivo'}, class: "fa fa-file" %></li>
+                    <li><%= link_to  ' Inserir Vídeo', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Vídeo'}, class: "fa fa-video-camera" %></li>
+                    <li><%= link_to  ' Inserir Texto', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Texto'}, class: "fa fa-text-width" %></li>
+                    <li><%= link_to  ' Inserir Imagem', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Imagem'}, class: "fa fa-image" %></li>
+                  <% end %>
+                  <% if can? :new, Missao %>
+                    <li><%= link_to  ' Inserir Missão', {controller: 'missoes', action: 'new', modulo_id: modulo.id}, class: "fa fa-diamond" %></li>
+                  <% end %>
+                  <% if can? :new, Explicacao %>
+                    <li><%= link_to  ' Inserir Explicação', {controller: 'explicacoes', action: 'new', modulo_id: modulo.id}, class: "fa fa-lightbulb-o" %></li>
+                  <% end %>
+                  <% if can? :new, Dialogo %>
+                    <li><%= link_to  ' Inserir Diálogo', {controller: 'dialogos', action: 'new', modulo_id: modulo.id}, class: "fa fa-commenting-o" %></li>
+                  <% end %>
+                </div>
               <% end %>
-            </div>
           </div>
 
-          <div class="row">
-
-            <div class="col-xl-9 col-sm-9 col-md-9">
-              <% ModuloOrdenacao.where(modulo_id: modulo.id).order('indice').each do |ordem_modulo| %>
-              <p><%= link_to ordem_modulo.objeto.nome, ordem_modulo.objeto %></p>
-              <% end %>
-            </div>
-            
-          </div>
-         
         </div>
       </div>
     </div>
