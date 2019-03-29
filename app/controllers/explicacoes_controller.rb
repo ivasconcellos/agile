@@ -27,7 +27,7 @@ class ExplicacoesController < ApplicationController
 
     respond_to do |format|
       if @explicacao.save
-        format.html { redirect_to @explicacao, notice: 'Explicação cadastrada com sucesso!' }
+        format.html { redirect_to @explicacao.modulo.curso, notice: 'Explicação cadastrada com sucesso!' }
         format.json { render :show, status: :created, location: @explicacao }
       else
         format.html { render :new, @current_usuario => current_usuario }
@@ -41,7 +41,7 @@ class ExplicacoesController < ApplicationController
   def update
     respond_to do |format|
       if @explicacao.update(explicacao_params)
-        format.html { redirect_to @explicacao, notice: 'Explicação atualizada com sucesso!' }
+        format.html { redirect_to @explicacao.modulo.curso, notice: 'Explicação atualizada com sucesso!' }
         format.json { render :show, status: :ok, location: @explicacao }
       else
         format.html { render :edit, @current_usuario => current_usuario }
@@ -57,10 +57,10 @@ class ExplicacoesController < ApplicationController
     
     respond_to do |format|
       if @explicacao.destroy
-        format.html { redirect_to @explicacao.modulo, notice: 'Explicação excluída com sucesso!' }
+        format.html { redirect_to @explicacao.modulo.curso, notice: 'Explicação excluída com sucesso!' }
         format.json { head :no_content }
       else
-        format.html { redirect_to @explicacao.modulo, alert: 'A Explicação não pôde ser excluída, pois está sendo utilizada!' }
+        format.html { redirect_to @explicacao.modulo.curso, alert: 'A Explicação não pôde ser excluída, pois está sendo utilizada!' }
         format.json { head :no_content }
       end
     end

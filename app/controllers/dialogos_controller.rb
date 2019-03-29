@@ -27,7 +27,7 @@ class DialogosController < ApplicationController
     @dialogo.usuario_curso_id = @perfil.id
     respond_to do |format|
       if @dialogo.save
-        format.html { redirect_to @dialogo, notice: 'Diálogo cadastrado com sucesso!' }
+        format.html { redirect_to @dialogo.modulo.curso, notice: 'Diálogo cadastrado com sucesso!' }
         format.json { render :show, status: :created, location: @dialogo }
       else
         format.html { render :new }
@@ -41,7 +41,7 @@ class DialogosController < ApplicationController
   def update
     respond_to do |format|
       if @dialogo.update(dialogo_params)
-        format.html { redirect_to @dialogo, notice: 'Diálogo atualizado com sucesso!' }
+        format.html { redirect_to @dialogo.modulo.curso, notice: 'Diálogo atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @dialogo }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class DialogosController < ApplicationController
     authorize! :destroy, Dialogo
     @dialogo.destroy
     respond_to do |format|
-      format.html { redirect_to @dialogo.modulo, notice: 'Diálogo excluído com sucesso!' }
+      format.html { redirect_to @dialogo.modulo.curso, notice: 'Diálogo excluído com sucesso!' }
       format.json { head :no_content }
     end
   end
