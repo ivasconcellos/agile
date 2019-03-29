@@ -8,6 +8,9 @@ class Usuario < ApplicationRecord
   belongs_to :curso_atual, class_name: "Curso", optional: true
   has_many :usuario_curso, :dependent => :destroy
 
+  validates_uniqueness_of :email, :cpf
+  validate :valida_cpf
+
   self.per_page = 10
   
   USUARIO_COMUM = 'Usuário'
@@ -24,4 +27,9 @@ class Usuario < ApplicationRecord
     end
   end
   
+  def valida_cpf
+    if not self.cpf.valid_cpf? 
+      errors.add(:cpf, "Inválido!")
+    end
+  end
 end
