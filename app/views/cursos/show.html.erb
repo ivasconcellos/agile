@@ -1,5 +1,3 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-
 <div class="card">
   <div class="card-header"><%= @curso.nome %></div>
 
@@ -48,19 +46,19 @@
                 
                   <% ModuloOrdenacao.where(modulo_id: modulo.id).order(:position).each do |modulo_ordenacao| %>
                    
-                      <% if modulo_ordenacao.objeto.class == Missao and (modulo_ordenacao.objeto.publico? or @perfil.perfil != 'Aluno') %>
+                      <% if modulo_ordenacao.classe == 'Missao' and (modulo_ordenacao.objeto.publico? or @perfil.perfil != 'Aluno') %>
                         <%= render 'missoes/missao', modulo_ordenacao: modulo_ordenacao  %>
                       <% end %>
 
-                      <% if modulo_ordenacao.objeto.class == Dialogo %>
+                      <% if modulo_ordenacao.classe == 'Dialogo' %>
                         <%= render 'dialogos/dialogo', modulo_ordenacao: modulo_ordenacao  %>
                       <% end %>
 
-                      <% if modulo_ordenacao.objeto.class == Explicacao %>
+                      <% if modulo_ordenacao.classe == 'Explicacao' %>
                         <%= render 'explicacoes/explicacao', modulo_ordenacao: modulo_ordenacao  %>
                       <% end %>
 
-                      <% if modulo_ordenacao.objeto.class == Material  and (modulo_ordenacao.objeto.publico? or @perfil.perfil != 'Aluno' )%>
+                      <% if modulo_ordenacao.classe == 'Material'  and (modulo_ordenacao.objeto.publico? or @perfil.perfil != 'Aluno' )%>
                         <%= render 'materiais/material', modulo_ordenacao: modulo_ordenacao  %>
                       <% end %>
                   
