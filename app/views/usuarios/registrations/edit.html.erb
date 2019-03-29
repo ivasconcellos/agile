@@ -4,32 +4,41 @@
 
   
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <div id="error_explanation" class="alert alert-danger">
       <%= devise_error_messages! %>
+    </div>
 
     <div class="card-body">
       <div class="form-group row">
-        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome</label>
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
         <div class="col-md-6">
           <%= f.text_field :nome, autofocus: true, class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="inputEmail" class="col-md-2 offset-md-2 col-form-label">E-mail</label>
+        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">CPF*</label>
+        <div class="col-md-6">
+          <%= f.text_field :cpf, id: "cpf", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputEmail" class="col-md-2 offset-md-2 col-form-label">E-mail*</label>
         <div class="col-md-6">
           <%= f.email_field :email, class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="inputDataNascimento" class="col-md-2 offset-md-2 col-form-label">Data de nascimento</label>
+        <label for="inputDataNascimento" class="col-md-2 offset-md-2 col-form-label">Data de nascimento*</label>
         <div class="col-md-6">
           <%= f.date_field :data_nascimento, class: "form-control", id: "data_nascimento", value: @usuario.data_nascimento.strftime('%Y-%m-%d') %>
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="inputSexo" class="col-md-2 offset-md-2 col-form-label">Sexo</label>
+        <label for="inputSexo" class="col-md-2 offset-md-2 col-form-label">Sexo*</label>
         <div class="col-md-6">
           <%= f.select :sexo,  options_for_select([["Feminino", "Feminino"], ["Masculino", "Masculino"]]), class: "form-control" %>
         </div>
