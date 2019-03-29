@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_29_130635) do
+ActiveRecord::Schema.define(version: 2019_03_29_214115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -173,6 +173,7 @@ ActiveRecord::Schema.define(version: 2019_03_29_130635) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "carga_horaria"
+    t.integer "porcentagem_aprovacao"
     t.index ["proprietario_id"], name: "index_cursos_on_proprietario_id"
     t.index ["tema_curso_id"], name: "index_cursos_on_tema_curso_id"
   end
@@ -501,6 +502,7 @@ ActiveRecord::Schema.define(version: 2019_03_29_130635) do
     t.bigint "nivel_id"
     t.boolean "curso_finalizado", default: false
     t.string "status_curso", default: "Em andamento"
+    t.boolean "aprovado"
     t.index ["avatar_id"], name: "index_usuario_curso_on_avatar_id"
     t.index ["curso_id"], name: "index_usuario_curso_on_curso_id"
     t.index ["grupo_curso_id"], name: "index_usuario_curso_on_grupo_curso_id"
