@@ -47,7 +47,7 @@
 
   <div class="card-footer text-muted">
     <% if can? :new, QuestionGroup %>
-      <%= link_to 'Cadastrar Pesquisa', {:controller => 'question_groups', :action => 'new', :usuario_curso_id => @perfil.id}, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Cadastrar Pesquisa', {:controller => 'question_groups', :action => 'new'}, class: "btn btn-md btn-primary" %>
     <% end %>
   </div>
 

@@ -28,9 +28,9 @@ class Curso < ApplicationRecord
 		@alertas = []
 
 		@quiz_nao_finalizado = Quiz.joins(missao: :modulo).where('modulos.curso_id = ? and finalizado =?', self.id, false).first
-	  		@missao_quiz = Missao.joins(:modulo).where('modulos.curso_id = ? and missoes.tipo = ?', self.id, 'Quiz').select { |missao| !missao.quiz }.first
-	  		@missao_tarefa = Missao.joins(:modulo).where('modulos.curso_id = ? and tipo =?', self.id, 'Tarefa').select { |missao| !missao.tarefa }.first
-	  		@tarefa_pendente_avaliacao = TarefaAluno.joins(:usuario_curso).where('usuario_curso.curso_id = ? and avaliada =?', self.id, false).first
+	  	@missao_quiz = Missao.joins(:modulo).where('modulos.curso_id = ? and missoes.tipo = ?', self.id, 'Quiz').select { |missao| !missao.quiz }.first
+	  	@missao_tarefa = Missao.joins(:modulo).where('modulos.curso_id = ? and tipo =?', self.id, 'Tarefa').select { |missao| !missao.tarefa }.first
+	  	@tarefa_pendente_avaliacao = TarefaAluno.joins(:usuario_curso).where('usuario_curso.curso_id = ? and avaliada =?', self.id, false).first
 
 	  		if @quiz_nao_finalizado
 	  		@alertas.append("Há Quiz não finalizado!")

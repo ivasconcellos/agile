@@ -64,6 +64,7 @@ Rails.application.routes.draw do
   get 'ranking_usuario' => 'usuario_curso#ranking_usuario'
   get 'escolher_equipe' => 'usuario_curso#escolher_equipe'
   get 'cancelar_inscricao' => 'usuario_curso#cancelar_inscricao'
+  get 'finalizar_curso' => 'usuario_curso#finalizar_curso'
   
   #Curso
   get 'descricao' => 'cursos#descricao'

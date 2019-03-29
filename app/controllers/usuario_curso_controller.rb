@@ -1,5 +1,5 @@
 class UsuarioCursoController < ApplicationController
-  before_action :set_usuario_curso, only: [:show, :edit, :update, :destroy, :escolher_equipe, :cancelar_inscricao]
+  before_action :set_usuario_curso, only: [:show, :edit, :update, :destroy, :escolher_equipe, :cancelar_inscricao, :finalizar_curso]
   before_action :authenticate_usuario!
   
   # GET /usuario_curso
@@ -133,6 +133,15 @@ class UsuarioCursoController < ApplicationController
     flash[:notice] = 'Inscrição no curso Cancelada com sucesso!'
     redirect_to :controller => "cursos", :action => "show", id: current_usuario.curso_atual_id
   end
+
+  def finalizar_curso
+    authorize! :finalizar_curso, UsuarioCurso
+    @usuario_curso.status_curso = 'Curso finalizado'
+    @usuario_curso.curso_finalizado = true
+    @usuario_curso.save
+    flash[:notice] = 'Curso finalizado com sucesso!'
+    redirect_to :controller => "cursos", :action => "show", id: current_usuario.curso_atual_id
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.
