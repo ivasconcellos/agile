@@ -34,7 +34,7 @@ $( document ).on('turbolinks:load', function() {
 })
 
 function initialize() {
-  $
+  
   $(".data").mask("99/99/9999");
   $(".data").datepicker({
     dateFormat: 'dd/mm/yy',
