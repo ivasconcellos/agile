@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_29_023157) do
+ActiveRecord::Schema.define(version: 2019_03_29_121930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 2019_03_29_023157) do
     t.bigint "proprietario_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "carga_horaria"
     t.index ["proprietario_id"], name: "index_cursos_on_proprietario_id"
     t.index ["tema_curso_id"], name: "index_cursos_on_tema_curso_id"
   end
