@@ -22,7 +22,7 @@ class CursosController < ApplicationController
   end
 
   def descricao
-    authorize! :show, Curso
+    current_usuario.update(curso_atual_id: @curso.id)
     @usuario_curso = UsuarioCurso.where(curso_id: @curso.id, usuario_id: current_usuario.id)
   end
 

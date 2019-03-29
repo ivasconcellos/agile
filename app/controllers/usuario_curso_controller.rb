@@ -1,5 +1,5 @@
 class UsuarioCursoController < ApplicationController
-  before_action :set_usuario_curso, only: [:show, :edit, :update, :destroy, :escolher_equipe, :cancelar_inscricao]
+  before_action :set_usuario_curso, only: [:show, :edit, :update, :destroy, :escolher_equipe, :cancelar_inscricao, :finalizar_curso]
   before_action :authenticate_usuario!
   
   # GET /usuario_curso
@@ -95,12 +95,12 @@ class UsuarioCursoController < ApplicationController
   end
 
   def inscricao_curso
-    @usuario_curso = UsuarioCurso.new(perfil: 'Aluno', nickname: current_usuario.nome, usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id, nivel_id: 1)
+    @usuario_curso = UsuarioCurso.new(perfil: 'Aluno', nickname: current_usuario.nome, usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id, nivel_id: 1, )
     if @usuario_curso.save
       flash[:notice] = 'Usuário do Curso cadastrado com sucesso!'
       redirect_to :controller => "cursos", :action => "show", id: current_usuario.curso_atual_id
     else
-      format.html { render :busca_curso, @current_usuario => current_usuario, layout: 'neutro' }
+      format.html { render :back }
       format.json { render json: @usuario_curso.errors, status: :unprocessable_entity }
     end
   end
@@ -133,6 +133,15 @@ class UsuarioCursoController < ApplicationController
     flash[:notice] = 'Inscrição no curso Cancelada com sucesso!'
     redirect_to :controller => "cursos", :action => "show", id: current_usuario.curso_atual_id
   end
+
+  def finalizar_curso
+    authorize! :finalizar_curso, UsuarioCurso
+    @usuario_curso.status_curso = 'Curso finalizado'
+    @usuario_curso.curso_finalizado = true
+    @usuario_curso.save
+    flash[:notice] = 'Curso finalizado com sucesso!'
+    redirect_to :controller => "cursos", :action => "show", id: current_usuario.curso_atual_id
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_29_122537) do
+ActiveRecord::Schema.define(version: 2019_03_29_130635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -335,6 +335,8 @@ ActiveRecord::Schema.define(version: 2019_03_29_122537) do
     t.bigint "usuario_curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "curso_id"
+    t.index ["curso_id"], name: "index_question_groups_on_curso_id"
     t.index ["usuario_curso_id"], name: "index_question_groups_on_usuario_curso_id"
   end
 
@@ -563,6 +565,7 @@ ActiveRecord::Schema.define(version: 2019_03_29_122537) do
   add_foreign_key "missoes", "modulos"
   add_foreign_key "missoes", "usuario_curso"
   add_foreign_key "modulos", "cursos"
+  add_foreign_key "question_groups", "cursos"
   add_foreign_key "quiz_pergunta_respostas", "quiz_perguntas"
   add_foreign_key "quiz_perguntas", "quizzes"
   add_foreign_key "quiz_respostas_alunos", "quiz_pergunta_respostas"
