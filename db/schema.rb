@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_29_121930) do
+ActiveRecord::Schema.define(version: 2019_03_29_122537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -497,6 +497,8 @@ ActiveRecord::Schema.define(version: 2019_03_29_121930) do
     t.bigint "avatar_id"
     t.bigint "grupo_curso_id"
     t.bigint "nivel_id"
+    t.boolean "curso_finalizado", default: false
+    t.string "status_curso", default: "Em andamento"
     t.index ["avatar_id"], name: "index_usuario_curso_on_avatar_id"
     t.index ["curso_id"], name: "index_usuario_curso_on_curso_id"
     t.index ["grupo_curso_id"], name: "index_usuario_curso_on_grupo_curso_id"

@@ -74,6 +74,7 @@
               <% else %>
                 <p class="list-group-item text-center perfil"><%= link_to 'Escolher Equipe', escolher_equipe_url(id: @perfil.id), class: 'text-danger' %></p>
             <% end %>
+            <p class="list-group-item text-center perfil"><label>Status:</label> <%= @perfil.status_curso %></p>
           <% end %>
         </div>
 
@@ -123,11 +124,11 @@
                 </div>
               <% else %>
                 <div class="col-md-10 col-sm-10">
-                  <% if current_usuario.curso_atual.ativo? %>
+                  <% if current_usuario.curso_atual.ativo? and @perfil.status_curso != 'Inscrição Cancelada' %>
                     <%= yield %>
                   <% else %>
                     <div class="alert alert-danger"> 
-                      <p>Este curso não está mais ativo. Em caso de dúvidas, entre em contato com o administrador do sistema.</p>
+                      <p>Este curso não está mais disponível. Em caso de dúvidas, entre em contato com o administrador do sistema.</p>
                     </div>
                   <% end %>
                 </div>
