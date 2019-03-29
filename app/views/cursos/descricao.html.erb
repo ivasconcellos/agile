@@ -3,7 +3,7 @@
   <div class="card-header"><%= @curso.nome %></div>
   
   <div class="text-center">
-
+    <br>
     <% if @usuario_curso.empty? and no_prazo(@curso) %>
       <%= link_to 'Me inscrever neste Curso', {controller: 'usuario_curso', action: 'inscricao_curso'}, class: "btn btn-md btn-success" %>
     <% end %>
@@ -28,8 +28,6 @@
         <% if @perfil and @perfil.perfil == 'Aluno' %>
           <li class="list-group-item"><b>Minha situação no Curso:</b> <%= @perfil.status_curso %></li>
         <% end %>      
-        <% if @perfil and @perfil.perfil == 'Aluno' and @perfil.pode_finalizar_curso %>
-        <%end %>
       </ul>
     </div>
   </div>

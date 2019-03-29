@@ -95,12 +95,12 @@ class UsuarioCursoController < ApplicationController
   end
 
   def inscricao_curso
-    @usuario_curso = UsuarioCurso.new(perfil: 'Aluno', nickname: current_usuario.nome, usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id, nivel_id: 1)
+    @usuario_curso = UsuarioCurso.new(perfil: 'Aluno', nickname: current_usuario.nome, usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id, nivel_id: 1, )
     if @usuario_curso.save
       flash[:notice] = 'Usuário do Curso cadastrado com sucesso!'
       redirect_to :controller => "cursos", :action => "show", id: current_usuario.curso_atual_id
     else
-      format.html { render :busca_curso, @current_usuario => current_usuario, layout: 'neutro' }
+      format.html { render :back }
       format.json { render json: @usuario_curso.errors, status: :unprocessable_entity }
     end
   end
