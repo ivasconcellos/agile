@@ -1,5 +1,5 @@
 class UsuarioCursoController < ApplicationController
-  before_action :set_usuario_curso, only: [:show, :edit, :update, :destroy, :escolher_equipe]
+  before_action :set_usuario_curso, only: [:show, :edit, :update, :destroy, :escolher_equipe, :cancelar_inscricao]
   before_action :authenticate_usuario!
   
   # GET /usuario_curso
@@ -126,6 +126,14 @@ class UsuarioCursoController < ApplicationController
     authorize! :escolher_equipe, UsuarioCurso
   end
 
+  def cancelar_inscricao
+    authorize! :cancelar_inscricao, UsuarioCurso
+    @usuario_curso.status_curso = 'Inscrição Cancelada'
+    @usuario_curso.save
+    flash[:notice] = 'Inscrição no curso Cancelada com sucesso!'
+    redirect_to :controller => "cursos", :action => "show", id: current_usuario.curso_atual_id
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_usuario_curso
@@ -134,6 +142,6 @@ class UsuarioCursoController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def usuario_curso_params
-      params.require(:usuario_curso).permit(:perfil, :nickname, :pontos_experiencia, :usuario_id, :curso_id, :avatar_id, :grupo_curso_id, :nivel_id)
+      params.require(:usuario_curso).permit(:perfil, :nickname, :pontos_experiencia, :usuario_id, :curso_id, :avatar_id, :grupo_curso_id, :nivel_id, :curso_finalizado, :status_curso)
     end
 end

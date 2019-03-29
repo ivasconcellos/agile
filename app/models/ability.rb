@@ -63,6 +63,7 @@ class Ability
           can :read, Comunicado
           can :escolher_equipe, UsuarioCurso
           can :read, Dialogo
+          can :cancelar_inscricao, UsuarioCurso
         else
           can :read, Curso
         end

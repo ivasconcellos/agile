@@ -1,10 +1,6 @@
 <div class="card">
 
   <div class="card-header"><%= @curso.nome %></div>
-
-  <div class="alert alert-success" role="alert">
-    Bem-vindo ao curso!
-  </div>
   
   <div class="text-center">
 
@@ -21,12 +17,16 @@
         <li class="list-group-item"><b>Professor(a) principal:</b> <%= @curso.proprietario.nome %></li>
         <li class="list-group-item"><b>Início do curso:</b> <%= @curso.data_hora_inicio %></li>
         <li class="list-group-item"><b>Término do curso:</b> <%= @curso.data_hora_termino %></li>
+        <li class="list-group-item"><b>Carga horária (h):</b> <%= @curso.carga_horaria %></li>
         <% if can? :edit, Curso %>
           <li class="list-group-item"><b>Código de acesso:</b> <%= @curso.codigo_acesso %></li>   
           <li class="list-group-item"><b>Ativo:</b> <%= @curso.ativo? ? 'Sim' : 'Não' %></li>
           <li class="list-group-item"><b>Público:</b> <%= @curso.publico? ? 'Sim' : 'Não' %></li>
           <li class="list-group-item"><b>Cadastrado em:</b> <%= @curso.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
           <li class="list-group-item"><b>Tema:</b> <%= link_to @curso.tema_curso.nome, @curso.tema_curso %></li>
+        <% end %>
+        <% if @perfil and @perfil.perfil == 'Aluno' %>
+          <li class="list-group-item"><b>Minha situação no Curso:</b> <%= @perfil.status_curso %></li>
         <% end %>      
       </ul>
     </div>
@@ -46,6 +46,9 @@
   <% end %>
 
   <div class="card-footer text-muted">
+    <% if @perfil and @perfil.perfil == "Aluno" and @perfil.status_curso == 'Em andamento' %>  
+      <%= link_to 'Cancelar inscrição no curso', cancelar_inscricao_path(id: @perfil.id), class: "btn btn-md btn-danger", data: { confirm: 'Deseja realmente cancelar sua Inscrição no Curso?' } %>
+    <% end %>
     <% if can? :edit, Curso %>
       <%= link_to 'Atualizar', edit_curso_path(@curso), class: "btn btn-md btn-primary" %>
     <% end %>
