@@ -101,6 +101,7 @@ class CursosController < ApplicationController
   end
 
   def enviar_convite
+    authorize! :enviar_convite, :curso
     @curso = @perfil.curso
     if request.post?
       ApplicationMailer.enviar_convite(@curso, params[:emails]).deliver
