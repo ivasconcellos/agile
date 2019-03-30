@@ -66,6 +66,7 @@ class Ability
           can :escolher_equipe, UsuarioCurso
           can :read, Dialogo
           can :cancelar_inscricao, UsuarioCurso
+          can :finalizar_curso, UsuarioCurso
         else
           can :read, Curso
         end

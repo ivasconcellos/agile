@@ -27,7 +27,10 @@
           <li class="list-group-item"><b>Tema:</b> <%= link_to @curso.tema_curso.nome, @curso.tema_curso %></li>
         <% end %>
         <% if @perfil and @perfil.perfil == 'Aluno' %>
-          <li class="list-group-item"><b>Minha situação no Curso:</b> <%= @perfil.status_curso %></li>
+          <li class="list-group-item"><b>Status no Curso:</b> <%= @perfil.status_curso %></li>
+          <% if @perfil.status_curso == 'Curso finalizado' %>
+            <li class="list-group-item"><b>Aprovado?</b> <%= @perfil.aprovado? ? 'Sim': 'Não' %></li>
+          <% end %> 
         <% end %>      
       </ul>
     </div>
@@ -52,6 +55,9 @@
     <% end %>
     <% if @perfil and @perfil.perfil == 'Aluno' and @perfil.pode_finalizar_curso %>
       <%= link_to 'Finalizar curso', finalizar_curso_path(id: @perfil.id), class: "btn btn-md btn-success" %>
+    <%end %>
+    <% if @perfil and @perfil.perfil == 'Aluno' and @perfil.aprovado %>
+      <%= link_to 'Gerar Certificado', finalizar_curso_path(id: @perfil.id), class: "btn btn-md btn-warning" %>
     <%end %>
     <% if can? :edit, Curso %>
       <%= link_to 'Atualizar', edit_curso_path(@curso), class: "btn btn-md btn-primary" %>
