@@ -65,10 +65,12 @@ Rails.application.routes.draw do
   get 'escolher_equipe' => 'usuario_curso#escolher_equipe'
   get 'cancelar_inscricao' => 'usuario_curso#cancelar_inscricao'
   get 'finalizar_curso' => 'usuario_curso#finalizar_curso'
-  
+
   #Curso
   get 'descricao' => 'cursos#descricao'
   get 'notas' => 'cursos#notas'
+  get 'enviar_convite' => 'cursos#enviar_convite'
+  post 'enviar_convite' => 'cursos#enviar_convite'
 
   get 'material_texto' => 'materiais#texto'
   

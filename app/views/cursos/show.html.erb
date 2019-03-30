@@ -42,7 +42,11 @@
                 <b> Descrição:</b> <%= modulo.descricao %>
               <% end %>
               
-              <div id="modulos_ordenacoes" class="list-group " data-url="<%= sort_modulos_ordenacoes_path %>">
+              <% if @perfil.perfil != 'Aluno' %>
+                <div id="modulos_ordenacoes" class="list-group" data-url="<%= sort_modulos_ordenacoes_path %>">
+              <% else %>
+                <div class="list-group">
+              <% end %>
                 
                   <% ModuloOrdenacao.where(modulo_id: modulo.id).order(:position).each do |modulo_ordenacao| %>
                    

@@ -100,6 +100,18 @@ class CursosController < ApplicationController
        current_usuario.curso_atual_id)
   end
 
+  def enviar_convite
+    authorize! :enviar_convite, :curso
+    @curso = @perfil.curso
+    if request.post?
+      ApplicationMailer.enviar_convite(@curso, params[:emails]).deliver
+      respond_to do |format|
+        format.html { redirect_to @curso, notice: 'Convite enviado com sucesso!' }
+        format.json { head :no_content }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_curso

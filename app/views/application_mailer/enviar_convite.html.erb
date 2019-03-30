@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+  	<p>Prezado(a),</p>
+  	<p>Temos o prazer lhe convidar para participar do curso <%= @curso.nome %>. </p>
+    <p>Descrição do curso: <%= @curso.descricao.html_safe %></p>
+    <p>Carga horária: <%= @curso.carga_horaria %> h.</p>
+    <p>Período: de <%= @curso.data_hora_inicio %> à <%= @curso.data_hora_termino %>.
+    <p>Para se inscrever acesse: <a href='http://agile.centro.iff.edu.br/descricao?id=<%=@curso.id%>'><%= @curso.nome %></a></p>
+    
+  </body>
+</html>

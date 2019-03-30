@@ -56,4 +56,10 @@ class ApplicationMailer < ActionMailer::Base
     @evento = evento
     mail to: Usuario.joins(:usuario_curso).where('usuario_curso.curso_id = ? and usuarios.ativo = ?', evento.curso.id, true).pluck(:email), subject: @subject
   end
+
+  def enviar_convite(curso, emails)
+    @subject = 'AGILE: Convite para participar do curso: ' + curso.nome
+    @curso = curso
+    mail to: emails.split(','), subject: @subject
+  end
 end
