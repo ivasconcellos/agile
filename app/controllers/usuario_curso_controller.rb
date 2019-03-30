@@ -138,9 +138,10 @@ class UsuarioCursoController < ApplicationController
     authorize! :finalizar_curso, UsuarioCurso
     @usuario_curso.status_curso = 'Curso finalizado'
     @usuario_curso.curso_finalizado = true
+    @usuario_curso.aprovado = @usuario_curso.verifica_aprovacao
     @usuario_curso.save
     flash[:notice] = 'Curso finalizado com sucesso!'
-    redirect_to :controller => "cursos", :action => "show", id: current_usuario.curso_atual_id
+    redirect_to :controller => "cursos", :action => "descricao", id: current_usuario.curso_atual_id
   end 
 
   private
@@ -151,6 +152,6 @@ class UsuarioCursoController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def usuario_curso_params
-      params.require(:usuario_curso).permit(:perfil, :nickname, :pontos_experiencia, :usuario_id, :curso_id, :avatar_id, :grupo_curso_id, :nivel_id, :curso_finalizado, :status_curso)
+      params.require(:usuario_curso).permit(:perfil, :nickname, :pontos_experiencia, :usuario_id, :curso_id, :avatar_id, :grupo_curso_id, :nivel_id, :curso_finalizado, :status_curso, :aprovado)
     end
 end

@@ -59,4 +59,14 @@ class UsuarioCurso < ApplicationRecord
 		end
   	end
 
+  	def verifica_aprovacao
+  		@pontuacao_missao = Missao.joins(:modulo).where('modulos.curso_id =?', self.curso_id).sum('pontuacao')
+  		if self.pontos_experiencia / @pontuacao_missao >= self.curso.porcentagem_aprovacao / 100.0
+  			return true
+  		else
+  			return false
+  		end
+  	end	
+
+
 end
