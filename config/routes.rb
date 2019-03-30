@@ -87,6 +87,8 @@ Rails.application.routes.draw do
   get 'conversas_assunto' => 'conversas#conversas_assunto'
 
   get 'cancelar_evento' => 'eventos#cancelar_evento'
+
+  get 'gerar_certificado' => 'curso_certificados#gerar_certificado'
  
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
