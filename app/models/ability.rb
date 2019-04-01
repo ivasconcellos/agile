@@ -67,6 +67,7 @@ class Ability
           can :read, Dialogo
           can :cancelar_inscricao, UsuarioCurso
           can :finalizar_curso, UsuarioCurso
+          can :gerar_certificado, CursoCertificado
         else
           can :read, Curso
         end

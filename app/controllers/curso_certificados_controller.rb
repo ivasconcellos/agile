@@ -1,10 +1,9 @@
 class CursoCertificadosController < ApplicationController
   before_action :set_curso_certificado, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_usuario!
   
-  # GET /curso_certificados/1
-  # GET /curso_certificados/1.json
   def gerar_certificado
+    authorize! :gerar_certificado, CursoCertificado
     @curso_certificado = CursoCertificado.find_by(usuario_id: current_usuario.id, curso_id: @perfil.curso.id)
     respond_to do |format|
       format.pdf do
