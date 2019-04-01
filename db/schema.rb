@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_29_214115) do
+ActiveRecord::Schema.define(version: 2019_03_30_025254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -156,6 +156,17 @@ ActiveRecord::Schema.define(version: 2019_03_29_214115) do
     t.index ["conversa_id"], name: "index_conversas_on_conversa_id"
     t.index ["destinatario_id"], name: "index_conversas_on_destinatario_id"
     t.index ["usuario_curso_id"], name: "index_conversas_on_usuario_curso_id"
+  end
+
+  create_table "curso_certificados", force: :cascade do |t|
+    t.bigint "usuario_id"
+    t.bigint "curso_id"
+    t.string "hash_validacao"
+    t.datetime "data_finalizacao", default: -> { "CURRENT_TIMESTAMP" }
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["curso_id"], name: "index_curso_certificados_on_curso_id"
+    t.index ["usuario_id"], name: "index_curso_certificados_on_usuario_id"
   end
 
   create_table "cursos", force: :cascade do |t|
@@ -546,6 +557,8 @@ ActiveRecord::Schema.define(version: 2019_03_29_214115) do
   add_foreign_key "conversas", "conversas"
   add_foreign_key "conversas", "usuario_curso"
   add_foreign_key "conversas", "usuario_curso", column: "destinatario_id"
+  add_foreign_key "curso_certificados", "cursos"
+  add_foreign_key "curso_certificados", "usuarios"
   add_foreign_key "cursos", "tema_cursos"
   add_foreign_key "cursos", "usuarios", column: "proprietario_id"
   add_foreign_key "dialogos", "modulos"
