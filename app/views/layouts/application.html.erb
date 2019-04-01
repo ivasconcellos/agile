@@ -9,11 +9,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-   <% %w(bootstrap.min sb-admin template_cursos font-awesome.min application).each do |asset| %>
+   <% %w(bootstrap.min sb-admin template_cursos font-awesome.min application select2).each do |asset| %>
         <%= stylesheet_link_tag asset %>
     <% end %>
 
-    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'application', "data-turbolinks-track" => "reload" %>
     <%= javascript_include_tag 'jquery-ui.min'  %>
     <%= javascript_include_tag 'bootstrap.min'  %>
     <%= javascript_include_tag 'sb-admin'  %>

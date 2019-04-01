@@ -90,3 +90,5 @@ gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
 gem 'acts_as_list'
 
 gem 'cpf_utils'
+
+gem 'select2-rails'
