@@ -57,7 +57,7 @@
       <%= link_to 'Finalizar curso', finalizar_curso_path(id: @perfil.id), class: "btn btn-md btn-success" %>
     <%end %>
     <% if @perfil and @perfil.perfil == 'Aluno' and @perfil.aprovado %>
-      <%= link_to 'Gerar Certificado', finalizar_curso_path(id: @perfil.id), class: "btn btn-md btn-warning" %>
+      <%= link_to 'Gerar Certificado', gerar_certificado_path(format: :pdf), {class: "btn btn-md btn-warning"} %>
     <%end %>
     <% if can? :edit, Curso %>
       <%= link_to 'Atualizar', edit_curso_path(@curso), class: "btn btn-md btn-primary" %>

@@ -71,7 +71,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'cancancan', '~> 2.0'
 gem 'will_paginate', '~> 3.1.0'
 gem "paperclip", "~> 6.0.0"
-gem 'ckeditor'
+gem 'ckeditor','4.2.4'
 gem 'rails-i18n'
 
 gem 'redis'
@@ -90,3 +90,8 @@ gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
 gem 'acts_as_list'
 
 gem 'cpf_utils'
+
+
+gem 'wicked_pdf', '1.1.0'
+
+gem 'wkhtmltopdf-binary', '0.12.4'

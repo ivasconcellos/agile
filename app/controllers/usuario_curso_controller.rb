@@ -139,8 +139,12 @@ class UsuarioCursoController < ApplicationController
     @usuario_curso.status_curso = 'Curso finalizado'
     @usuario_curso.curso_finalizado = true
     @usuario_curso.aprovado = @usuario_curso.verifica_aprovacao
-    @usuario_curso.save
-    flash[:notice] = 'Curso finalizado com sucesso!'
+    if @usuario_curso.save
+      flash[:notice] = 'Curso finalizado com sucesso!'
+      if @usuario.aprovado = true
+        CursoCertificado.create!(usuario_id: current_usuario.id, curso_id: @usuario_curso.curso.id)
+      end
+    end
     redirect_to :controller => "cursos", :action => "descricao", id: current_usuario.curso_atual_id
   end 
 

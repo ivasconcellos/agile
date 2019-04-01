@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  usuario: one
+  curso: one
+  hash_validacao: MyString
+  data_finalizacao: 2019-03-29 23:52:54
+
+two:
+  usuario: two
+  curso: two
+  hash_validacao: MyString
+  data_finalizacao: 2019-03-29 23:52:54
