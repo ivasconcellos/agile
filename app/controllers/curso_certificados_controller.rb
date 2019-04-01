@@ -7,7 +7,6 @@ class CursoCertificadosController < ApplicationController
   def gerar_certificado
     @curso_certificado = CursoCertificado.find_by(usuario_id: current_usuario.id, curso_id: @perfil.curso.id)
     respond_to do |format|
-      format.html
       format.pdf do
             render pdf: "Certificado do curso",
             page_size: "A4",
