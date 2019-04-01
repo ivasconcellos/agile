@@ -9,7 +9,7 @@ class Usuario < ApplicationRecord
   has_many :usuario_curso, :dependent => :destroy
   has_many :curso_certificados, :dependent => :destroy
   
-  validates_uniqueness_of :email
+  validates_uniqueness_of :email, :cpf
   validate :valida_cpf
 
   self.per_page = 10
