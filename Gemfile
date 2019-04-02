@@ -91,7 +91,9 @@ gem 'acts_as_list'
 
 gem 'cpf_utils'
 
+gem 'select2-rails'
 
 gem 'wicked_pdf', '1.1.0'
 
 gem 'wkhtmltopdf-binary', '0.12.4'
+

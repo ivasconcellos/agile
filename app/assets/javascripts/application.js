@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery2
-
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery-ui/widget
@@ -20,10 +19,16 @@
 //= require activestorage
 //= require turbolinks
 //= require ckeditor/init
-
 //= require bootstrap-datepicker
-
 //= require_tree .
+
+$( document ).on('turbolinks:load', function() {
+  $('.selecionar').select2({
+    theme: "bootstrap",
+		width: 'auto',
+		dropdownAutoWidth: true
+  });
+})
 
 $( document ).on('turbolinks:load', function() {
   (function( $ ) {
