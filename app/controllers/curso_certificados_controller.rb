@@ -10,7 +10,8 @@ class CursoCertificadosController < ApplicationController
             render pdf: "Certificado do curso",
             page_size: "A4",
             title: "Certificado do curso",
-            orientation: 'Landscape'
+            orientation: 'Landscape',
+            margin: { :top => 0, :bottom => 0, :left => 0, :right => 0}                                
       end
     end
   end

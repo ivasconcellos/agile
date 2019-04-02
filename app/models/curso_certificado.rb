@@ -5,7 +5,8 @@ class CursoCertificado < ApplicationRecord
   before_create :gerar_hash_validacao
 
   validates :usuario, uniqueness: { scope: :curso }
-
+  validates_uniqueness_of :hash_validacao
+  
   protected
 
   def gerar_hash_validacao
