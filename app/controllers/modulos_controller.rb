@@ -2,6 +2,15 @@ class ModulosController < ApplicationController
   before_action :set_modulo, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_usuario!
 
+  protect_from_forgery :except => [:sort]
+    def sort
+
+      params[:modulo].each_with_index do |id, index|
+          Modulo.where(id: id).update_all(position: index + 1)
+      end
+
+      head :ok
+    end
   # GET /modulos
   # GET /modulos.json
   def index
@@ -76,6 +85,8 @@ class ModulosController < ApplicationController
       end
     end
   end
+
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
