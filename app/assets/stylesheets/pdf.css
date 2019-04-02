@@ -25,16 +25,15 @@ body{
 	text-align: center;
 }
 
-
 .texto{
 	font-size: 35px;
 	text-align: justify;
 	color: #000000;
-	padding: 30px;
+	padding: 40px;
 }
 
 .data{
-	padding-top: 20px;
+	padding-top: 10px;
 	text-align: center;
 	font-size: 30px;
 	color: #000000;
@@ -47,16 +46,20 @@ body{
 	padding-right: 20px;
 	vertical-align: bottom;
 }
-.rodape{
-	font-weight: bold;
-	font-size: 30px;
-	text-align: center;
-	color: #24249f;
-}
+
 
 footer{
 	display: flex;
 	position: absolute;
-	
 	bottom: 0;
+	left: 0;
+    right: 0;
+}
+.rodape{
+	width:100%;
+	text-align: center;
+	padding-right: 15px;
+	padding-left: 15px;
+	padding-bottom: 30px;
+	text-align: center;
 }
