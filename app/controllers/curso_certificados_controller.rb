@@ -1,7 +1,28 @@
 class CursoCertificadosController < ApplicationController
-  before_action :set_curso_certificado, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_usuario!
-  
+  before_action :authenticate_usuario!, :except => [:validar_certificado, :certificado_validado]
+  skip_before_action :perfil
+  before_action :perfil, except: [:validar_certificado, :certificado_validado]
+
+  def validar_certificado
+    if not params[:codigo_validacao]
+      render layout: 'neutro'
+    else
+      @validacao = CursoCertificado.find_by(hash_validacao: params[:codigo_validacao])
+      respond_to do |format|
+        if @validacao
+          format.html { redirect_to certificado_validado_path(id: @validacao.id) }
+        else
+          format.html { redirect_to validar_certificado_path, alert: 'Certificado não encontrado! Por favor verifique o código do seu certificado.', layout: 'neutro' }
+        end
+      end
+    end
+  end
+
+  def certificado_validado
+    @validacao = CursoCertificado.find_by(id: params[:id])
+    render layout: 'neutro'
+  end
+
   def gerar_certificado
     authorize! :gerar_certificado, CursoCertificado
     @curso_certificado = CursoCertificado.find_by(usuario_id: current_usuario.id, curso_id: @perfil.curso.id)
