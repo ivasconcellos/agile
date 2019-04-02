@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   resources :tarefa_avaliacao, except: [:index]
   resources :tarefa_alunos
   resources :tarefas, except: [:index]
-  resources :modulos
   resources :avatares
   resources :foruns_comentarios, except: [:index, :show]
   resources :foruns
@@ -30,11 +29,19 @@ Rails.application.routes.draw do
   resources :materiais, except: [:index]
   resources :cursos
 
+  resources :modulos do
+    collection do
+      patch :sort
+    end
+  end
+
   resources :modulos_ordenacoes do
     collection do
       patch :sort
     end
   end
+  
+
   resources :tema_cursos
   devise_for :admins, :skip => [:registrations]
   
