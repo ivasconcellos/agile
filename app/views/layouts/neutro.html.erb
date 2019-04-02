@@ -31,6 +31,9 @@
       <!-- Navbar -->
       <ul class="navbar-nav ml-auto ml-md-12">
         <% if usuario_signed_in? %>
+          <li class="nav-item">
+            <%= link_to validar_certificado_path, class: 'nav-link' do %>Validar certificado<% end %>
+          </li>
   	      <li class="nav-item">
   	        <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'nav-link' do %>Atualizar Dados<% end %>
   	      </li>
@@ -39,7 +42,11 @@
   	      </li>
         <%else%>
           <li class="nav-item">
-            <%= link_to sobre_path, @id => :usuario_id, class: 'nav-link' do %>Sobre<% end %>
+            <%= link_to validar_certificado_path, class: 'nav-link' do %>Validar certificado<% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to sobre_path, class: 'nav-link' do %>Sobre<% end %>
+          </li>
         <%end%>
       </ul>
 

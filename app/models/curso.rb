@@ -8,8 +8,9 @@ class Curso < ApplicationRecord
 	has_many :eventos, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :comunicados, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :grupos_cursos, :dependent => :destroy, :dependent => :restrict_with_error
-
-	validates_presence_of :nome, :tema_curso_id, :proprietario_id, :codigo_acesso, :data_inicio, :hora_inicio, :data_termino, :hora_termino, :carga_horaria
+	has_many :curso_certificados, :dependent => :destroy
+	
+	validates_presence_of :nome, :tema_curso_id, :proprietario_id, :codigo_acesso, :data_inicio, :hora_inicio, :data_termino, :hora_termino, :carga_horaria, :porcentagem_aprovacao
 	validates_length_of :codigo_acesso, :minimum => 8, :maximum => 8
 	validates_uniqueness_of :codigo_acesso
 	
@@ -28,9 +29,9 @@ class Curso < ApplicationRecord
 		@alertas = []
 
 		@quiz_nao_finalizado = Quiz.joins(missao: :modulo).where('modulos.curso_id = ? and finalizado =?', self.id, false).first
-	  		@missao_quiz = Missao.joins(:modulo).where('modulos.curso_id = ? and missoes.tipo = ?', self.id, 'Quiz').select { |missao| !missao.quiz }.first
-	  		@missao_tarefa = Missao.joins(:modulo).where('modulos.curso_id = ? and tipo =?', self.id, 'Tarefa').select { |missao| !missao.tarefa }.first
-	  		@tarefa_pendente_avaliacao = TarefaAluno.joins(:usuario_curso).where('usuario_curso.curso_id = ? and avaliada =?', self.id, false).first
+	  	@missao_quiz = Missao.joins(:modulo).where('modulos.curso_id = ? and missoes.tipo = ?', self.id, 'Quiz').select { |missao| !missao.quiz }.first
+	  	@missao_tarefa = Missao.joins(:modulo).where('modulos.curso_id = ? and tipo =?', self.id, 'Tarefa').select { |missao| !missao.tarefa }.first
+	  	@tarefa_pendente_avaliacao = TarefaAluno.joins(:usuario_curso).where('usuario_curso.curso_id = ? and avaliada =?', self.id, false).first
 
 	  		if @quiz_nao_finalizado
 	  		@alertas.append("Há Quiz não finalizado!")

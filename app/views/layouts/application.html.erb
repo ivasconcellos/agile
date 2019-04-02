@@ -35,6 +35,9 @@
       <ul class="navbar-nav ml-auto ml-md-12">
         <% if usuario_signed_in? %>
           <li class="nav-item">
+            <%= link_to validar_certificado_path, class: 'nav-link' do %>Validar certificado<% end %>
+          </li>
+          <li class="nav-item">
             <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'nav-link' do %>Atualizar Dados<% end %>
           </li>
           <li class="nav-item">
@@ -124,13 +127,21 @@
                 </div>
               <% else %>
                 <div class="col-md-10 col-sm-10">
-                  <% if current_usuario.curso_atual.ativo? and @perfil.status_curso != 'Inscrição Cancelada' %>
-                    <%= yield %>
+                  <% if current_usuario.curso_atual.ativo? %>
+                    <% if @perfil and @perfil.status_curso == 'Inscrição Cancelada' %>
+                      <div class="alert alert-danger"> 
+                        <p>Você cancelou sua inscrição neste curso!</p>
+                      </div>
+                    <% else %>
+                      <%= yield %>
+                    <% end %>
+                   
                   <% else %>
                     <div class="alert alert-danger"> 
                       <p>Este curso não está mais disponível. Em caso de dúvidas, entre em contato com o administrador do sistema.</p>
                     </div>
                   <% end %>
+                  
                 </div>
                 <div class="col-md-2 col-sm-2 menu_lateral">
                   <div class="sidebar-header">

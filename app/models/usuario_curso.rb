@@ -47,4 +47,26 @@ class UsuarioCurso < ApplicationRecord
   		return Hash[equipes.sort_by{|k, v| v}.reverse]
   	end
 
+  	def pode_finalizar_curso
+  		@pesquisas = AnswerGroup.exists?(usuario_curso_id: self.id, question_group_id: QuestionGroup.where(curso_id: self.curso_id))
+  		@tarefas = TarefaAluno.exists?(usuario_curso_id: self.id, tarefa_id: Tarefa.joins(missao: :modulo).where('modulos.curso_id = ? and tarefa_alunos. avaliada = ?', self.curso_id, true))
+		@quizzes = QuizRespostaAluno.exists?(usuario_curso_id: self.id, quiz_pergunta_resposta_id: QuizPerguntaResposta.joins(quiz_pergunta: { quiz: {missao: :modulo }}).where('modulos.curso_id = ?', self.curso_id))  		
+		@status =  self.status_curso != 'Inscricao Cancelada'
+		if @pesquisas and @tarefas and @quizzes and @status
+			return true
+		else
+			return false
+		end
+  	end
+
+  	def verifica_aprovacao
+  		@pontuacao_missao = Missao.joins(:modulo).where('modulos.curso_id =?', self.curso_id).sum('pontuacao')
+  		if self.pontos_experiencia / @pontuacao_missao >= self.curso.porcentagem_aprovacao / 100.0
+  			return true
+  		else
+  			return false
+  		end
+  	end	
+
+
 end

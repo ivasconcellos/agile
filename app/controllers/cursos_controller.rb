@@ -22,7 +22,7 @@ class CursosController < ApplicationController
   end
 
   def descricao
-    authorize! :show, Curso
+    current_usuario.update(curso_atual_id: @curso.id)
     @usuario_curso = UsuarioCurso.where(curso_id: @curso.id, usuario_id: current_usuario.id)
   end
 
@@ -100,6 +100,18 @@ class CursosController < ApplicationController
        current_usuario.curso_atual_id)
   end
 
+  def enviar_convite
+    authorize! :enviar_convite, :curso
+    @curso = @perfil.curso
+    if request.post?
+      ApplicationMailer.enviar_convite(@curso, params[:emails]).deliver
+      respond_to do |format|
+        format.html { redirect_to @curso, notice: 'Convite enviado com sucesso!' }
+        format.json { head :no_content }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_curso
@@ -109,6 +121,6 @@ class CursosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def curso_params
       params.require(:curso).permit(:nome, :descricao, :data_inicio, :hora_inicio, :data_termino, :hora_termino, :ativo,
-       :tema_curso_id, :proprietario_id, :codigo_acesso, :publico, :carga_horaria)
+       :tema_curso_id, :proprietario_id, :codigo_acesso, :publico, :carga_horaria, :porcentagem_aprovacao)
     end
 end

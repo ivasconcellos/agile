@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-header">Enviar convite para participar do curso</div> 
+
+  <%= form_tag({}, {:method => :post}) do %>
+    <div class="card-body">
+      <div class="form-group row">
+        <label for="inputNome" class="col-md-2 col-form-label">E-mail(s)*</label>
+        <div class="col-md-10">
+          <%= text_field_tag :emails, params[:emails], autofocus: true, placeholder: 'Obs.: Separe os e-mails com vírgula.', class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer text-muted">
+      <%= submit_tag "Enviar", class: "btn btn-md btn-primary" %>
+      <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
+    </div>
+  <% end %>
+</div>

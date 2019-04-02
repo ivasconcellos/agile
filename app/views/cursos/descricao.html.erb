@@ -3,7 +3,7 @@
   <div class="card-header"><%= @curso.nome %></div>
   
   <div class="text-center">
-
+    <br>
     <% if @usuario_curso.empty? and no_prazo(@curso) %>
       <%= link_to 'Me inscrever neste Curso', {controller: 'usuario_curso', action: 'inscricao_curso'}, class: "btn btn-md btn-success" %>
     <% end %>
@@ -17,7 +17,8 @@
         <li class="list-group-item"><b>Professor(a) principal:</b> <%= @curso.proprietario.nome %></li>
         <li class="list-group-item"><b>Início do curso:</b> <%= @curso.data_hora_inicio %></li>
         <li class="list-group-item"><b>Término do curso:</b> <%= @curso.data_hora_termino %></li>
-        <li class="list-group-item"><b>Carga horária (h):</b> <%= @curso.carga_horaria %></li>
+        <li class="list-group-item"><b>Carga horária:</b> <%= @curso.carga_horaria %>h</li>
+        <li class="list-group-item"><b>Porcentagem aprovação:</b> <%= @curso.porcentagem_aprovacao %>%</li>
         <% if can? :edit, Curso %>
           <li class="list-group-item"><b>Código de acesso:</b> <%= @curso.codigo_acesso %></li>   
           <li class="list-group-item"><b>Ativo:</b> <%= @curso.ativo? ? 'Sim' : 'Não' %></li>
@@ -26,7 +27,10 @@
           <li class="list-group-item"><b>Tema:</b> <%= link_to @curso.tema_curso.nome, @curso.tema_curso %></li>
         <% end %>
         <% if @perfil and @perfil.perfil == 'Aluno' %>
-          <li class="list-group-item"><b>Minha situação no Curso:</b> <%= @perfil.status_curso %></li>
+          <li class="list-group-item"><b>Status no Curso:</b> <%= @perfil.status_curso %></li>
+          <% if @perfil.status_curso == 'Curso finalizado' %>
+            <li class="list-group-item"><b>Aprovado?</b> <%= @perfil.aprovado? ? 'Sim': 'Não' %></li>
+          <% end %> 
         <% end %>      
       </ul>
     </div>
@@ -49,6 +53,12 @@
     <% if @perfil and @perfil.perfil == "Aluno" and @perfil.status_curso == 'Em andamento' %>  
       <%= link_to 'Cancelar inscrição no curso', cancelar_inscricao_path(id: @perfil.id), class: "btn btn-md btn-danger", data: { confirm: 'Deseja realmente cancelar sua Inscrição no Curso?' } %>
     <% end %>
+    <% if @perfil and @perfil.perfil == 'Aluno' and @perfil.pode_finalizar_curso %>
+      <%= link_to 'Finalizar curso', finalizar_curso_path(id: @perfil.id), class: "btn btn-md btn-success" %>
+    <%end %>
+    <% if @perfil and @perfil.perfil == 'Aluno' and @perfil.aprovado %>
+      <%= link_to 'Gerar Certificado', gerar_certificado_path(format: :pdf), {class: "btn btn-md btn-warning"} %>
+    <%end %>
     <% if can? :edit, Curso %>
       <%= link_to 'Atualizar', edit_curso_path(@curso), class: "btn btn-md btn-primary" %>
     <% end %>

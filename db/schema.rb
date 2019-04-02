@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_29_122537) do
+ActiveRecord::Schema.define(version: 2019_03_30_025254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,6 +158,17 @@ ActiveRecord::Schema.define(version: 2019_03_29_122537) do
     t.index ["usuario_curso_id"], name: "index_conversas_on_usuario_curso_id"
   end
 
+  create_table "curso_certificados", force: :cascade do |t|
+    t.bigint "usuario_id"
+    t.bigint "curso_id"
+    t.string "hash_validacao"
+    t.datetime "data_finalizacao", default: -> { "CURRENT_TIMESTAMP" }
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["curso_id"], name: "index_curso_certificados_on_curso_id"
+    t.index ["usuario_id"], name: "index_curso_certificados_on_usuario_id"
+  end
+
   create_table "cursos", force: :cascade do |t|
     t.string "nome", null: false
     t.text "descricao"
@@ -173,6 +184,7 @@ ActiveRecord::Schema.define(version: 2019_03_29_122537) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "carga_horaria"
+    t.integer "porcentagem_aprovacao"
     t.index ["proprietario_id"], name: "index_cursos_on_proprietario_id"
     t.index ["tema_curso_id"], name: "index_cursos_on_tema_curso_id"
   end
@@ -335,6 +347,8 @@ ActiveRecord::Schema.define(version: 2019_03_29_122537) do
     t.bigint "usuario_curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "curso_id"
+    t.index ["curso_id"], name: "index_question_groups_on_curso_id"
     t.index ["usuario_curso_id"], name: "index_question_groups_on_usuario_curso_id"
   end
 
@@ -499,6 +513,7 @@ ActiveRecord::Schema.define(version: 2019_03_29_122537) do
     t.bigint "nivel_id"
     t.boolean "curso_finalizado", default: false
     t.string "status_curso", default: "Em andamento"
+    t.boolean "aprovado"
     t.index ["avatar_id"], name: "index_usuario_curso_on_avatar_id"
     t.index ["curso_id"], name: "index_usuario_curso_on_curso_id"
     t.index ["grupo_curso_id"], name: "index_usuario_curso_on_grupo_curso_id"
@@ -542,6 +557,8 @@ ActiveRecord::Schema.define(version: 2019_03_29_122537) do
   add_foreign_key "conversas", "conversas"
   add_foreign_key "conversas", "usuario_curso"
   add_foreign_key "conversas", "usuario_curso", column: "destinatario_id"
+  add_foreign_key "curso_certificados", "cursos"
+  add_foreign_key "curso_certificados", "usuarios"
   add_foreign_key "cursos", "tema_cursos"
   add_foreign_key "cursos", "usuarios", column: "proprietario_id"
   add_foreign_key "dialogos", "modulos"
@@ -563,6 +580,7 @@ ActiveRecord::Schema.define(version: 2019_03_29_122537) do
   add_foreign_key "missoes", "modulos"
   add_foreign_key "missoes", "usuario_curso"
   add_foreign_key "modulos", "cursos"
+  add_foreign_key "question_groups", "cursos"
   add_foreign_key "quiz_pergunta_respostas", "quiz_perguntas"
   add_foreign_key "quiz_perguntas", "quizzes"
   add_foreign_key "quiz_respostas_alunos", "quiz_pergunta_respostas"

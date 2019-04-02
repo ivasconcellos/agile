@@ -71,6 +71,13 @@
     </div>
 
     <div class="form-group row">
+      <label for="inputPontuacao" class="col-md-2 offset-md-2 col-form-label">Porcentagem para aprovação(%)*</label>
+      <div class="col-md-6">
+        <%= form.number_field :porcentagem_aprovacao, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
       <label class="form-check-label col-md-2 offset-md-2" for="gridCheck1">Ativo</label>
       <div class="col-md-2 ">
         <div class="form-check">

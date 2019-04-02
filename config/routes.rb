@@ -64,10 +64,13 @@ Rails.application.routes.draw do
   get 'ranking_usuario' => 'usuario_curso#ranking_usuario'
   get 'escolher_equipe' => 'usuario_curso#escolher_equipe'
   get 'cancelar_inscricao' => 'usuario_curso#cancelar_inscricao'
-  
+  get 'finalizar_curso' => 'usuario_curso#finalizar_curso'
+
   #Curso
   get 'descricao' => 'cursos#descricao'
   get 'notas' => 'cursos#notas'
+  get 'enviar_convite' => 'cursos#enviar_convite'
+  post 'enviar_convite' => 'cursos#enviar_convite'
 
   get 'material_texto' => 'materiais#texto'
   
@@ -84,7 +87,12 @@ Rails.application.routes.draw do
   get 'conversas_assunto' => 'conversas#conversas_assunto'
 
   get 'cancelar_evento' => 'eventos#cancelar_evento'
- 
+
+  #CursoCertificado
+  get 'gerar_certificado' => 'curso_certificados#gerar_certificado'
+  get 'validar_certificado' => 'curso_certificados#validar_certificado'
+  get 'certificado_validado' => 'curso_certificados#certificado_validado'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   mount Ckeditor::Engine => '/ckeditor'

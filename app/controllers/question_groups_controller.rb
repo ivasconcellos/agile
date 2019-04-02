@@ -5,7 +5,7 @@ class QuestionGroupsController < ApplicationController
 
 	def index
 		authorize! :index, QuestionGroup
-		@question_groups = QuestionGroup.all
+		@question_groups = QuestionGroup.where(curso_id: @perfil.curso_id)
 	end
 
 	def show
@@ -15,7 +15,6 @@ class QuestionGroupsController < ApplicationController
 	def new
 		authorize! :new, QuestionGroup
 		@question_group = QuestionGroup.new
-		@question_group.usuario_curso_id = params[:usuario_curso_id]		
 	end
 
 	def edit
@@ -24,6 +23,8 @@ class QuestionGroupsController < ApplicationController
 
 	def create
 		@question_group = QuestionGroup.new(question_group_params)
+		@question_group.usuario_curso_id = @perfil.id
+		@question_group.curso_id = @perfil.curso_id
 		respond_to do |format|
 			if @question_group.save
 				format.html { redirect_to @question_group, notice: 'Pesquisa cadastrada com sucesso!'}
@@ -75,6 +76,6 @@ class QuestionGroupsController < ApplicationController
 	    end
 
 		def question_group_params
-			params.require(:question_group).permit(:titulo, :descricao, :objetivo, :usuario_curso_id)
+			params.require(:question_group).permit(:titulo, :descricao, :objetivo, :usuario_curso_id, :curso_id)
 		end
 end

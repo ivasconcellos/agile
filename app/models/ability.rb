@@ -41,6 +41,8 @@ class Ability
           can :cancelar_evento, :evento
           can :escolher_equipe, UsuarioCurso
           can :manage, Dialogo
+          can :enviar_convite, :curso
+          can :reordernar, :modulo_ordenacao
         elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
           can :read, Modulo
           can :read, Curso
@@ -64,6 +66,8 @@ class Ability
           can :escolher_equipe, UsuarioCurso
           can :read, Dialogo
           can :cancelar_inscricao, UsuarioCurso
+          can :finalizar_curso, UsuarioCurso
+          can :gerar_certificado, CursoCertificado
         else
           can :read, Curso
         end
