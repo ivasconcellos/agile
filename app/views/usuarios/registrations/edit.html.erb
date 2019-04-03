@@ -4,9 +4,12 @@
 
   
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <div id="error_explanation" class="alert alert-danger">
-      <%= devise_error_messages! %>
-    </div>
+  
+      <% if not devise_error_messages!.blank? %>
+        <div id="error_explanation" class="alert alert-danger">
+          <%= devise_error_messages! %>
+        </div>
+      <% end %>
 
     <div class="card-body">
       <div class="form-group row">
