@@ -92,3 +92,5 @@ gem 'acts_as_list'
 gem 'cpf_utils'
 
 gem 'select2-rails'
+
+gem 'ahoy_matey'

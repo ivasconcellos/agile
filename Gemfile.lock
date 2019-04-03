@@ -50,6 +50,16 @@ GEM
       activerecord (>= 3.0)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    ahoy_matey (2.2.0)
+      addressable
+      browser (~> 2.0)
+      device_detector
+      geocoder (>= 1.4.5)
+      railties (>= 4.2)
+      referer-parser (>= 0.3)
+      request_store
+      safely_block (>= 0.2.1)
+      user_agent_parser
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
@@ -70,6 +80,7 @@ GEM
       msgpack (~> 1.0)
     bootstrap-datepicker-rails (1.8.0.1)
       railties (>= 3.0)
+    browser (2.5.3)
     builder (3.2.3)
     byebug (10.0.2)
     cancancan (2.2.0)
@@ -103,12 +114,14 @@ GEM
     cpf_utils (1.3.1)
     crass (1.0.4)
     debug_inspector (0.0.3)
+    device_detector (1.0.1)
     devise (4.4.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    errbase (0.1.1)
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.25)
@@ -117,6 +130,7 @@ GEM
     ffi (1.9.25-x86-mingw32)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
+    geocoder (1.5.1)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     haml (5.0.4)
@@ -256,7 +270,10 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redis (4.1.0)
+    referer-parser (0.3.0)
     remotipart (1.4.2)
+    request_store (1.4.1)
+      rack (>= 1.4)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -264,6 +281,8 @@ GEM
       ffi (~> 1.9)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
+    safely_block (0.2.1)
+      errbase
     sass (3.5.6)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -308,6 +327,7 @@ GEM
       tzinfo (>= 1.0.0)
     uglifier (4.1.12)
       execjs (>= 0.3.0, < 3)
+    user_agent_parser (2.5.1)
     warden (1.2.7)
       rack (>= 1.0)
     web-console (3.6.2)
@@ -334,6 +354,7 @@ PLATFORMS
 DEPENDENCIES
   active_storage_validations
   acts_as_list
+  ahoy_matey
   better_errors
   binding_of_caller
   bootsnap (>= 1.1.0)
