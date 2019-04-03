@@ -10,7 +10,7 @@ class Curso < ApplicationRecord
 	has_many :grupos_cursos, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :curso_certificados, :dependent => :destroy
 	
-	validates_presence_of :nome, :tema_curso_id, :proprietario_id, :codigo_acesso, :data_inicio, :hora_inicio, :data_termino, :hora_termino, :carga_horaria, :porcentagem_aprovacao
+	validates_presence_of :nome, :descricao, :proprietario_id, :codigo_acesso, :data_inicio, :hora_inicio, :data_termino, :hora_termino, :carga_horaria, :porcentagem_aprovacao
 	validates_length_of :codigo_acesso, :minimum => 8, :maximum => 8
 	validates_uniqueness_of :codigo_acesso
 	
