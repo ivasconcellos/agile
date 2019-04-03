@@ -1,4 +1,8 @@
 <div class="card">
+  <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document"></div>
+  </div>
+  
   <div class="card-header"><%= @curso.nome %></div>
 
   <% if @perfil.perfil == 'Professor' %>

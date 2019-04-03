@@ -30,7 +30,7 @@
 
     <div class="form-group row">
       <label for="inputDataInicio" class="col-md-2 offset-md-2 col-form-label">Data de início*</label>
-      <div class="col-md-2">
+      <div class="col-md-3">
         <%= form.date_field :data_inicio, value: @curso.data_inicio.try(:strftime,"%Y-%m-%d"), class: "form-control" %>
       </div>
     </div>
@@ -44,7 +44,7 @@
 
     <div class="form-group row">
       <label for="inputDataTermino" class="col-md-2 offset-md-2 col-form-label">Data de término*</label>
-      <div class="col-md-2">
+      <div class="col-md-3">
         <%= form.date_field :data_termino, value: @curso.data_termino.try(:strftime,"%Y-%m-%d"), class: "form-control" %>
       </div>
     </div>

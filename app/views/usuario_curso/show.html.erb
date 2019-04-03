@@ -50,6 +50,30 @@
     </div>
   </div>
 
+  <% if @usuario_curso.grupo_curso %>
+
+    <div class="card-header">Equipe</div>
+
+    <div class="card-body text-center">
+
+      <div class="row">
+
+        <div class="col-lg-6 offset-lg-4">
+          <div class="input-group mb-2">
+            <%= image_tag @usuario_curso.grupo_curso.grupo.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail text-center" %>
+          </div>
+
+          <div class="input-group mb-3">
+            <p>
+              <label><%= @usuario_curso.grupo_curso.nome_curso %></label>
+            </p>
+          </div>
+        </div> 
+
+      </div>
+    </div>
+  <% end %>
+
   <% if @usuario_curso.perfil != 'Professor' %>
     <div class="card-header">Nível Atual</div>
 
@@ -69,30 +93,6 @@
         </div> 
       </div>
     </div>
-
-    <% if @usuario_curso.grupo_curso %>
-
-      <div class="card-header">Equipe</div>
-
-      <div class="card-body text-center">
-
-        <div class="row">
-
-          <div class="col-lg-6 offset-lg-4">
-            <div class="input-group mb-2">
-              <%= image_tag @usuario_curso.grupo_curso.grupo.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail text-center" %>
-            </div>
-
-            <div class="input-group mb-3">
-              <p>
-                <label><%= @usuario_curso.grupo_curso.nome_curso %></label>
-              </p>
-            </div>
-          </div> 
-
-        </div>
-      </div>
-    <% end %>
     
     <% if !@badges.empty? %>
 

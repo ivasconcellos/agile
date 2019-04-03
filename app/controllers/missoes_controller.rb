@@ -28,7 +28,7 @@ class MissoesController < ApplicationController
     @missao.usuario_curso_id = @perfil.id
     respond_to do |format|
       if @missao.save
-        format.html { redirect_to @missao.modulo.curso, notice: 'Missão cadastrada com sucesso!' }
+        format.html { redirect_to @missao, notice: 'Missão cadastrada com sucesso!' }
         format.json { render :show, status: :created, location: @missao }
       else
         format.html { render :new, @current_usuario => current_usuario }
@@ -42,7 +42,7 @@ class MissoesController < ApplicationController
   def update
     respond_to do |format|
       if @missao.update(missao_params)
-        format.html { redirect_to @missao.modulo.curso, notice: 'Missão atualizada com sucesso!' }
+        format.html { redirect_to @missao, notice: 'Missão atualizada com sucesso!' }
         format.json { render :show, status: :ok, location: @missao }
       else
         format.html { render :edit, @current_usuario => current_usuario }

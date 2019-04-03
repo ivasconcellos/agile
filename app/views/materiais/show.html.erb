@@ -14,7 +14,7 @@
 			<ul class="list-group">
 			  <li class="list-group-item"><b>Nome:</b> <%= @material.nome %></li>
 			  <li class="list-group-item"><b>Tipo:</b> <%= @material.tipo %></li>
-
+			  <li class="list-group-item"><b>Público:</b> <%= @material.publico? ? 'Sim' : 'Não' %></li>
 			  <% if @material.tipo == "Texto" %>
 			  	<li class="list-group-item"><b>Texto:</b><span> <%= @material.texto.to_s.html_safe %></span></li>
 			  <% end %>
