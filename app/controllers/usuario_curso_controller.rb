@@ -1,5 +1,5 @@
 class UsuarioCursoController < ApplicationController
-  before_action :set_usuario_curso, only: [:show, :edit, :update, :destroy, :escolher_equipe, :cancelar_inscricao, :finalizar_curso]
+  before_action :set_usuario_curso, only: [:show, :edit, :update, :destroy, :escolher_equipe, :cancelar_inscricao, :finalizar_curso, :atualizar_avatar]
   before_action :authenticate_usuario!
   
   # GET /usuario_curso
@@ -120,6 +120,10 @@ class UsuarioCursoController < ApplicationController
   def ranking_usuario
     @alunos = UsuarioCurso.where(curso_id: current_usuario.curso_atual_id, perfil: 'Aluno').order(pontos_experiencia: :desc).paginate(page: params[:page], per_page: 20)
     authorize! :show, UsuarioCurso
+  end
+
+  def atualizar_avatar
+    authorize! :edit, UsuarioCurso
   end
 
   def escolher_equipe

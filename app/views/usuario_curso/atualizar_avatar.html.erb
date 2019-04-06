@@ -1,9 +1,9 @@
 <div class="card">
-    <div class="card-header">Escolher Equipe</div> 
+    <div class="card-header">Atualizar Avatar</div> 
   <%= form_with(model: @usuario_curso, local: true) do |form| %>
     <% if @usuario_curso.errors.any? %>
       <div id="error_explanation" class="alert alert-danger">
-        <h2><%= pluralize(@usuario_curso.errors.count, "erro(s)") %> - Equipe não pode ser atualizada!</h2>
+        <h2><%= pluralize(@usuario_curso.errors.count, "erro(s)") %> - Avatar não pode ser atualizado!</h2>
 
         <ul>
         <% @usuario_curso.errors.full_messages.each do |message| %>
@@ -17,14 +17,14 @@
     <div class="card-body">
 
       <div class="form-group row">
-        <% GrupoCurso.joins(:grupo).where('curso_id = ? and grupos.perfil = ?', current_usuario.curso_atual, @perfil.perfil).order('nome_curso').each do |grupo_curso| %>
+        <% Avatar.where(grupo_id: @perfil.grupo_curso.grupo.id, perfil: @perfil.perfil, ativo: true).each do |avatar| %>
           <div class="col-md-4">
-            <p><%= image_tag grupo_curso.grupo.imagem.variant(resize: "200x200"), class: "img-responsive img-thumbnail" %></p>
-            <p><%= form.radio_button :grupo_curso_id, grupo_curso.id %>
-               <%= grupo_curso.nome_curso %></p>
+            <p><%= image_tag avatar.imagem.variant(resize: "200x200"), class: "img-responsive img-thumbnail" %></p>
+            <p><%= form.radio_button :avatar_id, avatar.id %>
+               <%= avatar.nome %></p>
           </div>
-        <% end %>
-      </div>
+        <% end %>      
+      </div>    
 
     </div>
     
