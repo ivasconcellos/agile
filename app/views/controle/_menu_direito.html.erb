@@ -63,4 +63,14 @@
 		</div>
 
 	<% end %>  
+
+	<% if  @perfil.pesquisa %>
+
+		<div class="alert alert-primary alert-lateral">
+			<li class="nav-item">
+				<%= link_to " Pesquisas", question_groups_path, {class: "fa fa-search fa-sm nav-link text-secondary"} %>
+			</li>
+		</div>
+
+	<% end %>
 <% end %>
