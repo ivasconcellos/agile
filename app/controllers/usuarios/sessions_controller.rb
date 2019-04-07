@@ -9,14 +9,24 @@ class Usuarios::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
 
+  def create
+    super
+    if current_visit
+      current_visit.started_at = Time.now
+      current_visit.usuario_id = current_usuario.id
+      current_visit.save
+    end
+  end
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    current_visit.tempo_sessao = (Time.now - current_visit.started_at)/1.minute
+    @visitas = Ahoy::Visit.where(usuario_id: current_usuario.id).sum('tempo_sessao')
+    current_visit.tempo_logado = @visitas
+    current_visit.save
+    ahoy.reset()
+    super
+  end
 
   # protected
 
