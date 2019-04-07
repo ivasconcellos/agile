@@ -150,7 +150,14 @@ class UsuarioCursoController < ApplicationController
       end
     end
     redirect_to :controller => "cursos", :action => "descricao", id: current_usuario.curso_atual_id
-  end 
+  end
+
+  def pendencias
+    authorize! :pendencias, UsuarioCurso
+    @tarefas = Tarefa.joins(missao: :modulo).where('modulos.curso_id = ?', @perfil.curso_id).each { |tarefa| !tarefa.tarefa_alunos }
+    @quizzes = Quiz.joins(missao: :modulo).left_joins(quiz_perguntas: [quiz_pergunta_respostas: :quiz_respostas_alunos]).where('modulos.curso_id = ?', @perfil.curso_id).merge(QuizRespostaAluno.where(id: nil)).group('quizzes.id')
+    @pesquisas = QuestionGroup.left_joins(:answer_groups).where(curso_id: @perfil.curso_id).merge(AnswerGroup.where(id: nil)).group('question_groups.id')
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

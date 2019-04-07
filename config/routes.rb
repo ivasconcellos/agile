@@ -73,6 +73,7 @@ Rails.application.routes.draw do
   get 'cancelar_inscricao' => 'usuario_curso#cancelar_inscricao'
   get 'finalizar_curso' => 'usuario_curso#finalizar_curso'
   get 'atualizar_avatar' => 'usuario_curso#atualizar_avatar'
+  get 'pendencias' => 'usuario_curso#pendencias'
 
   #Curso
   get 'descricao' => 'cursos#descricao'
