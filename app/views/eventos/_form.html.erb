@@ -30,14 +30,14 @@
 
     <div class="form-group row">
       <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Data*</label>
-      <div class="col-md-6">
+      <div class="col-md-3">
         <%= form.date_field :data, class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
       <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Hora*</label>
-      <div class="col-md-6">
+      <div class="col-md-2">
         <%= form.time_field :hora, value: @evento.hora.try(:strftime,"%H:%M"), class: "form-control" %>
       </div>
     </div>

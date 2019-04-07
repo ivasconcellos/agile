@@ -31,6 +31,7 @@
 	          <tr>
 	            <th class="text-center">Nome</th>
 	            <th class="text-center">Tipo</th>
+	            <th class="text-center">Pública</th>
 	            <th colspan="3" class="text-center">Opções</th>
 	          </tr>
 	        </thead>
@@ -40,6 +41,7 @@
 		            <tr>
 		            	<td><%= link_to publica(missao), missao %></td>
 		            	<td><%= missao.tipo %></td>
+		            	<td><%= missao.publico? ? 'Sim' : 'Não' %></td>
 		            	<% if can? :show, Missao %>
 		                	<td><%= link_to 'Visualizar', missao %></td>
 						<% end %>
@@ -68,6 +70,7 @@
 	          <tr>
 	            <th class="text-center">Nome</th>
 	            <th class="text-center">Tipo</th>
+	            <th class="text-center">Público</th>
 	            <th colspan="3" class="text-center">Opções</th>
 	          </tr>
 	        </thead>
@@ -77,6 +80,7 @@
 		            <tr>
 		              	<td><%= link_to publico(material), material %></td>
 		            	<td><%= material.tipo %></td>
+		            	<td><%= material.publico? ? 'Sim' : 'Não' %></td>
 		            	<% if can? :show, Material %>
 		                	<td><%= link_to 'Visualizar', material %></td>
 						<% end %>

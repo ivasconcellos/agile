@@ -47,7 +47,7 @@ class ModulosController < ApplicationController
 
     respond_to do |format|
       if @modulo.save
-        format.html { redirect_to @modulo, notice: 'Módulo cadastrado com sucesso!' }
+        format.html { redirect_to @modulo.curso, notice: 'Módulo cadastrado com sucesso!' }
         format.json { render :show, status: :created, location: @modulo }
       else
         format.html { render :new, @current_usuario => current_usuario }
@@ -61,7 +61,7 @@ class ModulosController < ApplicationController
   def update
     respond_to do |format|
       if @modulo.update(modulo_params)
-        format.html { redirect_to @modulo, notice: 'Módulo atualizado com sucesso!' }
+        format.html { redirect_to @modulo.curso, notice: 'Módulo atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @modulo }
       else
         format.html { render :edit, @current_usuario => current_usuario }
@@ -77,7 +77,7 @@ class ModulosController < ApplicationController
    
     respond_to do |format|
       if  @modulo.destroy
-        format.html { redirect_to modulos_url, notice: 'Módulo excluído com sucesso!' }
+        format.html { redirect_to @modulo.curso, notice: 'Módulo excluído com sucesso!' }
         format.json { head :no_content }
       else
         format.html { redirect_to modulos_url, alert: 'O Módulo não pôde ser excluído, pois está sendo utilizado!' }

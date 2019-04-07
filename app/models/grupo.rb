@@ -8,7 +8,7 @@ class Grupo < ApplicationRecord
 		message: 'Imagem muito grande. O tamanho máximo deve ser 10 MB.' }, 
 		content_type: [ "image/png", "image/jpg", "image/jpeg"] 
 		
-  validates_presence_of :nome
+  validates_presence_of :nome, :perfil
 
   self.per_page = 10
 end

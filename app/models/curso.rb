@@ -10,7 +10,7 @@ class Curso < ApplicationRecord
 	has_many :grupos_cursos, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :curso_certificados, :dependent => :destroy
 	
-	validates_presence_of :nome, :tema_curso_id, :proprietario_id, :codigo_acesso, :data_inicio, :hora_inicio, :data_termino, :hora_termino, :carga_horaria, :porcentagem_aprovacao
+	validates_presence_of :nome, :descricao, :proprietario_id, :codigo_acesso, :data_inicio, :hora_inicio, :data_termino, :hora_termino, :carga_horaria, :porcentagem_aprovacao
 	validates_length_of :codigo_acesso, :minimum => 8, :maximum => 8
 	validates_uniqueness_of :codigo_acesso
 	
@@ -32,8 +32,10 @@ class Curso < ApplicationRecord
 	  	@missao_quiz = Missao.joins(:modulo).where('modulos.curso_id = ? and missoes.tipo = ?', self.id, 'Quiz').select { |missao| !missao.quiz }.first
 	  	@missao_tarefa = Missao.joins(:modulo).where('modulos.curso_id = ? and tipo =?', self.id, 'Tarefa').select { |missao| !missao.tarefa }.first
 	  	@tarefa_pendente_avaliacao = TarefaAluno.joins(:usuario_curso).where('usuario_curso.curso_id = ? and avaliada =?', self.id, false).first
+	  	@grupos_curso_professor = !GrupoCurso.joins(:grupo).where('grupos.perfil = ?', 'Professor').exists?(curso_id: self.id)
+	  	@grupos_curso_aluno = !GrupoCurso.joins(:grupo).where('grupos.perfil = ?', 'Aluno').exists?(curso_id: self.id)
 
-	  		if @quiz_nao_finalizado
+	  	if @quiz_nao_finalizado
 	  		@alertas.append("Há Quiz não finalizado!")
 	  	end
 	  	  
@@ -49,6 +51,13 @@ class Curso < ApplicationRecord
 	    	@alertas.append("Há Tarefas a serem avaliadas!")
 	    end
 
+	    if @grupos_curso_professor
+	    	@alertas.append("Não há Equipes cadastradas para os professores deste curso! Por favor, cadastre no menu Equipes.")
+	    end
+
+	    if @grupos_curso_aluno
+	    	@alertas.append("Não há Equipes cadastradas para os alunos deste curso! Por favor, cadastre no menu Equipes.")
+	    end
 	    return @alertas
 		
 	end

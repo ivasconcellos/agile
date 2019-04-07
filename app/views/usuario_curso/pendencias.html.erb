@@ -1,0 +1,44 @@
+<div class="card">
+
+  <div class="card-header">Pendências </div>
+
+	<% if !@tarefas.empty? %>
+		<h5 class="p-3 mb-2 bg-info text-white text-center"><b>Tarefas</b></h5>
+		<% @tarefas.each do |tarefa| %>
+			<div class="row">
+   				<div class="col-md-10 offset-md-1">
+					<ul class="list-group">
+			        	<li class="list-group-item"><%= link_to tarefa.nome, tarefa %></li>
+			    	</ul>
+			    </div>
+		    </div>    
+		<% end %>
+	<% end %>
+
+	<% if !@quizzes.empty? %>
+		<h5 class="p-3 mb-2 bg-info text-white text-center"><b>Quizzes</b></h5>
+		<% @quizzes.each do |quiz| %>
+			<div class="row">
+   				<div class="col-md-10 offset-md-1">
+					<ul class="list-group">
+			        	<li class="list-group-item"><%= link_to quiz.nome, quiz.missao %></li>
+			    	</ul>
+			    </div>
+		    </div>    
+		<% end %>
+	<% end %>
+
+	<% if !@pesquisas.empty? %>
+		<h5 class="p-3 mb-2 bg-info text-white text-center"><b>Pesquisas</b></h5>
+		<% @pesquisas.each do |pesquisa| %>
+			<div class="row">
+   				<div class="col-md-10 offset-md-1">
+					<ul class="list-group">
+			        	<li class="list-group-item"><%= link_to pesquisa.titulo, new_question_group_answer_group_path(pesquisa) %></li>
+			    	</ul>
+			    </div>
+		    </div>    
+		<% end %>
+	<% end %>
+
+</div>

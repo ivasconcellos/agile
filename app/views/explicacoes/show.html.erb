@@ -9,21 +9,32 @@
 	    <% end %>
 	</div>
 
-	<div class="row">
-	    <div class="col-md-10 offset-md-1">
-			<ul class="list-group">
-			  <li class="list-group-item"><b>Nome:</b> <%= @explicacao.nome %></li>
-			  <li class="list-group-item"><b>Descrição:</b> <%= @explicacao.descricao.to_s.html_safe %></li>
-			  <li class="list-group-item"><b>Cadastrada em:</b> <%= @explicacao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li> 
-			  <li class="list-group-item"><b>Atualizada em:</b> <%= @explicacao.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
-			  <li class="list-group-item"><b>Módulo:</b> <%= link_to @explicacao.modulo.nome, @explicacao.modulo %></li>      
-			</ul>
+	<% if @perfil.perfil == 'Professor' %>
+		<div class="row">
+		    <div class="col-md-10 offset-md-1">
+				<ul class="list-group">
+				  <li class="list-group-item"><b>Nome:</b> <%= @explicacao.nome %></li>
+				  <li class="list-group-item"><b>Descrição:</b> <%= @explicacao.descricao.to_s.html_safe %></li>
+				  <li class="list-group-item"><b>Cadastrada em:</b> <%= @explicacao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li> 
+				  <li class="list-group-item"><b>Atualizada em:</b> <%= @explicacao.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
+				  <li class="list-group-item"><b>Módulo:</b> <%= link_to @explicacao.modulo.nome, @explicacao.modulo %></li>      
+				</ul>
+			</div>
 		</div>
-	</div>
+	<% else %>
+		<div class="row">
+		    <div class="col-md-10 offset-md-1">
+				<ul class="list-group">
+				  <li class="list-group-item text-center"><b><%= @explicacao.nome %></b></li>
+				  <li class="list-group-item"><%= @explicacao.descricao.to_s.html_safe %></li>     
+				</ul>
+			</div>
+		</div>
+	<% end %>
 
 	<br>
 
 	<div class="card-footer text-muted">
-	  <%= link_to 'Voltar', @explicacao.modulo, class: "btn btn-md btn-secondary" %>
+	  <%= link_to 'Voltar', @explicacao.modulo.curso, class: "btn btn-md btn-secondary" %>
 	</div>
 </div>

@@ -6,6 +6,10 @@ class DialogosController < ApplicationController
   # GET /dialogos/1.json
   def show
     authorize! :show, Dialogo
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /dialogos/new

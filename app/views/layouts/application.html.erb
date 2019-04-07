@@ -73,7 +73,9 @@
             <% end %>
             <% if @perfil.grupo_curso %>
                 <p class="list-group-item text-center perfil"><label>Equipe:</label> <%= link_to @perfil.grupo_curso.nome_curso, equipe_url %></p>
-                <p class="list-group-item text-center perfil"><label>XP Médio da Equipe:</label> <%= @perfil.grupo_curso.pontuacao_media %></p>
+                <% if @perfil.perfil == 'Aluno' %>
+                  <p class="list-group-item text-center perfil"><label>XP Médio da Equipe:</label> <%= @perfil.grupo_curso.pontuacao_media %></p>
+                <% end %>
               <% else %>
                 <p class="list-group-item text-center perfil"><%= link_to 'Escolher Equipe', escolher_equipe_url(id: @perfil.id), class: 'text-danger' %></p>
             <% end %>

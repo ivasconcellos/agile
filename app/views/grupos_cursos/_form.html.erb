@@ -16,19 +16,18 @@
     <%= form.hidden_field :curso_id %>
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Equipe*</label>
-      <div class="col-md-6">
-        <% Grupo.where(ativo: true).each do |grupo| %>
+      <% Grupo.where(ativo: true).each do |grupo| %>      
+        <div class="col-md-4 text-center">
           <p><%= image_tag grupo.imagem.variant(resize: "200x200"), class: "img-responsive img-thumbnail" %></p>
           <p><%= form.radio_button :grupo_id, grupo.id %>
-          <%= grupo.nome %> - Perfil: <%= grupo.perfil %></p>
-        <% end %>      
+          <b><%= grupo.nome %></b> - Perfil: <%= grupo.perfil %></p>
       </div>
+      <% end %>      
     </div>
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome no curso*</label>
-      <div class="col-md-6">
+      <label for="inputNome" class="col-md-4 col-form-label">Nome da Equipe no curso*</label>
+      <div class="col-md-8">
         <%= form.text_field :nome_curso, autofocus: true, class: "form-control" %>
       </div>
     </div>

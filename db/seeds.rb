@@ -5,25 +5,42 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Admin.create! nome: 'admin', email: 'admin@iff.edu.br', password: '12345678'
+
+Admin.create! nome: 'admin', email: 'suporte.ti.centro@iff.edu.br', password: '12345678'
 Usuario.create! nome: 'Gestor', email: 'gestor@iff.edu.br', perfil: 'Gestor', data_nascimento: '01/01/2000', sexo: 'Masculino', ativo: true, termo_compromisso: true, password: '12345678', cpf: '133.230.797-36'
 Usuario.create! nome: 'Professor', email: 'professor@iff.edu.br', perfil: 'Usuario comum', data_nascimento: '01/02/2000', sexo: 'Masculino', ativo: true, termo_compromisso: true, password: '12345678', cpf: '119.794.737-06'
 Usuario.create! nome: 'Aluno', email: 'aluno@iff.edu.br', perfil: 'Usuario comum', data_nascimento: '01/03/2000', sexo: 'Masculino', ativo: true, termo_compromisso: true, password: '12345678', cpf: '149.656.207-04'
+
 @tema_curso = TemaCurso.new nome: 'Padrão', ativo: true, cor_titulo: '#1C2AD2', cor_texto: '#2E40EB', cor_fundo: '#1D50E3'
 @tema_curso.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
 @tema_curso.save!
 
-@grupo = Grupo.new id: 1, nome: 'Mago', ativo: true
-@grupo.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
-@grupo.save!
+#Grupos
+@grupo1 = Grupo.new id: 1, nome: 'Magos', ativo: true, perfil: 'Aluno'
+@grupo1.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
+@grupo1.save!
 
-@avatar_magop = Avatar.new grupo_id: 1, nome: 'Mago negro', perfil: 'Professor', ativo: true
-@avatar_magop.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
-@avatar_magop.save!
+@grupo2 = Grupo.new id: 2, nome: 'Elfos', ativo: true, perfil: 'Aluno'
+@grupo2.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
+@grupo2.save!
 
+@grupo3 = Grupo.new id: 3, nome: 'Guerreiros', ativo: true, perfil: 'Aluno'
+@grupo3.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
+@grupo3.save!
+
+@grupo4 = Grupo.new id: 4, nome: 'Oráculos', ativo: true, perfil: 'Professor'
+@grupo4.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
+@grupo4.save!
+
+#Avatares
 @avatar_mago = Avatar.new grupo_id: 1, nome: 'Mago negro', perfil: 'Aluno', ativo: true
 @avatar_mago.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
 @avatar_mago.save!
+
+@avatar_oraculo = Avatar.new grupo_id: 4, nome: 'Oráculo', perfil: 'Professor', ativo: true
+@avatar_oraculo.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
+@avatar_oraculo.save!
+
 #Curso.create! nome: 'Curso de Lógica de Programação', descricao: 'Descrição do curso.', data_inicio: '01/01/2019', hora_inicio: '08:00:00', data_termino: '01/01/2020', hora_termino: '23:59:59', codigo_acesso: '12345678', ativo: true, publico: true, tema_curso_id: 1, proprietario_id: 2
 #Modulo.create! nome: 'Módulo 1', descricao: "Primeiro módulo do curso", publico: true, curso_id: 1
 #Forum.create! titulo: 'Fórum teste', descricao: 'Criação de fórum de teste', curso_id: 1, usuario_curso_id: 1
@@ -60,26 +77,47 @@ Usuario.create! nome: 'Aluno', email: 'aluno@iff.edu.br', perfil: 'Usuario comum
 @nivel6.save!
 
 ##Badges
-@badge1 = Badge.new nome: 'Badge 1', ativo: true, pontos_requeridos: 0
+@badge1 = Badge.new nome: 'Aprendiz', ativo: true, pontos_requeridos: 0
 @badge1.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
 @badge1.save!
 
-@badge2 = Badge.new nome: 'Badge 2', ativo: true, pontos_requeridos: 50
+@badge2 = Badge.new nome: 'Aspirante', ativo: true, pontos_requeridos: 50
 @badge2.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
 @badge2.save!
 
-@badge3 = Badge.new nome: 'Badge 3', ativo: true, pontos_requeridos: 100
+@badge3 = Badge.new nome: 'Especialista', ativo: true, pontos_requeridos: 100
 @badge3.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
 @badge3.save!
 
-@badge4 = Badge.new nome: 'Badge 4', ativo: true, pontos_requeridos: 150
+@badge4 = Badge.new nome: 'Perito', ativo: true, pontos_requeridos: 150
 @badge4.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
 @badge4.save!
 
-@badge5 = Badge.new nome: 'Badge 5', ativo: true, pontos_requeridos: 200
+@badge5 = Badge.new nome: 'Mestre', ativo: true, pontos_requeridos: 200
 @badge5.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
 @badge5.save!
 
-@badge6 = Badge.new nome: 'Badge 6', ativo: true, pontos_requeridos: 250
+@badge6 = Badge.new nome: 'Mestre Supremo', ativo: true, pontos_requeridos: 250
 @badge6.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
 @badge6.save!
+
+##Artefatos
+@artefato1 = Artefato.new nome: 'Magia do Ar', pontos_requeridos: 50, ativo: true, tema_curso_id: 1
+@artefato1.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
+@artefato1.save!
+
+@artefato2 = Artefato.new nome: 'Magia da Terra', pontos_requeridos: 100, ativo: true, tema_curso_id: 1
+@artefato2.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
+@artefato2.save!
+
+@artefato3 = Artefato.new nome: 'Magia da Água', pontos_requeridos: 180, ativo: true, tema_curso_id: 1
+@artefato3.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
+@artefato3.save!
+
+@artefato4 = Artefato.new nome: 'Magia do Fogo', pontos_requeridos: 200, ativo: true, tema_curso_id: 1
+@artefato4.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
+@artefato4.save!
+
+@artefato5 = Artefato.new nome: 'Magia do Éter', pontos_requeridos: 250, ativo: true, tema_curso_id: 1
+@artefato5.imagem.attach(io: File.open('app/assets/images/estrela.jpg'), filename: 'estrela.jpg')
+@artefato5.save!
