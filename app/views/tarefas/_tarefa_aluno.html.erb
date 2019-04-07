@@ -1,0 +1,31 @@
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th class="text-center">Tarefa</th> 
+        <th class="text-center">Pontuação máxima</th>
+        <th class="text-center">Nota obtida</th>
+        <th class="text-center">Realizada</th> 
+        <th class="text-center">Avaliada</th>        
+      </tr>
+    </thead>
+    <tbody>
+      <% TarefaAluno.joins(tarefa: :missao).where("missoes.modulo_id = ?", modulo.id).each do |tarefa| %>
+        <tr>
+          <td><%= link_to tarefa.tarefa.nome, tarefa.tarefa %></td>
+          <td><%= tarefa.tarefa.missao.pontuacao %></td>
+          <td><%= minha_nota(tarefa.tarefa.id, aluno) %></td>
+          <td><%= enviada(tarefa.tarefa.id, aluno) %></td>
+          <td><%= tarefa.avaliada? ? 'Sim' : 'Não' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+        
+        
+      

@@ -5,33 +5,19 @@
   <% @aluno.curso.modulos.each do |modulo| %>
     <h5 class="p-3 mb-2 bg-info text-white text-center"><b>Módulo:</b> <%= link_to modulo.nome, modulo, class: "text-light" %></h5>
     	
-		<div class="table-responsive">
-	      <table class="table table-striped table-sm">
-	        <thead>
-	          <tr>
-	            <th class="text-center">Missão</th> 
-	            <th class="text-center">Tipo</th> 
-	            <th class="text-center">Pontuação máxima</th>
-	            <th class="text-center">Nota</th>
-	            <th class="text-center">Enviada</th> 
-	            <th class="text-center">Avaliada</th>        
-	          </tr>
-	        </thead>
-	        <tbody>
-	          <% modulo.tarefas.where(" not exists(select id from tarefa_alunos where tarefa_id is null)").each do |tarefa| %>
-	            <tr>
-	              <td><%= link_to tarefa.missao.nome, tarefa.missao %></td>
-	              <td><%= tarefa.missao.tipo %></td>
-	              <td><%= tarefa.missao.pontuacao %></td>
-	              <td><%= minha_nota(tarefa.id, @aluno.id) %></td>
-	              <td><%= enviada(tarefa.id, @aluno.id) %></td>
-	              <td><%= avaliada(tarefa.id, @aluno.id) %></td>
-	            </tr>
-	          <% end %>
-	        </tbody>
-	      </table>
-	    </div>   
-   
+   <% Missao.where(modulo_id: modulo.id, publico: true).each do |missao| %>
+	    <h6 class="p-3 mb-2 bg-secondary text-white text-center">
+	    	<b>Missão (<%= missao.tipo %>):</b> <%= link_to missao.nome, missao, class: "text-light" %></h6>
+	    <% if missao.tipo == 'Tarefa' %>
+	    	<%= render partial: "tarefas/tarefa_aluno", locals: {modulo: missao.modulo, aluno: @aluno.id} %>
+	    <% end %>
+	    <% if missao.tipo == 'Quiz' %>
+	    	<%= render partial: "quizzes/quiz_aluno", locals: {quiz: missao.quiz, aluno: @aluno.id} %>
+	    <% end %>
+	<% end %>
+	      
   <% end %>
+
+  <h6 class="p-3 mb-2 bg-success text-white text-center"><b>Pontuação Total:</b> <%= @aluno.pontos_experiencia %></h5>
 
 </div>

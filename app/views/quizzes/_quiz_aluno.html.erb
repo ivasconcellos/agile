@@ -4,18 +4,18 @@
           <tr>
             <th class="text-center">Quiz</th> 
             <th class="text-center">Pontuação máxima</th>
-            <th class="text-center">Minha nota</th>
+            <th class="text-center">Nota obtida</th>
             <th class="text-center">Realizada</th> 
             <th class="text-center">Avaliada</th>        
           </tr>
         </thead>
         <tbody>
             <tr>
-              <td><%= link_to quiz.nome, quiz %></td>
+              <td><%= quiz.nome %></td>
               <td><%= quiz.missao.pontuacao %></td>
-              <td><%= minha_nota_quiz(quiz.id, @perfil.id) %></td>
-              <td><%= respondido_quiz(quiz.id, @perfil.id) %></td>
-              <td><%= respondido_quiz(quiz.id, @perfil.id) %></td>
+              <td><%= minha_nota_quiz(quiz.id, aluno) %></td>
+              <td><%= respondido_quiz(quiz.id, aluno) %></td>
+              <td><%= respondido_quiz(quiz.id, aluno) %></td>
             </tr>
         </tbody>
       </table>
