@@ -35,5 +35,6 @@
 
 	<div class="card-footer text-muted">
 		<%= link_to 'Voltar para Pesquisa', :back, class: "btn btn-md btn-secondary"  %>
+		<%= link_to 'Download CSV', {controller: 'question_groups', action: 'results', q: request.params[:q], format: 'csv'}, :class => "btn btn-primary link" %>
 	</div>
 </div>

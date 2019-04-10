@@ -94,3 +94,6 @@ gem 'cpf_utils'
 gem 'select2-rails'
 
 gem 'ahoy_matey'
+
+gem 'to_csv-rails'
+
