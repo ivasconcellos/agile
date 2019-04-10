@@ -18,7 +18,7 @@
             <div class="card text-white o-hidden h-200 curso">
               <div class="card-body">
                 <% if participante.avatar %>
-                  <%= image_tag participante.avatar.imagem.variant(resize: "200x200"), class: "img-responsive" %>
+                  <%= image_tag participante.avatar.imagem, class: "img-fluid img-responsive" %>
                 <% else %>
                   <%= image_tag "missing.png", class: "img-responsive img-thumbnail" %>
                 <% end %>
