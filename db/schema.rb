@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_01_182734) do
+ActiveRecord::Schema.define(version: 2019_04_10_003229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,18 @@ ActiveRecord::Schema.define(version: 2019_04_01_182734) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "ahoy_events", force: :cascade do |t|
+    t.bigint "visit_id"
+    t.bigint "usuario_id"
+    t.string "name"
+    t.jsonb "properties"
+    t.datetime "time"
+    t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
+    t.index ["properties"], name: "index_ahoy_events_on_properties_jsonb_path_ops", opclass: :jsonb_path_ops, using: :gin
+    t.index ["usuario_id"], name: "index_ahoy_events_on_usuario_id"
+    t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
+  end
+
   create_table "ahoy_visits", force: :cascade do |t|
     t.string "visit_token"
     t.string "visitor_token"
@@ -81,6 +93,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_182734) do
     t.float "tempo_logado"
     t.datetime "started_at"
     t.index ["usuario_id"], name: "index_ahoy_visits_on_usuario_id"
+    t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
 
   create_table "answer_groups", force: :cascade do |t|

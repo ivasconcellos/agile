@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  after_action :track_action
 
     rescue_from CanCan::AccessDenied do |exception|
         render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
@@ -46,5 +47,9 @@ class ApplicationController < ActionController::Base
 	 	 	"/administration"
 	    end
     end
+
+    def track_action
+    ahoy.track "Ran action", request.path_parameters
+  end
 
 end
