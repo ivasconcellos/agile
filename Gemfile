@@ -98,3 +98,5 @@ gem 'wicked_pdf', '1.1.0'
 gem 'wkhtmltopdf-binary', '0.12.4'
 
 gem 'ahoy_matey'
+
+gem 'exception_notification'
