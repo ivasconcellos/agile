@@ -97,3 +97,6 @@ gem 'ahoy_matey'
 
 gem 'to_csv-rails'
 
+gem 'exception_notification'
+
+
