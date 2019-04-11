@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
-
-    rescue_from CanCan::AccessDenied do |exception|
-        render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
-    end
+  after_action :track_action
+  
+  rescue_from CanCan::AccessDenied do |exception|
+    render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
+  end
 
   layout :layout_by_resource
 
@@ -46,5 +47,13 @@ class ApplicationController < ActionController::Base
 	 	 	"/administration"
 	    end
     end
+
+  def track_action
+    ahoy.authenticate(current_usuario) if current_usuario
+    Ahoy.user_method = :current_usuario
+    
+    ahoy.track "Ran action", request.path_parameters
+
+  end
 
 end

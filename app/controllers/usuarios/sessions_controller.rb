@@ -17,6 +17,9 @@ class Usuarios::SessionsController < Devise::SessionsController
       current_visit.usuario_id = current_usuario.id
       current_visit.save
     end
+
+    Ahoy.user_method = :current_usuario
+    ahoy.authenticate(current_usuario)
   end
   # DELETE /resource/sign_out
   def destroy

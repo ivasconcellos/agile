@@ -20,6 +20,7 @@
 //= require turbolinks
 //= require ckeditor/init
 //= require bootstrap-datepicker
+//= require ahoy
 //= require_tree .
 
 $( document ).on('turbolinks:load', function() {

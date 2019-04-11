@@ -9,7 +9,8 @@ class Usuario < ApplicationRecord
   has_many :usuario_curso, :dependent => :destroy
   has_many :curso_certificados, :dependent => :destroy
   has_many :visits, class_name: "Ahoy::Visit"
-  
+  has_many :events, class_name: "Ahoy::Event"
+
   validates_uniqueness_of :email, :cpf
   validate :valida_cpf
 

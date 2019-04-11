@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_07_022252) do
+ActiveRecord::Schema.define(version: 2019_04_07_022253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(version: 2019_04_07_022252) do
     t.string "app_version"
     t.string "os_version"
     t.string "platform"
+    t.float "tempo_sessao"
+    t.float "tempo_logado"
     t.datetime "started_at"
     t.index ["usuario_id"], name: "index_ahoy_visits_on_usuario_id"
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true

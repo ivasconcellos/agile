@@ -342,6 +342,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   cpf_utils
   devise
+  geocoder
   image_processing
   jbuilder (~> 2.5)
   jquery-rails

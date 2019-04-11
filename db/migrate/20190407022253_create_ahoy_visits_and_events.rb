@@ -38,7 +38,8 @@ class CreateAhoyVisitsAndEvents < ActiveRecord::Migration[5.2]
       t.string :app_version
       t.string :os_version
       t.string :platform
-
+      t.float :tempo_sessao
+      t.float :tempo_logado
       t.timestamp :started_at
     end
 
