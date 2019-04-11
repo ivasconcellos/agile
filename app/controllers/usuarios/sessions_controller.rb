@@ -9,14 +9,25 @@ class Usuarios::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
 
+  def create
+    super
+    if current_visit
+      current_visit.started_at = Time.now
+      current_visit.usuario_id = current_usuario.id
+      current_visit.save
+    end
+
+    Ahoy.user_method = :current_usuario
+    ahoy.authenticate(current_usuario)
+  end
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    current_visit.finished_at = Time.now
+    current_visit.save
+    ahoy.reset()
+    super
+  end
 
   # protected
 
