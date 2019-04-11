@@ -19,6 +19,10 @@
         <li class="list-group-item"><b>Término do curso:</b> <%= @curso.data_hora_termino %></li>
         <li class="list-group-item"><b>Carga horária:</b> <%= @curso.carga_horaria %>h</li>
         <li class="list-group-item"><b>Porcentagem aprovação:</b> <%= @curso.porcentagem_aprovacao %>%</li>
+        <li class="list-group-item"><b>Público-alvo:</b> <%= @curso.publico_alvo.to_s.html_safe %></li>
+        <% if @curso.criterios_participacao %>
+          <li class="list-group-item"><b>Critérios de participação:</b> <%= @curso.criterios_participacao.to_s.html_safe %></li>
+        <% end %>
         <% if can? :edit, Curso %>
           <li class="list-group-item"><b>Código de acesso:</b> <%= @curso.codigo_acesso %></li>   
           <li class="list-group-item"><b>Ativo:</b> <%= @curso.ativo? ? 'Sim' : 'Não' %></li>
