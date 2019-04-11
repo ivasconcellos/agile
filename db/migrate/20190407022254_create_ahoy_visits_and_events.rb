@@ -38,9 +38,8 @@ class CreateAhoyVisitsAndEvents < ActiveRecord::Migration[5.2]
       t.string :app_version
       t.string :os_version
       t.string :platform
-      t.float :tempo_sessao
-      t.float :tempo_logado
       t.timestamp :started_at
+      t.timestamp :finished_at
     end
 
     add_index :ahoy_visits, [:visit_token], unique: true
@@ -48,6 +47,7 @@ class CreateAhoyVisitsAndEvents < ActiveRecord::Migration[5.2]
     create_table :ahoy_events do |t|
       t.references :visit
       t.references :usuario
+      t.references :curso
 
       t.string :name
       t.jsonb :properties

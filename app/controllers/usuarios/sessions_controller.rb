@@ -23,9 +23,7 @@ class Usuarios::SessionsController < Devise::SessionsController
   end
   # DELETE /resource/sign_out
   def destroy
-    current_visit.tempo_sessao = (Time.now - current_visit.started_at)/1.minute
-    @visitas = Ahoy::Visit.where(usuario_id: current_usuario.id).sum('tempo_sessao')
-    current_visit.tempo_logado = @visitas
+    current_visit.finished_at = Time.now
     current_visit.save
     ahoy.reset()
     super

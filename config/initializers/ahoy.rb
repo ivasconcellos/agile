@@ -1,9 +1,14 @@
 class Ahoy::Store < Ahoy::DatabaseStore
 
-	def track_event(data)
-    data[:usuario_id] = @visit.usuario_id
-    super(data)
-end
+    def track_event(data)
+        if @visit
+            data[:usuario_id] = @visit.usuario_id
+        end
+        if @user
+            data[:curso_id] = @user.curso_atual_id
+        end
+        super(data)
+    end
 end
 
 # set to true for JavaScript tracking

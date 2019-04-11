@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_07_022253) do
+ActiveRecord::Schema.define(version: 2019_04_10_003229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,9 +57,11 @@ ActiveRecord::Schema.define(version: 2019_04_07_022253) do
   create_table "ahoy_events", force: :cascade do |t|
     t.bigint "visit_id"
     t.bigint "usuario_id"
+    t.bigint "curso_id"
     t.string "name"
     t.jsonb "properties"
     t.datetime "time"
+    t.index ["curso_id"], name: "index_ahoy_events_on_curso_id"
     t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
     t.index ["properties"], name: "index_ahoy_events_on_properties_jsonb_path_ops", opclass: :jsonb_path_ops, using: :gin
     t.index ["usuario_id"], name: "index_ahoy_events_on_usuario_id"
@@ -89,9 +91,8 @@ ActiveRecord::Schema.define(version: 2019_04_07_022253) do
     t.string "app_version"
     t.string "os_version"
     t.string "platform"
-    t.float "tempo_sessao"
-    t.float "tempo_logado"
     t.datetime "started_at"
+    t.datetime "finished_at"
     t.index ["usuario_id"], name: "index_ahoy_visits_on_usuario_id"
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
