@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   after_action :track_action
+  before_action :prepare_exception_notifier
+
   
   rescue_from CanCan::AccessDenied do |exception|
     render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
@@ -17,6 +19,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def prepare_exception_notifier
+    request.env["exception_notifier.exception_data"] = {
+      current_usuario: current_usuario
+    }
+  end
   
   before_action :perfil, if: :authenticate_usuario!
   def perfil
