@@ -69,7 +69,17 @@ class UsuarioCurso < ApplicationRecord
 		else
 			return false
 		end
-  	end
+	  end
+	  
+	  def pode_responder_pesquisa_final
+		@tarefas = TarefaAluno.exists?(usuario_curso_id: self.id, tarefa_id: Tarefa.joins(missao: :modulo).where('modulos.curso_id = ? and tarefa_alunos. avaliada = ?', self.curso_id, true))
+		@quizzes = QuizRespostaAluno.exists?(usuario_curso_id: self.id, quiz_pergunta_resposta_id: QuizPerguntaResposta.joins(quiz_pergunta: { quiz: {missao: :modulo }}).where('modulos.curso_id = ?', self.curso_id))  		
+		if @tarefas 
+			return true
+		else
+			return false
+		end
+	  end
 
   	def verifica_aprovacao
   		@pontuacao_missao = Missao.joins(:modulo).where('modulos.curso_id =?', self.curso_id).sum('pontuacao')
