@@ -76,6 +76,6 @@ class QuestionGroupsController < ApplicationController
 	    end
 
 		def question_group_params
-			params.require(:question_group).permit(:titulo, :descricao, :objetivo, :usuario_curso_id, :curso_id)
+			params.require(:question_group).permit(:titulo, :descricao, :objetivo, :usuario_curso_id, :curso_id, :final_curso)
 		end
 end
