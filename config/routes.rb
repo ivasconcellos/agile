@@ -83,7 +83,7 @@ Rails.application.routes.draw do
 
   get 'material_texto' => 'materiais#texto'
   
-  get 'termo_compromisso' => 'usuarios#termo_compromisso'
+  get 'termo_uso' => 'usuarios#termo_uso'
 
   get 'equipe' => 'grupos_cursos#lista_participantes'
 

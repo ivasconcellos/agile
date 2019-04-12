@@ -162,3 +162,16 @@ td{
 .modulo-item{
   margin-top: 15px;
 }
+
+.modal-dialog{
+  overflow-y: initial !important
+}
+
+.modal-body{
+  height: 250px;
+  overflow-y: auto;
+}
+
+.fonte-termo{
+  font-size: 14px;
+}
