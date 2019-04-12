@@ -61,7 +61,7 @@ Rails.application.routes.draw do
   get 'controle_gestor' => 'controle#controle_gestor'
   get 'controle_professor' => 'controle#controle_professor'
   get 'desenvolvimento' => 'controle#desenvolvimento'
-  get 'curso_atual' => 'cursos#atualizar_curso_atual'
+  get 'contato' => 'controle#contato'
 
   #Usuário Curso
   get 'busca_curso' => 'usuario_curso#busca_curso'
@@ -76,6 +76,7 @@ Rails.application.routes.draw do
   get 'pendencias' => 'usuario_curso#pendencias'
 
   #Curso
+  get 'curso_atual' => 'cursos#atualizar_curso_atual'
   get 'descricao' => 'cursos#descricao'
   get 'notas' => 'cursos#notas'
   get 'enviar_convite' => 'cursos#enviar_convite'
