@@ -34,6 +34,9 @@
           <li class="nav-item">
             <%= link_to validar_certificado_path, class: 'nav-link' do %>Validar certificado<% end %>
           </li>
+          <li class="nav-item">
+            <%= link_to contato_path, class: 'nav-link' do %>Contato<% end %>
+          </li>
   	      <li class="nav-item">
   	        <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'nav-link' do %>Atualizar Dados<% end %>
   	      </li>
@@ -43,6 +46,9 @@
         <%else%>
           <li class="nav-item">
             <%= link_to validar_certificado_path, class: 'nav-link' do %>Validar certificado<% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to contato_path, class: 'nav-link' do %>Contato<% end %>
           </li>
           <li class="nav-item">
             <%= link_to sobre_path, class: 'nav-link' do %>Sobre<% end %>

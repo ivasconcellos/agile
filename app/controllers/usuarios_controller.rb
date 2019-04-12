@@ -1,8 +1,8 @@
 class UsuariosController < ApplicationController
 	before_action :set_usuario, only: [:edit, :show, :update]
-	before_action :authenticate_usuario!, :except => [:termo_compromisso]
+	before_action :authenticate_usuario!, :except => [:termo_uso]
 	skip_before_action :perfil
-	before_action :perfil, except: [:termo_compromisso]
+	before_action :perfil, except: [:termo_uso]
 
 	def index
 		authorize! :index, Usuario
@@ -30,7 +30,7 @@ class UsuariosController < ApplicationController
 	    end
 	end
 
-	def termo_compromisso
+	def termo_uso
 		render layout: 'tema'
 		respond_to do |format|
     		format.html
