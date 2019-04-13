@@ -1,52 +1,56 @@
 <div class="card">
 
-	<%= form_for([@question_group, @answer_group_builder]) do |f| %>
-	<div class="card-header">Responder Pesquisa</div>
+  <% if !@question_group.final_curso or (@perfil.pode_responder_pesquisa_final and @question_group.final_curso) %>
+		<%= form_for([@question_group, @answer_group_builder]) do |f| %>
+		<div class="card-header">Responder Pesquisa</div>
 
-		<div class="row">
+			<div class="row">
 
-			<div class="col-lg-12">
+				<div class="col-lg-12">
 
-			    <div class="input-group mb-3">
-			      <p>
-			        <label>Pesquisa: </label>          
-			        <%= @question_group.titulo %>
-			      </p>
-			    </div>
+						<div class="input-group mb-3">
+							<p>
+								<label>Pesquisa: </label>          
+								<%= @question_group.titulo %>
+							</p>
+						</div>
 
-			    <% if @question_group.descricao? %>
-				    <div class="input-group mb-3">
-				      <p>
-				        <label>Descrição: </label>          
-				        <%= @question_group.descricao %>
-				      </p>
-				    </div>
-				<% end %>
+						<% if @question_group.descricao? %>
+							<div class="input-group mb-3">
+								<p>
+									<label>Descrição: </label>          
+									<%= @question_group.descricao %>
+								</p>
+							</div>
+					<% end %>
 
-				<% if @question_group.objetivo? %>
-				    <div class="input-group mb-3">
-				      <p>
-				        <label>Objetivo: </label>          
-				        <%= @question_group.objetivo %>
-				      </p>
-				    </div>
-				<% end %>
+					<% if @question_group.objetivo? %>
+							<div class="input-group mb-3">
+								<p>
+									<label>Objetivo: </label>          
+									<%= @question_group.objetivo %>
+								</p>
+							</div>
+					<% end %>
+				</div>
 			</div>
-		</div>
 
-		<% @contador = 0 %>
-	
-		<%- @answer_group_builder.answers.each do |answer| %>
-	    	<%= f.fields_for("#{answer.question.id}", answer) do |answer_form| %>
-	    	<ul class="list-unstyled question">
-				<%= render_answer_form_helper(answer, answer_form) %>
-			</ul>
-	    	<% end %>
+			<% @contador = 0 %>
+		
+			<%- @answer_group_builder.answers.each do |answer| %>
+					<%= f.fields_for("#{answer.question.id}", answer) do |answer_form| %>
+					<ul class="list-unstyled question">
+					<%= render_answer_form_helper(answer, answer_form) %>
+				</ul>
+					<% end %>
+			<% end %>
+
+			<div class="card-footer text-muted">
+				<%= f.submit "Salvar", class: "btn btn-md btn-primary" %>
+				<%= link_to 'Voltar', {:controller => 'question_groups', :action => 'index', :usuario_curso_id => @question_group.usuario_curso_id}, class: "btn btn-md btn-secondary" %>
+			</div>
 		<% end %>
-
-		<div class="card-footer text-muted">
-			<%= f.submit "Salvar", class: "btn btn-md btn-primary" %>
-			<%= link_to 'Voltar', {:controller => 'question_groups', :action => 'index', :usuario_curso_id => @question_group.usuario_curso_id}, class: "btn btn-md btn-secondary" %>
-		</div>
+	<% else %>
+				<div class="alert alert-danger">Esta Pesquisa só pode ser respondida no final do curso. Por favor, conclua todas as Missões para responder esta pesquisa.</div>
 	<% end %>
 </div>

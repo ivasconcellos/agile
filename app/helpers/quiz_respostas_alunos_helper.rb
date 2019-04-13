@@ -20,9 +20,9 @@ module QuizRespostasAlunosHelper
 			'usuario_curso_id =? and quiz_perguntas.quiz_id =?', 
 			aluno, quiz)
   		if !@quiz.empty?
-  			return 'Sim'
+  			return true
   		else
-  			return 'Não'
+  			return false
   		end
   	end
 end

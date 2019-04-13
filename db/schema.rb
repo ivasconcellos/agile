@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_11_212002) do
+ActiveRecord::Schema.define(version: 2019_04_13_172711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -394,6 +394,7 @@ ActiveRecord::Schema.define(version: 2019_04_11_212002) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "curso_id"
+    t.boolean "final_curso", default: false
     t.index ["curso_id"], name: "index_question_groups_on_curso_id"
     t.index ["usuario_curso_id"], name: "index_question_groups_on_usuario_curso_id"
   end
@@ -434,6 +435,8 @@ ActiveRecord::Schema.define(version: 2019_04_11_212002) do
     t.bigint "quiz_pergunta_resposta_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "quiz_id"
+    t.index ["quiz_id"], name: "index_quiz_respostas_alunos_on_quiz_id"
     t.index ["quiz_pergunta_resposta_id"], name: "index_quiz_respostas_alunos_on_quiz_pergunta_resposta_id"
     t.index ["usuario_curso_id"], name: "index_quiz_respostas_alunos_on_usuario_curso_id"
   end
@@ -630,6 +633,7 @@ ActiveRecord::Schema.define(version: 2019_04_11_212002) do
   add_foreign_key "quiz_pergunta_respostas", "quiz_perguntas"
   add_foreign_key "quiz_perguntas", "quizzes"
   add_foreign_key "quiz_respostas_alunos", "quiz_pergunta_respostas"
+  add_foreign_key "quiz_respostas_alunos", "quizzes"
   add_foreign_key "quiz_respostas_alunos", "usuario_curso"
   add_foreign_key "quizzes", "missoes"
   add_foreign_key "quizzes", "usuario_curso"

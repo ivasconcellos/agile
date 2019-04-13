@@ -1,6 +1,7 @@
 class QuizRespostaAluno < ApplicationRecord
   belongs_to :usuario_curso
   belongs_to :quiz_pergunta_resposta
+  belongs_to :quiz
 
   def pontuacao_aluno
   	@usuario = UsuarioCurso.find_by(id: self.usuario_curso_id)

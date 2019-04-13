@@ -7,6 +7,7 @@
         <thead>
           <tr>
             <th class="text-center">Nome</th>
+            <th class="text-center">Final do curso</th>
             <% if can? :new, Question %>
               <th class="text-center">Perguntas</th>
               <th class="text-center">Ver resultado</th>
@@ -19,6 +20,7 @@
           <% @question_groups.each do |grupo_de_questoes| %>
             <tr>
               <td><%= grupo_de_questoes.titulo %></td>
+              <td><%= grupo_de_questoes.final_curso? ? 'Sim' : 'Não' %></td>
               <% if can? :new, Question %>
                 <td><%= link_to "Perguntas", {:controller => 'questions', :action =>  'index', :usuario_curso_id => @perfil.id, :question_group_id => grupo_de_questoes.id}, class: "btn btn-sm btn-danger" %></td>
                 <td><%= link_to "Resultado", {:controller => 'question_groups', :action => 'results', :id => grupo_de_questoes.id, :usuario_curso_id => grupo_de_questoes.usuario_curso_id}, class: "btn btn-sm btn-danger" %></td>

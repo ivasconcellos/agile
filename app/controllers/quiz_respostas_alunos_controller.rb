@@ -14,7 +14,6 @@ class QuizRespostasAlunosController < ApplicationController
   def new
     authorize! :new, QuizRespostaAluno
     @quiz_resposta_aluno = QuizRespostaAluno.new
-    @quiz_resposta_aluno.usuario_curso_id = @perfil.id
     @perguntas = QuizPergunta.where(quiz_id: params[:quiz_id]).first
     if params[:pergunta_id]
       @pergunta = QuizPergunta.where("quiz_id = ? and id > ?",params[:quiz_id], params[:pergunta_id]).first
@@ -36,6 +35,8 @@ class QuizRespostasAlunosController < ApplicationController
   # POST /quiz_resposta_alunos.json
   def create
     @quiz_resposta_aluno = QuizRespostaAluno.new(quiz_resposta_aluno_params)
+    @quiz_resposta_aluno.usuario_curso_id = @perfil.id
+    @quiz_resposta_aluno.quiz_id = @quiz_resposta_aluno.quiz_pergunta_resposta.quiz_pergunta.quiz_id
     respond_to do |format|
       if @quiz_resposta_aluno.save
         @quiz_resposta_aluno.pontuacao_aluno
@@ -62,6 +63,6 @@ class QuizRespostasAlunosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_resposta_aluno_params
-      params.require(:quiz_resposta_aluno).permit(:usuario_curso_id, :quiz_pergunta_resposta_id)
+      params.require(:quiz_resposta_aluno).permit(:usuario_curso_id, :quiz_pergunta_resposta_id, :quiz_id)
     end
 end

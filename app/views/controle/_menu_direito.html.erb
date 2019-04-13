@@ -74,7 +74,7 @@
 
 	<% end %>
 
-	<% if  !@perfil.pode_finalizar_curso and @perfil.perfil == 'Aluno' %>
+	<% if  @perfil.perfil == 'Aluno' %>
 
 		<div class="alert alert-danger alert-lateral">
 			<li class="nav-item">

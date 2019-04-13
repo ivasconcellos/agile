@@ -2,6 +2,7 @@ class Quiz < ApplicationRecord
   belongs_to :missao
   belongs_to :usuario_curso
   has_many :quiz_perguntas
+  has_many :quiz_respostas_alunos
 
   self.per_page = 10
 
