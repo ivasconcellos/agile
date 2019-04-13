@@ -100,3 +100,5 @@ gem 'wkhtmltopdf-binary', '0.12.4'
 gem 'ahoy_matey'
 
 gem 'exception_notification'
+
+gem 'to_csv-rails'
