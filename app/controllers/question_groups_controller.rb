@@ -66,7 +66,12 @@ class QuestionGroupsController < ApplicationController
 		@question_group = QuestionGroup.find(params[:id])
 		@question_group_results =
 		QuestionGroupResults.new(question_group: @question_group).extract
-		respond_with(@question_group_results, root: false)
+		respond_to do |format|
+			format.html do
+				respond_with(@question_group_results, root: false)
+			end
+			format.csv
+		end
 	end
 
 	private

@@ -34,6 +34,7 @@
 	</div>
 
 	<div class="card-footer text-muted">
+		<%= link_to 'Download CSV', {controller: 'question_groups', action: 'results', q: request.params[:q], format: 'csv'}, :class => "btn btn-success link" %>
 		<%= link_to 'Voltar para Pesquisa', :back, class: "btn btn-md btn-secondary"  %>
 	</div>
 </div>

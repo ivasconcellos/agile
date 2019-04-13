@@ -1,0 +1,12 @@
+<%- headers = ['Resultado da Pesquisa'] -%>
+<%= CSV.generate_line headers -%>
+<%- headers = ['Perguntas', 'Respostas', 'Quantidade'] -%>
+<%= CSV.generate_line headers -%>
+
+	<%- @question_group_results.each_with_index do |result, index| %>
+        <% if result.results.is_a?(Hash) %>
+            <%- result.results.each do |option, count| %>
+            <%= CSV.generate_line([result.question.pergunta, option, count]).html_safe -%>
+            <%- end -%>
+        <% end %> 
+    <% end %>
