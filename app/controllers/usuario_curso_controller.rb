@@ -154,9 +154,9 @@ class UsuarioCursoController < ApplicationController
 
   def pendencias
     authorize! :pendencias, UsuarioCurso
-    @tarefas = Tarefa.left_outer_joins(:tarefa_alunos).where(tarefa_alunos: { usuario_curso_id: [nil, !@perfil.id] })
-    @quizzes = Quiz.joins(missao: :modulo).left_joins(quiz_perguntas: [quiz_pergunta_respostas: :quiz_respostas_alunos]).where('modulos.curso_id = ?', @perfil.curso_id).merge(QuizRespostaAluno.where(id: nil)).group('quizzes.id')
-    @pesquisas = QuestionGroup.left_joins(:answer_groups).where(curso_id: @perfil.curso_id).merge(AnswerGroup.where(id: nil)).group('question_groups.id')
+    @tarefas = Tarefa.joins(missao: :modulo).where('modulos.curso_id =?', @perfil.curso_id).where.not(id: TarefaAluno.joins(tarefa: [missao: :modulo]).select('tarefa_alunos.tarefa_id').where('modulos.curso_id = ? and tarefa_alunos.usuario_curso_id =?', @perfil.curso_id, @perfil.id))
+    @quizzes = Quiz.joins(missao: :modulo).where('modulos.curso_id =?', @perfil.curso_id).where.not(id: QuizRespostaAluno.joins(quiz: [missao: :modulo]).select('quiz_respostas_alunos.quiz_id').where('modulos.curso_id = ? and quiz_respostas_alunos.usuario_curso_id =?', @perfil.curso_id, @perfil.id)).group('quizzes.id')
+    @pesquisas = QuestionGroup.where(curso_id: @perfil.curso_id).where.not(id: AnswerGroup.joins(:question_group).select('answer_groups.question_group_id').where('question_groups.curso_id =? and answer_groups.usuario_curso_id =?', @perfil.curso_id, @perfil.id))
   end
 
   private
