@@ -97,7 +97,7 @@ Rails.application.configure do
     deliver_with: :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
     email_prefix: '[PREFIX] ',
     sender_address: %{"notifier" <noreply@iff.edu.br>},
-    exception_recipients: %w{ivasconcellos@iff.edu.br}
+    exception_recipients: %w{agile.centro@iff.edu.br}
   }
 
 end
