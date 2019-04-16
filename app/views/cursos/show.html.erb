@@ -13,6 +13,13 @@
     <% end %>
   <% end %>
 
+  <div class="text-center">
+    <br>
+    <% if can? :new, Modulo %>
+      <%= link_to 'Cadastrar Módulo', new_modulo_path, class: "btn btn-md btn-primary" %>
+    <% end %>
+  </div>
+
   <% if !@conversas.empty? %>
     <div class="alert alert-danger" role="alert">
       Você possui mensagens não lidas!
@@ -97,8 +104,9 @@
                         <% if can? :new, Dialogo %>
                           <li><%= link_to  ' Inserir Diálogo', {controller: 'dialogos', action: 'new', modulo_id: modulo.id}, class: "fa fa-commenting-o" %></li>
                         <% end %>
-                      </div>
-                    <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
                 </div>
               </div>
             </div>

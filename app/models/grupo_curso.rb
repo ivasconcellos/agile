@@ -1,7 +1,6 @@
 class GrupoCurso < ApplicationRecord
   belongs_to :grupo
   belongs_to :curso
-  has_many :usuarios_cursos, :dependent => :destroy, :dependent => :restrict_with_error
 
   validates_presence_of :nome_curso
   
