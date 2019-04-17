@@ -23,7 +23,7 @@
         <div id="task-form<%= quiz_pergunta.id %>" style="display:none;"></div>
         
         <br>
-        <% if can? :new, QuizPerguntaResposta %>
+        <% if can? :new, QuizPerguntaResposta and !quiz_pergunta.quiz.finalizado %>
           <div class="text-center">
             <%= link_to " Adicionar Resposta", {controller: 'quiz_pergunta_respostas', action: 'new', :quiz_pergunta_id => quiz_pergunta.id, remote: true}, class: "btn btn-danger" %>
           </div>
