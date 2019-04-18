@@ -1,0 +1,29 @@
+<div class="card">
+        <div class="card-header">Resultado da Pesquisa</div>
+
+        <div class="table-responsive">
+            <table class="table ">
+                <%- @question_group_results.each_with_index do |result, index| %>
+                <% data = result.results %>
+                    <thead>
+                        <tr>
+                          <th colspan ="2" class="bg-primary text-white"> <%= index +=1 %>- <%= result.question.pergunta %></th>
+                        </tr>
+                        <tr>
+                          <td width='50%' class="bg-info text-white font-weight-bold">Gráfico de Pizza</td>
+                          <td width='50%' class="bg-info text-white font-weight-bold">Gráfico de Coluna</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td width='50%'><%= pie_chart data, library: { pieSliceText: 'value-and-percentage' }, messages: {empty: "Nenhum dado"} %></td>                             
+                            <td width='50%'><%= column_chart data, label: "Valor", messages: {empty: "Nenhum dado"} %></td>                             
+                        </tr>
+                        <tr>
+                            <th colspan ="2"><br><br></th>
+                        </tr>
+                    </tbody>
+                <%end%> 
+            </table>
+        </div>
+</div>

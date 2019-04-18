@@ -92,6 +92,8 @@ Rails.application.routes.draw do
 
   get 'finalizar_quiz' => 'quizzes#finalizar_quiz'
 
+  get 'graficos' => 'question_groups#graficos'
+
   #Conversas
   get 'conversas_professor' => 'conversas#conversas_professor'
   get 'conversas_assunto' => 'conversas#conversas_assunto'

@@ -21,6 +21,7 @@
 //= require ckeditor/init
 //= require bootstrap-datepicker
 //= require ahoy
+//= require chartkick
 //= require_tree .
 
 $( document ).on('turbolinks:load', function() {
