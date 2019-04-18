@@ -69,6 +69,12 @@ class QuestionGroupsController < ApplicationController
 		respond_with(@question_group_results, root: false)
 	end
 
+	def charts
+		@question_group = QuestionGroup.find(params[:id])
+		@question_group_results =
+		QuestionGroupResults.new(question_group: @question_group).extract
+	end
+
 	private
 
 		def set_question_group

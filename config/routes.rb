@@ -101,6 +101,7 @@ Rails.application.routes.draw do
   get 'gerar_certificado' => 'curso_certificados#gerar_certificado'
   get 'validar_certificado' => 'curso_certificados#validar_certificado'
   get 'certificado_validado' => 'curso_certificados#certificado_validado'
+  get 'charts' => 'question_groups#charts'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -119,7 +120,6 @@ Rails.application.routes.draw do
   
   resources :question_groups do
     get 'results', on: :member
-
     resources :questions
     resources :answer_groups, only: [:new, :create, :show]
   end

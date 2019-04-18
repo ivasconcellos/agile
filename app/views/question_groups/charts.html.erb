@@ -1,0 +1,29 @@
+<div class="card">
+        <div class="card-header">Resultado da Pesquisa</div>
+
+        <div class="table-responsive">
+            <table class="table ">
+                <%- @question_group_results.each_with_index do |result, index| %>
+                <% data = result.results %>
+                    <thead>
+                        <tr>
+                          <th colspan ="2" class="bg-primary text-white"> <%= index +=1 %>- <%= result.question.pergunta %></th>
+                        </tr>
+                    </thead>
+                    <thead>
+                        <tr>
+                          <td class="bg-info text-white font-weight-bold">Gráfico de Pizza</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="bg-light text-primary font-weight-bold"><%= pie_chart data, download: {filename: "boom"} %></td>                             
+                        </tr>
+                        <tr>
+                            <th colspan ="2"><br><br></th>
+                        </tr>
+                    </tbody>
+                <%end%> 
+            </table>
+        </div>
+</div>

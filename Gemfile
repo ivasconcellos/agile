@@ -102,3 +102,5 @@ gem 'ahoy_matey'
 gem 'exception_notification'
 
 gem 'blazer'
+
+gem "chartkick"
