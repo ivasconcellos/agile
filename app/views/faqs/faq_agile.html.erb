@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-header">FAQ - Perguntas Frequêntes</div>
+
+  <%= search_form_for @q, url: faq_agile_path do |f| %>
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Pergunta</span>
+            </div>
+            <%= f.search_field :pergunta_cont, :class => 'form-control'  %>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Resposta</span>
+            </div>
+            <%= f.search_field :resposta_cont, :class => 'form-control'  %>
+          </div>
+        </div>
+      </div>     
+    </div>
+    
+    <div class="text-center">
+      <button class="btn btn-primary link search-btn" ><% submit_tag "" %>Pesquisar</button>
+    </div>
+  <% end %>
+
+    <% if !@faqs.empty? %>     
+
+    
+        
+    <% end %>
+
+    <div id="accordion">
+        <% @faqs.each do |faq| %>
+            <div class="card">
+                <div class="card-header" id="heading<%= faq.id %>">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed text-white" data-toggle="collapse" data-target="#collapse_<%= faq.id %>" aria-expanded="false" aria-controls="collapseOne">
+                    <%= faq.pergunta %>
+                    </button>
+                </h5>
+                </div>
+
+                <div id="collapse_<%= faq.id %>" class="collapse" aria-labelledby="heading<%= faq.id %>" data-parent="#accordion">
+                <div class="card-body">
+                <%= faq.resposta.to_s.html_safe %>
+                </div>
+                </div>
+            </div>
+
+        <% end %>
+        
+        
+    </div>
+</div>

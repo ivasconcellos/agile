@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :faqs
   resources :dialogos, except: [:index]
   resources :comunicados
   resources :quiz_respostas_alunos, except: [:index]
@@ -93,6 +94,8 @@ Rails.application.routes.draw do
   get 'finalizar_quiz' => 'quizzes#finalizar_quiz'
 
   get 'graficos' => 'question_groups#graficos'
+
+  get 'faq_agile' => 'faqs#faq_agile'
 
   #Conversas
   get 'conversas_professor' => 'conversas#conversas_professor'

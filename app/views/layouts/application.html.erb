@@ -35,10 +35,13 @@
       <ul class="navbar-nav ml-auto ml-md-12">
         <% if usuario_signed_in? %>
           <li class="nav-item">
-            <%= link_to contato_path, class: 'nav-link' do %>Contato<% end %>
+            <%= link_to validar_certificado_path, class: 'nav-link' do %>Validar certificado<% end %>
           </li>
           <li class="nav-item">
-            <%= link_to validar_certificado_path, class: 'nav-link' do %>Validar certificado<% end %>
+            <%= link_to faq_agile_path, class: 'nav-link' do %>FAQ<% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to contato_path, class: 'nav-link' do %>Contato<% end %>
           </li>
           <li class="nav-item">
             <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'nav-link' do %>Atualizar Dados<% end %>
@@ -47,6 +50,9 @@
             <%= link_to destroy_usuario_session_path, :method => :delete, class: 'nav-link' do %>Sair<% end %>
           </li>
         <% else %>
+          <li class="nav-item">
+            <%= link_to faq_agile_path, class: 'nav-link' do %>FAQ<% end %>
+          </li>     
           <li class="nav-item">
             <%= link_to contato_path, class: 'nav-link' do %>Contato<% end %>
           </li>    

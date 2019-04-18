@@ -1,0 +1,28 @@
+<div class="card">
+
+  <div class="card-header">FAQ
+    <% if can? :edit, Faq %>
+      <%= link_to '', edit_faq_path(@faq), class: "fa fa-edit text-white" %>
+    <% end %>
+    <% if can? :destroy, Faq %>
+      <%= link_to '', @faq, method: :delete, data: { confirm: 'Deseja realmente excluir a FAQ?' }, class: "fa fa-trash text-white" %>
+    <% end %>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <ul class="list-group">
+        <li class="list-group-item"><b>Pergunta:</b> <%= @faq.pergunta %></li>
+        <li class="list-group-item"><b>Resposta:</b> <%= @faq.resposta.to_s.html_safe %></li>
+        <li class="list-group-item"><b>Cadastrada em:</b> <%= @faq.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
+        <li class="list-group-item"><b>Atualizada em:</b> <%= @faq.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li> 
+      </ul>
+    </div>
+  </div>
+  
+  <br>
+  
+  <div class="card-footer text-muted">
+    <%= link_to 'Voltar', faqs_path, class: "btn btn-md btn-secondary" %>
+  </div>
+</div>
