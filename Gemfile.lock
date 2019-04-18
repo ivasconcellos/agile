@@ -348,6 +348,7 @@ DEPENDENCIES
   byebug
   cancancan (~> 2.0)
   capybara (>= 2.15, < 4.0)
+  chartkick
   chromedriver-helper
   ckeditor (= 4.2.4)
   coffee-rails (~> 4.2)
