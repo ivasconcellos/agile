@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :faqs
   resources :dialogos, except: [:index]
   resources :comunicados
   resources :quiz_respostas_alunos, except: [:index]
