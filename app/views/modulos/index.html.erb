@@ -35,7 +35,7 @@
 
   <% if can? :new, Modulo %>
     <div class="card-footer text-muted">
-      <%= link_to 'Cadastrar Módulo do Curso', {controller: 'modulos', action: 'new', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Cadastrar Módulo do Curso', new_modulo_path, class: "btn btn-md btn-primary" %>
     </div>
   <% end %>
 

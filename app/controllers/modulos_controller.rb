@@ -32,7 +32,6 @@ class ModulosController < ApplicationController
   def new
     authorize! :new, Modulo
     @modulo = Modulo.new
-    @modulo.curso_id = params[:curso_id]
   end
 
   # GET /modulos/1/edit
@@ -44,7 +43,7 @@ class ModulosController < ApplicationController
   # POST /modulos.json
   def create
     @modulo = Modulo.new(modulo_params)
-
+    @modulo.curso_id = @current_usuario.curso_atual_id
     respond_to do |format|
       if @modulo.save
         format.html { redirect_to @modulo.curso, notice: 'Módulo cadastrado com sucesso!' }

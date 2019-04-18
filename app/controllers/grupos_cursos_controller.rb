@@ -36,7 +36,7 @@ class GruposCursosController < ApplicationController
 
     respond_to do |format|
       if @grupo_curso.save
-        format.html { redirect_to @grupo_curso, notice: 'Grupo do curso cadastrado com sucesso!' }
+        format.html { redirect_to @grupo_curso, notice: 'Equipe cadastrada com sucesso!' }
         format.json { render :show, status: :created, location: @grupo_curso }
       else
         format.html { render :new, @current_usuario => current_usuario }
@@ -50,7 +50,7 @@ class GruposCursosController < ApplicationController
   def update
     respond_to do |format|
       if @grupo_curso.update(grupo_curso_params)
-        format.html { redirect_to @grupo_curso, notice: 'Grupo do curso atualizado com sucesso!' }
+        format.html { redirect_to @grupo_curso, notice: 'Equipe atualizada com sucesso!' }
         format.json { render :show, status: :ok, location: @grupo_curso }
       else
         format.html { render :edit, @current_usuario => current_usuario }
@@ -66,10 +66,10 @@ class GruposCursosController < ApplicationController
     
     respond_to do |format|
       if @grupo_curso.destroy
-        format.html { redirect_to grupos_cursos_url, notice: 'Grupo do curso excluído com sucesso!' }
+        format.html { redirect_to grupos_cursos_url, notice: 'Equipe excluída com sucesso!' }
         format.json { head :no_content }
       else
-        format.html { redirect_to grupos_cursos_url, alert: 'O Grupo do curso não pôde ser excluído, pois está sendo utilizado!' }
+        format.html { redirect_to grupos_cursos_url, alert: 'A Equipe não pôde ser excluída, pois está sendo utilizada!' }
         format.json { head :no_content }
       end
     end
