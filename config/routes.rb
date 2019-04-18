@@ -95,6 +95,8 @@ Rails.application.routes.draw do
 
   get 'graficos' => 'question_groups#graficos'
 
+  get 'faq_agile' => 'faqs#faq_agile'
+
   #Conversas
   get 'conversas_professor' => 'conversas#conversas_professor'
   get 'conversas_assunto' => 'conversas#conversas_assunto'

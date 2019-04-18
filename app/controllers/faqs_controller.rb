@@ -1,6 +1,8 @@
 class FaqsController < ApplicationController
   before_action :set_faq, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_usuario!
+  before_action :authenticate_usuario!, :except => [:faq_agile]
+  skip_before_action :perfil
+  before_action :perfil, except: [:faq_agile]
 
   # GET /faqs
   # GET /faqs.json
@@ -66,6 +68,12 @@ class FaqsController < ApplicationController
       format.html { redirect_to faqs_url, notice: 'FAQ excluída com sucesso!' }
       format.json { head :no_content }
     end
+  end
+
+  def faq_agile
+    @q = Faq.ransack(params[:q])
+    @faqs = @q.result.paginate(page: params[:page])
+    render layout: 'neutro'
   end
 
   private
