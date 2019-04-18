@@ -9,10 +9,13 @@ module QuizRespostasAlunosHelper
 	end
 
 	def minha_nota_quiz(quiz, aluno)
-		QuizRespostaAluno.joins(quiz_pergunta_resposta: :quiz_pergunta).where(
+		@pontuacao = QuizRespostaAluno.joins(quiz_pergunta_resposta: :quiz_pergunta).where(
 			'usuario_curso_id =? and quiz_perguntas.quiz_id =? and 
 			quiz_pergunta_respostas.correta = ?', 
 			aluno, quiz, true).sum('quiz_perguntas.pontuacao')
+		if @pontuacao == 0.0
+			return '-'
+		end
   	end
 
   	def respondido_quiz(quiz, aluno)
@@ -20,9 +23,9 @@ module QuizRespostasAlunosHelper
 			'usuario_curso_id =? and quiz_perguntas.quiz_id =?', 
 			aluno, quiz)
   		if !@quiz.empty?
-  			return true
+  			return "Sim"
   		else
-  			return false
+  			return "Não"
   		end
   	end
 end

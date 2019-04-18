@@ -11,7 +11,7 @@
 				<li class="list-group-item"><b>Sexo:</b> <%= @usuario.sexo %></li>
 				<li class="list-group-item"><b>Perfil:</b> <%= @usuario.perfil %></li>
 				<li class="list-group-item"><b>Ativo:</b> <%= @usuario.ativo? ? 'Sim' : 'Não' %></li>
-				<li class="list-group-item"><b>Termo de compromisso:</b> <%= @usuario.termo_compromisso? ? 'Sim' : 'Não' %></li>
+				<li class="list-group-item"><b>Termo de uso:</b> <%= @usuario.termo_compromisso? ? 'Sim' : 'Não' %></li>
 				<li class="list-group-item"><b>Cadastrado em:</b> <%= @usuario.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
 				<li class="list-group-item"><b>Atualizado em:</b> <%= @usuario.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>				
 			</ul>
