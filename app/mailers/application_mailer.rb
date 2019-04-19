@@ -62,4 +62,12 @@ class ApplicationMailer < ActionMailer::Base
     @curso = curso
     mail to: emails.split(','), subject: @subject
   end
+
+  def inscricao_cancelada(usuario)
+    @subject = 'AGILE: Inscrição cancelada no curso: ' + usuario.curso.nome
+    @email = usuario.usuario.email
+    @aluno = usuario
+    @curso = usuario.curso
+    mail to: @email, subject: @subject
+  end
 end
