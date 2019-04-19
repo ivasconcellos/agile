@@ -2,12 +2,24 @@
   <div class="card-body">
     <%= form_with(model: @forum_comentario, remote: true) do |form| %>
 
+      <% if @forum_comentario.errors.any? %>
+        <div id="error_explanation" class="alert alert-danger">
+          <h2><%= pluralize(@forum_comentario.errors.count, "erro(s)") %> - Comentário não pôde ser salvo!</h2>
+
+          <ul>
+          <% @forum_comentario.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
       <%= form.hidden_field :forum_id %>
-      <%= form.hidden_field :usuario_curso_id %>
+      <%= form.hidden_field :forum_comentario_id %>
 
       <div class="form-group row">
         <div class="col-md-12">
-          <%= form.cktext_area :texto, class: "form-control" %>
+          <%= form.cktext_area :texto, autofocus: true, class: "form-control" %>
         </div>
       </div>
 

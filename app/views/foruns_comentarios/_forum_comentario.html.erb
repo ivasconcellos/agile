@@ -9,7 +9,7 @@
 
             <div class="row">
 
-              <div class="col-xl-2 col-sm-2 mb-3">
+              <div class="col-xl-2 col-sm-2 mb-3 ">
                 <div class="card-body text-center">
                   <div>
                     <%if forum_comentario.usuario_curso.avatar %>
@@ -24,8 +24,41 @@
               <div class="col-xl-10 col-sm-10 mb-3">
                 <div class="card-body text-left">
                   <div>
+
+                    <% if forum_comentario.forum_comentario_id %>
+                      <div class="row bg-secondary">
+                        <div class="col-xl-2 col-sm-2 mb-3">
+                          <div class="card-body text-center">
+                            <div>
+                              <%if forum_comentario.forum_comentario.usuario_curso.avatar %>
+                                <%= image_tag forum_comentario.forum_comentario.usuario_curso.avatar.imagem.variant(resize: "100x100"), class: "img-responsive img-thumbnail" %>
+                              <% else %>
+                                <%= image_tag "missing.png", class: "img-responsive img-thumbnail" %>
+                              <% end %>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xl-10 col-sm-10 mb-3">
+                          <div class="card-body text-left">
+                            <div>
+                              <%= forum_comentario.forum_comentario.texto.to_s.html_safe %>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xl-12 col-sm-12 mb-3">
+                          <div class="card-footer card-footer-size bg-secondary">
+                            <p class="card-text">Criado por: <%= forum_comentario.forum_comentario.usuario_curso.nickname %></p>
+                            <p class="card-text">Última atualização: <%= forum_comentario.forum_comentario.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></p>
+                          </div>
+                        </div>
+                      </div>                       
+                    <% end %>
+
+                  </div>
+                  <div>
                     <%= forum_comentario.texto.to_s.html_safe %>
                   </div>
+
                 </div>
               </div>
 
@@ -39,8 +72,14 @@
               <% if can? :destroy, ForumComentario and forum_comentario.forum.ativo? and forum_comentario.usuario_curso.id == @perfil.id %>
                 <%= link_to  '', forum_comentario, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover o Comentário?'}, class: "fa fa-trash text-light", remote: true %>
               <% end %></p>
-              <p class="card-text"><b>Última atualização:</b> <%= forum_comentario.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></p>
+              <p class="card-text">
+                <b>Última atualização:</b> <%= forum_comentario.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %>
+                <% if can? :new, ForumComentario and forum_comentario.forum.ativo?  %>
+                  <%= link_to "Comentar", {controller: 'foruns_comentarios', action: 'new', forum_id: forum_comentario.forum.id, forum_comentario_id: forum_comentario.id, remote: true}, class: "btn btn-sm btn-warning pull-right" %>
+                <% end %>
+              </p>
               <div id="task-form<%= forum_comentario.id %>" style="display:none;"></div>
+             
             </div>
           </div>
         </div>
