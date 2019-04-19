@@ -7,6 +7,7 @@ class ForunsComentariosController < ApplicationController
     authorize! :new, ForumComentario
     @forum_comentario = ForumComentario.new
     @forum_comentario.forum_id = params[:forum_id]
+    @forum_comentario.forum_comentario_id = params[:forum_comentario_id]
   end
 
   # GET /forum_comentarios/1/edit
@@ -22,6 +23,11 @@ class ForunsComentariosController < ApplicationController
     
     if @forum_comentario.save
       @forum_comentario = ForumComentario.where(forum_id: @forum_comentario.forum_id)
+    else
+      respond_to do |format|
+        format.js { render :new }
+        format.json { render json: @forum_comentario.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -30,6 +36,11 @@ class ForunsComentariosController < ApplicationController
   def update
     if @forum_comentario.update(forum_comentario_params)
       @forum_comentario = ForumComentario.where(forum_id: @forum_comentario.forum_id)
+    else
+      respond_to do |format|
+        format.js { render :edit }
+        format.json { render json: @forum_comentario.errors, status: :unprocessable_entity }
+      end
     end
   end
 
