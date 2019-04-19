@@ -61,17 +61,6 @@ class UsuarioCursoController < ApplicationController
     end
   end
 
-  # DELETE /usuario_curso/1
-  # DELETE /usuario_curso/1.json
-  def destroy
-    authorize! :destroy, UsuarioCurso
-    @usuario_curso.destroy
-    respond_to do |format|
-      format.html { redirect_to usuario_curso_index_url, notice: 'Usuário do Curso excluído com sucesso!' }
-      format.json { head :no_content }
-    end
-  end
-
   def busca_curso
     if not params[:codigo_acesso]
       render layout: 'neutro'
@@ -133,9 +122,11 @@ class UsuarioCursoController < ApplicationController
   def cancelar_inscricao
     authorize! :cancelar_inscricao, UsuarioCurso
     @usuario_curso.status_curso = 'Inscrição Cancelada'
-    @usuario_curso.save
-    flash[:notice] = 'Inscrição no curso Cancelada com sucesso!'
-    redirect_to :controller => "cursos", :action => "show", id: current_usuario.curso_atual_id
+    if @usuario_curso.save
+      flash[:notice] = 'Inscrição no curso Cancelada com sucesso!'
+      redirect_to :controller => "cursos", :action => "show", id: current_usuario.curso_atual_id
+      ApplicationMailer.inscricao_cancelada(@usuario_curso).deliver
+    end
   end
 
   def finalizar_curso

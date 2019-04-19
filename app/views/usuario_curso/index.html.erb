@@ -62,9 +62,6 @@
             <% else %>
               <td>-</td>
             <% end %>
-            <% if can? :new, UsuarioCurso %>
-              <td class="text-center"><%= usuario_curso.nickname %></td>
-            <% end %>
             <td class="text-center"><%= usuario_curso.perfil %></td>
             <% if can? :show, UsuarioCurso %>
               <td><%= link_to 'Visualizar', usuario_curso %></td>
@@ -72,8 +69,10 @@
             <% if can? :new, UsuarioCurso %>
               <td><%= link_to 'Atualizar', edit_usuario_curso_path(usuario_curso) %></td>
             <% end %>
-            <% if can? :destroy, UsuarioCurso %>
-              <td><%= link_to 'Excluir', usuario_curso, method: :delete, data: { confirm: 'Deseja realmente excluir o Usuário do Curso?' } %></td>
+            <% if can? :destroy, UsuarioCurso and usuario_curso.status_curso != 'Inscrição Cancelada' and @perfil.id != usuario_curso.id %>
+              <td><%= link_to 'Cancelar inscrição no curso', cancelar_inscricao_path(id: usuario_curso.id), class: "btn btn-md btn-danger", data: { confirm: 'Deseja realmente cancelar a Inscrição deste usuário no Curso?' } %></td>
+            <% else %>
+              <td>-</td>
             <% end %>
           </tr>
         <% end %>
