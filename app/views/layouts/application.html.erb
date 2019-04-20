@@ -16,7 +16,6 @@
     <%= javascript_include_tag 'application', "data-turbolinks-track" => "reload" %>
     <%= javascript_include_tag 'jquery-ui.min'  %>
     <%= javascript_include_tag 'bootstrap.min'  %>
-    <%= javascript_include_tag 'sb-admin'  %>
     <%= javascript_include_tag 'jquery.maskedinput.min'  %>
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
@@ -28,71 +27,183 @@
   <% end %>
 
   <div class="d-flex" id="wrapper">
-
-    <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">Start Bootstrap </div>
-      <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
-      </div>
-    </div>
-    <!-- /#sidebar-wrapper -->
+    
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+      <nav class="navbar navbar-expand-lg">
+        <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
+        <a class="navbar-brand mr-1" href="/">AGILE</a>
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon navbar-dark"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
+            
+            <% if usuario_signed_in? %>
+              <li class="nav-item">
+                <%= link_to validar_certificado_path, class: 'nav-link' do %>Validar certificado<% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to faq_agile_path, class: 'nav-link' do %>FAQ<% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to contato_path, class: 'nav-link' do %>Contato<% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'nav-link' do %>Atualizar Dados<% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_usuario_session_path, :method => :delete, class: 'nav-link' do %>Sair<% end %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to faq_agile_path, class: 'nav-link' do %>FAQ<% end %>
+              </li>     
+              <li class="nav-item">
+                <%= link_to contato_path, class: 'nav-link' do %>Contato<% end %>
+              </li>    
+              <li class="nav-item">
+                <a class="nav-link" href="/sobre">Sobre</a>
+              </li>
+            <% end %>
+            
           </ul>
         </div>
       </nav>
 
       <div class="container-fluid">
-        <h1 class="mt-4">Simple Sidebar</h1>
-        <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
+
+        <% if usuario_signed_in? %>
+          <div class="row">
+            <% if @perfil %>
+              <div class="col-md-2 col-sm-2" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
+              <!-- Sidebar -->
+              
+                <nav id="sidebar" class="sidebar navbar-nav" >
+              <% else %>
+                <div class="col-md-2 col-sm-2 color-sidebar ">
+              <% end %>
+                <nav id="sidebar" class="sidebar navbar-nav">
+                  <div class="sidebar-header sidebar-avatar">
+                    <% if @perfil %>
+                      <% if @perfil.avatar %>
+                        <p class="list-group-item text-center"><%= image_tag @perfil.avatar.imagem, class: "img-fluid img-responsive" %></p>
+                      <% else %>
+                        <p class="list-group-item text-center"><%= image_tag "missing.png", class: "img-responsive img-thumbnail" %></p>
+                      <% end %>
+                      <p class="list-group-item text-center perfil"> <%= link_to @perfil.nickname, @perfil %></p>
+                      <% if @perfil.perfil == 'Aluno' %>
+                        <p class="list-group-item text-center perfil"><label>XP:</label> <%= @perfil.pontos_experiencia %></p>
+                        <p class="list-group-item text-center perfil"><label>Nível:</label> <%= @perfil.nivel.nome %></p>
+                      <% end %>
+                      <% if @perfil.grupo_curso %>
+                        <p class="list-group-item text-center perfil"><label>Equipe:</label> <%= link_to @perfil.grupo_curso.nome_curso, equipe_url %></p>
+                        <% if @perfil.perfil == 'Aluno' %>
+                          <p class="list-group-item text-center perfil"><label>XP Médio da Equipe:</label> <%= @perfil.grupo_curso.pontuacao_media %></p>
+                        <% end %>
+                      <% else %>
+                        <p class="list-group-item text-center perfil"><%= link_to 'Escolher Equipe', escolher_equipe_url(id: @perfil.id), class: 'text-danger' %></p>
+                      <% end %>
+                      <p class="list-group-item text-center perfil"><label>Status:</label> <%= @perfil.status_curso %></p>
+                    <% end %>
+                  </div>
+
+                  <ul class="list-unstyled components">  
+
+                    <% if current_usuario.perfil == 'Gestor' %>
+                      <%= render 'controle/gestor' %>
+                    <% end %>
+
+                    <% if current_usuario.perfil != 'Gestor' and !@perfil %>
+                      <li class="nav-item">
+                        <br>
+                        <h3 class="agile"><%= link_to @current_usuario.curso_atual, class: "nav-link text-center" do %><i class="fa fa-university fa-lg"> </i> Curso<% end %></h3>
+                      </li>
+                      <li class="nav-item">
+                        <%= link_to " Detalhes do curso", descricao_path(id: @current_usuario.curso_atual), {class: "fa fa-info-circle fa-sm nav-link"} %>
+                      </li>
+                    <% end %>
+
+                    <% if @perfil and @perfil.perfil == 'Aluno' %>
+                      <%= render 'controle/aluno' %>
+                    <% end %>
+
+                    <% if @perfil and @perfil.perfil == 'Professor' %>
+                      <%= render 'controle/professor' %>
+                    <% end %>
+
+                  </ul>
+                </nav>
+              <!-- /#sidebar-wrapper -->
+            </div>
+
+            <% if current_usuario.perfil == 'Gestor'%>
+              <div class="col-md-10 col-sm-10">
+                <% if notice %>
+                  <p class="alert alert-success"><%= notice %></p>
+                <% end %>
+                <% if alert %>
+                  <p class="alert alert-danger"><%= alert %></p>
+                <% end %>
+                <%= yield %>
+              </div>
+            <% else %>
+
+              <div class="col-md-8 col-sm-8">
+                <% if current_usuario.curso_atual.ativo? %>
+                  <% if @perfil and @perfil.status_curso == 'Inscrição Cancelada' %>
+                    <div class="alert alert-danger"> 
+                      <p>Você cancelou sua inscrição neste curso!</p>
+                    </div>
+                  <% else %>
+                    <% if notice %>
+                      <p class="alert alert-success"><%= notice %></p>
+                    <% end %>
+                    <% if alert %>
+                      <p class="alert alert-danger"><%= alert %></p>
+                    <% end %>
+                    <%= yield %>
+                  <% end %>
+                <% else %>
+                  <div class="alert alert-danger"> 
+                    <p>Este curso não está mais disponível. Em caso de dúvidas, entre em contato com o administrador do sistema.</p>
+                  </div>
+                <% end %>
+              </div>
+
+              <div class="col-md-2 col-sm-2 menu_lateral">
+                <div class="sidebar-header">
+                  <ul class="list-unstyled components">  
+                    <%= render 'controle/menu_direito' %>
+                  </ul>
+                </div>
+              </div>
+
+            <% end %>
+              
+          </div> <!-- /#row -->
+        <%else%>
+          <div class="row"> 
+              <%= yield %>
+          </div>
+        <% end %>
       </div>
     </div>
     <!-- /#page-content-wrapper -->
 
   </div>
   <!-- /#wrapper -->  
+  <!-- Sticky Footer -->
+  <footer class="sticky-footer">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>Copyright © MPET - IFFluminense 2019</span>
+      </div>
+    </div>
+  </footer>
          
-  <!-- Menu Toggle Script -->
-  <script>
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
   </body>
 </html>

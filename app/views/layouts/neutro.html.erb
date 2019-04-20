@@ -9,91 +9,99 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-   <% %w(bootstrap.min sb-admin application).each do |asset| %>
+   <% %w(bootstrap.min sidebar template_cursos font-awesome.min application).each do |asset| %>
         <%= stylesheet_link_tag asset %>
     <% end %>
 
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_include_tag 'jquery-3.3.1.min'  %>
+    <%= javascript_include_tag 'application', "data-turbolinks-track" => "reload" %>
     <%= javascript_include_tag 'jquery-ui.min'  %>
     <%= javascript_include_tag 'bootstrap.min'  %>
-    <%= javascript_include_tag 'sb-admin'  %>
     <%= javascript_include_tag 'jquery.maskedinput.min'  %>
-
 
   </head>
 
-  <body id="page-top">
+  <body>
 
-    <nav class="navbar navbar-expand static-top">
-      <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
-      <%=link_to "AGILE", root_url, class: "navbar-brand mr-1" %>
-      <!-- Navbar -->
-      <ul class="navbar-nav ml-auto ml-md-12">
-        <% if usuario_signed_in? %>
-          <li class="nav-item">
-            <%= link_to validar_certificado_path, class: 'nav-link' do %>Validar certificado<% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to faq_agile_path, class: 'nav-link' do %>FAQ<% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to contato_path, class: 'nav-link' do %>Contato<% end %>
-          </li>
-  	      <li class="nav-item">
-  	        <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'nav-link' do %>Atualizar Dados<% end %>
-  	      </li>
-  	      <li class="nav-item">
-  	        <%= link_to destroy_usuario_session_path, :method => :delete, class: 'nav-link' do %>Sair<% end %>
-  	      </li>
-        <%else%>
-          <li class="nav-item">
-            <%= link_to validar_certificado_path, class: 'nav-link' do %>Validar certificado<% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to faq_agile_path, class: 'nav-link' do %>FAQ<% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to contato_path, class: 'nav-link' do %>Contato<% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to sobre_path, class: 'nav-link' do %>Sobre<% end %>
-          </li>
-        <%end%>
-      </ul>
+    <div class="d-flex" id="wrapper">
+    
 
-    </nav>
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
 
-    <div id="wrapper">
-      <div id="content-wrapper">
+        <nav class="navbar navbar-expand-lg">
+          <%= image_tag ("coelho2.png"), class: "img-responsive", width: "35", height: "35" %>
+          <a class="navbar-brand mr-1" href="/">AGILE</a>
+          <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon navbar-dark"></span>
+          </button>
 
-        <div class="container-fluid">
-          <% if notice %>
-            <p class="alert alert-success"><%= notice %></p>
-          <% end %>
-          <% if alert %>
-            <p class="alert alert-danger"><%= alert %></p>
-          <% end %>
-			<div class="row"> 
-			  <div class="col-md-12 col-sm-10">       
-			    <%= yield %>
-			  </div>
-			</div>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+              
+              <% if usuario_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to validar_certificado_path, class: 'nav-link' do %>Validar certificado<% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to faq_agile_path, class: 'nav-link' do %>FAQ<% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to contato_path, class: 'nav-link' do %>Contato<% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'nav-link' do %>Atualizar Dados<% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to destroy_usuario_session_path, :method => :delete, class: 'nav-link' do %>Sair<% end %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to validar_certificado_path, class: 'nav-link' do %>Validar certificado<% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to faq_agile_path, class: 'nav-link' do %>FAQ<% end %>
+                </li>     
+                <li class="nav-item">
+                  <%= link_to contato_path, class: 'nav-link' do %>Contato<% end %>
+                </li>    
+                <li class="nav-item">
+                  <a class="nav-link" href="/sobre">Sobre</a>
+                </li>
+              <% end %>
+              
+            </ul>
+          </div>
+        </nav>
+
+        <div class="container-fluid">     
+            <div class="row">
+              <div class="col-md-12 col-sm-12">
+                  <% if notice %>
+                    <p class="alert alert-success"><%= notice %></p>
+                  <% end %>
+                  <% if alert %>
+                    <p class="alert alert-danger"><%= alert %></p>
+                  <% end %>
+                  <%= yield %>
+                </div>              
+            </div> <!-- /#row -->
+
         </div>
-        <!-- /.container-fluid -->
-		<footer class="fixed-bottom bg-light">
-		<div class="container">
-		  <div class="copyright text-center">
-		    <span>Copyright © MPET - IFFluminense 2019</span>
-		  </div>
-		</div>
-		</footer>
+        <br>
+
+        <!-- Sticky Footer -->
+        <footer class="fixed-bottom bg-light">
+          <div class="container">
+            <div class="copyright text-center">
+              <span>Copyright © MPET - IFFluminense 2019</span>
+            </div>
+          </div>
+        </footer>
 
       </div>
-      <!-- /.content-wrapper -->
-
+      <!-- /#page-content-wrapper -->
     </div>
-    <!-- /#wrapper -->   
-
+    <!-- /#wrapper -->     
+         
   </body>
 </html>

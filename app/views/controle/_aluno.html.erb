@@ -1,61 +1,52 @@
-<li class="nav-item">
+<li class="nav-item agile ">
   <br>
-  <h3 class="agile"><%= link_to @current_usuario.curso_atual, class: "nav-link text-center" do %><i class="fa fa-university fa-lg"> </i> Curso<% end %></h3>
+  <%= link_to @current_usuario.curso_atual, class: "nav-link text-center text-light icone-curso" do %><i class="fa fa-university fa-lg"> </i> Curso<% end %>
 </li>
 
-<li class="nav-item">
-  <%= link_to " Detalhes do curso", descricao_path(id: @current_usuario.curso_atual), {class: "fa fa-info-circle fa-sm nav-link"} %>
+<li class="nav-item nav-sidebar">
+  <%= link_to " Detalhes do curso", descricao_path(id: @current_usuario.curso_atual), {class: "fa fa-info-circle fa-sm nav-link text-light"} %>
 </li>
 
-<li class="nav-item">
-  <%= link_to " Meu perfil", @perfil, {class: "fa fa-user fa-sm nav-link"} %>
+<li class="nav-item nav-sidebar">
+  <%= link_to " Meu perfil", @perfil, {class: "fa fa-user fa-sm nav-link text-light"} %>
 </li>
 
-<li class="nav-item">
-    <a href="#modulos" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link"> <i class="fa fa-cubes fa-lg"></i> Módulos</a>
-    <ul class="collapse list-unstyled" id="modulos">
-      <% @current_usuario.curso_atual.modulos.each_with_index do |modulo, index| %>
-        <% if modulo.publico %>
-          <li>
-            <%= link_to "Modulo #{index+1}", modulo, {class: "nav-link"} %></a>
-          </li>
-        <% end%>
-      <% end %>
-    </ul>
+<li class="nav-item nav-sidebar">
+  <%= link_to " Módulos", modulos_path, {class: "fa fa-cubes fa-sm nav-link text-light"} %>
 </li>
 
-<li class="nav-item">
-  <%= link_to " Fóruns", foruns_path, {class: "fa fa-clipboard fa-sm nav-link"} %>
+<li class="nav-item nav-sidebar">
+  <%= link_to " Fóruns", foruns_path, {class: "fa fa-clipboard fa-sm nav-link text-light"} %>
 </li>
 
-<li class="nav-item">
-  <%= link_to " Chats", salas_chat_path, {class: "fa fa-comments fa-sm nav-link"} %>
+<li class="nav-item nav-sidebar">
+  <%= link_to " Chats", salas_chat_path, {class: "fa fa-comments fa-sm nav-link text-light"} %>
 </li>
 
-<li class="nav-item">
-  <%= link_to " Pesquisas", question_groups_path, {class: "fa fa-search fa-sm nav-link"} %>
+<li class="nav-item nav-sidebar">
+  <%= link_to " Pesquisas", question_groups_path, {class: "fa fa-search fa-sm nav-link text-light"} %>
 </li>
 
-<li class="nav-item">
-  <%= link_to " Minhas notas", minhas_notas_path, {class: "fa fa-graduation-cap fa-sm nav-link"} %>
+<li class="nav-item nav-sidebar">
+  <%= link_to " Minhas notas", minhas_notas_path, {class: "fa fa-graduation-cap fa-sm nav-link text-light"} %>
 </li>
 
-<li class="nav-item">
-  <%= link_to " Equipe", equipe_path, {class: "fa fa-users fa-sm nav-link"} %>
+<li class="nav-item nav-sidebar">
+  <%= link_to " Equipe", equipe_path, {class: "fa fa-users fa-sm nav-link text-light"} %>
 </li>
 
-<li class="nav-item">
-  <%= link_to " Participantes", {controller: 'usuario_curso', action: 'index'}, class: "fa fa-user-circle fa-sm nav-link" %>
+<li class="nav-item nav-sidebar">
+  <%= link_to " Participantes", {controller: 'usuario_curso', action: 'index'}, class: "fa fa-user-circle fa-sm nav-link text-light" %>
 </li>
 
-<li class="nav-item">
-  <%= link_to " Fale com o Professor", conversas_path, {class: "fa fa-question-circle fa-sm nav-link"} %>
+<li class="nav-item nav-sidebar">
+  <%= link_to " Fale com o Professor", conversas_path, {class: "fa fa-question-circle fa-sm nav-link text-light"} %>
 </li>
 
-<li class="nav-item">
-  <%= link_to " Comunicados", comunicados_path, {class: "fa fa-fa-bullhorn fa-sm nav-link"} %>
+<li class="nav-item nav-sidebar">
+  <%= link_to " Comunicados", comunicados_path, {class: "fa fa-bullhorn fa-sm nav-link text-light"} %>
 </li>  
 
-<li class="nav-item">
-  <%= link_to " Eventos", eventos_path, {class: "fa fa-calendar fa-sm nav-link"} %>
+<li class="nav-item nav-sidebar">
+  <%= link_to " Eventos", eventos_path, {class: "fa fa-calendar fa-sm nav-link text-light"} %>
 </li>

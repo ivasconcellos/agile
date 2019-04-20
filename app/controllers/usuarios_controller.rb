@@ -31,7 +31,7 @@ class UsuariosController < ApplicationController
 	end
 
 	def termo_uso
-		render layout: 'tema'
+		render layout: 'neutro'
 		respond_to do |format|
     		format.html
     		format.js

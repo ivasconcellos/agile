@@ -17,7 +17,7 @@ class ControleController < ApplicationController
   end
 
   def sobre
-  	render layout: 'tema'
+  	render layout: 'neutro'
   end
 
   def contato
