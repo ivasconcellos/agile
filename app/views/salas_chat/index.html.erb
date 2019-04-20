@@ -7,6 +7,7 @@
         <thead>
           <tr>
             <th class="text-center">Nome</th>
+            <th class="text-center">Equipe</th>
             <th class="text-center">Ativa</th>
             <th colspan="3" class="text-center">Opções</th>
           </tr>
@@ -15,10 +16,19 @@
           <% @salas_chat.each do |sala_chat| %>
             <tr>
               <td><%= sala_chat.nome %></td>
+              <% if sala_chat.usuario_curso.perfil == 'Professor' %>
+                <td>Todas</td>
+              <% else %>
+                <td><%= sala_chat.usuario_curso.grupo_curso.nome_curso %></td>
+              <% end %>
               <td><%= sala_chat.ativo? ? 'Sim' : 'Não' %></td>
-              <td><%= link_to 'Visualizar', sala_chat %></td></td>
+              <% if sala_chat.usuario_curso.perfil == 'Professor' %>
+                <td><%= link_to 'Visualizar', sala_chat %></td>
+              <% elsif  sala_chat.usuario_curso.grupo_curso.nome_curso == @perfil.grupo_curso.nome_curso %>
+                <td><%= link_to 'Visualizar', sala_chat %></td>
+              <% end %>
               <td>
-                <% if can? :edit, SalaChat %>
+                <% if can? :edit, SalaChat and @perfil.id == sala_chat.usuario_curso.id %>
                   <%= link_to 'Atualizar', edit_sala_chat_path(sala_chat) %></td>
                 <% else%> - 
                 <% end %>
@@ -39,7 +49,7 @@
 
   <br>
 
-  <% if can? :new, SalaChat %>
+  <% if can? :new, SalaChat and @perfil.grupo_curso %>
     <div class="card-footer text-muted">
       <%= link_to 'Cadastrar Sala de chat', {controller: 'salas_chat', action: 'new', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-primary" %>
     </div>

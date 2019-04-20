@@ -1,5 +1,5 @@
 class SalasChatController < ApplicationController
-  before_action :set_sala_chat, only: [:edit, :update, :destroy]
+  before_action :set_sala_chat, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_usuario!
   
   # GET /sala_chat
@@ -13,8 +13,16 @@ class SalasChatController < ApplicationController
   # GET /sala_chat/1.json
   def show
     authorize! :show, SalaChat
-    @sala_chat = SalaChat.includes(:mensagens).find_by(id: params[:id])
-    @mensagem = Mensagem.new
+    if @perfil.perfil == 'Professor' or @sala_chat.usuario_curso.perfil == 'Professor' or @perfil.grupo_curso_id == @sala_chat.usuario_curso.grupo_curso_id
+      @sala_chat = SalaChat.includes(:mensagens).find_by(id: params[:id])
+      @mensagem = Mensagem.new
+    else
+      respond_to do |format|
+        format.html { redirect_to salas_chat_url, alert: 'Você não está autorizado essa acessar essa Sala de Chat!' }
+        format.json { head :no_content }
+      end
+    end
+
   end
 
   # GET /sala_chat/new

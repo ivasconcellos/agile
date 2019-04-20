@@ -9,7 +9,7 @@
 				<li class="list-group-item"><b>Cor do título: </b> <span style="color:<%= @tema_curso.cor_titulo %>; font-size: 50px;">&#9632; </span></li>
 				<li class="list-group-item"><b>Cor do texto:</b> <span style="color:<%= @tema_curso.cor_texto %>; font-size: 50px;">&#9632; </span></li>
 				<li class="list-group-item"><b>Cor do fundo:</b> <span style="color:<%= @tema_curso.cor_fundo %>; font-size: 50px;">&#9632; </span> </li>
-				<li class="list-group-item"><b>Imagem de fundo:</b> <%= image_tag @tema_curso.imagem.variant(resize: "200x200"), class: "img-responsive" %></li>
+				<li class="list-group-item"><b>Imagem de fundo:</b> <%= image_tag @tema_curso.imagem.variant(resize: "200x200"), class: "img-fluid img-responsive" %></li>
 			</ul>
 
 			<% if not @artefatos.empty? %>

@@ -70,6 +70,7 @@ class Ability
           can :finalizar_curso, UsuarioCurso
           can :gerar_certificado, CursoCertificado
           can :pendencias, UsuarioCurso
+          can :perms_without_delete, SalaChat
         else
           can :read, Curso
         end
