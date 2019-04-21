@@ -1,8 +1,15 @@
 <div class="card">
 
-  <div class="card-header">Grupo</div>
+	<div class="card-header">Grupo
+	    <% if can? :edit, Grupo %>
+	      <%= link_to '', edit_grupo_path(@grupo), class: "fa fa-edit text-white" %>
+	    <% end %>
+	    <% if can? :destroy, Grupo %>
+	      <%= link_to '', @grupo, method: :delete, data: { confirm: 'Deseja realmente excluir o Grupo?' }, class: "fa fa-trash text-white" %>
+	    <% end %>
+	</div>
 
-  	<div class="card-body">
+   	<div class="card-body">
 
 	    <div class="row">
 	      	<div class="col-lg-4">
@@ -88,9 +95,6 @@
 	<% end %>
 
 	<div class="card-footer text-muted">
-		<% if can? :edit, Grupo %>
-	    	<%= link_to 'Atualizar', edit_grupo_path(@grupo), class: "btn btn-md btn-primary" %>
-		<% end %>
 		<% if can? :new, Avatar %>
 			<%= link_to 'Adicionar Avatar', {controller: "avatares", action: "new", grupo_id: @grupo.id}, class: "btn btn-md btn-success" %>
 		<% end %>

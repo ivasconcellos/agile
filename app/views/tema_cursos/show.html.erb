@@ -1,5 +1,13 @@
 <div class="card">
-    <div class="card-header">Tema do Curso</div> 
+
+	<div class="card-header">Tema do Curso
+	    <% if can? :edit, TemaCurso %>
+	      <%= link_to '', edit_tema_curso_path(@tema_curso), class: "fa fa-edit text-white" %>
+	    <% end %>
+	    <% if can? :destroy, TemaCurso %>
+	      <%= link_to '', @tema_curso, method: :delete, data: { confirm: 'Deseja realmente excluir o Tema do Curso?' }, class: "fa fa-trash text-white" %>
+	    <% end %>
+  	</div>
 
     <div class="row">
     	<div class="col-md-8 offset-md-2">
@@ -51,9 +59,6 @@
 	</div>
 
 	<div class="card-footer text-muted">
-		<% if can? :edit, TemaCurso %>
-			<%= link_to 'Atualizar', edit_tema_curso_path(@tema_curso), class: "btn btn-md btn-primary " %>
-		<% end %>
 		<% if can? :new, Artefato %>
 			<%= link_to 'Adicionar Artefato', {controller: "artefatos", action: "new", tema_curso_id: @tema_curso.id}, class: "btn btn-md btn-warning" %>
 		<% end %>

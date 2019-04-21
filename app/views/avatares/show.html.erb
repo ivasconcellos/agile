@@ -1,6 +1,13 @@
 <div class="card">
 
-  <div class="card-header">Avatar</div>
+  <div class="card-header">Avatar
+    <% if can? :edit, Avatar %>
+      <%= link_to '', edit_avatar_path(@avatar), class: "fa fa-edit text-white" %>
+    <% end %>
+    <% if can? :destroy, Avatar %>
+      <%= link_to '', @avatar, method: :delete, data: { confirm: 'Deseja realmente excluir o Avatar?' }, class: "fa fa-trash text-white" %>
+    <% end %>
+  </div>
 
   <div class="card-body">
 
@@ -60,9 +67,6 @@
 
   <br>
   <div class="card-footer text-muted">
-    <% if can? :edit, Avatar %>
-      <%= link_to 'Atualizar', edit_avatar_path(@avatar), class: "btn btn-md btn-primary" %>
-    <% end %>
     <%= link_to 'Voltar',  @avatar.grupo, class: "btn btn-md btn-secondary" %>
   </div>
 

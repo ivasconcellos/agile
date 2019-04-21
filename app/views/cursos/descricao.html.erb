@@ -1,6 +1,14 @@
 <div class="card">
 
-  <div class="card-header"><%= @curso.nome %></div>
+  <div class="card-header"><%= @curso.nome %>
+    <% if can? :edit, Curso %>
+      <%= link_to '', edit_curso_path(@curso), class: "fa fa-edit text-white" %>
+    <% end %>
+    <% if can? :destroy, Curso %>
+      <%= link_to '', @curso, method: :delete, data: { confirm: 'Deseja realmente excluir o Curso?' }, class: "fa fa-trash text-white" %>
+    <% end %>
+  </div>
+
   
   <div class="text-center">
     <br>
@@ -64,9 +72,6 @@
     <% if @perfil and @perfil.perfil == 'Aluno' and @perfil.aprovado %>
       <%= link_to 'Gerar Certificado', gerar_certificado_path(format: :pdf), {class: "btn btn-md btn-warning"} %>
     <%end %>
-    <% if can? :edit, Curso %>
-      <%= link_to 'Atualizar', edit_curso_path(@curso), class: "btn btn-md btn-primary" %>
-    <% end %>
     <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
   </div>
   
