@@ -1,6 +1,13 @@
 <div class="card">
 
-	<div class="card-header">Badge</div>
+	<div class="card-header">Badge
+	    <% if can? :edit, Badge %>
+	      <%= link_to '', edit_badge_path(@badge), class: "fa fa-edit text-white" %>
+	    <% end %>
+	    <% if can? :destroy, Badge %>
+	      <%= link_to '', @badge, method: :delete, data: { confirm: 'Deseja realmente excluir a Badge?' }, class: "fa fa-trash text-white" %>
+	    <% end %>
+	</div>
 
 	<div class="card-body">
 
@@ -57,9 +64,6 @@
 	<br>
 
 	<div class="card-footer text-muted">
-	  <% if can? :edit, Badge %>
-	    <%= link_to 'Atualizar', edit_badge_path(@badge), class: "btn btn-md btn-primary" %>
-	  <% end %>
 	  <%= link_to 'Voltar', badges_path, class: "btn btn-md btn-secondary" %>
 	</div>
 </div>

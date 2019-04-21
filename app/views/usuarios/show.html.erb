@@ -1,5 +1,10 @@
 <div class="card">
-    <div class="card-header">Usuário</div> 
+
+	<div class="card-header">Usuário
+	    <% if can? :edit, Usuario %>
+	      <%= link_to '', edit_usuario_path(@usuario), class: "fa fa-edit text-white" %>
+	    <% end %>
+	</div>
 
     <div class="row">
     	<div class="col-md-8 offset-md-2">
@@ -19,9 +24,6 @@
 	</div>
 
 	<div class="card-footer text-muted">
-		<% if can? :edit, Usuario %>
-			<%= link_to 'Atualizar', edit_usuario_path(@usuario), class: "btn btn-md btn-primary " %>
-		<% end %>
 		<%= link_to 'Voltar', usuarios_path, class: "btn btn-md btn-secondary" %>
 	</div>
 

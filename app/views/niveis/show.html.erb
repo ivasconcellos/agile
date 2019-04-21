@@ -1,6 +1,13 @@
 <div class="card">
 
-  	<div class="card-header">Nível</div>
+	<div class="card-header">Nível
+	    <% if can? :edit, Nivel %>
+	      <%= link_to '', edit_nivel_path(@nivel), class: "fa fa-edit text-white" %>
+	    <% end %>
+	    <% if can? :destroy, Nivel %>
+	      <%= link_to '', @nivel, method: :delete, data: { confirm: 'Deseja realmente excluir o Nível?' }, class: "fa fa-trash text-white" %>
+	    <% end %>
+	</div>
 
   	<div class="card-body">
 

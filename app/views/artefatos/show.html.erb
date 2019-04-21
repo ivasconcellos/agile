@@ -1,7 +1,13 @@
 <div class="card">
 
-  <div class="card-header">Artefato</div>
-
+  <div class="card-header">Artefato
+    <% if can? :edit, Artefato %>
+      <%= link_to '', edit_artefato_path(@artefato), class: "fa fa-edit text-white" %>
+    <% end %>
+    <% if can? :destroy, Artefato %>
+      <%= link_to '', @artefato, method: :delete, data: { confirm: 'Deseja realmente excluir o Artefato?' }, class: "fa fa-trash text-white" %>
+    <% end %>
+  </div>
 
   <div class="card-body">
 
@@ -64,9 +70,6 @@
 
   <br>
   <div class="card-footer text-muted">
-    <% if can? :edit, Artefato %>
-      <%= link_to 'Atualizar', edit_artefato_path(@artefato), class: "btn btn-md btn-primary" %>
-    <% end %>
     <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
   </div>
 
