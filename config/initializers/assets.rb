@@ -17,9 +17,8 @@ Rails.application.config.assets.precompile += %w(
 	jquery-ui.min.js
 	bootstrap.min.js
 	jquery.maskedinput.min.js
-	sb-admin.js
 	bootstrap.min.css	
-	sb-admin.css
+	sidebar.css
 	template_cursos.css
 	font-awesome.min.css
     ckeditor/*

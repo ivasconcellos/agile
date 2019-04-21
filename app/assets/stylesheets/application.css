@@ -16,9 +16,41 @@
  */
 
 
+body {
+  height: 100%;
+  background-color: #3361e3;
+  color: #0d2fa4;
+}
 
-.navbar-expand{
+.navbar-expand, .navbar-expand-lg{
   background-color: #1b115d;
+}
+
+.navbar-brand{
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.nav-link{
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.nav-sidebar{
+  padding-top: 20px; 
+  
+}
+
+.navbar-toggler {
+  border-color: #FFFFFF;
+} 
+
+.color-sidebar{
+  background-color: #281e89;
+}
+
+.sidebar-avatar{
+  margin: 0px -15px 0px -15px;
 }
 
 .agile{
@@ -174,4 +206,12 @@ td{
 
 .fonte-termo{
   font-size: 14px;
+}
+
+.icone-curso{
+  font-size: 36px;
+}
+
+.sticky-footer{
+  background-color: #FFFFFF;
 }
