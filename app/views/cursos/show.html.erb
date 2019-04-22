@@ -13,10 +13,14 @@
     <% end %>
   <% end %>
 
+
   <div class="text-center">
     <br>
     <% if can? :new, Modulo %>
       <%= link_to 'Cadastrar Módulo', new_modulo_path, class: "btn btn-md btn-primary" %>
+    <% end %>
+    <% if @perfil and @perfil.perfil == "Aluno" %>
+      <div class="alert alert-info"> Clique no Módulo para visualizar o conteúdo!</div>
     <% end %>
   </div>
 

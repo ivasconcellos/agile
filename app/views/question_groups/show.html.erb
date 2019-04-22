@@ -1,6 +1,13 @@
 <div class="card">
 
-	<div class="card-header">Pesquisa</div>
+	<div class="card-header">Pesquisa
+	    <% if can? :edit, QuestionGroup %>
+	      <%= link_to '', {:controller => 'question_groups', :action => 'edit', :id => @question_group.id, :usuario_curso_id => @question_group.usuario_curso_id}, class: "fa fa-edit text-white" %>
+	    <% end %>
+	    <% if can? :destroy, QuestionGroup %>
+	      <%= link_to '', @question_group, method: :delete, data: { confirm: 'Deseja realmente excluir a Pesquisa?' }, class: "fa fa-trash text-white" %>
+	    <% end %>
+  	</div>
 
 	<div class="row">
 	    <div class="col-md-10 offset-md-1">
@@ -21,9 +28,6 @@
 		<% if can? :new, Question %>
             <%= link_to "Perguntas da Pesquisa", {:controller => 'questions', :action =>  'index', :usuario_curso_id => @perfil.id, :question_group_id => @question_group.id}, class: "btn btn-md btn-warning" %>
         <% end %>
-		<% if can? :edit, QuestionGroup %>
-			<%= link_to 'Atualizar', {:controller => 'question_groups', :action => 'edit', :id => @question_group.id, :usuario_curso_id => @question_group.usuario_curso_id}, class: "btn btn-md btn-primary" %>
-		<% end %>
 		<%= link_to 'Voltar', {:controller => 'question_groups', :action => 'index', :usuario_curso_id => @question_group.usuario_curso_id}, class: "btn btn-md btn-secondary" %>
 	</div>
 </div>

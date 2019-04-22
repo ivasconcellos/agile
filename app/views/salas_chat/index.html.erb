@@ -23,22 +23,16 @@
               <% end %>
               <td><%= sala_chat.ativo? ? 'Sim' : 'Não' %></td>
               <% if sala_chat.usuario_curso.perfil == 'Professor' %>
-                <td><%= link_to 'Visualizar', sala_chat %></td>
+                <td><%= link_to 'Acessar', sala_chat, {class: 'btn btn-sm btn-success'} %></td>
               <% elsif  sala_chat.usuario_curso.grupo_curso.nome_curso == @perfil.grupo_curso.nome_curso %>
                 <td><%= link_to 'Visualizar', sala_chat %></td>
               <% end %>
-              <td>
-                <% if can? :edit, SalaChat and @perfil.id == sala_chat.usuario_curso.id %>
-                  <%= link_to 'Atualizar', edit_sala_chat_path(sala_chat) %></td>
-                <% else%> - 
-                <% end %>
-              <td>
-                <% if can? :destroy, SalaChat %>
-                  <%= link_to 'Excluir', sala_chat, method: :delete, data: { confirm: 'Deseja realmente excluir a sala de Chat?' } %></td>
-                <% else%> - 
-                <% end %>
-              </tr>
-              
+              <% if can? :edit, SalaChat and @perfil.id == sala_chat.usuario_curso.id %>
+                <td><%= link_to 'Atualizar', edit_sala_chat_path(sala_chat) %></td>
+              <% end %>
+              <% if can? :destroy, SalaChat %>
+                <td><%= link_to 'Excluir', sala_chat, method: :delete, data: { confirm: 'Deseja realmente excluir a sala de Chat?' } %></td>
+              <% end %>              
             </tr>
           <% end %>
         </tbody>

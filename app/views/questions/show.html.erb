@@ -1,6 +1,14 @@
 <div class="card">
 
-  <div class="card-header">Pergunta</div>
+  <div class="card-header">Pergunta
+    <% if can? :edit, Question %>
+      <%= link_to '', [:edit, @question.question_group, @question], class: "fa fa-edit text-white" %>
+    <% end %>
+    <% if can? :destroy, Question %>
+      <%= link_to '', @question, method: :delete, data: { confirm: 'Deseja realmente excluir a Pergunta?' }, class: "fa fa-trash text-white" %>
+    <% end %>
+  </div>
+
 
   <div class="row">
     <div class="col-md-10 offset-md-1">
@@ -18,7 +26,6 @@
   <br>
   
   <div class="card-footer text-muted">
-  	<%= link_to "Atualizar", [:edit, @question.question_group, @question], class: "btn btn-md btn-primary" %>
     <%= link_to 'Voltar', {:controller => 'questions', :action => 'index', :question_group_id => @question.question_group.id, :usuario_curso_id => @perfil.id}, class: "btn btn-md btn-secondary" %>
   </div>
 </div>
