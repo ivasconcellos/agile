@@ -2,6 +2,7 @@
 
 class Usuarios::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  skip_before_action :check_concurrent_session
 
   # GET /resource/sign_in
   # def new
@@ -17,9 +18,10 @@ class Usuarios::SessionsController < Devise::SessionsController
       current_visit.usuario_id = current_usuario.id
       current_visit.save
     end
-
+    
     Ahoy.user_method = :current_usuario
     ahoy.authenticate(current_usuario)
+    set_login_token
   end
   # DELETE /resource/sign_out
   def destroy
@@ -28,7 +30,14 @@ class Usuarios::SessionsController < Devise::SessionsController
     ahoy.reset()
     super
   end
-
+  
+  private
+  def set_login_token
+    token = Devise.friendly_token
+    session[:token] = token
+    current_usuario.login_token = token
+    current_usuario.save
+  end
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
