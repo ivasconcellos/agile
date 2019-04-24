@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  encoding: utf-8
+  database: agile_development
+  pool: 5
+  username: <usuario>
+  password: <senha>
+
+test:
+  adapter: postgresql
+  encoding: utf-8
+  database: agile_test
+  pool: 5
+  username: <usuario>
+  password: <senha>
+
+production:
+  adapter: postgresql
+  encoding: utf-8
+  database: agile_production
+  pool: 5
+  username: <usuario>
+  password: <senha>
