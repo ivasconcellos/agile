@@ -5,7 +5,7 @@
     <div class="card-body">
 
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-5">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Nickname</span>
@@ -25,7 +25,7 @@
           </div>
         </div>
 
-        <div class="col-lg-3">
+        <div class="col-lg-4">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Equipe</span>
@@ -71,8 +71,6 @@
             <% end %>
             <% if can? :destroy, UsuarioCurso and usuario_curso.status_curso != 'Inscrição Cancelada' and @perfil.id != usuario_curso.id %>
               <td><%= link_to 'Cancelar inscrição no curso', cancelar_inscricao_path(id: usuario_curso.id), class: "btn btn-md btn-danger", data: { confirm: 'Deseja realmente cancelar a Inscrição deste usuário no Curso?' } %></td>
-            <% else %>
-              <td>-</td>
             <% end %>
           </tr>
         <% end %>

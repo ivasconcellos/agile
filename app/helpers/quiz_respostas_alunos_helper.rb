@@ -2,9 +2,9 @@ module QuizRespostasAlunosHelper
 
 	def resposta_correta(resposta)
 		if resposta.correta?
-			('<i class="fa fa-check-circle text-success"> ' +  resposta.descricao + ' - Correta!' + '</i>' ).html_safe
+			('<i class="fa fa-check-circle text-success"> ' +  strip_tags(resposta.descricao) + ' - Correta!' + '</i>' ).html_safe
 		else
-			('<i class="fa fa-exclamation-circle text-danger"> ' +  resposta.descricao + ' - Incorreta!' +'</i>').html_safe
+			('<i class="fa fa-exclamation-circle text-danger"> ' +  strip_tags(resposta.descricao) + ' - Incorreta!' +'</i>').html_safe
     	end
 	end
 
@@ -15,6 +15,8 @@ module QuizRespostasAlunosHelper
 			aluno, quiz, true).sum('quiz_perguntas.pontuacao')
 		if @pontuacao == 0.0
 			return '-'
+		else
+			return @pontuacao
 		end
   	end
 

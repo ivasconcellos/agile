@@ -1,6 +1,12 @@
 <div class="card">
 
-	<div class="card-header"><%= @material.nome %></div>
+	<div class="card-header"><%= @material.nome %>
+	    <% if can? :edit, Material %>
+	      <%= link_to '', edit_material_path(@material), class: "fa fa-edit text-white" %>
+	    <% end %>
+  	</div>
+
+	<div class="card-header"></div>
 
 	<div class="row">
 	    <div class="col-md-10 offset-md-1">
@@ -11,9 +17,6 @@
 	</div>
 
 	<div class="card-footer text-muted">
-	  	<% if can? :edit, Material %>
-	    	<%= link_to 'Atualizar', edit_material_path(@material), class: "btn btn-md btn-primary" %>
-	  	<% end %>
 	  	<%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
 	</div>
 	

@@ -16,19 +16,13 @@
             <tr>
               <td><%= forum.titulo %></td>
               <td><%= forum.ativo? ? 'Sim' : 'Não' %></td>
-              <td><%= link_to 'Visualizar', forum %></td></td>
-              <td>
-                <% if can? :edit, Forum %>
-                  <%= link_to 'Atualizar', edit_forum_path(forum) %></td>
-                <% else%> - 
-                <% end %>
-              <td>
-                <% if can? :Destroy, Forum %>
-                  <%= link_to 'Excluir', forum, method: :delete, data: { confirm: 'Deseja realmente excluir o Fórum do curso?' } %></td>
-                <% else%> - 
-                <% end %>
-              </tr>
-              
+              <td><%= link_to 'Acessar', forum, {class: 'btn btn-sm btn-success'}  %></td>
+              <% if can? :edit, Forum %>
+                <td><%= link_to 'Atualizar', edit_forum_path(forum) %></td>
+              <% end %>
+              <% if can? :Destroy, Forum %>
+                <td><%= link_to 'Excluir', forum, method: :delete, data: { confirm: 'Deseja realmente excluir o Fórum do curso?' } %></td> 
+              <% end %>   
             </tr>
           <% end %>
         </tbody>

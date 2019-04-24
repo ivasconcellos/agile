@@ -215,3 +215,8 @@ td{
 .sticky-footer{
   background-color: #FFFFFF;
 }
+
+.chat{
+  height: 250px;
+  overflow-y: auto;
+}

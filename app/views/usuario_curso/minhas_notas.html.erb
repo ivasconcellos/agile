@@ -1,6 +1,6 @@
 <div class="card">
 
-  <div class="card-header">Minhas notas </div>
+  <div class="card-header">Minhas Notas </div>
 
 	<% if !@modulos.empty? %>
 		<% @modulos.each do |modulo| %>
@@ -9,7 +9,7 @@
 			    <h6 class="p-3 mb-2 bg-secondary text-white text-center">
 			    	<b>Missão (<%= missao.tipo %>):</b> <%= link_to missao.nome, missao, class: "text-light" %></h6>
 			    <% if missao.tipo == 'Tarefa' %>
-			    	<%= render partial: "tarefas/tarefas", locals: {modulo: missao.modulo} %>
+			    	<%= render partial: "tarefas/tarefas", locals: {tarefa: missao.tarefa} %>
 			    <% end %>
 			    <% if missao.tipo == 'Quiz' %>
 			    	<%= render partial: "quizzes/quizzes", locals: {quiz: missao.quiz} %>

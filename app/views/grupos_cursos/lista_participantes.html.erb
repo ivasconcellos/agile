@@ -40,8 +40,15 @@
   </div>
 <% else %>
 
-  <div class="alert alert-danger" role="alert">
-    Você ainda não faz parte de nenhuma Equipe. Em caso de dúvidas, entre em contato com o Professor do curso.
+  <div class="card">
+    <div class="card-header">Equipe</div>
+    <div class="alert alert-danger" role="alert">
+      Você ainda não faz parte de nenhuma Equipe. Clique em 'Escolher Equipe' para escolher a Equipe que gostaria de fazer parte.  Em caso de dúvidas, entre em contato com o Professor do curso.
+    </div>
+
+    <div class="text-center">
+      <%= link_to 'Escolher Equipe', escolher_equipe_url(id: @perfil.id), class: "btn btn-md btn-primary" %>
+    </div>
   </div>
 
 <% end %>

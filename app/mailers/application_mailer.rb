@@ -70,4 +70,12 @@ class ApplicationMailer < ActionMailer::Base
     @curso = usuario.curso
     mail to: @email, subject: @subject
   end
+
+  def cadastro_curso(usuario)
+    @subject = 'AGILE: Cadastro realizado no curso: ' + usuario.curso.nome
+    @email = usuario.usuario.email
+    @aluno = usuario
+    @curso = usuario.curso
+    mail to: @email, subject: @subject
+  end
 end
