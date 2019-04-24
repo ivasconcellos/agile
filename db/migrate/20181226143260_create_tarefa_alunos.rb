@@ -3,7 +3,7 @@ class CreateTarefaAlunos < ActiveRecord::Migration[5.2]
     create_table :tarefa_alunos do |t|
       t.references :tarefa, foreign_key: true
       t.references :usuario_curso, foreign_key: true
-      t.boolean :avaliada, :boolean, default: false
+      t.boolean :avaliada, default: false
 
       t.timestamps
     end

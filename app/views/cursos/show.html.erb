@@ -20,6 +20,9 @@
       <%= link_to 'Cadastrar Módulo', new_modulo_path, class: "btn btn-md btn-primary" %>
     <% end %>
     <% if @perfil and @perfil.perfil == "Aluno" %>
+      <% if @perfil.curso.grupos_cursos and !@perfil.grupo_curso_id %>
+        <div class="alert alert-danger">Por favor, escolha sua Equipe clicando na opção "Escolher Equipe" no menu lateral esquerdo!</div>
+      <% end %>
       <div class="alert alert-info"> Clique no Módulo para visualizar o conteúdo!</div>
     <% end %>
   </div>

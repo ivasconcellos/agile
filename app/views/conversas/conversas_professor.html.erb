@@ -6,7 +6,7 @@
 		<div class="card">
 
 		<div class="card-header conversa bg-primary text-left">Assunto: <%= conversa.assunto %></div>
-		 	<div class="card-header bg-white text-left">
+		 	<div class="card-header bg-white text-left text-dark">
 		 	   <p class="text-secondary conversa">De: <%= conversa.usuario_curso.nickname %></p>
 		 	   <p class="text-secondary conversa">Para: <%= conversa.destinatario.nickname %></p>
 			   <p class="text-dark conversa">Mensagem: <%= conversa.mensagem.to_s.html_safe %></p>
