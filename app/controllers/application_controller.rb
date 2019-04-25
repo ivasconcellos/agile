@@ -34,6 +34,18 @@ class ApplicationController < ActionController::Base
     @current_ability ||= Ability.new(current_usuario)
   end
 
+  before_action :check_concurrent_session
+
+  def check_concurrent_session
+    if is_already_logged_in?
+      sign_out_and_redirect(current_usuario)
+    end
+  end
+  
+  def is_already_logged_in?
+    current_usuario && !(session[:token] == current_usuario.login_token)
+  end
+
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
 	protected
