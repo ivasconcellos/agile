@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <% UsuarioCurso.where("curso_id = ? and perfil = ?",  @perfil.curso.id, "Aluno").each do |aluno| %>
+      <% UsuarioCurso.where("curso_id = ? and perfil = ?",  @perfil.curso.id, "Aluno").order('nickname').each do |aluno| %>
         <tr>
           <td><%= link_to aluno.nickname, notas_aluno_url(aluno_id: aluno.id, curso_id: quiz.missao.modulo.curso.id) %></td>
           <td><%= quiz.missao.pontuacao %></td>

@@ -54,6 +54,7 @@
     <% if @perfil and @perfil.perfil == "Aluno" and @perfil.status_curso == 'Em andamento' %>  
       <%= link_to 'Cancelar inscrição no Curso', cancelar_inscricao_path(id: @perfil.id), class: "btn btn-md btn-danger", data: { confirm: 'Deseja realmente cancelar sua Inscrição no Curso?' } %>
     <% end %>
+    
     <% if @perfil and @perfil.perfil == 'Aluno' and @perfil.pode_finalizar_curso %>
       <%= link_to 'Finalizar Curso', finalizar_curso_path(id: @perfil.id), class: "btn btn-md btn-success" %>
     <%end %>

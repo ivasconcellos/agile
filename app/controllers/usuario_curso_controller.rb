@@ -69,7 +69,7 @@ class UsuarioCursoController < ApplicationController
       @curso = Curso.where(codigo_acesso: params[:codigo_acesso]).first
       respond_to do |format|
         if not @curso.blank?
-          @usuario_curso = UsuarioCurso.new(perfil: 'Aluno', nickname: current_usuario.nome, usuario_id: current_usuario.id, curso_id: @curso.id)
+          @usuario_curso = UsuarioCurso.new(perfil: 'Aluno', nickname: current_usuario.nome, usuario_id: current_usuario.id, curso_id: @curso.id, nivel_id: 1)
           if @usuario_curso.save
             format.html { redirect_to @usuario_curso, @current_usuario => current_usuario, notice: 'Usuário do Curso cadastrado com sucesso!' }
             format.json { render :show, status: :created, location: @usuario_curso }
