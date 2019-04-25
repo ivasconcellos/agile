@@ -37,10 +37,10 @@
 
       <div class="form-group row">
         <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Opções</label>
-        <div class="col-md-6">
+        <div class="col-md-8">
           <% QuizPerguntaResposta.where(quiz_pergunta_id: @pergunta.id).each do |resposta| %>
                 <p><%= form.radio_button :quiz_pergunta_resposta_id, resposta.id, required: true %>
-                <%= resposta.descricao %></p>
+                <%= strip_tags(resposta.descricao) %></p>
           <% end %>      
         </div>
       </div>

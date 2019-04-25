@@ -1,8 +1,3 @@
-<li class="nav-item agile ">
-  <br>
-  <%= link_to @current_usuario.curso_atual, class: "nav-link text-center text-light icone-curso" do %><i class="fa fa-university fa-lg"> </i> Curso<% end %>
-</li>
-
 <li class="nav-item nav-sidebar">
   <%= link_to " Detalhes do curso", descricao_path(id: @current_usuario.curso_atual), {class: "fa fa-info-circle fa-sm nav-link text-light"} %>
 </li>
@@ -12,7 +7,7 @@
 </li>
 
 <li class="nav-item nav-sidebar">
-  <%= link_to " Módulos", modulos_path, {class: "fa fa-cubes fa-sm nav-link text-light"} %>
+  <%= link_to " Módulos", @current_usuario.curso_atual, {class: "fa fa-cubes fa-sm nav-link text-light"} %>
 </li>
 
 <li class="nav-item nav-sidebar">
@@ -32,15 +27,7 @@
 </li>
 
 <li class="nav-item nav-sidebar">
-  <%= link_to " Equipe", equipe_path, {class: "fa fa-users fa-sm nav-link text-light"} %>
-</li>
-
-<li class="nav-item nav-sidebar">
-  <%= link_to " Participantes", {controller: 'usuario_curso', action: 'index'}, class: "fa fa-user-circle fa-sm nav-link text-light" %>
-</li>
-
-<li class="nav-item nav-sidebar">
-  <%= link_to " Fale com o Professor", conversas_path, {class: "fa fa-question-circle fa-sm nav-link text-light"} %>
+  <%= link_to " Minha equipe", equipe_path, {class: "fa fa-users fa-sm nav-link text-light"} %>
 </li>
 
 <li class="nav-item nav-sidebar">
@@ -50,3 +37,12 @@
 <li class="nav-item nav-sidebar">
   <%= link_to " Eventos", eventos_path, {class: "fa fa-calendar fa-sm nav-link text-light"} %>
 </li>
+
+<li class="nav-item nav-sidebar">
+  <%= link_to " Participantes", {controller: 'usuario_curso', action: 'index'}, class: "fa fa-user-circle fa-sm nav-link text-light" %>
+</li>
+
+<li class="nav-item nav-sidebar">
+  <%= link_to " Professor(es)", conversas_path, {class: "fa fa-address-book fa-sm nav-link text-light"} %>
+</li>
+

@@ -10,15 +10,13 @@
           </tr>
         </thead>
         <tbody>
-          <% TarefaAluno.joins(tarefa: :missao).where("missoes.modulo_id = ?", modulo.id).each do |tarefa| %>
             <tr>
-              <td><%= link_to tarefa.tarefa.nome, tarefa.tarefa %></td>
-              <td><%= tarefa.tarefa.missao.pontuacao %></td>
-              <td><%= minha_nota(tarefa.tarefa.id, @perfil.id) %></td>
-              <td><%= enviada(tarefa.tarefa.id, @perfil.id) %></td>
-              <td><%= tarefa.avaliada? ? 'Sim' : 'Não' %></td>
+              <td><%= link_to tarefa.nome, tarefa %></td>
+              <td><%= tarefa.missao.pontuacao %></td>
+              <td><%= minha_nota(tarefa.id, @perfil.id) %></td>
+              <td><%= enviada(tarefa.id, @perfil.id) %></td>
+              <td><%= avaliada(tarefa.id, @perfil.id) %></td>
             </tr>
-          <% end %>
         </tbody>
       </table>
     </div>

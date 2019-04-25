@@ -38,6 +38,7 @@ class UsuarioCursoController < ApplicationController
     @usuario_curso.nivel_id = 1
     respond_to do |format|
       if @usuario_curso.save
+        ApplicationMailer.cadastro_curso(@usuario_curso).deliver
         format.html { redirect_to @usuario_curso, notice: 'Usuário cadastrado no Curso com sucesso!' }
         format.json { render :show, status: :created, location: @usuario_curso }
       else

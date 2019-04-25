@@ -8,7 +8,7 @@ class TarefaAvaliacao < ApplicationRecord
 
   validate :verificar_pontuacao_maxima
 
-  validates_inclusion_of :nota, :in => 0..100, message: " - A pontuação deve ser entre 1 e 100"
+  validates_inclusion_of :nota, :in => 0..100, message: " - A pontuação deve ser entre 0 e 100"
 
   def pontuacao_aluno nota
     
@@ -28,9 +28,11 @@ class TarefaAvaliacao < ApplicationRecord
   private
 
 	def verificar_pontuacao_maxima
-		if self.nota > self.tarefa_aluno.tarefa.missao.pontuacao
-			errors.add(:nota, " - Nota atribuída ao aluno superior a nota máxima estabelecida para esta tarefa!")
-		end
+    if self.nota
+  		if self.nota > self.tarefa_aluno.tarefa.missao.pontuacao
+  			errors.add(:nota, " - Nota atribuída ao aluno superior a nota máxima estabelecida para esta tarefa!")
+  		end
+    end
 	end
 
 end

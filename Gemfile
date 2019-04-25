@@ -106,3 +106,7 @@ gem 'to_csv-rails'
 gem 'blazer'
 
 gem "chartkick"
+
+gem 'execjs'
+
+gem 'therubyracer'
