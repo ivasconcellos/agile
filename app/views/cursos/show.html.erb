@@ -13,6 +13,11 @@
     <% end %>
   <% end %>
 
+  <% if !@conversas.empty? %>
+    <div class="alert alert-danger" role="alert">
+      Você possui mensagens não lidas! <%= link_to 'Verificar Mensagens!', conversas_path %>
+    </div>
+  <% end %>
 
   <div class="text-center">
     <br>
@@ -26,12 +31,6 @@
       <div class="alert alert-info"> Clique no Módulo para visualizar o conteúdo!</div>
     <% end %>
   </div>
-
-  <% if !@conversas.empty? %>
-    <div class="alert alert-danger" role="alert">
-      Você possui mensagens não lidas!
-    </div>
-  <% end %>
  
   <div id="accordion">
     <% if @perfil.perfil != 'Aluno' %>
