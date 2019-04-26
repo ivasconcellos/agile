@@ -10,8 +10,8 @@ class Nivel < ApplicationRecord
 	self.per_page = 10
 
 	def self.verifica_nivel(usuario)
-		@nivel = Nivel.where('pontos_requeridos >= ?', usuario.pontos_experiencia).first
-	    if usuario.pontos_experiencia >= @nivel.pontos_requeridos
+		@nivel = Nivel.where('pontos_requeridos <= ?', usuario.pontos_experiencia).last
+	    if usuario.nivel_id != @nivel.id
 	      usuario.nivel_id = @nivel.id
 	      usuario.save!
 	      ApplicationMailer.novo_nivel(usuario).deliver	
