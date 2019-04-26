@@ -21,10 +21,11 @@ module QuizRespostasAlunosHelper
   	end
 
   	def respondido_quiz(quiz, aluno)
-  		@quiz = QuizRespostaAluno.joins(quiz_pergunta_resposta: :quiz_pergunta).where(
-			'usuario_curso_id =? and quiz_perguntas.quiz_id =?', 
-			aluno, quiz)
-  		if !@quiz.empty?
+  		@perguntas = QuizPergunta.where(quiz_id: quiz).count
+  		@respostas = QuizRespostaAluno.joins(quiz_pergunta_resposta: :quiz_pergunta).where(
+			'usuario_curso_id =? and quiz_perguntas.id in (?)', 
+			aluno, QuizPergunta.select(:id).where(quiz_id: quiz)).count
+  		if @perguntas == @respostas
   			return "Sim"
   		else
   			return "Não"
