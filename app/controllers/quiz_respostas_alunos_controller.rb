@@ -14,7 +14,7 @@ class QuizRespostasAlunosController < ApplicationController
   def new
     authorize! :new, QuizRespostaAluno
     @quiz_resposta_aluno = QuizRespostaAluno.new
-    @perguntas = QuizPergunta.where(quiz_id: params[:quiz_id]).first
+    @perguntas = QuizPergunta.where('quiz_id = ? and id not in (?)', params[:quiz_id], QuizRespostaAluno.joins(quiz_pergunta_resposta: :quiz_pergunta).select(:quiz_pergunta_id).where('usuario_curso_id = ?', @perfil.id)).first
     if params[:pergunta_id]
       @pergunta = QuizPergunta.where("quiz_id = ? and id > ?",params[:quiz_id], params[:pergunta_id]).first
       if !@pergunta

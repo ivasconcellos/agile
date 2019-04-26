@@ -17,8 +17,7 @@ class CursosController < ApplicationController
     @curso = Curso.find(current_usuario.curso_atual_id)
     @modulos = Modulo.where(curso_id: current_usuario.curso_atual_id, publico: true)
     @usuario_curso = UsuarioCurso.where(curso_id: @curso.id, usuario_id: current_usuario.id)
-    @conversas = []
-    #@conversas = Conversa.where(destinatario_id: @perfil.id, lida: false)
+    @conversas = Conversa.where(destinatario_id: @perfil.id, lida: false)
   end
 
   def descricao
