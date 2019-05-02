@@ -45,7 +45,7 @@
             <div class="card-header" id="heading<%= index.to_s %>">
               <h5 class="mb-0">
                 <button class="btn btn-link modulo text-white" data-toggle="collapse" data-target="#collapse<%= index.to_s %>" aria-expanded="false" aria-controls="collapse<%= index.to_s %>">
-                  Módulo: <%= modulo.nome %> 
+                  Módulo <%= index + 1 %>: <%= modulo.nome %> 
                 </button>
                 <% if can? :edit, Modulo %>
                   <%= link_to '', edit_modulo_path(modulo), class: "fa fa-edit text-white" %>
