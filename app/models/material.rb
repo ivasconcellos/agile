@@ -4,7 +4,7 @@ class Material < ApplicationRecord
   self.per_page = 10
   
   has_one_attached :arquivo
-  validates :arquivo, size: { less_than: 10.megabytes , message: 'Arquivo muito grande. O tamanho máximo deve ser 10 MB.' }    
+  validates :arquivo, size: { less_than: 30.megabytes , message: 'Arquivo muito grande. O tamanho máximo deve ser 30 MB.' }    
   
   validate :validate_content_type
   def validate_content_type
