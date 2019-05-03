@@ -456,7 +456,7 @@ ActiveRecord::Schema.define(version: 2019_05_03_003756) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "curso_id"
-    t.boolean "final_curso", default: false
+    t.boolean "final_curso", default: true
     t.index ["curso_id"], name: "index_question_groups_on_curso_id"
     t.index ["usuario_curso_id"], name: "index_question_groups_on_usuario_curso_id"
   end
