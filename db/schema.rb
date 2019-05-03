@@ -260,7 +260,7 @@ ActiveRecord::Schema.define(version: 2019_05_03_003756) do
     t.bigint "usuario_id"
     t.bigint "curso_id"
     t.string "hash_validacao"
-    t.datetime "data_finalizacao", default: -> { "CURRENT_TIMESTAMP" }
+    t.datetime "data_finalizacao", default: -> { "now()" }
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["curso_id"], name: "index_curso_certificados_on_curso_id"
