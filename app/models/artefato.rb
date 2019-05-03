@@ -18,12 +18,7 @@ class Artefato < ApplicationRecord
 		    if !@artefato_aluno
 		    	if usuario.pontos_experiencia >= artefato.pontos_requeridos
 					@novo_artefato = ArtefatoAluno.create!(usuario_curso_id: usuario.id, artefato_id: artefato.id)
-					begin
-						ApplicationMailer.novo_artefato(@novo_artefato).deliver
-					rescue StandardError => e
-						flash[:alert] = 'Erro ao enviar o e-mail!'
-					end
-		    		
+					ApplicationMailer.novo_artefato(@novo_artefato).deliver		    		
 		    	end
 		    end
 		end

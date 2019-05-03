@@ -14,12 +14,7 @@ class Nivel < ApplicationRecord
 	    if usuario.nivel_id != @nivel.id
 	      usuario.nivel_id = @nivel.id
 				usuario.save!
-				begin
-					ApplicationMailer.novo_nivel(usuario).deliver	
-				rescue StandardError => e
-					flash[:alert] = 'Erro ao enviar o e-mail!'
-				end
-	      
+				ApplicationMailer.novo_nivel(usuario).deliver	      
 	    end
 	end
 end
