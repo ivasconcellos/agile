@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_23_160731) do
+ActiveRecord::Schema.define(version: 2019_05_03_003756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -456,7 +456,7 @@ ActiveRecord::Schema.define(version: 2019_04_23_160731) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "curso_id"
-    t.boolean "final_curso", default: true
+    t.boolean "final_curso", default: false
     t.index ["curso_id"], name: "index_question_groups_on_curso_id"
     t.index ["usuario_curso_id"], name: "index_question_groups_on_usuario_curso_id"
   end
@@ -555,6 +555,18 @@ ActiveRecord::Schema.define(version: 2019_04_23_160731) do
     t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "recompensas", force: :cascade do |t|
+    t.integer "posicao_ranking"
+    t.string "nome"
+    t.text "descricao"
+    t.bigint "usuario_curso_id"
+    t.bigint "curso_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["curso_id"], name: "index_recompensas_on_curso_id"
+    t.index ["usuario_curso_id"], name: "index_recompensas_on_usuario_curso_id"
   end
 
   create_table "salas_chat", force: :cascade do |t|
@@ -700,6 +712,8 @@ ActiveRecord::Schema.define(version: 2019_04_23_160731) do
   add_foreign_key "quiz_respostas_alunos", "usuario_curso"
   add_foreign_key "quizzes", "missoes"
   add_foreign_key "quizzes", "usuario_curso"
+  add_foreign_key "recompensas", "cursos"
+  add_foreign_key "recompensas", "usuario_curso"
   add_foreign_key "salas_chat", "cursos"
   add_foreign_key "salas_chat", "usuario_curso"
   add_foreign_key "tarefa_alunos", "tarefas"

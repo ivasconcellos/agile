@@ -1,0 +1,2 @@
+module RecompensasHelper
+end

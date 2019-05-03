@@ -4,7 +4,14 @@
 		<div class="alert alert-success alert-lateral">
 			<%= link_to " Voltar para Módulos", @current_usuario.curso_atual, {class: "fa fa-arrow-circle-o-left fa-sm nav-link text-dark"} %>
 		</div>
+
+		<% if @perfil.curso.recompensas.exists? %>
+			<div class="alert alert-danger alert-lateral">
+				<%= link_to " Recompensas", recompensas_path, {class: "fa fa-gift fa-sm nav-link text-dark"} %>
+			</div>
+		<% end %>
 	<% end %>
+	
 	<% if  !@perfil.evento.empty? %>
 
 		<div class="alert alert-primary alert-lateral">

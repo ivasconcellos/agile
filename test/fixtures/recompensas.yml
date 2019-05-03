@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  posicao_ranking: 1
+  nome: MyString
+  descricao: MyText
+  usuario_curso: one
+  curso: one
+
+two:
+  posicao_ranking: 1
+  nome: MyString
+  descricao: MyText
+  usuario_curso: two
+  curso: two
