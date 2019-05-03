@@ -34,11 +34,7 @@ class EventosController < ApplicationController
     @evento.usuario_curso_id = @perfil.id
     respond_to do |format|
       if @evento.save
-        begin
-          ApplicationMailer.novo_evento(@evento).deliver
-        rescue StandardError => e
-          flash[:alert] = 'Erro ao enviar o e-mail!'
-        end        
+        ApplicationMailer.novo_evento(@evento).deliver        
         format.html { redirect_to @evento, notice: 'Evento cadastrado com sucesso!' }
         format.json { render :show, status: :created, location: @evento }
       else
@@ -53,11 +49,7 @@ class EventosController < ApplicationController
   def update
     respond_to do |format|
       if @evento.update(evento_params)
-        begin
-          ApplicationMailer.novo_evento(@evento).deliver
-        rescue StandardError => e
-          flash[:alert] = 'Erro ao enviar o e-mail!'
-        end        
+        ApplicationMailer.novo_evento(@evento).deliver       
         format.html { redirect_to @evento, notice: 'Evento atualizado com sucesso!' }
         format.json { render :show, status: :ok, location: @evento }
       else
@@ -71,11 +63,7 @@ class EventosController < ApplicationController
     authorize! :cancelar_evento, :evento
     @evento.ativo = false
     @evento.save
-    begin
-      ApplicationMailer.evento_cancelado(@evento).deliver
-    rescue StandardError => e
-      flash[:alert] = 'Erro ao enviar o e-mail!'
-    end    
+    ApplicationMailer.evento_cancelado(@evento).deliver   
     respond_to do |format|
       format.html { redirect_to @evento, notice: 'Evento cancelado com sucesso!' }
       format.json { render :show, status: :ok, location: @evento }

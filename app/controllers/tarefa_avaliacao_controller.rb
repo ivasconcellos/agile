@@ -31,11 +31,7 @@ class TarefaAvaliacaoController < ApplicationController
         @tarefa_avaliacao.tarefa_aluno.avaliada = true
         @tarefa_avaliacao.tarefa_aluno.save!
         @tarefa_avaliacao.pontuacao_aluno(nil)
-        begin
-          ApplicationMailer.tarefa_avaliada(@tarefa_avaliacao).deliver
-        rescue StandardError => e
-          flash[:alert] = 'Erro ao enviar o e-mail!'
-        end        
+        ApplicationMailer.tarefa_avaliada(@tarefa_avaliacao).deliver     
         format.html { redirect_to @tarefa_avaliacao, notice: 'Avaliação da tarefa cadastrada com sucesso!' }
         format.json { render :show, status: :created, location: @tarefa_avaliacao }
       else
@@ -52,11 +48,7 @@ class TarefaAvaliacaoController < ApplicationController
     respond_to do |format|
       if @tarefa_avaliacao.update(tarefa_avaliacao_params)
         @tarefa_avaliacao.pontuacao_aluno(@nota)
-        begin
-          ApplicationMailer.tarefa_avaliada(@tarefa_avaliacao).deliver
-        rescue StandardError => e
-          flash[:alert] = 'Erro ao enviar o e-mail!'
-        end        
+        ApplicationMailer.tarefa_avaliada(@tarefa_avaliacao).deliver       
         format.html { redirect_to @tarefa_avaliacao, notice: 'Avaliação da tarefa atualizada com sucesso!' }
         format.json { render :show, status: :ok, location: @tarefa_avaliacao }
       else

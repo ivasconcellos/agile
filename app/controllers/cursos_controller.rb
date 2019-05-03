@@ -49,11 +49,7 @@ class CursosController < ApplicationController
       if @curso.save
         @usuario_curso = UsuarioCurso.create!(perfil: 'Professor', nickname: @curso.proprietario.nome, usuario_id: @curso.proprietario_id, curso_id: @curso.id, nivel_id: 1)
         current_usuario.update(curso_atual_id: @curso.id)
-        begin
-          ApplicationMailer.cadastro_curso(@usuario_curso).deliver
-        rescue StandardError => e
-          flash[:alert] = 'Erro ao enviar o e-mail!'
-        end
+        ApplicationMailer.cadastro_curso(@usuario_curso).deliver
         format.html { redirect_to descricao_path(id: @curso.id), notice: 'Curso criado com sucesso!' }
         format.json { render :show, status: :created, location: cursos_path }
       else
@@ -108,11 +104,7 @@ class CursosController < ApplicationController
     authorize! :enviar_convite, :curso
     @curso = @perfil.curso
     if request.post?
-      begin
-        ApplicationMailer.enviar_convite(@curso, params[:emails]).deliver
-      rescue StandardError => e
-        flash[:alert] = 'Erro ao enviar o e-mail!'
-      end      
+      ApplicationMailer.enviar_convite(@curso, params[:emails]).deliver    
       respond_to do |format|
         format.html { redirect_to @curso, notice: 'Convite enviado com sucesso!' }
         format.json { head :no_content }
