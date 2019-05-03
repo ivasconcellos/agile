@@ -1,0 +1,27 @@
+<div class="card">
+
+  <div class="card-header">Recompensa
+      <% if can? :edit, Recompensa %>
+        <%= link_to '', edit_recompensa_path(@recompensa), class: "fa fa-edit text-white" %>
+      <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <ul class="list-group">
+        <li class="list-group-item"><b>Posição no Ranking:</b> <%= @recompensa.posicao_ranking %></li>
+        <li class="list-group-item"><b>Nome:</b> <%= @recompensa.nome %></li>
+        <li class="list-group-item"><b>Descrição:</b> <%= @recompensa.descricao.to_s.html_safe %></li>
+        <li class="list-group-item"><b>Responsável:</b> <%= @recompensa.usuario_curso.nickname %></li>
+        <li class="list-group-item"><b>Cadastrada em:</b> <%= @recompensa.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
+      </ul>
+    </div>
+  </div>
+  
+  <br>
+  
+  <div class="card-footer text-muted">
+    <%= link_to 'Voltar', recompensas_path, class: "btn btn-md btn-secondary" %>
+  </div>
+</div>
+

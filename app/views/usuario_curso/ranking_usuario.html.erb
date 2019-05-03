@@ -11,8 +11,8 @@
 	          	<th class="text-center">Posição</th>
 	            <th class="text-center">Nickname</th>
 	            <th class="text-center">Pontuação</th>
-	            <th class="text-center">Nível</th>
 	            <th class="text-center">Grupo</th>
+	            <th class="text-center">Cadastro</th>
 	          </tr>
 	        </thead>
 	        <tbody>
@@ -21,12 +21,12 @@
 					<td><%= "#{index+1}º" %></td>
 					<td><%= link_to "#{aluno.nickname}", aluno %></td>
 					<td><%= aluno.pontos_experiencia %></td>
-					<td><%= aluno.nivel.nome %></td>
 					<% if aluno.grupo_curso %>
 						<td><%= aluno.grupo_curso.grupo.nome %></td>
 					<% else %>
 						<td>-</td>
 					<% end %>
+					<td><%= aluno.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></td>
 	            </tr>
 	          <% end %>
 	        </tbody>

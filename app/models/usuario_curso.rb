@@ -21,7 +21,8 @@ class UsuarioCurso < ApplicationRecord
 	has_many :artefatos_alunos, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :comunicados, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :dialogos, :dependent => :destroy, :dependent => :restrict_with_error
-
+	has_many :recompensas, :dependent => :destroy
+	
 	validates_uniqueness_of :usuario_id, scope: :curso_id, message: "já está cadastrado no curso!"
 
 	self.per_page = 10
@@ -34,7 +35,7 @@ class UsuarioCurso < ApplicationRecord
 	end
 
 	def ranking
-    	@usuarios = UsuarioCurso.where(curso_id: self.curso_id, perfil: 'Aluno').order(pontos_experiencia: :desc).limit(10)
+    	@usuarios = UsuarioCurso.where(curso_id: self.curso_id, perfil: 'Aluno').order(pontos_experiencia: :desc, created_at: :asc).limit(10)
   	end
 
   	def ranking_equipe

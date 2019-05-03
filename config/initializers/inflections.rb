@@ -35,6 +35,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'modulo_ordenacao', 'modulos_ordenacoes'
 	inflect.irregular 'curso_certificado', 'curso_certificados'
 	inflect.irregular 'faq', 'faqs'
+	inflect.irregular 'recompensa', 'recompensas'
 end
 
 # These inflection rules are supported but not enabled by default:
