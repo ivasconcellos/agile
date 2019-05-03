@@ -29,7 +29,11 @@ class ConversasController < ApplicationController
     @conversa.usuario_curso_id = @perfil.id
     respond_to do |format|
       if @conversa.save
-        ApplicationMailer.mensagens_professor(@conversa).deliver
+        begin
+          ApplicationMailer.mensagens_professor(@conversa).deliver
+        rescue StandardError => e
+          flash[:alert] = 'Erro ao enviar o e-mail!'
+        end        
         format.html { redirect_to @conversa, notice: 'Mensagem enviada com sucesso!' }
         format.json { render :show, status: :created, location: @conversa }
       else

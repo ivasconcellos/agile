@@ -13,8 +13,13 @@ class Nivel < ApplicationRecord
 		@nivel = Nivel.where('pontos_requeridos <= ?', usuario.pontos_experiencia).last
 	    if usuario.nivel_id != @nivel.id
 	      usuario.nivel_id = @nivel.id
-	      usuario.save!
-	      ApplicationMailer.novo_nivel(usuario).deliver	
+				usuario.save!
+				begin
+					ApplicationMailer.novo_nivel(usuario).deliver	
+				rescue StandardError => e
+					flash[:alert] = 'Erro ao enviar o e-mail!'
+				end
+	      
 	    end
 	end
 end
