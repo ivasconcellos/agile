@@ -17,8 +17,13 @@ class Badge < ApplicationRecord
 			@badge_aluno = BadgeAluno.find_by(usuario_curso_id: usuario.id, badge_id: badge.id)
 		    if !@badge_aluno
 		    	if usuario.pontos_experiencia >= badge.pontos_requeridos
-		    		@nova_badge = BadgeAluno.create!(usuario_curso_id: usuario.id, badge_id: badge.id)
-		    		ApplicationMailer.nova_badge(@nova_badge).deliver
+					@nova_badge = BadgeAluno.create!(usuario_curso_id: usuario.id, badge_id: badge.id)
+					begin
+						ApplicationMailer.nova_badge(@nova_badge).deliver
+					rescue StandardError => e
+						flash[:alert] = 'Erro ao enviar o e-mail!'
+					end
+		    		
 		    	end
 		    end
 		end

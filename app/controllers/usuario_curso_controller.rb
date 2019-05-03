@@ -38,7 +38,11 @@ class UsuarioCursoController < ApplicationController
     @usuario_curso.nivel_id = 1
     respond_to do |format|
       if @usuario_curso.save
-        ApplicationMailer.cadastro_curso(@usuario_curso).deliver
+        begin
+          ApplicationMailer.cadastro_curso(@usuario_curso).deliver
+        rescue StandardError => e
+          flash[:alert] = 'Erro ao enviar o e-mail!'
+        end        
         format.html { redirect_to @usuario_curso, notice: 'Usuário cadastrado no Curso com sucesso!' }
         format.json { render :show, status: :created, location: @usuario_curso }
       else
@@ -126,7 +130,11 @@ class UsuarioCursoController < ApplicationController
     if @usuario_curso.save
       flash[:notice] = 'Inscrição no curso Cancelada com sucesso!'
       redirect_to :controller => "cursos", :action => "show", id: current_usuario.curso_atual_id
-      ApplicationMailer.inscricao_cancelada(@usuario_curso).deliver
+      begin
+        ApplicationMailer.inscricao_cancelada(@usuario_curso).deliver
+      rescue StandardError => e
+        flash[:alert] = 'Erro ao enviar o e-mail!'
+      end      
     end
   end
 

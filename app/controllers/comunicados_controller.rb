@@ -29,7 +29,11 @@ class ComunicadosController < ApplicationController
     @comunicado.remetente_id = @perfil.id
     respond_to do |format|
       if @comunicado.save
-        ApplicationMailer.comunicado_turma(@comunicado).deliver
+        begin
+          ApplicationMailer.comunicado_turma(@comunicado).deliver
+        rescue StandardError => e
+          flash[:alert] = 'Erro ao enviar o e-mail!'
+        end
         format.html { redirect_to @comunicado, notice: 'Comunicado enviado com sucesso!!!' }
         format.json { render :show, status: :created, location: @comunicado }
       else
