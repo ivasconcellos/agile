@@ -83,6 +83,10 @@
                         <% if modulo_ordenacao.classe == 'Material'  and (modulo_ordenacao.objeto.publico? or @perfil.perfil != 'Aluno' )%>
                           <%= render 'materiais/material', modulo_ordenacao: modulo_ordenacao  %>
                         <% end %>
+
+                        <% if modulo_ordenacao.classe == 'Forum' %>
+                          <%= render 'foruns/forum', modulo_ordenacao: modulo_ordenacao  %>
+                        <% end %>
                     
                     <% end %>
                       

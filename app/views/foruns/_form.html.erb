@@ -15,7 +15,7 @@
     <%= form.hidden_field :curso_id %>
 
     <div class="form-group row">
-      <label for="inputDataTermino" class="col-md-2 offset-md-2 col-form-label">Módulo do curso</label>
+      <label for="inputDataTermino" class="col-md-2 offset-md-2 col-form-label">Módulo*</label>
       <div class="col-md-6">
         <%= form.collection_select(:modulo_id, Modulo.where(curso_id: @perfil.curso_id).order('id'), :id, :nome, :prompt => true, class: "form-control")%>
       </div>
