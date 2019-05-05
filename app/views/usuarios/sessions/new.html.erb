@@ -20,16 +20,15 @@
             <%= f.password_field :password, autocomplete: "off", class: "form-control" %> 
           </div>
 
-          <div class="actions">
+          <div class="text-center">
             <%= f.submit "Acessar", class: "btn btn-lg btn-primary btn-block" %>
+            <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+              <%= link_to "Cadastrar", new_registration_path(resource_name), class: "btn btn-lg btn-success btn-block" %><br />
+            <% end -%>
+            <%= render "usuarios/shared/links" %>
           </div>
         </div>
       <% end %>
-
-      <br>
-      
-      <div class="text-center">
-        <%= render "usuarios/shared/links" %>
-      </div>
+  
   </div>
 </div>

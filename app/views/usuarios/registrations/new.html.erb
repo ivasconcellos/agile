@@ -71,8 +71,17 @@
           </div>
         </div>
 
-        <div class="actions">
+        <div class="form-group row"> 
+          <div class="col-md-12 ">
+            <%= link_to 'Menores de 18 anos devem entregar o "Termo de consentimento livre e esclarecido" assinado na Coordenação do MPET',  root_url+'Termo_consentimento.docx', {class: 'nav-link text-danger text-center', target: '_blank' } %>           
+          </div>
+        </div>
+
+        <div class="text-center">
           <%= f.submit "Cadastrar", class: "btn btn-lg btn-primary btn-block" %>
+          <%- if controller_name != 'sessions' %>
+            <%= link_to "Acessar", new_session_path(resource_name), class: "btn btn-lg btn-success btn-block" %>
+          <% end -%>
           <%= render "usuarios/shared/links" %>
         </div>
       <% end %>

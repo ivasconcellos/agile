@@ -3,7 +3,7 @@ class QuizPergunta < ApplicationRecord
   has_many :quiz_pergunta_respostas
   validates_presence_of :descricao, :pontuacao
 
-  validates :pontuacao, numericality: { only_integer: true }
+  validates :pontuacao, numericality: true
 
   validate :verificar_pontuacao_maxima
 
