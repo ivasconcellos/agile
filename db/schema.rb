@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_03_003756) do
+ActiveRecord::Schema.define(version: 2019_05_05_233249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -347,7 +347,9 @@ ActiveRecord::Schema.define(version: 2019_05_03_003756) do
     t.bigint "usuario_curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "modulo_id"
     t.index ["curso_id"], name: "index_foruns_on_curso_id"
+    t.index ["modulo_id"], name: "index_foruns_on_modulo_id"
     t.index ["usuario_curso_id"], name: "index_foruns_on_usuario_curso_id"
   end
 
@@ -456,7 +458,7 @@ ActiveRecord::Schema.define(version: 2019_05_03_003756) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "curso_id"
-    t.boolean "final_curso", default: true
+    t.boolean "final_curso", default: false
     t.index ["curso_id"], name: "index_question_groups_on_curso_id"
     t.index ["usuario_curso_id"], name: "index_question_groups_on_usuario_curso_id"
   end
@@ -692,6 +694,7 @@ ActiveRecord::Schema.define(version: 2019_05_03_003756) do
   add_foreign_key "eventos", "usuario_curso"
   add_foreign_key "explicacoes", "modulos"
   add_foreign_key "foruns", "cursos"
+  add_foreign_key "foruns", "modulos"
   add_foreign_key "foruns", "usuario_curso"
   add_foreign_key "foruns_comentarios", "foruns"
   add_foreign_key "foruns_comentarios", "foruns_comentarios"

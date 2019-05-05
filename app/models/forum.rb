@@ -2,6 +2,7 @@ class Forum < ApplicationRecord
   belongs_to :curso
   has_many :foruns_comentarios, :dependent => :destroy, :dependent => :restrict_with_error
   belongs_to :usuario_curso
+  belongs_to :modulo, optional: true
 
   validates_presence_of :titulo, :descricao, :curso_id
   
