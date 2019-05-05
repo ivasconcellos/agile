@@ -6,7 +6,7 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1.json
   def show
     authorize! :show, Quiz
-    @quiz_perguntas = QuizPergunta.where(quiz_id: @quiz)
+    @quiz_perguntas = QuizPergunta.where(quiz_id: @quiz).order('created_at')
     @quiz.pontuacao
   end
 
