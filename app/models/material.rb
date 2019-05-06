@@ -37,9 +37,14 @@ class Material < ApplicationRecord
   end
      
   after_create :ordenacao
-
+  after_destroy :remocao
+  
   def ordenacao
     ModuloOrdenacao.ordenar(self)
+  end
+
+  def remocao
+    ModuloOrdenacao.remover(self)
   end
 end
 

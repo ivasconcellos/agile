@@ -7,6 +7,7 @@
         <thead>
           <tr>
             <th class="text-center">Título</th>
+            <th class="text-center">Módulo</th>
             <th class="text-center">Ativo</th>
             <th colspan="3" class="text-center">Opções</th>
           </tr>
@@ -15,6 +16,11 @@
           <% @foruns.each do |forum| %>
             <tr>
               <td><%= forum.titulo %></td>
+              <% if forum.modulo %>
+                <td><%= forum.modulo.nome %></td>
+              <% else %>
+                <td>-</td>
+              <% end %>
               <td><%= forum.ativo? ? 'Sim' : 'Não' %></td>
               <td><%= link_to 'Acessar', forum, {class: 'btn btn-sm btn-success'}  %></td>
               <% if can? :edit, Forum %>

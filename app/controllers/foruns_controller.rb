@@ -21,6 +21,7 @@ class ForunsController < ApplicationController
     authorize! :new, Forum
     @forum = Forum.new
     @forum.curso_id = params[:curso_id]
+    @forum.modulo_id = params[:modulo_id]
   end
 
   # GET /foruns/1/edit
@@ -83,6 +84,6 @@ class ForunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def forum_params
-      params.require(:forum).permit(:titulo, :descricao, :ativo, :curso_id, :usuario_curso_id)
+      params.require(:forum).permit(:titulo, :descricao, :ativo, :curso_id, :usuario_curso_id, :modulo_id)
     end
 end
