@@ -137,7 +137,7 @@ class UsuarioCursoController < ApplicationController
     @usuario_curso.aprovado = @usuario_curso.verifica_aprovacao
     if @usuario_curso.save
       flash[:notice] = 'Curso finalizado com sucesso!'
-      if @usuario.aprovado = true
+      if @usuario_curso.aprovado = true
         CursoCertificado.create!(usuario_id: current_usuario.id, curso_id: @usuario_curso.curso.id)
       end
     end

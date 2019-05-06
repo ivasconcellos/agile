@@ -19,6 +19,26 @@
     </div>
   <% end %>
 
+  <% if @perfil.perfil == 'Aluno' and @perfil.pode_finalizar_curso and @perfil.status_curso != 'Curso finalizado' %>
+    <div class="text-center">
+      <br>
+      <%= link_to 'Finalizar Curso', finalizar_curso_path(id: @perfil.id), class: "btn btn-md btn-success" %>
+    </div>
+  <%end %>
+
+  <% if @perfil.perfil == 'Aluno' %> 
+    <% if @perfil.aprovado == true %>
+      <%#= link_to 'Gerar Certificado', gerar_certificado_path(format: :pdf), {class: "btn btn-md btn-warning"} %>
+      <div class="alert alert-success">
+        Curso concluído! Você foi aprovado com sucesso! <br>
+        Em breve você receberá o seu certificado no e-mail cadastrado no AGILE.
+      </div>
+    <% end %>
+    <% if @perfil.aprovado == false %>
+       <div class="alert alert-danger">Curso concluído! Infelizmente você não conseguiu atingir a pontuação necessária para aprovação.</div>
+    <% end %>
+  <% end %>
+
   <div class="text-center">
     <br>
     <% if can? :new, Modulo %>
