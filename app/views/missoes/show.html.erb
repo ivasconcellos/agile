@@ -76,9 +76,10 @@
           <%= link_to 'Ver quiz', @missao.quiz, class: "btn btn-md btn-warning"  %>
         <% end%>
         <% if @perfil.perfil == 'Aluno' %>
-          <% if respondido_quiz(@missao.quiz, @perfil.id) == 'Não' and @missao.quiz.finalizado %>
-          <%= link_to 'Responder Quiz', {controller: 'quiz_respostas_alunos', action: 'new', quiz_id: @missao.quiz}, class: "btn btn-md btn-danger" %>
-          <% else %>
+          <% if respondido_quiz(@missao.quiz, @perfil.id) == 'Não' and @missao.quiz.finalizado and no_prazo(@missao) %>
+            <%= link_to 'Responder Quiz', {controller: 'quiz_respostas_alunos', action: 'new', quiz_id: @missao.quiz}, class: "btn btn-md btn-danger" %>
+          <% end %>
+          <% if respondido_quiz(@missao.quiz, @perfil.id) == 'Sim' and @missao.quiz.finalizado %>
             <%= link_to 'Ver resultado do Quiz', {controller: 'quiz_respostas_alunos', action: 'resultado_final_quiz', usuario_curso_id: @perfil.id, quiz_id: @missao.quiz}, class: "btn btn-md btn-warning" %>
           <% end %>
         <% end %>
