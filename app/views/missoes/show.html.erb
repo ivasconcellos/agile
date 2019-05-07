@@ -11,7 +11,9 @@
       <%= link_to '', @missao, method: :delete, data: { confirm: 'Deseja realmente excluir a Missão?' }, class: "fa fa-trash text-white" %>
     <% end %>
   </div>
-  
+  <% if !no_prazo(@missao) and @perfil.perfil == 'Aluno' %>
+    <div class="alert alert-danger"> A Missão está fora do prazo, por favor verifique a data de início e término.</div>
+  <% end %>
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <ul class="list-group">
