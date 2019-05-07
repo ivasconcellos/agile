@@ -109,7 +109,7 @@ Rails.application.routes.draw do
   get 'validar_certificado' => 'curso_certificados#validar_certificado'
   get 'certificado_validado' => 'curso_certificados#certificado_validado'
 
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount RailsAdmin::Engine => '/administration', as: 'rails_admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   mount Ckeditor::Engine => '/ckeditor'
 
