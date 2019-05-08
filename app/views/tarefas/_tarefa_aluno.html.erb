@@ -13,7 +13,7 @@
       <% TarefaAluno.joins(tarefa: :missao).where("missoes.modulo_id = ?", modulo.id).each do |tarefa| %>
         <tr>
           <td><%= link_to tarefa.tarefa.nome, tarefa.tarefa %></td>
-          <td><%= tarefa.tarefa.missao.pontuacao %></td>
+          <td><%= formata_pontos(tarefa.tarefa.missao.pontuacao) %></td>
           <td><%= minha_nota(tarefa.tarefa.id, aluno) %></td>
           <td><%= enviada(tarefa.tarefa.id, aluno) %></td>
           <td><%= tarefa.avaliada? ? 'Sim' : 'Não' %></td>

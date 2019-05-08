@@ -16,7 +16,7 @@ module QuizRespostasAlunosHelper
 		if @pontuacao == 0.0
 			return '-'
 		else
-			return @pontuacao
+			return "%g" % ("%.2f" % @pontuacao)
 		end
   	end
 

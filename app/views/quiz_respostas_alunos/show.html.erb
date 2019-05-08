@@ -31,7 +31,7 @@
         <div class="input-group mb-3">
           <p>
             <label>Pontuação: </label>
-            <%= @quiz_resposta_aluno.quiz_pergunta_resposta.quiz_pergunta.pontuacao %>
+            <%= formata_pontos(@quiz_resposta_aluno.quiz_pergunta_resposta.quiz_pergunta.pontuacao) %>
           </p>
         </div>
 

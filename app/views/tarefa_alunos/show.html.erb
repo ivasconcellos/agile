@@ -5,7 +5,7 @@
 	<ul class="list-group">
 	   <li class="list-group-item"><b>Missão:</b> <%= @tarefa_aluno.tarefa.missao.nome %></li>
 	   <li class="list-group-item"><b>Descrição da Missão:</b> <%= @tarefa_aluno.tarefa.missao.descricao.to_s.html_safe %></li>
-	   <li class="list-group-item"><b>Pontuação da Missão:</b> <%= @tarefa_aluno.tarefa.missao.pontuacao %></li>
+	   <li class="list-group-item"><b>Pontuação da Missão:</b> <%= formata_pontos(@tarefa_aluno.tarefa.missao.pontuacao) %></li>
 	   <li class="list-group-item"><b>Prazo da Missão:</b> <%= @tarefa_aluno.tarefa.missao.data_hora_termino %></li>
 	   <li class="list-group-item"><b>Tarefa:</b> <%= @tarefa_aluno.tarefa.nome %></li>
 	   <li class="list-group-item"><b>Descrição da Tarefa:</b> <%= @tarefa_aluno.tarefa.descricao.to_s.html_safe %></li>

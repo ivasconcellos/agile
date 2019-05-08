@@ -19,7 +19,7 @@
           <tr>
             <td><%= tarefa_aluno.usuario_curso.nickname %></td>
             <td><%= link_to "Arquivo", url_for(tarefa_aluno.arquivo), target: 'blank' %></td>
-            <td><%= tarefa_aluno.tarefa.missao.pontuacao %></td>
+            <td><%= formata_pontos(tarefa_aluno.tarefa.missao.pontuacao) %></td>
             <% if tarefa_aluno.tarefa_avaliacao %>
               <td><%= tarefa_aluno.tarefa_avaliacao.nota %></td>
             <% else %>

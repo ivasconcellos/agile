@@ -51,7 +51,7 @@
 		  	
 			<% @perfil.ranking_equipe.each_with_index do |equipe, index| %>
 				<li class="nav-item">
-					<%= "#{index+1}º #{equipe[0]}: #{equipe[1]}XP" %>
+					<%= "#{index+1}º #{equipe[0]}: " + formata_pontos(equipe[1]).to_s + "XP" %>
 				</li>
 			<% end %>
 		</div>

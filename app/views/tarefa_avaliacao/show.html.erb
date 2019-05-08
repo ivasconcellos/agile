@@ -7,8 +7,8 @@
 	   <li class="list-group-item"><b>Descrição da tarefa:</b> <%= @tarefa_avaliacao.tarefa_aluno.tarefa.descricao.to_s.html_safe %></li>
 	   <li class="list-group-item"><b>Aluno:</b> <%= @tarefa_avaliacao.tarefa_aluno.usuario_curso.nickname %></li>
 	   <li class="list-group-item"><b>Arquivo:</b> <%= link_to image_tag("documento.png", :alt => "documento", size: "50x50"), url_for(@tarefa_avaliacao.tarefa_aluno.arquivo), target: 'blank' %></li>
-	   <li class="list-group-item"><b>Nota máxima:</b> <%= @tarefa_avaliacao.tarefa_aluno.tarefa.missao.pontuacao %></li>
-	   <li class="list-group-item"><b>Nota do aluno:</b> <%= @tarefa_avaliacao.nota %></li>
+	   <li class="list-group-item"><b>Nota máxima:</b> <%= formata_pontos(@tarefa_avaliacao.tarefa_aluno.tarefa.missao.pontuacao) %></li>
+	   <li class="list-group-item"><b>Nota do aluno:</b> <%= formata_pontos(@tarefa_avaliacao.nota) %></li>
 	   <li class="list-group-item"><b>Comentário:</b> <%= @tarefa_avaliacao.comentario %></li>
 	   <li class="list-group-item"><b>Realizada por:</b> <%= @tarefa_avaliacao.tarefa_aluno.usuario_curso.nickname %></li>
        <li class="list-group-item"><b>Última atualização:</b> <%= @tarefa_avaliacao.tarefa_aluno.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
@@ -18,7 +18,7 @@
 	  <% if can? :edit, TarefaAvaliacao %>
 	    <%= link_to 'Atualizar', edit_tarefa_avaliacao_path(@tarefa_avaliacao), class: "btn btn-md btn-primary" %>
 	  <% end %>
-	  <%= link_to 'Voltar', tarefa_avaliacao_index_path, class: "btn btn-md btn-secondary" %>
+	  <%= link_to 'Voltar', @tarefa_avaliacao.tarefa, class: "btn btn-md btn-secondary" %>
 	</div>
 
 </div>
