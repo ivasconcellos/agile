@@ -43,18 +43,20 @@
 		<li class="nav-item text-center"><%= link_to 'Ver todos', ranking_usuario_path, class: 'btn btn-sm btn-success btn-block' %></li>
 	</div>
 
-	<% if  !@perfil.ranking_equipe.empty? %>
-		<div class="alert alert-info alert-lateral">
-			<li class="nav-item">
-				<i class="fa fa-trophy fa-sm nav-link text-secondary"> Equipes</i>
-			</li>
-		  	
-			<% @perfil.ranking_equipe.each_with_index do |equipe, index| %>
+	<% if @perfil.grupo_curso %>
+		<% if  !@perfil.ranking_equipe.empty? %>
+			<div class="alert alert-info alert-lateral">
 				<li class="nav-item">
-					<%= "#{index+1}º #{equipe[0]}: " + formata_pontos(equipe[1]).to_s + "XP" %>
+					<i class="fa fa-trophy fa-sm nav-link text-secondary"> Equipes</i>
 				</li>
-			<% end %>
-		</div>
+					
+				<% @perfil.ranking_equipe.each_with_index do |equipe, index| %>
+					<li class="nav-item">
+						<%= "#{index+1}º #{equipe[0]}: " + formata_pontos(equipe[1]).to_s + "XP" %>
+					</li>
+				<% end %>
+			</div>
+		<% end %>
 	<% end %>
 
 	<% if  @perfil.forum %>
