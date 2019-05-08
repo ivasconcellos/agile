@@ -96,7 +96,7 @@
                       <% end %>
                       <p class="list-group-item text-center perfil"> <%= link_to @perfil.nickname, @perfil %></p>
                       <% if @perfil.perfil == 'Aluno' %>
-                        <p class="list-group-item text-center perfil"><label>XP:</label> <%= @perfil.pontos_experiencia %></p>
+                        <p class="list-group-item text-center perfil"><label>XP:</label> <%= formata_pontos(@perfil.pontos_experiencia) %></p>
                         <p class="list-group-item text-center perfil"><label>Nível:</label> <%= @perfil.nivel.nome %></p>
                       <% end %>
                       <% if @perfil.grupo_curso %>

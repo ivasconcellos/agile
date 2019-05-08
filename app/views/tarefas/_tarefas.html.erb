@@ -12,7 +12,7 @@
         <tbody>
             <tr>
               <td><%= link_to tarefa.nome, tarefa %></td>
-              <td><%= tarefa.missao.pontuacao %></td>
+              <td><%= formata_pontos(tarefa.missao.pontuacao) %></td>
               <td><%= minha_nota(tarefa.id, @perfil.id) %></td>
               <td><%= enviada(tarefa.id, @perfil.id) %></td>
               <td><%= avaliada(tarefa.id, @perfil.id) %></td>

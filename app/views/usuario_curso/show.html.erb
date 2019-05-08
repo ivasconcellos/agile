@@ -37,7 +37,7 @@
         <% if @usuario_curso.perfil != 'Professor' %>
           <div class="input-group mb-3">
             <p><label>Pontos de experiência(XP): </label>          
-            <%= @usuario_curso.pontos_experiencia %></p>
+            <%= formata_pontos(@usuario_curso.pontos_experiencia) %></p>
           </div>
         <% end %>     
 

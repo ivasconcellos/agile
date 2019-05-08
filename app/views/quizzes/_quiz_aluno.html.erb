@@ -12,7 +12,7 @@
         <tbody>
             <tr>
               <td><%= quiz.nome %></td>
-              <td><%= quiz.missao.pontuacao %></td>
+              <td><%= formata_pontos(quiz.missao.pontuacao) %></td>
               <td><%= minha_nota_quiz(quiz.id, aluno) %></td>
               <td><%= respondido_quiz(quiz.id, aluno) %></td>
               <td><%= respondido_quiz(quiz.id, aluno) %></td>

@@ -22,7 +22,7 @@
         <% if @missao.imagem.attached? %>
           <li class="list-group-item"><b>Imagem:</b> <%= image_tag @missao.imagem.variant(resize: "100x100"), class: "img-responsive" %></li>
         <% end %>
-        <li class="list-group-item"><b>Pontuação máxima:</b> <%= @missao.pontuacao %></li>
+        <li class="list-group-item"><b>Pontuação máxima:</b> <%= formata_pontos(@missao.pontuacao) %></li>
         <li class="list-group-item"><b>Tipo:</b> <%= @missao.tipo %></li>
         <li class="list-group-item"><b>Início da Missão:</b> <%= @missao.data_hora_inicio %></li>
         <li class="list-group-item"><b>Término da Missão:</b> <%= @missao.data_hora_termino %></li>

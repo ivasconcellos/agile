@@ -33,7 +33,7 @@
     <div class="form-group row">
         <label for="inputPontuacao" class="col-md-2 offset-md-2 col-form-label">Pontuação máxima</label>
         <div class="col-md-6">
-        <%= @tarefa_avaliacao.tarefa_aluno.tarefa.missao.pontuacao %>
+        <%= formata_pontos(@tarefa_avaliacao.tarefa_aluno.tarefa.missao.pontuacao) %>
       </div>
     </div>
 

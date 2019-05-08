@@ -16,7 +16,7 @@
         <li class="list-group-item"><b>Descrição da Missão:</b> <%= @tarefa.missao.descricao.html_safe %></li>
         <li class="list-group-item"><b>Nome:</b> <%= @tarefa.nome %></li>
         <li class="list-group-item"><b>Descrição:</b> <%= @tarefa.descricao.to_s.html_safe %></li>
-        <li class="list-group-item"><b>Pontuação da Tarefa:</b> <%= @tarefa.missao.pontuacao %></li>
+        <li class="list-group-item"><b>Pontuação da Tarefa:</b> <%= formata_pontos(@tarefa.missao.pontuacao) %></li>
         <li class="list-group-item"><b>Início da Tarefa:</b> <%= @tarefa.missao.data_hora_inicio %></li>
         <li class="list-group-item"><b>Término da Tarefa:</b> <%= @tarefa.missao.data_hora_termino %></li>
         <% if @tarefa_aluno %>
