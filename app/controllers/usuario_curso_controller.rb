@@ -108,7 +108,7 @@ class UsuarioCursoController < ApplicationController
   end
 
   def ranking_usuario
-    @alunos = UsuarioCurso.where(curso_id: current_usuario.curso_atual_id, perfil: 'Aluno').order(pontos_experiencia: :desc, created_at: :asc).paginate(page: params[:page], per_page: 20)
+    @alunos = UsuarioCurso.where(curso_id: current_usuario.curso_atual_id, perfil: 'Aluno').order(pontos_experiencia: :desc, created_at: :asc)
     authorize! :show, UsuarioCurso
   end
 
