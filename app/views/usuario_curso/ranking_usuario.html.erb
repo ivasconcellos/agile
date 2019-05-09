@@ -20,7 +20,7 @@
 	            <tr>
 					<td><%= "#{index+1}º" %></td>
 					<td><%= link_to "#{aluno.nickname}", aluno %></td>
-					<td><%= aluno.pontos_experiencia %></td>
+					<td><%= formata_pontos(aluno.pontos_experiencia) %></td>
 					<% if aluno.grupo_curso %>
 						<td><%= aluno.grupo_curso.grupo.nome %></td>
 					<% else %>
@@ -32,7 +32,6 @@
 	        </tbody>
 	      </table>
 	    </div>
-        <%= will_paginate @alunos %>
 	</div>
 
 	<br>
