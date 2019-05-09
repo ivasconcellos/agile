@@ -1,6 +1,6 @@
 class Comunicado < ApplicationRecord
 	belongs_to :curso
-	belongs_to :remetente, class_name: "UsuarioCurso"
+	belongs_to :remetente, class_name: "UsuarioCurso" 
 
 	validates_presence_of :assunto, :mensagem
 

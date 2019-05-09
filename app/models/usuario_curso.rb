@@ -19,7 +19,7 @@ class UsuarioCurso < ApplicationRecord
 	has_many :badges_alunos, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :eventos, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :artefatos_alunos, :dependent => :destroy, :dependent => :restrict_with_error
-	has_many :comunicados, :dependent => :destroy, :dependent => :restrict_with_error
+	has_many :comunicados, :foreign_key => "remetente_id", :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :dialogos, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :recompensas, :dependent => :destroy
 	
