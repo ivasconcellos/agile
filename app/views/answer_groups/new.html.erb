@@ -1,12 +1,12 @@
 <div class="card">
 
-  <% if !@question_group.final_curso or (@perfil.pode_responder_pesquisa_final and @question_group.final_curso) %>
+ 	<% if !@question_group.final_curso or (@perfil.pode_responder_pesquisa_final and @question_group.final_curso) %>
 		<%= form_for([@question_group, @answer_group_builder]) do |f| %>
-		<div class="card-header">Responder Pesquisa</div>
+			<div class="card-header">Responder Pesquisa</div>
 
-			<div class="row">
+				<div class="row">
 
-				<div class="col-lg-12">
+					<div class="col-md-10 offset-md-1">
 
 						<div class="input-group mb-3">
 							<p>
@@ -22,28 +22,29 @@
 									<%= @question_group.descricao %>
 								</p>
 							</div>
-					<% end %>
+						<% end %>
 
-					<% if @question_group.objetivo? %>
-							<div class="input-group mb-3">
-								<p>
-									<label>Objetivo: </label>          
-									<%= @question_group.objetivo %>
-								</p>
-							</div>
+						<% if @question_group.objetivo? %>
+								<div class="input-group mb-3">
+									<p>
+										<label>Objetivo: </label>          
+										<%= @question_group.objetivo %>
+									</p>
+								</div>
+						<% end %>
+
+
+					<% @contador = 0 %>
+			
+					<%- @answer_group_builder.answers.each do |answer| %>
+							<%= f.fields_for("#{answer.question.id}", answer) do |answer_form| %>
+							<ul class="list-unstyled ">
+							<%= render_answer_form_helper(answer, answer_form) %>
+						</ul>
+							<% end %>
 					<% end %>
 				</div>
 			</div>
-
-			<% @contador = 0 %>
-		
-			<%- @answer_group_builder.answers.each do |answer| %>
-					<%= f.fields_for("#{answer.question.id}", answer) do |answer_form| %>
-					<ul class="list-unstyled question">
-					<%= render_answer_form_helper(answer, answer_form) %>
-				</ul>
-					<% end %>
-			<% end %>
 
 			<div class="card-footer text-muted">
 				<%= f.submit "Salvar", class: "btn btn-md btn-primary" %>
@@ -51,6 +52,6 @@
 			</div>
 		<% end %>
 	<% else %>
-				<div class="alert alert-danger">Esta Pesquisa só pode ser respondida no final do curso. Por favor, conclua todas as Missões para responder esta pesquisa.</div>
+		<div class="alert alert-danger">Esta Pesquisa só pode ser respondida no final do curso. Por favor, conclua todas as Missões para responder esta pesquisa.</div>
 	<% end %>
 </div>
