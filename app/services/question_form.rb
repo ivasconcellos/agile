@@ -6,6 +6,7 @@ class QuestionForm < BaseService
 	Questions::Numeric,
 	Questions::Radio,
 	Questions::Select,
+	Questions::Long,
 	]
 	
 	QUESTION_TYPES = AVAILABLE_QUESTIONS.inject({}) do |result, question|
@@ -24,6 +25,10 @@ class QuestionForm < BaseService
 		end
 		if question_name == 'Select'
 			question_name = 'Seleção de resposta em lista (Select)'
+		end
+
+		if question_name == 'Long'
+			question_name = 'Texto'
 		end
 
 		result[question_name] = question.to_s

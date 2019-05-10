@@ -156,11 +156,6 @@ td{
   padding: 5px 5px 5px 20px;
 }
 
-.question{
-  padding-left: 30px;
-  padding-top: 10px;
-}
-
 .card-header2{
   padding: 5px;
   font-size: 16px;
@@ -222,4 +217,8 @@ td{
 .chat{
   height: 250px;
   overflow-y: auto;
+}
+
+.borda-textarea{
+  border: 1px solid #195bbf;
 }
