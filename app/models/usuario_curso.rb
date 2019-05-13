@@ -94,11 +94,11 @@ class UsuarioCurso < ApplicationRecord
   	def porcentagem_aprovacao
   		@notas_tarefas = TarefaAvaliacao.joins(tarefa_aluno: [tarefa: :missao]).where('missoes.tipo = ? and tarefa_alunos.usuario_curso_id = ?', 'Tarefa', self.id).sum('nota')
   		@missoes_tarefa_pontuacao = TarefaAvaliacao.joins(tarefa_aluno: [tarefa: :missao]).where('missoes.tipo = ? and tarefa_alunos.usuario_curso_id = ?', 'Tarefa', self.id).sum('missoes.pontuacao')
-  		@notas_quizzes = QuizRespostaAluno.joins(quiz_pergunta_resposta: :quiz_pergunta).joins(quiz: :missao).where(
+  		@notas_quizzes = QuizRespostaAluno.joins(quiz_pergunta_resposta: :quiz_pergunta).where(
 			'quiz_respostas_alunos.usuario_curso_id =? and 
 			quiz_pergunta_respostas.correta = ?', 
 			self.id, true).sum('quiz_perguntas.pontuacao')
-  		@missoes_quiz_pontuacao =  QuizRespostaAluno.joins(quiz_pergunta_resposta: :quiz_pergunta).joins(quiz: :missao).where(
+  		@missoes_quiz_pontuacao =  QuizRespostaAluno.joins(quiz_pergunta_resposta: :quiz_pergunta).where(
 			'quiz_respostas_alunos.usuario_curso_id =?', 
 			self.id).sum('quiz_perguntas.pontuacao')
 
