@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :usuario_curso
   resources :materiais, except: [:index]
   resources :cursos
+  resources :ahoy_visits
 
   resources :modulos do
     collection do
@@ -64,6 +65,7 @@ Rails.application.routes.draw do
   get 'controle_professor' => 'controle#controle_professor'
   get 'desenvolvimento' => 'controle#desenvolvimento'
   get 'contato' => 'controle#contato'
+  get 'show' => 'ahoy_visits#show'
 
   #Usuário Curso
   get 'busca_curso' => 'usuario_curso#busca_curso'

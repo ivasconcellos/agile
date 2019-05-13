@@ -1,0 +1,59 @@
+<div class="card">
+    <div class="card-header">Visitas</div> 
+  <%= search_form_for @q do |f| %>
+
+    <div class="table-responsive">
+        <table class="table table-hover ">
+          <tr>
+            <th>Nome:</th>
+            <td><%= f.search_field :nome_cont %></td>
+            <th>CPF:</th>
+            <td><%= f.search_field :cpf_cont %></td>
+            <th>E-mail:</th>
+            <td><%= f.search_field :email_cont %></td>
+          </tr>
+        </table>
+      </div>
+      <div class="text-center">
+          <%= f.submit 'Pesquisar', :class =>"btn btn-primary link" %>
+      </div>
+    
+  <% end %>
+    
+      
+  
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th class="text-center">Nome</th>
+            <th class="text-center">E-mail</th>
+            <th class="text-center">CPF</th>
+            <th colspan="1" class="text-center">Visualizar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @usuarios.each do |usuario| %>
+            <tr>
+              <td><%= usuario.nome %></td>
+              <td><%= usuario.email %></td>
+              <td><%= usuario.cpf %></td>
+              <td><%= link_to 'Visualizar',{controller: 'ahoy_visits', action: 'show', :id => usuario.id}, :class => "btn btn-info btn-md"  %></td>
+
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <span> <%= will_paginate @usuarios %></span>
+  
+    <br>
+  
+    <div class="card-footer text-muted">
+      <!-- <%= link_to 'Voltar', controle_gestor_path, class: "btn btn-md btn-secondary" %> -->
+    </div>
+    
+  </div>
+  
+  
+  
