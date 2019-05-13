@@ -34,17 +34,23 @@
           <%= @usuario_curso.nickname %></p>
         </div>
 
-        <% if @usuario_curso.perfil != 'Professor' %>
+        <% if @perfil.perfil != 'Professor' or @perfil.id != @usuario_curso.id %>
           <div class="input-group mb-3">
             <p><label>Pontos de experiência(XP): </label>          
             <%= formata_pontos(@usuario_curso.pontos_experiencia) %></p>
           </div>
-        <% end %>     
+
+          <div class="input-group mb-3">
+            <p><label>Aproveitamento das Missões: </label>          
+            <%= formata_pontos(@@usuario_curso.porcentagem_aprovacao) %>%</p>
+          </div>
+        <% end %>
 
         <div class="input-group mb-3">
           <p><label>Cadastro no curso: </label>          
           <%= @usuario_curso.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></p>
         </div>
+        
     
       </div>
 
