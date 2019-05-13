@@ -9,7 +9,8 @@
 
   <body>
   	<p>Prezado(a) <%= @artefato.usuario_curso.nickname %>,</p>
-  	<p>Parabéns!!! Você consquistou um novo Artefato no curso <%= @artefato.usuario_curso.curso.nome %>!: <%= @artefato.artefato.nome %>.</p>
+  	<p>Parabéns!!! Você consquistou um novo Artefato no curso <%= @artefato.usuario_curso.curso.nome %>! Continue realizando as Missões para conquistar mais Artefatos. </p>
+    <p>Artefato conquistado: <%= @artefato.artefato.nome %>.</p>
     <p>Para visualizá-lo, acesse o curso!</p>
   </body>
 </html>
