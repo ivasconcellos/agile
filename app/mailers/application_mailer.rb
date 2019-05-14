@@ -3,9 +3,11 @@ class ApplicationMailer < ActionMailer::Base
   layout 'mailer'
 
   def mensagens_professor(email)
-    @subject = 'AGILE: ' + email.assunto
+    @subject = 'AGILE - Mensagem: ' + email.assunto
     @email = email.destinatario.usuario.email
     @mensagem = email.mensagem
+    @remetente = email.usuario_curso.nickname
+    @conversa = email
     mail to: @email, subject: @subject
   end
 
