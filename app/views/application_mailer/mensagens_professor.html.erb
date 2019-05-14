@@ -9,5 +9,9 @@
 
   <body>
     <div><%= @mensagem.to_s.html_safe %></div>
+    <p><b>Mensagem enviada por:</b> <%= @remetente %></p>
+    <p><b>Curso:</b> <%= @conversa.usuario_curso.curso.nome %></p>
+    <p><b>Link para visualizar a mensagem recebida:</b> <%= link_to 'Visualizar Mensagem', @conversa %></p>
   </body>
+
 </html>
