@@ -1,0 +1,42 @@
+<div class="card">
+
+    <div class="card-header"><%= @usuario.nome%></div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th class="text-center">IP</th>
+                    <th class="text-center">Agente</th>
+                    <th class="text-center">SO</th>
+                    <th class="text-center">Dispositivo</th>
+                    <th class="text-center">Início</th>
+                    <th class="text-center">Fim</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @visitas.each do |visita| %>
+                <tr>
+                    <td><%= visita.ip %></td>
+                    <td><%= visita.user_agent %></td>
+                    <td><%= visita.os %></td>
+                    <td><%= visita.device_type %></td>
+                    <td><%= visita.started_at.strftime('%d/%m/%Y - %H:%M:%S') %></td>
+                    <% if visita.finished_at %>
+                        <td><%= visita.finished_at.strftime('%d/%m/%Y - %H:%M:%S') %></td>
+                    <% else %>
+                        <td>-</td>
+                    <%end%>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+    <span> <%= will_paginate @visitas %></span>
+    
+    <br>
+
+    <div class="card-footer text-muted">
+      <%= link_to 'Voltar', ahoy_visits_path, class: "btn btn-md btn-secondary" %>
+    </div>
+</div>

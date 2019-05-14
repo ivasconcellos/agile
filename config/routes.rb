@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :usuario_curso
   resources :materiais, except: [:index]
   resources :cursos
+  resources :ahoy_visits, except: [:new, :edit, :destroy]
 
   resources :modulos do
     collection do
