@@ -1,11 +1,15 @@
 class AhoyVisitsController < ApplicationController
+	before_action :authenticate_usuario!
+
     def index
+    	authorize! :index, :visit
         @q = Usuario.group(:id).joins(:visits).ransack(params[:q])
-        # @q = Ahoy::Visit.joins(:usuario).group('usuario_id').ransack(params[:q])
         @usuarios = @q.result.paginate(page: params[:page]).order('nome')
     end
 
     def show
-        @visitas = Ahoy::Visit.where('usuario_id = ?', params[:id]).paginate(page: params[:page])
+    	authorize! :show, :visit
+    	@usuario = Usuario.find(params[:id])
+        @visitas = Ahoy::Visit.where('usuario_id = ?', params[:id]).paginate(page: params[:page]).order('started_at desc')
     end
 end
