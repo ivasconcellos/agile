@@ -14,7 +14,7 @@
         <tr>
           <td><%= link_to aluno.nickname, notas_aluno_url(aluno_id: aluno.id, curso_id: quiz.missao.modulo.curso.id) %></td>
           <td><%= formata_pontos(quiz.missao.pontuacao) %></td>
-          <td><%= minha_nota_quiz(quiz.id, aluno.id) %></td>
+          <td><%= link_to minha_nota_quiz(quiz.id, aluno.id), resultado_final_quiz_path(usuario_curso_id: aluno.id, quiz_id: quiz.id)   %></td>
           <td><%= respondido_quiz(quiz.id, aluno.id) %></td>
           <td><%= respondido_quiz(quiz.id, aluno.id) %></td>
         </tr>
