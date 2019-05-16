@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   after_action :track_action
   before_action :prepare_exception_notifier
-
+  helper_method :current_user 
   
   rescue_from CanCan::AccessDenied do |exception|
     render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
@@ -26,8 +26,8 @@ class ApplicationController < ActionController::Base
   end
   
   before_action :perfil, if: :authenticate_usuario!
-  def perfil
-    @perfil = UsuarioCurso.where(usuario_id: current_usuario, curso_id: current_usuario.curso_atual).first
+  def perfil 
+   @perfil = UsuarioCurso.where(usuario_id: current_usuario, curso_id: current_usuario.curso_atual).first
   end  
 
   def current_ability
@@ -75,4 +75,9 @@ class ApplicationController < ActionController::Base
 
   end
 
+  private
+
+  def current_user
+   @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
 end

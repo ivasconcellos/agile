@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  post '/rate' => 'rater#create', :as => 'rate'
   resources :recompensas
   resources :faqs
   resources :dialogos, except: [:index]
@@ -73,7 +74,9 @@ Rails.application.routes.draw do
   get 'ranking_usuario' => 'usuario_curso#ranking_usuario'
   get 'escolher_equipe' => 'usuario_curso#escolher_equipe'
   get 'cancelar_inscricao' => 'usuario_curso#cancelar_inscricao'
+  get 'avaliar_curso' => 'usuario_curso#avaliar_curso'
   get 'finalizar_curso' => 'usuario_curso#finalizar_curso'
+
   get 'atualizar_avatar' => 'usuario_curso#atualizar_avatar'
   get 'pendencias' => 'usuario_curso#pendencias'
 

@@ -13,6 +13,7 @@ class Usuario < ApplicationRecord
 
   validates_uniqueness_of :email, :cpf
   validate :valida_cpf
+  ratyrate_rater
 
   self.per_page = 10
   

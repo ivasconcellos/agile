@@ -129,6 +129,16 @@ class UsuarioCursoController < ApplicationController
       ApplicationMailer.inscricao_cancelada(@usuario_curso).deliver    
     end
   end
+    
+  def avaliar_curso
+    @curso = Curso.find(current_usuario.curso_atual_id)
+    @usuario_curso = UsuarioCurso.find(params[:id])
+    @usuario_curso.status_curso = 'Curso avaliado'
+    if @usuario_curso.save
+      flash[:notice] = 'Curso avaliado com sucesso!'
+    end
+    redirect_to :controller => "cursos", :action => "descricao", id: current_usuario.curso_atual_id
+  end
 
   def finalizar_curso
     authorize! :finalizar_curso, UsuarioCurso

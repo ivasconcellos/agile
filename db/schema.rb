@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_05_233249) do
+ActiveRecord::Schema.define(version: 2019_05_14_182605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,6 +144,17 @@ ActiveRecord::Schema.define(version: 2019_05_05_233249) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["grupo_id"], name: "index_avatares_on_grupo_id"
+  end
+
+  create_table "average_caches", force: :cascade do |t|
+    t.bigint "rater_id"
+    t.string "rateable_type"
+    t.bigint "rateable_id"
+    t.float "avg", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rateable_type", "rateable_id"], name: "index_average_caches_on_rateable_type_and_rateable_id"
+    t.index ["rater_id"], name: "index_average_caches_on_rater_id"
   end
 
   create_table "badges", force: :cascade do |t|
@@ -285,6 +296,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_233249) do
     t.integer "porcentagem_aprovacao"
     t.text "publico_alvo"
     t.text "criterios_participacao"
+    t.integer "avaliacao"
     t.index ["proprietario_id"], name: "index_cursos_on_proprietario_id"
     t.index ["tema_curso_id"], name: "index_cursos_on_tema_curso_id"
   end
@@ -450,6 +462,15 @@ ActiveRecord::Schema.define(version: 2019_05_05_233249) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "overall_averages", force: :cascade do |t|
+    t.string "rateable_type"
+    t.bigint "rateable_id"
+    t.float "overall_avg", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rateable_type", "rateable_id"], name: "index_overall_averages_on_rateable_type_and_rateable_id"
+  end
+
   create_table "question_groups", force: :cascade do |t|
     t.string "titulo"
     t.text "descricao"
@@ -458,7 +479,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_233249) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "curso_id"
-    t.boolean "final_curso", default: true
+    t.boolean "final_curso", default: false
     t.index ["curso_id"], name: "index_question_groups_on_curso_id"
     t.index ["usuario_curso_id"], name: "index_question_groups_on_usuario_curso_id"
   end
@@ -492,6 +513,18 @@ ActiveRecord::Schema.define(version: 2019_05_05_233249) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quiz_id"], name: "index_quiz_perguntas_on_quiz_id"
+  end
+
+  create_table "quiz_perguntas_e_respostas", force: :cascade do |t|
+    t.bigint "quiz_id"
+    t.text "descricao_pergunta"
+    t.float "pontuacao"
+    t.text "descricao_resposta"
+    t.text "comentario"
+    t.boolean "correta", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_quiz_perguntas_e_respostas_on_quiz_id"
   end
 
   create_table "quiz_respostas_alunos", force: :cascade do |t|
@@ -557,6 +590,31 @@ ActiveRecord::Schema.define(version: 2019_05_05_233249) do
     t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rates", force: :cascade do |t|
+    t.bigint "rater_id"
+    t.string "rateable_type"
+    t.bigint "rateable_id"
+    t.float "stars", null: false
+    t.string "dimension"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type"
+    t.index ["rateable_type", "rateable_id"], name: "index_rates_on_rateable_type_and_rateable_id"
+    t.index ["rater_id"], name: "index_rates_on_rater_id"
+  end
+
+  create_table "rating_caches", force: :cascade do |t|
+    t.string "cacheable_type"
+    t.bigint "cacheable_id"
+    t.float "avg", null: false
+    t.integer "qty", null: false
+    t.string "dimension"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type"
+    t.index ["cacheable_type", "cacheable_id"], name: "index_rating_caches_on_cacheable_type_and_cacheable_id"
   end
 
   create_table "recompensas", force: :cascade do |t|
@@ -710,6 +768,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_233249) do
   add_foreign_key "question_groups", "cursos"
   add_foreign_key "quiz_pergunta_respostas", "quiz_perguntas"
   add_foreign_key "quiz_perguntas", "quizzes"
+  add_foreign_key "quiz_perguntas_e_respostas", "quizzes"
   add_foreign_key "quiz_respostas_alunos", "quiz_pergunta_respostas"
   add_foreign_key "quiz_respostas_alunos", "quizzes"
   add_foreign_key "quiz_respostas_alunos", "usuario_curso"

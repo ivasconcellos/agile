@@ -22,7 +22,15 @@
 //= require bootstrap-datepicker
 //= require ahoy
 //= require chartkick
+//= require jquery.raty
+//= require ratyrate
 //= require_tree .
+
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  }
+});
 
 $( document ).on('turbolinks:load', function() {
   $('.selecionar').select2({
@@ -54,4 +62,3 @@ function initialize() {
     prevText: '<<'
   });
 }
-

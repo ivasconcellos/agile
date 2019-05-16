@@ -110,3 +110,5 @@ gem "chartkick"
 gem 'execjs'
 
 gem 'therubyracer'
+
+gem 'ratyrate', '1.2.0.alpha'

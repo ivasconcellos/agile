@@ -23,5 +23,7 @@ Rails.application.config.assets.precompile += %w(
 	font-awesome.min.css
     ckeditor/*
     select2.js
-    select2.css
+	select2.css
+	jquery.raty.js
+	ratyrake.js.erb
 )
