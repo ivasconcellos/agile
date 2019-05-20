@@ -152,7 +152,7 @@
 
   <br>
   <div class="card-footer text-muted">
-    <% if @usuario_curso.grupo_curso %>
+    <% if @usuario_curso.grupo_curso and @usuario_curso.id == @perfil.id %>
       <%= link_to 'Atualizar Avatar', atualizar_avatar_path(id: @usuario_curso.id), class: "btn btn-md btn-warning" %>
     <% end %>
     <% if @perfil.perfil == 'Professor' or @usuario_curso.id == @perfil.id %>
