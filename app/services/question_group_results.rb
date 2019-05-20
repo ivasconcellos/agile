@@ -8,7 +8,7 @@
     # 3. if aggregatable, return each option with value
     # 4. else return an array of all the answers given
     def extract
-      @question_group.questions.collect do |question|
+      @question_group.questions.order(:created_at).collect do |question|
         
 		
 		if question.tipo == "Questions::Radio" || "Questions::Checkbox" ||Questions::Select

@@ -35,7 +35,7 @@
       save!(options)
     rescue ActiveRecord::ActiveRecordError => e
       # repopulate answers here in case of failure as they are not getting updated
-      @answers = @question_group.questions.collect do |question|
+      @answers = @question_group.questions.order(:created_at).collect do |question|
         @answer_group.answers.find { |a| a.question_id == question.id }
       end
       false
@@ -44,7 +44,7 @@
     private
     def build_answer_group
       @answer_group = AnswerGroup.new(usuario_curso: usuario_curso, question_group: question_group)
-      @answers = @question_group.questions.collect do |question|
+      @answers = @question_group.questions.order(:created_at).collect do |question|
         @answer_group.answers.build(question_id: question.id)
       end
     end
