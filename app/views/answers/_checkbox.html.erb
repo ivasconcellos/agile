@@ -1,7 +1,7 @@
 <%= render partial: "answers/errors", locals: {answer: answer} %>
 
 
-<li><b><%= @contador +=1 %>- <%= answer.question.pergunta %><% if answer.question.rules[:presence] == "1" %>*<% end %></b></li>
+<li class="pesquisa"><b><%= @contador +=1 %>- <%= answer.question.pergunta %><% if answer.question.rules[:presence] == "1" %>*<% end %></b></li>
 
 <%= f.fields_for :resposta do |af| %>
 	<%- answer.question.options.each do |option| %>
