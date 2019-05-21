@@ -222,3 +222,8 @@ td{
 .borda-textarea{
   border: 1px solid #195bbf;
 }
+
+.pesquisa{
+  color: #0f117b;
+  text-align: justify;
+}
