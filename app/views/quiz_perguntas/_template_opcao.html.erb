@@ -1,0 +1,21 @@
+<% if template %>
+  <% opcao_id = 'OPCAO_ID' %>
+  <% opcao = {pergunta: {id: "local_#{rand(100)}"}, descricao: '', comentario: '' , correta: false} %>
+<% else %>
+  <% opcao_id = "#{j+1}" %>
+<% end %>
+<div class="opcao">
+  <div class="form-group row">
+    <label for="opcao_<%= opcao.try(:pergunta).try(:id) %>_<%= opcao_id %>_valor" class="col-sm-2">Opção <%= opcao_id %>:</label>
+    <div class="col-sm-4">
+        <%= cktext_area_tag name="quiz_pergunta_resposta[][descricao]" %>
+    </div>
+    <label for="opcao_<%= opcao.try(:pergunta).try(:id) %>_<%= opcao_id %>_valor" class="col-sm-2">Comentário <%= opcao_id %>:</label>
+    <div class="col-sm-4">
+        <%= cktext_area_tag name="quiz_pergunta_resposta[][comentario]" %>
+    </div>
+    <label for="opcao_<%= opcao.try(:pergunta).try(:id) %>_<%= opcao_id %>_correta" class="col-sm-2">Correta?:</label>
+    <div class="col-sm-4">
+      <input type="checkbox" id="opcao_<%= opcao.try(:pergunta).try(:id) %>_<%= opcao_id %>_correta" name="quiz_pergunta_resposta[][correta]">
+    </div>
+  </div>

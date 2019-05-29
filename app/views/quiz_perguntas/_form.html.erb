@@ -16,23 +16,37 @@
   <div class="card-body">
 
     <div class="form-group row">
-      <label for="inputPontuacao" class="col-md-2 offset-md-4 col-form-label">Pontuação*</label>
-      <div class="col-md-2">
-        <%= form.number_field :pontuacao, step: :any, class: "form-control" %>
+      <label for="palpite_pontuacao" class="col-sm-2">Pontuação*:</label>
+      <div class="col-md-2 ">
+          <%= form.number_field :pontuacao, step: :any, name: "quiz_pergunta[pontuacao]", class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
-      <div class="col-md-12">
-        <%= form.cktext_area :descricao, autofocus: true, class: "form-control" %>
+      <label for="palpite_<%= quiz_pergunta %>_descricao" class="col-sm-2">Pergunta:</label>
+      <div class="col-sm-10">
+          <%= form.cktext_area :descricao, autofocus: true, id: "palpite_quiz_pergunta_descricao", name: "quiz_pergunta[descricao]", class: "form-control" %>
       </div>
-    </div>  
-    
-  </div>
-
-  <div class="card-footer text-muted">
-    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
-    <%= link_to 'Voltar', quiz_pergunta.quiz, class: "btn btn-md btn-secondary" %>
-  </div>
+    </div>
+      
+      <div class="wrapper">
+        <div class="opcoes">
+          <% @perguntas.try(:opcoes).try(:each_with_index) do |opcao, j| %>
+            <%= render 'template_opcao', template: false, opcao: opcao, j: j %>
+          <% end %>
+          <div class="card-footer text-muted">
+            <button type="button" class="btn btn-info add-opcao-btn">Adicionar Opção</button>
+            <button type="button" href="#" class="btn btn-danger rem-opcao-btn">Remover Opção</button>
+            <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+            <%= link_to 'Voltar', quiz_pergunta.quiz, class: "btn btn-md btn-secondary" %>
+          </div> 
+        </div>
+      </div>
+    </div>
 
 <% end %>
+
+    <!-- Template Opções -->
+  <template id="template-opcao">
+    <%= render 'template_opcao', template: true %>
+  </template>

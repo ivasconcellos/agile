@@ -1,5 +1,5 @@
 class QuizPerguntasController < ApplicationController
-  before_action :set_quiz_pergunta, only: [:show, :edit, :update, :destroy]
+  before_action :set_quiz_pergunta, only: [:show, :edit, :update, :destroy, :save_definition]
   before_action :authenticate_usuario!
 
   # GET /perguntas_quiz/1
@@ -14,6 +14,7 @@ class QuizPerguntasController < ApplicationController
     authorize! :new, QuizPergunta
     @quiz_pergunta = QuizPergunta.new
     @quiz_pergunta.quiz_id = params[:quiz_id]
+    @perguntas = QuizPergunta.where("quiz_id = ?", params[:quiz_id])
   end
 
   # GET /perguntas_quiz/1/edit
@@ -28,10 +29,13 @@ class QuizPerguntasController < ApplicationController
 
     respond_to do |format|
       if @quiz_pergunta.save
+        params[:quiz_pergunta_resposta].each do |opcao|
+          QuizPerguntaResposta.create(descricao: opcao[:descricao], comentario: opcao[:comentario], correta: opcao.try(:[], :correta), quiz_pergunta_id: @quiz_pergunta.id)
+        end  
         format.html { redirect_to @quiz_pergunta.quiz, notice: 'Pergunta do Quiz cadastrada com sucesso!' }
         format.json { render :show, status: :created, location: @quiz_pergunta }
       else
-        format.html { render :new }
+        format.html { new }
         format.json { render json: @quiz_pergunta.errors, status: :unprocessable_entity }
       end
     end
@@ -75,6 +79,6 @@ class QuizPerguntasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_pergunta_params
-      params.require(:quiz_pergunta).permit(:quiz_id, :descricao, :pontuacao)
+      params.require(:quiz_pergunta).permit(:quiz_id, :descricao, :pontuacao, quiz_pergunta_respostas_attributes:[:id, :descricao, :comentario])
     end
 end
