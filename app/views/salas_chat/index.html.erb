@@ -22,7 +22,7 @@
                 <td><%= sala_chat.usuario_curso.grupo_curso.nome_curso %></td>
               <% end %>
               <td><%= sala_chat.ativo? ? 'Sim' : 'Não' %></td>
-              <% if sala_chat.usuario_curso.perfil == 'Professor' %>
+              <% if @perfil.perfil == 'Professor' %>
                 <td><%= link_to 'Acessar', sala_chat, {class: 'btn btn-sm btn-success'} %></td>
               <% elsif @perfil.grupo_curso and sala_chat.usuario_curso.grupo_curso.nome_curso == @perfil.grupo_curso.nome_curso %>
                 <td><%= link_to 'Acessar', sala_chat, {class: 'btn btn-sm btn-success'} %></td>
