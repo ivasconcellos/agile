@@ -22,6 +22,8 @@ class UsuarioCurso < ApplicationRecord
 	has_many :comunicados, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :dialogos, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :recompensas, :dependent => :destroy
+	has_many :atividades, :dependent => :destroy, :dependent => :restrict_with_error
+
 	
 	validates_uniqueness_of :usuario_id, scope: :curso_id, message: "já está cadastrado no curso!"
 

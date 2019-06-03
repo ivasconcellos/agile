@@ -1,0 +1,35 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header card-header">
+        <h5 class="modal-title" id="exampleModalLabel">Atividade - Valor: <%= @atividade.pontuacao%></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="text-white">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+  
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="input-group mb-3">
+              <%if @atividade.usuario_curso.avatar %>
+                <%= image_tag @atividade.usuario_curso.avatar.imagem.variant(resize: "200x200"), class: "img-responsive img-thumbnail" %>
+                <% else %>
+                  <%= image_tag "missing.png", class: "img-responsive img-thumbnail" %>
+              <% end %>
+            </div>
+          </div>
+  
+          <div class="col-lg-8">
+              <div class="input-group mb-3">      
+                <p><%= @atividade.descricao.to_s.html_safe %></p>
+              </div>
+          </div>
+        </div>
+  
+      </div>
+      <div class="card-footer text-muted">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+  

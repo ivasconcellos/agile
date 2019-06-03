@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pontuacao: 1
+  descricao: MyText
+  usuario_curso: one
+  modulo: one
+
+two:
+  pontuacao: 1
+  descricao: MyText
+  usuario_curso: two
+  modulo: two
