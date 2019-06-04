@@ -26,7 +26,7 @@ class ModulosController < ApplicationController
     @explicacoes = Explicacao.where(modulo_id: @modulo)
     @missoes = Missao.where(modulo_id: @modulo)
     @dialogos = Dialogo.where(modulo_id: @modulo)
-    @atividades = Atividade.where(modulo_id: @modulo)
+    @atividade_extras = AtividadeExtra.where(modulo_id: @modulo)
 
   end
 

@@ -1,0 +1,29 @@
+<div class="card">
+
+  <div class="card-header">Atividade Extra
+    <% if can? :edit, AtividadeExtra %>
+      <%= link_to '', edit_atividade_extra_path(@atividade_extra), class: "fa fa-edit text-white" %>
+    <% end %>
+    <% if can? :destroy, AtividadeExtra %>
+      <%= link_to '', @atividade_extra, method: :delete, data: { confirm: 'Deseja realmente excluir a Atividade?' }, class: "fa fa-trash text-white" %>
+    <% end %>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <ul class="list-group">
+        <li class="list-group-item"><b>Pontuação:</b> <%= @atividade_extra.pontuacao %></li>
+        <li class="list-group-item"><b>Descrição:</b> <%= @atividade_extra.descricao.to_s.html_safe %></li>
+        <li class="list-group-item"><b>Módulo:</b> <%= link_to @atividade_extra.modulo.nome, @atividade_extra.modulo %></li>
+        <li class="list-group-item"><b>Cadastrada por:</b> <%= @atividade_extra.usuario_curso.nickname %></li>
+        <li class="list-group-item"><b>Cadastrada em:</b> <%= @atividade_extra.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li> 
+      </ul>
+    </div>
+  </div>
+  
+  <br>
+  
+  <div class="card-footer text-muted">
+    <%= link_to 'Voltar', @atividade_extra.modulo.curso, class: "btn btn-md btn-secondary" %>
+  </div>
+</div>

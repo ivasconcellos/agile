@@ -72,8 +72,8 @@
                           <%= render 'missoes/missao', modulo_ordenacao: modulo_ordenacao  %>
                         <% end %>
 
-                        <% if modulo_ordenacao.classe == 'Atividade' %>
-                          <%= render 'atividades/atividade', modulo_ordenacao: modulo_ordenacao  %>
+                        <% if modulo_ordenacao.classe == 'AtividadeExtra' %>
+                          <%= render 'atividade_extras/atividade_extra', modulo_ordenacao: modulo_ordenacao  %>
                         <% end %>
 
                         <% if modulo_ordenacao.classe == 'Dialogo' %>
@@ -114,8 +114,8 @@
                         <% if can? :new, Dialogo %>
                           <li><%= link_to  ' Inserir Diálogo', {controller: 'dialogos', action: 'new', modulo_id: modulo.id}, class: "fa fa-commenting-o" %></li>
                         <% end %>
-                        <% if can? :new, Atividade %>
-                          <li><%= link_to  ' Inserir Atividade', {controller: 'atividades', action: 'new', modulo_id: modulo.id}, class: "fa fa-exclamation-circle" %></li>
+                        <% if can? :new, AtividadeExtra %>
+                          <li><%= link_to  ' Inserir Atividade', {controller: 'atividade_extras', action: 'new', modulo_id: modulo.id}, class: "fa fa-exclamation-circle" %></li>
                         <% end %>
                       </ul>
                     </div>

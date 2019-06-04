@@ -1,4 +1,4 @@
-class Atividade < ApplicationRecord
+class AtividadeExtra < ApplicationRecord
   belongs_to :usuario_curso
   belongs_to :modulo
 
@@ -14,5 +14,4 @@ class Atividade < ApplicationRecord
   def remocao
     ModuloOrdenacao.remover(self)
   end
-
 end

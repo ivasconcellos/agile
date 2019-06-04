@@ -1,0 +1,2 @@
+json.extract! atividade_extra, :id, :pontuacao, :descricao, :usuario_curso_id, :modulo_id, :created_at, :updated_at
+json.url atividade_extra_url(atividade_extra, format: :json)

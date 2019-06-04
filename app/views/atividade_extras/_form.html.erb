@@ -1,10 +1,10 @@
-<%= form_with(model: atividade, local: true) do |form| %>
-  <% if atividade.errors.any? %>
+<%= form_with(model: atividade_extra, local: true) do |form| %>
+  <% if atividade_extra.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(atividade.errors.count, "error") %> prohibited this atividade from being saved:</h2>
+      <h2><%= pluralize(atividade_extra.errors.count, "error") %> prohibited this atividade_extra from being saved:</h2>
 
       <ul>
-      <% atividade.errors.full_messages.each do |message| %>
+      <% atividade_extra.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -26,9 +26,8 @@
         <%= form.cktext_area :descricao, autofocus: true, class: "form-control" %>
       </div>
     </div>
-
+    
   </div>
-
 
   <div class="card-footer text-muted">
     <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>

@@ -165,9 +165,9 @@
 
 		<% end %>
 		
-		<% if not @atividades.empty? %>
+		<% if not @atividade_extras.empty? %>
 
-        <div class="card-header">Atividades do Módulo</div>
+        <div class="card-header">Atividades Extras do Módulo</div>
 
         <div class="table-responsive">
 	      <table class="table table-striped table-sm">
@@ -178,17 +178,17 @@
 	          </tr>
 	        </thead>
 	        <tbody>
-	          <% @atividades.each do |atividade| %>
+	          <% @atividade_extras.each do |atividade_extra| %>
 	            <tr>
-	            	<td><%= link_to atividade.pontuacao, atividade %></td>
-	            	<% if can? :show, Atividade %>
-                		<td><%= link_to 'Visualizar', atividade %></td>
+	            	<td><%= link_to atividade_extra.pontuacao, atividade_extra %></td>
+	            	<% if can? :show, AtividadeExtra %>
+                		<td><%= link_to 'Visualizar', atividade_extra %></td>
 								<% end %>
-								<% if can? :edit, Atividade %>
-									<td><%= link_to 'Atualizar', edit_atividade_path(atividade) %></td>
+								<% if can? :edit, AtividadeExtra %>
+									<td><%= link_to 'Atualizar', edit_atividade_extra_path(atividade_extra) %></td>
 								<% end %>
-								<% if can? :destroy, Atividade %>
-									<td><%= link_to 'Excluir', atividade, method: :delete, data: { confirm: 'Deseja realmente excluir a Atividade?' } %></td>
+								<% if can? :destroy, AtividadeExtra %>
+									<td><%= link_to 'Excluir', atividade_extra, method: :delete, data: { confirm: 'Deseja realmente excluir a Atividade?' } %></td>
 								<% end %>
 	            </tr>
 	          <% end %>
