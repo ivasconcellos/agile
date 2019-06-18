@@ -25,5 +25,6 @@
   
   <div class="card-footer text-muted">
     <%= link_to 'Voltar', @atividade_extra.modulo.curso, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Lançar Notas', atividade_extra_alunos_path(atividade_extra_id: @atividade_extra.id), class: "btn btn-md btn-success" %>
   </div>
 </div>

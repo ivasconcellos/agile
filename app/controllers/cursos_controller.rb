@@ -96,8 +96,7 @@ class CursosController < ApplicationController
 
   def notas
     authorize! :notas_turma, :curso
-    @modulos = Modulo.where('curso_id = ?',
-       current_usuario.curso_atual_id)
+    @modulos = Modulo.where('curso_id = ?', current_usuario.curso_atual_id)
   end
 
   def enviar_convite

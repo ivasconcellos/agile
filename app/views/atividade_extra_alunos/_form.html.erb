@@ -1,0 +1,32 @@
+<%= form_with(model: atividade_extra_aluno, local: true) do |form| %>
+  <% if atividade_extra_aluno.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(atividade_extra_aluno.errors.count, "erro(s)") %> Não foi possível pontuar esta atividade:</h2>
+
+      <ul>
+      <% atividade_extra_aluno.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%= form.hidden_field :aluno_id %>
+<%= form.hidden_field :professor_id %>
+<%= form.hidden_field :atividade_extra_id %>
+
+<div class="card-body">
+
+    <div class="form-group row">
+      <label for="inputPontuacao" class="col-md-2 offset-md-2 col-form-label">Pontuação*</label>
+      <div class="col-sm-2">
+        <%= form.number_field :pontuacao, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="card-footer text-muted">
+    <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
+    <%= link_to 'Voltar', atividade_extra_alunos_path(atividade_extra_id: @atividade_extra_aluno.atividade_extra_id), class: "btn btn-md btn-secondary" %>
+  </div>
+<% end %>

@@ -1,0 +1,23 @@
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th class="text-center">Pontuação Máxima</th> 
+          <th class="text-center">Nota Obtida</th> 
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td><%= atividade.pontuacao %></td>
+            <% AtividadeExtraAluno.where(atividade_extra_id: atividade.id, aluno_id: @perfil.id).each do |nota| %>
+                <td><%=  nota.pontuacao %></td>
+            <% end %>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+
+      

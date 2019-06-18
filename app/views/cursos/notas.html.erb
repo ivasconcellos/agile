@@ -2,7 +2,7 @@
 
   <div class="card-header">Notas da Turma </div>
 
-  <% @modulos.each do |modulo| %>
+<% @modulos.each do |modulo| %>
     <h5 class="p-3 mb-2 bg-info text-white text-center"><b>Módulo:</b> <%= link_to modulo.nome, modulo, class: "text-light" %></h5>
     <% Missao.where(modulo_id: modulo.id).each do |missao| %>
 	    <h6 class="p-3 mb-2 bg-secondary text-white text-center">
@@ -12,8 +12,15 @@
 	    <% end %>
 	    <% if missao.tipo == 'Quiz' %>
 	    	<%= render partial: "quizzes/quizzes_turma", locals: {quiz: missao.quiz} %>
-	    <% end %>
+		<% end %>
 	<% end %>
-  <% end %>
+	<% AtividadeExtra.where(modulo_id: modulo.id).each do |atividade| %>
+	<h6 class="p-3 mb-2 bg-secondary text-white text-center">
+		<b>Missão (Atividade Extra):</b> <%= link_to atividade.pontuacao, atividade, class: "text-light" %></h6>
+			<% if atividade %>
+				<%= render partial: "atividade_extras/atividades_extras_turma", locals: {atividade_extra: atividade} %>
+			<% end %>
+	<% end %>
+<% end %>
 
 </div>

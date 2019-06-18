@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :atividade_extra_alunos
   resources :atividade_extras, except: [:index]
   resources :recompensas
   resources :faqs

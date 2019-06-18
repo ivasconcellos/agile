@@ -1,0 +1,29 @@
+<div class="card">
+
+    <div class="card-header">Pontuação do Aluno na Atividade Extra
+      <% if can? :edit, AtividadeExtraAluno %>
+        <%= link_to '', edit_atividade_extra_aluno_path(@atividade_extra_aluno), class: "fa fa-edit text-white" %>
+      <% end %>
+      <% if can? :destroy, AtividadeExtraAluno %>
+        <%= link_to '', @atividade_extra, method: :delete, data: { confirm: 'Deseja realmente excluir a Atividade?'}, class: "fa fa-trash text-white" %>
+      <% end %>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <ul class="list-group">
+          <li class="list-group-item"><b>Pontuação:</b> <%= @atividade_extra_aluno.pontuacao %></li>
+          <li class="list-group-item"><b>Professor:</b> <%= @atividade_extra_aluno.professor.nickname %></li>
+          <li class="list-group-item"><b>Aluno:</b> <%= @atividade_extra_aluno.aluno.nickname %></li>
+          <li class="list-group-item"><b>Atividade Extra:</b> <%= link_to @atividade_extra_aluno.atividade_extra.descricao.html_safe, @atividade_extra_aluno.atividade_extra %></li>
+          <li class="list-group-item"><b>Cadastrada em:</b> <%= @atividade_extra_aluno.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li> 
+        </ul>
+      </div>
+    </div>
+    
+    <br>
+    
+    <div class="card-footer text-muted">
+        <%= link_to 'Voltar', atividade_extra_alunos_path(atividade_extra_id: @atividade_extra_aluno.atividade_extra_id), class: "btn btn-md btn-secondary" %>
+    </div>
+  </div>

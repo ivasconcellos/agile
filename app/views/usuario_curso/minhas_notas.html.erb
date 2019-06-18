@@ -15,6 +15,13 @@
 			    	<%= render partial: "quizzes/quizzes", locals: {quiz: missao.quiz} %>
 			    <% end %>
 			<% end %>
+			<% AtividadeExtra.where(modulo_id: modulo.id).each do |atividade| %>
+				<h6 class="p-3 mb-2 bg-secondary text-white text-center">
+				<b>Missão (Atividade Extra):</b> <%= link_to atividade.pontuacao, atividade, class: "text-light" %></h6>
+				<% if atividade %>
+					<%= render partial: "atividade_extras/atividade_extra_individual", locals: {atividade: atividade} %>
+				<% end %>
+			<% end %>
 		<% end %>
 	<% end %>
 	<h6 class="p-3 mb-2 bg-success text-white text-center"><b>Pontuação Total:</b> <%= @perfil.pontos_experiencia %></h5>

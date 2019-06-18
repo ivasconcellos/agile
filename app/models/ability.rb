@@ -46,6 +46,7 @@ class Ability
           can :cancelar_inscricao, UsuarioCurso
           can :manage, Recompensa
           can :manage, AtividadeExtra
+          can :manage, AtividadeExtraAluno
         elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
           can :read, Modulo
           can :read, Curso
@@ -75,6 +76,7 @@ class Ability
           can :perms_without_delete, SalaChat
           can :read, Recompensa
           can :read, AtividadeExtra
+          can :read, AtividadeExtraAluno
         else
           can :read, Curso
         end

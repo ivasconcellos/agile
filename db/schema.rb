@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_04_180318) do
+ActiveRecord::Schema.define(version: 2019_06_07_060531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,18 @@ ActiveRecord::Schema.define(version: 2019_06_04_180318) do
     t.datetime "updated_at", null: false
     t.index ["artefato_id"], name: "index_artefatos_alunos_on_artefato_id"
     t.index ["usuario_curso_id"], name: "index_artefatos_alunos_on_usuario_curso_id"
+  end
+
+  create_table "atividade_extra_alunos", force: :cascade do |t|
+    t.integer "pontuacao"
+    t.bigint "aluno_id"
+    t.bigint "professor_id"
+    t.bigint "atividade_extra_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["aluno_id"], name: "index_atividade_extra_alunos_on_aluno_id"
+    t.index ["atividade_extra_id"], name: "index_atividade_extra_alunos_on_atividade_extra_id"
+    t.index ["professor_id"], name: "index_atividade_extra_alunos_on_professor_id"
   end
 
   create_table "atividade_extras", force: :cascade do |t|
@@ -732,6 +744,7 @@ ActiveRecord::Schema.define(version: 2019_06_04_180318) do
 
   add_foreign_key "artefatos_alunos", "artefatos"
   add_foreign_key "artefatos_alunos", "usuario_curso"
+  add_foreign_key "atividade_extra_alunos", "atividade_extras"
   add_foreign_key "atividade_extras", "modulos"
   add_foreign_key "atividade_extras", "usuario_curso"
   add_foreign_key "avatares", "grupos"

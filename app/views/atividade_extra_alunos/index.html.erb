@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="card-header">Alunos do Curso</div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th class="text-center">Nickname</th>
+          <th colspan="2" class="text-center">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @usuario_curso.each do |usuario_curso| %>
+              <tr>
+                <% if usuario_curso.perfil == "Aluno" %>
+                  <td><%= usuario_curso.nickname %></td>
+                  <% if !AtividadeExtraAluno.find_by(aluno_id: usuario_curso.id, atividade_extra_id: @atividade_extra.to_i ) %>
+                    <td><%= link_to 'Atribuir Pontuação', new_atividade_extra_aluno_path(atividade_extra_id: @atividade_extra, usuario_curso_id: usuario_curso.id), class: "btn btn-md btn-success" %></td>
+                  <% else %>
+                    <% @atividade_extra_alunos.each do |pontuacao| %>
+                      <% if pontuacao && pontuacao.aluno_id == usuario_curso.id && pontuacao.atividade_extra_id.to_i == @atividade_extra.to_i %>
+                        <td><%= link_to 'Visualizar nota', pontuacao %></td>
+                      <% end %>
+                    <%end%>
+                  <% end %>
+                <% end %>
+              </tr>
+        <%end%>  
+      </tbody>
+    </table>
+  </div>
+  <br>  
+</div>
