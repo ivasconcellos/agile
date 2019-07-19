@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pontuacao: 1
+  justificativa: MyText
+  aluno: one
+  professor: one
+
+two:
+  pontuacao: 1
+  justificativa: MyText
+  aluno: two
+  professor: two

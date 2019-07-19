@@ -1,0 +1,24 @@
+      <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th class="text-center">Aluno</th> 
+                  <th class="text-center">Pontuação Removida</th>
+                  <th class="text-center">Detalhes</th>   
+                </tr>
+              </thead>
+              <tbody>
+                <% @removida.each do |removida| %>
+                    <% UsuarioCurso.where(id: removida.aluno_id).each do |aluno| %>
+                        <tr>
+                        <td><%= link_to aluno.nickname, notas_aluno_url(aluno_id: aluno.id, curso_id: @perfil.curso.id) %></td>
+                        <td><%= removida.pontuacao %></td>
+                        <td><%= link_to "Ver Detalhes", removida, class: "btn btn-primary" %></td>
+                        </tr>
+                    <% end %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+      
+      

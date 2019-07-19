@@ -6,12 +6,12 @@
     <h5 class="p-3 mb-2 bg-info text-white text-center"><b>Módulo:</b> <%= link_to modulo.nome, modulo, class: "text-light" %></h5>
     <% Missao.where(modulo_id: modulo.id).each do |missao| %>
 	    <h6 class="p-3 mb-2 bg-secondary text-white text-center">
-	    	<b>Missão (<%= missao.tipo %>):</b> <%= link_to missao.nome, missao, class: "text-light" %></h6>
+			<b>Missão (<%= missao.tipo %>):</b> <%= link_to missao.nome, missao, class: "text-light" %></h6>
 	    <% if missao.tipo == 'Tarefa' %>
-	    	<%= render partial: "tarefas/tarefas_turma", locals: {tarefa: missao.tarefa} %>
+	    	<%= render partial: "tarefas/tarefas_turma", locals: {tarefa: missao} %>
 	    <% end %>
 	    <% if missao.tipo == 'Quiz' %>
-	    	<%= render partial: "quizzes/quizzes_turma", locals: {quiz: missao.quiz} %>
+	    	<%= render partial: "quizzes/quizzes_turma", locals: {quiz: missao} %>
 		<% end %>
 	<% end %>
 	<% AtividadeExtra.where(modulo_id: modulo.id).each do |atividade| %>

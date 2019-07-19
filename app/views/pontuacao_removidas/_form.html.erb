@@ -1,0 +1,36 @@
+<%= form_with(model: pontuacao_removida, local: true) do |form| %>
+  <% if pontuacao_removida.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(pontuacao_removida.errors.count, "erros") %> impediram a remoção:</h2>
+
+      <ul>
+      <% pontuacao_removida.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.hidden_field :aluno_id %>
+  <%= form.hidden_field :professor_id %>  
+
+  
+  <div class="card-body">
+    <div class="form-group row">
+      <label for="inputPontuacao" class="col-md-2 offset-md-2 col-form-label">Pontuação*</label>
+      <div class="col-sm-2">
+        <%= form.number_field :pontuacao, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+    
+    <div class="form-group row">
+      <label for="inputPontuacao" class="col-md-2 offset-md-2 col-form-label">Justificativa*</label>
+      <div class="col-md-6">
+        <%= form.cktext_area :justificativa, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
+      <div class="card-footer text-muted">
+        <%= form.submit "Confirmar", class: "btn btn-md btn-danger",  data: { confirm: 'Deseja realmente remover a pontuação?' } %>
+      </div>
+  </div>
+    
+<% end %>

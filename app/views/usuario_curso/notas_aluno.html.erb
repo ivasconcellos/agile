@@ -4,8 +4,8 @@
 
   <% @aluno.curso.modulos.each do |modulo| %>
     <h5 class="p-3 mb-2 bg-info text-white text-center"><b>Módulo:</b> <%= link_to modulo.nome, modulo, class: "text-light" %></h5>
-    	
-   <% Missao.where(modulo_id: modulo.id, publico: true).each do |missao| %>
+	<%= link_to 'Remover Pontuacao', new_pontuacao_removida_path(aluno_id: @aluno.id, professor_id: @perfil.id), class: "btn btn-danger" %>
+    <% Missao.where(modulo_id: modulo.id, publico: true).each do |missao| %>
 	    <h6 class="p-3 mb-2 bg-secondary text-white text-center">
 	    	<b>Missão (<%= missao.tipo %>):</b> <%= link_to missao.nome, missao, class: "text-light" %></h6>
 	    <% if missao.tipo == 'Tarefa' %>
@@ -13,7 +13,17 @@
 	    <% end %>
 	    <% if missao.tipo == 'Quiz' %>
 	    	<%= render partial: "quizzes/quiz_aluno", locals: {quiz: missao.quiz, aluno: @aluno.id} %>
-	    <% end %>
+		<% end %>
+		<% AtividadeExtra.where(modulo_id: modulo.id).each do |atividade| %>
+		<h6 class="p-3 mb-2 bg-secondary text-white text-center">
+			<b>Missão (Atividade Extra):</b> <%= link_to atividade.pontuacao, atividade, class: "text-light" %></h6>
+			<% if atividade %>
+				<%= render partial: "atividade_extras/atividade_extra_aluno", locals: {atividade_extra: atividade} %>
+			<% end %>
+		<% end %>
+		<h6 class="p-3 mb-2 bg-secondary text-white text-center">
+			<b>Pontuações Removidas:</b></h6>
+		<%= render partial: "pontuacao_removidas/show" %>
 	<% end %>
 	      
   <% end %>

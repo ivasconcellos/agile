@@ -99,6 +99,7 @@ class UsuarioCursoController < ApplicationController
     @aluno = UsuarioCurso.find_by('usuario_curso.id = ? and curso_id = ?',
        params[:aluno_id], params[:curso_id])
     authorize! :notas_aluno,:notas
+    @removida = PontuacaoRemovida.where(aluno_id: @aluno.id)
   end
 
   def minhas_notas

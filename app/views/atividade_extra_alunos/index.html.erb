@@ -19,7 +19,7 @@
                   <% else %>
                     <% @atividade_extra_alunos.each do |pontuacao| %>
                       <% if pontuacao && pontuacao.aluno_id == usuario_curso.id && pontuacao.atividade_extra_id.to_i == @atividade_extra.to_i %>
-                        <td><%= link_to 'Visualizar nota', pontuacao %></td>
+                        <td><%= link_to 'Visualizar nota', pontuacao, class: "btn btn-primary" %></td>
                       <% end %>
                     <%end%>
                   <% end %>

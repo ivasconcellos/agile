@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :pontuacao_removidas
   resources :atividade_extra_alunos
   resources :atividade_extras, except: [:index]
   resources :recompensas
@@ -99,6 +100,8 @@ Rails.application.routes.draw do
   get 'graficos' => 'question_groups#graficos'
 
   get 'faq_agile' => 'faqs#faq_agile'
+
+  get 'remover_pontuacao' => 'atividade_extra_alunos#remover_pontuacao'
 
   #Conversas
   get 'conversas_professor' => 'conversas#conversas_professor'

@@ -1,7 +1,7 @@
 <%= form_with(model: atividade_extra, local: true) do |form| %>
   <% if atividade_extra.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(atividade_extra.errors.count, "error") %> prohibited this atividade_extra from being saved:</h2>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(atividade_extra.errors.count, "erros") %> impediram essa atividade de ser salva:</h2>
 
       <ul>
       <% atividade_extra.errors.full_messages.each do |message| %>

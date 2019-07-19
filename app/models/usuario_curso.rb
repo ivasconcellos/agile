@@ -26,6 +26,10 @@ class UsuarioCurso < ApplicationRecord
 	has_many :aluno_atividade_extra_aluno, class_name: 'AtividadeExtraAluno',
 	foreign_key: 'aluno_id'
 	has_many :professor_atividade_extra_aluno, class_name: 'AtividadeExtraAluno',
+	foreign_key: 'professor_id'
+	has_many :pontuacao_removida, class_name: 'PontuacaoRemovida',
+	foreign_key: 'aluno_id'
+	has_many :pontuacao_removida, class_name: 'PontuacaoRemovida',
     foreign_key: 'professor_id'
 	
 	validates_uniqueness_of :usuario_id, scope: :curso_id, message: "já está cadastrado no curso!"

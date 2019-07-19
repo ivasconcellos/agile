@@ -11,7 +11,7 @@
       <% UsuarioCurso.where("curso_id = ? and perfil = ?",  @perfil.curso.id, "Aluno").order('nickname').each do |aluno| %>
         <% AtividadeExtraAluno.where(atividade_extra_id: atividade_extra.id, aluno_id: aluno.id).each do |nota| %>
           <tr>
-              <td><%= link_to aluno.nickname, notas_aluno_url(aluno_id: aluno.id) %></td>
+              <td><%= link_to aluno.nickname, notas_aluno_url(aluno_id: aluno.id, curso_id: @perfil.curso.id) %></td>
               <td><%= atividade_extra.pontuacao %></td>
               <td><%= nota.pontuacao %></td>
           </tr>

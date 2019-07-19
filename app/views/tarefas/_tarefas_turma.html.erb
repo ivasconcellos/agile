@@ -12,8 +12,8 @@
     <tbody>
       <% UsuarioCurso.where("curso_id = ? and perfil = ?", @perfil.curso.id, "Aluno").order('nickname').each do |aluno| %>
         <tr>
-          <td><%= link_to aluno.nickname, notas_aluno_url(aluno_id: aluno.id, curso_id: tarefa.missao.modulo.curso.id) %></td>
-          <td><%= tarefa.missao.pontuacao %></td>
+          <td><%= link_to aluno.nickname, notas_aluno_url(aluno_id: aluno.id, curso_id: tarefa.modulo.curso.id) %></td>
+          <td><%= tarefa.pontuacao %></td>
           <td><%= minha_nota(tarefa.id, aluno.id) %></td>
           <td><%= enviada(tarefa.id, aluno.id) %></td>
           <td><%= avaliada(tarefa.id, aluno.id) %></td>

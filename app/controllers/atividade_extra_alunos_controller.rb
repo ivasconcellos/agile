@@ -33,6 +33,7 @@ class AtividadeExtraAlunosController < ApplicationController
     @atividade_extra_aluno = AtividadeExtraAluno.new(atividade_extra_aluno_params)
     respond_to do |format|
       if @atividade_extra_aluno.save
+        @atividade_extra_aluno.pontuacao_aluno(nil)
         format.html { redirect_to @atividade_extra_aluno, notice: 'Atividade extra pontuada com sucesso.' }
         format.json { render :show, status: :created, location: @atividade_extra_aluno }
       else

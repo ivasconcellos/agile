@@ -1,0 +1,2 @@
+module PontuacaoRemovidasHelper
+end

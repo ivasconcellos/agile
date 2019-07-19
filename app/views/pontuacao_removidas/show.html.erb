@@ -1,0 +1,23 @@
+<div class="card">
+
+    <div class="card-header">Pontuação do Removida do Aluno na Atividade
+    </div>
+    
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <ul class="list-group">
+          <li class="list-group-item"><b>Pontuação:</b> <%= @pontuacao_removida.pontuacao %></li>
+          <li class="list-group-item"><b>Professor:</b> <%= @pontuacao_removida.professor.nickname %></li>
+          <li class="list-group-item"><b>Aluno:</b> <%= @pontuacao_removida.aluno.nickname %></li>
+          <li class="list-group-item"><b>Justificativa:</b> <%= @pontuacao_removida.justificativa.html_safe %></li>
+          <li class="list-group-item"><b>Realizada em:</b> <%= @pontuacao_removida.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li> 
+        </ul>
+      </div>
+    </div>
+    
+    <br>
+    
+    <div class="card-footer text-muted">
+        <%= link_to 'Voltar', notas_url, class: "btn btn-md btn-secondary" %>
+    </div>
+  </div>
