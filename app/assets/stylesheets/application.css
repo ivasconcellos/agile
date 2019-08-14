@@ -45,6 +45,11 @@ body {
   border-color: #FFFFFF;
 } 
 
+.navbar-nav .nav-link
+{
+  color: #3fb2fb;
+}
+
 .color-sidebar{
   background-color: #281e89;
 }
@@ -99,6 +104,7 @@ label{
   font-weight: bold;
   font-size: 22px;
 }
+
 
 a.linkcurso  {
   color: #FFFFFF;
@@ -189,6 +195,10 @@ td{
   color: #4b2483;
 }
 
+.modulo{
+  font-weight: bold;
+  font-size: 20px;
+}
 .modulo-item{
   margin-top: 15px;
 }

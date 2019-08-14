@@ -260,7 +260,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_233249) do
     t.bigint "usuario_id"
     t.bigint "curso_id"
     t.string "hash_validacao"
-    t.datetime "data_finalizacao", default: -> { "now()" }
+    t.datetime "data_finalizacao", default: -> { "CURRENT_TIMESTAMP" }
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["curso_id"], name: "index_curso_certificados_on_curso_id"
@@ -458,7 +458,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_233249) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "curso_id"
-    t.boolean "final_curso", default: true
+    t.boolean "final_curso", default: false
     t.index ["curso_id"], name: "index_question_groups_on_curso_id"
     t.index ["usuario_curso_id"], name: "index_question_groups_on_usuario_curso_id"
   end
@@ -586,7 +586,6 @@ ActiveRecord::Schema.define(version: 2019_05_05_233249) do
     t.bigint "tarefa_id"
     t.bigint "usuario_curso_id"
     t.boolean "avaliada", default: false
-    t.boolean "boolean", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tarefa_id"], name: "index_tarefa_alunos_on_tarefa_id"
