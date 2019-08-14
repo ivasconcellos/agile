@@ -76,7 +76,7 @@
 
       <div class="container-fluid">
 
-        <% if usuario_signed_in? %>
+        <% if usuario_signed_in? or admin_signed_in? %>
           <div class="row">
             <% if @perfil %>
               <div class="col-md-2 col-sm-2" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
@@ -114,11 +114,11 @@
 
                   <ul class="list-unstyled components">  
 
-                    <% if current_usuario.perfil == 'Gestor' %>
+                    <% if current_admin %>
                       <%= render 'controle/gestor' %>
                     <% end %>
 
-                    <% if current_usuario.perfil != 'Gestor' and !@perfil %>
+                    <% if current_usuario and current_usuario.perfil != 'Gestor' and !@perfil %>
                       <li class="nav-item">
                         <%= link_to " Detalhes do curso", descricao_path(id: @current_usuario.curso_atual), {class: "fa fa-info-circle fa-sm nav-link text-light"} %>
                       </li>
@@ -137,7 +137,7 @@
               <!-- /#sidebar-wrapper -->
             </div>
 
-            <% if current_usuario.perfil == 'Gestor'%>
+            <% if current_admin %>
               <div class="col-md-10 col-sm-10">
                 <% if notice %>
                   <p class="alert alert-success"><%= notice %></p>

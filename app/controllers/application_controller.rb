@@ -25,13 +25,22 @@ class ApplicationController < ActionController::Base
     }
   end
   
+  def authenticate!
+    redirect_to '/', alert: 'Acesso negado!' unless (current_usuario || current_admin)
+  end
   before_action :perfil, if: :authenticate_usuario!
   def perfil
-    @perfil = UsuarioCurso.where(usuario_id: current_usuario, curso_id: current_usuario.curso_atual).first
+    if current_usuario
+      @perfil = UsuarioCurso.where(usuario_id: current_usuario, curso_id: current_usuario.curso_atual).first
+    end
   end  
 
   def current_ability
-    @current_ability ||= Ability.new(current_usuario)
+    if admin_signed_in?
+      @current_ability ||= Ability.new(current_admin)
+    elsif usuario_signed_in?
+      @current_ability ||= Ability.new(current_usuario)
+    end
   end
 
   before_action :check_concurrent_session
@@ -63,7 +72,7 @@ class ApplicationController < ActionController::Base
 	    if resource_name == :usuario
 	 		"/inicial"
 	    elsif  resource_name == :admin
-	 	 	"/administration"
+	 	 	"/inicial"
 	    end
     end
 

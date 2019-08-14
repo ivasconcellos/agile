@@ -1,5 +1,5 @@
 class ControleController < ApplicationController
-  before_action :authenticate_usuario!, :except => [:sobre, :contato]
+  before_action :authenticate!, :except => [:sobre, :contato]
   skip_before_action :perfil
   before_action :perfil, except: [:sobre, :contato]
 
