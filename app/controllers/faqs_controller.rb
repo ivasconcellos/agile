@@ -8,7 +8,8 @@ class FaqsController < ApplicationController
   # GET /faqs.json
   def index
     authorize! :index, Faq
-    @faqs = Faq.ransack(params[:q]).result
+    @q = Faq.ransack(params[:q])
+    @faqs = @q.result.paginate(page: params[:page])
   end
 
   # GET /faqs/1

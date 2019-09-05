@@ -21,7 +21,7 @@
 
     <div class="form-group row">
       <label for="inputCPF" class="col-md-2 offset-md-1 col-form-label">CPF*</label>
-      <div class="col-md-8">
+      <div class="col-md-2">
         <%= form.text_field :cpf, class: "form-control", id: "cpf" %>
       </div>
     </div>
@@ -35,7 +35,7 @@
 
     <div class="form-group row">
       <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Data de nascimento*</label>
-      <div class="col-md-8">
+      <div class="col-md-2">
         <%= form.date_field :data_nascimento, class: "form-control", value: @usuario.data_nascimento.strftime('%Y-%m-%d') %>
       </div>
     </div>
