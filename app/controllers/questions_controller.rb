@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
 	
 	def index
 		authorize! :index, Question
-		@questions = @question_group.questions
+		@questions = @question_group.questions.order('id')
 	end
 
 	def show
