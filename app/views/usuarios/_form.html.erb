@@ -13,49 +13,49 @@
   <div class="card-body">
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
-      <div class="col-md-6">
+      <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Nome*</label>
+      <div class="col-md-8">
         <%= form.text_field :nome, autofocus: true, class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputCPF" class="col-md-2 offset-md-2 col-form-label">CPF*</label>
-      <div class="col-md-6">
+      <label for="inputCPF" class="col-md-2 offset-md-1 col-form-label">CPF*</label>
+      <div class="col-md-8">
         <%= form.text_field :cpf, class: "form-control", id: "cpf" %>
       </div>
     </div>
     
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">E-mail*</label>
-      <div class="col-md-6">
+      <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">E-mail*</label>
+      <div class="col-md-8">
         <%= form.email_field :email, class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Data de nascimento*</label>
-      <div class="col-md-6">
+      <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Data de nascimento*</label>
+      <div class="col-md-8">
         <%= form.date_field :data_nascimento, class: "form-control", value: @usuario.data_nascimento.strftime('%Y-%m-%d') %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Sexo*</label>
-      <div class="col-md-6">
+      <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Sexo*</label>
+      <div class="col-md-8">
         <%= form.select :sexo, options_for_select([["Feminino", "Feminino"], ["Masculino", "Masculino"]], form.object.sexo), class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Perfil*</label>
-      <div class="col-md-6">
+      <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Perfil*</label>
+      <div class="col-md-8">
         <%= form.select :perfil, options_for_select([["Gestor", "Gestor"], ["Usuário comum", "Usuário comum"]], form.object.perfil), class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label class="form-check-label col-md-2 offset-md-2" for="gridCheck1">Ativo</label>
+      <label class="form-check-label col-md-2 offset-md-1" for="gridCheck1">Ativo</label>
       <div class="col-md-2 ">
         <div class="form-check">
           <%= form.check_box :ativo, class: "form-check-input" %> Sim
@@ -64,7 +64,7 @@
     </div>
 
     <div class="form-group row">
-      <label class="form-check-label col-md-2 offset-md-2" for="gridCheck1">Termo de uso*</label>
+      <label class="form-check-label col-md-2 offset-md-1" for="gridCheck1">Termo de uso*</label>
       <div class="col-md-2 ">
         <div class="form-check">
           <%= form.check_box :termo_compromisso, class: "form-check-input" %> Sim
