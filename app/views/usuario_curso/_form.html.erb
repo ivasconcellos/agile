@@ -17,15 +17,15 @@
     <% if @perfil.perfil == "Professor" %>
 
       <div class="form-group row">
-        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Perfil*</label>
-        <div class="col-md-6">
+        <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Perfil*</label>
+        <div class="col-md-8">
           <%= form.select :perfil,  options_for_select([["Aluno", "Aluno"], ["Professor", "Professor"]], form.object.perfil), class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Usuário*</label>
-        <div class="col-md-6">
+        <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Usuário*</label>
+        <div class="col-md-8">
           <%= form.collection_select(:usuario_id, Usuario.where(ativo: true).order('nome'), :id, :nome, {:prompt => true}, {class: "selecionar"})%>
         </div>
       </div>
@@ -33,8 +33,8 @@
     <% end %>
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nickname*</label>
-      <div class="col-md-6">
+      <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Nickname*</label>
+      <div class="col-md-8">
         <%= form.text_field :nickname, class: "form-control" %> 
       </div>
     </div>

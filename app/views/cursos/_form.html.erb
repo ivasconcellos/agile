@@ -15,84 +15,84 @@
 
   <div class="card-body">
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
-      <div class="col-md-6">
+      <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Nome*</label>
+      <div class="col-md-8">
         <%= form.text_field :nome, autofocus: true, class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Descrição*</label>
-      <div class="col-md-6">
+      <label for="inputDescricao" class="col-md-2 offset-md-1 col-form-label">Descrição*</label>
+      <div class="col-md-8">
         <%= form.cktext_area :descricao, class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputDataInicio" class="col-md-2 offset-md-2 col-form-label">Data de início*</label>
+      <label for="inputDataInicio" class="col-md-2 offset-md-1 col-form-label">Data de início*</label>
       <div class="col-md-3">
         <%= form.date_field :data_inicio, value: @curso.data_inicio.try(:strftime,"%Y-%m-%d"), class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputDataInicio" class="col-md-2 offset-md-2 col-form-label">Hora de início*</label>
+      <label for="inputDataInicio" class="col-md-2 offset-md-1 col-form-label">Hora de início*</label>
       <div class="col-md-2">
         <%= form.time_field :hora_inicio, value: @curso.hora_inicio.try(:strftime,"%H:%M"), class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputDataTermino" class="col-md-2 offset-md-2 col-form-label">Data de término*</label>
+      <label for="inputDataTermino" class="col-md-2 offset-md-1 col-form-label">Data de término*</label>
       <div class="col-md-3">
         <%= form.date_field :data_termino, value: @curso.data_termino.try(:strftime,"%Y-%m-%d"), class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputDataInicio" class="col-md-2 offset-md-2 col-form-label">Hora de término*</label>
+      <label for="inputDataInicio" class="col-md-2 offset-md-1 col-form-label">Hora de término*</label>
       <div class="col-md-2">
         <%= form.time_field :hora_termino, value: @curso.hora_termino.try(:strftime,"%H:%M"), class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputDataTermino" class="col-md-2 offset-md-2 col-form-label">Professor(a) principal*</label>
-      <div class="col-md-6">
+      <label for="inputDataTermino" class="col-md-2 offset-md-1 col-form-label">Professor(a) principal*</label>
+      <div class="col-md-8">
         <%= form.collection_select(:proprietario_id, Usuario.where(ativo: true).order('nome'), :id, :nome, {:prompt => true}, {class: "selecionar"})%>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputPontuacao" class="col-md-2 offset-md-2 col-form-label">Carga horária(h)*</label>
-      <div class="col-md-6">
+      <label for="inputPontuacao" class="col-md-2 offset-md-1 col-form-label">Carga horária(h)*</label>
+      <div class="col-md-2">
         <%= form.number_field :carga_horaria, class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputPontuacao" class="col-md-2 offset-md-2 col-form-label">Porcentagem para aprovação(%)*</label>
-      <div class="col-md-6">
+      <label for="inputPontuacao" class="col-md-2 offset-md-1 col-form-label">Porcentagem para aprovação(%)*</label>
+      <div class="col-md-2">
         <%= form.number_field :porcentagem_aprovacao, class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Público-alvo*</label>
-      <div class="col-md-6">
+      <label for="inputDescricao" class="col-md-2 offset-md-1 col-form-label">Público-alvo*</label>
+      <div class="col-md-8">
         <%= form.cktext_area :publico_alvo, class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Critérios de participação</label>
-      <div class="col-md-6">
+      <label for="inputDescricao" class="col-md-2 offset-md-1 col-form-label">Critérios de participação</label>
+      <div class="col-md-8">
         <%= form.cktext_area :criterios_participacao, class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label class="form-check-label col-md-2 offset-md-2" for="gridCheck1">Ativo</label>
+      <label class="form-check-label col-md-2 offset-md-1" for="gridCheck1">Ativo</label>
       <div class="col-md-2 ">
         <div class="form-check">
           <%= form.check_box :ativo, class: "form-check-input" %> Sim
@@ -101,7 +101,7 @@
     </div>
 
     <div class="form-group row">
-      <label class="form-check-label col-md-2 offset-md-2" for="gridCheck1">Público</label>
+      <label class="form-check-label col-md-2 offset-md-1" for="gridCheck1">Público</label>
       <div class="col-md-2 ">
         <div class="form-check">
           <%= form.check_box :publico, class: "form-check-input" %> Sim
@@ -110,8 +110,8 @@
     </div>
 
     <div class="form-group row">
-      <label for="inputDataTermino" class="col-md-2 offset-md-2 col-form-label">Tema do curso*</label>
-      <div class="col-md-6">
+      <label for="inputDataTermino" class="col-md-2 offset-md-1 col-form-label">Tema do curso*</label>
+      <div class="col-md-8">
         <%= form.collection_select(:tema_curso_id, TemaCurso.where(ativo: true).order('nome'), :id, :nome, :prompt => true, class: "form-control")%>
       </div>
     </div>

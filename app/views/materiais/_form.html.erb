@@ -16,23 +16,23 @@
     <%= form.hidden_field :tipo %>
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Tipo*</label>
-      <div class="col-md-6">
+      <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Tipo*</label>
+      <div class="col-md-8">
         <%= material.tipo %> 
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Nome*</label>
-      <div class="col-md-6">
+      <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Nome*</label>
+      <div class="col-md-8">
         <%= form.text_field :nome, autofocus: true, class: "form-control" %>
       </div>
     </div>
 
     <% if material.tipo == "Link" %>
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Link*</label>
-      <div class="col-md-6">
+      <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Link*</label>
+      <div class="col-md-8">
         <%= form.text_field :texto, class: "form-control", placeholder: "Ex.: www.exemplo.com.br" %>
       </div>
     </div>
@@ -40,8 +40,8 @@
 
     <% if material.tipo == "Texto" %>
       <div class="form-group row">
-          <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Texto*</label>
-          <div class="col-md-6">
+          <label for="inputDescricao" class="col-md-2 offset-md-1 col-form-label">Texto*</label>
+          <div class="col-md-8">
             <%= form.cktext_area :texto, class: "form-control" %> 
           </div>
       </div>
@@ -49,8 +49,8 @@
 
     <% if material.tipo == "Arquivo" %>
       <div class="form-group row">
-          <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Arquivo*</label>
-          <div class="col-md-6">
+          <label for="inputDescricao" class="col-md-2 offset-md-1 col-form-label">Arquivo*</label>
+          <div class="col-md-8">
             <%= form.file_field :arquivo, as: :file %> 
           </div>
       </div>
@@ -58,8 +58,8 @@
 
     <% if material.tipo == "Vídeo" %>
       <div class="form-group row">
-          <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Vídeo*</label>
-          <div class="col-md-6">
+          <label for="inputDescricao" class="col-md-2 offset-md-1 col-form-label">Vídeo*</label>
+          <div class="col-md-8">
             <%= form.file_field :arquivo, as: :file %> 
           </div>
       </div>
@@ -67,15 +67,15 @@
 
     <% if material.tipo == "Imagem" %>
       <div class="form-group row">
-          <label for="inputDescricao" class="col-md-2 offset-md-2 col-form-label">Imagem*</label>
-          <div class="col-md-6">
+          <label for="inputDescricao" class="col-md-2 offset-md-1 col-form-label">Imagem*</label>
+          <div class="col-md-8">
             <%= form.file_field :arquivo, as: :file %> 
           </div>
       </div>
     <% end %>
 
     <div class="form-group row">
-      <label class="form-check-label col-md-2 offset-md-2" for="gridCheck1">Público</label>
+      <label class="form-check-label col-md-2 offset-md-1" for="gridCheck1">Público</label>
       <div class="col-md-2 ">
         <div class="form-check">
           <%= form.check_box :publico, class: "form-check-input" %> Sim

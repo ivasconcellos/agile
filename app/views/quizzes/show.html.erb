@@ -20,7 +20,7 @@
   <ul class="list-group">
     <li class="list-group-item"><b>Nome:</b> <%= @quiz.nome %></li>
     <li class="list-group-item"><b>Descrição:</b> <%= @quiz.descricao %></li>
-    <li class="list-group-item"><b>Pontuação da Missão:</b> <%= @quiz.missao.pontuacao %></li>
+    <li class="list-group-item"><b>Pontuação da Missão:</b> <%= formata_pontos(@quiz.missao.pontuacao) %></li>
     <li class="list-group-item"><b>Data de início:</b> <%= @quiz.missao.data_inicio.strftime("%d/%m/%Y") %></li>
     <li class="list-group-item"><b>Data de término:</b> <%= @quiz.missao.data_termino.strftime("%d/%m/%Y") %></li>
     <li class="list-group-item"><b>Finalizado:</b> <%= @quiz.finalizado? ? 'Sim' : 'Não' %></li>
