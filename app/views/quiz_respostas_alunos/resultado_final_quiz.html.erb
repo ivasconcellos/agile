@@ -3,6 +3,13 @@
   <div class="card-header">Resultado do Quiz</div>
 
   <div class="card-body">
+    <div class="row alert alert-secondary">
+      <div class="col-lg-12">
+        <div class="input-group">
+          <p class="text-center"><b>Quiz:</b> <%= @missao.quiz.nome %></p>
+        </div>
+      </div>
+    </div>
     
     <% @quiz_resposta_alunos.each_with_index do |aluno, index| %>
       <div class="row alert alert-info">
@@ -26,8 +33,7 @@
         </div>
       </div>
     <% end %>
-
-    
+ 
   </div>
 
   <br>
