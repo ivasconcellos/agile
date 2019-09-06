@@ -2,9 +2,9 @@ module QuizRespostasAlunosHelper
 
 	def resposta_correta(resposta)
 		if resposta.correta?
-			('<i class="fa fa-check-circle text-success"> ' +  strip_tags(resposta.descricao) + ' - Correta!' + '</i>' ).html_safe
+			('<i class="text-success"> ' + strip_tags(resposta.descricao) + ' - Correta! ' + '<i class="fa fa-check-circle">' +  '</i>' +  '</i>').html_safe
 		else
-			('<i class="fa fa-exclamation-circle text-danger"> ' +  strip_tags(resposta.descricao) + ' - Incorreta!' +'</i>').html_safe
+			('<i class="text-danger"> ' +  strip_tags(resposta.descricao) + ' - Incorreta! ' + '<i class="fa fa-exclamation-circle"> ' +'</i>' +  '</i>').html_safe
     	end
 	end
 

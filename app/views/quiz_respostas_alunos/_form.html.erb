@@ -12,39 +12,31 @@
   <% end %>
 
   <% if @pergunta %>
-    <div class="card-body">
-   
-      <div class="form-group row">
-        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Quiz</label>
-        <div class="col-md-6">
-          <%= @pergunta.quiz.nome %>
-        </div>
-      </div>
 
-      <div class="form-group row">
-        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Pergunta</label>
-        <div class="col-md-6">
-          <%= @pergunta.descricao.html_safe %>
-        </div>
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <ul class="list-group">
+          <li class="list-group-item text-center bg-info text-white"><b>Quiz:</b> <%= @pergunta.quiz.nome %></li>
+          <li class="list-group-item bg-light"><b>Pergunta:</b> <%= @pergunta.descricao.html_safe %></li>
+          <li class="list-group-item bg-light text-success"><b>Pontuação:</b> <%= formata_pontos(@pergunta.pontuacao) %></li>
+        </ul>
       </div>
+    </div>
 
-      <div class="form-group row">
-        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Pontuação</label>
-        <div class="col-md-6">
-          <%= formata_pontos(@pergunta.pontuacao) %>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="inputNome" class="col-md-2 offset-md-2 col-form-label">Opções</label>
-        <div class="col-md-8">
-          <% QuizPerguntaResposta.where(quiz_pergunta_id: @pergunta.id).each do |resposta| %>
-                <p><%= form.radio_button :quiz_pergunta_resposta_id, resposta.id, required: true %>
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <ul class="list-group">
+          <li class="list-group-item text-center bg-secondary text-white"><b>Opções de resposta:</b></li>
+          <li class="list-group-item bg-light">
+            <% @a = ("a".."z").to_a %>
+            <% QuizPerguntaResposta.where(quiz_pergunta_id: @pergunta.id).each_with_index do |resposta, i| %>
+                <p><%= form.radio_button :quiz_pergunta_resposta_id, resposta.id, required: true %><%= @a[i] %>) 
                 <%= strip_tags(resposta.descricao) %></p>
-          <% end %>      
-        </div>
+          <% end %>  
+          </li>
+    
+        </ul>
       </div>
-
     </div>
      
     <div class="card-footer text-muted">

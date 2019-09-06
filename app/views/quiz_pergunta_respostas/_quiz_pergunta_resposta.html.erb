@@ -1,21 +1,49 @@
-<% @quiz_pergunta_respostas.each_with_index do |quiz_pergunta_resposta, index| %>
-  <div class="card">
-    <div class="card-header2 text-left">
-      <p>
-        <b> Opção <%= index+1 %>)</b>
-        <% if can? :edit, QuizPerguntaResposta and !quiz_pergunta_resposta.quiz_pergunta.quiz.finalizado %>
-        <%= link_to  '', edit_quiz_pergunta_resposta_path(quiz_pergunta_resposta), class: "fa fa-pencil text-light", remote: true %>
-        <% end %>
-        <% if can? :destroy, QuizPerguntaResposta and !quiz_pergunta_resposta.quiz_pergunta.quiz.finalizado %>
-          <%= link_to  '', quiz_pergunta_resposta, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover a Resposta?'}, class: "fa fa-trash text-light", remote: true %>
-        <% end %> 
-      </p>
-      <p><b>Descrição:</b> <%= quiz_pergunta_resposta.descricao.to_s.html_safe %></p>
-      <p><b>Resposta correta?</b> <%= quiz_pergunta_resposta.correta? ? 'Sim' : 'Não' %></p>
-      <p><b>Comentário:</b> <%= quiz_pergunta_resposta.comentario %></p>
-    
-      <div id="task-form<%= quiz_pergunta_resposta.id %>" style="display:none;"></div>
-    </div>
+<% if not @quiz_pergunta_respostas.empty? %>
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item bg-light">
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Descrição</th>
+                <th>Comentário</th>
+                <th>Correta</th>
+                <th colspan="2">Opções</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @a = ("a".."z").to_a %>
+              <% @quiz_pergunta_respostas.each_with_index do |quiz_pergunta_resposta, i| %>
+                <tr>
+                  <td class="text-justify"><%= @a[i] %>)</td>
+                  <td class="text-justify"><%= quiz_pergunta_resposta.descricao.to_s.html_safe %></td>
+                  <% if quiz_pergunta_resposta.comentario? %>
+                    <td class="text-justify"><%= quiz_pergunta_resposta.comentario %></td>
+                  <% else %>
+                    <td class="text-justify">-</td>
+                  <% end %> 
+                  <td class="text-justify"><%= quiz_pergunta_resposta.correta? ? 'Sim' : 'Não' %></td>
+                  <td>
+                    <% if can? :edit, QuizPerguntaResposta and !quiz_pergunta_resposta.quiz_pergunta.quiz.finalizado %>
+                      <%= link_to  '', edit_quiz_pergunta_resposta_path(quiz_pergunta_resposta), class: "fa fa-pencil", remote: true %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <% if can? :destroy, QuizPerguntaResposta and !quiz_pergunta_resposta.quiz_pergunta.quiz.finalizado %>
+                      <%= link_to  '', quiz_pergunta_resposta, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover a Resposta?'}, class: "fa fa-trash", remote: true %>
+                    <% end %> 
+                  </td>
+                </tr>
+                 <div id="task-form<%= quiz_pergunta_resposta.id %>" style="display:none;"></div>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </li>
+    </ul>
   </div>
-<%end%>
-
+</div>
+<% end %>
