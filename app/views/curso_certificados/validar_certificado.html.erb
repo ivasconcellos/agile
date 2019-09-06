@@ -10,7 +10,7 @@
     <%= form_tag request.path, :method => 'get' do %>
 
       <div class="form-group row">
-        <label for="inputNome" class="col-md-3 offset-md-4 col-form-label">Código de validação do certificado*</label>
+        <label for="inputNome" class="col-md-4 offset-md-3 col-form-label">Informe o código de validação do certificado*</label>
         <div class="col-md-5">
           <%= text_field_tag :codigo_validacao, params[:codigo_validacao] %>
         </div>

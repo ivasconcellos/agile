@@ -12,13 +12,11 @@
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <ul class="list-group">
-        <li class="list-group-item"><b>Missão:</b> <%= link_to @tarefa.missao.nome, @tarefa.missao %></li>
-        <li class="list-group-item"><b>Descrição da Missão:</b> <%= @tarefa.missao.descricao.html_safe %></li>
-        <li class="list-group-item"><b>Nome:</b> <%= @tarefa.nome %></li>
-        <li class="list-group-item"><b>Descrição:</b> <%= @tarefa.descricao.to_s.html_safe %></li>
-        <li class="list-group-item"><b>Pontuação da Tarefa:</b> <%= formata_pontos(@tarefa.missao.pontuacao) %></li>
-        <li class="list-group-item"><b>Início da Tarefa:</b> <%= @tarefa.missao.data_hora_inicio %></li>
-        <li class="list-group-item"><b>Término da Tarefa:</b> <%= @tarefa.missao.data_hora_termino %></li>
+        <li class="list-group-item bg-primary text-center text-white"><b>Missão:</b> <%= link_to @tarefa.missao.nome, @tarefa.missao, class: 'text-white' %></li>
+        <li class="list-group-item"><b>Tarefa:</b> <%= @tarefa.nome %></li>
+        <li class="list-group-item"><b>Descrição da tarefa:</b> <%= @tarefa.descricao.to_s.html_safe %></li>
+        <li class="list-group-item text-success"><b>Pontuação da Tarefa:</b> <%= formata_pontos(@tarefa.missao.pontuacao) %></li>
+        <li class="list-group-item text-danger"><b>Período para realização da Tarefa:</b> De <b><%= @tarefa.missao.data_hora_inicio %></b> à <b><%= @tarefa.missao.data_hora_termino %></b></li>
         <% if @tarefa_aluno %>
           <li class="list-group-item"><b>Enviada em:</b> <%= @tarefa_aluno.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
           <% if @tarefa_aluno.avaliada %>
