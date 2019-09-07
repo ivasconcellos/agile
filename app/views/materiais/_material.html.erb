@@ -7,7 +7,7 @@
 
   <% if modulo_ordenacao.objeto.tipo == "Arquivo" %>
     <%= link_to url_for(modulo_ordenacao.objeto.arquivo), target: '_blank' do %>
-      <i class = "fa fa-file text-danger"> <%= publico(modulo_ordenacao.objeto) %></i>
+      <i class = "fa fa-file-text text-danger"> <%= publico(modulo_ordenacao.objeto) %></i>
     <% end %>          
   <% end %>
 

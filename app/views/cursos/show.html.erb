@@ -121,7 +121,7 @@
                       <ul class="list-unstyled ">
                         <% if can? :new, Material %>
                           <li ><%= link_to  ' Inserir Link', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Link'}, class: "fa fa-link" %></li>
-                          <li><%= link_to  ' Inserir Arquivo', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Arquivo'}, class: "fa fa-file" %></li>
+                          <li><%= link_to  ' Inserir Arquivo', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Arquivo'}, class: "fa fa-file-text" %></li>
                           <li><%= link_to  ' Inserir Vídeo', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Vídeo'}, class: "fa fa-video-camera" %></li>
                           <li><%= link_to  ' Inserir Texto', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Texto'}, class: "fa fa-text-width" %></li>
                           <li><%= link_to  ' Inserir Imagem', {controller: 'materiais', action: 'new', modulo_id: modulo.id, tipo: 'Imagem'}, class: "fa fa-image" %></li>
@@ -131,6 +131,9 @@
                         <% end %>
                         <% if can? :new, Explicacao %>
                           <li><%= link_to  ' Inserir Explicação', {controller: 'explicacoes', action: 'new', modulo_id: modulo.id}, class: "fa fa-lightbulb-o" %></li>
+                        <% end %>
+                        <% if can? :new, Forum %>
+                          <li><%= link_to  ' Inserir Fórum', {controller: 'foruns', action: 'new', modulo_id: modulo.id, curso_id: modulo.curso.id}, class: "fa fa-question-circle-o" %></li>
                         <% end %>
                         <% if can? :new, Dialogo %>
                           <li><%= link_to  ' Inserir Diálogo', {controller: 'dialogos', action: 'new', modulo_id: modulo.id}, class: "fa fa-commenting-o" %></li>

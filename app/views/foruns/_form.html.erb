@@ -13,13 +13,7 @@
 
   <div class="card-body">
     <%= form.hidden_field :curso_id %>
-
-    <div class="form-group row">
-      <label for="inputDataTermino" class="col-md-2 offset-md-1 col-form-label">Módulo*</label>
-      <div class="col-md-8">
-        <%= form.collection_select(:modulo_id, Modulo.where(curso_id: @perfil.curso_id).order('id'), :id, :nome, :prompt => true, class: "form-control")%>
-      </div>
-    </div>
+    <%= form.hidden_field :modulo_id %>
 
     <div class="form-group row">
       <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Título*</label>
