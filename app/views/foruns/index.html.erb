@@ -37,13 +37,5 @@
     <span> <%= will_paginate @foruns %></span>
   <% end %>
 
-  <br>
-
-  <% if can? :new, Forum %>
-    <div class="card-footer text-muted">
-      <%= link_to 'Cadastrar Fórum do Curso', {controller: 'foruns', action: 'new', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-primary" %>
-    </div>
-  <% end %>
-
 </div>
 

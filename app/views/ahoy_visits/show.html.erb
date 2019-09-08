@@ -7,9 +7,9 @@
             <thead>
                 <tr>
                     <th class="text-center">IP</th>
-                    <th class="text-center">Agente</th>
-                    <th class="text-center">SO</th>
                     <th class="text-center">Dispositivo</th>
+                    <th class="text-center">SO</th>
+                    <th class="text-center">Navegador</th>
                     <th class="text-center">Início</th>
                     <th class="text-center">Fim</th>
                 </tr>
@@ -18,9 +18,9 @@
                 <% @visitas.each do |visita| %>
                 <tr>
                     <td><%= visita.ip %></td>
-                    <td><%= visita.user_agent %></td>
-                    <td><%= visita.os %></td>
                     <td><%= visita.device_type %></td>
+                    <td><%= visita.os %></td>
+                    <td><%= visita.browser %></td>
                     <td><%= visita.started_at.strftime('%d/%m/%Y - %H:%M:%S') %></td>
                     <% if visita.finished_at %>
                         <td><%= visita.finished_at.strftime('%d/%m/%Y - %H:%M:%S') %></td>

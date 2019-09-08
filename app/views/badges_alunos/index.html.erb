@@ -9,14 +9,16 @@
             <th class="text-center">Aluno</th>
             <th class="text-center">Badge</th>
             <th class="text-center">Imagem</th>
+            <th class="text-center">Curso</th>
           </tr>
         </thead>
         <tbody>
           <% @badges_alunos.each do |badge_aluno| %>
             <tr>
-              <td><%= badge_aluno.aluno.nickname %></td>
+              <td><%= badge_aluno.usuario_curso.nickname %></td>
               <td><%= badge_aluno.badge.nome %></td>
               <td><%= image_tag badge_aluno.badge.imagem.variant(resize: "100x100"), class: "img-responsive" %></td>
+              <td><%= badge_aluno.usuario_curso.curso.nome %></td>
               </td>
             </tr>
           <% end %>

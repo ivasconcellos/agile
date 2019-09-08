@@ -81,6 +81,7 @@ Rails.application.routes.draw do
   #Curso
   get 'curso_atual' => 'cursos#atualizar_curso_atual'
   get 'descricao' => 'cursos#descricao'
+  get 'visualizar_curso' => 'cursos#visualizar_curso'
   get 'notas' => 'cursos#notas'
   get 'enviar_convite' => 'cursos#enviar_convite'
   post 'enviar_convite' => 'cursos#enviar_convite'

@@ -28,7 +28,7 @@
 								<div><%= curso.curso.nome %></div>
 							</div>
 							<div class="card-footer bg-primary text-white">
-								<%= link_to 'Visualizar', {controller: 'cursos', action: 'atualizar_curso_atual', curso_id: curso.curso.id}, class: 'linkcurso' %>
+								<%= link_to 'Acessar', {controller: 'cursos', action: 'atualizar_curso_atual', curso_id: curso.curso.id}, class: 'linkcurso' %>
 							</div>
 						</div>
 					</div>
@@ -65,7 +65,7 @@
 		                  <div><%= curso.nome %></div>
 		                </div>
 		                <div class="card-footer bg-primary text-white">
-		                  <%= link_to 'Visualizar', {controller: 'cursos', action: 'descricao', id: curso.id}, class: 'linkcurso' %>
+		                  <%= link_to 'Visualizar', {controller: 'cursos', action: 'visualizar_curso', id: curso.id}, class: 'linkcurso' %>
 		                </div>
 		              </div>
 		            </div>
