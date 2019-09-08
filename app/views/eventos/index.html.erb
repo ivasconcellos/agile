@@ -33,6 +33,8 @@
       </table>
     </div>
     <span> <%= will_paginate @eventos %></span>
+  <% else %>
+    <div class="alert alert-danger">Não há Eventos cadastrados!</div>
   <% end %>
 
   <br>

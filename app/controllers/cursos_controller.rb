@@ -20,6 +20,13 @@ class CursosController < ApplicationController
     @conversas = Conversa.where(destinatario_id: @perfil.id, lida: false)
   end
 
+  def visualizar_curso
+    current_usuario.update(curso_atual_id: params[:id])
+    respond_to do |format|
+      format.html { redirect_to descricao_path(id: params[:id]) }
+    end
+  end 
+  
   def descricao
     current_usuario.update(curso_atual_id: @curso.id)
     @usuario_curso = UsuarioCurso.where(curso_id: @curso.id, usuario_id: current_usuario.id)

@@ -23,6 +23,8 @@
       </table>
     </div>
     <span> <%= will_paginate @comunicados %></span>
+  <% else %>
+    <div class="alert alert-danger">Não há Comunicados cadastrados!</div>
   <% end %>
 
   <br>
