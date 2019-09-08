@@ -15,7 +15,7 @@ class ModulosController < ApplicationController
   # GET /modulos.json
   def index
     authorize! :index, Modulo
-    @modulos = Modulo.where(curso_id: @perfil.curso_id).page(params[:page]).order('id')
+    @modulos = Modulo.where(curso_id: @perfil.curso_id).page(params[:page]).order('position')
   end
 
   # GET /modulos/1

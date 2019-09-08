@@ -5,7 +5,8 @@ class BadgesAlunosController < ApplicationController
   # GET /badges_alunos.json
   def index
     authorize! :index, BadgeAluno
-    @badges_alunos = BadgeAluno.paginate(page: params[:page])
+    @q = BadgeAluno.ransack(params[:q])
+    @badges_alunos = @q.result.paginate(page: params[:page])
   end
 
   private
