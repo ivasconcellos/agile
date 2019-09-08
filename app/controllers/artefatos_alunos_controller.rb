@@ -5,7 +5,8 @@ class ArtefatosAlunosController < ApplicationController
   # GET /artefatos_alunos.json
   def index
     authorize! :index, ArtefatoAluno
-    @artefatos_alunos = ArtefatoAluno.paginate(page: params[:page])
+    @q = ArtefatoAluno.ransack(params[:q])
+    @artefatos_alunos = @q.result.paginate(page: params[:page])
   end
 
   private
