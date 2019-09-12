@@ -2,6 +2,12 @@ class ApplicationMailer < ActionMailer::Base
   default from: 'noreply@iff.edu.br'
   layout 'mailer'
 
+  before_action :add_inline_attachment!
+
+  def add_inline_attachment!
+    attachments.inline['AGILE.png'] = File.read("#{Rails.root}/app/assets/images/coelho2.png")
+  end
+
   def mensagens_professor(email)
     @subject = 'AGILE - Mensagem: ' + email.assunto
     @email = email.destinatario.usuario.email

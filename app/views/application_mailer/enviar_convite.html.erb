@@ -7,13 +7,13 @@
     </style>
   </head>
 
-  <body>
+
   	<p>Prezado(a),</p>
-  	<p>Temos o prazer lhe convidar para participar do curso <%= @curso.nome %>. </p>
-    <p>Descrição do curso: <%= @curso.descricao.html_safe %></p>
-    <p>Carga horária: <%= @curso.carga_horaria %> h.</p>
-    <p>Período: de <%= @curso.data_hora_inicio %> à <%= @curso.data_hora_termino %>.
+  	<p>Temos o prazer lhe convidar para participar do curso <b><%= @curso.nome %></b> no Ambiente Virtual de Aprendizagem AGILE.</p>
+    <p><b>Descrição do curso:</b> <%= @curso.descricao.html_safe %></p>
+    <p><b>Carga horária:</b> <%= @curso.carga_horaria %> h.</p>
+    <p><b>Período:</b> de <%= @curso.data_hora_inicio %> à <%= @curso.data_hora_termino %>.
     <p>Para se inscrever acesse: <a href='http://agile.centro.iff.edu.br/descricao?id=<%=@curso.id%>'><%= @curso.nome %></a></p>
     
-  </body>
+
 </html>
