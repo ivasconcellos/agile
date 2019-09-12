@@ -100,6 +100,10 @@ Rails.application.routes.draw do
 
   get 'faq_agile' => 'faqs#faq_agile'
 
+  get 'faq_agile' => 'faqs#faq_agile'
+
+  get 'visualizar_avatares' => 'avatares#visualizar_avatares'
+
   #Conversas
   get 'conversas_professor' => 'conversas#conversas_professor'
   get 'conversas_assunto' => 'conversas#conversas_assunto'

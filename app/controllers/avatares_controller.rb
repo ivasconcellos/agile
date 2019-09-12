@@ -73,6 +73,10 @@ class AvataresController < ApplicationController
     end
   end
 
+  def visualizar_avatares
+    @avatares = Avatar.where(grupo_id: params[:grupo_id], ativo: true)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_avatar

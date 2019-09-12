@@ -1,0 +1,23 @@
+<div class="card">
+
+  <div class="card-header">Avatares do Grupo</div>
+
+  <div class="card-body">
+
+    <div class="form-group row">
+      <% @avatares.each do |avatar| %>      
+        <div class="col-md-4 text-center">
+          <p><%= image_tag avatar.imagem.variant(resize: "200x200"), class: "img-responsive img-thumbnail" %></p>
+          <b><%= avatar.nome %></b> </p>
+      </div>
+      <% end %>      
+    </div>
+
+  </div>
+
+  <br>
+  <div class="card-footer text-muted">
+    <%= link_to 'Voltar',:back, class: "btn btn-md btn-secondary" %>
+  </div>
+
+</div>
