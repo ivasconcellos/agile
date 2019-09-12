@@ -7,10 +7,15 @@
     </style>
   </head>
 
-  <body>
+  <body style="color: #24249f; font-size: 16px; text-align: justify;">
     <%= yield %>
+
+    <p>Att.,</p>
+    <div class="text-center">
+      <%= image_tag attachments['AGILE.png'].url, class: "img-responsive", width: "100", height: "100" %>
+      <p><a href='http://agile.centro.iff.edu.br'>AGILE</a></p>
+    </div> 
+    
   </body>
 
-  <p>Att.,</p>
-  <p><a href='http://agile.centro.iff.edu.br'>AGILE</a></p>
 </html>
