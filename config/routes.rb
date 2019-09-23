@@ -96,7 +96,9 @@ Rails.application.routes.draw do
 
   get 'finalizar_quiz' => 'quizzes#finalizar_quiz'
 
-  get 'graficos' => 'question_groups#graficos'
+  get 'graficos_pizza' => 'question_groups#graficos_pizza'
+
+  get 'graficos_barra' => 'question_groups#graficos_barra'
 
   get 'faq_agile' => 'faqs#faq_agile'
 
