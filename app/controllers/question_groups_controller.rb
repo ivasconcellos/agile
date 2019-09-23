@@ -74,7 +74,13 @@ class QuestionGroupsController < ApplicationController
 		end
 	end
 
-	def graficos
+	def graficos_pizza
+		@question_group = QuestionGroup.find(params[:id])
+		@question_group_results =
+		QuestionGroupResults.new(question_group: @question_group).extract
+	end
+
+	def graficos_barra
 		@question_group = QuestionGroup.find(params[:id])
 		@question_group_results =
 		QuestionGroupResults.new(question_group: @question_group).extract
