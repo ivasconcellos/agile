@@ -29,7 +29,7 @@
           <li class="list-group-item text-center bg-secondary text-white"><b>Opções de resposta:</b></li>
           <li class="list-group-item bg-light">
             <% @a = ("a".."z").to_a %>
-            <% QuizPerguntaResposta.where(quiz_pergunta_id: @pergunta.id).each_with_index do |resposta, i| %>
+            <% QuizPerguntaResposta.where(quiz_pergunta_id: @pergunta.id).order('id').each_with_index do |resposta, i| %>
                 <p><%= form.radio_button :quiz_pergunta_resposta_id, resposta.id, required: true %><%= @a[i] %>) 
                 <%= strip_tags(resposta.descricao) %></p>
           <% end %>  
