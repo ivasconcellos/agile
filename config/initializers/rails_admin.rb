@@ -1,5 +1,6 @@
 RailsAdmin.config do |config|
-
+  config.main_app_name = ["AGILE"]
+ 
   ### Popular gems integration
 
   ## == Devise ==

@@ -1,5 +1,5 @@
 class ArtefatosAlunosController < ApplicationController
-  before_action :authenticate_usuario!
+  before_action :authenticate_any!
 
   # GET /artefatos_alunos
   # GET /artefatos_alunos.json

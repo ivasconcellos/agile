@@ -2,11 +2,23 @@ class ApplicationController < ActionController::Base
   after_action :track_action
   before_action :prepare_exception_notifier
 
+  def authenticate_any!
+    if admin_signed_in?
+        true
+    else
+        authenticate_usuario!
+    end
+end
   
   rescue_from CanCan::AccessDenied do |exception|
     render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
   end
 
+  before_action :perfil, if: :current_usuario
+    def perfil
+      @perfil = UsuarioCurso.where(usuario_id: current_usuario, curso_id: current_usuario.curso_atual).first
+    end  
+    
   layout :layout_by_resource
 
   private
@@ -25,13 +37,9 @@ class ApplicationController < ActionController::Base
     }
   end
   
-  before_action :perfil, if: :authenticate_usuario!
-  def perfil
-    @perfil = UsuarioCurso.where(usuario_id: current_usuario, curso_id: current_usuario.curso_atual).first
-  end  
 
   def current_ability
-    @current_ability ||= Ability.new(current_usuario)
+    @current_ability ||= Ability.new(current_usuario, current_admin)
   end
 
   before_action :check_concurrent_session

@@ -1,10 +1,14 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(usuario)
+  def initialize(usuario, admin)
     alias_action :create, :read, :update, to: :perms_without_delete
     alias_action :read, :update, to: :perms_read_and_update
     usuario ||= Usuario.new # guest user (not logged in)
+    admin ||= Admin.new # guest user (not logged in)
+    if admin
+      can :manage, :all
+    end
     if usuario.perfil == 'Gestor'
       can :manage, :all
     else

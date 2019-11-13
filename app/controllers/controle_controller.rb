@@ -1,7 +1,5 @@
 class ControleController < ApplicationController
-  before_action :authenticate_usuario!, :except => [:sobre, :contato]
-  skip_before_action :perfil
-  before_action :perfil, except: [:sobre, :contato]
+  before_action :authenticate_any!
 
   def inicial
   	@cursos_publicos = Curso.where(publico: true, ativo: true).paginate(:page => params[:page], :per_page => 6).order('updated_at')

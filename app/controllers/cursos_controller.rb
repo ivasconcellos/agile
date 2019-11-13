@@ -1,6 +1,6 @@
 class CursosController < ApplicationController
   before_action :set_curso, only: [:show, :descricao, :edit, :update, :destroy]
-  before_action :authenticate_usuario!
+  before_action :authenticate_any!
 
   # GET /cursos
   # GET /cursos.json
@@ -28,8 +28,10 @@ class CursosController < ApplicationController
   end 
   
   def descricao
-    current_usuario.update(curso_atual_id: @curso.id)
-    @usuario_curso = UsuarioCurso.where(curso_id: @curso.id, usuario_id: current_usuario.id)
+    if current_usuario
+      current_usuario.update(curso_atual_id: @curso.id)
+      @usuario_curso = UsuarioCurso.where(curso_id: @curso.id, usuario_id: current_usuario.id)
+    end
   end
 
   # GET /cursos/new

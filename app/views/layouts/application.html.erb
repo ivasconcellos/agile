@@ -44,9 +44,6 @@
             
             <% if usuario_signed_in? %>
               <li class="nav-item">
-                <%= link_to validar_certificado_path, class: 'nav-link' do %>Validar certificado<% end %>
-              </li>
-              <li class="nav-item">
                 <%= link_to faq_agile_path, class: 'nav-link' do %>FAQ<% end %>
               </li>
               <li class="nav-item">
@@ -69,6 +66,9 @@
                 <a class="nav-link" href="/sobre">Sobre</a>
               </li>
             <% end %>
+            <% if admin_signed_in? %>
+              <%= link_to destroy_admin_session_path, :method => :delete, class: 'nav-link' do %>Sair<% end %>
+            <% end %>
             
           </ul>
         </div>
@@ -76,7 +76,7 @@
 
       <div class="container-fluid">
 
-        <% if usuario_signed_in? %>
+        <% if usuario_signed_in? or admin_signed_in? %>
           <div class="row">
             <% if @perfil %>
               <div class="col-md-2 col-sm-2" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
@@ -114,21 +114,21 @@
 
                   <ul class="list-unstyled components">  
 
-                    <% if current_usuario.perfil == 'Gestor' %>
+                    <% if current_admin %>
                       <%= render 'controle/gestor' %>
                     <% end %>
 
-                    <% if current_usuario.perfil != 'Gestor' and !@perfil %>
+                    <% if current_usuario and current_usuario.perfil != 'Gestor' and !@perfil %>
                       <li class="nav-item">
                         <%= link_to " Detalhes do curso", descricao_path(id: @current_usuario.curso_atual), {class: "fa fa-info-circle fa-sm nav-link text-light"} %>
                       </li>
                     <% end %>
 
-                    <% if @perfil and @perfil.perfil == 'Aluno' %>
+                    <% if current_usuario and @perfil and @perfil.perfil == 'Aluno' %>
                       <%= render 'controle/aluno' %>
                     <% end %>
 
-                    <% if @perfil and @perfil.perfil == 'Professor' %>
+                    <% if current_usuario and @perfil and @perfil.perfil == 'Professor' %>
                       <%= render 'controle/professor' %>
                     <% end %>
 
@@ -137,7 +137,7 @@
               <!-- /#sidebar-wrapper -->
             </div>
 
-            <% if current_usuario.perfil == 'Gestor'%>
+            <% if current_admin %>
               <div class="col-md-10 col-sm-10">
                 <% if notice %>
                   <p class="alert alert-success"><%= notice %></p>

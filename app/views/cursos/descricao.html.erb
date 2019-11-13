@@ -12,7 +12,7 @@
   
   <div class="text-center">
     <br>
-    <% if @usuario_curso.empty? and no_prazo(@curso) and @current_usuario.perfil != "Gestor" %>
+    <% if !current_admin and @usuario_curso.empty? and no_prazo(@curso) %>
       <%= link_to 'Me inscrever neste Curso', {controller: 'usuario_curso', action: 'inscricao_curso'}, class: "btn btn-md btn-success" %>
     <% end %>
   </div>

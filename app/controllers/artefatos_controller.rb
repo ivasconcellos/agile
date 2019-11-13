@@ -1,6 +1,6 @@
 class ArtefatosController < ApplicationController
   before_action :set_artefato, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_usuario!
+  before_action :authenticate_any!
 
   # GET /artefatos
   # GET /artefatos.json

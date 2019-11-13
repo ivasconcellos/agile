@@ -1,12 +1,13 @@
 pt-BR:
-  home:
-    name: "Home"
   views:
+   
+  admin:
+    home:
+      name: "AGILE"
     pagination:
       previous: "&laquo; Anterior"
       next: "Próximo &raquo;"
       truncate: "…"
-  admin:
     misc:
       search: "Procurar"
       filter: "Filtrar"
@@ -34,6 +35,7 @@ pt-BR:
       model_name: "Nome do modelo"
       last_used: "Última vez usado em"
       records: "Registros"
+      last_created: "Último cadastro"
       username: "Usuário"
       changes: "Alterações"
       created_at: "Data/Hora"
@@ -41,8 +43,8 @@ pt-BR:
       message: "Mensagem"
     actions:
       dashboard:
-        title: "Administração do Site"
-        menu: "Dashboard"
+        title: "Administração do AGILE"
+        menu: "Gerenciamento"
         breadcrumb: "Dashboard"
       index:
         title: "Lista de %{model_label_plural}"
