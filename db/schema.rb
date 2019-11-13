@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_05_233249) do
+ActiveRecord::Schema.define(version: 2019_11_13_183833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_233249) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "ativo", default: true
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -260,7 +261,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_233249) do
     t.bigint "usuario_id"
     t.bigint "curso_id"
     t.string "hash_validacao"
-    t.datetime "data_finalizacao", default: -> { "CURRENT_TIMESTAMP" }
+    t.datetime "data_finalizacao", default: -> { "now()" }
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["curso_id"], name: "index_curso_certificados_on_curso_id"
