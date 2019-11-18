@@ -1,5 +1,5 @@
 class ControleController < ApplicationController
-  before_action :authenticate_any!
+  before_action :authenticate_any!, :except => [:sobre, :contato]
 
   def inicial
   	@cursos_publicos = Curso.where(publico: true, ativo: true).paginate(:page => params[:page], :per_page => 6).order('updated_at')

@@ -57,7 +57,6 @@ class CursosController < ApplicationController
     respond_to do |format|
       if @curso.save
         @usuario_curso = UsuarioCurso.create!(perfil: 'Professor', nickname: @curso.proprietario.nome, usuario_id: @curso.proprietario_id, curso_id: @curso.id, nivel_id: 1)
-        current_usuario.update(curso_atual_id: @curso.id)
         ApplicationMailer.cadastro_curso(@usuario_curso).deliver
         format.html { redirect_to descricao_path(id: @curso.id), notice: 'Curso criado com sucesso!' }
         format.json { render :show, status: :created, location: cursos_path }

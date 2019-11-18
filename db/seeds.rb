@@ -6,10 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Admin.create! nome: 'admin', email: 'suporte.ti.centro@iff.edu.br', password: '12345678'
-Usuario.create! nome: 'Gestor', email: 'gestor@iff.edu.br', perfil: 'Gestor', data_nascimento: '01/01/2000', sexo: 'Masculino', ativo: true, termo_compromisso: true, password: '12345678', cpf: '133.230.797-36'
-Usuario.create! nome: 'Professor', email: 'professor@iff.edu.br', perfil: 'Usuario comum', data_nascimento: '01/02/2000', sexo: 'Masculino', ativo: true, termo_compromisso: true, password: '12345678', cpf: '119.794.737-06'
-Usuario.create! nome: 'Aluno', email: 'aluno@iff.edu.br', perfil: 'Usuario comum', data_nascimento: '01/03/2000', sexo: 'Masculino', ativo: true, termo_compromisso: true, password: '12345678', cpf: '149.656.207-04'
+Admin.create! nome: 'admin', email: 'admin@agile.br', password: '12345678'
+
 
 #Curso.create! nome: 'Curso de Lógica de Programação', descricao: 'Descrição do curso.', data_inicio: '01/01/2019', hora_inicio: '08:00:00', data_termino: '01/01/2020', hora_termino: '23:59:59', codigo_acesso: '12345678', ativo: true, publico: true, tema_curso_id: 1, proprietario_id: 2
 #Modulo.create! nome: 'Módulo 1', descricao: "Primeiro módulo do curso", publico: true, curso_id: 1
@@ -203,3 +201,6 @@ Usuario.create! nome: 'Aluno', email: 'aluno@iff.edu.br', perfil: 'Usuario comum
 @artefato5 = Artefato.new nome: 'Magia do Éter', pontos_requeridos: 250, ativo: true, tema_curso_id: 1
 @artefato5.imagem.attach(io: File.open('app/assets/images/artefatos/artefato_eter.jpg'), filename: 'estrela.jpg')
 @artefato5.save!
+
+Usuario.create! nome: 'Professor', cpf: '119.794.737-06', email: 'professor@agile.br', perfil: 'Usuario comum', data_nascimento: '01/02/2000', sexo: 'Masculino', ativo: true, termo_compromisso: true, password: '12345678'
+Usuario.create! nome: 'Aluno', cpf: '149.656.207-04', email: 'aluno@agile.br', perfil: 'Usuario comum', data_nascimento: '01/03/2000', sexo: 'Masculino', ativo: true, termo_compromisso: true, password: '12345678'

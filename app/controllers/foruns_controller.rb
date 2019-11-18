@@ -33,7 +33,7 @@ class ForunsController < ApplicationController
   # POST /foruns.json
   def create
     @forum = Forum.new(forum_params)
-    @usuario = UsuarioCurso.select(:id).where(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id).first
+    @usuario = UsuarioCurso.select(:id).where(usuario_id: current_usuario.id).first
     @forum.usuario_curso_id = @usuario.id
     respond_to do |format|
       if @forum.save

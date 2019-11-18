@@ -1,6 +1,6 @@
 class FaqsController < ApplicationController
   before_action :set_faq, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_any!
+  before_action :authenticate_any!, :except => [:faq_agile, :show]
 
   # GET /faqs
   # GET /faqs.json

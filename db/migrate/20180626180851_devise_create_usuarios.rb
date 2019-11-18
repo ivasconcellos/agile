@@ -5,6 +5,7 @@ class DeviseCreateUsuarios < ActiveRecord::Migration[5.2]
     create_table :usuarios do |t|
       ## Database authenticatable
       t.string :nome,              null: false, default: ""
+      t.string :cpf, null: false
       t.string :email,              null: false, default: ""
       t.string :perfil,              null: false, default: "Usuário comum"
       t.date :data_nascimento,              null: false
@@ -12,6 +13,7 @@ class DeviseCreateUsuarios < ActiveRecord::Migration[5.2]
       t.string :encrypted_password, null: false, default: ""
       t.boolean :ativo,   default: true
       t.boolean :termo_compromisso, default: false
+      
 
       ## Recoverable
       t.string   :reset_password_token

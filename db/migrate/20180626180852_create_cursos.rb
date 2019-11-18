@@ -10,6 +10,10 @@ class CreateCursos < ActiveRecord::Migration[5.2]
       t.string :codigo_acesso, limit: 8, null: false
       t.boolean :ativo, default: true
       t.boolean :publico, default: false
+      t.text  :publico_alvo
+      t.text  :criterios_participacao
+      t.integer  :carga_horaria
+      t.integer  :porcentagem_aprovacao
       t.references :tema_curso, foreign_key: true
       t.references :proprietario, index: true, foreign_key: { to_table: :usuarios }
 

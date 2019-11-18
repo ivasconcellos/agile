@@ -2,7 +2,6 @@ class Curso < ApplicationRecord
 	belongs_to :tema_curso
 	belongs_to :proprietario, class_name: "Usuario"
 	has_many :usuario_curso, :dependent => :destroy, :dependent => :restrict_with_error
-	has_many :foruns, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :modulos, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :salas_chat, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :eventos, :dependent => :destroy, :dependent => :restrict_with_error
