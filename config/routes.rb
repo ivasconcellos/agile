@@ -26,7 +26,6 @@ Rails.application.routes.draw do
   resources :avatares
   resources :foruns_comentarios, except: [:index, :show]
   resources :foruns
-  resources :explicacoes, except: [:index]
   resources :usuario_curso
   resources :materiais, except: [:index]
   resources :cursos

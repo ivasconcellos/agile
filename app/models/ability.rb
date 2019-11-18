@@ -17,7 +17,6 @@ class Ability
         if !usuario_curso.nil? and usuario_curso.perfil == 'Professor'
           can :perms_read_and_update, Curso
           can :manage, Modulo
-          can :manage, Explicacao
           can :manage, Material
           can :manage, UsuarioCurso
           can :manage, Forum
@@ -61,7 +60,6 @@ class Ability
           can :read, SalaChat
           can :lista_participantes, :grupo_curso
           can :read, Missao
-          can :read, Explicacao
           can :read, Evento
           can :read, Dica
           can :read, QuestionGroup

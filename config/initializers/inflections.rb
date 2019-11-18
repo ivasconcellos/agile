@@ -12,7 +12,6 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'curso', 'cursos'
 	inflect.irregular 'material', 'materiais'
 	inflect.irregular 'usuario_curso', 'usuario_curso'
-	inflect.irregular 'explicacao', 'explicacoes'
 	inflect.irregular 'forum', 'foruns'
 	inflect.irregular 'forum_comentario', 'foruns_comentarios'
 	inflect.irregular 'avatar', 'avatares'
