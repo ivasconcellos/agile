@@ -41,29 +41,21 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            
-            <% if usuario_signed_in? %>
-              <li class="nav-item">
-                <%= link_to faq_agile_path, class: 'nav-link' do %>FAQ<% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to contato_path, class: 'nav-link' do %>Contato<% end %>
-              </li>
+            <li class="nav-item">
+              <%= link_to faq_agile_path, class: 'nav-link' do %>FAQ<% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to contato_path, class: 'nav-link' do %>Contato<% end %>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/sobre">Sobre</a>
+            </li>
+            <% if usuario_signed_in? %> 
               <li class="nav-item">
                 <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'nav-link' do %>Atualizar Dados<% end %>
               </li>
               <li class="nav-item">
                 <%= link_to destroy_usuario_session_path, :method => :delete, class: 'nav-link' do %>Sair<% end %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to faq_agile_path, class: 'nav-link' do %>FAQ<% end %>
-              </li>     
-              <li class="nav-item">
-                <%= link_to contato_path, class: 'nav-link' do %>Contato<% end %>
-              </li>    
-              <li class="nav-item">
-                <a class="nav-link" href="/sobre">Sobre</a>
               </li>
             <% end %>
             <% if admin_signed_in? %>
@@ -83,12 +75,9 @@
               <!-- Sidebar -->
               
                 <nav id="sidebar" class="sidebar navbar-nav" >
-              <% else %>
-                <div class="col-md-2 col-sm-2 color-sidebar ">
-              <% end %>
-                <nav id="sidebar" class="sidebar navbar-nav">
-                  <div class="sidebar-header sidebar-avatar">
-                    <% if @perfil %>
+                  <nav id="sidebar" class="sidebar navbar-nav">
+                    <div class="sidebar-header sidebar-avatar">
+
                       <% if @perfil.avatar %>
                         <p class="list-group-item text-center"><%= image_tag @perfil.avatar.imagem, class: "img-fluid img-responsive" %></p>
                       <% else %>
@@ -109,16 +98,19 @@
                         <p class="list-group-item text-center perfil"><%= link_to 'Escolher Equipe', escolher_equipe_url(id: @perfil.id), class: 'text-danger' %></p>
                       <% end %>
                       <p class="list-group-item text-center perfil"><label>Status:</label> <%= @perfil.status_curso %></p>
-                    <% end %>
-                  </div>
-
+                    </div>
+            <% else %>
+                <div class="col-md-2 col-sm-2 color-sidebar ">
+                  <nav id="sidebar" class="sidebar navbar-nav">
+                    
+            <% end %>
                   <ul class="list-unstyled components">  
 
-                    <% if current_admin %>
+                    <% if admin_signed_in? %>
                       <%= render 'controle/gestor' %>
                     <% end %>
 
-                    <% if current_usuario and current_usuario.perfil != 'Gestor' and !@perfil %>
+                    <% if current_usuario and !@perfil %>
                       <li class="nav-item">
                         <%= link_to " Detalhes do curso", descricao_path(id: @current_usuario.curso_atual), {class: "fa fa-info-circle fa-sm nav-link text-light"} %>
                       </li>
