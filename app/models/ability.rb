@@ -73,7 +73,6 @@ class Ability
           can :read, Dialogo
           can :cancelar_inscricao, UsuarioCurso
           can :finalizar_curso, UsuarioCurso
-          can :gerar_certificado, CursoCertificado
           can :pendencias, UsuarioCurso
           can :perms_without_delete, SalaChat
           can :read, Recompensa

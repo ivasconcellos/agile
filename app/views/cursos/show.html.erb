@@ -29,10 +29,8 @@
 
   <% if @perfil.perfil == 'Aluno' %> 
     <% if @perfil.aprovado == true %>
-      <%#= link_to 'Gerar Certificado', gerar_certificado_path(format: :pdf), {class: "btn btn-md btn-warning"} %>
       <div class="alert alert-success">
         Curso concluído! Você foi aprovado com sucesso! <br>
-        Em breve você receberá o seu certificado no e-mail cadastrado no AGILE.
       </div>
     <% end %>
     <% if @perfil.aprovado == false %>

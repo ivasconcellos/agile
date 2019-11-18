@@ -1,5 +1,5 @@
 class AhoyVisitsController < ApplicationController
-	before_action :authenticate_usuario!
+	before_action :authenticate_admin!
 
     def index
     	authorize! :index, :visit

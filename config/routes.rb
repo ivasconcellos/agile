@@ -125,10 +125,6 @@ Rails.application.routes.draw do
   
   mount Rapidfire::Engine => "/rapidfire"
 
-  authenticated :usuario, ->(usuario) { usuario.perfil == "Gestor" } do
-    mount Blazer::Engine, at: "blazer"
-  end
-  
   resources :question_groups do
     get 'results', on: :member
 
