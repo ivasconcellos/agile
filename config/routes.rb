@@ -47,6 +47,12 @@ Rails.application.routes.draw do
 
   resources :tema_cursos
   devise_for :admins, :skip => [:registrations]
+
+  devise_scope :admin do
+    authenticated :admin do
+      root 'controle#controle_gestor', as: :authenticated_root
+    end
+  end
   
   resources :usuarios, :only => [:index, :edit, :update, :show]
   devise_for :usuarios, :path_prefix => 'my', controllers: {
