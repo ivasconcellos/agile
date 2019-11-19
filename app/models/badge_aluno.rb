@@ -5,5 +5,4 @@ class BadgeAluno < ApplicationRecord
   validates :badge, uniqueness: { scope: :usuario_curso }
 
   self.per_page = 10
-
 end
