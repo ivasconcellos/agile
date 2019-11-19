@@ -47,10 +47,10 @@ class UsuarioCurso < ApplicationRecord
 
   		return Hash[equipes.sort_by{|k, v| v}.reverse]
   	end
-
-  	def forum
-  		@foruns = Forum.exists?(ativo: true, curso_id: self.curso_id)
-  	end
+	
+	def forum
+	    @foruns = Forum.exists?(ativo: true, modulo_id: self.curso.modulo_ids)
+	end
 
   	def chat
   		@chats = SalaChat.exists?(ativo: true, curso_id: self.curso_id)

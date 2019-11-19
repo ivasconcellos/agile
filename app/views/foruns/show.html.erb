@@ -58,14 +58,14 @@
 	<% if can? :new, ForumComentario and @forum.ativo?  %>
 		<div class="card-footer text-muted">
 			<%= link_to "Comentar", {controller: 'foruns_comentarios', action: 'new', :forum_id => @forum.id, remote: true}, class: "btn btn-warning" %>
-			<%= link_to "Voltar", {controller: 'foruns', action: 'index', curso_id: @forum.curso.id}, class: "btn btn-secondary" %>
+			<%= link_to "Voltar", {controller: 'cursos', action: 'show', curso_id: @forum.modulo.curso.id}, class: "btn btn-secondary" %>
 		</div>
 	<% else %>
 		<div class="alert alert-danger">
 			<p>Este fórum não está mais ativo! Em caso de dúvidas, entre em contato com o professor do curso. </p>
 		</div>
 		<div class="card-footer text-muted">
-			<%= link_to "Voltar", {controller: 'foruns', action: 'index', curso_id: @forum.curso.id}, class: "btn btn-secondary" %>
+			<%= link_to "Voltar", {controller: 'cursos', action: 'show', curso_id: @forum.modulo.curso.id}, class: "btn btn-secondary" %>
 		</div>
 	<% end %>
 

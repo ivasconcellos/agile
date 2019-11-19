@@ -3,7 +3,7 @@ class Forum < ApplicationRecord
   belongs_to :usuario_curso
   belongs_to :modulo, optional: true
 
-  validates_presence_of :titulo, :descricao, :curso_id
+  validates_presence_of :titulo, :descricao, :modulo_id
   
   self.per_page = 10
 

@@ -124,7 +124,7 @@
                           <li><%= link_to  ' Inserir Missão', {controller: 'missoes', action: 'new', modulo_id: modulo.id}, class: "fa fa-diamond" %></li>
                         <% end %>
                         <% if can? :new, Forum %>
-                          <li><%= link_to  ' Inserir Fórum', {controller: 'foruns', action: 'new', modulo_id: modulo.id, curso_id: modulo.curso.id}, class: "fa fa-question-circle-o" %></li>
+                          <li><%= link_to  ' Inserir Fórum', {controller: 'foruns', action: 'new', modulo_id: modulo.id}, class: "fa fa-question-circle-o" %></li>
                         <% end %>
                         <% if can? :new, Dialogo %>
                           <li><%= link_to  ' Inserir Diálogo', {controller: 'dialogos', action: 'new', modulo_id: modulo.id}, class: "fa fa-commenting-o" %></li>

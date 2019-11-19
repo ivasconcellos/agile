@@ -60,15 +60,13 @@
 	<% end %>
 
 	<% if  @perfil.forum %>
-
 		<div class="alert alert-warning alert-lateral">
 			<li class="nav-item">
-				<%= link_to " Fóruns", foruns_path, {class: "fa fa-clipboard fa-sm nav-link text-secondary"} %>
-			</li>
-		</div>
-
-	<% end %>  
-
+        <%= link_to " Fóruns", foruns_path, {class: "fa fa-clipboard fa-sm nav-link text-secondary"} %>
+      </li>
+    </div>
+	<% end %> 
+	
 	<% if  @perfil.chat %>
 
 		<div class="alert alert-warning alert-lateral">
