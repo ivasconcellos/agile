@@ -1,4 +1,5 @@
 class Badge < ApplicationRecord
+
 	has_many :badges_alunos, :dependent => :destroy, :dependent => :restrict_with_error
 	
 	has_one_attached :imagem
@@ -17,8 +18,7 @@ class Badge < ApplicationRecord
 			@badge_aluno = BadgeAluno.find_by(usuario_curso_id: usuario.id, badge_id: badge.id)
 		    if !@badge_aluno
 		    	if usuario.pontos_experiencia >= badge.pontos_requeridos
-					@nova_badge = BadgeAluno.create!(usuario_curso_id: usuario.id, badge_id: badge.id)
-					ApplicationMailer.nova_badge(@nova_badge).deliver
+					BadgesAlunosController.nova_badge(usuario, badge)		
 		    	end
 		    end
 		end
