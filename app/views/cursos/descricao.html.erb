@@ -8,7 +8,6 @@
       <%= link_to '', @curso, method: :delete, data: { confirm: 'Deseja realmente excluir o Curso?' }, class: "fa fa-trash text-white" %>
     <% end %>
   </div>
-
   
   <div class="text-center">
     <br>
@@ -49,6 +48,12 @@
       </ul>
     </div>
   </div>
+
+  <% if @perfil.perfil == 'Professor' and @perfil.curso.ativo == true %>
+    <div class="text-center">
+      <%= link_to 'Finalizar Curso para todos os alunos', finalizar_completamente_curso_path(id: @perfil.curso.id), class: "btn btn-md btn-danger", data: { confirm: 'Deseja realmente finalizar permanentemente o Curso?' } %>
+    </div>
+  <% end %>
 
   <div class="card-footer text-muted">
     <% if @perfil and @perfil.perfil == "Aluno" and @perfil.status_curso == 'Em andamento' %>  
