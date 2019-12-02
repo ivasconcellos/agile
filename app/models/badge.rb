@@ -17,8 +17,10 @@ class Badge < ApplicationRecord
 		for badge in @badge
 			@badge_aluno = BadgeAluno.find_by(usuario_curso_id: usuario.id, badge_id: badge.id)
 		    if !@badge_aluno
-		    	if usuario.pontos_experiencia >= badge.pontos_requeridos
-					BadgesAlunosController.nova_badge(usuario, badge)		
+				if usuario.pontos_experiencia >= badge.pontos_requeridos
+					@nova_badge = BadgeAluno.create!(usuario_curso_id: usuario.id, badge_id: badge.id)
+					@notificacao = Notificacao.create!(usuario_curso_id: usuario.id, texto: "Parabéns!!! Você conquistou a Badge: <b>" + @nova_badge.badge.nome + "</b>! Para visualizá-la, acesso o menu Meu Perfil.", tipo: "Badge")
+					ApplicationMailer.nova_badge(@nova_badge).deliver	
 		    	end
 		    end
 		end

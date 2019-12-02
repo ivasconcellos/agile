@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :notificacoes, only: [:index]
   resources :recompensas
   resources :faqs
   resources :dialogos, except: [:index]

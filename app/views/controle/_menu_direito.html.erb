@@ -96,4 +96,14 @@
 		</div>
 
 	<% end %>
+
+	<% if  @perfil.notificacao and @perfil.perfil == 'Aluno' %>
+
+		<div class="alert alert-info alert-lateral">
+			<li class="nav-item">
+				<%= link_to " Notificações", notificacoes_path, {class: "fa fa-bell fa-sm nav-link text-secondary"} %>
+			</li>
+		</div>
+
+	<% end %>
 <% end %>

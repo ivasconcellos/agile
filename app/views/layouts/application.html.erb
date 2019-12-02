@@ -152,6 +152,9 @@
                     <% if notice %>
                       <p class="alert alert-success"><%= notice %></p>
                     <% end %>
+                    <% if @notificacao %>
+                      <p class="alert alert-primary"><b>Última notificação (<%= @notificacao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %>):</b> <%= @notificacao.texto.html_safe %></p>
+                    <% end %>
                     <% if alert %>
                       <p class="alert alert-danger"><%= alert %></p>
                     <% end %>

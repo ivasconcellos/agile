@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_03_003756) do
+ActiveRecord::Schema.define(version: 2019_12_02_172652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -374,6 +374,15 @@ ActiveRecord::Schema.define(version: 2019_05_03_003756) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "notificacoes", force: :cascade do |t|
+    t.bigint "usuario_curso_id"
+    t.string "texto"
+    t.string "tipo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["usuario_curso_id"], name: "index_notificacoes_on_usuario_curso_id"
+  end
+
   create_table "question_groups", force: :cascade do |t|
     t.string "titulo"
     t.text "descricao"
@@ -626,6 +635,7 @@ ActiveRecord::Schema.define(version: 2019_05_03_003756) do
   add_foreign_key "missoes", "modulos"
   add_foreign_key "missoes", "usuario_curso"
   add_foreign_key "modulos", "cursos"
+  add_foreign_key "notificacoes", "usuario_curso"
   add_foreign_key "question_groups", "cursos"
   add_foreign_key "quiz_pergunta_respostas", "quiz_perguntas"
   add_foreign_key "quiz_perguntas", "quizzes"
