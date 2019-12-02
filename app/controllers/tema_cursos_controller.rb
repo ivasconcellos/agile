@@ -1,6 +1,6 @@
 class TemaCursosController < ApplicationController
   before_action :set_tema_curso, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_usuario!
+  before_action :authenticate_any!
 
   # GET /temas_cursos
   # GET /temas_cursos.json

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :notificacoes, only: [:index]
   resources :recompensas
   resources :faqs
   resources :dialogos, except: [:index]
@@ -26,7 +27,6 @@ Rails.application.routes.draw do
   resources :avatares
   resources :foruns_comentarios, except: [:index, :show]
   resources :foruns
-  resources :explicacoes, except: [:index]
   resources :usuario_curso
   resources :materiais, except: [:index]
   resources :cursos
@@ -47,6 +47,12 @@ Rails.application.routes.draw do
 
   resources :tema_cursos
   devise_for :admins, :skip => [:registrations]
+
+  devise_scope :admin do
+    authenticated :admin do
+      root 'controle#controle_gestor', as: :authenticated_root
+    end
+  end
   
   resources :usuarios, :only => [:index, :edit, :update, :show]
   devise_for :usuarios, :path_prefix => 'my', controllers: {
@@ -125,10 +131,6 @@ Rails.application.routes.draw do
   
   mount Rapidfire::Engine => "/rapidfire"
 
-  authenticated :usuario, ->(usuario) { usuario.perfil == "Gestor" } do
-    mount Blazer::Engine, at: "blazer"
-  end
-  
   resources :question_groups do
     get 'results', on: :member
 

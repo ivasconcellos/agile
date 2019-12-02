@@ -9,7 +9,7 @@
     <div class="modal-body">
 
       <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-2 text-center">
+        <div class="col-lg-3 col-md-9 col-sm-4 col-xs-2 text-center">
           <div class="input-group mb-3">
             <%if @dialogo.usuario_curso.avatar %>
               <%= image_tag @dialogo.usuario_curso.avatar.imagem.variant(resize: "200x200"), class: "img-responsive img-thumbnail" %>
@@ -19,7 +19,7 @@
           </div>
         </div>
 
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-10">
+        <div class="col-lg-9 col-md-9 col-sm-8 col-xs-10">
             <div class="input-group mb-3">      
               <p><%= @dialogo.texto.to_s.html_safe %></p>
             </div>

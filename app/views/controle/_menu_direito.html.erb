@@ -60,15 +60,13 @@
 	<% end %>
 
 	<% if  @perfil.forum %>
-
 		<div class="alert alert-warning alert-lateral">
 			<li class="nav-item">
-				<%= link_to " Fóruns", foruns_path, {class: "fa fa-clipboard fa-sm nav-link text-secondary"} %>
-			</li>
-		</div>
-
-	<% end %>  
-
+        <%= link_to " Fóruns", foruns_path, {class: "fa fa-clipboard fa-sm nav-link text-secondary"} %>
+      </li>
+    </div>
+	<% end %> 
+	
 	<% if  @perfil.chat %>
 
 		<div class="alert alert-warning alert-lateral">
@@ -94,6 +92,16 @@
 		<div class="alert alert-danger alert-lateral">
 			<li class="nav-item">
 				<%= link_to " Pendências", pendencias_path, {class: "fa fa-exclamation-triangle fa-sm nav-link text-secondary"} %>
+			</li>
+		</div>
+
+	<% end %>
+
+	<% if  @perfil.notificacao and @perfil.perfil == 'Aluno' %>
+
+		<div class="alert alert-info alert-lateral">
+			<li class="nav-item">
+				<%= link_to " Notificações", notificacoes_path, {class: "fa fa-bell fa-sm nav-link text-secondary"} %>
 			</li>
 		</div>
 

@@ -5,6 +5,7 @@ class CreateEventos < ActiveRecord::Migration[5.2]
       t.time :hora
       t.string :nome
       t.text :descricao
+      t.boolean :ativo, default: true
       t.references :usuario_curso, foreign_key: true
       t.references :curso, foreign_key: true
       t.timestamps

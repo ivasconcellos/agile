@@ -1,5 +1,5 @@
 class BadgesAlunosController < ApplicationController
-  before_action :authenticate_usuario!
+  before_action :authenticate_any!
   
   # GET /badges_alunos
   # GET /badges_alunos.json

@@ -24,6 +24,6 @@ module ApplicationHelper
 
 	def formata_pontos(pontos)
 		return "%g" % ("%.2f" % pontos)
-  end
+	end
 
 end

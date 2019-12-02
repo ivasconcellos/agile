@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="card-header">Notificações do Curso</div>
+
+  <% if !@notificacoes.empty? %>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+          <tr>
+            <th class="text-center">Texto</th>
+            <th class="text-center">Tipo</th>
+            <th class="text-center">Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @notificacoes.each do |notificacao| %>
+            <tr>
+              <td class="text-justify"><%= notificacao.texto.html_safe %></td>
+              <td class="text-justify"><%= notificacao.tipo %></td>
+              <td><%= notificacao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <span> <%= will_paginate @notificacoes %></span>
+  <% end %>
+
+</div>

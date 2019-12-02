@@ -1,6 +1,6 @@
 class NiveisController < ApplicationController
   before_action :set_nivel, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_usuario!
+  before_action :authenticate_any!
 
   # GET /niveis
   # GET /niveis.json

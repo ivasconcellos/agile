@@ -12,7 +12,6 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'curso', 'cursos'
 	inflect.irregular 'material', 'materiais'
 	inflect.irregular 'usuario_curso', 'usuario_curso'
-	inflect.irregular 'explicacao', 'explicacoes'
 	inflect.irregular 'forum', 'foruns'
 	inflect.irregular 'forum_comentario', 'foruns_comentarios'
 	inflect.irregular 'avatar', 'avatares'
@@ -36,6 +35,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'curso_certificado', 'curso_certificados'
 	inflect.irregular 'faq', 'faqs'
 	inflect.irregular 'recompensa', 'recompensas'
+	inflect.irregular 'notificacao', 'notificacoes'
 end
 
 # These inflection rules are supported but not enabled by default:

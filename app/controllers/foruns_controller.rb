@@ -6,7 +6,7 @@ class ForunsController < ApplicationController
   # GET /foruns.json
   def index
     authorize! :index, Forum
-    @foruns = Forum.where(curso_id: @perfil.curso_id).page(params[:page])
+    @foruns = Forum.where(modulo_id: @perfil.curso.modulo_ids).page(params[:page])
   end
 
   # GET /foruns/1
@@ -20,7 +20,6 @@ class ForunsController < ApplicationController
   def new
     authorize! :new, Forum
     @forum = Forum.new
-    @forum.curso_id = params[:curso_id]
     @forum.modulo_id = params[:modulo_id]
   end
 
@@ -33,7 +32,7 @@ class ForunsController < ApplicationController
   # POST /foruns.json
   def create
     @forum = Forum.new(forum_params)
-    @usuario = UsuarioCurso.select(:id).where(usuario_id: current_usuario.id, curso_id: current_usuario.curso_atual_id).first
+    @usuario = UsuarioCurso.select(:id).where(usuario_id: current_usuario.id).first
     @forum.usuario_curso_id = @usuario.id
     respond_to do |format|
       if @forum.save
@@ -84,6 +83,6 @@ class ForunsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def forum_params
-      params.require(:forum).permit(:titulo, :descricao, :ativo, :curso_id, :usuario_curso_id, :modulo_id)
+      params.require(:forum).permit(:titulo, :descricao, :ativo, :usuario_curso_id, :modulo_id)
     end
 end

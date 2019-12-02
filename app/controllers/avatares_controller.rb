@@ -1,6 +1,6 @@
 class AvataresController < ApplicationController
   before_action :set_avatar, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_usuario!
+  before_action :authenticate_any!
 
   def index
     authorize! :index, Avatar

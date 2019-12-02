@@ -38,38 +38,26 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-              
+              <li class="nav-item">
+                <%= link_to faq_agile_path, class: 'nav-link' do %>FAQ<% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to contato_path, class: 'nav-link' do %>Contato<% end %>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/sobre">Sobre</a>
+              </li>
               <% if usuario_signed_in? %>
-                <li class="nav-item">
-                  <%= link_to validar_certificado_path, class: 'nav-link' do %>Validar certificado<% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to faq_agile_path, class: 'nav-link' do %>FAQ<% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to contato_path, class: 'nav-link' do %>Contato<% end %>
-                </li>
                 <li class="nav-item">
                   <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'nav-link' do %>Atualizar Dados<% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to destroy_usuario_session_path, :method => :delete, class: 'nav-link' do %>Sair<% end %>
-                </li>
-              <% else %>
-                <li class="nav-item">
-                  <%= link_to validar_certificado_path, class: 'nav-link' do %>Validar certificado<% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to faq_agile_path, class: 'nav-link' do %>FAQ<% end %>
-                </li>     
-                <li class="nav-item">
-                  <%= link_to contato_path, class: 'nav-link' do %>Contato<% end %>
-                </li>    
-                <li class="nav-item">
-                  <a class="nav-link" href="/sobre">Sobre</a>
-                </li>
+                </li>              
               <% end %>
-              
+              <% if admin_signed_in? %>
+                <%= link_to destroy_admin_session_path, :method => :delete, class: 'nav-link' do %>Sair<% end %>
+              <% end %>
             </ul>
           </div>
         </nav>

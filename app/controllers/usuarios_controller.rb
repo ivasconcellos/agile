@@ -1,8 +1,6 @@
 class UsuariosController < ApplicationController
 	before_action :set_usuario, only: [:edit, :show, :update]
-	before_action :authenticate_usuario!, :except => [:termo_uso]
-	skip_before_action :perfil
-	before_action :perfil, except: [:termo_uso]
+	before_action :authenticate_any!, :except => [:termo_uso]
 
 	def index
 		authorize! :index, Usuario

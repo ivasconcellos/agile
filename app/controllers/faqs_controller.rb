@@ -1,8 +1,6 @@
 class FaqsController < ApplicationController
   before_action :set_faq, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_usuario!, :except => [:faq_agile]
-  skip_before_action :perfil
-  before_action :perfil, except: [:faq_agile]
+  before_action :authenticate_any!, :except => [:faq_agile, :show]
 
   # GET /faqs
   # GET /faqs.json

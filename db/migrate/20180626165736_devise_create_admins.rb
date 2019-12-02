@@ -7,6 +7,7 @@ class DeviseCreateAdmins < ActiveRecord::Migration[5.2]
       t.string :nome,              null: false, default: ""
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
+      t.boolean :ativo, default: true
 
       ## Recoverable
       t.string   :reset_password_token
