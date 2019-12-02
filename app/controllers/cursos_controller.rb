@@ -1,5 +1,5 @@
 class CursosController < ApplicationController
-  before_action :set_curso, only: [:show, :descricao, :edit, :update, :destroy]
+  before_action :set_curso, only: [:show, :descricao, :edit, :update, :destroy, :finalizar_completamente_curso]
   before_action :authenticate_any!
 
   # GET /cursos
@@ -118,6 +118,21 @@ class CursosController < ApplicationController
         format.json { head :no_content }
       end
     end
+  end
+
+  def finalizar_completamente_curso
+    authorize! :finalizar_completamente_curso, :curso
+    @curso.ativo = false
+    if @curso.save
+      flash[:notice] = 'Curso finalizado com sucesso!'
+      @usuarios_curso = UsuarioCurso.where(curso_id: @curso.id).update_all(status_curso: "Curso finalizado pelo professor", curso_finalizado: true)
+      for usuario_curso in UsuarioCurso.where(perfil: "Aluno")
+        usuario_curso.aprovado = usuario_curso.verifica_aprovacao
+        usuario_curso.save
+      end
+      redirect_to :controller => "cursos", :action => "descricao", id: current_usuario.curso_atual_id
+    end
+    
   end
 
   private

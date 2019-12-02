@@ -91,6 +91,8 @@ Rails.application.routes.draw do
   get 'notas' => 'cursos#notas'
   get 'enviar_convite' => 'cursos#enviar_convite'
   post 'enviar_convite' => 'cursos#enviar_convite'
+  
+  get 'finalizar_completamente_curso' => 'cursos#finalizar_completamente_curso'
 
   get 'material_texto' => 'materiais#texto'
   

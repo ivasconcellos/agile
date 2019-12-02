@@ -48,6 +48,7 @@ class Ability
         can :cancelar_inscricao, UsuarioCurso
         can :manage, Recompensa
         can :read, Notificacao
+        can :finalizar_completamente_curso, Curso
       elsif !usuario_curso.nil? and usuario_curso.perfil == 'Aluno'
         can :read, Modulo
         can :read, Curso
