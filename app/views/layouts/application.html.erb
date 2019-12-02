@@ -106,7 +106,7 @@
             <% end %>
                   <ul class="list-unstyled components">  
 
-                    <% if admin_signed_in? %>
+                    <% if admin_signed_in? and !usuario_signed_in? %>
                       <%= render 'controle/gestor' %>
                     <% end %>
 
