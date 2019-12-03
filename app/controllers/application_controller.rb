@@ -22,7 +22,9 @@ end
   before_action :notificacao, if: :current_usuario
     def notificacao
       @perfil = UsuarioCurso.where(usuario_id: current_usuario, curso_id: current_usuario.curso_atual).first
-      @notificacao = Notificacao.where(usuario_curso_id: @perfil.id).last
+      if @perfil
+        @notificacao = Notificacao.where(usuario_curso_id: @perfil.id).last
+      end
     end  
   layout :layout_by_resource
 
