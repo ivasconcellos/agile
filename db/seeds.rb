@@ -110,7 +110,7 @@ Admin.create! nome: 'admin', email: 'admin@agile.br', password: '12345678'
 @avatar_guerreiro2.imagem.attach(io: File.open('app/assets/images/avatares/guerreiro2.png'), filename: 'estrela.jpg')
 @avatar_guerreiro2.save!
 
-@avatar_guerreiro3 = Avatar.new grupo_id: 3, nome: 'Guerreirao', perfil: 'Aluno', ativo: true
+@avatar_guerreiro3 = Avatar.new grupo_id: 3, nome: 'Guerreiro', perfil: 'Aluno', ativo: true
 @avatar_guerreiro3.imagem.attach(io: File.open('app/assets/images/avatares/guerreiro3.png'), filename: 'estrela.jpg')
 @avatar_guerreiro3.save!
 
@@ -157,23 +157,23 @@ Admin.create! nome: 'admin', email: 'admin@agile.br', password: '12345678'
 @nivel6.save!
 
 ##Badges
-@badge1 = Badge.new nome: 'Aprendiz', ativo: true, pontos_requeridos: 0
+@badge1 = Badge.new nome: 'Aprendiz', ativo: true, pontos_requeridos: 10
 @badge1.imagem.attach(io: File.open('app/assets/images/badges/badge1.png'), filename: 'estrela.jpg')
 @badge1.save!
 
-@badge2 = Badge.new nome: 'Aspirante', ativo: true, pontos_requeridos: 50
+@badge2 = Badge.new nome: 'Aspirante', ativo: true, pontos_requeridos: 60
 @badge2.imagem.attach(io: File.open('app/assets/images/badges/badge2.png'), filename: 'estrela.jpg')
 @badge2.save!
 
-@badge3 = Badge.new nome: 'Especialista', ativo: true, pontos_requeridos: 100
+@badge3 = Badge.new nome: 'Especialista', ativo: true, pontos_requeridos: 110
 @badge3.imagem.attach(io: File.open('app/assets/images/badges/badge3.png'), filename: 'estrela.jpg')
 @badge3.save!
 
-@badge4 = Badge.new nome: 'Perito', ativo: true, pontos_requeridos: 150
+@badge4 = Badge.new nome: 'Perito', ativo: true, pontos_requeridos: 160
 @badge4.imagem.attach(io: File.open('app/assets/images/badges/badge4.png'), filename: 'estrela.jpg')
 @badge4.save!
 
-@badge5 = Badge.new nome: 'Mestre', ativo: true, pontos_requeridos: 200
+@badge5 = Badge.new nome: 'Mestre', ativo: true, pontos_requeridos: 210
 @badge5.imagem.attach(io: File.open('app/assets/images/badges/badge5.png'), filename: 'estrela.jpg')
 @badge5.save!
 
