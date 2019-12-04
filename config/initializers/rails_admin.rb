@@ -53,4 +53,9 @@ RailsAdmin.config do |config|
       enum { Usuario::PERFIL }
     end
   end
+
+  config.model 'Admin' do
+    exclude_fields :id, :reset_password_sent_at, :remember_created_at, :sign_in_count,
+                   :current_sign_in_at, :last_sign_in_at, :last_sign_in_ip, :current_sign_in_ip
+  end
 end
