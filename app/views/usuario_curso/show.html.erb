@@ -77,7 +77,9 @@
       </div>    
    
     </div>
-    <div class="alert alert-success">Só é possível alterar o Avatar se você fizer parte de uma Equipe!</div>
+    <% if !@usuario_curso.avatar %> 
+      <div class="alert alert-success">Só é possível alterar o Avatar se você fizer parte de uma Equipe!</div>
+    <% end %>
     </div>
 
   <% if @usuario_curso.perfil != 'Professor' %>

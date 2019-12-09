@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Admin.create! nome: 'admin', email: 'admin@agile.br', password: '12345678'
+Admin.create! nome: 'admin', email: 'admin@agile.br', password: '12345678', password_confirmation: '12345678'
 
 
 #Curso.create! nome: 'Curso de Lógica de Programação', descricao: 'Descrição do curso.', data_inicio: '01/01/2019', hora_inicio: '08:00:00', data_termino: '01/01/2020', hora_termino: '23:59:59', codigo_acesso: '12345678', ativo: true, publico: true, tema_curso_id: 1, proprietario_id: 2
