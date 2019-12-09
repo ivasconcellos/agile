@@ -22,14 +22,14 @@
                 <td><%= sala_chat.usuario_curso.grupo_curso.nome_curso %></td>
               <% end %>
               <td><%= sala_chat.ativo? ? 'Sim' : 'Não' %></td>
-              <% if @perfil.perfil == 'Professor' %>
+              <% if sala_chat.usuario_curso.perfil == 'Professor' or @perfil.perfil == "Professor" %>
                 <td><%= link_to 'Acessar', sala_chat, {class: 'btn btn-sm btn-success'} %></td>
-              <% elsif @perfil.grupo_curso and sala_chat.usuario_curso.grupo_curso.nome_curso == @perfil.grupo_curso.nome_curso %>
+              <% elsif sala_chat.usuario_curso.grupo_curso.nome_curso == @perfil.grupo_curso.nome_curso %>
                 <td><%= link_to 'Acessar', sala_chat, {class: 'btn btn-sm btn-success'} %></td>
               <% else %>
                 <td>Restrito à Equipe</td>
               <% end %>
-              <% if can? :edit, SalaChat and @perfil.id == sala_chat.usuario_curso.id %>
+              <% if can? :edit, SalaChat and @perfil.id == sala_chat.usuario_curso.id or @perfil.perfil == "Professor" %>
                 <td><%= link_to 'Atualizar', edit_sala_chat_path(sala_chat) %></td>
               <% end %>
               <% if can? :destroy, SalaChat %>
