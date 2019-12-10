@@ -46,14 +46,12 @@
         <thead>
           <tr>
             <th class="text-center">Nome</th>
-            <th class="text-center">Nota</th>
           </tr>
         </thead>
         <tbody>
           <% @alunos_sem_envio.each do |tarefa_aluno| %>
             <tr>
-              <td><%= tarefa_aluno.nickname %></td>
-              <td>-</td>            
+              <td><%= tarefa_aluno.nickname %></td>       
             </tr>
           <% end %>
         </tbody>
