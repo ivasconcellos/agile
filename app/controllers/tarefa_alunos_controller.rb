@@ -8,8 +8,11 @@ class TarefaAlunosController < ApplicationController
     authorize! :new, Tarefa
     @tarefa = Tarefa.find(params[:id])
     @tarefas_alunos = TarefaAluno.where(tarefa_id: @tarefa)
-    @alunos_sem_envio = UsuarioCurso.joins(:tarefa_aluno).where.not("usuario_curso.perfil = ? and
-      tarefa_alunos.tarefa_id = ?", "Aluno", @tarefa)
+    @alunos_tarefa = UsuarioCurso.left_joins(:tarefa_aluno).where("tarefa_alunos.tarefa_id =?", @tarefa).pluck(:id)
+    if @alunos_tarefa.none?
+        @alunos_tarefa = 0
+    end
+    @alunos_sem_envio = UsuarioCurso.where("id not in (?) and perfil =?", @alunos_tarefa, "Aluno")
   end
 
   # GET /tarefa_alunos/1
