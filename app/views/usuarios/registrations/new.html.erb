@@ -25,7 +25,7 @@
         <% end %>
 
         <div class="form-group">
-          <label for="inputNome">Nome</label>
+          <label for="inputNome">Nome completo</label>
           <%= f.text_field :nome, autofocus: true, class: "form-control" %>    
         </div>
 
@@ -52,7 +52,7 @@
         <div class="form-group">
           <label for="inputSenha">Senha</label>
           <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> caracteres no mínimo)</em>
+            <em>(No mínimo <%= @minimum_password_length %> caracteres)</em>
           <% end %><br />
           <%= f.password_field :password, autocomplete: "off", class: "form-control" %>    
         </div>
@@ -64,7 +64,7 @@
 
         <div class="form-group row"> 
           <div class="col-md-12 ">
-            <%= link_to 'Termo de Uso', termo_uso_path , remote: true, data: { target: '#uploadpost', toggle: 'modal' }, class: 'nav-link text-danger text-center'%>
+            <%= link_to 'Clique aqui para ler o Termo de Uso', termo_uso_path , remote: true, data: { target: '#uploadpost', toggle: 'modal' }, class: 'nav-link text-danger text-center'%>
             <div class="form-check">
               <%= f.check_box :termo_compromisso, class: "form-check-input" %> <b>Declaro que li e concordo com o Termo de Uso
             </div>
@@ -79,6 +79,7 @@
           <%= render "usuarios/shared/links" %>
         </div>
       <% end %>
+
     </div> 
 
   </div>

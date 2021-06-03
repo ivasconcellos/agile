@@ -139,6 +139,7 @@
                 <% end %>
                 <%= yield %>
                 <br>
+                <br>
               </div>
             <% else %>
 
@@ -159,6 +160,7 @@
                       <p class="alert alert-danger"><%= alert %></p>
                     <% end %>
                     <%= yield %>
+                    <br>
                     <br>
                   <% end %>
                 <% else %>
@@ -181,7 +183,9 @@
           </div> <!-- /#row -->
         <%else%>
           <div class="row"> 
-              <%= yield %>
+            <%= yield %>
+            <br>
+            <br>
           </div>
         <% end %>
       </div>
