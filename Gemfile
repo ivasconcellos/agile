@@ -74,6 +74,9 @@ gem "paperclip", "~> 6.0.0"
 gem 'ckeditor','4.2.4'
 gem 'rails-i18n'
 
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
 gem 'redis'
 
 gem 'image_processing'
@@ -85,8 +88,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'active_storage_validations'
 
 gem 'rapidfire'
-gem 'jquery-rails'
-gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
+
 gem 'acts_as_list'
 
 gem 'cpf_utils'
