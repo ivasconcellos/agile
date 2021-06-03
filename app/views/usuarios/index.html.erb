@@ -19,9 +19,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Perfil</span>
             </div>
-            <span class="input-group-text borda">
-              <%= f.select :perfil_cont,  options_from_collection_for_select(Usuario.all.to_a.uniq{ |o| o.perfil}, "perfil", "perfil", params[:perfil]), :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
-            </span>
+            <%= f.select :perfil_cont,  options_from_collection_for_select(Usuario.all.to_a.uniq{ |o| o.perfil}, "perfil", "perfil", params[:perfil]), :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
           </div>
         </div>
 
@@ -30,9 +28,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Sexo</span>
             </div>
-            <span class="input-group-text borda">
-              <%= f.select :sexo_cont,  options_from_collection_for_select(Usuario.all.to_a.uniq{ |o| o.sexo}, "sexo", "sexo", params[:sexo]), :include_blank => "Todos", :class => 'form-control' %>  
-            </span>
+            <%= f.select :sexo_cont,  options_from_collection_for_select(Usuario.all.to_a.uniq{ |o| o.sexo}, "sexo", "sexo", params[:sexo]), :include_blank => "Todos", :class => 'form-control' %> 
           </div>
         </div>
       </div>     
@@ -44,7 +40,7 @@
 
   <div class="table-responsive">
     <table class="table table-striped table-sm">
-      <thead>
+      <thead class="thead-dark">
         <tr>
           <th class="text-center">Nome</th>
           <th class="text-center">Perfil</th>

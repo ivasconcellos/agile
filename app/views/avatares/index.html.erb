@@ -18,25 +18,21 @@
           </div>
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Grupo</span>
             </div>
-            <span class="input-group-text borda">
-              <%= f.select :grupo_id_eq,  options_from_collection_for_select(Grupo.all, "id", "nome", params[:grupo_id]), :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
-            </span>
+            <%= f.select :grupo_id_eq,  options_from_collection_for_select(Grupo.all, "id", "nome", params[:grupo_id]), :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
           </div>
         </div>
 
-        <div class="col-lg-2">
+        <div class="col-lg-3">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Ativo</span>
             </div>
-            <span class="input-group-text borda">
-              <%= f.select :ativo_eq,   [['Sim', true], ['Não', false]], :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
-            </span>
+            <%= f.select :ativo_eq,   [['Sim', true], ['Não', false]], :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
           </div>
         </div>
       </div>     
@@ -50,7 +46,7 @@
   <% if !@avatares.empty? %>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
-        <thead>
+        <thead class="thead-dark">
           <tr>
             <th class="text-center">Nome</th>
             <th class="text-center">Grupo</th>
@@ -67,7 +63,7 @@
               <td><%= avatar.grupo.nome %></td>
               <td><%= avatar.perfil %></td>
               <td><%= avatar.ativo? ? 'Sim' : 'Não' %></td>
-              <td><%= image_tag avatar.imagem.variant(resize: "100x100"), class: "img-responsive" %></td>
+              <td><%= image_tag avatar.imagem.variant(resize: "150x150"), class: "img-responsive" %></td>
               <td><%= link_to 'Visualizar', avatar %></td>
               <td>
                 <% if can? :edit, Avatar %>

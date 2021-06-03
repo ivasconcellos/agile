@@ -1,22 +1,36 @@
 <li class="nav-item">
   <br>
-  <h4 class="agile"><i class="fa fa-wrench fa-lg "></i>Gerenciamento</h4>
+  
+  <h4 class="agile"><a href="/"><i class="fa fa-wrench fa-lg "></i>Gerenciamento</a></h4>
 </li>
 
-<li class="nav-item nav-sidebar">
-	<%= link_to " Cursos", cursos_path, {class: "fa fa-university fa-sm nav-link text-light"} %>
-</li>
 
 <li class="nav-item nav-sidebar">
-	<%= link_to " Temas dos Cursos", tema_cursos_path, {class: "fa fa-paint-brush fa-sm nav-link text-light"} %>
+	<a class="nav-link collapsed text-light" href="#" data-toggle="collapse" data-target="#collapse1"
+		aria-expanded="true" aria-controls="collapse1">
+		
+		Cursos <span class="fa fa-plus-circle fa-sm"></span>
+	</a>
+	<div id="collapse1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+		<div class="py-2 collapse-inner rounded bg-primary">
+			<p class="menu"> <%= link_to " Cursos", cursos_path, {class: "fa fa-university fa-sm nav-link text-light"} %></p>
+			<p class="menu"> <%= link_to " Temas", tema_cursos_path, {class: "fa fa-paint-brush fa-sm nav-link text-light"} %></p>
+		</div>
+	</div>
 </li>
 
-<li class="nav-item nav-sidebar">
-	<%= link_to " Badges", badges_path, {class: "fa fa-trophy fa-sm nav-link text-light"} %>
-</li>
 
 <li class="nav-item nav-sidebar">
-	<%= link_to " Badges/Alunos", badges_alunos_path, {class: "fa fa-gear fa-sm nav-link text-light"} %>
+	<a class="nav-link collapsed text-light" href="#" data-toggle="collapse" data-target="#collapse2"
+		aria-expanded="true" aria-controls="collapse2">
+		Badges <span class="fa fa-plus-circle fa-sm"></span>
+	</a>
+	<div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+		<div class="py-2 collapse-inner rounded bg-primary">
+			<p class="menu"><%= link_to " Badges", badges_path, {class: "fa fa-trophy fa-sm nav-link text-light"} %></p>
+			<p class="menu"><%= link_to " Badges/Alunos", badges_alunos_path, {class: "fa fa-gear fa-sm nav-link text-light"} %></p>
+		</div>
+	</div>
 </li>
 
 <li class="nav-item nav-sidebar">
@@ -32,11 +46,17 @@
 </li>
 
 <li class="nav-item nav-sidebar">
-	<%= link_to " Artefatos", artefatos_path, {class: "fa fa-beer fa-sm nav-link text-light"} %>
-</li>
-
-<li class="nav-item nav-sidebar">
-	<%= link_to " Artefatos/Alunos", artefatos_alunos_path, {class: "fa fa-cog fa-sm nav-link text-light"} %>
+	<a class="nav-link collapsed text-light" href="#" data-toggle="collapse" data-target="#collapse3"
+		aria-expanded="true" aria-controls="collapse3">
+		
+		Artefatos <span class="fa fa-plus-circle fa-sm"></span>
+	</a>
+	<div id="collapse3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+		<div class="py-2 collapse-inner rounded bg-primary">
+			<p class="menu"><%= link_to " Artefatos", artefatos_path, {class: "fa fa-beer fa-sm nav-link text-light "} %></p>
+			<p class="menu"><%= link_to " Artefatos/Alunos", artefatos_alunos_path, {class: "fa fa-cog fa-sm nav-link text-light"} %></p>
+		</div>
+	</div>
 </li>
 
 <li class="nav-item nav-sidebar">
@@ -50,3 +70,4 @@
 <li class="nav-item nav-sidebar">
   <%= link_to " Acessos", ahoy_visits_path, {class: "fa fa-eye fa-sm nav-link text-light"} %>
 </li>
+

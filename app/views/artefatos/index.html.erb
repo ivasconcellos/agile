@@ -23,9 +23,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Ativo</span>
             </div>
-            <span class="input-group-text borda">
-              <%= f.select :ativo_eq,   [['Sim', true], ['Não', false]], :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
-            </span>
+            <%= f.select :ativo_eq,   [['Sim', true], ['Não', false]], :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
           </div>
         </div>
       </div>     
@@ -39,7 +37,7 @@
   <% if !@artefatos.empty? %>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
-        <thead>
+        <thead class="thead-dark">
           <tr>
             <th class="text-center">Nome</th>
             <th class="text-center">Pontos requeridos</th>
@@ -54,7 +52,7 @@
               <td><%= artefato.nome %></td>
               <td><%= artefato.pontos_requeridos %></td>
               <td><%= artefato.ativo? ? 'Sim' : 'Não' %></td>
-              <td><%= image_tag artefato.imagem.variant(resize: "100x100"), class: "img-responsive" %></td>
+              <td><%= image_tag artefato.imagem.variant(resize: "150x150"), class: "img-responsive" %></td>
               <td><%= link_to 'Visualizar', artefato %></td>
               <td>
                 <% if can? :edit, Artefato %>

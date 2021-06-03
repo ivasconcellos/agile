@@ -19,9 +19,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Ativo</span>
             </div>
-            <span class="input-group-text borda">
-              <%= f.select :ativo_eq,   [['Sim', true], ['Não', false]], :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
-            </span>
+            <%= f.select :ativo_eq,   [['Sim', true], ['Não', false]], :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
           </div>
         </div>
 
@@ -30,9 +28,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Público</span>
             </div>
-            <span class="input-group-text borda">
-              <%= f.select :publico_eq,   [['Sim', true], ['Não', false]], :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
-            </span>
+            <%= f.select :publico_eq,   [['Sim', true], ['Não', false]], :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
           </div>
         </div>
       </div>     
@@ -46,7 +42,7 @@
   <% if !@cursos.empty? %>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
-        <thead>
+        <thead class="thead-dark">
           <tr>
             <th class="text-center">Nome</th>
             <th class="text-center">Ativo</th>

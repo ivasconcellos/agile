@@ -6,7 +6,7 @@
 body {
   height: 100%;
   background-color: #3361e3;
-  color: #0d2fa4;
+  color: #1c0f71;
 }
 
 .navbar-expand, .navbar-expand-lg{
@@ -92,7 +92,7 @@ body {
 }
 
 label{
-  color: blue;
+  color: #1c0f71;
   font-weight: bold;
 }
 
@@ -252,4 +252,12 @@ td{
 
 .agile a{
   color: #FFFFFF;
+}
+
+.list-group-item{
+  background-color: #dfeef0;
+}
+
+.table td{
+  vertical-align: middle;
 }

@@ -9,12 +9,14 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-   <% %w(bootstrap.min sidebar template_cursos font-awesome.min application select2).each do |asset| %>
+   <% %w(bootstrap.min sidebar template_cursos font-awesome.min select2 application).each do |asset| %>
         <%= stylesheet_link_tag asset %>
     <% end %>
 
-    <%= javascript_include_tag 'application', "data-turbolinks-track" => "reload" %>
+    <%= javascript_include_tag 'application'%>
+    
     <%= javascript_include_tag 'jquery-ui.min'  %>
+
     <%= javascript_include_tag 'bootstrap.min'  %>
     <%= javascript_include_tag 'jquery.maskedinput.min'  %>
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
@@ -59,7 +61,24 @@
               </li>
             <% end %>
             <% if admin_signed_in? %>
-              <%= link_to destroy_admin_session_path, :method => :delete, class: 'nav-link' do %>Sair<% end %>
+              <li class="nav-item dropdown no-arrow">
+                  <a class="nav-link dropdown-toggle text-light" href="#" id="userDropdown" role="button"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="mr-2 d-none d-lg-inline text-light"><%= current_admin.nome %></span>
+                  </a>
+                  <!-- Dropdown - User Information -->
+                  <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in bg-primary"
+                      aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="#">
+                      <p class="menu"><%= link_to "Atualizar dados", destroy_admin_session_path, :method => :delete, class: 'fa fa-pencil-square-o fa-sm text-light' %></p>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                      
+                      <p class="menu"><%= link_to "Sair", destroy_admin_session_path, :method => :delete, class: 'fa fa-sign-out fa-sm text-light' %></p>
+                    </a>
+                  </div>
+              </li>
             <% end %>
             
           </ul>
@@ -104,8 +123,8 @@
                   <nav id="sidebar" class="sidebar navbar-nav">
                     
             <% end %>
-                  <ul class="list-unstyled components">  
-
+                  
+                  <ul class="navbar-nav bg-gradient-primary sidebar accordion" id="accordionSidebar">
                     <% if admin_signed_in? and !usuario_signed_in? %>
                       <%= render 'controle/gestor' %>
                     <% end %>
@@ -123,8 +142,8 @@
                     <% if current_usuario and @perfil and @perfil.perfil == 'Professor' %>
                       <%= render 'controle/professor' %>
                     <% end %>
-
                   </ul>
+                  
                 </nav>
               <!-- /#sidebar-wrapper -->
             </div>
