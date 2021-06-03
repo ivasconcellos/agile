@@ -10,14 +10,15 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery2
+
+//= require jquery
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery-ui/widget
 //= require jquery-ui/sortable
 //= require cable
-//= require activestorage
 //= require turbolinks
+//= require activestorage
 //= require ckeditor/init
 //= require bootstrap-datepicker
 //= require ahoy
