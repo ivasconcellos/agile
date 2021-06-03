@@ -64,6 +64,12 @@ body {
   text-align: center;
 }
 
+.agile-texto{
+  padding: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
 .card-header{
   text-align: center;
   font-weight: bold;
@@ -86,9 +92,9 @@ body {
 
 .btn{
   margin-bottom: 10px;
+  min-width: 150px;
+  font-weight: bold;
 }
-
-
 
 .list-group{
   margin-bottom: 10px;
