@@ -13,14 +13,13 @@
         <%= stylesheet_link_tag asset %>
     <% end %>
 
-    <%= javascript_include_tag 'application'%>
-    
-    <%= javascript_include_tag 'jquery-ui.min'  %>
+    <% %w(jquery-3.3.1.min bootstrap.min application).each do |asset| %>
+      <%= javascript_include_tag asset %>
+    <% end %>
 
-    <%= javascript_include_tag 'bootstrap.min'  %>
     <%= javascript_include_tag 'jquery.maskedinput.min'  %>
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-
+    
   </head>
   <% if @perfil %>
     <body id="page-top" style=" background-image: url(<%= rails_blob_url(@current_usuario.curso_atual.tema_curso.imagem) %>); background-repeat: no-repeat; background-size: cover; color: <%= @current_usuario.curso_atual.tema_curso.cor_texto %>">
@@ -53,32 +52,43 @@
               <a class="nav-link" href="/sobre">Sobre</a>
             </li>
             <% if usuario_signed_in? %> 
+
               <li class="nav-item">
-                <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'nav-link' do %>Atualizar Dados<% end %>
+                <a class="nav-link" href="/">Página Inicial</a>
               </li>
-              <li class="nav-item">
-                <%= link_to destroy_usuario_session_path, :method => :delete, class: 'nav-link' do %>Sair<% end %>
+
+              <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle text-light" href="#" id="userDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline text-light"><%= current_usuario.nome %></span>
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right bg-primary"
+                    aria-labelledby="userDropdown">
+                  <%= link_to "Atualizar dados", edit_usuario_registration_path, @id => :usuario_id, class: 'fa fa-pencil-square-o text-light dropdown-item font-weight-bold' %>
+                
+                  <div class="dropdown-divider"></div>
+                  <%= link_to "Sair", destroy_usuario_session_path, :method => :delete, class: 'dropdown-item fa fa-sign-out text-light font-weight-bold ' %></p>
+                  
+                </div>
               </li>
+
             <% end %>
             <% if admin_signed_in? %>
               <li class="nav-item dropdown no-arrow">
-                  <a class="nav-link dropdown-toggle text-light" href="#" id="userDropdown" role="button"
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span class="mr-2 d-none d-lg-inline text-light"><%= current_admin.nome %></span>
-                  </a>
-                  <!-- Dropdown - User Information -->
-                  <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in bg-primary"
-                      aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#">
-                      <p class="menu"><%= link_to "Atualizar dados", destroy_admin_session_path, :method => :delete, class: 'fa fa-pencil-square-o fa-sm text-light' %></p>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                      
-                      <p class="menu"><%= link_to "Sair", destroy_admin_session_path, :method => :delete, class: 'fa fa-sign-out fa-sm text-light' %></p>
-                    </a>
-                  </div>
+                <a class="nav-link dropdown-toggle text-light" href="#" id="userDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline text-light"><%= current_admin.nome %></span>
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right bg-primary"
+                    aria-labelledby="userDropdown">
+                  
+                  <%= link_to "Sair", destroy_admin_session_path, :method => :delete, class: 'dropdown-item fa fa-sign-out text-light font-weight-bold ' %></p>
+                  
+                </div>
               </li>
+
             <% end %>
             
           </ul>

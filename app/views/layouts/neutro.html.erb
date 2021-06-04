@@ -14,9 +14,9 @@
         <%= stylesheet_link_tag asset %>
     <% end %>
 
-    <%= javascript_include_tag 'application', "data-turbolinks-track" => "reload" %>
-    <%= javascript_include_tag 'jquery-ui.min'  %>
-    <%= javascript_include_tag 'bootstrap.min'  %>
+    <% %w(jquery-3.3.1.min bootstrap.min application).each do |asset| %>
+      <%= javascript_include_tag asset %>
+    <% end %>
     <%= javascript_include_tag 'jquery.maskedinput.min'  %>
 
   </head>
@@ -48,12 +48,21 @@
                 <a class="nav-link" href="/sobre">Sobre</a>
               </li>
               <% if usuario_signed_in? %>
-                <li class="nav-item">
-                  <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'nav-link' do %>Atualizar Dados<% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to destroy_usuario_session_path, :method => :delete, class: 'nav-link' do %>Sair<% end %>
-                </li>              
+                <li class="nav-item dropdown no-arrow">
+                  <a class="nav-link dropdown-toggle text-light" href="#" id="userDropdown" role="button"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="mr-2 d-none d-lg-inline text-light"><%= current_usuario.nome %></span>
+                  </a>
+                  <!-- Dropdown - User Information -->
+                  <div class="dropdown-menu dropdown-menu-right bg-primary"
+                      aria-labelledby="userDropdown">
+                    <%= link_to "Atualizar dados", edit_usuario_registration_path, @id => :usuario_id, class: 'fa fa-pencil-square-o text-light dropdown-item font-weight-bold' %>
+                  
+                    <div class="dropdown-divider"></div>
+                    <%= link_to "Sair", destroy_usuario_session_path, :method => :delete, class: 'dropdown-item fa fa-sign-out text-light font-weight-bold ' %></p>
+                    
+                  </div>
+                </li>          
               <% end %>
               <% if admin_signed_in? %>
                 <%= link_to destroy_admin_session_path, :method => :delete, class: 'nav-link' do %>Sair<% end %>
@@ -63,19 +72,19 @@
         </nav>
 
         <div class="container-fluid">     
-            <div class="row">
-              <div class="col-md-12 col-sm-12">
-                  <% if notice %>
-                    <p class="alert alert-success"><%= notice %></p>
-                  <% end %>
-                  <% if alert %>
-                    <p class="alert alert-danger"><%= alert %></p>
-                  <% end %>
-                  <%= yield %>
-                  <br>
-                  <br>
-                </div>              
-            </div> <!-- /#row -->
+          <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <% if notice %>
+                  <p class="alert alert-success"><%= notice %></p>
+                <% end %>
+                <% if alert %>
+                  <p class="alert alert-danger"><%= alert %></p>
+                <% end %>
+                <%= yield %>
+                <br>
+                <br>
+              </div>              
+          </div> <!-- /#row -->
 
         </div>
         <br>
