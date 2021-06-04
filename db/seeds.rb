@@ -21,19 +21,19 @@ Admin.create! nome: 'admin', email: 'admin@agile.br', password: '12345678', pass
 @tema_curso.save!
 
 #Grupos
-@grupo1 = Grupo.new id: 1, nome: 'Magos', ativo: true, perfil: 'Aluno'
+@grupo1 = Grupo.new nome: 'Magos', ativo: true, perfil: 'Aluno'
 @grupo1.imagem.attach(io: File.open('app/assets/images/grupos/grupo_mago.jpg'), filename: 'estrela.jpg')
 @grupo1.save!
 
-@grupo2 = Grupo.new id: 2, nome: 'Elfos', ativo: true, perfil: 'Aluno'
+@grupo2 = Grupo.new nome: 'Elfos', ativo: true, perfil: 'Aluno'
 @grupo2.imagem.attach(io: File.open('app/assets/images/grupos/grupo_elfo.jpg'), filename: 'estrela.jpg')
 @grupo2.save!
 
-@grupo3 = Grupo.new id: 3, nome: 'Guerreiros', ativo: true, perfil: 'Aluno'
+@grupo3 = Grupo.new nome: 'Guerreiros', ativo: true, perfil: 'Aluno'
 @grupo3.imagem.attach(io: File.open('app/assets/images/grupos/grupo_guerreiro.jpg'), filename: 'estrela.jpg')
 @grupo3.save!
 
-@grupo4 = Grupo.new id: 4, nome: 'Oráculos', ativo: true, perfil: 'Professor'
+@grupo4 = Grupo.new nome: 'Oráculos', ativo: true, perfil: 'Professor'
 @grupo4.imagem.attach(io: File.open('app/assets/images/grupos/grupo_oraculo.jpg'), filename: 'estrela.jpg')
 @grupo4.save!
 
@@ -132,27 +132,27 @@ Admin.create! nome: 'admin', email: 'admin@agile.br', password: '12345678', pass
 @avatar_oraculo2.save!
 
 #Níveis
-@nivel1 = Nivel.new id: 1, nome: 'Nível 1', pontos_requeridos: 0
+@nivel1 = Nivel.new nome: 'Nível 1', pontos_requeridos: 0
 @nivel1.imagem.attach(io: File.open('app/assets/images/niveis/nivel1.png'), filename: 'estrela.jpg')
 @nivel1.save!
 
-@nivel2 = Nivel.new id: 2, nome: 'Nível 2', pontos_requeridos: 50
+@nivel2 = Nivel.new nome: 'Nível 2', pontos_requeridos: 50
 @nivel2.imagem.attach(io: File.open('app/assets/images/niveis/nivel2.png'), filename: 'estrela.jpg')
 @nivel2.save!
 
-@nivel3 = Nivel.new id: 3, nome: 'Nível 3', pontos_requeridos: 100
+@nivel3 = Nivel.new nome: 'Nível 3', pontos_requeridos: 100
 @nivel3.imagem.attach(io: File.open('app/assets/images/niveis/nivel3.png'), filename: 'estrela.jpg')
 @nivel3.save!
 
-@nivel4 = Nivel.new id: 4, nome: 'Nível 4', pontos_requeridos: 150
+@nivel4 = Nivel.new nome: 'Nível 4', pontos_requeridos: 150
 @nivel4.imagem.attach(io: File.open('app/assets/images/niveis/nivel4.png'), filename: 'estrela.jpg')
 @nivel4.save!
 
-@nivel5 = Nivel.new id: 5, nome: 'Nível 5', pontos_requeridos: 200
+@nivel5 = Nivel.new nome: 'Nível 5', pontos_requeridos: 200
 @nivel5.imagem.attach(io: File.open('app/assets/images/niveis/nivel5.png'), filename: 'estrela.jpg')
 @nivel5.save!
 
-@nivel6 = Nivel.new id: 6, nome: 'Nível 6', pontos_requeridos: 250
+@nivel6 = Nivel.new nome: 'Nível 6', pontos_requeridos: 250
 @nivel6.imagem.attach(io: File.open('app/assets/images/niveis/nivel6.png'), filename: 'estrela.jpg')
 @nivel6.save!
 
