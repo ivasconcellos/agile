@@ -26,9 +26,9 @@
         <div class="col-lg-3">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">Sexo</span>
+              <span class="input-group-text" id="basic-addon1">CPF</span>
             </div>
-            <%= f.select :sexo_cont,  options_from_collection_for_select(Usuario.all.to_a.uniq{ |o| o.sexo}, "sexo", "sexo", params[:sexo]), :include_blank => "Todos", :class => 'form-control' %> 
+            <%= f.search_field :cpf_cont, id: "cpf", :class => 'form-control' %> 
           </div>
         </div>
       </div>     

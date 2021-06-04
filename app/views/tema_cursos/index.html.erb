@@ -48,10 +48,10 @@
             <tr>
               <td><%= tema_curso.nome %></td>
               <td class="text-center"><%= tema_curso.ativo? ? 'Sim' : 'Não' %></td>
-              <td class="text-center"><span style="color:<%= tema_curso.cor_titulo %>; font-size: 20px;">&#9632; </span></td>
-              <td class="text-center"><span style="color:<%= tema_curso.cor_texto %>; font-size: 20px;">&#9632; </span></td>
-              <td class="text-center"><span style="color:<%= tema_curso.cor_fundo %>;font-size: 20px">&#9632; </span></td>
-              <td class="text-center"><%= image_tag tema_curso.imagem.variant(resize: "100x100"), class: "img-responsive" %></td>
+              <td class="text-center"><span style="color:<%= tema_curso.cor_titulo %>; font-size: 40px;">&#9632; </span></td>
+              <td class="text-center"><span style="color:<%= tema_curso.cor_texto %>; font-size: 40px;">&#9632; </span></td>
+              <td class="text-center"><span style="color:<%= tema_curso.cor_fundo %>;font-size: 40px">&#9632; </span></td>
+              <td class="text-center"><%= image_tag tema_curso.imagem.variant(resize: "150x150"), class: "img-responsive" %></td>
               <% if can? :show, TemaCurso %>
                 <td><%= link_to 'Visualizar', tema_curso %></td>
               <% end %>
@@ -73,7 +73,7 @@
   
   <div class="card-footer text-muted">
     <% if can? :new, TemaCurso %>
-      <%= link_to 'Cadastrar Tema de Curso', new_tema_curso_path, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Cadastrar Tema do Curso', new_tema_curso_path, class: "btn btn-md btn-success" %>
     <% end %>
     <%= link_to 'Voltar', controle_gestor_path, class: "btn btn-md btn-secondary" %>
   </div>

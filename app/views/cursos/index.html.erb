@@ -76,11 +76,10 @@
   <br>
 
   <div class="card-footer text-muted">
-      <% if can? :new, Curso %>
-        <%= link_to 'Cadastrar Curso', new_curso_path, class: "btn btn-md btn-primary" %>
-      <% end %>
-      <%= link_to 'Voltar', controle_gestor_path, class: "btn btn-md btn-secondary" %>
+    <% if can? :new, Curso %>
+      <%= link_to 'Cadastrar Curso', new_curso_path, class: "btn btn-md btn-success" %>
+    <% end %>
+    <%= link_to 'Voltar', controle_gestor_path, class: "btn btn-md btn-secondary" %>
   </div>
-  
-  
+    
 </div>

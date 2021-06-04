@@ -60,7 +60,7 @@
           <% @avatares.each do |avatar| %>
             <tr>
               <td><%= avatar.nome %></td>
-              <td><%= avatar.grupo.nome %></td>
+              <td><%= link_to avatar.grupo.nome, avatar.grupo %></td>
               <td><%= avatar.perfil %></td>
               <td><%= avatar.ativo? ? 'Sim' : 'Não' %></td>
               <td><%= image_tag avatar.imagem.variant(resize: "150x150"), class: "img-responsive" %></td>

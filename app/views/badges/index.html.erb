@@ -28,7 +28,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Ativa</span>
             </div>
-            <%= f.select :ativo_eq,   [['Sim', true], ['Não', false]], :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
+            <%= f.select :ativo_eq, [['Sim', true], ['Não', false]], :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
           </div>
         </div>
       </div>     
@@ -80,7 +80,7 @@
 
   <div class="card-footer text-muted">
     <% if can? :new, Badge %>
-      <%= link_to 'Cadastrar Badge', new_badge_path, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Cadastrar Badge', new_badge_path, class: "btn btn-md btn-success" %>
     <% end %>
     <%= link_to 'Voltar', controle_gestor_path, class: "btn btn-md btn-secondary" %>
   </div>  

@@ -17,50 +17,50 @@
     <div class="form-group row">
       <label for="inputNome" class="col-md-3 col-form-label">Nome do curso*</label>
       <div class="col-md-9">
-        <%= form.text_field :nome, autofocus: true, class: "form-control" %>
+        <%= form.text_field :nome, autofocus: true, class: "form-control", required: true %>
       </div>
     </div>
 
     <div class="form-group row">
       <label for="inputDescricao" class="col-md-3 col-form-label">Descrição*</label>
       <div class="col-md-9">
-        <%= form.cktext_area :descricao, class: "form-control" %>
+        <%= form.cktext_area :descricao, class: "form-control", required: true %>
       </div>
     </div>
 
     <div class="form-group row">
       <label for="inputDataInicio" class="col-md-3 col-form-label">Data de início*</label>
       <div class="col-md-3">
-        <%= form.date_field :data_inicio, value: @curso.data_inicio.try(:strftime,"%Y-%m-%d"), class: "form-control" %>
+        <%= form.date_field :data_inicio, value: @curso.data_inicio.try(:strftime,"%Y-%m-%d"), class: "form-control", required: true %>
       </div>
 
       <label for="inputDataInicio" class="col-md-2 col-form-label">Hora de início*</label>
       <div class="col-md-2">
-        <%= form.time_field :hora_inicio, value: @curso.hora_inicio.try(:strftime,"%H:%M"), class: "form-control" %>
+        <%= form.time_field :hora_inicio, value: @curso.hora_inicio.try(:strftime,"%H:%M"), class: "form-control", required: true %>
       </div>
     </div>
 
     <div class="form-group row">
       <label for="inputDataTermino" class="col-md-3 col-form-label">Data de término*</label>
       <div class="col-md-3">
-        <%= form.date_field :data_termino, value: @curso.data_termino.try(:strftime,"%Y-%m-%d"), class: "form-control" %>
+        <%= form.date_field :data_termino, value: @curso.data_termino.try(:strftime,"%Y-%m-%d"), class: "form-control", required: true %>
       </div>
 
       <label for="inputDataInicio" class="col-md-2 col-form-label">Hora de término*</label>
       <div class="col-md-2">
-        <%= form.time_field :hora_termino, value: @curso.hora_termino.try(:strftime,"%H:%M"), class: "form-control" %>
+        <%= form.time_field :hora_termino, value: @curso.hora_termino.try(:strftime,"%H:%M"), class: "form-control", required: true %>
       </div>
     </div>
 
     <div class="form-group row">
       <label for="inputPontuacao" class="col-md-3 col-form-label">Carga horária (h)*</label>
       <div class="col-md-2">
-        <%= form.number_field :carga_horaria, class: "form-control" %>
+        <%= form.number_field :carga_horaria, class: "form-control", required: true %>
       </div>
 
       <label for="inputPontuacao" class="col-md-4 offset-md-1 col-form-label">Porcentagem para aprovação (%)*</label>
       <div class="col-md-2">
-        <%= form.number_field :porcentagem_aprovacao, class: "form-control" %>
+        <%= form.number_field :porcentagem_aprovacao, class: "form-control", required: true %>
       </div>
     </div>
 
@@ -74,7 +74,7 @@
     <div class="form-group row">
       <label for="inputDescricao" class="col-md-3 col-form-label">Público-alvo*</label>
       <div class="col-md-9">
-        <%= form.cktext_area :publico_alvo, class: "form-control" %>
+        <%= form.cktext_area :publico_alvo, class: "form-control", required: true %>
       </div>
     </div>
 

@@ -16,27 +16,26 @@
     <div class="form-group row">
       <label for="inputNome" class="col-md-3 col-form-label">Nome do tema*</label>
       <div class="col-md-9">
-        <%= form.text_field :nome, autofocus: true, class: "form-control" %>
+        <%= form.text_field :nome, autofocus: true, class: "form-control", required: true %>
       </div>
     </div>
 
     <div class="form-group row">
       <label for="inputCorTitulo" class="col-md-3 col-form-label">Cor do título*</label>
       <div class="col-md-1">
-        <%= form.color_field :cor_titulo, class: "form-control" %>
+        <%= form.color_field :cor_titulo, class: "form-control", required: true %>
       </div>
 
       <label for="inputCorTexto" class="col-md-2 offset-md-1 col-form-label">Cor do texto*</label>
       <div class="col-md-1">
-        <%= form.color_field :cor_texto, class: "form-control" %>
+        <%= form.color_field :cor_texto, class: "form-control", required: true %>
       </div>
 
       <label for="inputCorFundo" class="col-md-2 offset-md-1 col-form-label">Cor do fundo*</label>
       <div class="col-md-1">
-        <%= form.color_field :cor_fundo, class: "form-control" %>
+        <%= form.color_field :cor_fundo, class: "form-control", required: true %>
       </div>
     </div>
-
 
     <div class="form-group row">
       <label for="inputCorTexto" class="col-md-3 col-form-label">Imagem de fundo*</label>
