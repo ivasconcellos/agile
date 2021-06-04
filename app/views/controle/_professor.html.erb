@@ -7,11 +7,17 @@
         <p class="list-group-item text-center"><%= image_tag "missing.png", class: "img-responsive img-thumbnail" %></p>
       <% end %>  
       <p class="list-group-item text-center perfil"> <%= link_to @perfil.nickname, @perfil %></p>
-      <% if @perfil.grupo_curso %>
-        <p class="list-group-item text-center perfil"><label>Equipe:</label> <%= link_to @perfil.grupo_curso.nome_curso, equipe_url %></p>
+      
+      <% !if @perfil.curso.grupos_cursos %>
+        <p class="list-group-item text-center perfil text-danger">Não há equipe cadastrada!</p>
       <% else %>
-        <p class="list-group-item text-center perfil"><%= link_to 'Escolher Equipe', escolher_equipe_url(id: @perfil.id), class: 'text-danger' %></p>
+        <% if @perfil.grupo_curso %>
+          <p class="list-group-item text-center perfil"><label>Equipe:</label> <%= link_to @perfil.grupo_curso.nome_curso, equipe_url %></p>
+        <% else %>
+          <p class="list-group-item text-center perfil"><%= link_to 'Escolher Equipe', escolher_equipe_url(id: @perfil.id), class: 'text-danger' %></p>
+        <% end %>
       <% end %>
+      
     <% end %>      
   </div>
 

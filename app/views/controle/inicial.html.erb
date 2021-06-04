@@ -8,7 +8,7 @@
         		<% if current_admin  %>
 			  		<%= link_to 'Gerenciamento do AGILE', controle_gestor_path, class: "btn btn-md btn-danger" %>
 			  	<% else %>
-			  		<%= link_to 'Me inscrever em um curso', {controller: 'usuario_curso', action: 'busca_curso'}, class: "btn btn-md btn-info" %>
+			  		<%= link_to 'Me inscrever em um curso com código de acesso', {controller: 'usuario_curso', action: 'busca_curso'}, class: "btn btn-md btn-success" %>
 			  	<% end %>
 			</div>
 			<br>

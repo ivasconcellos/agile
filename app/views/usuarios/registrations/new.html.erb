@@ -1,8 +1,10 @@
 <div class="col-md-4 offset-md-4 col-sm-10 offset-sm-1">
 
-  <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content"> 
+      <div class="modal-content">
+        <%= render 'usuarios/termo_uso' %>
       </div>
     </div>
   </div>
@@ -64,7 +66,9 @@
 
         <div class="form-group row"> 
           <div class="col-md-12 ">
-            <%= link_to 'Clique aqui para ler o Termo de Uso', termo_uso_path , remote: true, data: { target: '#uploadpost', toggle: 'modal' }, class: 'nav-link text-danger text-center'%>
+            <a class="nav-link text-danger text-center" data-toggle="modal" data-target="#exampleModal">
+              Clique aqui para ler o Termo de Uso
+            </a>
             <div class="form-check">
               <%= f.check_box :termo_compromisso, class: "form-check-input" %> <b>Declaro que li e concordo com o Termo de Uso
             </div>

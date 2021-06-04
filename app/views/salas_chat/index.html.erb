@@ -4,7 +4,7 @@
   <% if !@salas_chat.empty? %>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
-        <thead>
+        <thead class="thead-dark">
           <tr>
             <th class="text-center">Nome</th>
             <th class="text-center">Equipe</th>
@@ -43,6 +43,7 @@
     <span> <%= will_paginate @salas_chat %></span>
   <% else %>
     <div class="alert alert-danger">Não há Salas de Chat cadastradas!</div>
+    <div class="alert alert-danger">Só é possível criar salas de chat se você fizer parte de uma Equipe!</div>
   <% end %>
 
   <br>

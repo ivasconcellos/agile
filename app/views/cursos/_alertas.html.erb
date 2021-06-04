@@ -1,0 +1,38 @@
+<% if @perfil.perfil == 'Professor' %>
+    <% @curso.alerta.each do |alerta| %>
+      <div class="alert alert-danger" role="alert">
+        <%= alerta %>
+      </div>
+    <% end %>
+<% end %>
+
+<% if !@conversas.empty? %>
+    <div class="alert alert-danger" role="alert">
+        Você possui mensagens não lidas! <%= link_to 'Verificar Mensagens!', conversas_path %>
+    </div>
+<% end %>
+
+<% if @perfil.perfil == 'Aluno' and @perfil.pode_finalizar_curso and @perfil.status_curso != 'Curso finalizado' %>
+    <div class="text-center">
+        <br>
+        <%= link_to 'Finalizar Curso', finalizar_curso_path(id: @perfil.id), class: "btn btn-md btn-success" %>
+    </div>
+<% end %>
+
+<% if @perfil.perfil == 'Aluno' %> 
+    <% if @perfil.aprovado == true %>
+        <div class="alert alert-success">
+            Curso concluído! Você foi aprovado com sucesso! <br>
+        </div>
+    <% end %>
+    <% if @perfil.aprovado == false %>
+        <div class="alert alert-danger">Curso concluído! Infelizmente você não conseguiu atingir a pontuação necessária para aprovação.</div>
+    <% end %>
+<% end %>
+
+<% if @perfil and @perfil.perfil == "Aluno" %>
+    <% if @perfil.curso.grupos_cursos and !@perfil.grupo_curso_id %>
+    <div class="alert alert-danger">Por favor, escolha sua Equipe clicando na opção "Escolher Equipe" no menu lateral esquerdo!</div>
+    <% end %>
+    <div class="alert alert-info"> Clique no Módulo para visualizar o conteúdo!</div>
+<% end %>

@@ -5,7 +5,7 @@
   <div class="table-responsive">
 
     <table class="table table-striped table-sm">
-      <thead>
+      <thead class="thead-dark">
         <tr>
           <th class="text-center">Aluno</th>
           <th class="text-center">Arquivo</th>
@@ -43,7 +43,7 @@
     <div class="table-responsive">
 
       <table class="table table-striped table-sm">
-        <thead>
+        <thead class="thead-dark">
           <tr>
             <th class="text-center">Nome</th>
           </tr>
@@ -51,7 +51,7 @@
         <tbody>
           <% @alunos_sem_envio.each do |tarefa_aluno| %>
             <tr>
-              <td><%= tarefa_aluno.nickname %></td>       
+              <td><%= tarefa_aluno.nickname %></td>      
             </tr>
           <% end %>
         </tbody>

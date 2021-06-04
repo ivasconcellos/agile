@@ -14,7 +14,7 @@
         <%= stylesheet_link_tag asset %>
     <% end %>
 
-    <% %w(jquery-3.3.1.min bootstrap.min application).each do |asset| %>
+    <% %w(jquery-3.3.1.min jquery-ui.min bootstrap.min application).each do |asset| %>
       <%= javascript_include_tag asset %>
     <% end %>
     <%= javascript_include_tag 'jquery.maskedinput.min'  %>
