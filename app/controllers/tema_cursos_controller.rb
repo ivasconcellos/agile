@@ -62,7 +62,6 @@ class TemaCursosController < ApplicationController
   # DELETE /temas_cursos/1.json
   def destroy
     authorize! :destroy, TemaCurso
-    
     respond_to do |format|
       if @tema_curso.destroy
         format.html { redirect_to temas_cursos_url, notice: 'Tema do curso excluído com sucesso!' }
