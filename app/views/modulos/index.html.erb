@@ -4,7 +4,7 @@
   <% if !@modulos.empty? %>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
-        <thead>
+        <thead class="thead-dark">
           <tr>
             <th class="text-center">Nome</th>
             <th class="text-center">Público</th>
@@ -37,7 +37,7 @@
 
   <% if can? :new, Modulo %>
     <div class="card-footer text-muted">
-      <%= link_to 'Cadastrar Módulo do Curso', new_modulo_path, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Cadastrar Módulo do Curso', new_modulo_path, class: "btn btn-md btn-success" %>
     </div>
   <% end %>
 

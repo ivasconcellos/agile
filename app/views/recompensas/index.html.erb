@@ -4,7 +4,7 @@
   <% if !@recompensas.empty? %>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
-        <thead>
+        <thead class="thead-dark">
           <tr>
             <th class="text-center">Posição no ranking</th>
             <th class="text-center">Nome</th>
@@ -38,7 +38,7 @@
 
   <% if can? :new, Recompensa %>
     <div class="card-footer text-muted">
-      <%= link_to 'Cadastrar Recompensa', {controller: 'recompensas', action: 'new'}, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Cadastrar Recompensa', {controller: 'recompensas', action: 'new'}, class: "btn btn-md btn-success" %>
     </div>
   <% end %>
 

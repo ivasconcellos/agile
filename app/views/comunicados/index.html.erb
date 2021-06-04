@@ -4,7 +4,7 @@
   <% if !@comunicados.empty? %>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
-        <thead>
+        <thead class="thead-dark">
           <tr>
             <th class="text-center">Assunto</th>
             <th class="text-center">Data de envio</th>
@@ -31,7 +31,7 @@
 
   <% if can? :new, Comunicado %>
     <div class="card-footer text-muted">
-      <%= link_to 'Enviar Comunicado', {controller: 'comunicados', action: 'new', curso_id: @perfil.curso_id}, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Enviar Comunicado', {controller: 'comunicados', action: 'new', curso_id: @perfil.curso_id}, class: "btn btn-md btn-success" %>
     </div>
   <% end %>
 
