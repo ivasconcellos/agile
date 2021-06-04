@@ -1,6 +1,7 @@
 class TemaCurso < ApplicationRecord
+	has_many :cursos
 	has_many :artefatos
-	
+		
 	has_one_attached :imagem
 	
 	validates_presence_of :nome, :cor_titulo, :cor_texto, :cor_fundo

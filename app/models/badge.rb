@@ -1,5 +1,4 @@
 class Badge < ApplicationRecord
-
 	has_many :badges_alunos, :dependent => :destroy, :dependent => :restrict_with_error
 	
 	has_one_attached :imagem
