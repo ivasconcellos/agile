@@ -1,57 +1,79 @@
-<li class="nav-item agile ">
-  <br>
-  <%= link_to @current_usuario.curso_atual, class: "nav-link text-center text-light icone-curso" do %><i class="fa fa-university fa-lg"> </i> Curso<% end %>
-</li>
+<nav id="sidebar" class="sidebar navbar-nav">
+  <div class="sidebar-header sidebar-avatar">
+    <% if @perfil.perfil == 'Professor' %>
+      <% if @perfil.avatar %>
+        <p class="list-group-item text-center"><%= image_tag @perfil.avatar.imagem, class: "img-fluid img-responsive" %></p>
+      <% else %>
+        <p class="list-group-item text-center"><%= image_tag "missing.png", class: "img-responsive img-thumbnail" %></p>
+      <% end %>  
+      <p class="list-group-item text-center perfil"> <%= link_to @perfil.nickname, @perfil %></p>
+      <% if @perfil.grupo_curso %>
+        <p class="list-group-item text-center perfil"><label>Equipe:</label> <%= link_to @perfil.grupo_curso.nome_curso, equipe_url %></p>
+      <% else %>
+        <p class="list-group-item text-center perfil"><%= link_to 'Escolher Equipe', escolher_equipe_url(id: @perfil.id), class: 'text-danger' %></p>
+      <% end %>
+      <p class="list-group-item text-center perfil"><label>Status:</label> <%= @perfil.status_curso %></p>
+    <% end %>      
+  </div>
 
+  <ul class="navbar-nav bg-gradient-primary sidebar accordion" id="accordionSidebar">
+  
+    <li class="nav-item agile ">
+      <br>
+      <%= link_to @current_usuario.curso_atual, class: "nav-link text-center text-light icone-curso" do %><i class="fa fa-university fa-lg"> </i> Curso<% end %>
+    </li>
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Detalhes do curso", descricao_path(id: @current_usuario.curso_atual), {class: "fa fa-info-circle fa-sm nav-link text-light"} %>
-</li>
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Informações", descricao_path(id: @current_usuario.curso_atual), {class: "fa fa-info-circle fa-sm nav-link text-light"} %>
+    </li>
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Meu perfil", @perfil, {class: "fa fa-user fa-sm nav-link text-light"} %>
-</li>
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Meu perfil", @perfil, {class: "fa fa-user fa-sm nav-link text-light"} %>
+    </li>
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Módulos", modulos_path, {class: "fa fa-cubes fa-sm nav-link text-light"} %>
-</li>
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Módulos", modulos_path, {class: "fa fa-cubes fa-sm nav-link text-light"} %>
+    </li>
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Chats", salas_chat_path, {class: "fa fa-comments fa-sm nav-link text-light"} %>
-</li>
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Chats", salas_chat_path, {class: "fa fa-comments fa-sm nav-link text-light"} %>
+    </li>
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Pesquisas", question_groups_path, {class: "fa fa-search fa-sm nav-link text-light"} %>
-</li>
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Pesquisas", question_groups_path, {class: "fa fa-search fa-sm nav-link text-light"} %>
+    </li>
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Mensagens", conversas_path, {class: "fa fa-commenting fa-sm nav-link text-light"} %>
-</li>       
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Mensagens", conversas_path, {class: "fa fa-commenting fa-sm nav-link text-light"} %>
+    </li>       
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Comunicados", comunicados_path, {class: "fa fa-bullhorn fa-sm nav-link text-light"} %>
-</li>  
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Comunicados", comunicados_path, {class: "fa fa-bullhorn fa-sm nav-link text-light"} %>
+    </li>  
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Eventos", eventos_path, {class: "fa fa-calendar fa-sm nav-link text-light"} %>
-</li> 
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Eventos", eventos_path, {class: "fa fa-calendar fa-sm nav-link text-light"} %>
+    </li> 
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Equipes", grupos_cursos_path, {class: "fa fa-user-circle fa-sm nav-link text-light"} %>
-</li>  
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Equipes", grupos_cursos_path, {class: "fa fa-user-circle fa-sm nav-link text-light"} %>
+    </li>  
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Recompensas", recompensas_path, {class: "fa fa-gift fa-sm nav-link text-light"} %>
-</li>  
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Recompensas", recompensas_path, {class: "fa fa-gift fa-sm nav-link text-light"} %>
+    </li>  
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Participantes", {controller: 'usuario_curso', action: 'index'}, class: "fa fa-users fa-sm nav-link text-light" %>
-</li>  
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Participantes", {controller: 'usuario_curso', action: 'index'}, class: "fa fa-users fa-sm nav-link text-light" %>
+    </li>  
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Notas da turma", notas_path, {class: "fa fa-graduation-cap fa-sm nav-link text-light"} %>
-</li>  
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Notas da turma", notas_path, {class: "fa fa-graduation-cap fa-sm nav-link text-light"} %>
+    </li>  
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Convidar", enviar_convite_path, {class: "fa fa-envelope fa-sm nav-link text-light"} %>
-</li>
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Convidar", enviar_convite_path, {class: "fa fa-envelope fa-sm nav-link text-light"} %>
+    </li>
+
+  </ul>
+</nav>

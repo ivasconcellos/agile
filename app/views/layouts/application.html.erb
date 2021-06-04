@@ -86,81 +86,24 @@
       </nav>
 
       <div class="container-fluid">
+        <div class="row">
+          <% if admin_signed_in? %>
+            <%= render 'controle/gestor' %>
+          <% end %>
 
-        <% if usuario_signed_in? or admin_signed_in? %>
-          <div class="row">
+          <% if usuario_signed_in? %>
+            
             <% if @perfil %>
               <div class="col-md-2 col-sm-2" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
-              <!-- Sidebar -->
-              
-                <nav id="sidebar" class="sidebar navbar-nav" >
-                  <nav id="sidebar" class="sidebar navbar-nav">
-                    <div class="sidebar-header sidebar-avatar">
-
-                      <% if @perfil.avatar %>
-                        <p class="list-group-item text-center"><%= image_tag @perfil.avatar.imagem, class: "img-fluid img-responsive" %></p>
-                      <% else %>
-                        <p class="list-group-item text-center"><%= image_tag "missing.png", class: "img-responsive img-thumbnail" %></p>
-                      <% end %>
-                      <p class="list-group-item text-center perfil"> <%= link_to @perfil.nickname, @perfil %></p>
-                      <% if @perfil.perfil == 'Aluno' %>
-                        <p class="list-group-item text-center perfil"><label>XP:</label> <%= formata_pontos(@perfil.pontos_experiencia) %></p>
-                        <p class="list-group-item text-center perfil"><label>Nível:</label> <%= @perfil.nivel.nome %></p>
-                      <% end %>
-                      <% if @perfil.grupo_curso %>
-                        <p class="list-group-item text-center perfil"><label>Equipe:</label> <%= link_to @perfil.grupo_curso.nome_curso, equipe_url %></p>
-                        <% if @perfil.perfil == 'Aluno' %>
-                          <p class="list-group-item text-center perfil"><label>XP Médio da Equipe:</label> <%= formata_pontos(@perfil.grupo_curso.pontuacao_media) %></p>
-                          <p class="list-group-item text-center perfil"><label>Aproveitamento:</label> <%= formata_pontos(@perfil.porcentagem_aprovacao) %>%</p>
-                        <% end %>
-                      <% else %>
-                        <p class="list-group-item text-center perfil"><%= link_to 'Escolher Equipe', escolher_equipe_url(id: @perfil.id), class: 'text-danger' %></p>
-                      <% end %>
-                      <p class="list-group-item text-center perfil"><label>Status:</label> <%= @perfil.status_curso %></p>
-                    </div>
-            <% else %>
-                <div class="col-md-2 col-sm-2 color-sidebar ">
-                  <nav id="sidebar" class="sidebar navbar-nav">
-                    
-            <% end %>
-                  
-                  <ul class="navbar-nav bg-gradient-primary sidebar accordion" id="accordionSidebar">
-                    <% if admin_signed_in? and !usuario_signed_in? %>
-                      <%= render 'controle/gestor' %>
-                    <% end %>
-
-                    <% if current_usuario and !@perfil %>
-                      <li class="nav-item">
-                        <%= link_to " Detalhes do curso", descricao_path(id: @current_usuario.curso_atual), {class: "fa fa-info-circle fa-sm nav-link text-light"} %>
-                      </li>
-                    <% end %>
-
-                    <% if current_usuario and @perfil and @perfil.perfil == 'Aluno' %>
-                      <%= render 'controle/aluno' %>
-                    <% end %>
-
-                    <% if current_usuario and @perfil and @perfil.perfil == 'Professor' %>
-                      <%= render 'controle/professor' %>
-                    <% end %>
-                  </ul>
-                  
-                </nav>
-              <!-- /#sidebar-wrapper -->
-            </div>
-
-            <% if current_admin %>
-              <div class="col-md-10 col-sm-10">
-                <% if notice %>
-                  <p class="alert alert-success"><%= notice %></p>
+                <!-- Sidebar -->
+                <% if @perfil.perfil == 'Professor' %>
+                  <%= render 'controle/professor' %>
                 <% end %>
-                <% if alert %>
-                  <p class="alert alert-danger"><%= alert %></p>
+
+                <% if @perfil.perfil == 'Aluno' %>
+                  <%= render 'controle/aluno' %>
                 <% end %>
-                <%= yield %>
-                <br>
-                <br>
               </div>
-            <% else %>
 
               <div class="col-md-8 col-sm-8">
                 <% if current_usuario.curso_atual.ativo? %>
@@ -169,6 +112,7 @@
                       <p>Você cancelou sua inscrição neste curso!</p>
                     </div>
                   <% else %>
+
                     <% if notice %>
                       <p class="alert alert-success"><%= notice %></p>
                     <% end %>
@@ -196,17 +140,16 @@
                   </ul>
                 </div>
               </div>
-
+            <% else %>
+              <div class="col-md-10 offset-md-1 col-sm-10">
+                <%= yield %>
+                <br>
+                <br>
+              </div>
             <% end %>
-               
-          </div> <!-- /#row -->
-        <%else%>
-          <div class="row"> 
-            <%= yield %>
-            <br>
-            <br>
-          </div>
-        <% end %>
+          <% end %>
+  
+        </div> <!-- /#row -->   
       </div>
     </div>
     <!-- /#page-content-wrapper -->
