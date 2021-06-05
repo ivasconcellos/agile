@@ -9,11 +9,15 @@
 
   <body>
   	<p>Prezado(a),</p>
-
-  	<p>Fique atento!!! Há um novo evento para o curso <%= @evento.curso.nome %>!</p>
-    <p>Evento: <%= @evento.nome %></p>
-    <p>Data: <%= @evento.data.strftime("%d/%m/%Y") %></p>
-    <p>Hora: <%= @evento.hora.strftime("%H:%M:%S") %></p>
+    <br>
+  	<p>Há um <b>novo evento</b> para o curso <b><%= @evento.curso.nome %></b>!</p>
+    
+    <br>
+    <p><b>Evento:</b> <%= @evento.nome %></p>
+    <p><b>Descrição:</b> <%= @evento.descricao.to_s.html_safe %></p>
+    <p><b>Data:</b> <%= @evento.data.strftime("%d/%m/%Y") %></p>
+    <p><b>Hora:</b> <%= @evento.hora.strftime("%H:%M:%S") %></p>
+    <br>
     <p>Para visualizar mais detalhes, acesse o curso!</p>
   </body>
 </html>

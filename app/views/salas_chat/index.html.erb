@@ -23,7 +23,7 @@
               <% end %>
               <td><%= sala_chat.ativo? ? 'Sim' : 'Não' %></td>
               <% if sala_chat.usuario_curso.perfil == 'Professor' or @perfil.perfil == "Professor" %>
-                <td><%= link_to 'Acessar', sala_chat, {class: 'btn btn-sm btn-success'} %></td>
+                <td><%= link_to 'Acessar', sala_chat, {class: 'btn btn-sm btn-primary'} %></td>
               <% elsif sala_chat.usuario_curso.grupo_curso.nome_curso == @perfil.grupo_curso.nome_curso %>
                 <td><%= link_to 'Acessar', sala_chat, {class: 'btn btn-sm btn-success'} %></td>
               <% else %>
@@ -50,7 +50,7 @@
 
   <% if can? :new, SalaChat and @perfil.grupo_curso %>
     <div class="card-footer text-muted">
-      <%= link_to 'Cadastrar Sala de chat', {controller: 'salas_chat', action: 'new', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Cadastrar Sala de chat', {controller: 'salas_chat', action: 'new', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-success" %>
     </div>
   <% end %>
 

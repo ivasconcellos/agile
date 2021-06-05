@@ -3,10 +3,10 @@
 		<ul class="navbar-nav bg-gradient-primary sidebar accordion" id="accordionSidebar">	
 		
 			<li class="nav-item">
-			<br>
-			
-			<h4 class="agile"><a href="/"><i class="fa fa-wrench fa-lg "></i>Gerenciamento</a></h4>
+				<br>
+				<h4 class="agile"><a href="/"><i class="fa fa-wrench fa-lg "></i>Gerenciamento</a></h4>
 			</li>
+			<div class="dropdown-divider"></div>
 
 			<li class="nav-item nav-sidebar">
 				<a class="nav-link collapsed text-light" href="#" data-toggle="collapse" data-target="#collapse1"
@@ -70,10 +70,15 @@
 			</li>
 
 			<li class="nav-item nav-sidebar">
-			<%= link_to " Acessos", ahoy_visits_path, {class: "fa fa-eye fa-sm nav-link text-light"} %>
+				<%= link_to " Acessos", ahoy_visits_path, {class: "fa fa-eye fa-sm nav-link text-light"} %>
+			</li>
+
+			<li class="nav-item nav-sidebar">
+				<%= link_to " Rails Admin", rails_admin_url, {class: "fa fa-diamond fa-sm nav-link text-light"} %>
 			</li>
 		</ul>
 	</nav>
+	<br>
 </div>
 
 <div class="col-md-10 col-sm-10">

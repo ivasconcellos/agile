@@ -3,7 +3,7 @@
 
     <% if @perfil.perfil == 'Aluno' %>
       <% if @perfil.avatar %>
-        <p class="list-group-item text-center"><%= image_tag @perfil.avatar.imagem, class: "img-fluid img-responsive" %></p>
+        <p class="list-group-item text-center"><%= image_tag @perfil.avatar.imagem, class: "img-responsive img-thumbnail" %></p>
       <% else %>
         <p class="list-group-item text-center"><%= image_tag "missing.png", class: "img-responsive img-thumbnail" %></p>
       <% end %>
@@ -23,6 +23,10 @@
 
   <ul class="navbar-nav bg-gradient-primary sidebar accordion" id="accordionSidebar">
     <li class="nav-item nav-sidebar">
+      <%= link_to " Página principal", @current_usuario.curso_atual, {class: "fa fa-university fa-sm nav-link text-light"} %>
+    </li>
+    
+    <li class="nav-item nav-sidebar">
       <%= link_to " Informações", descricao_path(id: @current_usuario.curso_atual), {class: "fa fa-info-circle fa-sm nav-link text-light"} %>
     </li>
 
@@ -35,14 +39,6 @@
     </li>
 
     <li class="nav-item nav-sidebar">
-      <%= link_to " Chats", salas_chat_path, {class: "fa fa-comments fa-sm nav-link text-light"} %>
-    </li>
-
-    <li class="nav-item nav-sidebar">
-      <%= link_to " Pesquisas", question_groups_path, {class: "fa fa-search fa-sm nav-link text-light"} %>
-    </li>
-
-    <li class="nav-item nav-sidebar">
       <%= link_to " Minhas notas", minhas_notas_path, {class: "fa fa-graduation-cap fa-sm nav-link text-light"} %>
     </li>
 
@@ -52,14 +48,22 @@
 
     <li class="nav-item nav-sidebar">
       <%= link_to " Recompensas", recompensas_path, {class: "fa fa-gift fa-sm nav-link text-light"} %>
-    </li>  
+    </li>
 
     <li class="nav-item nav-sidebar">
       <%= link_to " Comunicados", comunicados_path, {class: "fa fa-bullhorn fa-sm nav-link text-light"} %>
-    </li>  
+    </li> 
 
     <li class="nav-item nav-sidebar">
       <%= link_to " Eventos", eventos_path, {class: "fa fa-calendar fa-sm nav-link text-light"} %>
+    </li>
+
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Chats", salas_chat_path, {class: "fa fa-comments fa-sm nav-link text-light"} %>
+    </li>
+
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Pesquisas", question_groups_path, {class: "fa fa-search fa-sm nav-link text-light"} %>
     </li>
 
     <li class="nav-item nav-sidebar">

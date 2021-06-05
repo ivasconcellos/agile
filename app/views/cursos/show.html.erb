@@ -7,9 +7,10 @@
   <div class="card-header"><%= @curso.nome %></div>
 
   <%= render 'alertas' %>
-
+  
   <div class="text-center">
     <% if can? :new, Modulo %>
+      <br>
       <%= link_to 'Cadastrar Módulo', new_modulo_path, class: "btn btn-md btn-success" %>
     <% end %>
   </div>
@@ -47,7 +48,11 @@
                     <% else %>
                       <div class="list-group">
                     <% end %>
-                      
+                    
+                    <% if modulo.descricao? %>
+                      <div class="alert alert-info"> <%= modulo.descricao %></div>
+                    <% end %>
+
                     <% ModuloOrdenacao.where(modulo_id: modulo.id).order(:position).each do |modulo_ordenacao| %>
                      
                         <% if modulo_ordenacao.classe == 'Missao' and (modulo_ordenacao.objeto.publico? or @perfil.perfil != 'Aluno') %>

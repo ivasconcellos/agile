@@ -34,7 +34,7 @@
         <%= form.date_field :data_inicio, value: @curso.data_inicio.try(:strftime,"%Y-%m-%d"), class: "form-control", required: true %>
       </div>
 
-      <label for="inputDataInicio" class="col-md-2 col-form-label">Hora de início*</label>
+      <label for="inputDataInicio" class="col-md-3 offset-md-1 col-form-label">Hora de início*</label>
       <div class="col-md-2">
         <%= form.time_field :hora_inicio, value: @curso.hora_inicio.try(:strftime,"%H:%M"), class: "form-control", required: true %>
       </div>
@@ -46,7 +46,7 @@
         <%= form.date_field :data_termino, value: @curso.data_termino.try(:strftime,"%Y-%m-%d"), class: "form-control", required: true %>
       </div>
 
-      <label for="inputDataInicio" class="col-md-2 col-form-label">Hora de término*</label>
+      <label for="inputDataInicio" class="col-md-3 offset-md-1 col-form-label">Hora de término*</label>
       <div class="col-md-2">
         <%= form.time_field :hora_termino, value: @curso.hora_termino.try(:strftime,"%H:%M"), class: "form-control", required: true %>
       </div>
@@ -58,7 +58,7 @@
         <%= form.number_field :carga_horaria, class: "form-control", required: true %>
       </div>
 
-      <label for="inputPontuacao" class="col-md-4 offset-md-1 col-form-label">Porcentagem para aprovação (%)*</label>
+      <label for="inputPontuacao" class="col-md-5 col-form-label">Porcentagem para aprovação (%)*</label>
       <div class="col-md-2">
         <%= form.number_field :porcentagem_aprovacao, class: "form-control", required: true %>
       </div>
