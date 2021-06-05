@@ -9,15 +9,12 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
 
-//= require jquery
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery-ui/widget
 //= require jquery-ui/sortable
 //= require cable
-//= require turbolinks
 //= require activestorage
 //= require ckeditor/init
 //= require bootstrap-datepicker
@@ -25,7 +22,7 @@
 //= require chartkick
 //= require_tree .
 
-$( document ).on('turbolinks:load', function() {
+$( document ).ready(function (){
   $('.selecionar').select2({
     theme: "bootstrap",
 		width: 'auto',
@@ -33,11 +30,9 @@ $( document ).on('turbolinks:load', function() {
   });
 })
 
-$( document ).on('turbolinks:load', function() {
-  (function( $ ) {
-    $(function() {
-      $('#cpf').mask('999.999.999-99', {reverse: true});
-    });
+$( document ).ready(function (){
+  $(function() {
+    $('#cpf').mask('999.999.999-99', {reverse: true});
   })(jQuery);
 })
 
