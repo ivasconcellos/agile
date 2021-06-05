@@ -1,35 +1,55 @@
 <div class="card">
 	<div class="card-header">Mensagens</div>
+	
+	<div class="alert alert-success">
+		Mensagens trocadas com  o destinatário: <b><%= @destinatario.nickname %></b>.
+	</div>
 
 	<% @conversas.each do |conversa| %>
 
 		<div class="card">
 
-			<div class="card-header conversa bg-primary text-left">Assunto: <%= conversa.assunto %></div>
-			 	<div class="card-title text-dark conversa bg-light">
-			 	   <b>De:</b> <%= conversa.usuario_curso.nickname %>
-			 	<div class="card-title text-dark conversa bg-light">
-			 	   <b>Para:</b> <%= conversa.destinatario.nickname %>
-			 	</div>
-			 	<div class="card-text text-dark conversa bg-light">
-			 		<b>Mensagem:</b> 
-			 	</div>
-			 	<div class="card-text text-dark conversa border bg-light border-primary mensagem">
-			 		<%= conversa.mensagem.to_s.html_safe %>
-				</div>
+			<div class="card-header conversa bg-primary text-left">
+				Assunto: <%= conversa.assunto %>
 			</div>
+
+			<div class="card-title text-dark conversa bg-light">
+				<b>De:</b> <%= conversa.usuario_curso.nickname %>
+			</div>
+
+			<div class="card-title text-dark conversa bg-light">
+				<b>Para:</b> <%= conversa.destinatario.nickname %>
+			</div>
+
+			<div class="card-text text-dark conversa bg-light">
+				<b>Mensagem:</b> 
+			</div>
+
 			<div><br></div>
+
+			<div class="card-text text-dark conversa border bg-light border-primary mensagem">
+				<%= conversa.mensagem.to_s.html_safe %>
+			</div>
+			
+			<div><br></div>
+
 			<div class="card-body bg-dark text-light conversa">
 				<b>Enviada:</b> <%= conversa.created_at.strftime("%d/%m/%Y - %H:%M:%S") %> 
 				<% if can? :new, Conversa and @perfil.id == conversa.destinatario_id %>
 					<%= link_to "Responder", {controller: 'conversas', action: 'new', conversa_id: conversa.id, destinatario_id: conversa.usuario_curso.id }, class: "btn btn-danger btn-sm float-right" %>
 				<% end %>
+				<% if can? :new, Conversa and @perfil.id == conversa.usuario_curso_id %>
+					<%= link_to "Enviar nova mensagem para o destinatário", {controller: 'conversas', action: 'new', conversa_id: conversa.id, destinatario_id: conversa.destinatario.id }, class: "btn btn-success btn-sm float-right" %>
+				<% end %>
 			</div>
 			
 		</div>
+
+		<hr class="mt-3 mb-3 bg-success">
+
 	<% end %>
 
 	<div class="card-footer text-muted">
-    <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
-  </div>
+    	<%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
+  	</div>
 </div>
