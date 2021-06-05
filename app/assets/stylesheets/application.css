@@ -220,7 +220,7 @@ td{
 }
 
 .icone-curso{
-  font-size: 36px;
+  font-size: 24px;
 }
 
 .sticky-footer{
@@ -263,4 +263,8 @@ td{
 
 .dropdown-item:hover {
   background-color: transparent;
+}
+
+.alert-info{
+  text-align: center;
 }

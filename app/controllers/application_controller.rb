@@ -78,7 +78,7 @@ end
 	    if resource_name == :usuario
 	 		"/inicial"
 	    elsif  resource_name == :admin
-	 	 	"/administration"
+	 	 	"/controle_gestor"
 	    end
     end
 
