@@ -143,9 +143,10 @@ class UsuarioCursoController < ApplicationController
 
   def pendencias
     authorize! :pendencias, UsuarioCurso
-    @tarefas = Tarefa.joins(missao: :modulo).where('modulos.curso_id =?', @perfil.curso_id).where.not(id: TarefaAluno.joins(tarefa: [missao: :modulo]).select('tarefa_alunos.tarefa_id').where('modulos.curso_id = ? and tarefa_alunos.usuario_curso_id =?', @perfil.curso_id, @perfil.id)).order('missoes.data_inicio')
-    @quizzes = Quiz.joins(missao: :modulo).where('modulos.curso_id =?', @perfil.curso_id).where.not(id: QuizRespostaAluno.joins(quiz: [missao: :modulo]).select('quiz_respostas_alunos.quiz_id').where('modulos.curso_id = ? and quiz_respostas_alunos.usuario_curso_id =?', @perfil.curso_id, @perfil.id)).group('quizzes.id').order('id')
-    @pesquisas = QuestionGroup.where(curso_id: @perfil.curso_id).where.not(id: AnswerGroup.joins(:question_group).select('answer_groups.question_group_id').where('question_groups.curso_id =? and answer_groups.usuario_curso_id =?', @perfil.curso_id, @perfil.id)).order('id')
+    @usuario_curso = UsuarioCurso.find(params[:id])
+    @tarefas = Tarefa.joins(missao: :modulo).where('modulos.curso_id =?', @usuario_curso.curso_id).where.not(id: TarefaAluno.joins(tarefa: [missao: :modulo]).select('tarefa_alunos.tarefa_id').where('modulos.curso_id = ? and tarefa_alunos.usuario_curso_id =?', @usuario_curso.curso_id, @usuario_curso.id)).order('missoes.data_inicio')
+    @quizzes = Quiz.joins(missao: :modulo).where('modulos.curso_id =?', @usuario_curso.curso_id).where.not(id: QuizRespostaAluno.joins(quiz: [missao: :modulo]).select('quiz_respostas_alunos.quiz_id').where('modulos.curso_id = ? and quiz_respostas_alunos.usuario_curso_id =?', @usuario_curso.curso_id, @usuario_curso.id)).group('quizzes.id').order('id')
+    @pesquisas = QuestionGroup.where(curso_id: @usuario_curso.curso_id).where.not(id: AnswerGroup.joins(:question_group).select('answer_groups.question_group_id').where('question_groups.curso_id =? and answer_groups.usuario_curso_id =?', @usuario_curso.curso_id, @usuario_curso.id)).order('id')
   end
 
   def minhas_conquistas
