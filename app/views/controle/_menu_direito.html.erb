@@ -7,6 +7,10 @@
 
 	<% if @perfil.perfil == 'Aluno' %>
 
+		<div class="alert alert-warning alert-lateral">
+			<%= link_to " Conquistas", minhas_conquistas_path, {class: "fa fa-trophy fa-sm nav-link text-dark"} %>
+		</div>
+
 		<% if @perfil.curso.recompensas.exists? %>
 			<div class="alert alert-danger alert-lateral">
 				<%= link_to " Recompensas", recompensas_path, {class: "fa fa-gift fa-sm nav-link text-dark"} %>
@@ -33,7 +37,7 @@
 
 	<div class="alert alert-success alert-lateral">
 		<li class="nav-item">
-			<i class="fa fa-trophy fa-sm nav-link text-secondary"> Ranking</i>
+			<i class="fa fa-rocket fa-sm nav-link text-dark"> Ranking</i>
 		</li>
 	  	
 		<% @perfil.ranking.each_with_index do |aluno, index| %>
@@ -49,7 +53,7 @@
 		<% if  !@perfil.ranking_equipe.empty? %>
 			<div class="alert alert-info alert-lateral">
 				<li class="nav-item">
-					<i class="fa fa-trophy fa-sm nav-link text-secondary"> Equipes</i>
+					<i class="fa fa-users fa-sm nav-link text-dark"> Equipes</i>
 				</li>
 					
 				<% @perfil.ranking_equipe.each_with_index do |equipe, index| %>
@@ -64,7 +68,7 @@
 	<% if  @perfil.forum %>
 		<div class="alert alert-warning alert-lateral">
 			<li class="nav-item">
-        <%= link_to " Fóruns", foruns_path, {class: "fa fa-clipboard fa-sm nav-link text-secondary"} %>
+        <%= link_to " Fóruns", foruns_path, {class: "fa fa-clipboard fa-sm nav-link text-dark"} %>
       </li>
     </div>
 	<% end %> 
@@ -73,7 +77,7 @@
 
 		<div class="alert alert-warning alert-lateral">
 			<li class="nav-item">
-				<%= link_to " Chats", salas_chat_path, {class: "fa fa-comments fa-sm nav-link text-secondary"} %>
+				<%= link_to " Chats", salas_chat_path, {class: "fa fa-comments fa-sm nav-link text-dark"} %>
 			</li>
 		</div>
 
@@ -83,7 +87,7 @@
 
 		<div class="alert alert-primary alert-lateral">
 			<li class="nav-item">
-				<%= link_to " Pesquisas", question_groups_path, {class: "fa fa-search fa-sm nav-link text-secondary"} %>
+				<%= link_to " Pesquisas", question_groups_path, {class: "fa fa-search fa-sm nav-link text-dark"} %>
 			</li>
 		</div>
 
@@ -93,7 +97,7 @@
 
 		<div class="alert alert-danger alert-lateral">
 			<li class="nav-item">
-				<%= link_to " Pendências", pendencias_path, {class: "fa fa-exclamation-triangle fa-sm nav-link text-secondary"} %>
+				<%= link_to " Pendências", pendencias_path, {class: "fa fa-exclamation-triangle fa-sm nav-link text-dark"} %>
 			</li>
 		</div>
 
@@ -103,7 +107,7 @@
 
 		<div class="alert alert-info alert-lateral">
 			<li class="nav-item">
-				<%= link_to " Notificações", notificacoes_path, {class: "fa fa-bell fa-sm nav-link text-secondary"} %>
+				<%= link_to " Notificações", notificacoes_path, {class: "fa fa-bell fa-sm nav-link text-dark"} %>
 			</li>
 		</div>
 

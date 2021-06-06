@@ -42,38 +42,40 @@
             <div id="collapse<%= index.to_s %>" class="collapse" aria-labelledby="heading<%= index.to_s %>" data-parent="#accordion">
               <div class="card-body">
                 <div class="row">
-                  <div class="col-xl-9 col-sm-9 col-md-9">
-                    <% if @perfil.perfil != 'Aluno' %>
+                
+                  <% if @perfil.perfil != 'Aluno' %>
+                    <div class="col-xl-9 col-sm-9 col-md-9">
                       <div id="modulos_ordenacoes" class="list-group" data-url="<%= sort_modulos_ordenacoes_path %>">
-                    <% else %>
+                  <% else %>
+                    <div class="col-xl-12 col-sm-12 col-md-12">
                       <div class="list-group">
-                    <% end %>
+                  <% end %>
                     
-                    <% if modulo.descricao? %>
-                      <div class="alert alert-info"> <%= modulo.descricao %></div>
-                    <% end %>
+                      <% if modulo.descricao? %>
+                        <div class="alert alert-info"> <%= modulo.descricao %></div>
+                      <% end %>
 
-                    <% ModuloOrdenacao.where(modulo_id: modulo.id).order(:position).each do |modulo_ordenacao| %>
-                     
-                        <% if modulo_ordenacao.classe == 'Missao' and (modulo_ordenacao.objeto.publico? or @perfil.perfil != 'Aluno') %>
-                          <%= render 'missoes/missao', modulo_ordenacao: modulo_ordenacao  %>
-                        <% end %>
-
-                        <% if modulo_ordenacao.classe == 'Dialogo' %>
-                          <%= render 'dialogos/dialogo', modulo_ordenacao: modulo_ordenacao  %>
-                        <% end %>
-
-                        <% if modulo_ordenacao.classe == 'Material'  and (modulo_ordenacao.objeto.publico? or @perfil.perfil != 'Aluno' )%>
-                          <%= render 'materiais/material', modulo_ordenacao: modulo_ordenacao  %>
-                        <% end %>
-
-                        <% if modulo_ordenacao.classe == 'Forum' %>
-                          <%= render 'foruns/forum', modulo_ordenacao: modulo_ordenacao  %>
-                        <% end %>
-                    
-                    <% end %>
+                      <% ModuloOrdenacao.where(modulo_id: modulo.id).order(:position).each do |modulo_ordenacao| %>
                       
-                  </div>
+                          <% if modulo_ordenacao.classe == 'Missao' and (modulo_ordenacao.objeto.publico? or @perfil.perfil != 'Aluno') %>
+                            <%= render 'missoes/missao', modulo_ordenacao: modulo_ordenacao  %>
+                          <% end %>
+
+                          <% if modulo_ordenacao.classe == 'Dialogo' %>
+                            <%= render 'dialogos/dialogo', modulo_ordenacao: modulo_ordenacao  %>
+                          <% end %>
+
+                          <% if modulo_ordenacao.classe == 'Material'  and (modulo_ordenacao.objeto.publico? or @perfil.perfil != 'Aluno' )%>
+                            <%= render 'materiais/material', modulo_ordenacao: modulo_ordenacao  %>
+                          <% end %>
+
+                          <% if modulo_ordenacao.classe == 'Forum' %>
+                            <%= render 'foruns/forum', modulo_ordenacao: modulo_ordenacao  %>
+                          <% end %>
+                      
+                      <% end %>
+                      
+                    </div>
               
                   </div>           
                   

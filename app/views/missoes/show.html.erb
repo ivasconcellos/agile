@@ -19,8 +19,8 @@
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <ul class="list-group">
-        <li class="list-group-item text-center bg-info text-white"><b><%= @missao.nome %></b> </li>
-        <li class="list-group-item bg-light"><%= @missao.descricao.to_s.html_safe %></li>
+        <li class="list-group-item text-center bg-info text-white"><b>Missão:</b> <%= @missao.nome %></li>
+        <li class="list-group-item bg-light"><b>Descrição da Missão:</b> <%= @missao.descricao.to_s.html_safe %></li>
         <% if @missao.imagem.attached? %>
           <li class="list-group-item"><b>Imagem:</b> <%= image_tag @missao.imagem.variant(resize: "100x100"), class: "img-responsive" %></li>
         <% end %>
