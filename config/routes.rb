@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :areas
   resources :notificacoes, only: [:index]
   resources :recompensas
   resources :faqs
