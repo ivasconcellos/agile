@@ -107,6 +107,10 @@ class CursosController < ApplicationController
     authorize! :notas_turma, :curso
     @modulos = Modulo.where('curso_id = ?',
        current_usuario.curso_atual_id)
+      respond_to do |format|
+        format.html
+        format.xls
+      end
   end
 
   def enviar_convite
