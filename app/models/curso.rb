@@ -1,6 +1,8 @@
 class Curso < ApplicationRecord
 	belongs_to :tema_curso
+	belongs_to :area
 	belongs_to :proprietario, class_name: "Usuario"
+
 	has_many :usuario_curso, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :modulos, :dependent => :destroy, :dependent => :restrict_with_error
 	has_many :salas_chat, :dependent => :destroy, :dependent => :restrict_with_error
@@ -11,7 +13,7 @@ class Curso < ApplicationRecord
 	
 	validates_presence_of :nome, :descricao, :proprietario_id, :codigo_acesso, 
 	:data_inicio, :hora_inicio, :data_termino, :hora_termino, :carga_horaria, 
-	:porcentagem_aprovacao, :publico_alvo
+	:porcentagem_aprovacao, :publico_alvo, :area_id
 	validates_length_of :codigo_acesso, :minimum => 8, :maximum => 8
 	validates_uniqueness_of :codigo_acesso
 	

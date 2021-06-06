@@ -38,6 +38,9 @@
           <li class="list-group-item"><b>Público:</b> <%= @curso.publico? ? 'Sim' : 'Não' %></li>
           <li class="list-group-item"><b>Cadastrado em:</b> <%= @curso.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
           <li class="list-group-item"><b>Atualizado em:</b> <%= @curso.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>  
+          <% if @curso.area %>
+            <li class="list-group-item"><b>Área:</b> <%= @curso.area.nome %></li>
+          <% end %>
           <li class="list-group-item"><b>Tema:</b> <%= link_to @curso.tema_curso.nome, @curso.tema_curso %></li>
         <% end %>
         <% if @perfil and @perfil.perfil == 'Aluno' %>

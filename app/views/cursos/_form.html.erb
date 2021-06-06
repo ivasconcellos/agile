@@ -104,6 +104,13 @@
     </div>
 
     <div class="form-group row">
+      <label for="inputDataTermino" class="col-md-3 col-form-label">Área do curso*</label>
+      <div class="col-md-8">
+        <%= form.collection_select(:area_id, Area.where(ativa: true).order('nome'), :id, :nome, :prompt => true, class: "form-control")%>
+      </div>
+    </div>
+
+    <div class="form-group row">
       <label for="inputDataTermino" class="col-md-3 col-form-label">Tema do curso*</label>
       <div class="col-md-8">
         <%= form.collection_select(:tema_curso_id, TemaCurso.where(ativo: true).order('nome'), :id, :nome, :prompt => true, class: "form-control")%>
