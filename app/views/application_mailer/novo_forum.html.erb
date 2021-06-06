@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+  	<p>Prezado(a),</p>
+    <br>
+  	<p>Há um novo <b>fórum</b> no curso <b><%= @forum.modulo.curso.nome %></b>!</p>
+    
+    <br>
+    <p><b>Fórum:</b> <%= @forum.titulo %></p>
+    <p><b>Criado por:</b> <%= @forum.usuario_curso.nickname %></p>
+    <p><b>Módulo do curso:</b> <%= @forum.modulo.nome %></p>
+    <p><b>Descrição:</b> <%= @forum.descricao.to_s.html_safe %></p>
+ 
+    <br>
+    <p>Para visualizar mais detalhes, acesse o fórum do curso!</p>
+  </body>
+</html>

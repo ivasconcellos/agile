@@ -22,6 +22,7 @@ class ForunsComentariosController < ApplicationController
     @forum_comentario.usuario_curso_id = @perfil.id
     
     if @forum_comentario.save
+      ApplicationMailer.nova_postagem_forum(@forum_comentario).deliver  
       @forum_comentario = ForumComentario.where(forum_id: @forum_comentario.forum_id)
     else
       respond_to do |format|

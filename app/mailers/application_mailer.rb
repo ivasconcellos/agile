@@ -8,6 +8,20 @@ class ApplicationMailer < ActionMailer::Base
     attachments.inline['AGILE.png'] = File.read("#{Rails.root}/app/assets/images/coelho2.png")
   end
 
+  def novo_forum(forum)
+    subject = 'AGILE: Há um novo Fórum no curso ' +  forum.modulo.curso.nome
+    @forum = forum
+    emails = Usuario.joins(:usuario_curso).where('usuario_curso.curso_id = ? and usuarios.ativo = ?', forum.modulo.curso.id, true).pluck(:email)
+    mail(:bcc => emails, :subject => subject)
+  end
+
+  def nova_postagem_forum(forum_comentario)
+    subject = 'AGILE: Nova postagem no Fórum: ' +  forum_comentario.forum.titulo
+    @forum_comentario = forum_comentario
+    emails = Usuario.joins(:usuario_curso).where('usuario_curso.curso_id = ? and usuarios.ativo = ?', forum_comentario.forum.modulo.curso.id, true).pluck(:email)
+    mail(:bcc => emails, :subject => subject)
+  end
+
   def novo_evento(evento)
   	subject = 'AGILE: Evento! ' + evento.data.strftime("%d/%m/%Y") + ' - ' + evento.hora.strftime("%H:%M:%S") 
     @evento = evento
