@@ -15,6 +15,7 @@ Admin.create! nome: 'admin', email: 'admin@agile.br', password: '12345678', pass
 #SalaChat.create! nome: 'Sala de teste', curso_id: 1, usuario_curso_id: 1, ativo: true
 #Missao.create! curso_id: 1, usuario_curso_id: 1, nome: "Primeira missão", descricao: "Faça X coisas.", ativo:true
 
+@area = Area.create! nome: 'Tecnologia', ativa: true
 
 @tema_curso = TemaCurso.new nome: 'Padrão', ativo: true, cor_titulo: '#1C2AD2', cor_texto: '#2E40EB', cor_fundo: '#1D50E3'
 @tema_curso.imagem.attach(io: File.open('app/assets/images/backgrounds/background_mystic.jpg'), filename: 'estrela.jpg')
