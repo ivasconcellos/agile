@@ -20,6 +20,7 @@
 //= require bootstrap-datepicker
 //= require ahoy
 //= require chartkick
+//= require turbolinks
 //= require_tree .
 
 $( document ).ready(function (){
@@ -31,9 +32,9 @@ $( document ).ready(function (){
 })
 
 $( document ).ready(function (){
-  $(function() {
+
     $('#cpf').mask('999.999.999-99', {reverse: true});
-  })(jQuery);
+ 
 })
 
 function initialize() {
