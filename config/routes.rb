@@ -83,6 +83,7 @@ Rails.application.routes.draw do
   get 'finalizar_curso' => 'usuario_curso#finalizar_curso'
   get 'atualizar_avatar' => 'usuario_curso#atualizar_avatar'
   get 'pendencias' => 'usuario_curso#pendencias'
+  get 'minhas_conquistas' => 'usuario_curso#minhas_conquistas'
 
   #Curso
   get 'curso_atual' => 'cursos#atualizar_curso_atual'
