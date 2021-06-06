@@ -8,7 +8,7 @@
 	<% if @perfil.perfil == 'Aluno' %>
 
 		<div class="alert alert-warning alert-lateral">
-			<%= link_to " Conquistas", minhas_conquistas_path, {class: "fa fa-trophy fa-sm nav-link text-dark"} %>
+			<%= link_to " Conquistas", minhas_conquistas_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "fa fa-trophy fa-sm nav-link text-dark"} %>
 		</div>
 
 		<% if @perfil.curso.recompensas.exists? %>

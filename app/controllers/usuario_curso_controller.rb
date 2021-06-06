@@ -154,6 +154,10 @@ class UsuarioCursoController < ApplicationController
     @usuario_curso = UsuarioCurso.find(@perfil.id)
     @badges = BadgeAluno.where(usuario_curso_id: @perfil.id)
     @artefatos = ArtefatoAluno.where(usuario_curso_id: @perfil.id)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   private
