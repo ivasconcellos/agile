@@ -2,31 +2,35 @@
 
   <div class="card-header">Pergunta do Quiz</div>
 
+  <div class="alert alert-danger">Só é possível adicionar e editar Respostas quando Quiz ainda não estiver finalizado!</div>
+
   <ul class="list-group">
-    <li class="list-group-item"><b>Nome:</b> <%= @quiz_pergunta.descricao %></li>
+    <li class="list-group-item"><b>Quiz:</b> <%= @quiz_pergunta.quiz.nome %></li>
+    <li class="list-group-item"><b>Status do Quiz:</b> <%= @quiz_pergunta.quiz.finalizado? ? 'Finalizado' : 'Não finalizado' %></li>
+    <li class="list-group-item"><b>Pergunta:</b> <%= @quiz_pergunta.descricao.html_safe %></li>
     <li class="list-group-item"><b>Pontos:</b> <%= @quiz_pergunta.pontuacao %></li>
     <li class="list-group-item"><b>Cadastrada em:</b> <%= @quiz_pergunta.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>     
   </ul>
 
+  <div class="card-header">Respostas da Pergunta</div>
+
+  <div id="<%= @quiz_pergunta.id %>"><% @quiz_pergunta_respostas = QuizPerguntaResposta.where(quiz_pergunta_id: @quiz_pergunta.id).order('created_at') %><%= render 'quiz_pergunta_respostas/quiz_pergunta_resposta', :collection => @quiz_pergunta_respostas %></div>
+
+  <div id="task-form<%= @quiz_pergunta.id %>" style="display:none;"></div>
+
+  <% if can? :new, QuizPerguntaResposta and !@quiz_pergunta.quiz.finalizado %>
+    <div class="text-center">
+      <%= link_to " Adicionar Respostas", {controller: 'quiz_pergunta_respostas', action: 'new', :quiz_pergunta_id => @quiz_pergunta.id, remote: true}, class: "btn btn-warning" %>
+    </div>
+  <% end %>
+ 
   <br>
 
   <div class="card-footer text-muted">
     <% if can? :edit, QuizPergunta %>
-      <%= link_to 'Atualizar', edit_quiz_pergunta_path(@quiz_pergunta), class: "btn btn-md btn-primary" %>
+      <%= link_to 'Atualizar Pergunta', edit_quiz_pergunta_path(@quiz_pergunta), class: "btn btn-md btn-primary" %>
     <% end %>
-    <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
+    <%= link_to 'Voltar para Quiz', @quiz_pergunta.quiz, class: "btn btn-md btn-secondary" %>
   </div>
-
-  <div id="resposta_pergunta"><%= render 'quiz_pergunta_respostas/quiz_pergunta_resposta', :collection => @quiz_pergunta_respostas %></div>
-
-  <div id="pergunta-form" style="display:none;"></div>
-
-  <% if can? :new, QuizPerguntaResposta %>
-    <div class="text-center">
-      <%= link_to " Adicionar Resposta", {controller: 'quiz_pergunta_respostas', action: 'new', :quiz_pergunta_id => @quiz_pergunta.id, remote: true}, class: "btn btn-warning" %>
-    </div>
-  <% end %>
-
-  <br><br>
 
 </div>
