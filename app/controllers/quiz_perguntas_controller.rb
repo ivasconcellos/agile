@@ -28,7 +28,7 @@ class QuizPerguntasController < ApplicationController
 
     respond_to do |format|
       if @quiz_pergunta.save
-        format.html { redirect_to @quiz_pergunta.quiz, notice: 'Pergunta do Quiz cadastrada com sucesso!' }
+        format.html { redirect_to @quiz_pergunta, notice: 'Pergunta do Quiz cadastrada com sucesso!' }
         format.json { render :show, status: :created, location: @quiz_pergunta }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class QuizPerguntasController < ApplicationController
   def update
     respond_to do |format|
       if @quiz_pergunta.update(quiz_pergunta_params)
-        format.html { redirect_to @quiz_pergunta.quiz, notice: 'Pergunta do Quiz atualizada com sucesso!' }
+        format.html { redirect_to @quiz_pergunta, notice: 'Pergunta do Quiz atualizada com sucesso!' }
         format.json { render :show, status: :ok, location: @quiz_pergunta }
       else
         format.html { render :edit }

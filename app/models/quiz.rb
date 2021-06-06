@@ -6,7 +6,7 @@ class Quiz < ApplicationRecord
 
   self.per_page = 10
 
-  validates_presence_of :nome, :descricao
+  validates_presence_of :nome
 
   def pontuacao
   	@pontuacao_missao = Missao.select(:pontuacao).joins(:quiz).find_by('quizzes.id =?', self.id)

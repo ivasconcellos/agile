@@ -32,7 +32,6 @@
 
   <div><%= render 'quiz_perguntas/quiz_pergunta', :collection => @quiz_perguntas %></div>
 
-
   <div class="card-footer text-muted">
     <% if can? :new, QuizPergunta and !@quiz.finalizado %>
       <%= link_to 'Cadastrar Pergunta', {controller: 'quiz_perguntas', action: 'new', quiz_id: @quiz.id}, class: "btn btn-md btn-success" %>
@@ -42,6 +41,5 @@
     <% end %>
     <%= link_to 'Voltar para Missão', @quiz.missao, class: "btn btn-md btn-secondary" %>
   </div>
-
   
 </div>

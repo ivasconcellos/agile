@@ -5,7 +5,7 @@
 </script>
 
 <div class="card">
-  <div class="card-header">Resposta</div> 
+  <div class="card-header bg-success">Resposta</div> 
 
   <%= form_with(model: @quiz_pergunta_resposta, remote: true) do |form| %>
     <% if @quiz_pergunta_resposta.errors.any? %>
@@ -49,9 +49,9 @@
 
     </div>
 
-    <div class="card-footer text-muted">
-      <%= form.submit "Salvar", class: "btn btn-md btn-primary" %>
-      <%= link_to 'Fechar', @quiz_pergunta_resposta.quiz_pergunta.quiz, class: "btn btn-md btn-secondary" %>
+    <div class="card-footer text-muted bg-success">
+      <%= form.submit "Salvar Resposta", class: "btn btn-md btn-primary" %>
+      <%= link_to 'Fechar', @quiz_pergunta_resposta.quiz_pergunta, class: "btn btn-md btn-secondary" %>
     </div>
   <% end %>
 </div>

@@ -1,36 +1,31 @@
 <% @quiz_perguntas.each_with_index do |quiz_pergunta, index| %>
-
+  
   <div class="card">
-    <div class="card-header2 bg-primary text-left text-white">
+    <div class="card-header2 bg-secondary text-white">
       <p>
-        <b><%= index+1 %>º Pergunta: </b>
+        <b><%= index+1 %>º Pergunta </b> - <b>Pontuação: </b><%= quiz_pergunta.pontuacao %>
         <% if can? :edit, QuizPergunta and !quiz_pergunta.quiz.finalizado %>
-          <%= link_to  '', edit_quiz_pergunta_path(quiz_pergunta), class: "fa fa-pencil text-light" %>
+          <%= link_to  '  ', edit_quiz_pergunta_path(quiz_pergunta), class: "fa fa-pencil text-light" %>
         <% end %>
         <% if can? :destroy, QuizPergunta and !quiz_pergunta.quiz.finalizado %>
-          <%= link_to  '', quiz_pergunta, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover A pergunta?'}, class: "fa fa-trash text-light" %>
+          <%= link_to  '  ', quiz_pergunta, method: :delete, id:"tasks", data: { confirm: 'Deseja realmente realmente remover A pergunta?'}, class: "fa fa-trash text-light" %>
         <% end %>
       </p>
-      <div class="card-text alert alert-info text-dark">
+      <p>
+        <% if can? :show, QuizPergunta %>
+          <%= link_to '  Adicionar Respostas', quiz_pergunta_path(quiz_pergunta), class: "fa fa-plus-circle text-warning" %>
+        <% end %>
+      </p>
+
+      <div class="card-text alert alert-secondary text-dark">
         <p><%= quiz_pergunta.descricao.to_s.html_safe %></p>
       </div>
-      <p><b>Pontuação: </b><%= quiz_pergunta.pontuacao %></p>
     </div>
-
-    <div class="card-header2">
-      <p class="card-text">
-        <div id="<%= quiz_pergunta.id %>"><% @quiz_pergunta_respostas = QuizPerguntaResposta.where(quiz_pergunta_id: quiz_pergunta.id).order('created_at') %><%= render 'quiz_pergunta_respostas/quiz_pergunta_resposta', :collection => @quiz_pergunta_respostas %></div>
-
-        <div id="task-form<%= quiz_pergunta.id %>" style="display:none;"></div>
-
-        <% if can? :new, QuizPerguntaResposta and !quiz_pergunta.quiz.finalizado %>
-          <div class="text-center">
-            <%= link_to " Adicionar Resposta", {controller: 'quiz_pergunta_respostas', action: 'new', :quiz_pergunta_id => quiz_pergunta.id, remote: true}, class: "btn btn-danger" %>
-          </div>
-        <% end %>
-      </p>
-    </div>
-    
   </div>
+
+  <% @quiz_pergunta_respostas = QuizPerguntaResposta.where(quiz_pergunta_id: quiz_pergunta.id).order('created_at') %>
+  <%= render 'quiz_pergunta_respostas/quiz_pergunta_resposta2', :collection => @quiz_pergunta_respostas %>
+      
+  <hr class="mt-0 mb-5 bg-secondary">
 <% end %>
 
