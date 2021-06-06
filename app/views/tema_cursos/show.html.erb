@@ -10,22 +10,22 @@
   	</div>
 
     <div class="row">
-    	<div class="col-md-8 offset-md-2">
+    	<div class="col-md-10 offset-md-1">
 			<ul class="list-group">
 				<li class="list-group-item"><b>Nome:</b> <%= @tema_curso.nome %></li>
-				<li class="list-group-item"><b>Ativo:</b> <%= @tema_curso.ativo? ? 'Sim' : 'Não' %></li>
 				<li class="list-group-item"><b>Cor do título: </b> <span style="color:<%= @tema_curso.cor_titulo %>; font-size: 50px;">&#9632; </span></li>
 				<li class="list-group-item"><b>Cor do texto:</b> <span style="color:<%= @tema_curso.cor_texto %>; font-size: 50px;">&#9632; </span></li>
 				<li class="list-group-item"><b>Cor do fundo:</b> <span style="color:<%= @tema_curso.cor_fundo %>; font-size: 50px;">&#9632; </span> </li>
-				<li class="list-group-item"><b>Imagem de fundo:</b> <%= image_tag @tema_curso.imagem.variant(resize: "200x200"), class: "img-fluid img-responsive" %></li>
+				<li class="list-group-item"><b>Imagem de fundo:</b> <%= image_tag @tema_curso.imagem.variant(resize: "400x400"), class: "img-fluid img-responsive" %></li>
+				<li class="list-group-item"><b>Ativo:</b> <%= @tema_curso.ativo? ? 'Sim' : 'Não' %></li>
 			</ul>
 
 			<% if not @artefatos.empty? %>
 
 				<div class="card-header">Artefatos</div>
 				<div class="table-responsive">
-				    <table class="table table-striped table-sm">
-				      	<thead>
+				    <table class="table table-striped table-bordered table-sm">
+				      	<thead class="thead-dark">
 					        <tr>
 					          <th class="text-center">Nome</th>
 					          <th class="text-center">Imagem</th>
@@ -37,7 +37,7 @@
 					        <% @artefatos.each do |artefato| %>
 					          <tr>
 					          	<td><%= artefato.nome %></td>
-					          	<td><%= image_tag artefato.imagem.variant(resize: "100x100"), class: "img-responsive img-thumbnail" %></td>
+					          	<td><%= image_tag artefato.imagem.variant(resize: "150x150"), class: "img-responsive img-fluid" %></td>
 					            <td><%= artefato.ativo? ? 'Sim' : 'Não' %></td>
 					            <% if can? :show, Artefato %>
 					              <td><%= link_to 'Visualizar', artefato %></td>
@@ -60,7 +60,7 @@
 
 	<div class="card-footer text-muted">
 		<% if can? :new, Artefato %>
-			<%= link_to 'Adicionar Artefato', {controller: "artefatos", action: "new", tema_curso_id: @tema_curso.id}, class: "btn btn-md btn-warning" %>
+			<%= link_to 'Adicionar Artefato', {controller: "artefatos", action: "new", tema_curso_id: @tema_curso.id}, class: "btn btn-md btn-success" %>
 		<% end %>
 		<%= link_to 'Voltar', tema_cursos_path, class: "btn btn-md btn-secondary" %>
 	</div>

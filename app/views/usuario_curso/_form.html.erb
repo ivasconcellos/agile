@@ -17,24 +17,33 @@
     <% if @perfil.perfil == "Professor" %>
 
       <div class="form-group row">
-        <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Perfil*</label>
-        <div class="col-md-8">
+        <label for="inputNome" class="col-md-3 col-form-label">Perfil*</label>
+        <div class="col-md-9">
           <%= form.select :perfil,  options_for_select([["Aluno", "Aluno"], ["Professor", "Professor"]], form.object.perfil), class: "form-control" %>
         </div>
       </div>
 
-      <div class="form-group row">
-        <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Usuário*</label>
-        <div class="col-md-8">
-          <%= form.collection_select(:usuario_id, Usuario.where(ativo: true).order('nome'), :id, :nome, {:prompt => true}, {class: "selecionar"})%>
+      <% if @usuario_curso.new_record? %>
+        <div class="form-group row">
+          <label for="inputNome" class="col-md-3 col-form-label">Usuário</label>
+          <div class="col-md-9">
+            <%= form.collection_select(:usuario_id, Usuario.where(ativo: true).order('nome'), :id, :nome, {:prompt => true}, {class: "selecionar"})%>
+          </div>
         </div>
-      </div>
+      <% else %>
+        <div class="form-group row">
+          <label for="inputNome" class="col-md-3 col-form-label">Usuário</label>
+          <div class="col-md-9">
+            <%= @usuario_curso.usuario.nome %>
+          </div>
+        </div>
+      <% end %>
 
     <% end %>
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Nickname*</label>
-      <div class="col-md-8">
+      <label for="inputNome" class="col-md-3 col-form-label">Nickname no curso*</label>
+      <div class="col-md-9">
         <%= form.text_field :nickname, class: "form-control" %> 
       </div>
     </div>

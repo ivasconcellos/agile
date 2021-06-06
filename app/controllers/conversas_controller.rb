@@ -44,15 +44,20 @@ class ConversasController < ApplicationController
        destinatario_id: params[:pessoa_id]).or(Conversa.where(
         usuario_curso_id: params[:pessoa_id], destinatario_id: @perfil.id))
       @conversas = @conversas.select(:assunto).group('assunto')
+      @destinatario = UsuarioCurso.find(params[:pessoa_id])
        authorize! :show, Conversa
     end
   
     def conversas_professor
-      @conversas = Conversa.where(assunto: params[:assunto], usuario_curso_id: @perfil.id).or(Conversa.where(assunto: params[:assunto],
-        destinatario_id: @perfil.id)).order('updated_at desc')
+      @destinatario = UsuarioCurso.find(params[:pessoa_id])
+      @conversas = Conversa.where(assunto: params[:assunto], 
+        usuario_curso_id: @perfil.id, destinatario_id: params[:pessoa_id]
+      ).or(Conversa.where(assunto: params[:assunto],
+        destinatario_id: @perfil.id, usuario_curso_id: params[:pessoa_id])).order('updated_at desc')
+      
+      conversas_nao_visualizadas = Conversa.select(:id).where(lida: false, destinatario_id: @perfil.id)
+      lida = @conversas.where(destinatario_id: @perfil.id, id: conversas_nao_visualizadas).update_all(lida: true)
       authorize! :show, Conversa
-      @conversas_nao_visualizadas = Conversa.select(:id).where(lida: false, destinatario_id: @perfil.id)
-      @lida = @conversas.where(destinatario_id: @perfil.id, id: @conversas_nao_visualizadas).update_all(lida: true)
     end
       
     private

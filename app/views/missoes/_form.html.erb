@@ -16,70 +16,64 @@
   <div class="card-body">
 
     <div class="form-group row">
-      <label for="inputTexto" class="col-md-2 offset-md-1 col-form-label">Nome*</label>
-      <div class="col-md-8">
-        <%= form.text_field :nome, class: "form-control" %>
+      <label for="inputTexto" class="col-md-3 col-form-label">Nome*</label>
+      <div class="col-md-9">
+        <%= form.text_field :nome, class: "form-control", required: true %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputTexto" class="col-md-2 offset-md-1 col-form-label">Descrição*</label>
-      <div class="col-md-8">
-        <%= form.cktext_area :descricao, class: "form-control" %>
+      <label for="inputTexto" class="col-md-3 col-form-label">Descrição*</label>
+      <div class="col-md-9">
+        <%= form.cktext_area :descricao, class: "form-control", required: true %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Imagem</label>
-      <div class="col-md-8">
+      <label for="inputNome" class="col-md-3 col-form-label">Imagem</label>
+      <div class="col-md-9">
         <%= form.file_field :imagem %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputPontuacao" class="col-md-2 offset-md-1 col-form-label">Pontuação*</label>
+      <label for="inputPontuacao" class="col-md-3 col-form-label">Pontuação*</label>
       <div class="col-md-2">
-        <%= form.number_field :pontuacao, step: :any, class: "form-control" %>
+        <%= form.number_field :pontuacao, step: :any, class: "form-control", required: true %>
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="inputPontuacao" class="col-md-2 offset-md-1 col-form-label">Tipo*</label>
-      <div class="col-md-8">
+      <label for="inputPontuacao" class="col-md-3 offset-md-2 col-form-label">Tipo*</label>
+      <div class="col-md-2">
         <%= form.select :tipo,  options_for_select([["Tarefa", "Tarefa"], ["Quiz", "Quiz"]], form.object.tipo), class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputDataInicio" class="col-md-2 offset-md-1 col-form-label">Data de início*</label>
+      <label for="inputDataInicio" class="col-md-3 col-form-label">Data de início*</label>
       <div class="col-md-3">
-        <%= form.date_field :data_inicio, value: @missao.data_inicio.try(:strftime,"%Y-%m-%d"), class: "form-control" %>
+        <%= form.date_field :data_inicio, value: @missao.data_inicio.try(:strftime,"%Y-%m-%d"), class: "form-control", required: true %>
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="inputDataInicio" class="col-md-2 offset-md-1 col-form-label">Hora de início*</label>
+      <label for="inputDataInicio" class="col-md-3 offset-md-1 col-form-label">Hora de início*</label>
       <div class="col-md-2">
-        <%= form.time_field :hora_inicio, value: @missao.hora_inicio.try(:strftime,"%H:%M"), class: "form-control" %>
+        <%= form.time_field :hora_inicio, value: @missao.hora_inicio.try(:strftime,"%H:%M"), class: "form-control", required: true %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputDataTermino" class="col-md-2 offset-md-1 col-form-label">Data de término*</label>
+      <label for="inputDataTermino" class="col-md-3 col-form-label">Data de término*</label>
       <div class="col-md-3">
-        <%= form.date_field :data_termino, value: @missao.data_termino.try(:strftime,"%Y-%m-%d"), class: "form-control" %>
+        <%= form.date_field :data_termino, value: @missao.data_termino.try(:strftime,"%Y-%m-%d"), class: "form-control", required: true %>
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="inputDataInicio" class="col-md-2 offset-md-1 col-form-label">Hora de término*</label>
+      <label for="inputDataInicio" class="col-md-3 offset-md-1 col-form-label">Hora de término*</label>
       <div class="col-md-2">
-        <%= form.time_field :hora_termino, value: @missao.hora_termino.try(:strftime,"%H:%M"), class: "form-control" %>
+        <%= form.time_field :hora_termino, value: @missao.hora_termino.try(:strftime,"%H:%M"), class: "form-control", required: true %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label class="form-check-label col-md-2 offset-md-1" for="gridCheck1">Pública</label>
+      <label class="form-check-label col-md-3" for="gridCheck1">Pública</label>
       <div class="col-md-2 ">
         <div class="form-check">
           <%= form.check_box :publico, class: "form-check-input" %> Sim

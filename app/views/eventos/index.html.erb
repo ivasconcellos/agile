@@ -1,14 +1,19 @@
 <div class="card">
   <div class="card-header">Eventos do Curso</div>
 
+  <div class="alert alert-info">   
+    <p><b>Todos</b> os participantes do curso são avisados por <b>e-mail</b> quando um evento é <b>cadastrado</b>, <b>atualizado</b> ou <b>cancelado</b>!</p>
+  </div>
+
   <% if !@eventos.empty? %>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
-        <thead>
+        <thead class="thead-dark"> 
           <tr>
             <th class="text-center">Nome</th>
             <th class="text-center">Data</th>
             <th class="text-center">Hora</th>
+            <th class="text-center">Status</th>
             <th colspan="3" class="text-center">Opções</th>
           </tr>
         </thead>
@@ -18,13 +23,14 @@
               <td><%= evento.nome %></td>
               <td><%= evento.data.strftime("%d/%m/%Y") %></td>
               <td><%= evento.hora.strftime("%H:%M:%S") %></td>
+              <td><%= evento.ativo? ? 'Marcado' : 'Cancelado' %></td>
               <% if can? :show, Evento %>
                 <td><%= link_to 'Visualizar', evento %></td>
               <% end %>
-              <% if can? :edit, Evento %>
+              <% if can? :edit, Evento and evento.ativo == true %>
                <td><%= link_to 'Atualizar', edit_evento_path(evento) %></td>
               <% end %>
-              <% if can? :cancelar_evento, :evento and evento.evento_no_prazo %>
+              <% if can? :cancelar_evento, :evento and evento.evento_no_prazo and evento.ativo == true %>
                 <td><%= link_to 'Cancelar', cancelar_evento_url(id: evento), data: { confirm: 'Deseja realmente cancelar o Evento?' }, class: 'btn btn-sm btn-danger' %></td>
               <% end %>
             </tr>
@@ -41,7 +47,7 @@
 
   <% if can? :new, Evento %>
     <div class="card-footer text-muted">
-      <%= link_to 'Cadastrar Evento', {controller: 'eventos', action: 'new'}, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Cadastrar Evento', {controller: 'eventos', action: 'new'}, class: "btn btn-md btn-success" %>
     </div>
   <% end %>
 

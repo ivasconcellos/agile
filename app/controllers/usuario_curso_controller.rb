@@ -148,6 +148,13 @@ class UsuarioCursoController < ApplicationController
     @pesquisas = QuestionGroup.where(curso_id: @perfil.curso_id).where.not(id: AnswerGroup.joins(:question_group).select('answer_groups.question_group_id').where('question_groups.curso_id =? and answer_groups.usuario_curso_id =?', @perfil.curso_id, @perfil.id)).order('id')
   end
 
+  def minhas_conquistas
+    authorize! :minhas_conquistas, UsuarioCurso
+    @usuario_curso = UsuarioCurso.find(@perfil.id)
+    @badges = BadgeAluno.where(usuario_curso_id: @perfil.id)
+    @artefatos = ArtefatoAluno.where(usuario_curso_id: @perfil.id)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_usuario_curso

@@ -3,6 +3,7 @@
   <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document"></div>
   </div>
+
   <div class="card-header">Missão
     <% if can? :edit, Missao %>
       <%= link_to '', edit_missao_path(@missao), class: "fa fa-edit text-white" %>
@@ -14,11 +15,12 @@
   <% if !no_prazo(@missao) and @perfil.perfil == 'Aluno' %>
     <div class="alert alert-danger"> A Missão está fora do prazo, por favor verifique a data de início e término.</div>
   <% end %>
+
   <div class="row">
     <div class="col-md-10 offset-md-1">
       <ul class="list-group">
-        <li class="list-group-item text-center bg-info text-white"><b><%= @missao.nome %></b> </li>
-        <li class="list-group-item bg-light"><%= @missao.descricao.to_s.html_safe %></li>
+        <li class="list-group-item text-center bg-info text-white"><b>Missão:</b> <%= @missao.nome %></li>
+        <li class="list-group-item bg-light"><b>Descrição da Missão:</b> <%= @missao.descricao.to_s.html_safe %></li>
         <% if @missao.imagem.attached? %>
           <li class="list-group-item"><b>Imagem:</b> <%= image_tag @missao.imagem.variant(resize: "100x100"), class: "img-responsive" %></li>
         <% end %>
@@ -30,6 +32,7 @@
           <li class="list-group-item"><b>Criada por:</b> <%= @missao.usuario_curso.nickname %></li>
           <li class="list-group-item"><b>Criada em:</b> <%= @missao.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
         <% end %>
+        
         <% if !@dicas.empty? %>
           <li class="list-group-item">
             <div class="row">
@@ -92,22 +95,25 @@
 
   <br>
 
-  <% if !@dicas.empty? and can? :new, Dica %>
+  <div class="row">
+    <div class="col-md-12">
 
-    <div class="card-header">Dicas da Missão</div>
-    
-    <div class="row">
-      <div class="col-md-10 offset-md-1">
-     
-        <ul class="list-group">
-          <% @dicas.each_with_index do |dica, index| %>
-            <li class="list-group-item"><%= index +1 %>ª Dica: <%= link_to dica.nome, dica %></li>
-          <% end %>
-        </ul>       
+      <% if !@dicas.empty? and can? :new, Dica %>
+
+        <div class="card-header">Dicas da Missão</div>
         
-      </div>
-    </div>
+        <div class="row">
+          <div class="col-md-10 offset-md-1">
+            <ul class="list-group">
+              <% @dicas.each_with_index do |dica, index| %>
+                <li class="list-group-item"><%= index +1 %>ª Dica: <%= link_to dica.nome, dica %></li>
+              <% end %>
+            </ul>      
+          </div>
+        </div>
 
-  <% end %>
+      <% end %>
+    </div>
+  </div>
 
 </div>

@@ -75,6 +75,7 @@ class Ability
           can :perms_without_delete, SalaChat
           can :read, Recompensa
           can :read, Notificacao
+          can :minhas_conquistas, UsuarioCurso
         end
       end
     end

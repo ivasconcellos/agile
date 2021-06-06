@@ -26,7 +26,7 @@
 
 	<div class="card-footer text-muted">
 		<% if can? :new, Question %>
-            <%= link_to "Perguntas da Pesquisa", {:controller => 'questions', :action =>  'index', :usuario_curso_id => @perfil.id, :question_group_id => @question_group.id}, class: "btn btn-md btn-warning" %>
+            <%= link_to "Perguntas da Pesquisa", {:controller => 'questions', :action =>  'index', :usuario_curso_id => @perfil.id, :question_group_id => @question_group.id}, class: "btn btn-md btn-success" %>
         <% end %>
 		<%= link_to 'Voltar', {:controller => 'question_groups', :action => 'index', :usuario_curso_id => @question_group.usuario_curso_id}, class: "btn btn-md btn-secondary" %>
 	</div>

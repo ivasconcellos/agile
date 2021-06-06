@@ -9,16 +9,18 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-   <% %w(bootstrap.min sidebar template_cursos font-awesome.min application select2).each do |asset| %>
+   <% %w(bootstrap.min sidebar template_cursos font-awesome.min select2 application).each do |asset| %>
         <%= stylesheet_link_tag asset %>
     <% end %>
 
-    <%= javascript_include_tag 'application', "data-turbolinks-track" => "reload" %>
+    <%= javascript_include_tag 'jquery-3.3.1.min'  %>
     <%= javascript_include_tag 'jquery-ui.min'  %>
     <%= javascript_include_tag 'bootstrap.min'  %>
     <%= javascript_include_tag 'jquery.maskedinput.min'  %>
-    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+    <%= javascript_include_tag 'application' %>
 
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+    
   </head>
   <% if @perfil %>
     <body id="page-top" style=" background-image: url(<%= rails_blob_url(@current_usuario.curso_atual.tema_curso.imagem) %>); background-repeat: no-repeat; background-size: cover; color: <%= @current_usuario.curso_atual.tema_curso.cor_texto %>">
@@ -51,15 +53,43 @@
               <a class="nav-link" href="/sobre">Sobre</a>
             </li>
             <% if usuario_signed_in? %> 
+
               <li class="nav-item">
-                <%= link_to edit_usuario_registration_path, @id => :usuario_id, class: 'nav-link' do %>Atualizar Dados<% end %>
+                <a class="nav-link" href="/">Página Inicial</a>
               </li>
-              <li class="nav-item">
-                <%= link_to destroy_usuario_session_path, :method => :delete, class: 'nav-link' do %>Sair<% end %>
+
+              <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle text-light" href="#" id="userDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline text-light"><%= current_usuario.nome %></span>
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right bg-primary"
+                    aria-labelledby="userDropdown">
+                  <%= link_to "Atualizar dados", edit_usuario_registration_path, @id => :usuario_id, class: 'fa fa-pencil-square-o text-light dropdown-item font-weight-bold' %>
+                
+                  <div class="dropdown-divider"></div>
+                  <%= link_to "Sair", destroy_usuario_session_path, :method => :delete, class: 'dropdown-item fa fa-sign-out text-light font-weight-bold ' %></p>
+                  
+                </div>
               </li>
+
             <% end %>
             <% if admin_signed_in? %>
-              <%= link_to destroy_admin_session_path, :method => :delete, class: 'nav-link' do %>Sair<% end %>
+              <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle text-light" href="#" id="userDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline text-light"><%= current_admin.nome %></span>
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right bg-primary"
+                    aria-labelledby="userDropdown">
+                  
+                  <%= link_to "Sair", destroy_admin_session_path, :method => :delete, class: 'dropdown-item fa fa-sign-out text-light font-weight-bold ' %></p>
+                  
+                </div>
+              </li>
+
             <% end %>
             
           </ul>
@@ -67,80 +97,24 @@
       </nav>
 
       <div class="container-fluid">
+        <div class="row">
+          <% if admin_signed_in? %>
+            <%= render 'controle/gestor' %>
+          <% end %>
 
-        <% if usuario_signed_in? or admin_signed_in? %>
-          <div class="row">
+          <% if usuario_signed_in? %>
+            
             <% if @perfil %>
               <div class="col-md-2 col-sm-2" style="background-color: <%= @current_usuario.curso_atual.tema_curso.cor_fundo %>;">
-              <!-- Sidebar -->
-              
-                <nav id="sidebar" class="sidebar navbar-nav" >
-                  <nav id="sidebar" class="sidebar navbar-nav">
-                    <div class="sidebar-header sidebar-avatar">
-
-                      <% if @perfil.avatar %>
-                        <p class="list-group-item text-center"><%= image_tag @perfil.avatar.imagem, class: "img-fluid img-responsive" %></p>
-                      <% else %>
-                        <p class="list-group-item text-center"><%= image_tag "missing.png", class: "img-responsive img-thumbnail" %></p>
-                      <% end %>
-                      <p class="list-group-item text-center perfil"> <%= link_to @perfil.nickname, @perfil %></p>
-                      <% if @perfil.perfil == 'Aluno' %>
-                        <p class="list-group-item text-center perfil"><label>XP:</label> <%= formata_pontos(@perfil.pontos_experiencia) %></p>
-                        <p class="list-group-item text-center perfil"><label>Nível:</label> <%= @perfil.nivel.nome %></p>
-                      <% end %>
-                      <% if @perfil.grupo_curso %>
-                        <p class="list-group-item text-center perfil"><label>Equipe:</label> <%= link_to @perfil.grupo_curso.nome_curso, equipe_url %></p>
-                        <% if @perfil.perfil == 'Aluno' %>
-                          <p class="list-group-item text-center perfil"><label>XP Médio da Equipe:</label> <%= formata_pontos(@perfil.grupo_curso.pontuacao_media) %></p>
-                          <p class="list-group-item text-center perfil"><label>Aproveitamento:</label> <%= formata_pontos(@perfil.porcentagem_aprovacao) %>%</p>
-                        <% end %>
-                      <% else %>
-                        <p class="list-group-item text-center perfil"><%= link_to 'Escolher Equipe', escolher_equipe_url(id: @perfil.id), class: 'text-danger' %></p>
-                      <% end %>
-                      <p class="list-group-item text-center perfil"><label>Status:</label> <%= @perfil.status_curso %></p>
-                    </div>
-            <% else %>
-                <div class="col-md-2 col-sm-2 color-sidebar ">
-                  <nav id="sidebar" class="sidebar navbar-nav">
-                    
-            <% end %>
-                  <ul class="list-unstyled components">  
-
-                    <% if admin_signed_in? and !usuario_signed_in? %>
-                      <%= render 'controle/gestor' %>
-                    <% end %>
-
-                    <% if current_usuario and !@perfil %>
-                      <li class="nav-item">
-                        <%= link_to " Detalhes do curso", descricao_path(id: @current_usuario.curso_atual), {class: "fa fa-info-circle fa-sm nav-link text-light"} %>
-                      </li>
-                    <% end %>
-
-                    <% if current_usuario and @perfil and @perfil.perfil == 'Aluno' %>
-                      <%= render 'controle/aluno' %>
-                    <% end %>
-
-                    <% if current_usuario and @perfil and @perfil.perfil == 'Professor' %>
-                      <%= render 'controle/professor' %>
-                    <% end %>
-
-                  </ul>
-                </nav>
-              <!-- /#sidebar-wrapper -->
-            </div>
-
-            <% if current_admin %>
-              <div class="col-md-10 col-sm-10">
-                <% if notice %>
-                  <p class="alert alert-success"><%= notice %></p>
+                <!-- Sidebar -->
+                <% if @perfil.perfil == 'Professor' %>
+                  <%= render 'controle/professor' %>
                 <% end %>
-                <% if alert %>
-                  <p class="alert alert-danger"><%= alert %></p>
+
+                <% if @perfil.perfil == 'Aluno' %>
+                  <%= render 'controle/aluno' %>
                 <% end %>
-                <%= yield %>
-                <br>
               </div>
-            <% else %>
 
               <div class="col-md-8 col-sm-8">
                 <% if current_usuario.curso_atual.ativo? %>
@@ -149,6 +123,7 @@
                       <p>Você cancelou sua inscrição neste curso!</p>
                     </div>
                   <% else %>
+
                     <% if notice %>
                       <p class="alert alert-success"><%= notice %></p>
                     <% end %>
@@ -160,6 +135,7 @@
                     <% end %>
                     <%= yield %>
                     <br>
+                    
                   <% end %>
                 <% else %>
                   <div class="alert alert-danger"> 
@@ -175,15 +151,16 @@
                   </ul>
                 </div>
               </div>
-
+            <% else %>
+              <div class="col-md-10 offset-md-1 col-sm-10">
+                <%= yield %>
+                <br>
+                <br>
+              </div>
             <% end %>
-               
-          </div> <!-- /#row -->
-        <%else%>
-          <div class="row"> 
-              <%= yield %>
-          </div>
-        <% end %>
+          <% end %>
+  
+        </div> <!-- /#row -->   
       </div>
     </div>
     <!-- /#page-content-wrapper -->

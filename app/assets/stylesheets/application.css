@@ -1,25 +1,12 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
+*= require font-awesome
+*= require_self
 
- *= require font-awesome
- *= require_self
- */
-
-
+*/
 body {
   height: 100%;
   background-color: #3361e3;
-  color: #0d2fa4;
+  color: #1c0f71;
 }
 
 .navbar-expand, .navbar-expand-lg{
@@ -38,16 +25,19 @@ body {
 
 .nav-sidebar{
   padding-top: 20px; 
-  
 }
 
 .navbar-toggler {
   border-color: #FFFFFF;
 } 
 
+.navbar-nav {
+  padding-bottom: 5px;
+}
 .navbar-nav .nav-link
 {
   color: #76c3f4;
+
 }
 
 .color-sidebar{
@@ -60,6 +50,12 @@ body {
 
 .agile{
   color: #FFFFFF;
+  font-weight: bold;
+  text-align: center;
+}
+
+.agile-texto{
+  padding: 15px;
   font-weight: bold;
   text-align: center;
 }
@@ -85,17 +81,17 @@ body {
 }
 
 .btn{
-  margin-bottom: 10px;
+  margin: 5px 0px 5px 0px;
+  min-width: 150px;
+  font-weight: bold;
 }
-
-
 
 .list-group{
   margin-bottom: 10px;
 }
 
 label{
-  color: blue;
+  color: #1c0f71;
   font-weight: bold;
 }
 
@@ -105,6 +101,9 @@ label{
   font-size: 22px;
 }
 
+a:hover{
+  text-decoration: none;
+}
 
 a.linkcurso  {
   color: #FFFFFF;
@@ -178,6 +177,10 @@ td{
   padding: 5px;
 }
 
+.menu{
+  margin-left: 10px;
+}
+
 .menu_lateral{
   background-color: #1b115d;
 }
@@ -217,7 +220,7 @@ td{
 }
 
 .icone-curso{
-  font-size: 36px;
+  font-size: 24px;
 }
 
 .sticky-footer{
@@ -248,4 +251,24 @@ td{
 
 .agile a{
   color: #FFFFFF;
+}
+
+.list-group-item{
+  background-color: #f7f7f7;
+}
+
+.table td{
+  vertical-align: middle;
+}
+
+.dropdown-item:hover {
+  background-color: transparent;
+}
+
+.alert-info{
+  text-align: center;
+}
+
+.border-right {
+  border-right: 1px dashed #255280 !important;
 }

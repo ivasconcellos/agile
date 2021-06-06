@@ -8,7 +8,7 @@
         <li class="list-group-item"><b>Destinatário:</b> <%= @conversa. destinatario.nickname %></li>
         <li class="list-group-item"><b>Assunto:</b> <%= @conversa.assunto %></li>
         <li class="list-group-item"><b>Conteúdo:</b> <%= @conversa.mensagem.to_s.html_safe %></li>
-        <li class="list-group-item"><b>Enviado em:</b> <%= @conversa.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>     
+        <li class="list-group-item"><b>Enviada em:</b> <%= @conversa.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>     
       </ul>
     </div>
   </div>

@@ -28,9 +28,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Ativa</span>
             </div>
-            <span class="input-group-text borda">
-              <%= f.select :ativo_eq,   [['Sim', true], ['Não', false]], :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
-            </span>
+            <%= f.select :ativo_eq, [['Sim', true], ['Não', false]], :include_blank => "Todos", :class => 'form-control', id: 'custom-select' %>
           </div>
         </div>
       </div>     
@@ -44,7 +42,7 @@
   <% if !@badges.empty? %>
     <div class="table-responsive">
       <table class="table table-striped table-sm">
-        <thead>
+        <thead class="thead-dark">
           <tr>
             <th class="text-center">Nome</th>
             <th class="text-center">Pontos requeridos</th>
@@ -59,7 +57,7 @@
               <td><%= badge.nome %></td>
               <td><%= badge.pontos_requeridos %></td>
               <td><%= badge.ativo? ? 'Sim' : 'Não' %></td>
-              <td><%= image_tag badge.imagem.variant(resize: "100x100"), class: "img-responsive" %></td>
+              <td><%= image_tag badge.imagem.variant(resize: "150x150"), class: "img-responsive" %></td>
               <td><%= link_to 'Visualizar', badge %></td>
               <td>
                 <% if can? :edit, Badge %>
@@ -82,7 +80,7 @@
 
   <div class="card-footer text-muted">
     <% if can? :new, Badge %>
-      <%= link_to 'Cadastrar Badge', new_badge_path, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Cadastrar Badge', new_badge_path, class: "btn btn-md btn-success" %>
     <% end %>
     <%= link_to 'Voltar', controle_gestor_path, class: "btn btn-md btn-secondary" %>
   </div>  

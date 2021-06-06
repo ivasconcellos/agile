@@ -1,48 +1,77 @@
-<li class="nav-item nav-sidebar">
-  <%= link_to " Detalhes do curso", descricao_path(id: @current_usuario.curso_atual), {class: "fa fa-info-circle fa-sm nav-link text-light"} %>
-</li>
+<nav id="sidebar" class="sidebar navbar-nav">
+  <div class="sidebar-header sidebar-avatar">
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Meu perfil", @perfil, {class: "fa fa-user fa-sm nav-link text-light"} %>
-</li>
+    <% if @perfil.perfil == 'Aluno' %>
+      <% if @perfil.avatar %>
+        <p class="list-group-item text-center"><%= image_tag @perfil.avatar.imagem, class: "img-responsive img-thumbnail" %></p>
+      <% else %>
+        <p class="list-group-item text-center"><%= image_tag "missing.png", class: "img-responsive img-thumbnail" %></p>
+      <% end %>
+      <p class="list-group-item text-center perfil"> <%= link_to @perfil.nickname, @perfil %></p>
+      <p class="list-group-item text-center perfil"><label>XP:</label> <%= formata_pontos(@perfil.pontos_experiencia) %></p>
+      <p class="list-group-item text-center perfil"><label>Nível:</label> <%= @perfil.nivel.nome %></p>
+      <% if @perfil.grupo_curso %>
+        <p class="list-group-item text-center perfil"><label>Equipe:</label> <%= link_to @perfil.grupo_curso.nome_curso, equipe_url %></p>
+        <p class="list-group-item text-center perfil"><label>XP Médio da Equipe:</label> <%= formata_pontos(@perfil.grupo_curso.pontuacao_media) %></p>
+      <% else %>
+        <p class="list-group-item text-center perfil"><%= link_to 'Escolher Equipe', escolher_equipe_url(id: @perfil.id), class: 'text-danger' %></p>
+      <% end %>
+      <p class="list-group-item text-center perfil"><label>Aproveitamento:</label> <%= formata_pontos(@perfil.porcentagem_aprovacao) %>%</p>
+      <p class="list-group-item text-center perfil"><label>Status:</label> <%= @perfil.status_curso %></p>
+    <% end %>
+  </div>
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Módulos", @current_usuario.curso_atual, {class: "fa fa-cubes fa-sm nav-link text-light"} %>
-</li>
+  <ul class="navbar-nav bg-gradient-primary sidebar accordion" id="accordionSidebar">
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Página principal", @current_usuario.curso_atual, {class: "fa fa-university fa-sm nav-link text-light"} %>
+    </li>
+    
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Informações", descricao_path(id: @current_usuario.curso_atual), {class: "fa fa-info-circle fa-sm nav-link text-light"} %>
+    </li>
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Chats", salas_chat_path, {class: "fa fa-comments fa-sm nav-link text-light"} %>
-</li>
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Meu perfil", @perfil, {class: "fa fa-user fa-sm nav-link text-light"} %>
+    </li>
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Pesquisas", question_groups_path, {class: "fa fa-search fa-sm nav-link text-light"} %>
-</li>
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Módulos", @current_usuario.curso_atual, {class: "fa fa-cubes fa-sm nav-link text-light"} %>
+    </li>
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Minhas notas", minhas_notas_path, {class: "fa fa-graduation-cap fa-sm nav-link text-light"} %>
-</li>
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Minhas notas", minhas_notas_path, {class: "fa fa-graduation-cap fa-sm nav-link text-light"} %>
+    </li>
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Minha equipe", equipe_path, {class: "fa fa-users fa-sm nav-link text-light"} %>
-</li>
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Recompensas", recompensas_path, {class: "fa fa-gift fa-sm nav-link text-light"} %>
+    </li>
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Recompensas", recompensas_path, {class: "fa fa-gift fa-sm nav-link text-light"} %>
-</li>  
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Minha equipe", equipe_path, {class: "fa fa-users fa-sm nav-link text-light"} %>
+    </li>
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Comunicados", comunicados_path, {class: "fa fa-bullhorn fa-sm nav-link text-light"} %>
-</li>  
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Comunicados", comunicados_path, {class: "fa fa-bullhorn fa-sm nav-link text-light"} %>
+    </li> 
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Eventos", eventos_path, {class: "fa fa-calendar fa-sm nav-link text-light"} %>
-</li>
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Eventos", eventos_path, {class: "fa fa-calendar fa-sm nav-link text-light"} %>
+    </li>
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Participantes", {controller: 'usuario_curso', action: 'index'}, class: "fa fa-user-circle fa-sm nav-link text-light" %>
-</li>
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Chats", salas_chat_path, {class: "fa fa-comments fa-sm nav-link text-light"} %>
+    </li>
 
-<li class="nav-item nav-sidebar">
-  <%= link_to " Professor(es)", conversas_path, {class: "fa fa-address-book fa-sm nav-link text-light"} %>
-</li>
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Pesquisas", question_groups_path, {class: "fa fa-search fa-sm nav-link text-light"} %>
+    </li>
 
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Participantes", {controller: 'usuario_curso', action: 'index'}, class: "fa fa-user-circle fa-sm nav-link text-light" %>
+    </li>
+
+    <li class="nav-item nav-sidebar">
+      <%= link_to " Professor(es)", conversas_path, {class: "fa fa-address-book fa-sm nav-link text-light"} %>
+    </li>
+  </ul>
+</nav>

@@ -55,13 +55,13 @@
 	            <div class="card text-white o-hidden h-200 curso">
 	              <div class="card-body">
 	              	<% if participante.avatar %>
-	                	<%= image_tag participante.avatar.imagem.variant(resize: "200x200"), class: "img-responsive" %>
+	                	<%= image_tag participante.avatar.imagem.variant(resize: "200x200"), class: "img-responsive img-thumbnail" %>
 	                <% else %>
 	                	<p class="list-group-item text-center"><%= image_tag "missing.png", class: "img-responsive img-thumbnail" %></p>
 	                <% end %>
 	              </div>
 	              <div class="card-footer bg-primary text-white">
-	                <div><%= link_to participante.nickname, participante, class: "text-white" %></div>
+	                <div><%= link_to participante.nickname, participante, class: "text-white font-weight-bold" %></div>
 	              </div>
 	            </div>
 	          </div>

@@ -51,12 +51,14 @@
         </tbody>
       </table>
     </div>
+  <% else %>
+    <div class="alert alert-danger">Não há Pesquisas cadastradas!</div>
   <% end %>
   <br>
 
   <div class="card-footer text-muted">
     <% if can? :new, QuestionGroup %>
-      <%= link_to 'Cadastrar Pesquisa', {:controller => 'question_groups', :action => 'new'}, class: "btn btn-md btn-primary" %>
+      <%= link_to 'Cadastrar Pesquisa', {:controller => 'question_groups', :action => 'new'}, class: "btn btn-md btn-success" %>
     <% end %>
   </div>
 

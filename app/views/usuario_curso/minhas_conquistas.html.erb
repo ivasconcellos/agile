@@ -1,0 +1,113 @@
+<div class="card">
+
+    <div class="card-header">Minhas Conquistas</div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+            <div class="col-lg-3">
+                <div class="input-group mb-3">
+                    <% if @usuario_curso.avatar %>  
+                    <%= image_tag @usuario_curso.avatar.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail" %>
+                    <% else %>
+                        <%= image_tag "missing.png", class: "img-responsive img-thumbnail" %>
+                    <% end %>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <p><label>Nickname (apelido): </label>          
+                    <%= @usuario_curso.nickname %></p>
+                </div>
+
+                <div class="input-group">
+                    <p><label>Pontos de experiência (XP): </label>          
+                    <%= formata_pontos(@usuario_curso.pontos_experiencia) %></p>
+                </div>
+
+                <div class="input-group">
+                    <p><label>Aproveitamento das Missões: </label>          
+                    <%= formata_pontos(@usuario_curso.porcentagem_aprovacao) %>%</p>
+                </div>
+
+                <% if @usuario_curso.grupo_curso %>
+                    <div class="input-group">
+                        <p><label>Equipe: </label>          
+                        <%= @usuario_curso.grupo_curso.nome_curso %></p>
+                    </div>
+                <% end %>
+                
+                <div class="input-group">
+                    <p><label>Cadastro no curso: </label>          
+                    <%= @usuario_curso.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></p>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="input-group mb-2">
+                    <%= image_tag @usuario_curso.nivel.imagem.variant(resize: "150x150"), class: "img-responsive img-thumbnail text-center" %>
+                </div>
+                <div class="input-group">
+                    <p><label><%= @usuario_curso.nivel.nome %></label></p>
+                </div>
+            </div>    
+    
+        </div>
+
+        <% if !@badges.empty? %>
+
+            <div class="card-header">Badges</div>
+
+            <div class="card-body">
+
+                <div class="row">
+                    <% @badges.each do |badge| %>
+                        <div class="col-lg-2">
+                            <div class="input-group mb-3">
+                                <%= image_tag badge.badge.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail" %>
+                            </div>
+                            <div class="input-group">
+                                <p>
+                                <label><%= badge.badge.nome %></label>
+                                </p>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>    
+            </div>
+        <% end %>
+
+        <% if !@artefatos.empty? %>
+
+            <div class="card-header">Artefatos</div>
+
+            <div class="card-body">
+
+                <div class="row">
+                    <% @artefatos.each do |artefato| %>
+                        <div class="col-lg-2">
+                        <div class="input-group mb-3">
+                            <%= image_tag artefato.artefato.imagem.variant(resize: "300x300"), class: "img-responsive img-thumbnail" %>
+                        </div>
+                        <div class="input-group">
+                            <p>
+                            <label><%= artefato.artefato.nome %></label>
+                            </p>
+                        </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>    
+            
+        <% end %>
+        
+    </div>
+    
+  <br>
+  <div class="card-footer text-muted">
+    <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
+  </div>
+
+</div>

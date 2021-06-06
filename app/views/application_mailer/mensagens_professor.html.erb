@@ -8,10 +8,15 @@
   </head>
 
   <body>
+    <p>Esta mensagem foi enviada por <b><%= @remetente %></b> do curso <b><%= @conversa.usuario_curso.curso.nome %></b> do <b>AGILE</b></p>
+
+    <br>
+    <p><b>Conteúdo da mensagem:</b></p>
     <div><%= @mensagem.to_s.html_safe %></div>
-    <p><b>Mensagem enviada por:</b> <%= @remetente %></p>
-    <p><b>Curso:</b> <%= @conversa.usuario_curso.curso.nome %></p>
-    <p><b>Link para visualizar a mensagem recebida:</b> <%= link_to 'Visualizar Mensagem', @conversa %></p>
+    
+    <br>
+    <p><b>Link para visualizar a mensagem recebida e respondê-la:</b> <%= link_to 'Visualizar Mensagem', @conversa %></p>
+    <br>
   </body>
 
 </html>

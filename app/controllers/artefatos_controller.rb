@@ -62,10 +62,9 @@ class ArtefatosController < ApplicationController
   # DELETE /artefatos/1.json
   def destroy
     authorize! :destroy, Artefato
-    
     respond_to do |format|
       if @artefato.destroy
-        format.html { redirect_to artefatos_url, notice: 'Artefato excluído com sucesso!' }
+        format.html { redirect_to request.referrer, notice: 'Artefato excluído com sucesso!' }
         format.json { head :no_content }
       else
         format.html { redirect_to artefatos_url, alert: 'O Artefato não pôde ser excluído, pois está sendo utilizado!' }

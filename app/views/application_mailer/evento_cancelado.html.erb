@@ -9,8 +9,10 @@
 
   <body>
   	<p>Prezado(a),</p>
+    <br>
+  	<p>Informamos que o Evento <b><%= @evento.nome %></b> do curso <b><%= @evento.curso.nome %></b>, marcado para <b><%= @evento.data_hora %></b>, foi <b>cancelado</b>!</p>
 
-  	<p>Informamos que o Evento <%= @evento.nome %> do curso <%= @evento.curso.nome %> marcado para <%= @evento.data_hora %> foi cancelado!</p>
-    <p>Para visualizar mais detalhes, acesse o curso!</p>
+    <br>
+    <p>Para mais detalhes, entre em contato com o(a) professor(a) curso!</p>
   </body>
 </html>

@@ -1,9 +1,9 @@
 <div class="col-md-4 offset-md-4 col-sm-10 offset-sm-1">
 
-  <div class="text-center mb-4">
-    <%= image_tag ("coelho2.png"), class: "mb-4 img-responsive", width: "100", height: "100" %>
-    <h1 class="agile">AGILE</h1>
-  </div>   
+	<div class="text-center mb-4">
+		<%= image_tag ("coelho2.png"), class: "mb-4 img-responsive", width: "100", height: "100" %>
+		<h1 class="agile">AGILE</h1>
+	</div>   
 
 	<div class="card card-login mx-auto mt-6">
 		<div class="card-header">Esqueceu a senha?</div> 
@@ -13,24 +13,25 @@
 
 				<div class="card-body">
 					<div class="form-group">
-					    <label for="inputEmail">E-mail cadastrado*</label>
+					    <label for="inputEmail">Informe o e-mail cadastrado*</label>
 					    <%= f.email_field :email, class: "form-control" %>    
 					</div>
-				</div>
+				
 
-				<div class="text-center">
-				    <%= f.submit "Reativar senha", class: "btn btn-lg btn-info btn-block" %>
-				    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-						<%= link_to "Cadastrar", new_registration_path(resource_name), class: "btn btn-lg btn-success btn-block" %>
-					<% end -%>
-					<%- if controller_name != 'sessions' %>
-			        	<%= link_to "Acessar", new_session_path(resource_name), class: "btn btn-lg btn-secondary btn-block" %>
-			        <% end -%>
+					<div class="text-center">
+						<%= f.submit "Reativar senha", class: "btn btn-lg btn-danger btn-block" %>
+						<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+							<%= link_to "Cadastrar", new_registration_path(resource_name), class: "btn btn-lg btn-success btn-block" %>
+						<% end -%>
+						<%- if controller_name != 'sessions' %>
+							<%= link_to "Acessar", new_session_path(resource_name), class: "btn btn-lg btn-primary btn-block" %>
+						<% end -%>
+					</div>
+
 				</div>
 				
 			<% end %>
 		</div>
 		
 	</div>
-	<br>
 </div>

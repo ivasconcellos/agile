@@ -20,14 +20,14 @@
       <div class="form-group row">
         <label for="inputNome" class="col-md-2 col-form-label">Assunto*</label>
         <div class="col-md-10">
-          <%= form.text_field :assunto, autofocus: true, class: "form-control" %>
+          <%= form.text_field :assunto, autofocus: true, class: "form-control", required: true %>
         </div>
       </div>
     <% else%>
       <div class="form-group row">
         <label for="inputNome" class="col-md-2 col-form-label">Assunto*</label>
         <div class="col-md-10">
-          <%= form.text_field :assunto, disabled: true, class: "form-control" %>
+          <%= form.text_field :assunto, disabled: true, class: "form-control", required: true %>
         </div>
       </div>
     <% end %>
@@ -35,7 +35,7 @@
     <div class="form-group row">
       <label for="inputNome" class="col-md-2 col-form-label">Destinatário*</label>
       <div class="col-md-10">
-        <%= form.text_field :destinatario, value: @conversa.destinatario.nickname, disabled: true, class: "form-control" %>
+        <%= form.text_field :destinatario, value: @conversa.destinatario.nickname, disabled: true, class: "form-control", required: true %>
       </div>
     </div>
 

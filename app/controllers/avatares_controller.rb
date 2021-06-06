@@ -64,7 +64,7 @@ class AvataresController < ApplicationController
     
     respond_to do |format|
       if @avatar.destroy
-        format.html { redirect_to @grupo, notice: 'Avatar excluído com sucesso!' }
+        format.html { redirect_to request.referrer, notice: 'Avatar excluído com sucesso!' }
         format.json { head :no_content }
       else
         format.html { redirect_to @grupo, alert: 'O Avatar não pôde ser excluído, pois está sendo utilizado!' }

@@ -15,21 +15,21 @@
     <%= form.hidden_field :modulo_id %>
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Título*</label>
-      <div class="col-md-8">
-        <%= form.text_field :titulo, autofocus: true, class: "form-control" %>
+      <label for="inputNome" class="col-md-3 col-form-label">Título*</label>
+      <div class="col-md-9">
+        <%= form.text_field :titulo, autofocus: true, class: "form-control", required: true %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Descrição*</label>
-      <div class="col-md-8">
+      <label for="inputNome" class="col-md-3 col-form-label">Descrição*</label>
+      <div class="col-md-9">
         <%= form.cktext_area :descricao, class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label class="form-check-label col-md-2 offset-md-1" for="gridCheck1">Ativo</label>
+      <label class="form-check-label col-md-3" for="gridCheck1">Ativo</label>
       <div class="col-md-2 ">
         <div class="form-check">
           <%= form.check_box :ativo, class: "form-check-input" %> Sim

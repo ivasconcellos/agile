@@ -21,7 +21,7 @@
           <p><%= image_tag grupo.imagem.variant(resize: "200x200"), class: "img-responsive img-thumbnail" %></p>
           <p><%= form.radio_button :grupo_id, grupo.id %>
           <b><%= grupo.nome %></b> - Perfil: <%= grupo.perfil %></p>
-          <p><%= link_to 'Avatares', visualizar_avatares_path(grupo_id: grupo.id) %></p>
+          <p><%= link_to 'Ver Avatares', visualizar_avatares_path(grupo_id: grupo.id) %></p>
       </div>
       <% end %>      
     </div>
@@ -29,7 +29,7 @@
     <div class="form-group row">
       <label for="inputNome" class="col-md-4 col-form-label">Nome da Equipe no curso*</label>
       <div class="col-md-8">
-        <%= form.text_field :nome_curso, autofocus: true, class: "form-control" %>
+        <%= form.text_field :nome_curso, autofocus: true, class: "form-control", required: true %>
       </div>
     </div>
 

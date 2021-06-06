@@ -14,28 +14,28 @@
   <div class="card-body">
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Nome*</label>
-      <div class="col-md-8">
-        <%= form.text_field :nome, autofocus: true, class: "form-control" %>
+      <label for="inputNome" class="col-md-3 col-form-label">Nome*</label>
+      <div class="col-md-9">
+        <%= form.text_field :nome, autofocus: true, class: "form-control", required: true %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Pontos requeridos*</label>
+      <label for="inputNome" class="col-md-3 col-form-label">Pontos requeridos*</label>
       <div class="col-md-2">
-        <%= form.number_field :pontos_requeridos, autofocus: true, class: "form-control" %>
+        <%= form.number_field :pontos_requeridos, autofocus: true, class: "form-control", required: true %>
       </div>
     </div>
     
     <div class="form-group row">
-      <label for="inputNome" class="col-md-2 offset-md-1 col-form-label">Imagem*</label>
-      <div class="col-md-8">
+      <label for="inputNome" class="col-md-3 col-form-label">Imagem*</label>
+      <div class="col-md-9">
         <%= form.file_field :imagem, value: form.object.imagem %>
       </div>
     </div>
 
     <div class="form-group row">
-      <label class="form-check-label col-md-2 offset-md-1" for="gridCheck1">Ativa</label>
+      <label class="form-check-label col-md-3" for="gridCheck1">Ativa</label>
       <div class="col-md-2 ">
         <div class="form-check">
           <%= form.check_box :ativo, class: "form-check-input" %> Sim
