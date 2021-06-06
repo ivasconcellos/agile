@@ -2,24 +2,24 @@
 
   <div class="card-header">Notas da Turma </div>
 
-    <div class="col-lg-2 offset-md-5">
-		<div class="input-group mb-3">
-		<%= link_to 'Gerar XLS', {controller: "cursos", action: "notas", format: 'xls'},  :class => "btn btn-success btn-block btn-normal" %>
-		</div>
+    <div class="col-lg-6 offset-md-3">
+		<br>
+		<%= link_to 'Gerar XLS', {controller: "cursos", action: "notas", format: 'xls'},  :class => "btn btn-success" %>
+		<%= link_to 'Gerar PDF', {controller: "cursos", action: "notas", format: 'pdf'}, target: "_blank",  :class => "btn btn-danger pull-right" %>
 	</div>
-
-  <% @modulos.each do |modulo| %>
-    <h5 class="p-3 mb-2 bg-info text-white text-center"><b>Módulo:</b> <%= link_to modulo.nome, modulo, class: "text-light" %></h5>
-    <% Missao.where(modulo_id: modulo.id).each do |missao| %>
-	    <h6 class="p-3 mb-2 bg-secondary text-white text-center">
-	    	<b>Missão (<%= missao.tipo %>):</b> <%= link_to missao.nome, missao, class: "text-light" %></h6>
-	    <% if missao.tipo == 'Tarefa' %>
-	    	<%= render partial: "tarefas/tarefas_turma", locals: {tarefa: missao.tarefa} %>
-	    <% end %>
-	    <% if missao.tipo == 'Quiz' %>
-	    	<%= render partial: "quizzes/quizzes_turma", locals: {quiz: missao.quiz} %>
-	    <% end %>
+	
+	<% @modulos.each do |modulo| %>
+		<h5 class="p-3 mb-2 bg-info text-white text-center"><b>Módulo:</b> <%= link_to modulo.nome, modulo, class: "text-light" %></h5>
+		<% Missao.where(modulo_id: modulo.id).each do |missao| %>
+			<h6 class="p-3 mb-2 bg-secondary text-white text-center">
+				<b>Missão (<%= missao.tipo %>):</b> <%= link_to missao.nome, missao, class: "text-light" %></h6>
+			<% if missao.tipo == 'Tarefa' %>
+				<%= render partial: "tarefas/tarefas_turma", locals: {tarefa: missao.tarefa} %>
+			<% end %>
+			<% if missao.tipo == 'Quiz' %>
+				<%= render partial: "quizzes/quizzes_turma", locals: {quiz: missao.quiz} %>
+			<% end %>
+		<% end %>
 	<% end %>
-  <% end %>
 
 </div>
