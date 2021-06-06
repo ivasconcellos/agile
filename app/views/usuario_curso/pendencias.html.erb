@@ -2,6 +2,8 @@
 
   <div class="card-header">Pendências </div>
 
+	<div class="alert alert-info"><b><%= @usuario_curso.nickname %></b></div>
+
 	<% if !@tarefas.empty? or !@quizzes.empty? or !@pesquisas.empty? %>
 
 		<% if !@tarefas.empty? %>
