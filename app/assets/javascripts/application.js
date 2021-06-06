@@ -23,7 +23,7 @@
 //= require turbolinks
 //= require_tree .
 
-$( document ).ready(function (){
+$( document ).on('turbolinks:load', function() {
   $('.selecionar').select2({
     theme: "bootstrap",
 		width: 'auto',
@@ -31,10 +31,12 @@ $( document ).ready(function (){
   });
 })
 
-$( document ).ready(function (){
-
-    $('#cpf').mask('999.999.999-99', {reverse: true});
- 
+$( document ).on('turbolinks:load', function() {
+  (function( $ ) {
+    $(function() {
+      $('#cpf').mask('999.999.999-99', {reverse: true});
+    });
+  })(jQuery);
 })
 
 function initialize() {
