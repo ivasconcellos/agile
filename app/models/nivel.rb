@@ -15,7 +15,7 @@ class Nivel < ApplicationRecord
 	      usuario.nivel_id = @nivel.id
 				usuario.save!
 				ApplicationMailer.novo_nivel(usuario).deliver	      
-				@notificacao = Notificacao.create!(usuario_curso_id: usuario.id, texto: "Parabéns!!! Você conquistou o Nível: <b>" + @nivel.nome + "</b>! Para visualizá-lo, acesso o menu Meu Perfil.", tipo: "Nível")
+				@notificacao = Notificacao.create!(usuario_curso_id: usuario.id, texto: "Parabéns!!! Você conquistou o Nível: <b>" + @nivel.nome + "</b>! Para visualizá-lo, acesse o menu 'Conquistas'.", tipo: "Nível")
 	    end
 	end
 end

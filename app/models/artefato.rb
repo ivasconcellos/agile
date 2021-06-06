@@ -18,7 +18,7 @@ class Artefato < ApplicationRecord
 		    if !@artefato_aluno
 		    	if usuario.pontos_experiencia >= artefato.pontos_requeridos
 					@novo_artefato = ArtefatoAluno.create!(usuario_curso_id: usuario.id, artefato_id: artefato.id)
-					@notificacao = Notificacao.create!(usuario_curso_id: usuario.id, texto: "Parabéns!!! Você conquistou o artefato: <b>" + @novo_artefato.artefato.nome + "</b>! Para visualizá-lo, acesso o menu Meu Perfil.", tipo: "Artefato")
+					@notificacao = Notificacao.create!(usuario_curso_id: usuario.id, texto: "Parabéns!!! Você conquistou o artefato: <b>" + @novo_artefato.artefato.nome + "</b>! Para visualizá-lo, acesse o menu 'Conquistas'.", tipo: "Artefato")
 					ApplicationMailer.novo_artefato(@novo_artefato).deliver		    		
 		    	end
 		    end
