@@ -1,14 +1,25 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
 
-<p>
-  <strong>Nome:</strong>
-  <%= @area.nome %>
-</p>
+  <div class="card-header">Área
+    <% if can? :edit, Area %>
+      <%= link_to '', edit_area_path(@area), class: "fa fa-edit text-white" %>
+    <% end %>
+  </div>
 
-<p>
-  <strong>Ativa:</strong>
-  <%= @area.ativa %>
-</p>
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <ul class="list-group">
+        <li class="list-group-item"><b>Nome:</b> <%= @area.nome %></li>
+        <li class="list-group-item"><b>Ativa:</b> <%= @area.ativa? ? 'Sim' : 'Não' %></li>
+        <li class="list-group-item"><b>Cadastrada em:</b> <%= @area.created_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
+        <li class="list-group-item"><b>Atualizada em:</b> <%= @area.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>    
+      </ul>
+    </div>
+  </div>
 
-<%= link_to 'Edit', edit_area_path(@area) %> |
-<%= link_to 'Back', areas_path %>
+  <br>
+  <div class="card-footer text-muted">
+    <%= link_to 'Voltar', areas_path, class: "btn btn-md btn-secondary" %>
+  </div>
+
+</div>
