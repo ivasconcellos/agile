@@ -105,11 +105,19 @@ class CursosController < ApplicationController
 
   def notas
     authorize! :notas_turma, :curso
+    @curso = Curso.find(current_usuario.curso_atual_id)
     @modulos = Modulo.where('curso_id = ?',
        current_usuario.curso_atual_id)
       respond_to do |format|
         format.html
         format.xls
+        format.pdf do
+          render pdf: "Notas do Curso",
+                 page_size: "A4",
+                 title: "Notas do Curso",
+                 orientation: 'Landscape', 
+                 layout: 'application'
+        end
       end
   end
 

@@ -1,0 +1,60 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<%= wicked_pdf_stylesheet_link_tag "pdf" %>
+</h1>
+
+<h2 class="topo">Notas da Turma - Curso: <%= @curso.nome %></h2>
+
+<table class="tabela">
+	<% @modulos.each do |modulo| %>
+        <tr>
+            <td class="tag4" colspan="5">Módulo: <%= modulo.nome %></td>
+        </tr>
+        <% Missao.where(modulo_id: modulo.id).each do |missao| %>
+            <tr>
+                <td class="tag1" colspan="5">Missão (<%= missao.tipo %>): <%= missao.nome %></td>
+            </tr>
+            <% if missao.tipo == 'Quiz' %>
+                <tr>
+                    <td class="tag2">Aluno</td>
+                    <td class="tag2">Pontuação máxima</td>
+                    <td class="tag2">Nota</td>
+                    <td class="tag2">Realizada</td>
+                    <td class="tag2">Avaliada</td>
+                </tr>
+                <% UsuarioCurso.where("curso_id = ? and perfil = ?",  @perfil.curso.id, "Aluno").order('nickname').each do |aluno| %>
+                    <tr>
+                        <td class="tag3"><%= aluno.nickname %></td>
+                        <td class="tag3"><%= formata_pontos(missao.pontuacao) %></td>
+                        <td class="tag3"><%= minha_nota_quiz(missao.quiz.id, aluno.id) %></td>
+                        <td class="tag3"><%= respondido_quiz(missao.quiz.id, aluno.id) %></td>
+                        <td class="tag3"><%= respondido_quiz(missao.quiz.id, aluno.id) %></td>
+                    </tr>
+                <% end %>
+            <% end %>
+
+            <% if missao.tipo == 'Tarefa' %>
+                <tr>
+                    <td class="tag2">Aluno</td>
+                    <td class="tag2">Pontuação máxima</td>
+                    <td class="tag2">Nota</td>
+                    <td class="tag2">Enviada</td>
+                    <td class="tag2">Avaliada</td>
+                </tr>
+                <% UsuarioCurso.where("curso_id = ? and perfil = ?", @perfil.curso.id, "Aluno").order('nickname').each do |aluno| %>
+                    <tr>
+                        <td class="tag3"><%= aluno.nickname %></td>
+                        <td class="tag3"><%= formata_pontos(missao.pontuacao) %></td>
+                        <td class="tag3"><%= minha_nota(missao.tarefa.id, aluno.id) %></td>
+                        <td class="tag3"><%= enviada(missao.tarefa.id, aluno.id) %></td>
+                        <td class="tag3"><%= avaliada(missao.tarefa.id, aluno.id) %></td>
+                    </tr>
+                <% end %>
+            <% end %>
+        <% end %>
+    <% end %>
+</table>
+
+
+<p class="impresso2">Relatório gerado em <%= Time.now.strftime("%d/%m/%Y - %H:%M:%S") %>.</p>
+<br><br><br>
+<p class="rodape">AGILE - Ambiente Virtual de Aprendizagem Gamificado</p>
