@@ -34,43 +34,65 @@
 				<% end %>
 			</div>
 
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item text-center">Buscar Cursos Públicos</li>
-          </ol>
-          
-		  <%= form_tag request.path, :method => 'get' do %>
-		    <div class="form-row">
-			    <div class="form-group col-md-5 offset-2">
-			      <label for="inputNome">Nome</label>
-			      <%= text_field_tag :nome, params[:nome], class: "form-control"  %>
-			    </div>
-			    <div class="form-group col-md-2">
-			      <label for="inputCodigoAcesso">Código de acesso</label>
-			      <%= text_field_tag :codigo_acesso, params[:codigo_acesso], class: "form-control" %>
-			    </div>
-			</div>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item text-center">Buscar Cursos Públicos</li>
+			</ol>
 
-		    <div class="text-center">
-		      <%= submit_tag 'Buscar', :class =>"btn btn-primary link" %>
-		    </div>
-		  <% end %>
+			<%= search_form_for @q, url: inicial_path do |f| %>
+				<div class="card-body">
+
+					<div class="row">
+						<div class="col-lg-5">
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+								<span class="input-group-text" id="basic-addon1">Nome</span>
+								</div>
+								<%= f.search_field :nome_cont, :class => 'form-control'  %>
+							</div>
+						</div>
+
+						<div class="col-lg-3">
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+								<span class="input-group-text" id="basic-addon1">Código de Acesso</span>
+								</div>
+								<%= f.search_field :codigo_acesso, :class => 'form-control' %>
+							</div>
+						</div>
+
+						<div class="col-lg-4">
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+								<span class="input-group-text" id="basic-addon1">Área</span>
+								</div>
+								<%= f.select :area_id_eq,  options_from_collection_for_select(Area.where(ativa: true), "id", "nome"), :include_blank => "Todas", :class => 'form-control', id: 'custom-select' %>
+							</div>
+						</div>
+					</div>     
+				</div>
+				
+				<div class="text-center">
+				<button class="btn btn-primary link search-btn" ><% submit_tag "" %>Pesquisar</button>
+				</div>
+			<% end %>
+          
 		  
-		  <% if not @cursos_publicos.empty? %>
-		  	<div class="row">
-	          	<% @cursos_publicos.each do |curso| %>
-		            <div class="col-xl-3 col-sm-6 mb-3">
-		              <div class="card text-white curso o-hidden h-100">
-		                <div class="card-body">
-		                  <div><%= curso.nome %></div>
-		                </div>
-		                <div class="card-footer bg-primary text-white">
-		                  <%= link_to 'Visualizar', {controller: 'cursos', action: 'visualizar_curso', id: curso.id}, class: 'linkcurso' %>
-		                </div>
-		              </div>
-		            </div>
-	            <% end %>
-          	</div>
-          <% end %>
+			<% if not @cursos_publicos.empty? %>
+				<div class="row">
+					<% @cursos_publicos.each do |curso| %>
+						<div class="col-xl-3 col-sm-6 mb-3">
+						<div class="card text-white curso o-hidden h-100">
+							<div class="card-body">
+								<div><%= curso.nome %></div>
+							</div>
+							<div class="card-footer bg-primary text-white">
+							<%= link_to 'Visualizar', {controller: 'cursos', action: 'visualizar_curso', id: curso.id}, class: 'linkcurso' %>
+							</div>
+						</div>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
 
         </div>
     </div>
