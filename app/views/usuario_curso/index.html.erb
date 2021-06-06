@@ -46,7 +46,7 @@
           <th class="text-center">Nickname</th>
           <th class="text-center">Avatar</th>
           <th class="text-center">Perfil</th>
-          <th colspan="3" class="text-center">Opções</th>
+          <th colspan="4" class="text-center">Opções</th>
         </tr>
       </thead>
       <tbody>
@@ -64,9 +64,12 @@
             <% end %>
             <% if can? :new, UsuarioCurso %>
               <td><%= link_to 'Atualizar', edit_usuario_curso_path(usuario_curso) %></td>
+              <% if usuario_curso.perfil == "Aluno" %>
+                <td><%= link_to 'Pendências', pendencias_path(id: usuario_curso.id), class: "btn btn-sm btn-warning" %></td>
+              <% end %>
             <% end %>
             <% if can? :destroy, UsuarioCurso and usuario_curso.status_curso != 'Inscrição Cancelada' and @perfil.id != usuario_curso.id %>
-              <td><%= link_to 'Cancelar inscrição no curso', cancelar_inscricao_path(id: usuario_curso.id), class: "btn btn-sm btn-danger", data: { confirm: 'Deseja realmente cancelar a Inscrição deste usuário no Curso?' } %></td>
+              <td><%= link_to 'Cancelar inscrição', cancelar_inscricao_path(id: usuario_curso.id), class: "btn btn-sm btn-danger", data: { confirm: 'Deseja realmente cancelar a Inscrição deste usuário no Curso?' } %></td>
             <% end %>
           </tr>
         <% end %>
