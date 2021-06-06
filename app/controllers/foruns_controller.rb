@@ -36,6 +36,7 @@ class ForunsController < ApplicationController
     @forum.usuario_curso_id = @usuario.id
     respond_to do |format|
       if @forum.save
+        ApplicationMailer.novo_forum(@forum).deliver   
         format.html { redirect_to @forum, notice: 'Fórum criado com sucesso!' }
         format.json { render :show, status: :created, location: @forum }
       else
