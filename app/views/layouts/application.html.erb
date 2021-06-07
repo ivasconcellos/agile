@@ -55,41 +55,23 @@
             <% if usuario_signed_in? %> 
 
               <li class="nav-item">
-                <a class="nav-link" href="/">Página Inicial</a>
+                <a class="nav-link text-light" href="/">Página Inicial</a>
               </li>
 
-              <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle text-light" href="#" id="userDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-light"><%= current_usuario.nome %></span>
-                </a>
-                <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right bg-primary"
-                    aria-labelledby="userDropdown">
-                  <%= link_to "Atualizar dados", edit_usuario_registration_path, @id => :usuario_id, class: 'fa fa-pencil-square-o text-light dropdown-item font-weight-bold' %>
-                
-                  <div class="dropdown-divider"></div>
-                  <%= link_to "Sair", destroy_usuario_session_path, :method => :delete, class: 'dropdown-item fa fa-sign-out text-light font-weight-bold ' %></p>
-                  
-                </div>
+              <li class="nav-item">
+                <%= link_to "Atualizar dados", edit_usuario_registration_path, @id => :usuario_id, class: 'nav-link text-success' %>
+              </li>
+
+              <li class="nav-item">
+                <%= link_to "Sair", destroy_usuario_session_path, :method => :delete, class: 'nav-link text-danger' %>
               </li>
 
             <% end %>
+            
             <% if admin_signed_in? %>
-              <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle text-light" href="#" id="userDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-light"><%= current_admin.nome %></span>
-                </a>
-                <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right bg-primary"
-                    aria-labelledby="userDropdown">
-                  
-                  <%= link_to "Sair", destroy_admin_session_path, :method => :delete, class: 'dropdown-item fa fa-sign-out text-light font-weight-bold ' %></p>
-                  
-                </div>
+              <li class="nav-item">
+                <%= link_to "Sair", destroy_admin_session_path, :method => :delete, class: 'nav-link text-danger' %>
               </li>
-
             <% end %>
             
           </ul>

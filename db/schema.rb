@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 2021_06_06_021143) do
     t.string "nome", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.boolean "ativo", default: true
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -171,6 +170,61 @@ ActiveRecord::Schema.define(version: 2021_06_06_021143) do
     t.index ["usuario_curso_id"], name: "index_badges_alunos_on_usuario_curso_id"
   end
 
+  create_table "blazer_audits", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "query_id"
+    t.text "statement"
+    t.string "data_source"
+    t.datetime "created_at"
+    t.index ["query_id"], name: "index_blazer_audits_on_query_id"
+    t.index ["user_id"], name: "index_blazer_audits_on_user_id"
+  end
+
+  create_table "blazer_checks", force: :cascade do |t|
+    t.bigint "creator_id"
+    t.bigint "query_id"
+    t.string "state"
+    t.string "schedule"
+    t.text "emails"
+    t.text "slack_channels"
+    t.string "check_type"
+    t.text "message"
+    t.datetime "last_run_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_blazer_checks_on_creator_id"
+    t.index ["query_id"], name: "index_blazer_checks_on_query_id"
+  end
+
+  create_table "blazer_dashboard_queries", force: :cascade do |t|
+    t.bigint "dashboard_id"
+    t.bigint "query_id"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dashboard_id"], name: "index_blazer_dashboard_queries_on_dashboard_id"
+    t.index ["query_id"], name: "index_blazer_dashboard_queries_on_query_id"
+  end
+
+  create_table "blazer_dashboards", force: :cascade do |t|
+    t.bigint "creator_id"
+    t.text "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_blazer_dashboards_on_creator_id"
+  end
+
+  create_table "blazer_queries", force: :cascade do |t|
+    t.bigint "creator_id"
+    t.string "name"
+    t.text "description"
+    t.text "statement"
+    t.string "data_source"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_blazer_queries_on_creator_id"
+  end
+
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
     t.string "data_content_type"
@@ -209,6 +263,17 @@ ActiveRecord::Schema.define(version: 2021_06_06_021143) do
     t.index ["usuario_curso_id"], name: "index_conversas_on_usuario_curso_id"
   end
 
+  create_table "curso_certificados", force: :cascade do |t|
+    t.bigint "usuario_id"
+    t.bigint "curso_id"
+    t.string "hash_validacao"
+    t.datetime "data_finalizacao", default: -> { "now()" }
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["curso_id"], name: "index_curso_certificados_on_curso_id"
+    t.index ["usuario_id"], name: "index_curso_certificados_on_usuario_id"
+  end
+
   create_table "cursos", force: :cascade do |t|
     t.string "nome", null: false
     t.text "descricao"
@@ -219,14 +284,14 @@ ActiveRecord::Schema.define(version: 2021_06_06_021143) do
     t.string "codigo_acesso", limit: 8, null: false
     t.boolean "ativo", default: true
     t.boolean "publico", default: false
-    t.text "publico_alvo"
-    t.text "criterios_participacao"
-    t.integer "carga_horaria"
-    t.integer "porcentagem_aprovacao"
     t.bigint "tema_curso_id"
     t.bigint "proprietario_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "carga_horaria"
+    t.integer "porcentagem_aprovacao"
+    t.text "publico_alvo"
+    t.text "criterios_participacao"
     t.bigint "area_id"
     t.index ["area_id"], name: "index_cursos_on_area_id"
     t.index ["proprietario_id"], name: "index_cursos_on_proprietario_id"
@@ -258,13 +323,22 @@ ActiveRecord::Schema.define(version: 2021_06_06_021143) do
     t.time "hora"
     t.string "nome"
     t.text "descricao"
-    t.boolean "ativo", default: true
     t.bigint "usuario_curso_id"
     t.bigint "curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "ativo", default: true
     t.index ["curso_id"], name: "index_eventos_on_curso_id"
     t.index ["usuario_curso_id"], name: "index_eventos_on_usuario_curso_id"
+  end
+
+  create_table "explicacoes", force: :cascade do |t|
+    t.string "nome", null: false
+    t.text "descricao"
+    t.bigint "modulo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["modulo_id"], name: "index_explicacoes_on_modulo_id"
   end
 
   create_table "faqs", force: :cascade do |t|
@@ -278,10 +352,12 @@ ActiveRecord::Schema.define(version: 2021_06_06_021143) do
     t.string "titulo"
     t.text "descricao"
     t.boolean "ativo", default: true
-    t.bigint "modulo_id"
+    t.bigint "curso_id"
     t.bigint "usuario_curso_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "modulo_id"
+    t.index ["curso_id"], name: "index_foruns_on_curso_id"
     t.index ["modulo_id"], name: "index_foruns_on_modulo_id"
     t.index ["usuario_curso_id"], name: "index_foruns_on_usuario_curso_id"
   end
@@ -300,10 +376,10 @@ ActiveRecord::Schema.define(version: 2021_06_06_021143) do
 
   create_table "grupos", force: :cascade do |t|
     t.string "nome"
-    t.string "perfil"
     t.boolean "ativo", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "perfil"
   end
 
   create_table "grupos_cursos", force: :cascade do |t|
@@ -570,9 +646,6 @@ ActiveRecord::Schema.define(version: 2021_06_06_021143) do
     t.string "perfil", default: "Aluno", null: false
     t.string "nickname", null: false
     t.float "pontos_experiencia", default: 0.0
-    t.boolean "aprovado"
-    t.boolean "curso_finalizado", default: false
-    t.string "status_curso", default: "Em andamento"
     t.bigint "usuario_id"
     t.bigint "curso_id"
     t.datetime "created_at", null: false
@@ -580,6 +653,9 @@ ActiveRecord::Schema.define(version: 2021_06_06_021143) do
     t.bigint "avatar_id"
     t.bigint "grupo_curso_id"
     t.bigint "nivel_id"
+    t.boolean "curso_finalizado", default: false
+    t.string "status_curso", default: "Em andamento"
+    t.boolean "aprovado"
     t.index ["avatar_id"], name: "index_usuario_curso_on_avatar_id"
     t.index ["curso_id"], name: "index_usuario_curso_on_curso_id"
     t.index ["grupo_curso_id"], name: "index_usuario_curso_on_grupo_curso_id"
@@ -589,7 +665,6 @@ ActiveRecord::Schema.define(version: 2021_06_06_021143) do
 
   create_table "usuarios", force: :cascade do |t|
     t.string "nome", default: "", null: false
-    t.string "cpf", null: false
     t.string "email", default: "", null: false
     t.string "perfil", default: "Usuário comum", null: false
     t.date "data_nascimento", null: false
@@ -608,6 +683,7 @@ ActiveRecord::Schema.define(version: 2021_06_06_021143) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "curso_atual_id"
+    t.string "cpf"
     t.string "login_token"
     t.index ["curso_atual_id"], name: "index_usuarios_on_curso_atual_id"
     t.index ["email"], name: "index_usuarios_on_email", unique: true
@@ -624,6 +700,8 @@ ActiveRecord::Schema.define(version: 2021_06_06_021143) do
   add_foreign_key "conversas", "conversas"
   add_foreign_key "conversas", "usuario_curso"
   add_foreign_key "conversas", "usuario_curso", column: "destinatario_id"
+  add_foreign_key "curso_certificados", "cursos"
+  add_foreign_key "curso_certificados", "usuarios"
   add_foreign_key "cursos", "areas"
   add_foreign_key "cursos", "tema_cursos"
   add_foreign_key "cursos", "usuarios", column: "proprietario_id"
@@ -632,6 +710,8 @@ ActiveRecord::Schema.define(version: 2021_06_06_021143) do
   add_foreign_key "dicas", "missoes"
   add_foreign_key "eventos", "cursos"
   add_foreign_key "eventos", "usuario_curso"
+  add_foreign_key "explicacoes", "modulos"
+  add_foreign_key "foruns", "cursos"
   add_foreign_key "foruns", "modulos"
   add_foreign_key "foruns", "usuario_curso"
   add_foreign_key "foruns_comentarios", "foruns"
