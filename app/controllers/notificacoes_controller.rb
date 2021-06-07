@@ -5,7 +5,7 @@ class NotificacoesController < ApplicationController
   # GET /notificacoes.json
   def index
     authorize! :index, Notificacao
-    @notificacoes = Notificacao.where(usuario_curso: current_usuario.id).order('id desc').page(params[:page])
+    @notificacoes = Notificacao.where(usuario_curso: @perfil.id).order('id desc').page(params[:page])
   end
 
   # GET /notificacoes/1
