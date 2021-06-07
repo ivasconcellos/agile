@@ -152,8 +152,8 @@ class UsuarioCursoController < ApplicationController
   def minhas_conquistas
     authorize! :minhas_conquistas, UsuarioCurso
     @usuario_curso = UsuarioCurso.find(@perfil.id)
-    @badges = BadgeAluno.where(usuario_curso_id: @perfil.id)
-    @artefatos = ArtefatoAluno.where(usuario_curso_id: @perfil.id)
+    @badges = BadgeAluno.where(usuario_curso_id: @perfil.id).order('created_at desc')
+    @artefatos = ArtefatoAluno.where(usuario_curso_id: @perfil.id).order('created_at desc')
     respond_to do |format|
       format.html
       format.js
