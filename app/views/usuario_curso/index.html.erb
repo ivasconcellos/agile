@@ -80,10 +80,6 @@
 
   <br>
 
-  <% if can? :new, UsuarioCurso %>
-    <div class="card-footer text-muted">
-      <%= link_to 'Cadastrar Usuário no Curso', {controller: 'usuario_curso', action: 'new', curso_id: @current_usuario.curso_atual_id}, class: "btn btn-md btn-success" %>
-    </div>
-  <% end %>
+  
 
 </div>
