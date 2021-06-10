@@ -2,21 +2,25 @@
 
 	<div class="card-header">Tarefa Entregue</div>
 
-	<ul class="list-group">
-	   <li class="list-group-item"><b>Missão:</b> <%= @tarefa_aluno.tarefa.missao.nome %></li>
-	   <li class="list-group-item"><b>Descrição da Missão:</b> <%= @tarefa_aluno.tarefa.missao.descricao.to_s.html_safe %></li>
-	   <li class="list-group-item"><b>Pontuação da Missão:</b> <%= formata_pontos(@tarefa_aluno.tarefa.missao.pontuacao) %></li>
-	   <li class="list-group-item"><b>Prazo da Missão:</b> <%= @tarefa_aluno.tarefa.missao.data_hora_termino %></li>
-	   <li class="list-group-item"><b>Tarefa:</b> <%= @tarefa_aluno.tarefa.nome %></li>
-	   <li class="list-group-item"><b>Descrição da Tarefa:</b> <%= @tarefa_aluno.tarefa.descricao.to_s.html_safe %></li>
-	   <li class="list-group-item"><b>Nickname:</b> <%= @tarefa_aluno.usuario_curso.nickname %></li>
-	   <li class="list-group-item"><b>Arquivo:</b> <%= link_to image_tag("documento.png", :alt => "documento", size: "50x50"), url_for(@tarefa_aluno.arquivo), target: 'blank' %></li>
-       <li class="list-group-item"><b>Última atualização:</b> <%= @tarefa_aluno.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
-        <li class="list-group-item"><b>Avaliada:</b> <%= @tarefa_aluno.avaliada? ? 'Sim' : 'Não' %></li>
-        <% if @tarefa_aluno.tarefa_avaliacao %>
-        	<li class="list-group-item"><b>Pontuação obtida:</b> <%= @tarefa_aluno.tarefa_avaliacao.nota %></li>
-        <% end %>
-	</ul>
+	<div class="row">
+		<div class="col-md-10 offset-md-1">
+			<ul class="list-group">
+				<li class="list-group-item"><b>Tarefa:</b> <%= @tarefa_aluno.tarefa.nome %></li>
+				<li class="list-group-item"><b>Descrição da Tarefa:</b> <%= @tarefa_aluno.tarefa.descricao.to_s.html_safe %></li>
+				<li class="list-group-item text-success"><b>Nickname:</b> <%= @tarefa_aluno.usuario_curso.nickname %></li>
+				<li class="list-group-item"><b>Prazo da Missão:</b> <%= @tarefa_aluno.tarefa.missao.data_hora_termino %></li>
+				<li class="list-group-item"><b>Pontuação da Missão:</b> <%= formata_pontos(@tarefa_aluno.tarefa.missao.pontuacao) %></li>
+				<% if @tarefa_aluno.tarefa_avaliacao %>
+					<li class="list-group-item"><b>Pontuação obtida:</b> <%= @tarefa_aluno.tarefa_avaliacao.nota %></li>
+				<% end %>
+				<li class="list-group-item"><b>Missão:</b> <%= @tarefa_aluno.tarefa.missao.nome %></li>
+				<li class="list-group-item"><b>Descrição da Missão:</b> <%= @tarefa_aluno.tarefa.missao.descricao.to_s.html_safe %></li>
+				<li class="list-group-item"><b>Arquivo:</b> <%= link_to image_tag("documento.png", :alt => "documento", size: "50x50"), url_for(@tarefa_aluno.arquivo), target: 'blank' %></li>
+				<li class="list-group-item"><b>Avaliada:</b> <%= @tarefa_aluno.avaliada? ? 'Sim' : 'Não' %></li>
+				<li class="list-group-item"><b>Última atualização:</b> <%= @tarefa_aluno.updated_at.strftime("%d/%m/%Y - %H:%M:%S") %></li>
+			</ul>
+		</div>
+  	</div>
 
 	<div class="card-footer text-muted">
 	  <% if can? :edit, TarefaAluno and no_prazo(@tarefa_aluno.tarefa.missao) and !@tarefa_aluno.tarefa_avaliacao %>
@@ -31,7 +35,7 @@
 			<%= link_to 'Avaliar Tarefa', {controller: 'tarefa_avaliacao', action: 'new', tarefa_aluno_id: @tarefa_aluno.id}, class: "btn btn-md btn-danger" %>
 		<% end %>
 	<% end %>
-	  <%= link_to 'Voltar', @tarefa_aluno.tarefa, class: "btn btn-md btn-secondary" %>
+	  <%= link_to 'Voltar', tarefa_alunos_path(id: @tarefa_aluno.tarefa.id), class: "btn btn-md btn-secondary" %>
 	</div>
 
 

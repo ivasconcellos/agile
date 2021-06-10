@@ -43,7 +43,7 @@
       <%= link_to 'Atualizar Envio', edit_tarefa_aluno_path(@tarefa_aluno), class: "btn btn-md btn-danger" %>
     <% end %>
     <% if can? :new, TarefaAvaliacao %>
-      <%= link_to 'Visualizar Respostas', tarefa_alunos_path(id: @tarefa.id), class: "btn btn-md btn-warning" %>
+      <%= link_to 'Visualizar Respostas', tarefa_alunos_path(id: @tarefa.id), class: "btn btn-md btn-success" %>
     <% end %>
     <%= link_to 'Voltar para Missão', @tarefa.missao, class: "btn btn-md btn-secondary" %>
   </div>

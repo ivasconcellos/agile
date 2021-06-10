@@ -93,12 +93,9 @@
     <%= link_to 'Voltar', @missao.modulo.curso, class: "btn btn-md btn-secondary" %>
   </div>
 
-  <br>
-
-  <div class="row">
-    <div class="col-md-12">
-
-      <% if !@dicas.empty? and can? :new, Dica %>
+  <% if !@dicas.empty? and can? :new, Dica %>
+    <div class="row">
+      <div class="col-md-12">
 
         <div class="card-header">Dicas da Missão</div>
         
@@ -111,9 +108,9 @@
             </ul>      
           </div>
         </div>
-
-      <% end %>
+        
+      </div>
     </div>
-  </div>
+  <% end %>
 
 </div>
