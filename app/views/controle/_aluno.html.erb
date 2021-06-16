@@ -8,7 +8,7 @@
         <p class="list-group-item text-center"><%= image_tag "missing.png", class: "img-responsive img-thumbnail" %></p>
       <% end %>
       <p class="list-group-item text-center perfil"> <%= link_to @perfil.nickname, @perfil %></p>
-      <p class="list-group-item text-center perfil"><label>XP:</label> <%= formata_pontos(@perfil.pontos_experiencia) %></p>
+      <p class="list-group-item text-center perfil"><label>XP:</label> <%= pontuacao(@perfil) %></p>
       <p class="list-group-item text-center perfil"><label>Nível:</label> <%= @perfil.nivel.nome %></p>
       <% if @perfil.grupo_curso %>
         <p class="list-group-item text-center perfil"><label>Equipe:</label> <%= link_to @perfil.grupo_curso.nome_curso, equipe_url %></p>
