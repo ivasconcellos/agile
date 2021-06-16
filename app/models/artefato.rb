@@ -12,11 +12,12 @@ class Artefato < ApplicationRecord
 	self.per_page = 10
 
 	def self.verifica_artefato(usuario)
-		@artefato = Artefato.where('pontos_requeridos <= ?', usuario.pontos_experiencia)
+		pontuacao_aluno = usuario.pontuacao
+		@artefato = Artefato.where('pontos_requeridos <= ?', pontuacao_aluno)
 		for artefato in @artefato
 			@artefato_aluno = ArtefatoAluno.find_by(usuario_curso_id: usuario.id, artefato_id: artefato.id)
 		    if !@artefato_aluno
-		    	if usuario.pontos_experiencia >= artefato.pontos_requeridos
+		    	if pontuacao_aluno >= artefato.pontos_requeridos
 					@novo_artefato = ArtefatoAluno.create!(usuario_curso_id: usuario.id, artefato_id: artefato.id)
 					@notificacao = Notificacao.create!(usuario_curso_id: usuario.id, texto: "Parabéns!!! Você conquistou o artefato: <b>" + @novo_artefato.artefato.nome + "</b>! Para visualizá-lo, acesse o menu 'Conquistas'.", tipo: "Artefato")
 					ApplicationMailer.novo_artefato(@novo_artefato).deliver		    		

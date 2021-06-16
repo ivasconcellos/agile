@@ -10,12 +10,13 @@ class Nivel < ApplicationRecord
 	self.per_page = 10
 
 	def self.verifica_nivel(usuario)
-		@nivel = Nivel.where('pontos_requeridos <= ?', usuario.pontos_experiencia).last
+		pontuacao_aluno = usuario.pontuacao
+		@nivel = Nivel.where('pontos_requeridos <= ?', pontuacao_aluno).last
 	    if usuario.nivel_id != @nivel.id
-	      usuario.nivel_id = @nivel.id
-				usuario.save!
-				ApplicationMailer.novo_nivel(usuario).deliver	      
-				@notificacao = Notificacao.create!(usuario_curso_id: usuario.id, texto: "Parabéns!!! Você conquistou o Nível: <b>" + @nivel.nome + "</b>! Para visualizá-lo, acesse o menu 'Conquistas'.", tipo: "Nível")
+	      	usuario.nivel_id = @nivel.id
+			usuario.save!
+			ApplicationMailer.novo_nivel(usuario).deliver	      
+			@notificacao = Notificacao.create!(usuario_curso_id: usuario.id, texto: "Parabéns!!! Você conquistou o Nível: <b>" + @nivel.nome + "</b>! Para visualizá-lo, acesse o menu 'Conquistas'.", tipo: "Nível")
 	    end
 	end
 end
