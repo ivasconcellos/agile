@@ -83,17 +83,17 @@
 
 	<% end %>  
 
-	<% if  @perfil.pesquisa and @perfil.perfil == 'Aluno' %>
-
-		<div class="alert alert-primary alert-lateral">
-			<li class="nav-item">
-				<%= link_to " Pesquisas", question_groups_path, {class: "fa fa-search fa-sm nav-link text-dark"} %>
-			</li>
-		</div>
-
-	<% end %>
-
 	<% if  @perfil.perfil == 'Aluno' %>
+
+		<% if  @perfil.pesquisa %>
+
+			<div class="alert alert-primary alert-lateral">
+				<li class="nav-item">
+					<%= link_to " Pesquisas", question_groups_path, {class: "fa fa-search fa-sm nav-link text-dark"} %>
+				</li>
+			</div>
+
+		<% end %>
 
 		<div class="alert alert-danger alert-lateral">
 			<li class="nav-item">
@@ -101,15 +101,24 @@
 			</li>
 		</div>
 
+		<% if  @perfil.notificacao %>
+
+			<div class="alert alert-info alert-lateral">
+				<li class="nav-item">
+					<%= link_to " Notificações", notificacoes_path, {class: "fa fa-bell fa-sm nav-link text-dark"} %>
+				</li>
+			</div>
+
+		<% end %>
+
 	<% end %>
 
-	<% if  @perfil.notificacao and @perfil.perfil == 'Aluno' %>
-
-		<div class="alert alert-info alert-lateral">
+	<% if  @perfil.perfil == 'Professor' %>
+		<div class="alert alert-danger alert-lateral">
 			<li class="nav-item">
-				<%= link_to " Notificações", notificacoes_path, {class: "fa fa-bell fa-sm nav-link text-dark"} %>
+				<%= link_to " Tarefas a Avaliar", tarefas_avaliar_path, {class: "fa fa-exclamation-triangle fa-sm nav-link text-dark"} %>
 			</li>
 		</div>
-
 	<% end %>
+	
 <% end %>

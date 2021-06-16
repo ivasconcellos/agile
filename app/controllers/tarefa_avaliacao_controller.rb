@@ -58,6 +58,11 @@ class TarefaAvaliacaoController < ApplicationController
     end
   end
 
+  def tarefas_avaliar
+    authorize! :new, TarefaAvaliacao
+		@tarefas_pendentes_avaliacao = TarefaAluno.joins(:usuario_curso).where('usuario_curso.curso_id = ? and avaliada =?', @perfil.curso.id, false)
+	end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tarefa_avaliacao
