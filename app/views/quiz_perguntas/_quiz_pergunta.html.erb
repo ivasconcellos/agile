@@ -3,7 +3,7 @@
   <div class="card">
     <div class="card-header2 bg-secondary text-white">
       <p>
-        <b><%= index+1 %>º Pergunta </b> - <b>Pontuação: </b><%= quiz_pergunta.pontuacao %>
+        <b><%= index+1 %>º Pergunta </b> - <b>Pontuação: </b><%= formata_pontos(quiz_pergunta.pontuacao) %>
         <% if can? :edit, QuizPergunta and !quiz_pergunta.quiz.finalizado %>
           <%= link_to  '  ', edit_quiz_pergunta_path(quiz_pergunta), class: "fa fa-pencil text-light" %>
         <% end %>
