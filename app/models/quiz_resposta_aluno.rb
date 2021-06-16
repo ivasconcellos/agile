@@ -7,13 +7,10 @@ class QuizRespostaAluno < ApplicationRecord
   def pontuacao_aluno
   	@usuario = UsuarioCurso.find_by(id: self.usuario_curso_id)
     if self.quiz_pergunta_resposta.correta?
-      @usuario.pontos_experiencia += self.quiz_pergunta_resposta.quiz_pergunta.pontuacao
       Nivel.verifica_nivel(@usuario)
       Badge.verifica_badge(@usuario)
       Artefato.verifica_artefato(@usuario)
-    end
-    @usuario.save  
-    
+    end    
   end
 
   validate :unica_resposta
