@@ -1,6 +1,6 @@
 class QuizPerguntaResposta < ApplicationRecord
   belongs_to :quiz_pergunta
-  has_many :quiz_respostas_alunos
+  has_many :quiz_respostas_alunos, dependent: :destroy
   validates_presence_of :descricao
 
   validate :existe_correta
