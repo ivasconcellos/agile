@@ -6,8 +6,8 @@
     </div>
 
     <div class="alert alert-success">
-      <p>Pontuação Total da Equipe: <%= @perfil.grupo_curso.pontuacao_total_equipe %></p>
-      <p>Pontuação Média da Equipe: <%= @perfil.grupo_curso.pontuacao_media_equipe %></p>
+      <p>Pontuação Total da Equipe: <%= formata_pontos(@perfil.grupo_curso.pontuacao_total_equipe) %></p>
+      <p>Pontuação Média da Equipe: <%= formata_pontos(@perfil.grupo_curso.pontuacao_media_equipe) %></p>
     </div>
 
     <div class="card-header bg-primary">Membros da Equipe</div>

@@ -19,6 +19,6 @@ class GrupoCurso < ApplicationRecord
   def pontuacao_media_equipe
     qnt_alunos_grupo = UsuarioCurso.where(grupo_curso_id: self.id, curso_id: self.curso.id).count
   	media = self.pontuacao_total_equipe / qnt_alunos_grupo
-    return "%g" % ("%.2f" % media)
+    return media
   end
 end
