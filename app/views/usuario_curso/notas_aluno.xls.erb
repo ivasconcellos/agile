@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:c="urn:schemas-microsoft-com:office:component:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:x2="http://schemas.microsoft.com/office/excel/2003/xml"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Styles>
+    <Style ss:ID="Default" ss:Name="Normal">
+     <Font ss:FontName="Arial" x:Family="Swiss" ss:Size="14" ss:Bold="1"/>
+    </Style>
+
+    <Style ss:ID="titleStyle">
+     <Alignment ss:Vertical="Center"/>
+     <Borders>
+      <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+      <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+      <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+      <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+     </Borders>
+     <Font ss:FontName="Arial" ss:Size="12" ss:Bold="1"/>
+    </Style>
+
+   
+  </Styles>
+
+  <ss:Worksheet ss:Name="Sheet1">
+
+    <Table>
+        <Row>
+            <Cell ss:StyleID="titleStyle"><Data ss:Type="String">Aluno:</Data></Cell>
+            <Cell><Data ss:Type="String"><%= @aluno.nickname %></Data></Cell>
+        </Row>
+        <Row>
+        </Row>
+        <% @aluno.curso.modulos.each do |modulo| %>
+            <Row>
+            <Cell ss:StyleID="titleStyle"><Data ss:Type="String">Módulo:</Data></Cell>
+            <Cell><Data ss:Type="String"><%= modulo.nome %></Data></Cell>
+            </Row>
+            <% Missao.where(modulo_id: modulo.id).each do |missao| %>
+                <Row>
+                    <Cell ss:StyleID="titleStyle"><Data ss:Type="String">Missão:</Data></Cell>
+                    <Cell><Data ss:Type="String"><%= missao.tipo %></Data></Cell>
+                    <Cell ss:StyleID="titleStyle"><Data ss:Type="String">Nome:</Data></Cell>
+                    <Cell><Data ss:Type="String"><%= missao.nome %></Data></Cell>              
+                </Row>
+                <% if missao.tipo == 'Quiz' %>
+                    <Row>
+                        <Cell ss:StyleID="titleStyle"><Data ss:Type="String">Pontuação máxima</Data></Cell>
+                        <Cell ss:StyleID="titleStyle"><Data ss:Type="String">Nota</Data></Cell>
+                        <Cell ss:StyleID="titleStyle"><Data ss:Type="String">Realizada</Data></Cell>
+                        <Cell ss:StyleID="titleStyle"><Data ss:Type="String">Avaliada</Data></Cell>
+                    </Row>
+                    <Row>
+                        <Cell><Data ss:Type="String"><%= formata_pontos(missao.pontuacao) %></Data></Cell>
+                        <Cell><Data ss:Type="String"><%= minha_nota_quiz(missao.quiz.id, @aluno.id) %></Data></Cell>
+                        <Cell><Data ss:Type="String"><%= respondido_quiz(missao.quiz.id, @aluno.id) %></Data></Cell>
+                        <Cell><Data ss:Type="String"><%= respondido_quiz(missao.quiz.id, @aluno.id) %></Data></Cell>
+                    </Row>
+                <% end %>
+
+                <% if missao.tipo == 'Tarefa' %>
+                    <Row>
+                        <Cell ss:StyleID="titleStyle"><Data ss:Type="String">Pontuação máxima</Data></Cell>
+                        <Cell ss:StyleID="titleStyle"><Data ss:Type="String">Nota</Data></Cell>
+                        <Cell ss:StyleID="titleStyle"><Data ss:Type="String">Enviada</Data></Cell>
+                        <Cell ss:StyleID="titleStyle"><Data ss:Type="String">Avaliada</Data></Cell>
+                    </Row>
+                    <Row>
+                        <Cell><Data ss:Type="String"><%= formata_pontos(missao.pontuacao) %></Data></Cell>
+                        <Cell><Data ss:Type="String"><%= minha_nota(missao.tarefa.id, @aluno.id) %></Data></Cell>
+                        <Cell><Data ss:Type="String"><%= enviada(missao.tarefa.id, @aluno.id) %></Data></Cell>
+                        <Cell><Data ss:Type="String"><%= avaliada(missao.tarefa.id, @aluno.id) %></Data></Cell>
+                    </Row>
+                <% end %>
+
+                <Row>
+                </Row>
+            <% end %>
+        
+        <% end %>
+        <Row>
+            <Cell ss:StyleID="titleStyle"><Data ss:Type="String">Pontuação total:</Data></Cell>
+            <Cell><Data ss:Type="String"><%= formata_pontos(@aluno.pontuacao) %></Data></Cell>
+        </Row>
+    </Table>
+
+    <x:WorksheetOptions/>
+  </ss:Worksheet>
+</Workbook>

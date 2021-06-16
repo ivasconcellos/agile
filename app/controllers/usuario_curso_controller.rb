@@ -96,9 +96,20 @@ class UsuarioCursoController < ApplicationController
   end
 
   def notas_aluno
+    authorize! :notas_aluno,:notas
     @aluno = UsuarioCurso.find_by('usuario_curso.id = ? and curso_id = ?',
        params[:aluno_id], params[:curso_id])
-    authorize! :notas_aluno,:notas
+    respond_to do |format|
+      format.html
+      format.xls
+      format.pdf do
+        render pdf: "Notas do Aluno",
+                page_size: "A4",
+                title: "Notas do Aluno",
+                orientation: 'Landscape', 
+                layout: 'application'
+      end
+    end
   end
 
   def minhas_notas
