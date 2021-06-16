@@ -1,0 +1,26 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<%= wicked_pdf_stylesheet_link_tag "pdf" %>
+</h1>
+
+<h2 class="topo">Notas da Turma - Curso: <%= @perfil.curso.nome %></h2>
+
+<table class="tabela">
+    <tr>
+        <td class="tag4">#</td>
+        <td class="tag4">Nickname</td>
+        <td class="tag4">Pontuação Total</td>
+    </tr>
+    <% @alunos.each_with_index do |aluno, index| %>
+        <tr>
+            <td class="tag3"><%= index + 1 %></td>
+            <td class="tag3"><%= aluno.nickname %></td>
+            <td class="tag3"><%= formata_pontos(aluno.pontuacao) %></td>
+        </tr>
+    <% end %>
+
+</table>
+
+
+<p class="impresso2">Relatório gerado em <%= Time.now.strftime("%d/%m/%Y - %H:%M:%S") %>.</p>
+<br><br><br>
+<p class="rodape">AGILE - Ambiente Virtual de Aprendizagem Gamificado</p>
