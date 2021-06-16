@@ -1,0 +1,32 @@
+<div class="card">
+
+  <div class="card-header">Notas da Turma - Curso: <%= @perfil.curso.nome %> </div>
+
+    <div class="col-lg-6 offset-md-3">
+		<br>
+		<%= link_to 'Gerar XLS', {controller: "usuario_curso", action: "nota_total_alunos", format: 'xls'},  :class => "btn btn-success" %>
+		<%= link_to 'Gerar PDF', {controller: "usuario_curso", action: "nota_total_alunos", format: 'pdf'}, target: "_blank",  :class => "btn btn-danger pull-right" %>
+	</div>
+	
+	<div class="table-responsive">
+    <table class="table table-striped table-bordered table-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th class="text-center">#</th>
+          <th class="text-center">Nickname</th>
+          <th class="text-center">Pontuação Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @alunos.each_with_index do |aluno, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= aluno.nickname %></td>
+            <td><%= formata_pontos(aluno.pontuacao) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

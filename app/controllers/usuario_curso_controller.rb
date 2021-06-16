@@ -112,6 +112,22 @@ class UsuarioCursoController < ApplicationController
     end
   end
 
+  def nota_total_alunos
+    authorize! :notas_aluno,:notas
+    @alunos = UsuarioCurso.where('curso_id = ? and perfil =?', @perfil.curso_id, "Aluno").order('nickname')
+    respond_to do |format|
+      format.html
+      format.xls
+      format.pdf do
+        render pdf: "Notas da Turma",
+                page_size: "A4",
+                title: "Notas da Turma",
+                orientation: 'Landscape', 
+                layout: 'application'
+      end
+    end
+  end
+
   def minhas_notas
     @modulos = Modulo.where('modulos.curso_id = ?',
        current_usuario.curso_atual_id)
