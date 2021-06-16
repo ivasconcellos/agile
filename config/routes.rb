@@ -117,6 +117,8 @@ Rails.application.routes.draw do
 
   get 'visualizar_avatares' => 'avatares#visualizar_avatares'
 
+  get 'tarefas_avaliar' => 'tarefa_avaliacao#tarefas_avaliar'
+
   #Conversas
   get 'conversas_professor' => 'conversas#conversas_professor'
   get 'conversas_assunto' => 'conversas#conversas_assunto'

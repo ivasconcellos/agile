@@ -1,0 +1,39 @@
+<div class="card">
+
+  <div class="card-header">Tarefas com Avaliação Pendente</div>
+
+  
+
+    <% if !@tarefas_pendentes_avaliacao.empty? %>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+            <thead class="thead-dark">
+                <tr>
+                <th class="text-center">Tarefa</th>
+                <th class="text-center">Missão</th>
+                <th class="text-center">Módulo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @tarefas_pendentes_avaliacao.each do |tarefa_pendente| %>
+                <tr>
+                    <td><%= link_to tarefa_pendente.tarefa.nome, tarefa_pendente.tarefa %></td>
+                    <td><%= tarefa_pendente.tarefa.missao.nome %></td>
+                    <td><%= tarefa_pendente.tarefa.missao.modulo.nome %></td>
+                </tr>
+                <% end %>
+            </tbody>
+            </table>
+        </div>
+    <% else %>
+        <div class="alert alert-success">
+            Parabéns! Não há tarefa com avaliação pendente!
+        </div>
+    <% end %>
+
+
+  <div class="card-footer text-muted">
+    <%= link_to 'Voltar', :back, class: "btn btn-md btn-secondary" %>
+  </div>
+
+</div>
