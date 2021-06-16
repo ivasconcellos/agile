@@ -1,6 +1,6 @@
 class QuizPergunta < ApplicationRecord
   belongs_to :quiz
-  has_many :quiz_pergunta_respostas
+  has_many :quiz_pergunta_respostas, dependent: :destroy
   validates_presence_of :descricao, :pontuacao
 
   validates :pontuacao, numericality: true
