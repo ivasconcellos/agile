@@ -34,4 +34,5 @@ class Usuario < ApplicationRecord
       errors.add(:cpf, "Inválido!")
     end
   end
+
 end

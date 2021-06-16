@@ -108,7 +108,12 @@ class UsuarioCursoController < ApplicationController
   end
 
   def ranking_usuario
-    @alunos = UsuarioCurso.where(curso_id: current_usuario.curso_atual_id, perfil: 'Aluno').order(pontos_experiencia: :desc, created_at: :asc)
+    alunos = {}
+    usuarios = UsuarioCurso.where(curso_id: current_usuario.curso_atual_id, perfil: 'Aluno').order('created_at desc')
+    for usuario in usuarios
+			alunos[usuario] = usuario.pontuacao.to_f
+		end
+    @alunos = Hash[alunos.sort_by{|k, v| v}.reverse]
     authorize! :show, UsuarioCurso
   end
 

@@ -40,9 +40,9 @@
 			<i class="fa fa-rocket fa-sm nav-link text-dark"> Ranking</i>
 		</li>
 	  	
-		<% @perfil.ranking.each_with_index do |aluno, index| %>
+		<% @perfil.ranking.first(10).each_with_index do |aluno, index| %>
 			<li class="nav-item">
-				<%= link_to "#{index+1}º  #{aluno.nickname}", aluno, class: 'nav-link' %>
+				<%= link_to "#{index+1}º  #{aluno[0].nickname}", aluno[0], class: 'nav-link' %>
 			</li>
 		<% end %>
 		

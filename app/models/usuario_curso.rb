@@ -35,22 +35,38 @@ class UsuarioCurso < ApplicationRecord
 	end
 
 	def ranking
-    	@usuarios = UsuarioCurso.where(curso_id: self.curso_id, perfil: 'Aluno').order(pontos_experiencia: :desc, created_at: :asc).limit(10)
+		alunos = {}
+		usuarios = UsuarioCurso.where(curso_id: self.curso_id, perfil: 'Aluno').order('created_at desc')
+		for usuario in usuarios
+			alunos[usuario] = usuario.pontuacao.to_f
+		end
+
+		return Hash[alunos.sort_by{|k, v| v}.reverse]
   	end
 
   	def ranking_equipe
   		equipes = {}
-  		@grupos = GrupoCurso.joins(:grupo).where('curso_id = ? and grupos.perfil = ?', self.curso.id, 'Aluno')
-  		for grupo in @grupos
-  			equipes[grupo.nome_curso] = UsuarioCurso.where(grupo_curso_id: grupo.id, curso_id: self.curso.id).average('pontos_experiencia').to_f
+  		grupos = GrupoCurso.joins(:grupo).where('curso_id = ? and grupos.perfil = ?', self.curso.id, 'Aluno')
+  		for grupo in grupos
+			pontuacao_grupo = 0
+			alunos = UsuarioCurso.where(grupo_curso_id: grupo.id, curso_id: self.curso.id)
+			qnt_alunos = alunos.count
+			for aluno in alunos
+				pontuacao_grupo = pontuacao_grupo + aluno.pontuacao
+			end
+			if qnt_alunos > 0
+				equipes[grupo.nome_curso] = (pontuacao_grupo/qnt_alunos)
+			else
+				equipes[grupo.nome_curso] = pontuacao_grupo
+			end
   		end  	
 
   		return Hash[equipes.sort_by{|k, v| v}.reverse]
   	end
 	
-		def forum
-				@foruns = Forum.exists?(ativo: true, modulo_id: self.curso.modulo_ids)
-		end
+	def forum
+		@foruns = Forum.exists?(ativo: true, modulo_id: self.curso.modulo_ids)
+	end
 
   	def chat
   		@chats = SalaChat.exists?(ativo: true, curso_id: self.curso_id)
@@ -58,11 +74,11 @@ class UsuarioCurso < ApplicationRecord
 
   	def pesquisa
   		@pesquisas = !AnswerGroup.exists?(usuario_curso_id: self.id, question_group_id: QuestionGroup.where(curso_id: self.curso_id))
-		end
+	end
 		
-		def notificacao
-			@notificacoes = Notificacao.exists?(usuario_curso_id: self.id)
-		end
+	def notificacao
+		@notificacoes = Notificacao.exists?(usuario_curso_id: self.id)
+	end
 
   	def pode_finalizar_curso
   		@pesquisas = AnswerGroup.exists?(usuario_curso_id: self.id, question_group_id: QuestionGroup.where(curso_id: self.curso_id))
@@ -98,7 +114,7 @@ class UsuarioCurso < ApplicationRecord
 
   	def verifica_aprovacao
   		@pontuacao_missao = Missao.joins(:modulo).where('modulos.curso_id =?', self.curso_id).sum('pontuacao')
-  		if self.pontos_experiencia / @pontuacao_missao >= self.curso.porcentagem_aprovacao / 100.0
+  		if self.pontuacao / @pontuacao_missao >= self.curso.porcentagem_aprovacao / 100.0
   			return true
   		else
   			return false
@@ -123,5 +139,12 @@ class UsuarioCurso < ApplicationRecord
   			return 100
   		end
   	end
+
+	def pontuacao
+		pontuacao_tarefas = TarefaAluno.joins(:tarefa_avaliacao).where('tarefa_alunos.usuario_curso_id = ?', self.id).sum(:nota)
+        pontuacao_quizzes = QuizRespostaAluno.joins(:quiz_pergunta_resposta, :quiz_pergunta).where('quiz_respostas_alunos.usuario_curso_id = ? and quiz_pergunta_respostas.correta =? ', self.id, true).sum('quiz_perguntas.pontuacao')
+        @pontuacao_total = pontuacao_tarefas + pontuacao_quizzes
+        return  @pontuacao_total
+	end
 
 end

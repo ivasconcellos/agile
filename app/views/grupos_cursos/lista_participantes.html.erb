@@ -6,8 +6,8 @@
     </div>
 
     <div class="alert alert-success">
-      <p>Pontuação Total da Equipe: <%= @perfil.grupo_curso.pontuacao_total %></p>
-      <p>Pontuação Média da Equipe: <%= @perfil.grupo_curso.pontuacao_media %></p>
+      <p>Pontuação Total da Equipe: <%= formata_pontos(@perfil.grupo_curso.pontuacao_total_equipe) %></p>
+      <p>Pontuação Média da Equipe: <%= formata_pontos(@perfil.grupo_curso.pontuacao_media_equipe) %></p>
     </div>
 
     <div class="card-header bg-primary">Membros da Equipe</div>
@@ -27,7 +27,7 @@
                 <div>
                   <ul class="list-unstyled components">
                   <li><%= link_to participante.nickname, participante, class: "text-white" %></li>
-                  <li><b>XP:</b> <%= participante.pontos_experiencia %></li>
+                  <li><b>XP:</b> <%= pontuacao(participante) %></li>
                   <li><b><%= participante.nivel.nome %></b></li>
                   </ul>
                 </div>
