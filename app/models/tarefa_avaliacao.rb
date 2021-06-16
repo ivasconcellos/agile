@@ -3,23 +3,12 @@ class TarefaAvaliacao < ApplicationRecord
   belongs_to :usuario_curso
 
   validates :tarefa_aluno, uniqueness: { scope: :usuario_curso }
-
   validates_presence_of :nota
-
   validate :verificar_pontuacao_maxima
-
   validates_inclusion_of :nota, :in => 0..100, message: " - A pontuação deve ser entre 0 e 100"
 
-  def pontuacao_aluno nota
-    
-    @usuario = UsuarioCurso.find_by(id: self.tarefa_aluno.usuario_curso_id)
-    if nota
-      @usuario.pontos_experiencia = @usuario.pontos_experiencia - nota + self.nota
-    else
-      @usuario.pontos_experiencia += self.nota
-    end
-    @usuario.save
-    
+  def pontuacao_aluno
+    @usuario = UsuarioCurso.find_by(id: self.tarefa_aluno.usuario_curso_id)    
     Nivel.verifica_nivel(@usuario)
     Badge.verifica_badge(@usuario)
     Artefato.verifica_artefato(@usuario)
