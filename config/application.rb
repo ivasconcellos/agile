@@ -19,14 +19,14 @@ module Ava
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
-    config.action_mailer.default_url_options = { host: 'agile.centro.iff.edu.br' }
+    config.action_mailer.default_url_options = { host: 'http://localhost:3000' }
     config.action_mailer.smtp_settings = {
-      :address => "mail.iff.edu.br",
+      :address => "endereco_email",
       :port => 587,
-      :domain => "iff.edu.br",
+      :domain => "seu_dominio",
       :authentication => :login,
-      :user_name => "noreply@iff.edu.br",
-      :password => "IFFN0R3ply!",
+      :user_name => "seu_email",
+      :password => "senha_email",
       :enable_starttls_auto => true,
       :openssl_verify_mode  => 'none'
       }
