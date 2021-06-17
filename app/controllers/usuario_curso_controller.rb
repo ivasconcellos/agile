@@ -186,6 +186,7 @@ class UsuarioCursoController < ApplicationController
     @usuario_curso = UsuarioCurso.find(@perfil.id)
     @badges = BadgeAluno.where(usuario_curso_id: @perfil.id).order('created_at desc')
     @artefatos = ArtefatoAluno.where(usuario_curso_id: @perfil.id).order('created_at desc')
+    Notificacao.where(usuario_curso_id: @perfil.id).update_all(visualizada: true)
     respond_to do |format|
       format.html
       format.js
