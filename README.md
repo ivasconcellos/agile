@@ -1,24 +1,9 @@
-# README
+# Informações
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+O AGILE é um Ambiente Virtual de Aprendizagem Gamificado desenvolvido por Isadora Lopes Barbosa Vasconcellos, como Produto Educacional, durante o Mestrado Profissional em Ensino e suas Tecnologias (MPET) do campus Campos Centro do IFFluiminense.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[Link para os Manuais do AGILE:](https://drive.google.com/open?id=1_dQFazZpy9Mcw8aYat7kKV5gleSmo4G4)
+- Manual de Instalação;
+- Manual do Administrador;
+- Manual do Professor;
+- Manual do Aluno.
